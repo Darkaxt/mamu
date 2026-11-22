@@ -235,6 +235,12 @@ first**. **Filter** narrows the page to enabled or disabled sources, the ones wi
 waiting, or the ones that **Need attention** because they are blocked, failed to load, or need
 a newer Morphe.
 
+When sources fail to update, the home screen shows **Update failed** with the sources it
+could not reach, and the card stays until you swipe it away. A source is named only when it
+starts failing: one that stays broken, such as a repository its author deleted, is not
+reported again at every update. It keeps its **Metadata N/A** mark on the Sources page until
+an update of it works again.
+
 ## Troubleshooting
 
 | Problem | What to do |

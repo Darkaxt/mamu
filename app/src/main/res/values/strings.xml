@@ -68,6 +68,8 @@
     <string name="home_repatch_available_subtitle">Tap to queue them all</string>
     <string name="home_update_error">Update failed</string>
     <string name="home_update_error_subtitle">Something went wrong while updating sources</string>
+    <string name="home_update_error_sources">Couldn\'t update %1$s</string>
+    <string name="home_update_error_sources_more">Couldn\'t update %1$s and %2$d more</string>
     <string name="home_updating_sources">Updating sources…</string>
     <string name="home_update_success">Update sources complete</string>
     <string name="home_update_success_subtitle">Your sources are up to date</string>

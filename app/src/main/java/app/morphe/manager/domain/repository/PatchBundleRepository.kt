@@ -1997,8 +1997,9 @@ class PatchBundleRepository(
                 val checked = targets.uids() - failures.keys
                 metadataFetchErrorsFlow.update { it - checked }
                 pendingUpdatesFlow.update { it - checked + available }
+                val failing = newlyFailing(failures.keys, checked, targets)
                 when {
-                    failures.isNotEmpty() -> showFinished(BundleUpdateResult.Error, targets.size)
+                    failing.isNotEmpty() -> showFinished(BundleUpdateResult.Error, targets.size, failedNames = failing)
                     available.isNotEmpty() -> showFinished(BundleUpdateResult.UpdatesAvailable, targets.size)
                     request.reportUpToDate -> showFinished(BundleUpdateResult.NoUpdates, targets.size)
                     else -> bundleUpdateProgressFlow.value = null
@@ -2096,22 +2097,7 @@ class PatchBundleRepository(
                 }
             } catch (e: Exception) {
                 Log.e(tag, "Failed to update patches", e)
-
-                // Show error state
-                val errorProgress = BundleUpdateProgress(
-                    total = 1,
-                    completed = 1,
-                    phase = BundleUpdatePhase.Finalizing,
-                    result = BundleUpdateResult.Error,
-                )
-                bundleUpdateProgressFlow.value = errorProgress
-
-                scope.launch {
-                    delay(3.5.seconds)
-                    if (bundleUpdateProgressFlow.value == errorProgress) {
-                        bundleUpdateProgressFlow.value = null
-                    }
-                }
+                showFinished(BundleUpdateResult.Error, phase = BundleUpdatePhase.Finalizing)
 
                 if (showToast) toast(R.string.sources_download_fail, e.simpleMessage())
                 return@coroutineScope
@@ -2119,10 +2105,11 @@ class PatchBundleRepository(
 
             // Updated, or found to have nothing newer, so nothing waits on the user anymore
             pendingUpdatesFlow.update { it - checkedUpdates }
+            val failing = newlyFailing(failedUpdates.keys, checkedUpdates, targets)
 
             if (updated.isEmpty()) {
-                if (failedUpdates.isNotEmpty()) {
-                    showFinished(BundleUpdateResult.Error, targets.size)
+                if (failing.isNotEmpty()) {
+                    showFinished(BundleUpdateResult.Error, targets.size, failedNames = failing)
                     return@coroutineScope
                 }
                 if (checkedUpdates.isEmpty()) {
@@ -2175,36 +2162,36 @@ class PatchBundleRepository(
             manualUpdateInfoFlow.update { currentMap -> currentMap - updatedUids }
             if (showToast && failedUpdates.isEmpty()) toast(R.string.sources_update_success)
 
-            // A partially applied update still reports the failures that need retry.
-            val successProgress = BundleUpdateProgress(
-                total = targets.size,
-                completed = targets.size,
-                phase = BundleUpdatePhase.Finalizing,
-                result = if (failedUpdates.isEmpty()) BundleUpdateResult.Success else BundleUpdateResult.Error,
+            // A partially applied update still reports the sources that started failing
+            showFinished(
+                if (failing.isEmpty()) BundleUpdateResult.Success else BundleUpdateResult.Error,
+                targets.size,
+                BundleUpdatePhase.Finalizing,
+                failing
             )
-            bundleUpdateProgressFlow.value = successProgress
-
-            scope.launch {
-                delay(3.5.seconds)
-                if (bundleUpdateProgressFlow.value == successProgress) {
-                    bundleUpdateProgressFlow.value = null
-                }
-            }
         } finally {
             clearActiveUpdateState()
         }
     }
 
-    /** Shows how an update of [count] sources ended, until the next one starts or for a few seconds. */
+    /**
+     * Shows how an update of [count] sources ended until the next one starts. A failure, or
+     * having no connection, stays until it is swiped away so it can be read; anything else goes
+     * after a few seconds.
+     */
     private fun showFinished(
         result: BundleUpdateResult,
         count: Int = 1,
-        phase: BundleUpdatePhase = BundleUpdatePhase.Checking
+        phase: BundleUpdatePhase = BundleUpdatePhase.Checking,
+        failedNames: List<String> = emptyList()
     ) {
-        val finished = BundleUpdateProgress(total = count, completed = count, phase = phase, result = result)
+        val finished = BundleUpdateProgress(
+            total = count, completed = count, phase = phase, result = result, failedNames = failedNames
+        )
         bundleUpdateProgressFlow.value = finished
         // A result equal to the one before would otherwise be taken down on the earlier clock
         bundleUpdateAutoClearJob?.cancel()
+        if (result == BundleUpdateResult.Error || result == BundleUpdateResult.NoInternet) return
         bundleUpdateAutoClearJob = scope.launch {
             delay(4.seconds)
             bundleUpdateProgressFlow.compareAndSet(finished, null)
@@ -2212,6 +2199,23 @@ class PatchBundleRepository(
     }
 
     private fun List<RemotePatchBundle>.uids() = mapTo(mutableSetOf(), RemotePatchBundle::uid)
+
+    /**
+     * Remembers which sources are failing after an update in which [failed] failed and [checked]
+     * were reached, and returns the names of the ones among [targets] that just started failing,
+     * see [updateFailureReport].
+     */
+    private suspend fun newlyFailing(
+        failed: Set<Int>,
+        checked: Set<Int>,
+        targets: List<RemotePatchBundle>
+    ): List<String> {
+        val known = prefs.knownFailingSources.get().mapNotNullTo(mutableSetOf(), String::toIntOrNull)
+        val existing = (store.state.value as? BundleState.Ready)?.sources?.keys ?: (known + failed)
+        val report = updateFailureReport(failed, checked, known, existing)
+        prefs.knownFailingSources.update(report.stillFailing.mapTo(mutableSetOf(), Int::toString))
+        return targets.filter { it.uid in report.reported }.map { it.displayTitle }
+    }
 
     private class BundleUpdateCancelled : Exception()
 
@@ -2281,6 +2285,8 @@ class PatchBundleRepository(
         val result: BundleUpdateResult = BundleUpdateResult.None, // Morphe
         /** Whether the update says nothing while it only checks, as nothing new may turn up. */
         val quiet: Boolean = false,
+        /** The sources that started failing in this update, which its failure names. */
+        val failedNames: List<String> = emptyList(),
     )
 
     enum class BundleUpdatePhase {

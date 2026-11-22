@@ -113,6 +113,8 @@ class PreferencesManager(
     val patchPanelUnsupportedAcknowledgements = stringSetPreference("patch_panel_unsupported_acknowledgements", emptySet())
 
     val communityCatalogueExclusions = stringSetPreference("community_catalogue_exclusions", emptySet())
+    /** Sources whose last update failed, which fail quietly until one of theirs succeeds. */
+    val knownFailingSources = stringSetPreference("known_failing_sources", emptySet())
     /** Packages whose experimental version warning was confirmed, which is asked once per app. */
     val experimentalVersionsConfirmed = stringSetPreference("experimental_versions_confirmed", emptySet())
 

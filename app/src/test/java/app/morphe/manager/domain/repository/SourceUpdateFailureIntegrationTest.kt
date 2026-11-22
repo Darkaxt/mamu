@@ -145,6 +145,29 @@ class SourceUpdateFailureIntegrationTest {
         assertEquals(0, assetRequests.get())
     }
 
+    @Test fun failure_names_the_source_and_stays_until_dismissed() = runBlocking {
+        update(source(), allowDownload = true)
+        val shown = repository.bundleUpdateProgress.value
+        assertEquals(PatchBundleRepository.BundleUpdateResult.Error, shown?.result)
+        assertEquals(listOf("Fixture"), shown?.failedNames)
+        // Longer than any timed result stays up
+        delay(4_500)
+        assertEquals(shown, repository.bundleUpdateProgress.value)
+    }
+
+    @Test fun a_source_that_keeps_failing_is_reported_once() = runBlocking {
+        missingManifest = true
+        koin.get<PreferencesManager>().autoUpdates.update(AutoUpdates.WIFI_ONLY)
+        val source = source(installed = true)
+        update(source, allowDownload = false)
+        assertEquals(PatchBundleRepository.BundleUpdateResult.Error, repository.bundleUpdateProgress.value?.result)
+        update(source, allowDownload = false)
+        assertNotEquals(PatchBundleRepository.BundleUpdateResult.Error, repository.bundleUpdateProgress.value?.result)
+        // Source management still marks it
+        assertNotNull(repository.metadataFetchErrors.value[22])
+        assertEquals(2, metadataRequests.get())
+    }
+
     @Test fun current_check_clears_pending_keeps_cached_bytes() = runBlocking {
         val source = source(installed = true)
         val before = source.patchesJarFile.readBytes()

@@ -342,6 +342,20 @@ fun BundleUpdateSnackbar(
     }
 }
 
+/** Names the sources an update failed for, the first few and how many more there are. */
+@Composable
+private fun failedSourcesText(names: List<String>): String = when {
+    names.isEmpty() -> stringResource(R.string.home_update_error_subtitle)
+    names.size <= FAILED_NAMES_SHOWN -> stringResource(R.string.home_update_error_sources, names.joinToString(", "))
+    else -> stringResource(
+        R.string.home_update_error_sources_more,
+        names.take(FAILED_NAMES_SHOWN).joinToString(", "),
+        names.size - FAILED_NAMES_SHOWN
+    )
+}
+
+private const val FAILED_NAMES_SHOWN = 3
+
 /** The card of the bundle update, from its progress while it runs to how it ended. */
 @Composable
 private fun BundleUpdateCard(
@@ -392,7 +406,7 @@ private fun BundleUpdateCard(
         BundleUpdateStatus.Success -> stringResource(R.string.home_update_success_subtitle)
         BundleUpdateStatus.Warning -> stringResource(R.string.home_update_skipped_metered_subtitle)
         BundleUpdateStatus.Offline -> stringResource(R.string.no_network_toast)
-        BundleUpdateStatus.Error -> stringResource(R.string.home_update_error_subtitle)
+        BundleUpdateStatus.Error -> failedSourcesText(progress?.failedNames.orEmpty())
     }
     val badge = when {
         status != BundleUpdateStatus.Updating || progress == null -> null
