@@ -1,5 +1,7 @@
 package app.morphe.manager.ui.screen.home
 
+import androidx.compose.ui.Modifier
+import androidx.compose.foundation.LocalIndication
 import android.app.Application
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -77,8 +79,12 @@ class OriginalDownloadPopupTest {
         CompositionLocalProvider(LocalDensity provides Density(density.density, 1.3f),
             LocalUriHandler provides object : UriHandler { override fun openUri(uri: String) { opened += uri } }) {
             MaterialTheme(colorScheme = darkColorScheme()) {
-                NativeOriginalApkDialog("Plague Inc.", null, null, "1.27.5", {}, {}, {}, onManual = { manualCalls++ },
-                    onChooseApk = {}, model = model)
+                // Press ripples are platform RippleDrawables animated off the test clocks and drawn over
+                // the row's content, so pixel checks of a just-clicked row see them; leave them out here
+                CompositionLocalProvider(LocalIndication provides NoPressIndication) {
+                    NativeOriginalApkDialog("Plague Inc.", null, null, "1.27.5", {}, {}, {}, onManual = { manualCalls++ },
+                        onChooseApk = {}, model = model)
+                }
             }
         }
     }
@@ -216,4 +222,12 @@ class OriginalDownloadPopupTest {
             }.toSet().size > 2)
         }
     }
+}
+
+/** An indication that draws nothing, so pixel checks see a row's resting colours. */
+private object NoPressIndication : androidx.compose.foundation.IndicationNodeFactory {
+    override fun create(interactionSource: androidx.compose.foundation.interaction.InteractionSource): androidx.compose.ui.node.DelegatableNode =
+        object : Modifier.Node() {}
+    override fun equals(other: Any?) = other === this
+    override fun hashCode() = 0
 }
