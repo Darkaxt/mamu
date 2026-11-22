@@ -178,7 +178,7 @@ class HomeLibraryHeaderTest {
             }
         } }
         val pixels = rule.onRoot().captureToImage().toPixelMap()
-        for (node in listOf(rule.onNodeWithText("Morphe Debug"), rule.onNodeWithTag("library.add"),
+        for (node in listOf(rule.onNodeWithText("Mamu Debug"), rule.onNodeWithTag("library.add"),
             rule.onNodeWithTag("library.sort"), rule.onNodeWithTag("library.filter"), rule.onNodeWithTag("library.more"),
             rule.onNodeWithText("All", useUnmergedTree = true), rule.onNodeWithText("Apps", useUnmergedTree = true),
             rule.onNodeWithText("Games", useUnmergedTree = true), rule.onNodeWithText("Others", useUnmergedTree = true))) {
@@ -192,7 +192,7 @@ class HomeLibraryHeaderTest {
         }
         val first = rule.onNodeWithTag("tile.com.example.0").fetchSemanticsNode().boundsInRoot
         assertEquals(rule.onNodeWithTag("library.add").fetchSemanticsNode().boundsInRoot.top,
-            rule.onNodeWithText("Morphe Debug").fetchSemanticsNode().boundsInRoot.top, 1f)
+            rule.onNodeWithText("Mamu Debug").fetchSemanticsNode().boundsInRoot.top, 1f)
         val categories = rule.onNodeWithTag("library.categories").fetchSemanticsNode().boundsInRoot
         assertTrue(first.top - categories.bottom <= 24f * rule.density.density, "No notification strip between categories and tiles")
         val fourth = rule.onNodeWithTag("tile.com.example.3").fetchSemanticsNode().boundsInRoot
