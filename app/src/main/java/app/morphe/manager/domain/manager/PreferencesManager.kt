@@ -279,10 +279,11 @@ class PreferencesManager(
             }
 
             // Existing installs stored their Material You preference in `dynamic_color`;
-            // fold it into [themeStyle] once so the new selector reflects the user's choice
+            // fold it into [themeStyle] once so the new selector reflects the user's choice.
+            // A missing key means a fresh install, which starts on the Mamu palette
             if (!themeStyleMigrated.get()) {
                 val raw = dataStore.data.first()
-                val legacyDynamicColor = raw[booleanPreferencesKey("dynamic_color")] ?: true
+                val legacyDynamicColor = raw[booleanPreferencesKey("dynamic_color")] ?: false
                 if (legacyDynamicColor && themeStyle.get() == ThemeStyle.MORPHE) {
                     themeStyle.update(ThemeStyle.MATERIAL_YOU)
                 }
