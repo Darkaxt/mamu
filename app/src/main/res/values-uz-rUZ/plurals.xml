@@ -178,4 +178,8 @@
         <item quantity="one">%d ta tasdiqlanmagan havola</item>
         <item quantity="other">%d ta tasdiqlanmagan havola</item>
     </plurals>
+    <plurals name="sources_search_patch_matches">
+        <item quantity="one">%s ta mos yamoq</item>
+        <item quantity="other">%s ta mos yamoq</item>
+    </plurals>
 </resources>

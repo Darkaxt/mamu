@@ -5,16 +5,22 @@
 
 package app.morphe.manager.ui.screen.sources
 
+import app.morphe.manager.ui.screen.shared.BundleIcon
+
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.morphe.manager.R
@@ -119,20 +125,50 @@ fun DialogHostScope.RenameBundleDialog(
     onConfirm: (String) -> Unit
 ) {
     var textValue by remember { mutableStateOf(initialValue) }
+    val keyboardController = LocalSoftwareKeyboardController.current
 
-    // Left empty, the source goes back to its own name
-    TextInputDialog(
+    AppDialog(
+        onDismissRequest = onDismissRequest,
         title = stringResource(R.string.sources_dialog_display_name),
         description = stringResource(R.string.sources_dialog_rename),
-        value = textValue,
-        onValueChange = { textValue = it },
-        placeholder = stringResource(R.string.patch_option_enter_value),
-        leadingIcon = MaterialSymbols.Rounded.Edit,
-        confirmText = stringResource(R.string.rename),
-        confirmEnabled = true,
-        onConfirm = { onConfirm(textValue) },
-        onDismiss = onDismissRequest
-    )
+        footer = {
+            AppDialogButtonRow(
+                primaryText = stringResource(android.R.string.ok),
+                onPrimaryClick = {
+                    keyboardController?.hide()
+                    onConfirm(textValue)
+                },
+                secondaryText = stringResource(android.R.string.cancel),
+                onSecondaryClick = {
+                    keyboardController?.hide()
+                    onDismissRequest()
+                }
+            )
+        }
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(Defaults.SpaceLarge)
+        ) {
+            AppDialogTextField(
+                value = textValue,
+                onValueChange = { textValue = it },
+                placeholder = { Text(stringResource(R.string.patch_option_enter_value)) },
+                leadingIcon = {
+                    Icon(imageVector = MaterialSymbols.Rounded.Edit, contentDescription = null)
+                },
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                keyboardActions = KeyboardActions(
+                    onDone = {
+                        keyboardController?.hide()
+                        onConfirm(textValue)
+                    }
+                )
+            )
+        }
+    }
 }
 
 /**
@@ -148,36 +184,62 @@ fun DialogHostScope.ChangeSourceLinkDialog(
 ) {
     var textValue by remember { mutableStateOf(initialValue) }
     val check = remember(textValue) { textValue.trim().takeIf { it.isNotEmpty() }?.let(onCheckUrl) }
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val confirm = {
+        if (check is RemoteUrlCheck.Accepted) {
+            keyboardController?.hide()
+            onConfirm(textValue.trim())
+        }
+    }
 
-    TextInputDialog(
+    AppDialog(
+        onDismissRequest = onDismissRequest,
         title = stringResource(R.string.sources_dialog_remote_url),
         description = stringResource(R.string.sources_dialog_change_url),
-        value = textValue,
-        onValueChange = { textValue = it },
-        placeholder = REMOTE_URL_PLACEHOLDER,
-        leadingIcon = MaterialSymbols.Rounded.Link,
-        isError = check is RemoteUrlCheck.Rejected,
-        keyboardOptions = RemoteUrlKeyboardOptions,
-        confirmText = stringResource(R.string.save),
-        confirmEnabled = check is RemoteUrlCheck.Accepted,
-        onConfirm = { onConfirm(textValue.trim()) },
-        onDismiss = onDismissRequest,
-        supporting = { RemoteUrlCheckHint(check = check, showHint = false) }
-    )
+        footer = {
+            AppDialogButtonRow(
+                primaryText = stringResource(android.R.string.ok),
+                onPrimaryClick = confirm,
+                primaryEnabled = check is RemoteUrlCheck.Accepted,
+                secondaryText = stringResource(android.R.string.cancel),
+                onSecondaryClick = {
+                    keyboardController?.hide()
+                    onDismissRequest()
+                }
+            )
+        }
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall)
+        ) {
+            AppDialogTextField(
+                value = textValue,
+                onValueChange = { textValue = it },
+                placeholder = { Text(REMOTE_URL_PLACEHOLDER) },
+                leadingIcon = {
+                    Icon(imageVector = MaterialSymbols.Rounded.Link, contentDescription = null)
+                },
+                singleLine = true,
+                isError = check is RemoteUrlCheck.Rejected,
+                keyboardOptions = RemoteUrlKeyboardOptions,
+                keyboardActions = KeyboardActions(onDone = { confirm() })
+            )
+            RemoteUrlCheckHint(check = check, showHint = false)
+        }
+    }
 }
 
 /**
  * Dialog listing the patches of a source, one block per app they patch and the universal ones last.
  *
  * @param initialQuery Query to open filtered by, carried over from the search that found the source.
- * @param initialApp Package of the app whose block the list opens on, the whole source where null.
  */
 @Composable
 fun DialogHostScope.BundlePatchesDialog(
     onDismissRequest: () -> Unit,
     src: PatchBundleSource,
-    initialQuery: String = "",
-    initialApp: String? = null
+    initialQuery: String = ""
 ) {
     val patchBundleRepository: PatchBundleRepository = koinInject()
     val messages = koinInject<UserMessages>()
@@ -208,7 +270,6 @@ fun DialogHostScope.BundlePatchesDialog(
         saveStateKey = "bundle_${src.uid}",
         onDismiss = onDismissRequest,
         initialQuery = initialQuery,
-        initialSection = initialApp,
         accentColor = rememberSourceHeaderColor(src),
         // The list is reachable while the source is off, so it says so up front rather than
         // reading as patches that are ready to be applied
@@ -246,7 +307,9 @@ private fun patchesByApp(patches: List<PatchInfo>, universalTitle: String): List
                 PatchListSection(
                     key = packageName,
                     title = app.displayName ?: packageName,
-                    patches = specific.filter { patch -> patch.names(packageName) },
+                    patches = specific.filter { patch ->
+                        patch.compatiblePackages?.any { it.packageName == packageName } == true
+                    },
                     packageName = packageName,
                     // Tinted after the app's own icon, so each block reads as that app at a glance
                     accentColor = app.appIconColor?.let(::appIconColorOf),
@@ -602,14 +665,11 @@ private fun String.sanitizePatchChangelogMarkdown(): String =
  * Laid out like a patch list: a ticked app is brought, a tap answers for one app and the header
  * answers for everything the search left, so the few wanted out of hundreds take one tap there and
  * a few on them. Leaving out the apps the source adds later keeps that cut as it grows.
- *
- * @param initialQuery Query to open filtered by, carried over from the search that found the source.
  */
 @Composable
 fun DialogHostScope.SourceAppsDialog(
     onDismissRequest: () -> Unit,
-    src: PatchBundleSource,
-    initialQuery: String = ""
+    src: PatchBundleSource
 ) {
     val patchBundleRepository: PatchBundleRepository = koinInject()
     val sourceMuteRepository: SourceMuteRepository = koinInject()
@@ -638,7 +698,15 @@ fun DialogHostScope.SourceAppsDialog(
     // live read, so an app ticked or unticked here keeps its place instead of jumping away
     val broughtAtOpen = remember(sourceInfo != null && keptFrom != null) { broughtApps }
     // What each app gets from this source, so the choice is not made on a name alone
-    val patchCounts = remember(sourceInfo) { sourceInfo?.patchCountsByApp().orEmpty() }
+    val patchCounts = remember(sourceInfo) {
+        buildMap {
+            sourceInfo?.patches?.forEach { patch ->
+                patch.compatiblePackages.orEmpty()
+                    .mapNotNullTo(mutableSetOf()) { it.packageName }
+                    .forEach { merge(it, 1, Int::plus) }
+            }
+        }
+    }
     // New apps lead, as they are what the user came back for, then the brought ones, which a source
     // of hundreds of apps is usually opened again to change
     val apps = remember(listedApps, appMetadata, newApps, broughtAtOpen) {
@@ -653,14 +721,13 @@ fun DialogHostScope.SourceAppsDialog(
             )
     }
 
-    // Searchable until the source is read, so a query carried over is not dropped before the
-    // apps it was looking for arrive
-    val search = rememberSearchFieldState(
-        searchable = sourceInfo == null || apps.size > 1,
-        initialQuery = initialQuery
-    )
+    val search = rememberSearchFieldState(searchable = apps.size > 1)
     val filtered = remember(apps, search.query) {
-        apps.filter { (packageName, label) -> appMatchesQuery(packageName, label, search.query) }
+        if (search.query.isBlank()) apps
+        else apps.filter { (packageName, label) ->
+            label.contains(search.query, ignoreCase = true) ||
+                    packageName.contains(search.query, ignoreCase = true)
+        }
     }
 
     // Scoped to the search, so bringing or leaving out all never reaches apps out of view
@@ -683,16 +750,6 @@ fun DialogHostScope.SourceAppsDialog(
     fun dismiss() {
         if (newApps.isNotEmpty()) persist { sourceMuteRepository.markNewAppsSeen(src.uid) }
         onDismissRequest()
-    }
-
-    // What this source patches in one app, opened by swiping its card
-    var patchesFor by remember { mutableStateOf<String?>(null) }
-    DialogHost(target = patchesFor) { packageName ->
-        BundlePatchesDialog(
-            onDismissRequest = { patchesFor = null },
-            src = src,
-            initialApp = packageName
-        )
     }
 
     ListDialog(
@@ -779,7 +836,7 @@ fun DialogHostScope.SourceAppsDialog(
                 }
             }
 
-            if (sourceInfo != null && filtered.isEmpty() && search.query.isNotBlank()) {
+            if (filtered.isEmpty() && search.query.isNotBlank()) {
                 item(key = "empty_state") {
                     EmptyState(
                         message = stringResource(R.string.search_no_results),
@@ -800,37 +857,30 @@ fun DialogHostScope.SourceAppsDialog(
                     isSelected = brought,
                     isSelectionMode = true
                 ) {
-                    SwipeableCardContainer(
-                        end = SwipeAction(rememberPatchesSwipeAction(packageName)) { patchesFor = packageName }
+                    AppCardLayout(
+                        gradientColors = gradientColors,
+                        onClick = { bring(listOf(packageName), brought = !brought) },
+                        modifier = Modifier.fillMaxWidth()
                     ) {
-                        AppCardLayout(
-                            gradientColors = gradientColors,
-                            onClick = { bring(listOf(packageName), brought = !brought) },
-                            selected = brought,
-                            modifier = Modifier.fillMaxWidth()
+                        val patchCount = patchCounts[packageName] ?: 0
+                        AppCardContent(
+                            packageName = packageName,
+                            packageInfo = null,
+                            displayName = label,
+                            subtitle = listOfNotNull(
+                                pluralStringResource(R.plurals.patch_count, patchCount, patchCount.toString()),
+                                // Left out, it would be gone from the home screen but for its install
+                                stringResource(R.string.sources_apps_stays_patched)
+                                    .takeIf { !brought && packageName in patchedApps }
+                            ).joinToString(" · "),
+                            gradientColors = gradientColors
                         ) {
-                            val patchCount = patchCounts[packageName] ?: 0
-                            AppCardContent(
-                                packageName = packageName,
-                                packageInfo = null,
-                                displayName = label,
-                                subtitle = AppCardLine(
-                                    listOfNotNull(
-                                        pluralStringResource(R.plurals.patch_count, patchCount, patchCount.toString()),
-                                        // Left out, it would be gone from the home screen but for its install
-                                        stringResource(R.string.sources_apps_stays_patched)
-                                            .takeIf { !brought && packageName in patchedApps }
-                                    ).joinToString(" · ")
+                            // Shown until the list is closed once, so it has to catch the eye
+                            if (packageName in newApps) {
+                                StatusBadge(
+                                    text = stringResource(R.string.sources_apps_new),
+                                    tone = SemanticTone.Primary
                                 )
-                            ) {
-                                FormFactorTag(appMetadata[packageName]?.formFactor)
-                                // Shown until the list is closed once, so it has to catch the eye
-                                if (packageName in newApps) {
-                                    StatusBadge(
-                                        text = stringResource(R.string.sources_apps_new),
-                                        tone = SemanticTone.Primary
-                                    )
-                                }
                             }
                         }
                     }
@@ -839,12 +889,3 @@ fun DialogHostScope.SourceAppsDialog(
         }
     }
 }
-
-/**
- * Whether an app answers to a search query, by the name the sources give it or by its package. A
- * blank query matches every app, so a search field can be passed through unchecked.
- */
-internal fun appMatchesQuery(packageName: String, label: String?, query: String): Boolean =
-    query.isBlank() ||
-            label?.contains(query, ignoreCase = true) == true ||
-            packageName.contains(query, ignoreCase = true)

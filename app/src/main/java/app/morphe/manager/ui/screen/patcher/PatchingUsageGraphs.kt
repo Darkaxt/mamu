@@ -5,7 +5,6 @@
 
 package app.morphe.manager.ui.screen.patcher
 
-import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
@@ -33,7 +32,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -55,10 +53,6 @@ import app.morphe.manager.ui.screen.shared.WindowHeightSizeClass
 import app.morphe.manager.ui.screen.shared.WindowWidthSizeClass
 import app.morphe.manager.ui.screen.shared.itemSpacing
 import app.morphe.manager.ui.screen.shared.rememberWindowSize
-import app.morphe.manager.util.MemoryUnit
-import app.morphe.manager.util.formatKibibytesPerSecond
-import app.morphe.manager.util.formatMebibyteCount
-import app.morphe.manager.util.formatMebibytes
 
 /** Slots a history graph spans, which fixes the time axis so readings scroll in from the right. */
 private const val HISTORY_SLOTS = 60
@@ -241,15 +235,14 @@ private fun HeapUsagePanel(
         rollingAverage
     }
 
-    val context = LocalContext.current
-    // Picked by the limit rather than the reading, so a run that crosses a gigabyte keeps its unit
-    val unit = MemoryUnit.of(limitMb)
-
     UsagePanel(
         label = stringResource(R.string.memory_usage),
-        // The limit rides next to the reading, and the unit follows the two of them once
-        headline = context.formatMebibyteCount(samples.lastOrNull() ?: 0, unit),
-        detail = current.asPercent(),
+        headline = "${samples.lastOrNull() ?: 0} MB",
+        detail = stringResource(
+            R.string.memory_usage_detail,
+            current.asPercent(),
+            limitMb.toString()
+        ),
         // The dot reads the same average as the bars, so the two cannot disagree on the tint
         accentColor = lerp(accentColor, warnColor, warnRamp(colorFractions.lastOrNull() ?: 0f)),
         compact = compact,
@@ -257,8 +250,8 @@ private fun HeapUsagePanel(
         reserveTwoLines = reserveTwoLines,
         onLabelWraps = onLabelWraps,
         modifier = modifier,
-        headlineSuffix = "/ ${context.formatMebibytes(limitMb, unit)}",
-        headlineKey = unit
+        // The compact layout has no detail line, so the limit rides next to the reading there
+        headlineSuffix = "/ $limitMb".takeIf { compact }
     ) {
         UsageHistoryBars(
             fractions = fractions,
@@ -321,13 +314,11 @@ private fun IoUsagePanel(
     }
     val current = samples.last()
     val accentColor = MaterialTheme.colorScheme.secondary
-    val context = LocalContext.current
 
     UsagePanel(
         label = stringResource(R.string.storage_io_usage),
-        headline = context.formatKibibytesPerSecond(current.totalKbPerSec),
-        detail = "↓ ${context.formatKibibytesPerSecond(current.readKbPerSec)}  " +
-            "↑ ${context.formatKibibytesPerSecond(current.writeKbPerSec)}",
+        headline = formatRate(current.totalKbPerSec),
+        detail = "↓ ${formatRate(current.readKbPerSec)}  ↑ ${formatRate(current.writeKbPerSec)}",
         accentColor = accentColor,
         compact = compact,
         metrics = metrics,
@@ -345,9 +336,6 @@ private fun IoUsagePanel(
  * Shell every usage panel shares: an accent dot and title, the current reading, and the graph.
  * The secondary detail is dropped in the compact layout, where a panel only gets a third of a row,
  * so anything it still has to carry there goes in [headlineSuffix].
- *
- * @param headlineKey What sets the headline's format apart, such as its unit. A new key eases the
- *   headline in, while a new reading under the same key takes its place at once.
  */
 @Composable
 private fun UsagePanel(
@@ -361,7 +349,6 @@ private fun UsagePanel(
     onLabelWraps: () -> Unit,
     modifier: Modifier = Modifier,
     headlineSuffix: String? = null,
-    headlineKey: Any? = null,
     graph: @Composable () -> Unit
 ) {
     val labelLineHeight = 12.sp
@@ -371,7 +358,7 @@ private fun UsagePanel(
 
     Surface(
         modifier = modifier,
-        shape = RoundedCornerShape(Defaults.CornerLarge),
+        shape = RoundedCornerShape(Defaults.CardCornerRadius),
         color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f),
         tonalElevation = 0.dp,
         border = CardBorder.neutral
@@ -384,7 +371,7 @@ private fun UsagePanel(
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall),
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
                 verticalAlignment = Alignment.Top
             ) {
                 Box(
@@ -428,40 +415,32 @@ private fun UsagePanel(
                 }
             }
 
-            AnimatedContent(
-                targetState = UsageHeadline(headline, headlineSuffix, headlineKey),
-                contentKey = { it.key },
-                // Only the width changes, and nothing after the headline is there to be moved by it
-                transitionSpec = { Animations.fadeCrossfade()(this).using(null) },
-                label = "usageHeadline"
-            ) { shown ->
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceExtraSmall),
-                    verticalAlignment = Alignment.Bottom
-                ) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                verticalAlignment = Alignment.Bottom
+            ) {
+                Text(
+                    text = headline,
+                    style = MaterialTheme.typography.titleSmall,
+                    fontFamily = FontFamily.Monospace,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontSize = metrics.headlineSize,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    // The reading gives way first, so a narrow panel keeps the limit beside it
+                    modifier = Modifier.weight(1f, fill = false)
+                )
+
+                if (headlineSuffix != null) {
                     Text(
-                        text = shown.text,
+                        text = headlineSuffix,
                         style = MaterialTheme.typography.titleSmall,
                         fontFamily = FontFamily.Monospace,
-                        fontWeight = FontWeight.SemiBold,
-                        color = MaterialTheme.colorScheme.onSurface,
-                        fontSize = metrics.headlineSize,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        // The reading gives way first, so a narrow panel keeps the limit beside it
-                        modifier = Modifier.weight(1f, fill = false)
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+                        fontSize = metrics.headlineSize * 0.75f,
+                        maxLines = 1
                     )
-
-                    if (shown.suffix != null) {
-                        Text(
-                            text = shown.suffix,
-                            style = MaterialTheme.typography.titleSmall,
-                            fontFamily = FontFamily.Monospace,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
-                            fontSize = metrics.headlineSize * 0.75f,
-                            maxLines = 1
-                        )
-                    }
                 }
             }
 
@@ -469,13 +448,6 @@ private fun UsagePanel(
         }
     }
 }
-
-/** What a [UsagePanel] headline shows, told apart from the one before it by [key]. */
-private data class UsageHeadline(
-    val text: String,
-    val suffix: String?,
-    val key: Any?
-)
 
 /**
  * History of a metric as one bar per reading, filled from the right so the newest sample always
@@ -627,3 +599,9 @@ private fun warnRamp(fraction: Float) =
     ((fraction - WARN_RAMP_START) / (1f - WARN_RAMP_START)).coerceIn(0f, 1f)
 
 private fun Float.asPercent() = "${(this * 100).toInt()}%"
+
+internal fun formatRate(kbPerSec: Int) = if (kbPerSec >= 1024) {
+    "%.1f MB/s".format(kbPerSec / 1024f)
+} else {
+    "$kbPerSec KB/s"
+}

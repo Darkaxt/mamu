@@ -20,9 +20,9 @@ import app.morphe.manager.ui.screen.shared.BackgroundType
 import app.morphe.manager.ui.theme.Theme
 import app.morphe.manager.ui.theme.ThemeStyle
 import app.morphe.manager.ui.theme.coerceToUiScale
+import app.morphe.manager.util.AppCardColorValues
 import app.morphe.manager.util.AppCardColorDefaults
 import app.morphe.manager.util.AppCardColorMode
-import app.morphe.manager.util.AppCardColorStop
 import app.morphe.manager.util.AppLocale
 import app.morphe.manager.util.toHexString
 import kotlinx.coroutines.launch
@@ -53,18 +53,22 @@ class ThemeSettingsViewModel(
     }
 
     /**
-     * Switches the card color [mode]. The picked colors stay stored under every mode, so
-     * switching back and forth does not discard them.
+     * Persists the card color [mode] together with the picked colors. The colors are kept even
+     * for [AppCardColorMode.DEFAULT] so switching modes back and forth does not discard them.
      */
-    fun setAppCardColorMode(mode: AppCardColorMode) = viewModelScope.launch {
-        prefs.appCardColorMode.update(mode)
-    }
-
-    /** Sets the color of one [stop] of the custom card colors, leaving the others as they are. */
-    fun setAppCardColor(stop: AppCardColorStop, hex: String) = viewModelScope.launch {
-        val values = AppCardColorDefaults.decodeColorValues(prefs.customAppCardColors.get())
-        val updated = values.with(stop, hex)
-        prefs.customAppCardColors.update(AppCardColorDefaults.encodeColorValues(updated))
+    fun applyAppCardColors(
+        mode: AppCardColorMode,
+        startColorHex: String,
+        middleColorHex: String,
+        endColorHex: String,
+        solidColorHex: String
+    ) = viewModelScope.launch {
+        prefs.edit {
+            prefs.appCardColorMode.value = mode
+            prefs.customAppCardColors.value = AppCardColorDefaults.encodeColorValues(
+                AppCardColorValues(startColorHex, middleColorHex, endColorHex, solidColorHex)
+            )
+        }
     }
 
     /**
@@ -80,10 +84,6 @@ class ThemeSettingsViewModel(
         prefs.showRepatchNotice.update(!current)
     }
 
-    fun toggleShowMoreAppsCard(current: Boolean) = viewModelScope.launch {
-        prefs.showMoreAppsCard.update(!current)
-    }
-
     fun setPureBlackTheme(enabled: Boolean) = viewModelScope.launch {
         prefs.pureBlackTheme.update(enabled)
     }
@@ -94,10 +94,6 @@ class ThemeSettingsViewModel(
 
     fun toggleOutlines(current: Boolean) = viewModelScope.launch {
         prefs.outlines.update(!current)
-    }
-
-    fun toggleBlur(current: Boolean) = viewModelScope.launch {
-        prefs.blur.update(!current)
     }
 
     fun setBackgroundType(type: BackgroundType) = viewModelScope.launch {

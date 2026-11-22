@@ -27,15 +27,12 @@ import app.morphe.manager.util.SHELL_INSTALLER_PACKAGE
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.coroutines.withTimeout
 import rikka.shizuku.Shizuku
 import rikka.shizuku.ShizukuBinderWrapper
 import rikka.shizuku.SystemServiceHelper
 import java.io.File
 import java.io.IOException
 import java.lang.reflect.Constructor
-import kotlin.time.Duration.Companion.minutes
-import kotlin.time.Duration.Companion.seconds
 
 /**
  * Performs silent APK installation via the Shizuku/Sui privileged service.
@@ -100,7 +97,7 @@ class ShizukuInstaller(private val app: Application) {
 
             val operation = PendingOperation()
             session.commit(operation.intentSender)
-            val result = withTimeout(INSTALL_RESULT_TIMEOUT) { operation.result.await() }
+            val result = operation.result.await()
             // Set before the status check - a delivered failure leaves nothing to abandon
             completed = true
             result.requireSuccess()
@@ -122,7 +119,7 @@ class ShizukuInstaller(private val app: Application) {
         val operation = PendingOperation()
 
         packageInstallerWrapper.uninstall(packageName, operation.intentSender)
-        withTimeout(UNINSTALL_RESULT_TIMEOUT) { operation.result.await() }.requireSuccess()
+        operation.result.await().requireSuccess()
     }
 
     /** Returns this result, or throws [InstallerOperationException] when the operation failed. */
@@ -180,8 +177,6 @@ class ShizukuInstaller(private val app: Application) {
 
     companion object {
         private const val BASE_APK_NAME = "base.apk"
-        private val INSTALL_RESULT_TIMEOUT = 5.minutes
-        private val UNINSTALL_RESULT_TIMEOUT = 30.seconds
     }
 }
 

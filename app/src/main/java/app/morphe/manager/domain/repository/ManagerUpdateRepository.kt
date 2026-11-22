@@ -50,11 +50,10 @@ class ManagerUpdateRepository(private val releaseAPI: ReleaseAPI) {
     /**
      * Re-checks for an update and publishes the result.
      *
-     * Returns null both when the app is up to date and when the check failed, which
-     * [ReleaseAPI.checkAppUpdate] tells apart. Clears the cached asset, so the next reader
-     * resolves the state from scratch instead of acting on a stale release.
+     * Returns null only for a successful up-to-date check; errors propagate to the caller.
+     * Explicit manual checks bypass the short launch-result cache and share in-flight work.
      */
-    suspend fun refresh(): ReleaseAsset? = awaitFetch()
+    suspend fun refresh(forceRefresh: Boolean = false): ReleaseAsset? = awaitFetch(forceRefresh)
 
     /** Returns the cached update if a check already resolved one, otherwise checks now. */
     suspend fun getOrRefresh(): ReleaseAsset? = _availableUpdate.value ?: awaitFetch()
@@ -65,12 +64,13 @@ class ManagerUpdateRepository(private val releaseAPI: ReleaseAPI) {
      * from - and every check is a round trip announcing the same release. Callers that arrive while
      * one is in flight await it; those arriving right after it resolved reuse its result.
      */
-    private suspend fun awaitFetch(): ReleaseAsset? {
+    private suspend fun awaitFetch(forceRefresh: Boolean = false): ReleaseAsset? {
         val pending = refreshMutex.withLock {
-            if (System.currentTimeMillis() - lastResolvedAt < RESULT_REUSE_WINDOW_MILLIS) {
+            inFlight?.let { return@withLock it }
+            if (!forceRefresh && System.currentTimeMillis() - lastResolvedAt < RESULT_REUSE_WINDOW_MILLIS) {
                 return _availableUpdate.value
             }
-            inFlight ?: scope.async {
+            scope.async {
                 try {
                     fetch()
                 } finally {

@@ -84,7 +84,15 @@ internal object Merger {
             val apkEditorLogger = ApkEditorLogger(logger, onEvent)
             val merged = runInterruptible(Dispatchers.Default) {
                 try {
-                    val bundle = ApkBundle().apply {
+                    val bundle = object : ApkBundle() {
+                        override fun getBaseModule(): ApkModule? = super.getBaseModule()
+                            // A valid headless APK can have neither a launcher activity nor a
+                            // resource table, which ARSCLib's two base heuristics require.
+                            // Admit only an unambiguous nonsplit manifest in that case.
+                            ?: apkModuleList.singleOrNull { module ->
+                                module.hasAndroidManifest() && !module.androidManifest.isSplit
+                            }
+                    }.apply {
                         setAPKLogger(apkEditorLogger)
                         loadApkDirectory(apkDir.toFile())
                     }

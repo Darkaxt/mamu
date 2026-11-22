@@ -6,14 +6,22 @@
 package app.morphe.manager.ui.screen.home
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import com.composables.icons.materialsymbols.MaterialSymbols
+import com.composables.icons.materialsymbols.rounded.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.Category
+import androidx.compose.material.icons.outlined.Folder
+import androidx.compose.material.icons.outlined.FolderOff
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import app.morphe.manager.R
 import app.morphe.manager.domain.manager.HomeAppCategory
 import app.morphe.manager.ui.screen.shared.*
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
 
 /**
  * Prompt for a category name. Reused for both create and rename flows: pass a non-null
@@ -21,7 +29,7 @@ import com.composables.icons.materialsymbols.rounded.*
  * [onConfirm] receives the trimmed name and is only enabled once it is non-blank.
  */
 @Composable
-internal fun DialogHostScope.CategoryNameDialog(
+internal fun CategoryNameDialog(
     category: HomeAppCategory?,
     onDismiss: () -> Unit,
     onConfirm: (String) -> Unit
@@ -29,21 +37,33 @@ internal fun DialogHostScope.CategoryNameDialog(
     var name by remember(category?.id) { mutableStateOf(category?.name.orEmpty()) }
     val trimmed = name.trim()
 
-    TextInputDialog(
+    AppDialog(
+        onDismissRequest = onDismiss,
         title = stringResource(
             if (category == null) R.string.home_category_new_title
             else R.string.home_category_rename_title
         ),
-        description = stringResource(R.string.home_category_name_description),
-        value = name,
-        onValueChange = { name = it },
-        label = stringResource(R.string.home_category_name),
-        leadingIcon = MaterialSymbols.Rounded.Category,
-        confirmText = stringResource(if (category == null) R.string.add else R.string.rename),
-        confirmEnabled = trimmed.isNotEmpty(),
-        onConfirm = { onConfirm(trimmed) },
-        onDismiss = onDismiss
-    )
+        footer = {
+            AppDialogButtonRow(
+                primaryText = stringResource(if (category == null) R.string.add else R.string.rename),
+                onPrimaryClick = { onConfirm(trimmed) },
+                primaryEnabled = trimmed.isNotEmpty(),
+                secondaryText = stringResource(android.R.string.cancel),
+                onSecondaryClick = onDismiss
+            )
+        }
+    ) {
+        AppDialogTextField(
+            value = name,
+            onValueChange = { name = it },
+            label = { Text(stringResource(R.string.home_category_name)) },
+            leadingIcon = {
+                Icon(Icons.Outlined.Category, contentDescription = null)
+            },
+            showClearButton = true,
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
 }
 
 /**
@@ -53,7 +73,7 @@ internal fun DialogHostScope.CategoryNameDialog(
  * [onSelect] is called with null to clear the assignment.
  */
 @Composable
-internal fun DialogHostScope.MoveToCategoryDialog(
+internal fun MoveToCategoryDialog(
     categories: List<HomeAppCategory>,
     onDismiss: () -> Unit,
     onSelect: (String?) -> Unit,
@@ -61,7 +81,7 @@ internal fun DialogHostScope.MoveToCategoryDialog(
 ) {
     var showCreateDialog by remember { mutableStateOf(false) }
 
-    DialogHost(visible = showCreateDialog) {
+    if (showCreateDialog) {
         CategoryNameDialog(
             category = null,
             onDismiss = { showCreateDialog = false },

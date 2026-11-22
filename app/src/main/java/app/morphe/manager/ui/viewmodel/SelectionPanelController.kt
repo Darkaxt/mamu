@@ -31,12 +31,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-/** Patches and options one copy contributes, already filtered against the target bundle. */
-data class CopiedSelection(
-    val patches: Set<String>,
-    val options: Map<String, Map<String, Any?>>
-)
-
 /**
  * A selection being edited before it is used, as the selection panel acts on it. Changes land in
  * the selection held in memory, which reaches the database only once the host's edit is confirmed.

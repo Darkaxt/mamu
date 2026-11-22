@@ -75,7 +75,7 @@ abstract class ShrinkJarTask : DefaultTask() {
         val jdkClasses = work.resolve("jdk")
         exec.exec {
             commandLine(
-                jdkHome.resolve("bin").tool("jimage"), "extract",
+                jdkHome.resolve("bin").tool("jimage"), "-J-Xmx512m", "extract",
                 "--dir", jdkClasses.path, jdkHome.resolve("lib/modules").path
             )
         }
@@ -107,6 +107,7 @@ abstract class ShrinkJarTask : DefaultTask() {
         val result = exec.javaexec {
             executable = jdk.get().executablePath.asFile.path
             classpath = proguardClasspath
+            maxHeapSize = "512m"
             mainClass.set("proguard.ProGuard")
             args("@${configuration.path}")
             standardOutput = log

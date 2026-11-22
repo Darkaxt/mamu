@@ -5,6 +5,8 @@
 
 package app.morphe.manager.util
 
+import app.morphe.manager.ui.screen.shared.UserMessages
+
 import android.app.UiModeManager
 import android.content.ActivityNotFoundException
 import android.content.ContentResolver
@@ -37,7 +39,6 @@ import app.morphe.manager.patcher.patch.PatchBundleInfo
 import app.morphe.manager.patcher.patch.PatchInfo
 import app.morphe.manager.ui.screen.shared.DialogHost
 import app.morphe.manager.ui.screen.shared.FilePicker
-import app.morphe.manager.ui.screen.shared.UserMessages
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -76,10 +77,9 @@ fun Uri.toFilePath(): String {
     }
 
     return when {
-        // "primary:Download/subfolder" → "/storage/emulated/<user>/Download/subfolder", the user
-        // being whoever runs the manager, as a work profile or second user has storage of its own
+        // "primary:Download/subfolder" → "/storage/emulated/0/Download/subfolder"
         docId?.startsWith("primary:") == true ->
-            "${Environment.getExternalStorageDirectory().absolutePath}/${docId.removePrefix("primary:")}"
+            "/storage/emulated/0/${docId.removePrefix("primary:")}"
         // "raw:/storage/emulated/0/Download/file" → "/storage/emulated/0/Download/file"
         docId?.startsWith("raw:") == true ->
             docId.removePrefix("raw:")
@@ -97,6 +97,9 @@ fun Uri.displayName(contentResolver: ContentResolver): String? =
             }
     }.getOrNull() ?: lastPathSegment
 
+/** Whether the URI names a .mpp patch bundle. */
+fun Uri.hasMppExtension(contentResolver: ContentResolver): Boolean =
+    displayName(contentResolver)?.endsWith(".mpp", ignoreCase = true) == true
 /**
  * Copies the APK behind this URI to a new file in [dir], named [prefix] plus the extension it is
  * shown under. Null when the provider has nothing to read, and a copy cut short is deleted.
@@ -188,7 +191,7 @@ private fun rememberFolderPicker(
     val useCustomPicker by prefs.useCustomFilePicker.getAsState()
     val showPickerState = remember { mutableStateOf(false) }
 
-    DialogHost(visible = showPickerState.value) {
+    if (showPickerState.value) {
         FilePicker(
             mimeTypes = arrayOf(WILDCARD_MIMETYPE),
             allowFolderSelection = true,
@@ -308,7 +311,9 @@ data class PathValidationResult(
     val patchName: String,
     val optionKey: String,
     val path: String,
-    val reason: Reason
+    val reason: Reason,
+    val bundleUid: Int,
+    val sourceName: String? = null
 ) {
     enum class Reason {
         /** Nothing is at the path anymore, such as a folder the user has deleted. */
@@ -344,9 +349,8 @@ fun validateOptionPaths(
             for ((optionKey, value) in keyValues) {
                 // Only validate String values that look like absolute paths.
                 val raw = value as? String ?: continue
-                if (!raw.startsWith("/")) continue
-
                 val file = File(raw)
+                if (!file.isAbsolute) continue
                 val reason = when {
                     file.canRead() -> PathValidationResult.Reason.Rejected.takeIf {
                         declared.firstOrNull { it.key == optionKey }?.accepts(raw) == false
@@ -358,7 +362,8 @@ fun validateOptionPaths(
                     else -> PathValidationResult.Reason.Missing
                 } ?: continue
 
-                failures += PathValidationResult(patchName, optionKey, raw, reason)
+                failures += PathValidationResult(patchName, optionKey, raw, reason, bundleUid,
+                    bundles.firstOrNull { it.uid == bundleUid }?.name)
             }
         }
     }
@@ -366,17 +371,19 @@ fun validateOptionPaths(
 }
 
 /**
- * [this] without the options [failures] names, from every bundle, so the patch falls back to its own
+ * [this] without the options [failures] names from their exact sources, so the patch falls back to its own
  * default. Emptied bundles stay, as a saved configuration is replaced per bundle.
  */
 fun Options.withoutFailingPaths(failures: List<PathValidationResult>): Options {
     if (failures.isEmpty()) return this
 
-    val dropped = failures.mapTo(mutableSetOf()) { it.patchName to it.optionKey }
+    val dropped = failures.groupBy { it.bundleUid }.mapValues { (_, failures) ->
+        failures.mapTo(mutableSetOf()) { it.patchName to it.optionKey }
+    }
 
-    return mapValues { (_, patches) ->
+    return mapValues { (uid, patches) ->
         patches.mapValues { (patchName, optionValues) ->
-            optionValues.filterKeys { optionKey -> (patchName to optionKey) !in dropped }
+            optionValues.filterKeys { optionKey -> (patchName to optionKey) !in dropped[uid].orEmpty() }
         }
     }
 }
@@ -429,12 +436,11 @@ fun rememberAdaptiveMultiFilePicker(
 
 /**
  * [rememberAdaptiveFilePicker] for a single image, decoded off the main thread. [onLoaded] only
- * hears of images that decoded, anything else is reported with a message.
+ * hears of images that decoded, anything else is reported with a toast.
  */
 @Composable
 fun rememberImagePicker(onLoaded: (Bitmap) -> Unit): () -> Unit {
     val context = LocalContext.current
-    val messages = koinInject<UserMessages>()
     val scope = rememberCoroutineScope()
     val currentOnLoaded by rememberUpdatedState(onLoaded)
     val loadFailedMessage = stringResource(R.string.image_load_failed)
@@ -456,7 +462,7 @@ fun rememberImagePicker(onLoaded: (Bitmap) -> Unit): () -> Unit {
                     }
                 }
                 if (bitmap != null) currentOnLoaded(bitmap)
-                else messages.show(loadFailedMessage)
+                else context.toast(loadFailedMessage)
             }
         }
     )
@@ -493,7 +499,7 @@ private fun rememberAdaptivePicker(
         if (granted) showPickerState.value = true else onResult(emptyList())
     }
 
-    DialogHost(visible = showPickerState.value) {
+    if (showPickerState.value) {
         FilePicker(
             mimeTypes = customPickerMimeTypes,
             multiple = multiple,

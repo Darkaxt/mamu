@@ -18,6 +18,7 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModelOf(::MainViewModel)
     viewModelOf(::HomeViewModel)
+    viewModelOf(::NativeOriginalDownloadViewModel)
     viewModelOf(::ThemeSettingsViewModel)
     viewModelOf(::SettingsViewModel)
     viewModelOf(::PatcherViewModel)

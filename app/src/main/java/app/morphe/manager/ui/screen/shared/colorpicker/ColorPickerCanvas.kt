@@ -84,7 +84,7 @@ fun SaturationValuePanel(
         modifier = modifier
             .fillMaxWidth()
             .height(height)
-            .clip(RoundedCornerShape(Defaults.CornerMedium))
+            .clip(RoundedCornerShape(Defaults.CompactCornerRadius))
             .semantics { contentDescription?.let { this.contentDescription = it } }
             .pointerInput(Unit) {
                 detectTapGestures { report(it) }

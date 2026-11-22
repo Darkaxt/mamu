@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">Android 11 相關問題</string>
     <string name="android_11_bug_dialog_description">請先授予應用程式安裝權限，避免 Android 11 系統的錯誤影響使用者體驗</string>
     <string name="deep_link_add_source_title">新增來源</string>
-    <string name="deep_link_add_source_message">確定要將這個修補來源新增至 Morphe 嗎？</string>
+    <string name="deep_link_add_source_message">確定要將這個修補來源新增至 Mamu 嗎？</string>
     <string name="deep_link_add_source_warning">只新增您信任的來源</string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">僅新增此應用程式。您可以從來源的應用程式清單新增其他應用程式</string>
@@ -44,15 +44,15 @@
     <string name="mpp_import_unreadable">此檔案無法讀取</string>
     <string name="incoming_file_not_patch_source">此檔案不是修補程式來源</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">有可用的 Morphe 更新</string>
+    <string name="home_update_available">有可用的 Mamu 更新</string>
     <string name="home_update_available_subtitle">新版本已準備好安裝</string>
     <string name="home_blocked_source_title">偵測到已封鎖的修補程式來源</string>
     <string name="home_blocked_source_subtitle">點擊以檢視並移除</string>
     <string name="home_metadata_errors_title">部份修補程式來源無法使用</string>
     <string name="home_metadata_errors_subtitle">點擊以檢視來源</string>
-    <string name="home_outdated_manager_title">Morphe 已過時</string>
+    <string name="home_outdated_manager_title">Mamu 已過時</string>
     <string name="home_outdated_manager_subtitle">有些修補來源需要較新的版本</string>
-    <string name="home_held_back_title">修補檔來源導致 Morphe 當機</string>
+    <string name="home_held_back_title">修補檔來源導致 Mamu 當機</string>
     <string name="home_held_back_subtitle">該項目已略過，以便應用程式能啟動。點按以檢視</string>
     <string name="home_source_updates_title">有可用的修補程式更新</string>
     <string name="home_source_updates_subtitle">點擊以下載</string>
@@ -204,10 +204,10 @@
     <string name="sources_management_metadata_unavailable_hint">遠端中繼資料檔案無法使用。您仍可使用已安裝的套件進行修補，但此來源的自動更新已停用</string>
     <string name="sources_management_metadata_unavailable_hint_missing">無法下載修補套件。來源 URL 可能不正確，或檔案不存在</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">無法下載修補套件。來源 URL 可能不正確，或檔案不存在。點擊以變更</string>
-    <string name="sources_management_outdated_manager_badge">更新 Morphe</string>
-    <string name="sources_management_outdated_manager_hint">此來源是為修補程式 %1$s 建置的，但 Morphe %2$s 包含修補程式 %3$s。更新 Morphe 以使用它。</string>
+    <string name="sources_management_outdated_manager_badge">更新 Mamu</string>
+    <string name="sources_management_outdated_manager_hint">此來源是為修補程式 %1$s 建置的，但 Mamu %2$s 包含修補程式 %3$s。更新 Mamu 以使用它。</string>
     <string name="sources_management_held_back_badge">已當機</string>
-    <string name="sources_management_held_back_hint">此來源在載入時導致 Morphe 當機，因此已被略過。請更新或重新匯入再試一次。</string>
+    <string name="sources_management_held_back_hint">此來源在載入時導致 Mamu 當機，因此已被略過。請更新或重新匯入再試一次。</string>
     <string name="sources_management_signed_by">簽署者</string>
     <string name="sources_management_signing_key_changed_badge">金鑰已變更</string>
     <string name="sources_management_signing_key_changed_hint">最新版本並非由該來源先前使用的金鑰所簽署，因此未進行安裝。點擊以查看</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">社群修補程式</string>
     <string name="sources_dialog_choose_apps">選擇應用程式</string>
     <string name="sources_dialog_choose_apps_description">在來源載入後，選擇要保留其中的哪些應用程式。</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">第三方修補程式來源</string>
-    <string name="sources_dialog_community_notice_message">"社群修補檔來源由其作者自行製作與維護。Morphe 不審核或驗證第三方修補檔，且對其內容或在您的裝置上的操作不承擔任何責任"</string>
+    <string name="sources_dialog_community_notice_message">"社群修補檔來源由其作者自行製作與維護。Mamu 不審核或驗證第三方修補檔，且對其內容或在您的裝置上的操作不承擔任何責任"</string>
     <string name="sources_update_success">更新成功</string>
     <string name="sources_update_unavailable">沒有可用的更新</string>
     <string name="sources_download_fail">無法下載來源: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">已安裝輔助應用程式但尚未取得信任，因此在此處不提供選項</string>
     <string name="home_apk_helper_untrusted_action">檢視輔助程式</string>
     <string name="home_apk_helper_title">使用輔助應用程式下載</string>
-    <string name="home_apk_helper_description">Morphe 會要求下方的輔助應用程式下載原始 APK 並交回檔案</string>
+    <string name="home_apk_helper_description">Mamu 會要求下方的輔助應用程式下載原始 APK 並交回檔案</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">開啟小幫手</string>
-    <string name="home_apk_helper_warning">僅在您信任此輔助應用程式時才繼續。Morphe 在修補之前會檢查其接收到的套件、版本和簽章</string>
-    <string name="home_apk_helper_warning_unverified">僅在您信任此輔助應用程式時才繼續。Morphe 無法驗證此 APK 的簽章，因此無法偵測到已修改的檔案</string>
+    <string name="home_apk_helper_warning">僅在您信任此輔助應用程式時才繼續。Mamu 在修補之前會檢查其接收到的套件、版本和簽章</string>
+    <string name="home_apk_helper_warning_unverified">僅在您信任此輔助應用程式時才繼續。Mamu 無法驗證此 APK 的簽章，因此無法偵測到已修改的檔案</string>
     <string name="home_apk_helper_no_result">輔助應用程式未傳回 APK</string>
     <string name="home_apk_helper_no_access">輔助應用程式未授權存取其傳回的 APK</string>
     <string name="home_apk_helper_no_package">輔助應用程式未指定要使用的已安裝應用程式</string>
     <string name="home_apk_helper_wrong_package">輔助應用程式回傳了與正在修補的應用程式不同的應用程式</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe 無法使用已安裝的應用程式</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu 無法使用已安裝的應用程式</string>
     <string name="home_apk_helper_installed_incompatible">安裝的版本無法修補</string>
     <string name="home_apk_use_saved_copy">使用儲存的複本</string>
     <string name="home_apk_use_installed_app">使用已安裝的應用程式</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">無法驗證已安裝應用程式的簽名，因此可能已經被篡改</string>
     <string name="home_unverified">未驗證</string>
     <string name="home_install_verification_pending">正在檢查安裝…</string>
-    <string name="home_app_info_install_unverified">Morphe 無法確認已安裝的應用程式是其修補過的版本。請從已儲存的 APK 重新修補或重新安裝，以還原其操作。</string>
+    <string name="home_app_info_install_unverified">Mamu 無法確認已安裝的應用程式是其修補過的版本。請從已儲存的 APK 重新修補或重新安裝，以還原其操作。</string>
     <string name="home_app_info_no_saved_apk">沒有已儲存的 APK。修補時需要再次選取 APK 檔案</string>
     <string name="home_version_requires_android">需要 Android %s 以上版本</string>
     <string name="home_apk_no_compatible_versions_title">此裝置不支援</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">請往下滑動網頁，然後點選其下載按鈕</string>
     <string name="home_download_instructions_step2_variant">請往下滑動網頁，然後點選最上方&lt;b&gt;APK 變體&lt;/b&gt;的下載按鈕</string>
     <string name="home_download_instructions_step2_search">從您信任的網站開啟搜尋結果</string>
-    <string name="home_download_instructions_step2_search_note">Morphe 無法為這些網站擔保。請略過那些提供自家應用程式商店而不是 APK 檔案的網站</string>
+    <string name="home_download_instructions_step2_search_note">Mamu 無法為這些網站擔保。請略過那些提供自家應用程式商店而不是 APK 檔案的網站</string>
     <string name="home_download_instructions_step3_search">在該網站上，請下載版本&lt;b&gt;%s&lt;/b&gt;的 APK，而不是最新版</string>
     <string name="home_download_instructions_step3_search_any">在該網站上，請下載該應用程式的 APK。&lt;b&gt;任何版本&lt;/b&gt;都可以修補</string>
     <string name="home_download_instructions_step2_github">在&lt;b&gt;%s&lt;/b&gt;發佈的&lt;b&gt;資源&lt;/b&gt;下，按下以&lt;b&gt;.apk&lt;/b&gt; 結尾的檔案。</string>
@@ -314,11 +314,11 @@
     <string name="home_download_instructions_download_button_toast_3">熟能生巧，你快要掌握了 💪</string>
     <string name="home_download_instructions_download_button_toast_4">不是這個按鈕… 這只是範例按鈕… 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">好吧，您的毅力我收到了 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">您現在是 Morphe 官方按鈕測試員 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">您現在是 Mamu 官方按鈕測試員 🏅</string>
     <string name="home_download_instructions_step3">等待下載完成，並且 <b>請勿安裝</b> 該 APK</string>
     <string name="home_download_instructions_step3_mount">等待下載完成，然後 <b>安裝該 APK</b></string>
-    <string name="home_download_instructions_step4">下載完成後，回到 Morphe</string>
-    <string name="home_download_instructions_step4_mount">安裝原始 APK 後，回到 Morphe</string>
+    <string name="home_download_instructions_step4">下載完成後，回到 Mamu</string>
+    <string name="home_download_instructions_step4_mount">安裝原始 APK 後，回到 Mamu</string>
     <string name="home_download_instructions_continue_to">繼續前往%s</string>
     <string name="home_download_instructions_destination">下載頁面</string>
     <string name="home_download_instructions_copy_link">複製連結</string>
@@ -446,12 +446,12 @@
     <string name="adaptive_icon_themed">主題</string>
     <string name="adaptive_icon_background_color">背景顏色</string>
     <string name="adaptive_icon_reset_transform">重設位置與縮放比例</string>
-    <string name="adaptive_icon_no_transparency_warning">此影像沒有透明像素，因此主題和通知圖示會保留 Morphe 標誌</string>
+    <string name="adaptive_icon_no_transparency_warning">此影像沒有透明像素，因此主題和通知圖示會保留 Mamu 標誌</string>
     <string name="adaptive_icon_created_success">已成功建立自適應圖示</string>
     <string name="adaptive_icon_creation_failed">無法建立自適應圖示</string>
     <string name="adaptive_icon_guide">圖示建立指南</string>
     <string name="adaptive_icon_guide_png_title">使用具有透明背景的 PNG</string>
-    <string name="adaptive_icon_guide_png_body">透明背景上的標誌效果最佳，背景顏色請在下方挑選。沒有透明度的圖片反而會填滿整個圖示，而主題與通知圖示就會保留 Morphe 標誌。</string>
+    <string name="adaptive_icon_guide_png_body">透明背景上的標誌效果最佳，背景顏色請在下方挑選。沒有透明度的圖片反而會填滿整個圖示，而主題與通知圖示就會保留 Mamu 標誌。</string>
     <string name="adaptive_icon_guide_safe_zones_title">安全區域</string>
     <string name="adaptive_icon_guide_safe_zones_body">輪廓顯示您啟動器的圖示形狀，輪廓以外的部份都會被裁切。其他啟動器使用不同的形狀，因此請將重要細節保留在虛線圓圈內，所有形狀都會顯示虛線圓圈內的區域。</string>
     <string name="adaptive_icon_guide_notification_title">通知圖示</string>
@@ -557,8 +557,8 @@
     <string name="home_app_info_version_move">已安裝 %1$s，最新支援版本 %2$s</string>
     <string name="home_app_info_version_restore">已安裝 %1$s，已修補 %2$s</string>
     <string name="home_app_info_app_deleted_warning">應用程式已解除安裝</string>
-    <string name="home_app_info_app_deleted_description">此應用程式已在 Morphe 外部被解除安裝。重新修補以還原功能</string>
-    <string name="home_app_info_not_patched_description">已安裝此應用程式的未修補版本。Morphe 仍保留其先前的修補記錄。</string>
+    <string name="home_app_info_app_deleted_description">此應用程式已在 Mamu 外部被解除安裝。重新修補以還原功能</string>
+    <string name="home_app_info_not_patched_description">已安裝此應用程式的未修補版本。Mamu 仍保留其先前的修補記錄。</string>
     <string name="home_app_info_mount_replaced_description">另一個版本取代了已掛載的應用程式，因此修補程式不再適用。還原會把已修補的版本放回去</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play 更新了已掛載的應用程式，因此修補程式不再適用。還原會把已修補的版本放回去。請在 Google Play 中關閉該應用程式的自動更新，以保持其已修補狀態</string>
     <string name="app_links_title">支援的網頁連結</string>
@@ -589,7 +589,7 @@
     <string name="root_pre_patch_installer_description">您的裝置已獲得root權限。選擇此應用程式是否應為root掛載或標準安裝進行修補</string>
     <string name="root_pre_patch_installer_mount_title">Root掛載模式</string>
     <string name="root_pre_patch_installer_mount_description">為root掛載修補，然後將APK覆蓋在匹配的庫存應用程式上。不需要GmsCore</string>
-    <string name="root_mount_module_unmount_warning">若 KernelSU 已開啟「預設卸載模組」功能，請開啟 KernelSU &gt; 超級使用者 &gt; 找到您掛載的應用程式 &gt; 設定檔 &gt; 自訂，並將「卸載模組」關閉。否則，即使 Morphe 顯示已掛載，APK 仍可能無法生效</string>
+    <string name="root_mount_module_unmount_warning">若 KernelSU 已開啟「預設卸載模組」功能，請開啟 KernelSU &gt; 超級使用者 &gt; 找到您掛載的應用程式 &gt; 設定檔 &gt; 自訂，並將「卸載模組」關閉。否則，即使 Mamu 顯示已掛載，APK 仍可能無法生效</string>
     <string name="root_pre_patch_installer_standard_title">標準安裝模式</string>
     <string name="root_pre_patch_installer_standard_description">以支援 GmsCore 的一般 APK 形式修補。修補完成後，將使用您的安裝程式設定。</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -652,7 +652,7 @@
     <string name="patcher_conflict_subtitle">你需要解除安裝現有版本</string>
     <string name="patcher_conflict_hint">修補後的應用程式使用的憑證與已安裝版本不同。解除安裝會清除所有應用程式資料</string>
     <string name="patcher_installed_conflict_title">需要解除安裝</string>
-    <string name="patcher_installed_conflict_body">"Morphe 會使用其自己的憑證來簽署已修補的應用程式，這與原始憑證不同。Android 要求在安裝已修補的應用程式之前移除現有版本。
+    <string name="patcher_installed_conflict_body">"Mamu 會使用其自己的憑證來簽署已修補的應用程式，這與原始憑證不同。Android 要求在安裝已修補的應用程式之前移除現有版本。
 
 解除安裝將永久刪除所有應用程式資料"</string>
     <string name="patcher_install_error_title">安裝錯誤</string>
@@ -662,8 +662,8 @@
     <string name="patcher_patches_excluded_for_installer">未針對此安裝方法提供且已排除：%s</string>
     <string name="patcher_storage_permission_dialog_title">無法存取儲存路徑</string>
     <string name="patcher_incompatible_patcher_title">需要更新</string>
-    <string name="patcher_incompatible_patcher_description">來源 &lt;b&gt;%1$s&lt;/b&gt; 需要修補程式 &lt;b&gt;%2$s&lt;/b&gt; 或更新版本。更新 Morphe 以使用它</string>
-    <string name="patcher_storage_permission_description_api30">一個或多個修補選項指向 Morphe 無法讀取的路徑。授予儲存空間存取權限並輕觸按鈕，修補將自動開始</string>
+    <string name="patcher_incompatible_patcher_description">來源 &lt;b&gt;%1$s&lt;/b&gt; 需要修補程式 &lt;b&gt;%2$s&lt;/b&gt; 或更新版本。更新 Mamu 以使用它</string>
+    <string name="patcher_storage_permission_description_api30">一個或多個修補選項指向 Mamu 無法讀取的路徑。授予儲存空間存取權限並輕觸按鈕，修補將自動開始</string>
     <string name="patcher_storage_permission_description_legacy">一個或多個修補選項指向無法存取的路徑。更新修補選項中的路徑並重試</string>
     <string name="patcher_storage_permission_grant">授予儲存空間權限</string>
     <string name="patcher_storage_permission_denied_warning">儲存空間權限被拒絕。授予使用此路徑的權限，或將檔案移至應用程式的專用目錄</string>
@@ -680,7 +680,7 @@
     <string name="patcher_option_paths_rejected_title">無法使用修補選項檔案</string>
     <string name="patcher_option_paths_rejected_description">缺乏一個或多個修補選項指向的檔案，或不包含修補所需內容。請移除這些路徑後再進行修補，或按照選項說明修復檔案後重試</string>
     <string name="patcher_option_paths_clear">移除路徑並繼續</string>
-    <string name="patcher_storage_permission_hint">提示：將檔案移至 /Android/data/app.morphe.manager/files/ - 不需要額外權限</string>
+    <string name="patcher_storage_permission_hint">提示：將檔案移至 /Android/data/app.morphe.extended/files/ - 不需要額外權限</string>
     <!-- Patcher Screen - Patcher Steps -->
     <string name="patcher_step_group_preparing">正在準備</string>
     <string name="patcher_step_load_patches">載入修補程式</string>
@@ -699,7 +699,7 @@
     <string name="patcher_task_writing_apk">正在寫入 APK 檔案</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">背景修補保護</string>
-    <string name="battery_optimization_dialog_description">部份裝置可能在應用程式縮小時停止修補程式。允許 Morphe 在沒有電池限制的情況下執行，以確保修補程式可靠完成。</string>
+    <string name="battery_optimization_dialog_description">部份裝置可能在應用程式縮小時停止修補程式。允許 Mamu 在沒有電池限制的情況下執行，以確保修補程式可靠完成。</string>
     <string name="battery_optimization_not_now">稍後再說</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">修補進行中…</string>
@@ -754,8 +754,8 @@
     <string name="install_ignore_signature">仍要安裝</string>
     <string name="install_ignore_signature_description">保留應用程式資料，但僅在 root 模組停用 Android 的簽章驗證時有效</string>
     <string name="uninstall_app_fail">無法解除安裝應用程式：%s</string>
-    <string name="uninstall_app_unverified">保留在原地：Morphe 無法驗證安裝的應用程式是它所修補的版本。</string>
-    <string name="launch_app_unverified">Morphe 無法驗證安裝的應用程式是它所修補的版本。</string>
+    <string name="uninstall_app_unverified">保留在原地：Mamu 無法驗證安裝的應用程式是它所修補的版本。</string>
+    <string name="launch_app_unverified">Mamu 無法驗證安裝的應用程式是它所修補的版本。</string>
     <string name="uninstall_timeout">解除安裝逾時</string>
     <string name="save_apk_success">APK 已儲存</string>
     <string name="saved_app_export_failed">無法匯出已修補的應用程式</string>
@@ -847,7 +847,7 @@
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">應用程式語言</string>
     <string name="settings_appearance_app_language_current">目前語言</string>
-    <string name="settings_appearance_translate">協助翻譯 Morphe</string>
+    <string name="settings_appearance_translate">協助翻譯 Mamu</string>
     <string name="settings_appearance_translations_info_title">某些語言的翻譯可能遺失或不完整</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">介面縮放</string>
@@ -876,7 +876,7 @@
     <string name="settings_appearance_app_card_colors_bundle_description">在此使用每個應用程式或來源本身的顏色，並自動調整陰影以適應</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">應用程式圖示</string>
-    <string name="settings_appearance_app_icon_selector_description">Morphe 在您的主畫面與應用程式抽屜中的外觀</string>
+    <string name="settings_appearance_app_icon_selector_description">Mamu 在您的主畫面與應用程式抽屜中的外觀</string>
     <string name="settings_appearance_app_icon_default">預設</string>
     <string name="settings_appearance_app_icon_light_2">天空</string>
     <string name="settings_appearance_app_icon_light_3">日落</string>
@@ -900,23 +900,23 @@
     <string name="settings_appearance_app_icon_mark_black">黑色</string>
     <string name="settings_appearance_app_icon_change_dialog_title">變更應用程式圖示？</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">Morphe 將重新啟動以切換至 &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="settings_appearance_app_icon_change_restarts">Mamu 將重新啟動以切換至 &lt;b&gt;%s&lt;/b&gt;</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">變更圖示</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">預先發佈版更新</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">搶先取得新版 Morphe</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">搶先取得新版 Mamu</string>
     <string name="settings_advanced_updates_prerelease_warning_title">啟用預發佈更新？</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"Morphe 的預發佈版本仍在開發中，可能不穩定。
+    <string name="settings_advanced_updates_prerelease_warning_message">"Mamu 的預發佈版本仍在開發中，可能不穩定。
 
 修補程式不受影響：請在修補程式來源清單中為每個來源啟用預發佈修補程式"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">自動更新</string>
-    <string name="settings_auto_updates_description">Morphe 在開啟時對更新的處理方式。下拉重新整理將始終檢查更新</string>
+    <string name="settings_auto_updates_description">Mamu 在開啟時對更新的處理方式。下拉重新整理將始終檢查更新</string>
     <string name="settings_auto_updates_download">自動下載</string>
-    <string name="settings_auto_updates_download_description">在 Morphe 開啟時檢查更新，並在任何網路環境下下載修補程式更新</string>
+    <string name="settings_auto_updates_download_description">在 Mamu 開啟時檢查更新，並在任何網路環境下下載修補程式更新</string>
     <string name="settings_auto_updates_wifi_only">僅限透過 Wi-Fi 下載</string>
     <string name="settings_auto_updates_wifi_only_description">在使用行動數據時，僅檢查並顯示可用更新</string>
     <string name="settings_auto_updates_check_only">僅檢查</string>
@@ -937,27 +937,27 @@
     <string name="settings_advanced_external_batch_patch">允許外部觸發器</string>
     <string name="settings_advanced_external_batch_patch_description">允許自動化應用程式啟動批次修補</string>
     <string name="external_batch_patch_title">開始批次修補？</string>
-    <string name="external_batch_patch_description">%s 想要 Morphe 修補和安裝應用程式</string>
+    <string name="external_batch_patch_description">%s 想要 Mamu 修補和安裝應用程式</string>
     <string name="external_batch_patch_trust_caller">總是允許此應用程式</string>
     <string name="external_batch_patch_unknown_caller">未知應用程式</string>
     <!-- Notification content -->
     <string name="notification_bundle_update_title">有新的修補程式可用</string>
     <string name="notification_update_text">版本 %s 已準備好下載</string>
-    <string name="notification_bundle_update_text_unversioned">輕觸以開啟 Morphe 並更新</string>
+    <string name="notification_bundle_update_text_unversioned">輕觸以開啟 Mamu 並更新</string>
     <string name="notification_permission_dialog_title">允許通知</string>
-    <string name="notification_permission_dialog_description">Morphe 需要通知權限才能在背景有可用更新時提醒您</string>
+    <string name="notification_permission_dialog_description">Mamu 需要通知權限才能在背景有可用更新時提醒您</string>
     <string name="notification_post_patch_dialog_title">您希望在有可用更新時收到通知嗎？</string>
-    <string name="notification_channel_manager_updates">Morphe 更新</string>
-    <string name="notification_channel_manager_updates_description">關於新 Morphe 版本的通知</string>
+    <string name="notification_channel_manager_updates">Mamu 更新</string>
+    <string name="notification_channel_manager_updates_description">關於新 Mamu 版本的通知</string>
     <string name="notification_channel_patch_updates">修補程式更新</string>
     <string name="notification_channel_patch_updates_description">關於新修補程式版本的通知</string>
-    <string name="notification_channel_patcher_description">在 Morphe 於背景修補應用程式時顯示</string>
+    <string name="notification_channel_patcher_description">在 Mamu 於背景修補應用程式時顯示</string>
     <string name="notification_channel_patching_results">修補結果</string>
-    <string name="notification_channel_patching_results_description">當 Morphe 在背景執行且修補結束，或正等待您操作安裝時</string>
+    <string name="notification_channel_patching_results_description">當 Mamu 在背景執行且修補結束，或正等待您操作安裝時</string>
     <string name="notification_channel_mounted_apps">已掛載的應用程式</string>
     <string name="notification_channel_mounted_apps_description">當另一個版本取代了已安裝的應用程式而且它的修補檔不再適用時</string>
     <string name="notification_mount_replaced_title">不再修補 %1$s</string>
-    <string name="notification_mount_replaced_text">v%1$s 取代了已修補的 v%2$s。開啟 Morphe 去進行還原</string>
+    <string name="notification_mount_replaced_text">v%1$s 取代了已修補的 v%2$s。開啟 Mamu 去進行還原</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">專家模式</string>
     <string name="settings_advanced_expert_mode_description">解鎖進階修補設定與修補選項</string>
@@ -979,7 +979,7 @@
     <string name="settings_advanced_github_pat_unreachable">無法連線至 GitHub 來檢查此權杖</string>
     <string name="settings_advanced_github_pat_export_include_label">包含在設定匯出中</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">將此 PAT 新增至匯出的 Morphe 設定</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">將此 PAT 新增至匯出的 Mamu 設定</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">請勿分享您的 PAT。如果您將其包含在設定匯出中，請將該檔案保密，因為它包含該權杖</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1074,7 +1074,7 @@ morphe_header_custom_dark.png
     <string name="installer_status_not_supported">不支援此操作</string>
     <string name="installer_status_shizuku_not_installed">安裝 Shizuku 或 Sui 以使用此選項</string>
     <string name="installer_status_shizuku_not_running">啟動 Shizuku 或 Sui 並重試</string>
-    <string name="installer_status_shizuku_permission">請從 Shizuku 應用程式授予 Morphe 權限</string>
+    <string name="installer_status_shizuku_permission">請從 Shizuku 應用程式授予 Mamu 權限</string>
     <string name="installer_mount_warning_install">修補模式已設定為 Root 掛載。此儲存的應用程式並非使用掛載安裝</string>
     <string name="mount_version_mismatch_message">原廠應用程式版本 (%2$s) 與修補後的應用程式版本 (%1$s) 不符。掛載相符的原廠版本，然後重試</string>
     <string name="mount_stock_restore_failed_message">Android 拒絕了儲存的原始 APK。請安裝相符的原始版本，然後再次嘗試掛載。</string>
@@ -1115,7 +1115,7 @@ morphe_header_custom_dark.png
     <string name="settings_ignore_install_target_rules">忽略安裝目標條件</string>
     <string name="settings_ignore_install_target_rules_description">允許關閉安裝目標要求的修補程式，並啟用其排除的修補程式。修補後的應用程式可能無法正常運作</string>
     <string name="settings_auto_uninstall_warning_title">要啟用自動解除安裝嗎？</string>
-    <string name="settings_auto_uninstall_warning_message">若 Android 在 Shizuku 自動安裝期間回報簽名衝突，Morphe 將在安裝已修補的 APK 之前先解除安裝現有的應用程式</string>
+    <string name="settings_auto_uninstall_warning_message">若 Android 在 Shizuku 自動安裝期間回報簽名衝突，Mamu 將在安裝已修補的 APK 之前先解除安裝現有的應用程式</string>
     <string name="settings_auto_uninstall_warning_risk">這可能會刪除應用程式資料。若在解除安裝後無法安裝已修補的 APK，原本的應用程式可能已經遺失</string>
     <string name="installer_shizuku_status_action">檢查 Shizuku 狀態</string>
     <string name="installer_shizuku_status_title">Shizuku 狀態</string>
@@ -1131,7 +1131,7 @@ morphe_header_custom_dark.png
     <string name="installer_shizuku_request_permission">請求權限</string>
     <string name="installer_shizuku_install_fail">Shizuku 安裝失敗：%s</string>
     <string name="installer_shizuku_install_fail_with_details">"Shizuku 安裝失敗：%1$s\n\n詳細資料：%2$s"</string>
-    <string name="installer_shizuku_error_permission">缺少 Shizuku 權限。請授予 Morphe 權限並重試</string>
+    <string name="installer_shizuku_error_permission">缺少 Shizuku 權限。請授予 Mamu 權限並重試</string>
     <string name="installer_shizuku_error_timeout">Shizuku 未傳回安裝結果。請確認其仍在執行中並重試</string>
     <string name="installer_shizuku_error_downgrade">Android 已封鎖此操作，因為這會降級已安裝的應用程式</string>
     <string name="installer_shizuku_error_signature">Android 已封鎖此操作，因為已安裝的應用程式具有不同的簽名</string>
@@ -1142,13 +1142,13 @@ morphe_header_custom_dark.png
     <string name="settings_system_battery_optimization_description">即使應用程式被最小化，也會保持修補程式的執行</string>
     <string name="settings_system_process_runtime">修補程式執行階段</string>
     <string name="settings_system_jvm_runtime_enable">使用內建 VM</string>
-    <string name="settings_system_jvm_runtime_description">Morphe 內建的 Java VM 修補，可以使用更多記憶體。關閉以使用 Android 的運行組件</string>
+    <string name="settings_system_jvm_runtime_description">Mamu 內建的 Java VM 修補，可以使用更多記憶體。關閉以使用 Android 的運行組件</string>
     <string name="settings_system_jvm_runtime_unavailable">需要ARM架構或64位元x86架構的裝置</string>
     <string name="settings_system_patcher_completion_sound">完成音效</string>
     <string name="settings_system_patcher_completion_sound_description">修補完成時，成功或失敗會播放不同的提示音</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">通知</string>
-    <string name="settings_system_notifications_description">Morphe 如何讓您隨時掌握資訊</string>
+    <string name="settings_system_notifications_description">Mamu 如何讓您隨時掌握資訊</string>
     <string name="settings_system_notifications_success_sound">成功音效</string>
     <string name="settings_system_notifications_error_sound">失敗音效</string>
     <string name="settings_system_notifications_sound_default">預設</string>
@@ -1160,8 +1160,8 @@ morphe_header_custom_dark.png
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">簽署金鑰</string>
     <string name="settings_system_signing_key_description">備份或還原簽署修補過應用程式的金鑰</string>
-    <string name="settings_system_signing_key_dialog_description">Morphe 所修補的每個應用程式都會以這把金鑰簽署。請保留一份副本：少了它，修補過的應用程式只能先解除安裝後才能更新。</string>
-    <string name="settings_system_signing_key_missing">Morphe 會在您首次修補時產生一把金鑰</string>
+    <string name="settings_system_signing_key_dialog_description">Mamu 所修補的每個應用程式都會以這把金鑰簽署。請保留一份副本：少了它，修補過的應用程式只能先解除安裝後才能更新。</string>
+    <string name="settings_system_signing_key_missing">Mamu 會在您首次修補時產生一把金鑰</string>
     <string name="settings_system_signing_key_created">建立於 %s</string>
     <string name="settings_system_signing_key_fingerprint">SHA-256 指紋</string>
     <string name="settings_system_backup_appearance_description">主題、色彩與語言</string>
@@ -1183,31 +1183,31 @@ morphe_header_custom_dark.png
     <string name="settings_system_export_keystore_failed">無法匯出金鑰儲存庫</string>
     <string name="settings_system_show_password_field">顯示密碼</string>
     <string name="settings_system_hide_password_field">隱藏密碼</string>
-    <string name="settings_system_morphe_settings">Morphe 設定</string>
-    <string name="settings_system_import_manager_settings_description">備份和還原您的 Morphe 設定</string>
-    <string name="settings_system_export_manager_settings_title">匯出 Morphe 設定</string>
+    <string name="settings_system_morphe_settings">Mamu 設定</string>
+    <string name="settings_system_import_manager_settings_description">備份和還原您的 Mamu 設定</string>
+    <string name="settings_system_export_manager_settings_title">匯出 Mamu 設定</string>
     <string name="settings_system_export_manager_settings_description">將您選擇的設定儲存至檔案</string>
     <string name="settings_system_import_manager_settings_file_description">從備份檔案還原設定</string>
     <string name="settings_system_auto_backup">自動備份</string>
     <string name="settings_system_auto_backup_switch">自動進行備份</string>
     <string name="settings_system_auto_backup_now">立即備份</string>
     <string name="settings_system_auto_backup_saved">備份已儲存</string>
-    <string name="settings_system_auto_backup_interval_description">Morphe 在進行下一次複製之前，會至少等待這麼長時間</string>
-    <string name="settings_system_auto_backup_description">將您的 Morphe 設定儲存至您選擇的資料夾</string>
+    <string name="settings_system_auto_backup_interval_description">Mamu 在進行下一次複製之前，會至少等待這麼長時間</string>
+    <string name="settings_system_auto_backup_description">將您的 Mamu 設定儲存至您選擇的資料夾</string>
     <string name="settings_system_auto_backup_last">上次備份：%s</string>
     <string name="settings_system_auto_backup_folder">資料夾</string>
-    <string name="settings_system_auto_backup_folder_name">Morphe 備份</string>
+    <string name="settings_system_auto_backup_folder_name">Mamu 備份</string>
     <string name="settings_system_auto_backup_folder_failed">無法使用此資料夾：%s</string>
     <string name="settings_system_auto_backup_interval">備份頻率</string>
     <string name="settings_system_auto_backup_signing_key">包含簽署金鑰</string>
     <string name="settings_system_auto_backup_signing_key_description">將簽署修補應用程式的金鑰與設定一起儲存</string>
     <string name="settings_system_auto_backup_signing_key_warning_title">要備份簽署金鑰嗎？</string>
     <string name="settings_system_auto_backup_signing_key_warning_message">任何取得此檔案的人都可以簽署可用於覆蓋您的修補應用程式之更新。請保持資料夾私密，且僅與您自己的裝置共享</string>
-    <string name="settings_system_auto_backup_footer">在更改內容並離開 Morphe 時會儲存一份副本。將保留最新的 %s</string>
+    <string name="settings_system_auto_backup_footer">在更改內容並離開 Mamu 時會儲存一份副本。將保留最新的 %s</string>
     <string name="settings_system_auto_backup_failed">無法儲存上一次的備份。請重新選擇資料夾</string>
-    <string name="settings_system_import_manager_settings_fail">無法匯入 Morphe 設定：%s</string>
-    <string name="settings_system_import_manager_settings_success">已匯入 Morphe 設定</string>
-    <string name="settings_system_import_manager_settings_mode_title">匯入 Morphe 設定</string>
+    <string name="settings_system_import_manager_settings_fail">無法匯入 Mamu 設定：%s</string>
+    <string name="settings_system_import_manager_settings_success">已匯入 Mamu 設定</string>
+    <string name="settings_system_import_manager_settings_mode_title">匯入 Mamu 設定</string>
     <string name="settings_system_import_manager_settings_mode_description">選擇如何套用匯入的設定和來源</string>
     <string name="settings_system_import_selections_mode_title">匯入修補選擇</string>
     <string name="settings_system_import_selections_mode_description">選擇如何套用匯入的選取範圍和修補選項</string>
@@ -1215,8 +1215,8 @@ morphe_header_custom_dark.png
     <string name="import_mode_replace_description">完全符合備份。若備份中缺少項目，將會移除</string>
     <string name="import_mode_merge_title">與現有項目合併</string>
     <string name="import_mode_merge_description">新增備份中缺少項目。現有項目維持不變</string>
-    <string name="settings_system_export_manager_settings_fail">無法匯出 Morphe 設定：%s</string>
-    <string name="settings_system_export_manager_settings_success">已匯出 Morphe 設定</string>
+    <string name="settings_system_export_manager_settings_fail">無法匯出 Mamu 設定：%s</string>
+    <string name="settings_system_export_manager_settings_success">已匯出 Mamu 設定</string>
     <string name="settings_system_export_debug_logs">匯出偵錯日誌</string>
     <string name="settings_system_export_debug_logs_description">儲存系統紀錄以進行疑難排解</string>
     <string name="settings_system_export_debug_logs_export_read_failed">無法讀取紀錄（結束代碼 %s）</string>
@@ -1234,7 +1234,7 @@ morphe_header_custom_dark.png
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">儲存空間管理</string>
     <string name="settings_system_storage_management_description">顯示磁碟用量並清除快取檔案</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">剩餘%1$s可用</string>
     <string name="settings_system_storage_saved_apks">已儲存的 APK 檔案</string>
     <string name="settings_system_storage_caches">快取</string>
@@ -1257,7 +1257,7 @@ morphe_header_custom_dark.png
     <string name="settings_system_storage_clear_anyway">仍要清除</string>
     <string name="settings_system_storage_nothing_to_clear">無須清除</string>
     <string name="settings_system_storage_open_app_info_title">開啟 Android 應用程式儲存空間</string>
-    <string name="settings_system_storage_open_app_info_description">透過系統設定管理或清除所有 Morphe 資料</string>
+    <string name="settings_system_storage_open_app_info_description">透過系統設定管理或清除所有 Mamu 資料</string>
     <string name="settings_system_save_original_apks_title">保留原始 APK</string>
     <string name="settings_system_save_original_apks_description">儲存原始 APK，以便於稍後重新修補，而無需再次選擇檔案</string>
     <string name="settings_system_save_patched_apks_title">保留已修補的 APK</string>
@@ -1311,13 +1311,13 @@ morphe_header_custom_dark.png
     <string name="copy_selection_available_format">%1$s of %2$s 可用</string>
     <!-- Settings - System Tab - Custom file picker -->
     <string name="settings_system_custom_file_picker">自訂檔案選擇器</string>
-    <string name="settings_system_custom_file_picker_description">使用 Morphe 內建的檔案挑選工具取代系統預設的檔案挑選器</string>
+    <string name="settings_system_custom_file_picker_description">使用 Mamu 內建的檔案挑選工具取代系統預設的檔案挑選器</string>
     <!-- Settings - System Tab - APK download helper -->
     <string name="settings_system_apk_download_helper">APK 下載輔助工具</string>
     <string name="settings_system_apk_download_helper_trusted_count">已信任：%1$d / %2$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">輔助應用程式可以為你下載原始 APK。只有你在這裡信任的應用程式，才會在下載說明中提供。</string>
     <string name="settings_system_apk_download_helper_trust_title">信任此輔助工具？</string>
-    <string name="settings_system_apk_download_helper_warning">APK 來自輔助應用程式，因此請只信任你認識的應用程式。Morphe 仍會在修補前檢查每個檔案的套件、版本與簽章。</string>
+    <string name="settings_system_apk_download_helper_warning">APK 來自輔助應用程式，因此請只信任你認識的應用程式。Mamu 仍會在修補前檢查每個檔案的套件、版本與簽章。</string>
     <string name="settings_system_apk_download_helper_installed_by">由 %s 安裝</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">安裝者未知</string>
     <string name="settings_system_apk_download_helper_open_directly">立即開啟助手</string>
@@ -1350,7 +1350,7 @@ morphe_header_custom_dark.png
     <string name="settings_about_section_project">專案</string>
     <string name="settings_about_section_help">協助</string>
     <string name="credits_prior_development">先前開發</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">管理員</string>
     <string name="about_update_available">可用更新：%s</string>
     <string name="about_up_to_date">已追上</string>
@@ -1363,7 +1363,7 @@ morphe_header_custom_dark.png
     <string name="contributors_all_time">所有時間</string>
     <string name="contributors_6_months">6 個月</string>
     <string name="contributors_3_months">3 個月</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">支持者</string>
     <string name="supporters_description">Open Collective 的支持者</string>
     <string name="supporters_become">成為支持者</string>
@@ -1371,7 +1371,7 @@ morphe_header_custom_dark.png
     <string name="people_more">以及其他 %s 人</string>
     <string name="people_unavailable">無法載入清單</string>
     <string name="opensource_licenses">開源授權</string>
-    <string name="opensource_licenses_description">Morphe 所建構使用的函式庫</string>
+    <string name="opensource_licenses_description">Mamu 所建構使用的函式庫</string>
     <string name="opensource_licenses_search">搜尋函式庫與授權</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">選擇</string>
@@ -1396,12 +1396,12 @@ morphe_header_custom_dark.png
     <string name="settings_section_patcher">修補器</string>
     <string name="settings_section_updates">更新</string>
     <string name="settings_section_patching">修補</string>
-    <string name="settings_section_appearance_summary">Morphe 的外觀</string>
+    <string name="settings_section_appearance_summary">Mamu 的外觀</string>
     <string name="settings_section_patch_options_summary">簡易模式方式修補的應用程式</string>
     <string name="settings_section_general">一般</string>
     <string name="settings_section_patcher_summary">此裝置上的應用程式修補方式</string>
     <string name="settings_section_help_info">幫助與資訊</string>
-    <string name="settings_section_about_summary">關於 Morphe 及如何取得協助</string>
+    <string name="settings_section_about_summary">關於 Mamu 及如何取得協助</string>
     <string name="settings_section_local_files">檔案</string>
     <string name="settings_section_backup">備份</string>
     <string name="settings_section_import_export">匯入與匯出</string>
@@ -1564,7 +1564,7 @@ morphe_header_custom_dark.png
     <string name="update_completed">更新已安裝</string>
     <string name="install_update_manager_failed">無法安裝更新</string>
     <string name="installing_manager_update">正在安裝更新……</string>
-    <string name="installing_manager_update_hint">Morphe 將關閉以完成更新</string>
+    <string name="installing_manager_update_hint">Mamu 將關閉以完成更新</string>
     <string name="downloading_manager_update">正在下載更新……</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">%1$s MB 已下載</string>
@@ -1587,7 +1587,7 @@ morphe_header_custom_dark.png
     <string name="onboarding_signing_key_desc">備份簽署您修補後應用程式的金鑰。若無此金鑰，則必須先解除安裝才能更新這些應用程式</string>
     <string name="onboarding_swipe_title">手勢</string>
     <string name="onboarding_swipe_desc">向右滑動應用程式卡片以查看其可用的修補。向左滑動可從主螢幕隱藏卡片</string>
-    <string name="onboarding_settings_desc">自訂 Morphe：外觀、進階選項和系統工具</string>
+    <string name="onboarding_settings_desc">自訂 Mamu：外觀、進階選項和系統工具</string>
     <string name="onboarding_sources_patches_desc">點擊以查看此來源提供的可用修補</string>
     <string name="onboarding_sources_version_desc">點擊版本以查看此來源的完整變更紀錄</string>
     <string name="onboarding_sources_apps_desc">輕觸即可查看此來源支援修補的應用程式，並選擇要提供哪些修補程式</string>
@@ -1599,9 +1599,28 @@ morphe_header_custom_dark.png
     <string name="onboarding_system_file_picker_desc">啟用此選項可在選取 APK 或金鑰庫時使用內建檔案瀏覽器，而不是系統挑選器</string>
     <!-- Tour prompt dialog shown after first successful patch install -->
     <string name="tour_prompt_title">快速功能導覽</string>
-    <string name="tour_prompt_desc">想要快速導覽 Morphe 的主要功能嗎？</string>
+    <string name="tour_prompt_desc">想要快速導覽 Mamu 的主要功能嗎？</string>
     <!-- Label of a footer button beside "Skip". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="tour_prompt_confirm">帶我走一趟</string>
     <string name="onboarding_restart_title">功能導覽</string>
     <string name="onboarding_restart_desc">主要功能導覽</string>
+
+    <string name="home_app_filter_all_description">主畫面上的每個應用程式</string>
+    <string name="home_app_filter_patched_description">您已使用 Mamu 修補或儲存的應用程式</string>
+    <string name="home_app_filter_not_patched_description">您尚未在 Mamu 中修補的應用程式</string>
+    <string name="home_app_filter_installed_description">目前安裝在此裝置上的應用程式</string>
+    <string name="home_app_filter_uninstalled_description">已使用 Mamu 修補但已不在這部裝置上的應用程式</string>
+    <string name="home_app_filter_clones_description">使用自己的套件名稱建置，並與原始應用程式一同安裝的應用程式</string>
+    <string name="home_app_sort_name_asc_description">依字母順序，A 到 Z</string>
+    <string name="home_app_sort_name_desc_description">反向字母順序，Z 到 A</string>
+    <string name="home_app_sort_recently_patched_description">最近修補的應用程式優先</string>
+    <string name="home_category_custom">自訂</string>
+    <string name="sources_filter_all_description">所有來源</string>
+    <string name="sources_filter_enabled_description">來源修補程式取自</string>
+    <string name="sources_filter_disabled_description">已停用來源</string>
+    <string name="sources_filter_issues_description">被封鎖、載入失敗或需要更新 Mamu 的來源</string>
+    <string name="sources_sort_last_updated_description">先顯示最新的來源更新</string>
+    <string name="sources_sort_enabled_first_description">在已停用的來源之前顯示已啟用來源</string>
+    <string name="home_apk_availability_installed_version">已安裝於此裝置：%s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">金鑰儲存庫格式</string>
 </resources>

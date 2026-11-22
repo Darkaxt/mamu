@@ -14,9 +14,14 @@ import app.morphe.manager.domain.manager.PreferencesManager
 import app.morphe.manager.patcher.split.SplitApkPreparer
 import app.morphe.manager.patcher.util.NativeLibs
 import app.morphe.manager.util.FilenameUtils
+import app.morphe.manager.util.compareVersions
+import app.morphe.manager.util.sha256OrNull
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.nio.file.AtomicMoveNotSupportedException
@@ -27,6 +32,10 @@ private const val TAG = "Morphe OriginalApkRepository"
 
 // Marks a copy that is still being written, so an interrupted save is never mistaken for an archive
 internal const val STAGING_SUFFIX = ".part"
+
+/** A later patch of an older version must not evict a queued update; missing files are replaceable. */
+internal fun canReplaceOriginal(existingVersion: String?, incomingVersion: String, existingFilePresent: Boolean) =
+    !existingFilePresent || existingVersion == null || compareVersions(existingVersion, incomingVersion) <= 0
 
 /**
  * Writes [target] through a staging file, so an archive is only ever replaced by one that is
@@ -96,6 +105,7 @@ class OriginalApkRepository(
     private val prefs: PreferencesManager
 ) {
     private val dao = db.originalApkDao()
+    private val saveMutex = Mutex()
     // Use permanent directory from Filesystem instead of temporary directory
     private val originalApksDir: File = fs.originalApksDir
 
@@ -108,14 +118,12 @@ class OriginalApkRepository(
      * archive still replaces a merged APK, which a mount cannot restore the stock app from, and a
      * signed APK replaces one saved without its signing block.
      */
-    suspend fun hasOriginal(packageName: String, version: String, file: File): Boolean = withContext(Dispatchers.IO) {
-        val existing = get(packageName)?.takeIf { it.version == version } ?: return@withContext false
-        val saved = File(existing.filePath).takeIf { it.exists() } ?: return@withContext false
-        when {
-            SplitApkPreparer.isSplitArchive(saved) -> true
-            SplitApkPreparer.isSplitArchive(file) -> false
-            else -> NativeLibs.hasSigningBlock(saved) || !NativeLibs.hasSigningBlock(file)
-        }
+    suspend fun hasOriginal(packageName: String, version: String, file: File): Boolean {
+        val existing = get(packageName)?.takeIf { it.version == version } ?: return false
+        val saved = File(existing.filePath).takeIf { it.exists() } ?: return false
+        if (saved.length() != file.length()) return false
+        val expected = file.sha256OrNull() ?: return false
+        return saved.sha256OrNull() == expected
     }
 
     /**
@@ -133,9 +141,10 @@ class OriginalApkRepository(
         version: String,
         sourceFile: File,
         moveSource: Boolean = false,
+        forceRetention: Boolean = false, // Intentional queued downloads keep their own originals.
         forMount: Boolean = false
-    ): File? = withContext(Dispatchers.IO) {
-        if (!prefs.saveOriginalApks.get()) {
+    ): File? = withContext(Dispatchers.IO) { saveMutex.withLock {
+        if (!forceRetention && !prefs.saveOriginalApks.get()) {
             Log.d(TAG, "Original APK retention disabled, skipping save for $packageName")
             return@withContext null
         }
@@ -146,6 +155,9 @@ class OriginalApkRepository(
 
         try {
             val existing = dao.get(packageName)
+            // Check under the same lock as the commit, including interactive saves.
+            if (!canReplaceOriginal(existing?.version, version, existing?.let { File(it.filePath).isFile } == true))
+                return@withContext null
 
             // A split archive is kept only for a mount or for its OBB files, both of which need it whole
             val strips = !forMount && prefs.stripUnusedNativeLibs.get() &&
@@ -185,13 +197,15 @@ class OriginalApkRepository(
 
             Log.d(TAG, "Saved original APK for $packageName v$version")
             targetFile
+        } catch (e: CancellationException) {
+            throw e
         } catch (e: Exception) {
             Log.e(TAG, "Failed to save original APK for $packageName", e)
             // Nothing to undo: whatever sits at the target is either the archive that was already
             // there or the one this call finished writing, and the staged copy cleans up after itself
             null
         }
-    }
+    } }
 
     /**
      * Update last used timestamp for tracking
@@ -206,7 +220,7 @@ class OriginalApkRepository(
      * describe and would otherwise keep reporting its old size and offering actions that no-op.
      * A staged copy has no record at all, so nothing but this pass would ever reclaim its space.
      */
-    suspend fun pruneMissingApks() = withContext(Dispatchers.IO) {
+    suspend fun pruneMissingApks() = withContext(Dispatchers.IO) { saveMutex.withLock {
         dao.getAll().first().forEach { originalApk ->
             if (File(originalApk.filePath).exists()) return@forEach
             dao.delete(originalApk)
@@ -216,12 +230,12 @@ class OriginalApkRepository(
             staged.delete()
             Log.d(TAG, "Dropped staged original APK left by an interrupted save: ${staged.name}")
         }
-    }
+    } }
 
     /**
      * Delete original APK for package
      */
-    suspend fun delete(packageName: String) = withContext(Dispatchers.IO) {
+    suspend fun delete(packageName: String) = withContext(Dispatchers.IO) { saveMutex.withLock {
         val existing = dao.get(packageName) ?: return@withContext
         val file = File(existing.filePath)
         if (file.exists()) {
@@ -229,16 +243,19 @@ class OriginalApkRepository(
         }
         dao.deleteByPackage(packageName)
         Log.d(TAG, "Deleted original APK for $packageName")
-    }
+    } }
 
     /**
      * Delete original APK entry
      */
-    suspend fun delete(originalApk: OriginalApk) = withContext(Dispatchers.IO) {
-        val file = File(originalApk.filePath)
+    suspend fun delete(originalApk: OriginalApk) = withContext(Dispatchers.IO) { saveMutex.withLock {
+        // A storage dialog can hold a snapshot from before a queued save completed.
+        val current = dao.get(originalApk.packageName) ?: return@withContext
+        if (current.filePath != originalApk.filePath || current.lastUsed != originalApk.lastUsed) return@withContext
+        val file = File(current.filePath)
         if (file.exists()) {
             file.delete()
         }
-        dao.delete(originalApk)
-    }
+        dao.delete(current)
+    } }
 }

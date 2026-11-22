@@ -39,11 +39,11 @@ data class ReleaseAsset (
     val createdAtMillis: Long get() = createdAt.toInstant(ZoneOffset.UTC).toEpochMilli()
 }
 
-/** The ISO-8601 date and time without an offset that manifests give a release time in. */
+/** Release times remain UTC through manifest decoding and serialization. */
 private object LocalDateTimeSerializer : KSerializer<LocalDateTime> {
     override val descriptor = PrimitiveSerialDescriptor("java.time.LocalDateTime", PrimitiveKind.STRING)
 
     override fun serialize(encoder: Encoder, value: LocalDateTime) = encoder.encodeString(value.toString())
 
-    override fun deserialize(decoder: Decoder): LocalDateTime = LocalDateTime.parse(decoder.decodeString())
+    override fun deserialize(decoder: Decoder): LocalDateTime = parseTimestamp(decoder.decodeString())
 }

@@ -33,6 +33,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.Velocity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
@@ -57,7 +58,7 @@ private val ScrollbarMinThumbHeight = 36.dp
 private val AlphabetThumbHeight = 28.dp
 private val AlphabetBubbleWidth = 58.dp
 private val AlphabetBubbleHeight = 42.dp
-private val AlphabetBubbleGap = Defaults.SpaceLarge
+private val AlphabetBubbleGap = 14.dp
 
 /** How long the scrollbar stays visible after scrolling stops. */
 private val ScrollbarIdleTimeout = 650.milliseconds
@@ -151,7 +152,8 @@ fun BoxScope.ListScrollbar(
     listState: LazyListState,
     modifier: Modifier = Modifier,
     alphabetTargets: List<ScrollTarget> = emptyList(),
-    alphabetMode: Boolean = false
+    alphabetMode: Boolean = false,
+    extraBottomPadding: Dp = 0.dp
 ) {
     // Row heights measured so far, kept for the whole scroll session so a tall expanded card still
     // contributes its real height once it scrolls off-screen
@@ -171,6 +173,7 @@ fun BoxScope.ListScrollbar(
         isScrolling = listState.isScrollInProgress,
         alphabetEnabled = alphabetEnabled,
         modifier = modifier,
+        extraBottomPadding = extraBottomPadding,
         // Row and callout resolve together, so the label always names the row being jumped to
         resolveSeek = { fraction ->
             val alphabetTarget = if (alphabetEnabled) {
@@ -200,7 +203,8 @@ fun BoxScope.ListScrollbar(
 @Composable
 fun BoxScope.ListScrollbar(
     scrollState: ScrollState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    extraBottomPadding: Dp = 0.dp
 ) {
     val metrics = remember(scrollState) {
         derivedStateOf { scrollState.scrollbarMetrics() }
@@ -216,6 +220,7 @@ fun BoxScope.ListScrollbar(
         isScrolling = scrollState.isScrollInProgress,
         alphabetEnabled = false,
         modifier = modifier,
+        extraBottomPadding = extraBottomPadding,
         // Pixel offsets rather than rows here, so every drag position is its own target
         resolveSeek = { fraction ->
             ScrollbarSeekTarget(index = (fraction * scrollState.maxValue).roundToInt())
@@ -249,7 +254,8 @@ private fun BoxScope.ScrollbarOverlay(
     resolveSeek: (fraction: Float) -> ScrollbarSeekTarget,
     scrollOffset: () -> Float,
     scrollTo: suspend (target: ScrollbarSeekTarget) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    extraBottomPadding: Dp = 0.dp
 ) {
     // Alignments resolve against the layout direction on their own, so the scrollbar mirrors to the
     // leading edge in RTL without being flipped here. Only the raw draw coordinates below need it
@@ -327,7 +333,7 @@ private fun BoxScope.ScrollbarOverlay(
             .width(ScrollbarOverlayWidth)
             .padding(
                 top = ScrollbarVerticalPadding,
-                bottom = ScrollbarVerticalPadding,
+                bottom = ScrollbarVerticalPadding + extraBottomPadding,
                 start = ScrollbarEdgePadding,
                 end = ScrollbarEdgePadding
             )
@@ -472,7 +478,7 @@ private fun AlphabetScrollCallout(
     ) {
         Surface(
             modifier = Modifier.size(AlphabetBubbleWidth, AlphabetBubbleHeight),
-            shape = RoundedCornerShape(Defaults.CornerLarge),
+            shape = RoundedCornerShape(18.dp),
             color = colors.primary,
             contentColor = colors.onPrimary,
             border = CardBorder.of(colors.onPrimary.copy(alpha = 0.2f)),

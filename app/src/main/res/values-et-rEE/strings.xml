@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">Android 11 viga</string>
     <string name="android_11_bug_dialog_description">Rakenduste installimise luba tuleb anda eelnevalt, et vältida Androidi 11 süsteemi viga, mis mõjutab negatiivselt kasutuskogemust</string>
     <string name="deep_link_add_source_title">Lisa allikas</string>
-    <string name="deep_link_add_source_message">Kas soovid lisada selle paigaallika Morphe\'sse?</string>
+    <string name="deep_link_add_source_message">Kas soovid lisada selle paigaallika Mamu\'sse?</string>
     <string name="deep_link_add_source_warning">Lisa ainult allikad, mida usaldad</string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">Lisati ainult see rakendus. Teisi rakendusi saad lisada allika rakenduste loendist</string>
@@ -44,15 +44,15 @@
     <string name="mpp_import_unreadable">Seda faili ei saa lugeda</string>
     <string name="incoming_file_not_patch_source">See fail ei ole parandus allikas</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">Morphe\'i uuendus on saadaval</string>
+    <string name="home_update_available">Mamu\'i uuendus on saadaval</string>
     <string name="home_update_available_subtitle">Uus versioon on paigaldamiseks valmis</string>
     <string name="home_blocked_source_title">Tuvastati blokeeritud paigaallikas</string>
     <string name="home_blocked_source_subtitle">Puuduta ülevaatamiseks ja eemaldamiseks</string>
     <string name="home_metadata_errors_title">Mõned paigaallikad on kättesaamatud</string>
     <string name="home_metadata_errors_subtitle">Puuduta allikate ülevaatamiseks</string>
-    <string name="home_outdated_manager_title">Morphe on aegunud</string>
+    <string name="home_outdated_manager_title">Mamu on aegunud</string>
     <string name="home_outdated_manager_subtitle">Mõned paigaallikad vajavad uuemat versiooni</string>
-    <string name="home_held_back_title">Üks paigaallikas põhjustas Morphe\'i kokkujooksmise</string>
+    <string name="home_held_back_title">Üks paigaallikas põhjustas Mamu\'i kokkujooksmise</string>
     <string name="home_held_back_subtitle">Jäeti vahele, et rakendus saaks käivituda. Puuduta ülevaatamiseks</string>
     <string name="home_source_updates_title">Parandusuuendused on saadaval</string>
     <string name="home_source_updates_subtitle">Puudutage, et neid alla laadida</string>
@@ -205,9 +205,9 @@
     <string name="sources_management_metadata_unavailable_hint_missing">Paigapaketti ei õnnestunud alla laadida. Allika URL võib olla vale või fail puudub</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">Paigapaketti ei õnnestunud alla laadida. Allika URL võib olla vale või fail puudub. Muutmiseks puuduta</string>
     <string name="sources_management_outdated_manager_badge">Uuenda Morphet</string>
-    <string name="sources_management_outdated_manager_hint">See allikas on loodud paikaja versioonile %1$s, kuid Morphe %2$s sisaldab paikajat %3$s. Selle kasutamiseks uuenda Morphet</string>
+    <string name="sources_management_outdated_manager_hint">See allikas on loodud paikaja versioonile %1$s, kuid Mamu %2$s sisaldab paikajat %3$s. Selle kasutamiseks uuenda Morphet</string>
     <string name="sources_management_held_back_badge">Jooksis kokku</string>
-    <string name="sources_management_held_back_hint">See allikas põhjustas laadimise ajal Morphe\'i kokkujooksmise, seega jäeti see vahele. Proovi uuesti pärast uuendamist või uuesti importimist</string>
+    <string name="sources_management_held_back_hint">See allikas põhjustas laadimise ajal Mamu\'i kokkujooksmise, seega jäeti see vahele. Proovi uuesti pärast uuendamist või uuesti importimist</string>
     <string name="sources_management_signed_by">Allkirjastaja</string>
     <string name="sources_management_signing_key_changed_badge">Võti on muutunud</string>
     <string name="sources_management_signing_key_changed_hint">Uusim versioon ei ole allkirjastatud võtmega, mida see allikas varem kasutas, mistõttu seda ei installitud. Puuduta ülevaatamiseks</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">Kogukonna paigad</string>
     <string name="sources_dialog_choose_apps">Vali rakendused</string>
     <string name="sources_dialog_choose_apps_description">Vali, milliseid rakendusi hoida pärast allika laadimist</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">Kolmanda osapoole paigaallikad</string>
-    <string name="sources_dialog_community_notice_message">"Kogukonna paigaallikad on loodud ja hallatud nende enda autorite poolt. Morphe ei kontrolli ega kinnita kolmanda osapoole paiku ning ei vastuta nende sisu ega selle eest, mida need sinu seadmes teevad"</string>
+    <string name="sources_dialog_community_notice_message">"Kogukonna paigaallikad on loodud ja hallatud nende enda autorite poolt. Mamu ei kontrolli ega kinnita kolmanda osapoole paiku ning ei vastuta nende sisu ega selle eest, mida need sinu seadmes teevad"</string>
     <string name="sources_update_success">Uuendamine õnnestus</string>
     <string name="sources_update_unavailable">Uuendusi pole saadaval</string>
     <string name="sources_download_fail">Allikate allalaadimine ebaõnnestus: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">Abirakendus on installitud, kuid pole veel usaldatud, seega seda siin ei pakuta</string>
     <string name="home_apk_helper_untrusted_action">Vaata abirakendusi üle</string>
     <string name="home_apk_helper_title">Laadi alla abirakenduse abil</string>
-    <string name="home_apk_helper_description">Morphe palub allpool olevat abirakendusel laadida alla originaal-APK ja tagastada fail</string>
+    <string name="home_apk_helper_description">Mamu palub allpool olevat abirakendusel laadida alla originaal-APK ja tagastada fail</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">Ava abirakendus</string>
-    <string name="home_apk_helper_warning">Jätka ainult siis, kui usaldad seda abirakendust. Morphe kontrollib enne paikamist paketti, versiooni ja allkirja</string>
-    <string name="home_apk_helper_warning_unverified">Jätka ainult siis, kui usaldad seda abirakendust. Morphe ei saa selle APK allkirja kontrollida, seega muudetud faili ei tuvastataks</string>
+    <string name="home_apk_helper_warning">Jätka ainult siis, kui usaldad seda abirakendust. Mamu kontrollib enne paikamist paketti, versiooni ja allkirja</string>
+    <string name="home_apk_helper_warning_unverified">Jätka ainult siis, kui usaldad seda abirakendust. Mamu ei saa selle APK allkirja kontrollida, seega muudetud faili ei tuvastataks</string>
     <string name="home_apk_helper_no_result">Abirakendus ei tagastanud APK-faili</string>
     <string name="home_apk_helper_no_access">Abirakendus ei andnud juurdepääsu tagastatud APK-failile</string>
     <string name="home_apk_helper_no_package">Abirakendus ei määranud, millist installitud rakendust kasutada</string>
     <string name="home_apk_helper_wrong_package">Abirakendus tagastas rakenduse, mis erineb paiatavast rakendusest</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe ei saanud kasutada installitud rakendust</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu ei saanud kasutada installitud rakendust</string>
     <string name="home_apk_helper_installed_incompatible">Installitud versiooni ei saa paigata</string>
     <string name="home_apk_use_saved_copy">Kasuta salvestatud koopiat</string>
     <string name="home_apk_use_installed_app">Kasuta installitud rakendust</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">Paigaldatud rakenduse allkirja ei õnnestunud kontrollida, seega võib see olla juba paigatud</string>
     <string name="home_unverified">Kinnitamata</string>
     <string name="home_install_verification_pending">Kontrollitakse installatsiooni…</string>
-    <string name="home_app_info_install_unverified">Morphe ei saa kinnitada, et installitud rakendus on seesama versioon, mille ta paikas. Paika uuesti või installi see salvestatud APK failist, et taastada selle funktsionaalsus</string>
+    <string name="home_app_info_install_unverified">Mamu ei saa kinnitada, et installitud rakendus on seesama versioon, mille ta paikas. Paika uuesti või installi see salvestatud APK failist, et taastada selle funktsionaalsus</string>
     <string name="home_app_info_no_saved_apk">Salvestatud APK-faili pole. Paikamiseks tuleb APK-fail uuesti valida</string>
     <string name="home_version_requires_android">Nõuab Android %s+</string>
     <string name="home_apk_no_compatible_versions_title">Seade ei toeta</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">Keri veebilehel allapoole ja vajuta selle allalaadimisnuppu</string>
     <string name="home_download_instructions_step2_variant">Keri veebilehte allapoole ja vajuta ülemise &lt;b&gt;APK-variandi&lt;/b&gt; allalaadimisnuppu</string>
     <string name="home_download_instructions_step2_search">Ava usaldusväärselt veebilehelt leitud otsingutulemus</string>
-    <string name="home_download_instructions_step2_search_note">Morphe ei vastuta nende veebilehtede eest. Jäta vahele need, mis pakuvad APK-faili asemel oma rakenduspoodi</string>
+    <string name="home_download_instructions_step2_search_note">Mamu ei vastuta nende veebilehtede eest. Jäta vahele need, mis pakuvad APK-faili asemel oma rakenduspoodi</string>
     <string name="home_download_instructions_step3_search">Laadi sellest veebilehelt alla versiooni &lt;b&gt;%s&lt;/b&gt; APK, mitte kõige uuem versioon</string>
     <string name="home_download_instructions_step3_search_any">Laadi sellelt veebilehelt alla rakenduse APK-fail. Paigata saab &lt;b&gt;mis tahes versiooni&lt;/b&gt;</string>
     <string name="home_download_instructions_step2_github">Versiooni &lt;b&gt;%s&lt;/b&gt; jaotises &lt;b&gt;Assets&lt;/b&gt; vajuta failile, mille lõpus on &lt;b&gt;.apk&lt;/b&gt;</string>
@@ -314,11 +314,11 @@
     <string name="home_download_instructions_download_button_toast_3">Harjutamine teeb meistriks ja sa oled juba teel 💪</string>
     <string name="home_download_instructions_download_button_toast_4">Kõik veel puudub… ikka veel puudub… 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">OK, ma austan sellist pühendumust 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">Nüüd oled sa ametlik Morphe-nupu testija 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">Nüüd oled sa ametlik Mamu-nupu testija 🏅</string>
     <string name="home_download_instructions_step3">Oota allalaadimise lõpule jõudmist ja &lt;b&gt;ärge installi&lt;/b&gt; APK-fail</string>
     <string name="home_download_instructions_step3_mount">Oota allalaadimise lõpule jõudmist ja seejärel &lt;b&gt;installi APK&lt;/b&gt;</string>
-    <string name="home_download_instructions_step4">Pärast allalaadimise lõpule jõudmist naaske Morphe rakendusse</string>
-    <string name="home_download_instructions_step4_mount">Pärast originaal-APK installimist naase Morphe rakendusse</string>
+    <string name="home_download_instructions_step4">Pärast allalaadimise lõpule jõudmist naaske Mamu rakendusse</string>
+    <string name="home_download_instructions_step4_mount">Pärast originaal-APK installimist naase Mamu rakendusse</string>
     <string name="home_download_instructions_continue_to">Jätka %s lehele</string>
     <string name="home_download_instructions_destination">allalaadimislehele</string>
     <string name="home_download_instructions_copy_link">Kopeeri link</string>
@@ -446,12 +446,12 @@ Parimate tulemuste saamiseks soovitab see rakendus kasutada &lt;b&gt;täielikku 
     <string name="adaptive_icon_themed">Teemavärviga</string>
     <string name="adaptive_icon_background_color">Taustavärv</string>
     <string name="adaptive_icon_reset_transform">Lähtesta asukoht ja mõõtkava</string>
-    <string name="adaptive_icon_no_transparency_warning">Selle pildil puuduvad läbipaistvad pikslid, seega säilib teemalistel ja teavitustikoonidel Morphe logo</string>
+    <string name="adaptive_icon_no_transparency_warning">Selle pildil puuduvad läbipaistvad pikslid, seega säilib teemalistel ja teavitustikoonidel Mamu logo</string>
     <string name="adaptive_icon_created_success">Kohanduv ikoon loodi edukalt</string>
     <string name="adaptive_icon_creation_failed">Kohanduva ikooni loomine ebaõnnestus</string>
     <string name="adaptive_icon_guide">Ikoonide loomise juhend</string>
     <string name="adaptive_icon_guide_png_title">Kasutage läbipaistva taustaga PNG-faili</string>
-    <string name="adaptive_icon_guide_png_body">Kõige paremini töötab läbipaistva taustaga logo, kus taustavärv on valitud allpool. Pilt ilma läbipaistvusega täidab selle asemel kogu ikooni ja teematilised ning teavitusikoonid säilitavad Morphe logo.</string>
+    <string name="adaptive_icon_guide_png_body">Kõige paremini töötab läbipaistva taustaga logo, kus taustavärv on valitud allpool. Pilt ilma läbipaistvusega täidab selle asemel kogu ikooni ja teematilised ning teavitusikoonid säilitavad Mamu logo.</string>
     <string name="adaptive_icon_guide_safe_zones_title">Turvatsoonid</string>
     <string name="adaptive_icon_guide_safe_zones_body">Piirjoon näitab sinu käivitusprogrammi ikooni kuju ja kõik sellest väljaspool jääv lõigatakse ära. Muud käivitusprogrammid kasutavad teisi kujusid, seega hoia olulised detailid katkendliku ringi sees, mille kõik kujud kuvavad.</string>
     <string name="adaptive_icon_guide_notification_title">Teavituse ikoon</string>
@@ -557,8 +557,8 @@ Parimate tulemuste saamiseks soovitab see rakendus kasutada &lt;b&gt;täielikku 
     <string name="home_app_info_version_move">Paigaldatud %1$s, uusim toetatud %2$s</string>
     <string name="home_app_info_version_restore">Installitud %1$s, paigatud %2$s</string>
     <string name="home_app_info_app_deleted_warning">Rakendus on eemaldatud</string>
-    <string name="home_app_info_app_deleted_description">See rakendus eemaldati väljaspool Morphe rakendust. Paika see uuesti funktsionaalsuse taastamiseks</string>
-    <string name="home_app_info_not_patched_description">Installitud on selle rakenduse paikamata versioon. Morphe\'il on alles eelmine paikamiskirje</string>
+    <string name="home_app_info_app_deleted_description">See rakendus eemaldati väljaspool Mamu rakendust. Paika see uuesti funktsionaalsuse taastamiseks</string>
+    <string name="home_app_info_not_patched_description">Installitud on selle rakenduse paikamata versioon. Mamu\'il on alles eelmine paikamiskirje</string>
     <string name="home_app_info_mount_replaced_description">Haagitud rakenduse asendas teine versioon, mistõttu paik ei kehti enam. Taastamine paneb paigatud versiooni tagasi</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play uuendas paigatud rakendust, mistõttu paik ei kehti enam. Taastamine paneb paigatud versiooni tagasi. Paigatuna hoidmiseks lülita Google Play\'s selle automaatuuendused välja</string>
     <string name="app_links_title">Toetatud veebilingid</string>
@@ -589,7 +589,7 @@ Parimate tulemuste saamiseks soovitab see rakendus kasutada &lt;b&gt;täielikku 
     <string name="root_pre_patch_installer_description">Sinu seadmel on root-juurdepääs. Vali, kas see rakendus tuleks paigata root-haake või tavalise installina</string>
     <string name="root_pre_patch_installer_mount_title">Root-haake režiim</string>
     <string name="root_pre_patch_installer_mount_description">Paikab root-haake jaoks, seejärel haagib APK-faili vastava tehaserakenduse peale. GmsCore\'i ei ole vaja</string>
-    <string name="root_mount_module_unmount_warning">Kui KernelSU-l on funktsioon \"Unmount modules by default\" sisse lülitatud, ava KernelSU &gt; Superuser &gt; rakendus, mille haakisid &gt; Profile &gt; Custom ja lülita \"Unmount modules\" välja. Vastasel juhul ei pruugi haagitud paigatud APK jõustuda, isegi kui Morphe näitab seda haagituna.</string>
+    <string name="root_mount_module_unmount_warning">Kui KernelSU-l on funktsioon \"Unmount modules by default\" sisse lülitatud, ava KernelSU &gt; Superuser &gt; rakendus, mille haakisid &gt; Profile &gt; Custom ja lülita \"Unmount modules\" välja. Vastasel juhul ei pruugi haagitud paigatud APK jõustuda, isegi kui Mamu näitab seda haagituna.</string>
     <string name="root_pre_patch_installer_standard_title">Standardne installimise režiim</string>
     <string name="root_pre_patch_installer_standard_description">Paikab tavalise APK-failina koos GmsCore\'i toega. Pärast paikamist kasutatakse sinu installija seadeid</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -652,7 +652,7 @@ Parimate tulemuste saamiseks soovitab see rakendus kasutada &lt;b&gt;täielikku 
     <string name="patcher_conflict_subtitle">Pead olemasoleva versiooni eemaldama</string>
     <string name="patcher_conflict_hint">Paigatud rakendus kasutab erinevat sertifikaati kui installitud versioon. Eemaldamine kustutab kõik rakenduse andmed</string>
     <string name="patcher_installed_conflict_title">Vajalik on eemaldamine</string>
-    <string name="patcher_installed_conflict_body">"Morphe allkirjastab paigatud rakendused oma sertifikaadiga, mis erineb algsest. Android nõuab olemasoleva versiooni eemaldamist enne, kui paigatud rakendust saab installida.
+    <string name="patcher_installed_conflict_body">"Mamu allkirjastab paigatud rakendused oma sertifikaadiga, mis erineb algsest. Android nõuab olemasoleva versiooni eemaldamist enne, kui paigatud rakendust saab installida.
 
 Rakenduse eemaldamine kustutab kõik rakenduse andmed jäädavalt"</string>
     <string name="patcher_install_error_title">Installimise viga</string>
@@ -662,8 +662,8 @@ Rakenduse eemaldamine kustutab kõik rakenduse andmed jäädavalt"</string>
     <string name="patcher_patches_excluded_for_installer">Selle installimise meetodiga ei ole saadaval ja on välistatud: %s</string>
     <string name="patcher_storage_permission_dialog_title">Salvestusteele ei pääse juurde</string>
     <string name="patcher_incompatible_patcher_title">Vajalik on värskendus</string>
-    <string name="patcher_incompatible_patcher_description">Allikas &lt;b&gt;%1$s&lt;/b&gt; nõuab paikaja versiooni &lt;b&gt;%2$s&lt;/b&gt; või uuemat. Selle kasutamiseks uuenda Morphe</string>
-    <string name="patcher_storage_permission_description_api30">Üks või mitu paikamisvalikut viitab teele, mida Morphe ei saa lugeda. Anna salvestusõigus ja puuduta nuppu, seejärel algab paikamine automaatselt</string>
+    <string name="patcher_incompatible_patcher_description">Allikas &lt;b&gt;%1$s&lt;/b&gt; nõuab paikaja versiooni &lt;b&gt;%2$s&lt;/b&gt; või uuemat. Selle kasutamiseks uuenda Mamu</string>
+    <string name="patcher_storage_permission_description_api30">Üks või mitu paikamisvalikut viitab teele, mida Mamu ei saa lugeda. Anna salvestusõigus ja puuduta nuppu, seejärel algab paikamine automaatselt</string>
     <string name="patcher_storage_permission_description_legacy">Üks või mitu paikamisvalikut viitab teele, millele puudub juurdepääs. Uuenda teed paikamisvalikutes ja proovi uuesti</string>
     <string name="patcher_storage_permission_grant">Luba juurdepääs salvestusruumile</string>
     <string name="patcher_storage_permission_denied_warning">Luba salvestusruumile ei antud. Anna luba selle tee kasutamiseks või teisalda failid rakenduse privaatsesse kataloogi</string>
@@ -699,7 +699,7 @@ Rakenduse eemaldamine kustutab kõik rakenduse andmed jäädavalt"</string>
     <string name="patcher_task_writing_apk">APK-faili kirjutamine</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">Taustal paikamise kaitse</string>
-    <string name="battery_optimization_dialog_description">Mõned seadmed võivad paikamise peatada, kui rakendus on minimeeritud. Luba Morphe\'il töötada ilma akupiiranguteta, et paikamine lõpeks kindlalt</string>
+    <string name="battery_optimization_dialog_description">Mõned seadmed võivad paikamise peatada, kui rakendus on minimeeritud. Luba Mamu\'il töötada ilma akupiiranguteta, et paikamine lõpeks kindlalt</string>
     <string name="battery_optimization_not_now">Mitte praegu</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">Toimub paikamine…</string>
@@ -754,8 +754,8 @@ Rakenduse eemaldamine kustutab kõik rakenduse andmed jäädavalt"</string>
     <string name="install_ignore_signature">Installi ikkagi</string>
     <string name="install_ignore_signature_description">Säilitab rakenduse andmed, kuid töötab ainult juhul, kui root-moodul keelab Androidi allkirja kontrollimise</string>
     <string name="uninstall_app_fail">Rakenduse eemaldamine ebaõnnestus: %s</string>
-    <string name="uninstall_app_unverified">Jäeti alles: Morphe ei suutnud kinnitada, et installitud rakendus on see järk, mille ta paikas</string>
-    <string name="launch_app_unverified">Morphe ei suutnud kinnitada, et installitud rakendus on see järk, mille ta paikas</string>
+    <string name="uninstall_app_unverified">Jäeti alles: Mamu ei suutnud kinnitada, et installitud rakendus on see järk, mille ta paikas</string>
+    <string name="launch_app_unverified">Mamu ei suutnud kinnitada, et installitud rakendus on see järk, mille ta paikas</string>
     <string name="uninstall_timeout">Eemaldamine aegus</string>
     <string name="save_apk_success">APK salvestatud</string>
     <string name="saved_app_export_failed">Paigatud rakenduse eksportimine nurjus</string>
@@ -847,7 +847,7 @@ Rakenduse eemaldamine kustutab kõik rakenduse andmed jäädavalt"</string>
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">Rakenduse keel</string>
     <string name="settings_appearance_app_language_current">Praegune keel</string>
-    <string name="settings_appearance_translate">Aita Morphe\'i tõlkida</string>
+    <string name="settings_appearance_translate">Aita Mamu\'i tõlkida</string>
     <string name="settings_appearance_translations_info_title">Mõne keele tõlked võivad puududa või olla mittäielikud</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">Liidese mastaap</string>
@@ -876,7 +876,7 @@ Rakenduse eemaldamine kustutab kõik rakenduse andmed jäädavalt"</string>
     <string name="settings_appearance_app_card_colors_bundle_description">Kasuta siin iga rakenduse või allika oma värvi, mis kohandatakse automaatselt sobivaks</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">Rakenduse ikoon</string>
-    <string name="settings_appearance_app_icon_selector_description">Kuidas Morphe näeb välja sinu avakuval ja rakenduste loendis</string>
+    <string name="settings_appearance_app_icon_selector_description">Kuidas Mamu näeb välja sinu avakuval ja rakenduste loendis</string>
     <string name="settings_appearance_app_icon_default">Vaikimisi</string>
     <string name="settings_appearance_app_icon_light_2">Taevas</string>
     <string name="settings_appearance_app_icon_light_3">Päikeseloojang</string>
@@ -900,23 +900,23 @@ Rakenduse eemaldamine kustutab kõik rakenduse andmed jäädavalt"</string>
     <string name="settings_appearance_app_icon_mark_black">Must</string>
     <string name="settings_appearance_app_icon_change_dialog_title">Kas muudame rakenduse ikooni?</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">Morphe taaskäivitatakse, et kuvada ikooni &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="settings_appearance_app_icon_change_restarts">Mamu taaskäivitatakse, et kuvada ikooni &lt;b&gt;%s&lt;/b&gt;</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">Muuda ikooni</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">Eelversioonide uuendused</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">Varajane juurdepääs Morphe uutele versioonidele</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">Varajane juurdepääs Mamu uutele versioonidele</string>
     <string name="settings_advanced_updates_prerelease_warning_title">Kas lubada eelversioonide uuendused?</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"Morphe eelversioonid on veel arenduses ja võivad olla ebastabiilsed.
+    <string name="settings_advanced_updates_prerelease_warning_message">"Mamu eelversioonid on veel arenduses ja võivad olla ebastabiilsed.
 
 Paiku see ei mõjuta: luba paikade eelversioonid iga allika jaoks paikade allikate loendis"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">Automaatsed uuendused</string>
-    <string name="settings_auto_updates_description">Mida Morphe teeb avamisel uuendustega. Allatõmbamisel kontrollitakse alati värskeid andmeid</string>
+    <string name="settings_auto_updates_description">Mida Mamu teeb avamisel uuendustega. Allatõmbamisel kontrollitakse alati värskeid andmeid</string>
     <string name="settings_auto_updates_download">Laadi automaatselt alla</string>
-    <string name="settings_auto_updates_download_description">Kontrollib uuendusi Morphe avamisel ja laadib paikade uuendused alla igas võrgus</string>
+    <string name="settings_auto_updates_download_description">Kontrollib uuendusi Mamu avamisel ja laadib paikade uuendused alla igas võrgus</string>
     <string name="settings_auto_updates_wifi_only">Laadi alla ainult Wi-Fi võrgus</string>
     <string name="settings_auto_updates_wifi_only_description">Mobiilsidevõrgus kontrollitakse ja kuvatakse ainult seda, mis on saadaval</string>
     <string name="settings_auto_updates_check_only">Ainult kontrolli</string>
@@ -937,27 +937,27 @@ Paiku see ei mõjuta: luba paikade eelversioonid iga allika jaoks paikade allika
     <string name="settings_advanced_external_batch_patch">Luba välised käivitajad</string>
     <string name="settings_advanced_external_batch_patch_description">Luba automatiseerimisrakendustel alustada masspaikamist</string>
     <string name="external_batch_patch_title">Kas käivitada masspaikaminet?</string>
-    <string name="external_batch_patch_description">%s soovib, et Morphe paikaks ja installiks rakendusi</string>
+    <string name="external_batch_patch_description">%s soovib, et Mamu paikaks ja installiks rakendusi</string>
     <string name="external_batch_patch_trust_caller">Luba sellel rakendusel alati</string>
     <string name="external_batch_patch_unknown_caller">Tundmatu rakendus</string>
     <!-- Notification content -->
     <string name="notification_bundle_update_title">Saadaval uued paigad</string>
     <string name="notification_update_text">Versioon %s on allalaadimiseks valmis</string>
-    <string name="notification_bundle_update_text_unversioned">Puuduta, et avada Morphe ja uuendada</string>
+    <string name="notification_bundle_update_text_unversioned">Puuduta, et avada Mamu ja uuendada</string>
     <string name="notification_permission_dialog_title">Luba märguanded</string>
-    <string name="notification_permission_dialog_description">Morphe vajab märguannete luba, et teavitada, kui taustal on saadaval uuendusi</string>
+    <string name="notification_permission_dialog_description">Mamu vajab märguannete luba, et teavitada, kui taustal on saadaval uuendusi</string>
     <string name="notification_post_patch_dialog_title">Kas soovid saada teavitust, kui uuendused on saadaval?</string>
-    <string name="notification_channel_manager_updates">Morphe uuendused</string>
-    <string name="notification_channel_manager_updates_description">Teavitused uute Morphe väljalasete kohta</string>
+    <string name="notification_channel_manager_updates">Mamu uuendused</string>
+    <string name="notification_channel_manager_updates_description">Teavitused uute Mamu väljalasete kohta</string>
     <string name="notification_channel_patch_updates">Paiga uuendused</string>
     <string name="notification_channel_patch_updates_description">Teavitused uute paikade väljalasete kohta</string>
-    <string name="notification_channel_patcher_description">Kuvatakse, kui Morphe paikab rakendust taustal</string>
+    <string name="notification_channel_patcher_description">Kuvatakse, kui Mamu paikab rakendust taustal</string>
     <string name="notification_channel_patching_results">Paikamise tulemused</string>
-    <string name="notification_channel_patching_results_description">Paikamise lõppemisel või installimine on ootel, siis kui Morphe töötab taustal</string>
+    <string name="notification_channel_patching_results_description">Paikamise lõppemisel või installimine on ootel, siis kui Mamu töötab taustal</string>
     <string name="notification_channel_mounted_apps">Haagitud rakendused</string>
     <string name="notification_channel_mounted_apps_description">Kui teine versioon asendab haagitud rakenduse ja selle paik enam ei kehti</string>
     <string name="notification_mount_replaced_title">%1$s ei ole enam paigatud</string>
-    <string name="notification_mount_replaced_text">v%1$s asendas paigatud v%2$s. Taastamiseks ava Morphe</string>
+    <string name="notification_mount_replaced_text">v%1$s asendas paigatud v%2$s. Taastamiseks ava Mamu</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">Eksperdirežiim</string>
     <string name="settings_advanced_expert_mode_description">Avab täpsemad paikamise seaded ja paikamisvalikud</string>
@@ -979,7 +979,7 @@ Paiku see ei mõjuta: luba paikade eelversioonid iga allika jaoks paikade allika
     <string name="settings_advanced_github_pat_unreachable">GitHubiga ei õnnestunud ühendust saada, et tokenit kontrollida</string>
     <string name="settings_advanced_github_pat_export_include_label">Lisa seadete ekspordile</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">Lisab selle PAT-i eksporteeritud Morphe seadetesse</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">Lisab selle PAT-i eksporteeritud Mamu seadetesse</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">Ära jaga oma PAT-i. Kui lisad selle seadete ekspordile, hoia fail privaatsena, kuna see sisaldab tokenit</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1074,7 +1074,7 @@ Piltide mõõtmed peavad olema järgmised:
     <string name="installer_status_not_supported">Selle toiminguga ei toetata</string>
     <string name="installer_status_shizuku_not_installed">Selle valiku kasutamiseks installi Shizuku või Sui</string>
     <string name="installer_status_shizuku_not_running">Käivita Shizuku või Sui ja proovi uuesti</string>
-    <string name="installer_status_shizuku_permission">Anna Morphe\'ile luba Shizuku rakenduse kaudu</string>
+    <string name="installer_status_shizuku_permission">Anna Mamu\'ile luba Shizuku rakenduse kaudu</string>
     <string name="installer_mount_warning_install">Paigandusrežiimiks on määratud root-haage. Seda salvestatud rakendust ei installitud haakimise meetodiga</string>
     <string name="mount_version_mismatch_message">Algse rakenduse versioon (%2$s) ei ühti paigutatud versiooniga (%1$s). Kinnita vastav algne versioon ja proovi uuesti</string>
     <string name="mount_stock_restore_failed_message">Android lükkas salvestatud algse APK tagasi. Paigalda sobiv algversioon ja proovi seejärel uuesti haakida</string>
@@ -1115,7 +1115,7 @@ Piltide mõõtmed peavad olema järgmised:
     <string name="settings_ignore_install_target_rules">Ignoreeri installimise sihtmärgi nõudeid</string>
     <string name="settings_ignore_install_target_rules_description">Lubab keelata sihtrakenduse jaoks vajalikud paigad ja lubada mittetoetatud paigad. Paigatud rakendus ei pruugi toimida</string>
     <string name="settings_auto_uninstall_warning_title">Luba automaatne eemaldamine?</string>
-    <string name="settings_auto_uninstall_warning_message">Kui Android teatab allkirja konflikti Shizuku automaatse installimise ajal, eemaldab Morphe olemasoleva rakenduse enne paigatud APK installimist</string>
+    <string name="settings_auto_uninstall_warning_message">Kui Android teatab allkirja konflikti Shizuku automaatse installimise ajal, eemaldab Mamu olemasoleva rakenduse enne paigatud APK installimist</string>
     <string name="settings_auto_uninstall_warning_risk">See võib kustutada rakenduse andmed. Kui paigatud APK installimine pärast eemaldamist nurjub, võib eelmine rakendus olla juba kadunud</string>
     <string name="installer_shizuku_status_action">Kontrolli Shizuku olekut</string>
     <string name="installer_shizuku_status_title">Shizuku staatus</string>
@@ -1133,7 +1133,7 @@ Piltide mõõtmed peavad olema järgmised:
     <string name="installer_shizuku_install_fail_with_details">"Shizukuga installimine nurjus: %1$s
 
 Üksikasjad: %2$s"</string>
-    <string name="installer_shizuku_error_permission">Shizuku luba puudub. Anna Morphe\'ile luba ja proovi uuesti</string>
+    <string name="installer_shizuku_error_permission">Shizuku luba puudub. Anna Mamu\'ile luba ja proovi uuesti</string>
     <string name="installer_shizuku_error_timeout">Shizuku ei teatanud installimise tulemust. Veendu, et see on endiselt käimas, ja proovi uuesti</string>
     <string name="installer_shizuku_error_downgrade">Android blokeeris selle, kuna see alandaks paigaldatud rakenduse versiooni</string>
     <string name="installer_shizuku_error_signature">Android takistas seda, sest installitud rakenduse allkiri on teistsugune</string>
@@ -1144,13 +1144,13 @@ Piltide mõõtmed peavad olema järgmised:
     <string name="settings_system_battery_optimization_description">Hoiab paikaja töös, kui rakendus on minimeeritud</string>
     <string name="settings_system_process_runtime">Paikaja käituskeskkond</string>
     <string name="settings_system_jvm_runtime_enable">Kasuta sisseehitatud VM-i</string>
-    <string name="settings_system_jvm_runtime_description">Paikab Morphe oma Java VM-is, mis võib kasutada rohkem mälu. Androidi keskkonna kasutamiseks lülita see välja</string>
+    <string name="settings_system_jvm_runtime_description">Paikab Mamu oma Java VM-is, mis võib kasutada rohkem mälu. Androidi keskkonna kasutamiseks lülita see välja</string>
     <string name="settings_system_jvm_runtime_unavailable">Vajalik ARM või 64-bitine x86 seade</string>
     <string name="settings_system_patcher_completion_sound">Lõpetamise heli</string>
     <string name="settings_system_patcher_completion_sound_description">Esitab paikamise lõppedes eristuva helitooni, mis näitab edu või ebaõnnestumist</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">Teavitused</string>
-    <string name="settings_system_notifications_description">Kuidas Morphe sind teavitab</string>
+    <string name="settings_system_notifications_description">Kuidas Mamu sind teavitab</string>
     <string name="settings_system_notifications_success_sound">Edu heli</string>
     <string name="settings_system_notifications_error_sound">Vea heli</string>
     <string name="settings_system_notifications_sound_default">Vaikimisi</string>
@@ -1162,8 +1162,8 @@ Piltide mõõtmed peavad olema järgmised:
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">Allkirjavõti</string>
     <string name="settings_system_signing_key_description">Varundab või taastab võtme, millega on allkirjastatud paigatud rakendused</string>
-    <string name="settings_system_signing_key_dialog_description">Iga Morphe poolt paigatud rakendus on allkirjastatud selle võtmega. Hoia koopiat alles: ilma selleta saab paigtaud rakendusi uuendada alles pärast nende eemaldamist</string>
-    <string name="settings_system_signing_key_missing">Morphe loob selle esimesel paikamisel</string>
+    <string name="settings_system_signing_key_dialog_description">Iga Mamu poolt paigatud rakendus on allkirjastatud selle võtmega. Hoia koopiat alles: ilma selleta saab paigtaud rakendusi uuendada alles pärast nende eemaldamist</string>
+    <string name="settings_system_signing_key_missing">Mamu loob selle esimesel paikamisel</string>
     <string name="settings_system_signing_key_created">Loodud %s</string>
     <string name="settings_system_signing_key_fingerprint">SHA-256 sõrmejälg</string>
     <string name="settings_system_backup_appearance_description">Teema, värvid ja keel</string>
@@ -1185,31 +1185,31 @@ Piltide mõõtmed peavad olema järgmised:
     <string name="settings_system_export_keystore_failed">Võtmehoidla eksportimine nurjus</string>
     <string name="settings_system_show_password_field">Kuva parool</string>
     <string name="settings_system_hide_password_field">Peida parool</string>
-    <string name="settings_system_morphe_settings">Morphe seaded</string>
-    <string name="settings_system_import_manager_settings_description">Varundab ja taastab Morphe seaded</string>
-    <string name="settings_system_export_manager_settings_title">Ekspordi Morphe seaded</string>
+    <string name="settings_system_morphe_settings">Mamu seaded</string>
+    <string name="settings_system_import_manager_settings_description">Varundab ja taastab Mamu seaded</string>
+    <string name="settings_system_export_manager_settings_title">Ekspordi Mamu seaded</string>
     <string name="settings_system_export_manager_settings_description">Salvestab valitud seaded faili</string>
     <string name="settings_system_import_manager_settings_file_description">Taastab seaded varukoopiast</string>
     <string name="settings_system_auto_backup">Automaatne varundamine</string>
     <string name="settings_system_auto_backup_switch">Varunda automaatselt</string>
     <string name="settings_system_auto_backup_now">Varunda kohe</string>
     <string name="settings_system_auto_backup_saved">Varukoopia on salvestatud</string>
-    <string name="settings_system_auto_backup_interval_description">Morphe ootab pärast varukoopia loomist vähemalt nii kaua, enne kui loob järgmise</string>
-    <string name="settings_system_auto_backup_description">Salvastab Morphe seaded valitud kausta</string>
+    <string name="settings_system_auto_backup_interval_description">Mamu ootab pärast varukoopia loomist vähemalt nii kaua, enne kui loob järgmise</string>
+    <string name="settings_system_auto_backup_description">Salvastab Mamu seaded valitud kausta</string>
     <string name="settings_system_auto_backup_last">Viimane varundus: %s</string>
     <string name="settings_system_auto_backup_folder">Kaust</string>
-    <string name="settings_system_auto_backup_folder_name">Morphe varukoopiad</string>
+    <string name="settings_system_auto_backup_folder_name">Mamu varukoopiad</string>
     <string name="settings_system_auto_backup_folder_failed">Seda kausta ei saanud kasutada: %s</string>
     <string name="settings_system_auto_backup_interval">Varundamise sagedus</string>
     <string name="settings_system_auto_backup_signing_key">Kaasa allkirjastamisvõti</string>
     <string name="settings_system_auto_backup_signing_key_description">Salvestab koos seadetega ka paigatud rakenduste allkirjastamisvõtme</string>
     <string name="settings_system_auto_backup_signing_key_warning_title">Kas varundada allkirjastamisvõti?</string>
     <string name="settings_system_auto_backup_signing_key_warning_message">Igaüks, kes selle faili saab, saab allkirjastada uuendusi, mis kirjutavad sinu paigatud rakendused üle. Hoia kausta privaatsena ja jaga seda ainult oma seadmetega</string>
-    <string name="settings_system_auto_backup_footer">Koopia salvestatakse, kui lahkud Morphe\'ist pärast millegi muutmist. Alles hoitakse %s uusimat</string>
+    <string name="settings_system_auto_backup_footer">Koopia salvestatakse, kui lahkud Mamu\'ist pärast millegi muutmist. Alles hoitakse %s uusimat</string>
     <string name="settings_system_auto_backup_failed">Viimase varukoopia salvestamine nurjus. Vali kaust uuesti</string>
-    <string name="settings_system_import_manager_settings_fail">Morphe seadete importimine nurjus: %s</string>
-    <string name="settings_system_import_manager_settings_success">Morphe seaded on importitud</string>
-    <string name="settings_system_import_manager_settings_mode_title">Impordi Morphe seaded</string>
+    <string name="settings_system_import_manager_settings_fail">Mamu seadete importimine nurjus: %s</string>
+    <string name="settings_system_import_manager_settings_success">Mamu seaded on importitud</string>
+    <string name="settings_system_import_manager_settings_mode_title">Impordi Mamu seaded</string>
     <string name="settings_system_import_manager_settings_mode_description">Vali, kuidas imporditud seaded ja allikad tuleks rakendada</string>
     <string name="settings_system_import_selections_mode_title">Impordi paikamisvalikud</string>
     <string name="settings_system_import_selections_mode_description">Vali, kuidas imporditud valikud ja paikamisvalikud tuleks rakendada</string>
@@ -1217,8 +1217,8 @@ Piltide mõõtmed peavad olema järgmised:
     <string name="import_mode_replace_description">Vasta täpselt varukoopiale. Varukoopiast puuduvad elemendid eemaldatakse</string>
     <string name="import_mode_merge_title">Liida olemasolevaga</string>
     <string name="import_mode_merge_description">Lisa varukoopiast puuduvad elemendid. Olemasolevad elemendid jäävad muutmata</string>
-    <string name="settings_system_export_manager_settings_fail">Morphe seadete eksportimine nurjus: %s</string>
-    <string name="settings_system_export_manager_settings_success">Morphe seaded eksporditud</string>
+    <string name="settings_system_export_manager_settings_fail">Mamu seadete eksportimine nurjus: %s</string>
+    <string name="settings_system_export_manager_settings_success">Mamu seaded eksporditud</string>
     <string name="settings_system_export_debug_logs">Ekspordi silumislogid</string>
     <string name="settings_system_export_debug_logs_description">Salvestab süsteemilogid tõrkeotsinguks</string>
     <string name="settings_system_export_debug_logs_export_read_failed">Logide lugemine ebaõnnestus (väljumisekood %s)</string>
@@ -1236,7 +1236,7 @@ Piltide mõõtmed peavad olema järgmised:
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">Salvestusruumi haldamine</string>
     <string name="settings_system_storage_management_description">Kuvab kettakasutust ja tühjendab vahemälu faile</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s vaba</string>
     <string name="settings_system_storage_saved_apks">Salvestatud APK-d</string>
     <string name="settings_system_storage_caches">Vahemälud</string>
@@ -1259,7 +1259,7 @@ Piltide mõõtmed peavad olema järgmised:
     <string name="settings_system_storage_clear_anyway">Tühjenda siiski</string>
     <string name="settings_system_storage_nothing_to_clear">Ei ole midagi tühjendada</string>
     <string name="settings_system_storage_open_app_info_title">Ava Androidi rakenduse salvestusruum</string>
-    <string name="settings_system_storage_open_app_info_description">Halda või tühjenda kõik Morphe andmeid süsteemi seadete kaudu</string>
+    <string name="settings_system_storage_open_app_info_description">Halda või tühjenda kõik Mamu andmeid süsteemi seadete kaudu</string>
     <string name="settings_system_save_original_apks_title">Säilita algsed APK-d</string>
     <string name="settings_system_save_original_apks_description">Salvesta eelpaigatud APK, et seda saaks uuesti kasutada faili uuesti valimata</string>
     <string name="settings_system_save_patched_apks_title">Säilita paigatud APK-d</string>
@@ -1313,13 +1313,13 @@ Piltide mõõtmed peavad olema järgmised:
     <string name="copy_selection_available_format">Saadaval %1$s %2$s-st</string>
     <!-- Settings - System Tab - Custom file picker -->
     <string name="settings_system_custom_file_picker">Kohandatud failivalija</string>
-    <string name="settings_system_custom_file_picker_description">Kasutab süsteemi failivalija asemel Morphe sisseehitatud failivalijat</string>
+    <string name="settings_system_custom_file_picker_description">Kasutab süsteemi failivalija asemel Mamu sisseehitatud failivalijat</string>
     <!-- Settings - System Tab - APK download helper -->
     <string name="settings_system_apk_download_helper">APK allalaadimise abirakendus</string>
     <string name="settings_system_apk_download_helper_trusted_count">Usaldatud: %1$d / %2$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">Abirakendused saavad sinu eest alla laadida algse APK. Allalaadimisjuhistes pakutakse ainult neid, mida siin usaldad</string>
     <string name="settings_system_apk_download_helper_trust_title">Kas usaldada seda abirakendust?</string>
-    <string name="settings_system_apk_download_helper_warning">APK tuleb abirakendusest, seega usalda ainult tuttavaid rakendusi. Morphe kontrollib siiski iga faili paketti, versiooni ja allkirja enne paigutamist</string>
+    <string name="settings_system_apk_download_helper_warning">APK tuleb abirakendusest, seega usalda ainult tuttavaid rakendusi. Mamu kontrollib siiski iga faili paketti, versiooni ja allkirja enne paigutamist</string>
     <string name="settings_system_apk_download_helper_installed_by">Installinud %s</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">Installija tundmatu</string>
     <string name="settings_system_apk_download_helper_open_directly">Ava abirakendus kohe</string>
@@ -1352,7 +1352,7 @@ Piltide mõõtmed peavad olema järgmised:
     <string name="settings_about_section_project">Projekt</string>
     <string name="settings_about_section_help">Abi</string>
     <string name="credits_prior_development">Varasem arendus</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">Haldaja</string>
     <string name="about_update_available">Saadaval on uuendus: %s</string>
     <string name="about_up_to_date">Ajakohane</string>
@@ -1365,7 +1365,7 @@ Piltide mõõtmed peavad olema järgmised:
     <string name="contributors_all_time">Kõigi aegade</string>
     <string name="contributors_6_months">6 kuud</string>
     <string name="contributors_3_months">3 kuud</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">Toetajad</string>
     <string name="supporters_description">Toetajad Open Collectives</string>
     <string name="supporters_become">Saage toetajaks</string>
@@ -1373,7 +1373,7 @@ Piltide mõõtmed peavad olema järgmised:
     <string name="people_more">Ja veel %s</string>
     <string name="people_unavailable">Loendit ei õnnestunud laadida</string>
     <string name="opensource_licenses">Avatud lähtekoodi litsentsid</string>
-    <string name="opensource_licenses_description">Teegid, millele Morphe on ehitatud</string>
+    <string name="opensource_licenses_description">Teegid, millele Mamu on ehitatud</string>
     <string name="opensource_licenses_search">Otsi teeke ja litsentse</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">Valik</string>
@@ -1398,12 +1398,12 @@ Piltide mõõtmed peavad olema järgmised:
     <string name="settings_section_patcher">Paikaja</string>
     <string name="settings_section_updates">Uuendused</string>
     <string name="settings_section_patching">Paikamine</string>
-    <string name="settings_section_appearance_summary">Kuidas Morphe välja näeb</string>
+    <string name="settings_section_appearance_summary">Kuidas Mamu välja näeb</string>
     <string name="settings_section_patch_options_summary">Millega lihtne režiim rakendusi paikab</string>
     <string name="settings_section_general">Üldine</string>
     <string name="settings_section_patcher_summary">Kuidas rakendusi selles seadmes paigatakse</string>
     <string name="settings_section_help_info">Abi &amp; info</string>
-    <string name="settings_section_about_summary">Lisateave Morphe\'i ja abi saamise kohta</string>
+    <string name="settings_section_about_summary">Lisateave Mamu\'i ja abi saamise kohta</string>
     <string name="settings_section_local_files">Failid</string>
     <string name="settings_section_backup">Varundus</string>
     <string name="settings_section_import_export">Importimine ja eksportimine</string>
@@ -1566,7 +1566,7 @@ Piltide mõõtmed peavad olema järgmised:
     <string name="update_completed">Uuendus on installitud</string>
     <string name="install_update_manager_failed">Uuenduse installimine ebaõnnestus</string>
     <string name="installing_manager_update">Uuendust installitakse…</string>
-    <string name="installing_manager_update_hint">Uuenduse lõpetamiseks Morphe sulgub</string>
+    <string name="installing_manager_update_hint">Uuenduse lõpetamiseks Mamu sulgub</string>
     <string name="downloading_manager_update">Uuenduste alla laadimine…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">Alla laaditud %1$s MB</string>
@@ -1589,7 +1589,7 @@ Kas soovid siiski jätkata?"</string>
     <string name="onboarding_signing_key_desc">Varunda võti, millega sinu paigatud rakendused allkirjastatakse. Ilma selleta saab neid uuendada alles pärast nende eemaldamist</string>
     <string name="onboarding_swipe_title">Viipežestid</string>
     <string name="onboarding_swipe_desc">Saadaolevate paikade vaatamiseks nipsa rakenduse kaardil paremale. Kaardi avakuvalt peitmiseks nipsa vasakule</string>
-    <string name="onboarding_settings_desc">Kohanda Morphe\'i: välimus, täpsemad seaded ja süsteemitööriistad</string>
+    <string name="onboarding_settings_desc">Kohanda Mamu\'i: välimus, täpsemad seaded ja süsteemitööriistad</string>
     <string name="onboarding_sources_patches_desc">Puuduta, et näha kõiki sellest allikast saadaval olevaid paiku</string>
     <string name="onboarding_sources_version_desc">Puuduta versiooni, et näha selle allika täielikku muudatuste logi</string>
     <string name="onboarding_sources_apps_desc">Puuduta, et näha rakendusi, mida see allikas paikab, ja valida, millistele neist see paiku pakub</string>
@@ -1601,9 +1601,28 @@ Kas soovid siiski jätkata?"</string>
     <string name="onboarding_system_file_picker_desc">Lülita sisse, et kasutada APK-de või võtmehoidlate valimisel sisseehitatud failihaldurit süsteemi valija asemel</string>
     <!-- Tour prompt dialog shown after first successful patch install -->
     <string name="tour_prompt_title">Funktsioonide kiirtutvustus</string>
-    <string name="tour_prompt_desc">Kas soovid Morphe\'i peamiste funktsioonide kiirtutvustust?</string>
+    <string name="tour_prompt_desc">Kas soovid Mamu\'i peamiste funktsioonide kiirtutvustust?</string>
     <!-- Label of a footer button beside "Skip". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="tour_prompt_confirm">Näita mulle</string>
     <string name="onboarding_restart_title">Funktsioonide tutvustus</string>
     <string name="onboarding_restart_desc">Juhendatud ülevaatus peamistest funktsioonidest</string>
+
+    <string name="home_app_filter_all_description">Kõik rakendused avakuval</string>
+    <string name="home_app_filter_patched_description">Rakendused, mille olete Mamu abil paigutanud või salvestanud</string>
+    <string name="home_app_filter_not_patched_description">Rakendused, mille pole Mamu\'s veel paigutatud</string>
+    <string name="home_app_filter_installed_description">Rakendused, mis on praegu sellele seadmele installitud</string>
+    <string name="home_app_filter_uninstalled_description">Mamu\'ga paigutatud rakendused, mida ei ole enam selles seadmes</string>
+    <string name="home_app_filter_clones_description">Rakendused, mis on ehitatud oma paketi nimega ja installitud originaali kõrvale</string>
+    <string name="home_app_sort_name_asc_description">Tähestikuliselt, A-st Z-ni</string>
+    <string name="home_app_sort_name_desc_description">Käänestikuliselt, Z-st A-ni</string>
+    <string name="home_app_sort_recently_patched_description">Kõige viimasena paigandatud rakendused esimesena</string>
+    <string name="home_category_custom">Kohandatud</string>
+    <string name="sources_filter_all_description">Iga allikas</string>
+    <string name="sources_filter_enabled_description">Allikad, kust paigutused võetakse</string>
+    <string name="sources_filter_disabled_description">Väljalülitatud allikad</string>
+    <string name="sources_filter_issues_description">Allikad, mis on blokeeritud, mille laadimine ebaõnnestus või mis vajavad uuemas Mamu versiooni</string>
+    <string name="sources_sort_last_updated_description">Esmalt uusimad allikauuendused</string>
+    <string name="sources_sort_enabled_first_description">Kuva aktiivsed allikad enne deaktivitud allikaid</string>
+    <string name="home_apk_availability_installed_version">Sellele seadmel on installitud: %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">Keystore\'i vormaat</string>
 </resources>

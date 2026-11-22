@@ -1,0 +1,8 @@
+{
+  "upstream": "MorpheApp/morphe-manager",
+  "upstreamTag": "v2.7.0",
+  "upstreamCommit": "c783f7683580d9c61b3f6de4411794a162ecb476",
+  "repository": "Darkaxt/mamu",
+  "applicationId": "app.morphe.extended",
+  "signerSha256": "70ea66803df6909e2c011ce672d244aa25c886bd46bbf89f67a5e5eedc8a3493"
+}

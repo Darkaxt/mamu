@@ -6,19 +6,23 @@
 package app.morphe.manager.ui.screen.settings.appearance
 
 import android.text.format.DateFormat
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import app.morphe.manager.R
 import app.morphe.manager.ui.screen.shared.*
+import app.morphe.manager.ui.screen.shared.backgrounds.LocalBackdropInDialog
 import app.morphe.manager.ui.theme.SeasonalEvent
 import app.morphe.manager.ui.theme.backgroundOver
 import app.morphe.manager.ui.viewmodel.RandomInterval
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
 import java.time.format.DateTimeFormatter
 
 /**
@@ -54,7 +58,7 @@ fun BackgroundSettingsItem(
  *        as the app does, with a notice of how long it stays.
  */
 @Composable
-fun DialogHostScope.BackgroundPickerDialog(
+fun BackgroundPickerDialog(
     selectedBackground: BackgroundType,
     onBackgroundSelected: (BackgroundType) -> Unit,
     selectedInterval: RandomInterval,
@@ -103,24 +107,30 @@ fun DialogHostScope.BackgroundPickerDialog(
             )
         },
         backdrop = {
-            AnimatedBackground(
-                type = shownBackground,
-                resolvedType = resolvedRandomBackground,
-                enableParallax = enableParallax
-            )
+            CompositionLocalProvider(LocalBackdropInDialog provides true) {
+                AnimatedBackground(
+                    type = shownBackground,
+                    resolvedType = resolvedRandomBackground,
+                    enableParallax = enableParallax
+                )
+            }
         }
     ) {
         // Spacing lives inside the blocks that come and go rather than between them, where a
         // spacedBy gap would vanish in one frame while the surrounding block is still shrinking
         Column {
             // The dialog shows what the app shows, so a running event explains why that is not the pick
-            FoldingVisibility(visible = shownBackground != selectedBackground && seasonalNotice != null) {
+            AnimatedVisibility(
+                visible = shownBackground != selectedBackground && seasonalNotice != null,
+                enter = Animations.expandFadeEnter,
+                exit = Animations.shrinkFadeExit
+            ) {
                 Notice(
                     text = seasonalNotice.orEmpty(),
-                    icon = MaterialSymbols.Rounded.Celebration,
+                    icon = Icons.Outlined.Celebration,
                     tone = SemanticTone.Primary,
                     density = NoticeDensity.Compact,
-                    modifier = Modifier.padding(bottom = Defaults.SpaceSmall)
+                    modifier = Modifier.padding(bottom = 8.dp)
                 )
             }
 
@@ -136,38 +146,45 @@ fun DialogHostScope.BackgroundPickerDialog(
             }
 
             // Settings of the pick itself, so NONE, having none, leaves the divider out as well
-            FoldingVisibility(visible = selectedBackground != BackgroundType.NONE) {
-                Column(modifier = Modifier.padding(top = Defaults.SpaceSmall)) {
+            AnimatedVisibility(
+                visible = selectedBackground != BackgroundType.NONE,
+                enter = Animations.expandFadeEnter,
+                exit = Animations.shrinkFadeExit
+            ) {
+                Column(modifier = Modifier.padding(top = 8.dp)) {
                     SettingsDivider(
-                        modifier = Modifier.padding(vertical = Defaults.SpaceExtraSmall),
+                        modifier = Modifier.padding(vertical = 4.dp),
                         fullWidth = true
                     )
 
                     // How often RANDOM changes, shown only while it is the pick
-                    FoldingVisibility(visible = selectedBackground == BackgroundType.RANDOM) {
+                    AnimatedVisibility(
+                        visible = selectedBackground == BackgroundType.RANDOM,
+                        enter = Animations.expandFadeEnter,
+                        exit = Animations.shrinkFadeExit
+                    ) {
                         // Vertical tiles so the interval labels never truncate
-                        OptionGroup(
+                        OptionGrid(
                             items = RandomInterval.entries,
-                            modifier = Modifier.padding(top = Defaults.SpaceSmall)
-                        ) { interval, shape, interactionSource, itemModifier ->
+                            columns = RandomInterval.entries.size,
+                            modifier = Modifier.padding(top = 8.dp)
+                        ) { interval, itemModifier ->
                             ModernIconOptionCard(
                                 selected = selectedInterval == interval,
                                 onClick = { onIntervalSelected(interval) },
                                 icon = intervalIcon(interval),
                                 label = stringResource(interval.labelResId),
                                 modifier = itemModifier,
-                                compact = true,
-                                shape = shape,
-                                interactionSource = interactionSource
+                                compact = true
                             )
                         }
                     }
 
-                    SettingsGroup(modifier = Modifier.padding(top = Defaults.SpaceSmall)) {
+                    SettingsGroup(modifier = Modifier.padding(top = 8.dp)) {
                         SettingsSwitchItem(
                             title = stringResource(R.string.settings_appearance_parallax_effect),
                             subtitle = stringResource(R.string.settings_appearance_parallax_effect_description),
-                            icon = MaterialSymbols.Rounded.Screen_rotation,
+                            icon = Icons.Outlined.ScreenRotation,
                             checked = enableParallax,
                             onToggle = onParallaxToggle
                         )
@@ -177,11 +194,11 @@ fun DialogHostScope.BackgroundPickerDialog(
 
             // Kept out of the block above: an event also brings its own greetings, which a
             // background of NONE does not switch off
-            SettingsGroup(modifier = Modifier.padding(top = Defaults.SpaceSmall)) {
+            SettingsGroup(modifier = Modifier.padding(top = 8.dp)) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.settings_appearance_seasonal_themes),
                     subtitle = stringResource(R.string.settings_appearance_seasonal_themes_description),
-                    icon = MaterialSymbols.Rounded.Celebration,
+                    icon = Icons.Outlined.Celebration,
                     checked = seasonalThemes,
                     onToggle = onSeasonalThemesToggle
                 )
@@ -191,24 +208,24 @@ fun DialogHostScope.BackgroundPickerDialog(
 }
 
 private fun backgroundIcon(type: BackgroundType): ImageVector = when (type) {
-    BackgroundType.CIRCLES   -> MaterialSymbols.Rounded.Circle
-    BackgroundType.RINGS     -> MaterialSymbols.Rounded.Adjust
-    BackgroundType.MESH      -> MaterialSymbols.Rounded.Grid_3x3
-    BackgroundType.SPACE     -> MaterialSymbols.Rounded.Auto_awesome
-    BackgroundType.SHAPES    -> MaterialSymbols.Rounded.Pentagon
-    BackgroundType.SNOW      -> MaterialSymbols.Rounded.Ac_unit
-    BackgroundType.HALLOWEEN -> MaterialSymbols.Rounded.Nights_stay
-    BackgroundType.FIREWORKS -> MaterialSymbols.Rounded.Flare
-    BackgroundType.GRID      -> MaterialSymbols.Rounded.Apps
-    BackgroundType.PARTICLES -> MaterialSymbols.Rounded.Bubble_chart
-    BackgroundType.LAVA      -> MaterialSymbols.Rounded.Water_drop
-    BackgroundType.MATRIX    -> MaterialSymbols.Rounded.Code
-    BackgroundType.NONE      -> MaterialSymbols.Rounded.Visibility_off
-    BackgroundType.RANDOM    -> MaterialSymbols.Rounded.Shuffle
+    BackgroundType.CIRCLES   -> Icons.Outlined.Circle
+    BackgroundType.RINGS     -> Icons.Outlined.RadioButtonUnchecked
+    BackgroundType.MESH      -> Icons.Outlined.Grid3x3
+    BackgroundType.SPACE     -> Icons.Outlined.AutoAwesome
+    BackgroundType.SHAPES    -> Icons.Outlined.Pentagon
+    BackgroundType.SNOW      -> Icons.Outlined.AcUnit
+    BackgroundType.HALLOWEEN -> Icons.Outlined.NightsStay
+    BackgroundType.FIREWORKS -> Icons.Outlined.Flare
+    BackgroundType.GRID      -> Icons.Outlined.Apps
+    BackgroundType.PARTICLES -> Icons.Outlined.BubbleChart
+    BackgroundType.LAVA      -> Icons.Outlined.WaterDrop
+    BackgroundType.MATRIX    -> Icons.Outlined.Code
+    BackgroundType.NONE      -> Icons.Outlined.VisibilityOff
+    BackgroundType.RANDOM    -> Icons.Outlined.Shuffle
 }
 
 private fun intervalIcon(interval: RandomInterval): ImageVector = when (interval) {
-    RandomInterval.ON_LAUNCH    -> MaterialSymbols.Rounded.Play_circle
-    RandomInterval.DAILY        -> MaterialSymbols.Rounded.Today
-    RandomInterval.EVERY_3_DAYS -> MaterialSymbols.Rounded.Date_range
+    RandomInterval.ON_LAUNCH    -> Icons.Outlined.PlayCircleOutline
+    RandomInterval.DAILY        -> Icons.Outlined.Today
+    RandomInterval.EVERY_3_DAYS -> Icons.Outlined.DateRange
 }

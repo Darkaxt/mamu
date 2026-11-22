@@ -24,17 +24,8 @@ interface ComplexParameter<T : Parcelable>
 @Serializable
 object HomeScreen
 
-/** A part of the settings as a page of its own, named by its [app.morphe.manager.ui.screen.settings.SettingsSubpage]. */
 @Serializable
-data class SettingsDetail(val subpage: String)
-
-/** The patch selections expert mode saves, a list of its own opened from the settings. */
-@Serializable
-data object PatchSelections
-
-/** The open-source licenses the manager is built on, a list of its own opened from the settings. */
-@Serializable
-data object Licenses
+object Settings
 
 /** The mini-games, a page of their own opened from the settings. */
 @Serializable
@@ -65,8 +56,6 @@ data object Patcher : ComplexParameter<Patcher.ViewModelParams> {
      *   the app's own, which is not something [selectedApp] can say.
      * @param allowIncompatible Whether patches outside the APK's version were offered, kept so
      *   the selection reopened after a failed run offers the same ones.
-     * @param useMount Whether the build is mounted over the stock app with root rather than
-     *   installed, as chosen before patching.
      */
     @Parcelize
     data class ViewModelParams(

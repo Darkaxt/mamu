@@ -13,6 +13,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -76,10 +77,10 @@ enum class SemanticTone {
 
 /** Sizing shared by every badge, so badges line up wherever they end up side by side. */
 private object BadgeDefaults {
-    val HorizontalPadding = Defaults.SpaceSmall
-    val VerticalPadding = Defaults.SpaceExtraSmall
+    val HorizontalPadding = 10.dp
+    val VerticalPadding = 4.dp
     val IconSize = 14.dp
-    val ItemSpacing = Defaults.SpaceExtraSmall
+    val ItemSpacing = 5.dp
 }
 
 /**
@@ -154,7 +155,7 @@ fun StatusBadge(
                 enabled = onClick != null,
                 label = "status_badge_press_scale"
             )
-            .clip(Defaults.PillShape)
+            .clip(RoundedCornerShape(percent = 50))
             .background(fill)
             .then(
                 if (onClick != null) {

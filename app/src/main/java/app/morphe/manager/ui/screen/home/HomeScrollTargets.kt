@@ -10,18 +10,22 @@ import app.morphe.manager.ui.screen.shared.ScrollTarget
 import app.morphe.manager.ui.screen.shared.buildIndexedScrollTargets
 import app.morphe.manager.ui.screen.shared.buildScrollTargets
 
-internal fun buildFlatHomeScrollTargets(items: List<HomeAppItem>): List<ScrollTarget> =
-    buildIndexedScrollTargets(items) { item -> item.scrollLabelSource() }
+internal fun buildFlatHomeScrollTargets(items: List<HomeAppItem>, columns: Int = 1, sectioned: Boolean = false): List<ScrollTarget> =
+    buildScrollTargets { emit ->
+        homeTileRows(items, columns, sectioned).forEachIndexed { index, row ->
+            row.items.forEach { emit(index, it.scrollLabelSource()) }
+        }
+    }
 
 /** Counts the category header rows so the targets line up with the rendered list. */
-internal fun buildGroupedHomeScrollTargets(groups: List<HomeCategoryGroup>): List<ScrollTarget> =
+internal fun buildGroupedHomeScrollTargets(groups: List<HomeCategoryGroup>, columns: Int = 1): List<ScrollTarget> =
     buildScrollTargets { emit ->
         var listIndex = 0
         groups.forEach { group ->
             listIndex += 1 // Header row
             if (group.collapsed) return@forEach
-            group.items.forEach { item ->
-                emit(listIndex, item.scrollLabelSource())
+            homeTileRows(group.items, columns, false).forEach { row ->
+                row.items.forEach { emit(listIndex, it.scrollLabelSource()) }
                 listIndex += 1
             }
         }

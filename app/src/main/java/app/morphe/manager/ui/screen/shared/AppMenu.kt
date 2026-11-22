@@ -5,9 +5,9 @@
 
 package app.morphe.manager.ui.screen.shared
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,11 +31,15 @@ import app.morphe.manager.R
 import com.composables.icons.materialsymbols.MaterialSymbols
 import com.composables.icons.materialsymbols.rounded.*
 
-// Material's expressive menu: a large container, its entries inset and rounded less by as much, so
-// both corners share a center
-private val MenuItemInset = Defaults.SpaceSmall
-private val MenuShape = RoundedCornerShape(Defaults.CornerLarge)
-private val MenuItemShape = RoundedCornerShape(Defaults.CornerLarge - MenuItemInset)
+import androidx.compose.foundation.background
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Check
+import androidx.compose.ui.text.font.FontWeight
+
+private val MenuItemInset = 6.dp
+private val MenuShape = RoundedCornerShape(Defaults.CompactCornerRadius)
+// Inset from the menu's edge by as much as it is rounded less, so both corners share a center
+private val MenuItemShape = RoundedCornerShape(Defaults.CompactCornerRadius - MenuItemInset)
 private val MenuShadowElevation = 6.dp
 
 /** Card color of the app's surfaces, which a menu takes so it reads as one of them. */
@@ -94,7 +98,6 @@ fun ExposedDropdownMenuBoxScope.AppExposedDropdownMenu(
  *
  * @param selected Whether this entry is the one in effect.
  * @param trailing Takes the place of the check, for an entry that shows its state another way.
- * @param destructive Whether the entry removes something, which it says in the error color.
  */
 @Composable
 fun AppDropdownMenuItem(
@@ -102,27 +105,32 @@ fun AppDropdownMenuItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     selected: Boolean = false,
+    destructive: Boolean = false,
+    description: String? = null,
     leadingIcon: ImageVector? = null,
-    trailing: (@Composable () -> Unit)? = null,
-    destructive: Boolean = false
+    trailing: (@Composable () -> Unit)? = null
 ) {
     val accent = LocalAccent.current ?: MaterialTheme.colorScheme.primary
-    val contentColor = if (destructive) MaterialTheme.colorScheme.error else dialogTextColor()
-    val interactionSource = remember { MutableInteractionSource() }
+    val contentColor = if (destructive) destructiveColor() else dialogTextColor()
 
     DropdownMenuItem(
-        text = { Text(text = text, style = MaterialTheme.typography.bodyLarge) },
+        text = {
+            androidx.compose.foundation.layout.Column {
+                Text(text = text, style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Normal)
+                description?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+            }
+        },
         onClick = onClick,
         modifier = modifier
             .padding(horizontal = MenuItemInset)
-            .clip(rememberPressShape(interactionSource, MenuItemShape))
+            .clip(MenuItemShape)
             .background(if (selected) accent.copy(alpha = AccentAlpha.STEP) else Color.Transparent)
             .semantics { this.selected = selected },
         leadingIcon = leadingIcon?.let { icon -> { Icon(icon, contentDescription = null) } },
         trailingIcon = trailing ?: if (selected) {
-            { Icon(MaterialSymbols.Rounded.Check, contentDescription = null) }
+            { Icon(Icons.Outlined.Check, contentDescription = null) }
         } else null,
-        interactionSource = interactionSource,
         colors = MenuDefaults.itemColors(
             textColor = contentColor,
             leadingIconColor = contentColor.copy(alpha = 0.8f),

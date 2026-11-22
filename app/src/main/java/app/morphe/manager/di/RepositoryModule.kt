@@ -10,12 +10,18 @@
 
 package app.morphe.manager.di
 
+import app.morphe.manager.patcher.patch.KnownPatchFailures
+
 import app.morphe.manager.data.platform.Filesystem
 import app.morphe.manager.data.platform.NetworkInfo
 import app.morphe.manager.domain.bundles.RemoteBundleServices
 import app.morphe.manager.domain.repository.*
 import app.morphe.manager.domain.worker.WorkerRepository
 import app.morphe.manager.network.api.ReleaseAPI
+import app.morphe.manager.network.PlayStoreIcons
+import app.morphe.manager.network.fetchPlayStoreListing
+import io.ktor.client.HttpClient
+import org.koin.android.ext.koin.androidContext
 import app.morphe.manager.util.AppDataResolver
 import org.koin.core.module.dsl.createdAtStart
 import org.koin.core.module.dsl.singleOf
@@ -29,11 +35,11 @@ val repositoryModule = module {
     singleOf(::NetworkInfo)
     singleOf(::ManagerUpdateRepository)
     singleOf(::PatchSelectionRepository)
+    singleOf(::KnownPatchFailures)
     singleOf(::SourceMuteRepository)
     singleOf(::PatchOptionsRepository)
     singleOf(::SelectionSetRepository)
     singleOf(::BlocklistRepository)
-    singleOf(::PeopleRepository)
     singleOf(::RemoteBundleServices)
     singleOf(::PatchBundleRepository)
     singleOf(::WorkerRepository)
@@ -41,4 +47,10 @@ val repositoryModule = module {
     singleOf(::OriginalApkRepository)
     singleOf(::StorageStatsRepository)
     singleOf(::AppDataResolver)
+    single {
+        val client: HttpClient = get()
+        PlayStoreIcons(androidContext().cacheDir.resolve("play-store-icons")) { url ->
+            fetchPlayStoreListing(client, url)
+        }
+    }
 }

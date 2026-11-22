@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="panel_custom">Custom patches</string>
+    <string name="panel_universal">Universal patches</string>
+    <string name="panel_other_versions">Other versions</string>
+    <string name="panel_verified">Verified</string>
+    <string name="panel_compatible">Compatible</string>
+    <string name="panel_unrestricted">Unrestricted</string>
+    <string name="panel_show_unsupported">Show unselected patches for other versions</string>
+    <string name="panel_scope_help">Verified: declares this APK version. Compatible: targets this app without version restrictions. Unrestricted: universal patches. Selected patches for other versions remain in Custom patches; the toggle reveals unselected ones. Other versions require confirmation.</string>
+    <string name="panel_versions">Supported: %1$s</string>
+    <string name="panel_unsupported_versions">Unsupported · Supported: %1$s</string>
+    <string name="panel_version_builds">%1$s (builds: %2$s)</string>
+    <string name="panel_no_matching_target">No matching package declaration</string>
+    <string name="panel_selected_supported">All selected patches support this APK</string>
+    <string name="panel_selected_unsupported">Selected patches target another APK version or build</string>
+    <string name="panel_unknown_version">APK version unknown</string>
+    <string name="panel_filter_count">Filters · %1$d active</string>
+    <string name="panel_compatibility">Compatibility</string>
+    <string name="panel_sources">Patch sources</string>
+    <string name="panel_sources_hidden">Sources · %1$d hidden</string>
+    <string name="panel_source_info">Source information: %1$s</string>
+    <string name="panel_repository">Repository information</string>
+    <string name="panel_this_app">This app</string>
+    <string name="panel_all_apps">All apps</string>
+    <string name="panel_show_scope">Show patches: %1$s</string>
+    <string name="panel_hide_scope">Hide patches: %1$s</string>
+    <string name="panel_hidden_removed">Excluded %1$d selected patches from this run. Saved choices and options are retained.</string>
+    <string name="panel_unsupported_selected">%1$d selected patches target other versions. Show patches</string>
+    <string name="panel_unsupported_warning">These patches declare a different APK version or build. They may fail or change the app incorrectly. Continue with unsupported patches? This confirmation applies to this APK version and source release.</string>
+</resources>

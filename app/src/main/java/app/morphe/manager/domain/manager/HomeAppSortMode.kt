@@ -10,14 +10,15 @@ import app.morphe.manager.R
 import app.morphe.manager.util.enumByNameOrNull
 
 enum class HomeAppSortMode(
-    @param:StringRes override val labelRes: Int
+    @param:StringRes override val labelRes: Int,
+    @param:StringRes override val descriptionRes: Int
 ) : SortModeSpec {
-    MANUAL(R.string.list_sort_manual),
-    RECOMMENDED(R.string.home_app_sort_recommended),
-    NAME_ASC(R.string.list_sort_name_asc),
-    NAME_DESC(R.string.list_sort_name_desc),
-    UPDATES_FIRST(R.string.home_app_sort_updates_first),
-    RECENTLY_PATCHED(R.string.home_app_sort_recently_patched);
+    MANUAL(R.string.sources_sort_manual, R.string.home_app_sort_manual_description),
+    RECOMMENDED(R.string.home_app_sort_recommended, R.string.extended_home_app_update_order_description),
+    NAME_ASC(R.string.file_picker_sort_name_asc, R.string.home_app_sort_name_asc_description),
+    NAME_DESC(R.string.file_picker_sort_name_desc, R.string.home_app_sort_name_desc_description),
+    UPDATES_FIRST(R.string.extended_home_app_updates_first, R.string.extended_home_app_update_order_description),
+    RECENTLY_PATCHED(R.string.home_app_sort_recently_patched, R.string.home_app_sort_recently_patched_description);
 
     companion object {
         fun fromPreference(value: String?): HomeAppSortMode =

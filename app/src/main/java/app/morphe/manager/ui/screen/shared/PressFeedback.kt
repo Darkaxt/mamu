@@ -5,31 +5,29 @@
 
 package app.morphe.manager.ui.screen.shared
 
+import androidx.compose.foundation.shape.CornerBasedShape
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.util.lerp
+
 import android.view.HapticFeedbackConstants
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
-import androidx.compose.foundation.shape.CornerBasedShape
-import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalView
-import androidx.compose.ui.unit.Density
-import androidx.compose.ui.util.lerp
 
 /** How far a control sinks while held. Shared so every button gives the same push-back. */
 const val PressedScale = 0.97f
-
-/** Share of its rounding a button's corners keep while held, the press of an expressive button. */
-private const val PressedCornerScale = 0.5f
 
 /**
  * Shared spring-based press-scale factor.
@@ -73,6 +71,22 @@ fun Modifier.pressScale(
 }
 
 /**
+ * Wraps [onClick] so it fires a [HapticFeedbackConstants.VIRTUAL_KEY] pulse first. The
+ * returned lambda is remembered against [onClick] so repeated recompositions keep the
+ * same reference.
+ */
+@Composable
+fun rememberHapticClick(onClick: () -> Unit): () -> Unit {
+    val view = LocalView.current
+    return remember(view, onClick) {
+        {
+            view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            onClick()
+        }
+    }
+}
+
+/**
  * How far into a press [interactionSource] is, from 0 at rest to 1 held, sprung so a quick tap
  * still plays out. Drives the press feedback that changes a button's own geometry.
  */
@@ -108,7 +122,7 @@ fun rememberPressShape(
 /** [this] shape [progress] of the way into a press, see [rememberPressShape]. */
 fun Shape.pressed(progress: Float): Shape {
     if (this !is CornerBasedShape || progress == 0f) return this
-    val scale = lerp(1f, PressedCornerScale, progress)
+    val scale = lerp(1f, 0.5f, progress)
     return copy(
         topStart = ScaledCornerSize(topStart, scale),
         topEnd = ScaledCornerSize(topEnd, scale),
@@ -120,20 +134,4 @@ fun Shape.pressed(progress: Float): Shape {
 /** [base] scaled by [scale], so a percentage corner keeps following the size of its shape. */
 private data class ScaledCornerSize(val base: CornerSize, val scale: Float) : CornerSize {
     override fun toPx(shapeSize: Size, density: Density): Float = base.toPx(shapeSize, density) * scale
-}
-
-/**
- * Wraps [onClick] so it fires a [HapticFeedbackConstants.VIRTUAL_KEY] pulse first. The
- * returned lambda is remembered against [onClick] so repeated recompositions keep the
- * same reference.
- */
-@Composable
-fun rememberHapticClick(onClick: () -> Unit): () -> Unit {
-    val view = LocalView.current
-    return remember(view, onClick) {
-        {
-            view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            onClick()
-        }
-    }
 }

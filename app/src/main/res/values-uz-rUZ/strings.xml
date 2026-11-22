@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">Android 11 muammosi</string>
     <string name="android_11_bug_dialog_description">Android 11 tizimidagi xatoni oldini olish uchun ilova o‘rnatish ruxsatini oldindan bering</string>
     <string name="deep_link_add_source_title">Manba qo‘shish</string>
-    <string name="deep_link_add_source_message">Ushbu patch manbasi Morphe\'ga qo‘shilsinmi?</string>
+    <string name="deep_link_add_source_message">Ushbu patch manbasi Mamu\'ga qo‘shilsinmi?</string>
     <string name="deep_link_add_source_warning">Faqat ishonchli manbalarni qo‘shing</string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">Faqat shu ilova qo\'shiladi. Boshqa ilovalarni manbaning ilovalar ro\'yxatidan qo\'shishingiz mumkin.</string>
@@ -44,15 +44,15 @@
     <string name="mpp_import_unreadable">Ushbu faylni o\'qib bo\'lmadi</string>
     <string name="incoming_file_not_patch_source">Ushbu fayl patch manbai emas</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">Morphe\'da yangilanish mavjud</string>
+    <string name="home_update_available">Mamu\'da yangilanish mavjud</string>
     <string name="home_update_available_subtitle">Yangi versiya o‘rnatishga tayyor</string>
     <string name="home_blocked_source_title">Bloklangan patch manbasi aniqlandi</string>
     <string name="home_blocked_source_subtitle">Tekshirish va olib tashlash uchun bosing</string>
     <string name="home_metadata_errors_title"> patch manbalari mavjud emas</string>
     <string name="home_metadata_errors_subtitle">Manbalarni ko‘rib chiqish uchun bosing</string>
-    <string name="home_outdated_manager_title">Morphe eskirgan</string>
+    <string name="home_outdated_manager_title">Mamu eskirgan</string>
     <string name="home_outdated_manager_subtitle">Ba\'zi yamoq manbalari yangiroq versiyani talab qiladi</string>
-    <string name="home_held_back_title">Patch manbai Morphe’ni ishdan chiqardi</string>
+    <string name="home_held_back_title">Patch manbai Mamu’ni ishdan chiqardi</string>
     <string name="home_held_back_subtitle">Ilova ishga tushishi uchun u o‘tkazib yuborildi. Ko‘rib chiqish uchun bosing</string>
     <string name="home_source_updates_title">Patch yangilanishlari mavjud</string>
     <string name="home_source_updates_subtitle">Ularni yuklab olish uchun bosing</string>
@@ -204,10 +204,10 @@
     <string name="sources_management_metadata_unavailable_hint">Masofaviy metadata fayli mavjud emas. O‘rnatilgan to‘plam bilan patchlash ishlaydi, lekin ushbu manba uchun avtomatik yangilash o‘chirilgan</string>
     <string name="sources_management_metadata_unavailable_hint_missing">Patch to‘plamini yuklab olish imkoniyati yo‘q. Manba URL noto‘g‘ri yoki fayl mavjud emas</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">Patch paketi yuklab olunamadi. Manba URL manzili noto\"g\'ri bo\'lishi mumkin yoki fayl mavjud emas. Uni o\'zgartirish uchun bosing</string>
-    <string name="sources_management_outdated_manager_badge">Morphe ni yangilang</string>
-    <string name="sources_management_outdated_manager_hint">Ushbu manba %1$s yamoqchisi uchun yaratilgan, lekin Morphe %2$s %3$s yamoqchisini o\'z ichiga oladi. Undan foydalanish uchun Morphe ni yangilang</string>
+    <string name="sources_management_outdated_manager_badge">Mamu ni yangilang</string>
+    <string name="sources_management_outdated_manager_hint">Ushbu manba %1$s yamoqchisi uchun yaratilgan, lekin Mamu %2$s %3$s yamoqchisini o\'z ichiga oladi. Undan foydalanish uchun Mamu ni yangilang</string>
     <string name="sources_management_held_back_badge">Ishdan chiqdi</string>
-    <string name="sources_management_held_back_hint">Bu manba yuklash paytida Morphe’ni ishdan chiqardi, shuning uchun u o‘tkazib yuborilmoqda. Qayta urinish uchun uni yangilang yoki qayta import qiling</string>
+    <string name="sources_management_held_back_hint">Bu manba yuklash paytida Mamu’ni ishdan chiqardi, shuning uchun u o‘tkazib yuborilmoqda. Qayta urinish uchun uni yangilang yoki qayta import qiling</string>
     <string name="sources_management_signed_by">Imzolangan:</string>
     <string name="sources_management_signing_key_changed_badge">Kalit o\'zgardi</string>
     <string name="sources_management_signing_key_changed_hint">Oxirgi versiya ushbu manba avval ishlatgan kalit bilan imzolanmagan, shuning uchun u o\'rnatilmadi. Ko\'rib chiqish uchun bosing</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">Jamiyat yamoqlari</string>
     <string name="sources_dialog_choose_apps">Ilovalarni tanlang</string>
     <string name="sources_dialog_choose_apps_description">Manba yuklangach, uning qaysi ilovalarini saqlashni tanlang</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">Uchinchi tomon yamoq manbalari</string>
-    <string name="sources_dialog_community_notice_message">"Hamjamiyat patch manbalari o'z mualliflari tomonidan yaratilgan va qo'llab-quvvatlanadi. Morphe uchinchi tomon patchlarini ko'rib chiqmaydi yoki tasdiqlamaydi, shuningdek, ularning mazmuni yoki qurilmangizda bajaradigan harakatlari uchun javobgar emas"</string>
+    <string name="sources_dialog_community_notice_message">"Hamjamiyat patch manbalari o'z mualliflari tomonidan yaratilgan va qo'llab-quvvatlanadi. Mamu uchinchi tomon patchlarini ko'rib chiqmaydi yoki tasdiqlamaydi, shuningdek, ularning mazmuni yoki qurilmangizda bajaradigan harakatlari uchun javobgar emas"</string>
     <string name="sources_update_success">Yangilash muvaffaqiyatli</string>
     <string name="sources_update_unavailable">Yangilanish mavjud emas</string>
     <string name="sources_download_fail">Manbalarni yuklab olishda xatolik: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">Yordamchi ilova o\'rnatilgan, lekin hali ishonilmagan, shuning uchun u bu yerda taklif qilinmaydi.</string>
     <string name="home_apk_helper_untrusted_action">Yordamchilarni ko\'rib chiqish</string>
     <string name="home_apk_helper_title">Yordamchi ilova orqali yuklab olish</string>
-    <string name="home_apk_helper_description">Morphe quyidagi yordamchi ilovadan asl APK ni yuklab olishni soʻraydi va faylni qaytarib beradi</string>
+    <string name="home_apk_helper_description">Mamu quyidagi yordamchi ilovadan asl APK ni yuklab olishni soʻraydi va faylni qaytarib beradi</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">Yordamchini ochish</string>
-    <string name="home_apk_helper_warning">Agar ushbu yordamchi ilovaga ishonmasangiz, davom etmang. Morphe patch yamoqni qoʻllashdan oldin olgan narsaning paketini, versiyasini va imzosini tekshiradi</string>
-    <string name="home_apk_helper_warning_unverified">Agar ushbu yordamchi ilovaga ishonmasangiz, davom etmang. Morphe ushbu APK ning imzosini tasdiqlay olmaydi, shuning uchun oʻzgartirilgan fayl aniqlanmaydi</string>
+    <string name="home_apk_helper_warning">Agar ushbu yordamchi ilovaga ishonmasangiz, davom etmang. Mamu patch yamoqni qoʻllashdan oldin olgan narsaning paketini, versiyasini va imzosini tekshiradi</string>
+    <string name="home_apk_helper_warning_unverified">Agar ushbu yordamchi ilovaga ishonmasangiz, davom etmang. Mamu ushbu APK ning imzosini tasdiqlay olmaydi, shuning uchun oʻzgartirilgan fayl aniqlanmaydi</string>
     <string name="home_apk_helper_no_result">Yordamchi ilova APK ni qaytarib bermadi</string>
     <string name="home_apk_helper_no_access">Yordamchi ilova qaytargan APK ga kirish huquqini bermadi</string>
     <string name="home_apk_helper_no_package">Yordamchi ilova qaysi o\'rnatilgan ilovadan foydalanish kerakligini aytmadi.</string>
     <string name="home_apk_helper_wrong_package">Yordamchi ilova yamlanayotgan ilovadan boshqa ilovani qaytardi.</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe o\'rnatilgan ilovadan foydalana olmadi.</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu o\'rnatilgan ilovadan foydalana olmadi.</string>
     <string name="home_apk_helper_installed_incompatible">O\'rnatilgan versiyani yamlab bo\'lmaydi.</string>
     <string name="home_apk_use_saved_copy">Saqlangan nusxadan foydalanish</string>
     <string name="home_apk_use_installed_app">O\'rnatilgan ilovadan foydalanish</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">O\'rnatilgan ilovaning imzosi tasdiqlanmadi, shuning uchun u allaqachon o\'zgartirilgan bo\'lishi mumkin</string>
     <string name="home_unverified">Tasdiqlanmagan</string>
     <string name="home_install_verification_pending">Oʻrnatish tekshirilmoqda…</string>
-    <string name="home_app_info_install_unverified">Morphe oʻrnatilgan ilova u patch qilgan build ekanligini tasdiqlay olmaydi. Saqlangan APKdan qayta patch qiling yoki qayta oʻrnating, uning harakatlarini tiklash uchun.</string>
+    <string name="home_app_info_install_unverified">Mamu oʻrnatilgan ilova u patch qilgan build ekanligini tasdiqlay olmaydi. Saqlangan APKdan qayta patch qiling yoki qayta oʻrnating, uning harakatlarini tiklash uchun.</string>
     <string name="home_app_info_no_saved_apk">Saqlangan APK yo\'q. Patchlash uchun APK faylini qayta tanlash kerak bo\'ladi</string>
     <string name="home_version_requires_android">Android %s+ talab qilinadi</string>
     <string name="home_apk_no_compatible_versions_title">Ushbu moslamada qo‘llab-quvvatlanmaydi</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">Veb-sahifani pastga aylantiring va uning yuklab olish tugmasini bosing</string>
     <string name="home_download_instructions_step2_variant">Veb-sahifani pastga aylantiring va eng yuqoridagi &lt;b&gt;APK variantining&lt;/b&gt; yuklab olish tugmasini bosing</string>
     <string name="home_download_instructions_step2_search">O\'zingiz ishonadigan veb-saytdan qidiruv natijasini oching</string>
-    <string name="home_download_instructions_step2_search_note">Morphe bu veb-saytlarga kafolat bera olmaydi. APK fayl o\'rniga o\'z ilovalar do\'konini taklif qiladiganlarini o\'tkazib yuboring</string>
+    <string name="home_download_instructions_step2_search_note">Mamu bu veb-saytlarga kafolat bera olmaydi. APK fayl o\'rniga o\'z ilovalar do\'konini taklif qiladiganlarini o\'tkazib yuboring</string>
     <string name="home_download_instructions_step3_search">O\'sha veb-saytda &lt;b&gt;%s&lt;/b&gt; versiyasining APK faylini yuklab oling, eng yangisini emas</string>
     <string name="home_download_instructions_step3_search_any">O\'sha veb-saytda ilovaning APK faylini yuklab oling. &lt;b&gt;Har qanday versiyaga&lt;/b&gt; yamoq qo\'llash mumkin</string>
     <string name="home_download_instructions_step2_github">&lt;b&gt;%s&lt;/b&gt; versiyasining &lt;b&gt;Assets&lt;/b&gt; bo\'limida &lt;b&gt;.apk&lt;/b&gt; bilan tugaydigan faylni bosing</string>
@@ -314,11 +314,11 @@
     <string name="home_download_instructions_download_button_toast_3">Mashq ustalikni oshiradi, siz yo‘lda ekansiz 💪</string>
     <string name="home_download_instructions_download_button_toast_4">Hali ham yo\'q... hali ham yo\'q... 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">OK, bag\'ishlanishga hurmat</string>
-    <string name="home_download_instructions_download_button_toast_6">Siz endi Morphe tugmachasini sinovdan o\'tkazuvchi edingiz 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">Siz endi Mamu tugmachasini sinovdan o\'tkazuvchi edingiz 🏅</string>
     <string name="home_download_instructions_step3">Yuklab olish yakunlanishini kuting va &lt;b&gt;o\'rnatmang&lt;/b&gt; APK faylini</string>
     <string name="home_download_instructions_step3_mount">Yuklab olish tugagandan so‘ng &lt;b&gt;APK ni o‘rnating&lt;/b&gt;</string>
-    <string name="home_download_instructions_step4">Yuklab olish tugagandan so\'ng, Morphe ga qayting</string>
-    <string name="home_download_instructions_step4_mount">Asl APKni o\'rnatgandan so\'ng Morphe ga qayting</string>
+    <string name="home_download_instructions_step4">Yuklab olish tugagandan so\'ng, Mamu ga qayting</string>
+    <string name="home_download_instructions_step4_mount">Asl APKni o\'rnatgandan so\'ng Mamu ga qayting</string>
     <string name="home_download_instructions_continue_to">%sga o\'ting</string>
     <string name="home_download_instructions_destination">yuklab olish sahifasi</string>
     <string name="home_download_instructions_copy_link">Havolani nusxalash</string>
@@ -446,12 +446,12 @@ Eng yaxshi natijalar uchun ushbu ilova to‘liq &lt;b&gt;APK&lt;/b&gt;ni patchla
     <string name="adaptive_icon_themed">Mavzuli</string>
     <string name="adaptive_icon_background_color">Fon rangi</string>
     <string name="adaptive_icon_reset_transform">Joylashuv va masshtabni tiklash</string>
-    <string name="adaptive_icon_no_transparency_warning">Bu rasmda shaffof piksellar yo\'q, shuning uchun mavzuli va bildirishnoma ikonkalari Morphe logotipini saqlaydi.</string>
+    <string name="adaptive_icon_no_transparency_warning">Bu rasmda shaffof piksellar yo\'q, shuning uchun mavzuli va bildirishnoma ikonkalari Mamu logotipini saqlaydi.</string>
     <string name="adaptive_icon_created_success">Maxsus ilova belgisi yaratildi</string>
     <string name="adaptive_icon_creation_failed">Maxsus ilova belgisini yaratishda xatolik</string>
     <string name="adaptive_icon_guide">Ikon yaratish qo‘llanmasi</string>
     <string name="adaptive_icon_guide_png_title">Shaffof fonli PNG dan foydalaning</string>
-    <string name="adaptive_icon_guide_png_body">Shaffof fondagi logotip eng yaxshi ishlaydi, fon rangi quyida tanlanadi. Shaffofligi bo\'lmagan rasm butun ikonkani to\'ldiradi va mavzuli va bildirishnoma ikonkalari Morphe logotipini saqlaydi.</string>
+    <string name="adaptive_icon_guide_png_body">Shaffof fondagi logotip eng yaxshi ishlaydi, fon rangi quyida tanlanadi. Shaffofligi bo\'lmagan rasm butun ikonkani to\'ldiradi va mavzuli va bildirishnoma ikonkalari Mamu logotipini saqlaydi.</string>
     <string name="adaptive_icon_guide_safe_zones_title">Xavfsiz hududlar</string>
     <string name="adaptive_icon_guide_safe_zones_body">Kontur sizning launcher\'ingizning ikonka shaklini ko\'rsatadi va uning tashqarisidagi hamma narsa kesib tashlanadi. Boshqa launcher\'lar boshqa shakllardan foydalanadi, shuning uchun muhim tafsilotlarni har bir shaklda ko\'rinadigan chiziqli doira ichida saqlang.</string>
     <string name="adaptive_icon_guide_notification_title">Bildirishnoma ikoni</string>
@@ -557,8 +557,8 @@ Eng yaxshi natijalar uchun ushbu ilova to‘liq &lt;b&gt;APK&lt;/b&gt;ni patchla
     <string name="home_app_info_version_move">O‘rnatilgan: %1$s, eng so‘nggi qo‘llab-quvvatlanadigan: %2$s</string>
     <string name="home_app_info_version_restore">O\'rnatildi %1$s, patchlangan %2$s</string>
     <string name="home_app_info_app_deleted_warning">Ilova o\'rnatilmagan</string>
-    <string name="home_app_info_app_deleted_description">Ushbu ilova Morphe tashqarisida o‘chirilgan. Funksiyalarni tiklash uchun uni qayta patchlang</string>
-    <string name="home_app_info_not_patched_description">Ushbu ilovaning patch qilinmagan versiyasi oʻrnatilgan. Morphe hali ham avvalgi patch yozuviga ega.</string>
+    <string name="home_app_info_app_deleted_description">Ushbu ilova Mamu tashqarisida o‘chirilgan. Funksiyalarni tiklash uchun uni qayta patchlang</string>
+    <string name="home_app_info_not_patched_description">Ushbu ilovaning patch qilinmagan versiyasi oʻrnatilgan. Mamu hali ham avvalgi patch yozuviga ega.</string>
     <string name="home_app_info_mount_replaced_description">Boshqa versiya mount qilingan ilovani almashtirdi, shuning uchun patch endi qo\'llanilmaydi. Qayta tiklash patchlangan versiyani qaytaradi.</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play mount qilingan ilovani yangiladi, shuning uchun patch endi qo\'llanilmaydi. Qayta tiklash patchlangan versiyani qaytaradi. Uni patchlangan holda saqlash uchun Google Play\'da avtomatik yangilashni o\'chiring.</string>
     <string name="app_links_title">Qo‘llab-quvvatlanadigan veb havolalar</string>
@@ -589,7 +589,7 @@ Eng yaxshi natijalar uchun ushbu ilova to‘liq &lt;b&gt;APK&lt;/b&gt;ni patchla
     <string name="root_pre_patch_installer_description">Sizning qurilmangizda root huquqiga ega. Ushbu ilovaning root mount uchun yoki standart o\'rnatish uchun patch ekanligini tanlang</string>
     <string name="root_pre_patch_installer_mount_title">Root mount rejimi</string>
     <string name="root_pre_patch_installer_mount_description">Root mount uchun patchlar, keyin APK mos keladigan standart ilova ustiga o‘rnatiladi. GmsCore kerak emas</string>
-    <string name="root_mount_module_unmount_warning">Agar KernelSU\'da \"Unmount modules by default\" yoqilgan bo\'lsa, KernelSU &gt; Superuser &gt; siz mount qilgan ilova &gt; Profile &gt; Custom ni oching va \"Unmount modules\" ni o\'chiring. Aks holda, mount qilingan patchlangan APK kuchga kirmasligi mumkin, hatto Morphe uni mount qilingan deb ko\'rsatsa ham.</string>
+    <string name="root_mount_module_unmount_warning">Agar KernelSU\'da \"Unmount modules by default\" yoqilgan bo\'lsa, KernelSU &gt; Superuser &gt; siz mount qilgan ilova &gt; Profile &gt; Custom ni oching va \"Unmount modules\" ni o\'chiring. Aks holda, mount qilingan patchlangan APK kuchga kirmasligi mumkin, hatto Mamu uni mount qilingan deb ko\'rsatsa ham.</string>
     <string name="root_pre_patch_installer_standard_title">Standart oʻrnatish rejimi</string>
     <string name="root_pre_patch_installer_standard_description">GmsCore qoʻllab-quvvati bilan oddiy APK sifatida patchlar. Patchdan keyin sizning oʻrnatish sozlamangiz ishlatiladi</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -652,7 +652,7 @@ Eng yaxshi natijalar uchun ushbu ilova to‘liq &lt;b&gt;APK&lt;/b&gt;ni patchla
     <string name="patcher_conflict_subtitle">Mavjud versiyani o‘chirib tashlashingiz kerak</string>
     <string name="patcher_conflict_hint">Patchlangan ilova o‘rnatilgan versiyadan boshqa sertifikatdan foydalanadi. Ilova ma\'lumotlarini o‘chirish barcha ilova ma\'lumotlarini o‘chiradi</string>
     <string name="patcher_installed_conflict_title">O‘chirish talab qilinadi</string>
-    <string name="patcher_installed_conflict_body">"Morphe patchlangan ilovalarni o‘z sertifikati bilan imzolaydi, bu aslidan farq qiladi. Android patchlangan ilovani o‘rnatishdan oldin mavjud versiyani olib tashlashni talab qiladi.
+    <string name="patcher_installed_conflict_body">"Mamu patchlangan ilovalarni o‘z sertifikati bilan imzolaydi, bu aslidan farq qiladi. Android patchlangan ilovani o‘rnatishdan oldin mavjud versiyani olib tashlashni talab qiladi.
 
 O‘chirish barcha ilova ma'lumotlarini butunlay o‘chirib tashlaydi"</string>
     <string name="patcher_install_error_title">O‘rnatish xatoligi</string>
@@ -662,9 +662,9 @@ O‘chirish barcha ilova ma'lumotlarini butunlay o‘chirib tashlaydi"</string>
     <string name="patcher_patches_excluded_for_installer">Ushbu oʻrnatish usuli uchun mavjud emas va istisno qilingan: %s</string>
     <string name="patcher_storage_permission_dialog_title">Xotira yo\'liga kirib bo\'lmadi</string>
     <string name="patcher_incompatible_patcher_title">Yangilash talab qilinadi</string>
-    <string name="patcher_incompatible_patcher_description">&lt;b&gt;%1$s&lt;/b&gt; manbasi &lt;b&gt;%2$s&lt;/b&gt; yoki undan yangiroq patcher’ni talab qiladi. Undan foydalanish uchun Morphe’ni yangilang</string>
-    <string name="patcher_storage_permission_description_api30">Bir nechta patch opsiyalari Morphe o\'qiy olmaydigan yo\'llarga ishorat qiladi. Xotira ruxsatini bering va keyin patchlash avtomatik ravishda boshlanadi</string>
-    <string name="patcher_storage_permission_description_legacy">Bir nechta patch opsiyalari Morphe o\'qiy olmaydigan yo\'llarga ishorat qiladi. Xotira ruxsatini bering va tugmani bosing, keyin patchlash avtomatik ravishda boshlanadi</string>
+    <string name="patcher_incompatible_patcher_description">&lt;b&gt;%1$s&lt;/b&gt; manbasi &lt;b&gt;%2$s&lt;/b&gt; yoki undan yangiroq patcher’ni talab qiladi. Undan foydalanish uchun Mamu’ni yangilang</string>
+    <string name="patcher_storage_permission_description_api30">Bir nechta patch opsiyalari Mamu o\'qiy olmaydigan yo\'llarga ishorat qiladi. Xotira ruxsatini bering va keyin patchlash avtomatik ravishda boshlanadi</string>
+    <string name="patcher_storage_permission_description_legacy">Bir nechta patch opsiyalari Mamu o\'qiy olmaydigan yo\'llarga ishorat qiladi. Xotira ruxsatini bering va tugmani bosing, keyin patchlash avtomatik ravishda boshlanadi</string>
     <string name="patcher_storage_permission_grant">Xotira ruxsatini bering</string>
     <string name="patcher_storage_permission_denied_warning">Xotira ruxsati rad etildi. Ushbu yo\'ldan foydalanish uchun ruxsat bering yoki fayllarni ilovaning maxsus katalogiga ko\'chiring</string>
     <string name="patcher_storage_permission_open_settings">Xotira sozlamalarini ochish</string>
@@ -680,7 +680,7 @@ O‘chirish barcha ilova ma'lumotlarini butunlay o‘chirib tashlaydi"</string>
     <string name="patcher_option_paths_rejected_title">Patch variantlari fayllaridan foydalanib bo\'lmaydi</string>
     <string name="patcher_option_paths_rejected_description">Bir yoki bir nechta patch variantlari mavjud bo\'lmagan yoki patch talab qilgan narsaga ega bo\'lmagan fayllarga ishora qilmoqda. Ularsiz patch qilish uchun yo\'llarni olib tashlang yoki fayllarni variant ko\'rsatmalarida tavsiflanganidek tuzatib, qayta urinib ko\'ring</string>
     <string name="patcher_option_paths_clear">Yo‘llarni olib tashlash va davom etish</string>
-    <string name="patcher_storage_permission_hint">Maslahat: Fayllarni /Android/data/app.morphe.manager/files/ ga ko\'chiring - qo\'shimcha ruxsatlar kerak emas</string>
+    <string name="patcher_storage_permission_hint">Maslahat: Fayllarni /Android/data/app.morphe.extended/files/ ga ko\'chiring - qo\'shimcha ruxsatlar kerak emas</string>
     <!-- Patcher Screen - Patcher Steps -->
     <string name="patcher_step_group_preparing">Tayyorlanmoqda</string>
     <string name="patcher_step_load_patches">Patchlarni yuklamoqda</string>
@@ -699,7 +699,7 @@ O‘chirish barcha ilova ma'lumotlarini butunlay o‘chirib tashlaydi"</string>
     <string name="patcher_task_writing_apk">APK fayli yozilmoqda</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">Patchlashni himoya qilish</string>
-    <string name="battery_optimization_dialog_description">Ba\'zi moslamalar ilovani minimallashtirganda patcherni to‘xtatishi mumkin. Patchlash ishonchli bajarilishini ta\'minlash uchun Morphe batareyani cheklashsiz ishlay olishiga ruxsat bering</string>
+    <string name="battery_optimization_dialog_description">Ba\'zi moslamalar ilovani minimallashtirganda patcherni to‘xtatishi mumkin. Patchlash ishonchli bajarilishini ta\'minlash uchun Mamu batareyani cheklashsiz ishlay olishiga ruxsat bering</string>
     <string name="battery_optimization_not_now">Hozir emas</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">Patchlash jarayonida…</string>
@@ -754,8 +754,8 @@ O‘chirish barcha ilova ma'lumotlarini butunlay o‘chirib tashlaydi"</string>
     <string name="install_ignore_signature">Bari bir o\'rnatish</string>
     <string name="install_ignore_signature_description">Ilova maʼlumotlarini saqlaydi, lekin faqat root modul Androidʼning imzo tekshiruvini oʻchirib qoʻyganida ishlaydi.</string>
     <string name="uninstall_app_fail">Ilova o\'rnatishda xatolik: %s</string>
-    <string name="uninstall_app_unverified">Joyida qoldirildi: Morphe o\'rnatilgan ilova u yamagan build ekanligini tasdiqlay olmadi.</string>
-    <string name="launch_app_unverified">Morphe o\'rnatilgan ilova u yamagan build ekanligini tasdiqlay olmadi.</string>
+    <string name="uninstall_app_unverified">Joyida qoldirildi: Mamu o\'rnatilgan ilova u yamagan build ekanligini tasdiqlay olmadi.</string>
+    <string name="launch_app_unverified">Mamu o\'rnatilgan ilova u yamagan build ekanligini tasdiqlay olmadi.</string>
     <string name="uninstall_timeout">O\'rnatish vaqti tugadi</string>
     <string name="save_apk_success">APK saqlab qolindi</string>
     <string name="saved_app_export_failed">Patchlangan ilovni eksport qilishda xatolik</string>
@@ -847,7 +847,7 @@ O‘chirish barcha ilova ma'lumotlarini butunlay o‘chirib tashlaydi"</string>
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">Ilova tili</string>
     <string name="settings_appearance_app_language_current">Hozirgi til</string>
-    <string name="settings_appearance_translate">Morphe\'ni tarjima qilishga yordam bering</string>
+    <string name="settings_appearance_translate">Mamu\'ni tarjima qilishga yordam bering</string>
     <string name="settings_appearance_translations_info_title">Ba\'zi tillar uchun tarjimaning yo\'qligi yoki to\'liq bo\'lmasligi mumkin</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">Interfeys masshtabi</string>
@@ -876,7 +876,7 @@ O‘chirish barcha ilova ma'lumotlarini butunlay o‘chirib tashlaydi"</string>
     <string name="settings_appearance_app_card_colors_bundle_description">Bu yerda har bir ilova yoki manbaning o\'z rangidan foydalaning, ular avtomatik ravishda moslashtiriladi</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">Ilova belgisi</string>
-    <string name="settings_appearance_app_icon_selector_description">Morphe bosh ekranda va ilovalar ro‘yxatida qanday ko‘rinishi</string>
+    <string name="settings_appearance_app_icon_selector_description">Mamu bosh ekranda va ilovalar ro‘yxatida qanday ko‘rinishi</string>
     <string name="settings_appearance_app_icon_default">Standart</string>
     <string name="settings_appearance_app_icon_light_2">Osmon</string>
     <string name="settings_appearance_app_icon_light_3">Quyosh botishi</string>
@@ -900,23 +900,23 @@ O‘chirish barcha ilova ma'lumotlarini butunlay o‘chirib tashlaydi"</string>
     <string name="settings_appearance_app_icon_mark_black">Qora</string>
     <string name="settings_appearance_app_icon_change_dialog_title">Ilova belgisini o‘zgartirish?</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">Morphe &lt;b&gt;%s&lt;/b&gt; ga o‘tish uchun qayta ishga tushadi</string>
+    <string name="settings_appearance_app_icon_change_restarts">Mamu &lt;b&gt;%s&lt;/b&gt; ga o‘tish uchun qayta ishga tushadi</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">Tasdiqlash</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">Oldindan chiqish yangilanishlari</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">Morphe yangi versiyalariga erta kirish</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">Mamu yangi versiyalariga erta kirish</string>
     <string name="settings_advanced_updates_prerelease_warning_title">Oldindan chiqish yangilanishlarini yoqish?</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"Morphe'ning pre-release versiyalari hali ishlab chiqish bosqichida va beqaror bo'lishi mumkin.
+    <string name="settings_advanced_updates_prerelease_warning_message">"Mamu'ning pre-release versiyalari hali ishlab chiqish bosqichida va beqaror bo'lishi mumkin.
 
 Patchlar ta'sirlanmaydi: patch manbalari ro'yxatidagi har bir manba uchun pre-release patchlarni yoqing"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">Avtomatik yangilanishlar</string>
-    <string name="settings_auto_updates_description">Morphe ochilganda yangilanishlar bo\"yicha nima qilishi. Pastga tortib yangilash har doim tekshiradi</string>
+    <string name="settings_auto_updates_description">Mamu ochilganda yangilanishlar bo\"yicha nima qilishi. Pastga tortib yangilash har doim tekshiradi</string>
     <string name="settings_auto_updates_download">Avtomatik yuklab olish</string>
-    <string name="settings_auto_updates_download_description">Morphe ochilganda yangilanishlarni tekshiradi va har qanday tarmoqda patch yangilanishlarini yuklab oladi</string>
+    <string name="settings_auto_updates_download_description">Mamu ochilganda yangilanishlarni tekshiradi va har qanday tarmoqda patch yangilanishlarini yuklab oladi</string>
     <string name="settings_auto_updates_wifi_only">Faqat Wi-Fi orqali yuklab olish</string>
     <string name="settings_auto_updates_wifi_only_description">Mobil ma\'lumotlarda faqat nimalar mavjudligini tekshiradi va ko\'rsatadi</string>
     <string name="settings_auto_updates_check_only">Faqat tekshirish</string>
@@ -937,27 +937,27 @@ Patchlar ta'sirlanmaydi: patch manbalari ro'yxatidagi har bir manba uchun pre-re
     <string name="settings_advanced_external_batch_patch">Tashqi hodisalarni ruxsat berish</string>
     <string name="settings_advanced_external_batch_patch_description">Avtomatlashtirish ilovalariga ommaviy patchlashni boshlashga ruxsat beradi.</string>
     <string name="external_batch_patch_title">Ommaviy ta’mirlashni boshlash kerakmi?</string>
-    <string name="external_batch_patch_description">%s Morphe ga ilovalarni ta’mirlash va o‘rnatishni boshlashni xohlaydi</string>
+    <string name="external_batch_patch_description">%s Mamu ga ilovalarni ta’mirlash va o‘rnatishni boshlashni xohlaydi</string>
     <string name="external_batch_patch_trust_caller">Ushbu ilovaga har doim ruxsat berish</string>
     <string name="external_batch_patch_unknown_caller">Noma’lum ilova</string>
     <!-- Notification content -->
     <string name="notification_bundle_update_title">Yangi patchlar mavjud</string>
     <string name="notification_update_text">Versiya %s yuklab olish uchun tayyor</string>
-    <string name="notification_bundle_update_text_unversioned">Morphe ni ochish uchun tugmani bosing va yangilanishni o\'rnating</string>
+    <string name="notification_bundle_update_text_unversioned">Mamu ni ochish uchun tugmani bosing va yangilanishni o\'rnating</string>
     <string name="notification_permission_dialog_title">Bildirishnomalarga ruxsat bering</string>
-    <string name="notification_permission_dialog_description">Morphe sizga yangilanishlar mavjud bo\'lganda bildirishnoma olish uchun bildirishnoma ruxsatini olishi kerak</string>
+    <string name="notification_permission_dialog_description">Mamu sizga yangilanishlar mavjud bo\'lganda bildirishnoma olish uchun bildirishnoma ruxsatini olishi kerak</string>
     <string name="notification_post_patch_dialog_title">Yangilanishlar mavjud bo\'lganda bildirishnoma olmoqchi edingizmi?</string>
-    <string name="notification_channel_manager_updates">Morphe yangilanishlari</string>
-    <string name="notification_channel_manager_updates_description">Morphe’ning yangi versiyalari haqidagi bildirishnomalar</string>
+    <string name="notification_channel_manager_updates">Mamu yangilanishlari</string>
+    <string name="notification_channel_manager_updates_description">Mamu’ning yangi versiyalari haqidagi bildirishnomalar</string>
     <string name="notification_channel_patch_updates">Yamoq yangilanishlari</string>
     <string name="notification_channel_patch_updates_description">Yangi yamoq versiyalari haqidagi bildirishnomalar</string>
-    <string name="notification_channel_patcher_description">Morphe orqa fonda ilovani patchlayotganda ko\'rsatildi</string>
+    <string name="notification_channel_patcher_description">Mamu orqa fonda ilovani patchlayotganda ko\'rsatildi</string>
     <string name="notification_channel_patching_results">Patchlash natijalari</string>
-    <string name="notification_channel_patching_results_description">Patchlash yakunlanganda yoki Morphe fonda ishlayotgan vaqtda o\'rnatish sizni kutayotganida</string>
+    <string name="notification_channel_patching_results_description">Patchlash yakunlanganda yoki Mamu fonda ishlayotgan vaqtda o\'rnatish sizni kutayotganida</string>
     <string name="notification_channel_mounted_apps">Mount qilingan ilovalar</string>
     <string name="notification_channel_mounted_apps_description">Boshqa versiya mount qilingan ilovani almashtirganda va uning patch endi qo\'llanilmaydi</string>
     <string name="notification_mount_replaced_title">%1$s endi patchlangan emas</string>
-    <string name="notification_mount_replaced_text">v%1$s patchlangan v%2$s ni almashtirdi. Uni qayta tiklash uchun Morphe\'ni oching.</string>
+    <string name="notification_mount_replaced_text">v%1$s patchlangan v%2$s ni almashtirdi. Uni qayta tiklash uchun Mamu\'ni oching.</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">Ekspert rejimi</string>
     <string name="settings_advanced_expert_mode_description">Kengaytirilgan patchlash sozlamalari va patch imkoniyatlarini ochadi.</string>
@@ -979,7 +979,7 @@ Patchlar ta'sirlanmaydi: patch manbalari ro'yxatidagi har bir manba uchun pre-re
     <string name="settings_advanced_github_pat_unreachable">Bu tokenni tekshirish uchun GitHub\'ga ulanib bo\'lmadi.</string>
     <string name="settings_advanced_github_pat_export_include_label">Sozlamalarni eksport qilishga kiritish</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">Ushbu PATni eksport qilingan Morphe sozlamalariga qo\'shadi</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">Ushbu PATni eksport qilingan Mamu sozlamalariga qo\'shadi</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">PAT\'ingizni hech kimga bermang. Agar uni sozlamalar eksportiga qo\'shsangiz, faylni maxfiy saqlang, chunki unda token bor</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1074,7 +1074,7 @@ Rasm o‘lchamlari quyidagicha bo‘lishi kerak:
     <string name="installer_status_not_supported">Ushbu harakat uchun qo\'llab-quvvatlanmaydi</string>
     <string name="installer_status_shizuku_not_installed">Ushbu variantdan foydalanish uchun Shizuku yoki Sui o\'rnating</string>
     <string name="installer_status_shizuku_not_running">Shizuku yoki Sui ishga tushiring va yana urinib ko\'ring</string>
-    <string name="installer_status_shizuku_permission">Morphe dan Shizuku ilovasidan ruxsat bering</string>
+    <string name="installer_status_shizuku_permission">Mamu dan Shizuku ilovasidan ruxsat bering</string>
     <string name="installer_mount_warning_install">Patch rejimi root mount rejimiga sozlangan. Ushbu saqlangan ilova mount orqali o\'rnatilmagan</string>
     <string name="mount_version_mismatch_message">Asl ilova versiyasi (%2$s) patchlangan ilova versiyasi (%1$s) bilan mos kelmaydi. Mos keladigan asl versiyani mount qiling, so‘ngra yana urinib ko‘ring</string>
     <string name="mount_stock_restore_failed_message">Android saqlangan original APK-ni rad etdi. Mos keladigan stock versiyasini oʻrnating, keyin yana Mount qilishga harakat qiling</string>
@@ -1115,7 +1115,7 @@ Rasm o‘lchamlari quyidagicha bo‘lishi kerak:
     <string name="settings_ignore_install_target_rules">O\'rnatish maqsadi talablarini e\'tiborsiz qoldirish</string>
     <string name="settings_ignore_install_target_rules_description">O\'rnatish maqsadiga kerakli patchlarni o\'chirish va u rad etgan patchlarni yoqish imkonini beradi. Patch qilingan ilova ishlamasligi mumkin</string>
     <string name="settings_auto_uninstall_warning_title">Avtomatik o‘chirib tashlashni yoqish kerakmi?</string>
-    <string name="settings_auto_uninstall_warning_message">Agar Shizuku avtomatik o‘rnatish paytida Android imzo ziddiyati haqida xabar bersa, Morphe o‘zgartirilgan APK-ni o‘rnatishdan oldin mavjud ilovani o‘chirib tashlaydi</string>
+    <string name="settings_auto_uninstall_warning_message">Agar Shizuku avtomatik o‘rnatish paytida Android imzo ziddiyati haqida xabar bersa, Mamu o‘zgartirilgan APK-ni o‘rnatishdan oldin mavjud ilovani o‘chirib tashlaydi</string>
     <string name="settings_auto_uninstall_warning_risk">Bu ilova ma’lumotlarini o‘chirib tashlashi mumkin. Agar o‘zgartirilgan APK-ni o‘chirib tashlashdan so‘ng o‘rnatish muvaffaqiyatsiz bo‘lsa, oldingi ilova allaqachon o‘chirilgan bo‘lishi mumkin</string>
     <string name="installer_shizuku_status_action">Shizuku maqomini tekshiring</string>
     <string name="installer_shizuku_status_title">Shizuku maqomi</string>
@@ -1133,7 +1133,7 @@ Rasm o‘lchamlari quyidagicha bo‘lishi kerak:
     <string name="installer_shizuku_install_fail_with_details">"Shizuku o‘rnatish muvaffaqiyatsiz yakunlandi: %1$s
 
 Ma’lumotlar: %2$s"</string>
-    <string name="installer_shizuku_error_permission">Shizuku ruxsati yo‘q. Morphe ga ruxsat bering va yana urinib ko‘ring</string>
+    <string name="installer_shizuku_error_permission">Shizuku ruxsati yo‘q. Mamu ga ruxsat bering va yana urinib ko‘ring</string>
     <string name="installer_shizuku_error_timeout">Shizuku o‘rnatish natijasini qaytarmadi. U hali ham ishlayotganligiga ishonch hosil qiling va yana urinib ko‘ring</string>
     <string name="installer_shizuku_error_downgrade">Android bu amalatni bajarishni blokladi, chunki u o‘rnatilgan ilovani pasaytiradi</string>
     <string name="installer_shizuku_error_signature">Android bu amalatni bajarishni blokladi, chunki o‘rnatilgan ilova boshqa imzolarga ega</string>
@@ -1144,13 +1144,13 @@ Ma’lumotlar: %2$s"</string>
     <string name="settings_system_battery_optimization_description">Ilova minimallashtirilganda patcher ishlashda davom etishi uchun</string>
     <string name="settings_system_process_runtime">Patcher ish vaqti</string>
     <string name="settings_system_jvm_runtime_enable">O\'rnatilgan VM ishlatish</string>
-    <string name="settings_system_jvm_runtime_description">Morphe ning shaxsiy Java VM dagi patchlari, ular ko\'proq xotira iste\'mol qilishi mumkin. Android runtime\'dan foydalanish uchun uni o\'chiring</string>
+    <string name="settings_system_jvm_runtime_description">Mamu ning shaxsiy Java VM dagi patchlari, ular ko\'proq xotira iste\'mol qilishi mumkin. Android runtime\'dan foydalanish uchun uni o\'chiring</string>
     <string name="settings_system_jvm_runtime_unavailable">ARM yoki 64-bit x86 qurilmasi kerak.</string>
     <string name="settings_system_patcher_completion_sound">Yakunlanish tovushi</string>
     <string name="settings_system_patcher_completion_sound_description">Patchlash tugagach muvaffaqiyat yoki muvaffaqiyatsizlik uchun alohida ohang ijro etiladi</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">Bildirishnomalar</string>
-    <string name="settings_system_notifications_description">Morphe sizni qanday xabardor qiladi</string>
+    <string name="settings_system_notifications_description">Mamu sizni qanday xabardor qiladi</string>
     <string name="settings_system_notifications_success_sound">Muvaffaqiyat tovushi</string>
     <string name="settings_system_notifications_error_sound">Xatolik ovozi</string>
     <string name="settings_system_notifications_sound_default">Standart</string>
@@ -1162,8 +1162,8 @@ Ma’lumotlar: %2$s"</string>
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">Imzolash kaliti</string>
     <string name="settings_system_signing_key_description">Patchlangan ilovalarni imzolaydigan kalitni zaxiralaydi yoki tiklaydi.</string>
-    <string name="settings_system_signing_key_dialog_description">Morphe yamaydigan har bir ilova shu kalit bilan imzolanadi. Nusxasini saqlang: usiz yamalgan ilovalarni faqat o‘chirib tashlagandan keyin yangilash mumkin</string>
-    <string name="settings_system_signing_key_missing">Morphe birinchi yamoqda uni yaratadi</string>
+    <string name="settings_system_signing_key_dialog_description">Mamu yamaydigan har bir ilova shu kalit bilan imzolanadi. Nusxasini saqlang: usiz yamalgan ilovalarni faqat o‘chirib tashlagandan keyin yangilash mumkin</string>
+    <string name="settings_system_signing_key_missing">Mamu birinchi yamoqda uni yaratadi</string>
     <string name="settings_system_signing_key_created">Yaratilgan: %s</string>
     <string name="settings_system_signing_key_fingerprint">SHA-256 barmoq izi</string>
     <string name="settings_system_backup_appearance_description">Mavzu, ranglar va til</string>
@@ -1185,31 +1185,31 @@ Ma’lumotlar: %2$s"</string>
     <string name="settings_system_export_keystore_failed">Keystore eksport qila olmadi</string>
     <string name="settings_system_show_password_field">Parolni ko\'rsatish</string>
     <string name="settings_system_hide_password_field">Parolni yashirish</string>
-    <string name="settings_system_morphe_settings">Morphe sozlamalari</string>
-    <string name="settings_system_import_manager_settings_description">Morphe sozlamalaringizni saqlab qolish va tiklash</string>
-    <string name="settings_system_export_manager_settings_title">Morphe sozlamalarini eksport qilish</string>
+    <string name="settings_system_morphe_settings">Mamu sozlamalari</string>
+    <string name="settings_system_import_manager_settings_description">Mamu sozlamalaringizni saqlab qolish va tiklash</string>
+    <string name="settings_system_export_manager_settings_title">Mamu sozlamalarini eksport qilish</string>
     <string name="settings_system_export_manager_settings_description">Siz tanlagan sozlamalarni faylga saqlaydi</string>
     <string name="settings_system_import_manager_settings_file_description">Sozlamalarni zaxira nusxa faylidan tiklaydi</string>
     <string name="settings_system_auto_backup">Avtomatik zaxira nusxalash</string>
     <string name="settings_system_auto_backup_switch">Avtomatik ravishda zaxira nusxalash</string>
     <string name="settings_system_auto_backup_now">Hozir zaxira nusxalash</string>
     <string name="settings_system_auto_backup_saved">Zaxira nusxa saqlandi</string>
-    <string name="settings_system_auto_backup_interval_description">Morphe keyingi nusxani yaratishdan oldin nusxa ko\'chirilganidan keyin kamida shu vaqt davomida kutadi</string>
-    <string name="settings_system_auto_backup_description">Siz tanlagan papkaga Morphe sozlamalarini saqlaydi</string>
+    <string name="settings_system_auto_backup_interval_description">Mamu keyingi nusxani yaratishdan oldin nusxa ko\'chirilganidan keyin kamida shu vaqt davomida kutadi</string>
+    <string name="settings_system_auto_backup_description">Siz tanlagan papkaga Mamu sozlamalarini saqlaydi</string>
     <string name="settings_system_auto_backup_last">Oxirgi zaxira nusxa: %s</string>
     <string name="settings_system_auto_backup_folder">Papka</string>
-    <string name="settings_system_auto_backup_folder_name">Morphe zaxira nusxalari</string>
+    <string name="settings_system_auto_backup_folder_name">Mamu zaxira nusxalari</string>
     <string name="settings_system_auto_backup_folder_failed">Ushbu papkadan foydalanib bo\"lib bo\"lmadi: %s</string>
     <string name="settings_system_auto_backup_interval">Zaxiralash chastotasi</string>
     <string name="settings_system_auto_backup_signing_key">Imzolash kalitini kiritish</string>
     <string name="settings_system_auto_backup_signing_key_description">Sozlamalar bilan birga patch qilingan ilovalarni imzolaydigan kalitni saqlaydi</string>
     <string name="settings_system_auto_backup_signing_key_warning_title">Imzolash kalitini zaxiralashmi?</string>
     <string name="settings_system_auto_backup_signing_key_warning_message">Ushbu faylni qo\"lga kiritgan har qanday shaxs patch qilingan ilovalaringiz ustiga o\"rnatiladigan yangilanishlarni imzolashi mumkin. Papkani maxfiy saqlang va uni faqat o\"z qurilmalaringiz bilan baham ko\"ring</string>
-    <string name="settings_system_auto_backup_footer">Biror narsani o\'zgartirgandan so\'ng Morphe\'dan chiqqanda nusxa saqlanadi. Eng yangi %s saqlanadi</string>
+    <string name="settings_system_auto_backup_footer">Biror narsani o\'zgartirgandan so\'ng Mamu\'dan chiqqanda nusxa saqlanadi. Eng yangi %s saqlanadi</string>
     <string name="settings_system_auto_backup_failed">Oxirgi zaxira nusxasini saqlab bo\"lmadi. Papkani qaytadan tanlang</string>
-    <string name="settings_system_import_manager_settings_fail">Morphe sozlamalarini import qilishda xatolik: %s</string>
-    <string name="settings_system_import_manager_settings_success">Morphe sozlamalari import qilindi</string>
-    <string name="settings_system_import_manager_settings_mode_title">Morphe sozlamalarini import qilish</string>
+    <string name="settings_system_import_manager_settings_fail">Mamu sozlamalarini import qilishda xatolik: %s</string>
+    <string name="settings_system_import_manager_settings_success">Mamu sozlamalari import qilindi</string>
+    <string name="settings_system_import_manager_settings_mode_title">Mamu sozlamalarini import qilish</string>
     <string name="settings_system_import_manager_settings_mode_description">Import qilingan sozlamalar va manbalar qanday qo\'llanilishini tanlang</string>
     <string name="settings_system_import_selections_mode_title">Patch tanlovlarini import qilish</string>
     <string name="settings_system_import_selections_mode_description">Import qilingan tanlovlar va patch opsiyalari qanday qo\'llanilishini tanlang</string>
@@ -1217,8 +1217,8 @@ Ma’lumotlar: %2$s"</string>
     <string name="import_mode_replace_description">Zaxiraga to‘liq mos keltirish. Zaxirada bo‘lmagan elementlar o‘chiriladi</string>
     <string name="import_mode_merge_title">Mavjud bilan birlashtirish</string>
     <string name="import_mode_merge_description">Zaxirada yo‘q elementlarni qo‘shish. Mavjud elementlar o‘zgarishsiz qoldiriladi</string>
-    <string name="settings_system_export_manager_settings_fail">Morphe sozlamalarini eksport qilishda xatolik: %s</string>
-    <string name="settings_system_export_manager_settings_success">Morphe sozlamalari eksport qilindi</string>
+    <string name="settings_system_export_manager_settings_fail">Mamu sozlamalarini eksport qilishda xatolik: %s</string>
+    <string name="settings_system_export_manager_settings_success">Mamu sozlamalari eksport qilindi</string>
     <string name="settings_system_export_debug_logs">Debug jurnallarini eksport qilish</string>
     <string name="settings_system_export_debug_logs_description">Aniqlash uchun tizim jurnalini saqlab qolish</string>
     <string name="settings_system_export_debug_logs_export_read_failed">Jurnallarni o‘qishda xato (xato kodi %s)</string>
@@ -1236,7 +1236,7 @@ Ma’lumotlar: %2$s"</string>
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">Xotirani boshqarish</string>
     <string name="settings_system_storage_management_description">Diskdan foydalanishni ko\'rsatadi va keshlangan fayllarni tozalaydi.</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s bo\'sh</string>
     <string name="settings_system_storage_saved_apks">Saqlangan APK\'lar</string>
     <string name="settings_system_storage_caches">Keshlar</string>
@@ -1259,7 +1259,7 @@ Ma’lumotlar: %2$s"</string>
     <string name="settings_system_storage_clear_anyway">Baribir tozalash</string>
     <string name="settings_system_storage_nothing_to_clear">Tozalash uchun hech narsa yo‘q</string>
     <string name="settings_system_storage_open_app_info_title">Android ilova xotirasini ochish</string>
-    <string name="settings_system_storage_open_app_info_description">Morphe ning barcha ma\'lumotlarini tizim sozlamalari orqali boshqarish yoki tozalash</string>
+    <string name="settings_system_storage_open_app_info_description">Mamu ning barcha ma\'lumotlarini tizim sozlamalari orqali boshqarish yoki tozalash</string>
     <string name="settings_system_save_original_apks_title">Asl APK fayllarni saqlab qoling</string>
     <string name="settings_system_save_original_apks_description">Qayta tuzash uchun faylni yana tanlashni oldini olish uchun tuzashdan oldingi APK ni saqlang</string>
     <string name="settings_system_save_patched_apks_title">Tuzatilgan APK fayllarni saqlab qoling</string>
@@ -1313,13 +1313,13 @@ Ma’lumotlar: %2$s"</string>
     <string name="copy_selection_available_format">%1$s dan %2$s mavjud</string>
     <!-- Settings - System Tab - Custom file picker -->
     <string name="settings_system_custom_file_picker">Maxsus fayl tanlagich</string>
-    <string name="settings_system_custom_file_picker_description">Tizim fayl tanlovchisi o\'rniga Morphe\'ning ichki fayl tanlovchisidan foydalanadi.</string>
+    <string name="settings_system_custom_file_picker_description">Tizim fayl tanlovchisi o\'rniga Mamu\'ning ichki fayl tanlovchisidan foydalanadi.</string>
     <!-- Settings - System Tab - APK download helper -->
     <string name="settings_system_apk_download_helper">APK yuklab olish yordamchisi</string>
     <string name="settings_system_apk_download_helper_trusted_count">Ishonchli: %1$d / %2$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">Yordamchi ilovalar siz uchun original APK’larni yuklab olishi mumkin. Yuklab olish ko‘rsatmalarida faqat siz ishonganlari taklif qilinadi</string>
     <string name="settings_system_apk_download_helper_trust_title">Bu yordamchiga ishonasizmi?</string>
-    <string name="settings_system_apk_download_helper_warning">APK yordamchi ilovadan keladi, shuning uchun faqat o‘zingiz bilgan ilovalarga ishoning. Morphe baribir yamashdan oldin har bir faylning paketi, versiyasi va imzosini tekshiradi</string>
+    <string name="settings_system_apk_download_helper_warning">APK yordamchi ilovadan keladi, shuning uchun faqat o‘zingiz bilgan ilovalarga ishoning. Mamu baribir yamashdan oldin har bir faylning paketi, versiyasi va imzosini tekshiradi</string>
     <string name="settings_system_apk_download_helper_installed_by">%s tomonidan o‘rnatilgan</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">O‘rnatuvchi noma’lum</string>
     <string name="settings_system_apk_download_helper_open_directly">Yordamchini darhol ochish</string>
@@ -1352,7 +1352,7 @@ Ma’lumotlar: %2$s"</string>
     <string name="settings_about_section_project">Loyiha</string>
     <string name="settings_about_section_help">Yordam</string>
     <string name="credits_prior_development">Oldingi rivojlanish</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">Manager</string>
     <string name="about_update_available">Yangilanish mavjud: %s</string>
     <string name="about_up_to_date">Oxirgi versiya</string>
@@ -1365,7 +1365,7 @@ Ma’lumotlar: %2$s"</string>
     <string name="contributors_all_time">Barcha vaqtlar</string>
     <string name="contributors_6_months">6 oy</string>
     <string name="contributors_3_months">3 oy</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">Homiylar</string>
     <string name="supporters_description">Open Collective-dagi homiylar</string>
     <string name="supporters_become">Homiylikka qo\'shiling</string>
@@ -1373,7 +1373,7 @@ Ma’lumotlar: %2$s"</string>
     <string name="people_more">Yana %s ta</string>
     <string name="people_unavailable">Roºtni yuklab bo¼lmadi</string>
     <string name="opensource_licenses">Ochiq kodli litsenziyalar</string>
-    <string name="opensource_licenses_description">Morphe qurilgan kutubxonalar</string>
+    <string name="opensource_licenses_description">Mamu qurilgan kutubxonalar</string>
     <string name="opensource_licenses_search">Kutubxonalar va litsenziyalarni qidirish</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">Tanlov</string>
@@ -1398,12 +1398,12 @@ Ma’lumotlar: %2$s"</string>
     <string name="settings_section_patcher">Patcher</string>
     <string name="settings_section_updates">Yangilanishlar</string>
     <string name="settings_section_patching">Patchlash</string>
-    <string name="settings_section_appearance_summary">Morphe qanday ko\'rinishi</string>
+    <string name="settings_section_appearance_summary">Mamu qanday ko\'rinishi</string>
     <string name="settings_section_patch_options_summary">Oddiy rejim ilovalarni nima bilan patchlaydi</string>
     <string name="settings_section_general">Umumiy</string>
     <string name="settings_section_patcher_summary">Ilovalar ushbu qurilmada qanday patchlanadi</string>
     <string name="settings_section_help_info">Yordam &amp; ma\'lumot</string>
-    <string name="settings_section_about_summary">Morphe haqida ko\'proq va yordam olish</string>
+    <string name="settings_section_about_summary">Mamu haqida ko\'proq va yordam olish</string>
     <string name="settings_section_local_files">Fayllar</string>
     <string name="settings_section_backup">Zaxira</string>
     <string name="settings_section_import_export">Import va eksport</string>
@@ -1566,7 +1566,7 @@ Ma’lumotlar: %2$s"</string>
     <string name="update_completed">Yangilanish o‘rnatildi</string>
     <string name="install_update_manager_failed">Yangilanishni o‘rnatishda xatolik</string>
     <string name="installing_manager_update">Yangilanish o‘rnatilmoqda…</string>
-    <string name="installing_manager_update_hint">Yangilanishni yakunlash uchun Morphe yopiladi</string>
+    <string name="installing_manager_update_hint">Yangilanishni yakunlash uchun Mamu yopiladi</string>
     <string name="downloading_manager_update">Yangilanish yuklanmoqda…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">%1$s MB yuklab olindi</string>
@@ -1589,7 +1589,7 @@ Davom etmoqchimisiz?"</string>
     <string name="onboarding_signing_key_desc">Patchlangan ilovalaringizni imzolaydigan kalitni zaxiralang. Usiz ular faqat o\'chirilgandan keyin yangilanishi mumkin.</string>
     <string name="onboarding_swipe_title">Surish imo-ishoralari</string>
     <string name="onboarding_swipe_desc">Ilova kartasini o‘ngga surib mavjud patchlarni ko‘ring. Bosh ekrandan yashirish uchun chapga suring</string>
-    <string name="onboarding_settings_desc">Morphe ni moslashtiring: ko\'rinish, kengaytirilgan opsiyalar va tizim vositalari</string>
+    <string name="onboarding_settings_desc">Mamu ni moslashtiring: ko\'rinish, kengaytirilgan opsiyalar va tizim vositalari</string>
     <string name="onboarding_sources_patches_desc">Ushbu manbadan mavjud barcha patchlarni ko\'rish uchun bosish</string>
     <string name="onboarding_sources_version_desc">Ushbu manba uchun to\'liq o\'zgarishlar jurnallarini ko\'rish uchun versiyaga bosish</string>
     <string name="onboarding_sources_apps_desc">Bu manba patchlaydigan ilovalarni ko\'rish va ularning qaysi biri uchun patch taklif qilishini tanlash uchun bosing.</string>
@@ -1601,9 +1601,28 @@ Davom etmoqchimisiz?"</string>
     <string name="onboarding_system_file_picker_desc">APK yoki Keystore tanlaganda tizim tanlash moslamasidan foydalanish uchun yoqing</string>
     <!-- Tour prompt dialog shown after first successful patch install -->
     <string name="tour_prompt_title">Qisqa xususiyatlar sayohati</string>
-    <string name="tour_prompt_desc">Morphe\'ning asosiy funksiyalarini qisqacha ko‘rib chiqmoqchimisiz?</string>
+    <string name="tour_prompt_desc">Mamu\'ning asosiy funksiyalarini qisqacha ko‘rib chiqmoqchimisiz?</string>
     <!-- Label of a footer button beside "Skip". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="tour_prompt_confirm">Mengani ko\'rsat</string>
     <string name="onboarding_restart_title">Funksiyalar sayohati</string>
     <string name="onboarding_restart_desc">Asosiy xususiyatlar bo‘yicha qo‘llanma</string>
+
+    <string name="home_app_filter_all_description">Bosh ekrandagi barcha ilovalar</string>
+    <string name="home_app_filter_patched_description">Mamu bilan yamalgan yoki saqlangan ilovalar</string>
+    <string name="home_app_filter_not_patched_description">Mamu\'da hali yamalmagan ilovalar</string>
+    <string name="home_app_filter_installed_description">Ushbu qurilmada hozir o\'rnatilgan ilovalar</string>
+    <string name="home_app_filter_uninstalled_description">Mamu yordamida yamalgan, endi bu qurilmada mavjud bo\'lmagan ilovalar</string>
+    <string name="home_app_filter_clones_description">O\'z paket nomi ostida qurilgan, asl ilova bilan birga o\'rnatilgan ilovalar</string>
+    <string name="home_app_sort_name_asc_description">Aplikasi yang diinstal dan disematkan terlebih dahulu</string>
+    <string name="home_app_sort_name_desc_description">Abjad, A sampai Z</string>
+    <string name="home_app_sort_recently_patched_description">Yaqinda yangilangan ilovalar birinchi</string>
+    <string name="home_category_custom">Maxsus</string>
+    <string name="sources_filter_all_description">Har bir manba</string>
+    <string name="sources_filter_enabled_description">Patchlar olinadigan manbalar</string>
+    <string name="sources_filter_disabled_description">O\'chirilgan manbalar</string>
+    <string name="sources_filter_issues_description">Bloklangan, yuklanishi muvaffaqiyatsiz bo\'lgan yoki yangiroq Mamu talab qiladigan manbalar</string>
+    <string name="sources_sort_last_updated_description">Urutkan sumber tambalan</string>
+    <string name="sources_sort_enabled_first_description">Diaktifkan terlebih dahulu</string>
+    <string name="home_apk_availability_installed_version">Ushbu qurilmada o‘rnatilgan: %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">Keystore formati</string>
 </resources>

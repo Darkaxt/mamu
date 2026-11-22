@@ -20,7 +20,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.IntrinsicMeasurable
 import androidx.compose.ui.layout.IntrinsicMeasureScope
@@ -53,6 +52,8 @@ import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.milliseconds
 
+private val PillShape = Defaults.PillShape
+
 /** Edge of a destructive pill, faded along with the pill while it is out of reach. */
 @Composable
 private fun destructiveBorder(enabled: Boolean): BorderStroke {
@@ -65,9 +66,6 @@ private val PillTextPadding = 16.dp
 
 /** Width of a regular icon-only pill. */
 private val PillMinWidth = 72.dp
-
-/** Gap between the pills of an [ActionPillRow], unless it asks for another. */
-private val PillRowSpacing = 8.dp
 
 /** Narrowest an icon-only pill gets in a crowded [ActionPillRow], still a full touch target. */
 private val CompactPillWidth = 48.dp
@@ -166,9 +164,6 @@ object ActionPillColors {
  * A non-null [confirmation] answers every tap in place: the pill widens to show it in place of
  * its own content, then settles back. Text too long for the room it gets scrolls through once.
  * [confirmationState] plays one on demand instead.
- *
- * A press rounds the corners of [shape] down, and in an [ActionPillRow] also widens the pill at
- * the expense of its neighbors.
  */
 @Composable
 fun ActionPillButton(
@@ -176,6 +171,7 @@ fun ActionPillButton(
     icon: ImageVector,
     contentDescription: String,
     modifier: Modifier = Modifier,
+    shape: androidx.compose.ui.graphics.Shape = PillShape,
     enabled: Boolean = true,
     large: Boolean = false,
     label: String? = null,
@@ -184,7 +180,7 @@ fun ActionPillButton(
     confirmationState: PillConfirmationState = rememberPillConfirmationState(),
     destructive: Boolean = false,
     colors: IconButtonColors = if (destructive) ActionPillColors.destructive() else ActionPillColors.neutral(),
-    shape: Shape = Defaults.PillShape
+    pressScale: Boolean = true
 ) {
     val height = if (large) Defaults.PillHeightLarge else Defaults.PillHeight
     val minWidth = if (large) 80.dp else PillMinWidth
@@ -194,8 +190,6 @@ fun ActionPillButton(
     val interactionSource = remember { MutableInteractionSource() }
     val playback = rememberConfirmationPlayback(confirmationState)
     val message = playback.message
-    val press = rememberPressProgress(interactionSource, enabled, label = "action_pill_press")
-    val pressAmount = remember(press) { { press.value } }
 
     // A tap can disable the pill it landed on ("enable all" leaves nothing to enable), which
     // would grey out the very confirmation of it, so the pill keeps its colors while one shows
@@ -223,7 +217,7 @@ fun ActionPillButton(
         Surface(
             onClick = onPillClick,
             enabled = enabled,
-            shape = shape.pressed(press.value),
+            shape = shape,
             color = containerColor,
             contentColor = contentColor,
             border = if (destructive) destructiveBorder(looksEnabled) else null,
@@ -231,6 +225,11 @@ fun ActionPillButton(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(height)
+                .pressScale(
+                    interactionSource = interactionSource,
+                    enabled = pressScale && enabled,
+                    label = "action_pill_press_scale"
+                )
                 .semantics {
                     role = Role.Button
                     if (message != null) liveRegion = LiveRegionMode.Polite
@@ -268,7 +267,7 @@ fun ActionPillButton(
     IconTooltip(
         text = (tooltip ?: contentDescription).takeIf { label == null },
         modifier = modifier
-            .then(PillRowDataElement(playback.emphasis, labeled = label != null, press = pressAmount))
+            .then(PillRowDataElement(playback.emphasis, labeled = label != null))
             .width(IntrinsicSize.Max),
         content = pill
     )
@@ -285,7 +284,7 @@ private fun PillContent(
     if (label != null) {
         Row(
             modifier = Modifier.padding(horizontal = PillTextPadding),
-            horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceExtraSmall),
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             PillIcon(icon = icon, iconSize = iconSize, contentDescription = contentDescription)
@@ -500,50 +499,41 @@ private fun ScrollingLabel(text: String, style: TextStyle, playback: Confirmatio
     }
 }
 
-/**
- * What an [ActionPillRow] reads off a pill: its confirmation emphasis, whether it has a label and
- * how far into a press it is.
- */
+/** What an [ActionPillRow] reads off a pill: its confirmation emphasis and whether it has a label. */
 private class PillRowDataElement(
     val emphasis: () -> Float,
-    val labeled: Boolean,
-    val press: () -> Float
+    val labeled: Boolean
 ) : ModifierNodeElement<PillRowDataNode>() {
-    override fun create() = PillRowDataNode(emphasis, labeled, press)
+    override fun create() = PillRowDataNode(emphasis, labeled)
 
     override fun update(node: PillRowDataNode) {
         node.emphasis = emphasis
         node.labeled = labeled
-        node.press = press
     }
 
     override fun equals(other: Any?) =
-        other is PillRowDataElement && other.emphasis === emphasis && other.labeled == labeled &&
-                other.press === press
+        other is PillRowDataElement && other.emphasis === emphasis && other.labeled == labeled
 
-    override fun hashCode() = 31 * (31 * emphasis.hashCode() + labeled.hashCode()) + press.hashCode()
+    override fun hashCode() = 31 * emphasis.hashCode() + labeled.hashCode()
 
-    // The lambdas themselves tell the inspector nothing, the values they read right now do
+    // The lambda itself tells the inspector nothing, the value it reads right now does
     override fun InspectorInfo.inspectableProperties() {
         name = "pillRowData"
         properties["emphasis"] = emphasis()
         properties["labeled"] = labeled
-        properties["press"] = press()
     }
 }
 
 private class PillRowDataNode(
     var emphasis: () -> Float,
-    var labeled: Boolean,
-    var press: () -> Float
+    var labeled: Boolean
 ) : Modifier.Node(), ParentDataModifierNode {
     override fun Density.modifyParentData(parentData: Any?): Any = this@PillRowDataNode
 }
 
 /**
  * Configuration for a single button rendered inside [CardActionRow].
- * Set [destructive] to true for actions styled with the error container palette, or [primary] for
- * the one the card leads to, such as the fix for what it reports.
+ * Set [destructive] to true for actions styled with the error container palette.
  */
 @Immutable
 data class CardAction(
@@ -551,8 +541,7 @@ data class CardAction(
     val label: String,
     val onClick: () -> Unit,
     val enabled: Boolean = true,
-    val destructive: Boolean = false,
-    val primary: Boolean = false
+    val destructive: Boolean = false
 )
 
 /**
@@ -573,7 +562,7 @@ fun CardActionRow(
         val singleActionMinWidth = maxWidth / 2
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = if (hasBoth) Arrangement.spacedBy(Defaults.SpaceSmall) else Arrangement.Center
+            horizontalArrangement = if (hasBoth) Arrangement.spacedBy(8.dp) else Arrangement.Center
         ) {
             actions.forEach { action ->
                 ActionPillButton(
@@ -588,12 +577,7 @@ fun CardActionRow(
                     } else {
                         Modifier.widthIn(min = singleActionMinWidth)
                     },
-                    destructive = action.destructive,
-                    colors = when {
-                        action.destructive -> ActionPillColors.destructive()
-                        action.primary -> ActionPillColors.primary()
-                        else -> ActionPillColors.neutral()
-                    }
+                    destructive = action.destructive
                 )
             }
         }
@@ -610,14 +594,11 @@ fun CardActionRow(
  * neighbors: the row slides them aside instead, past edges that fade out, keeping the widening
  * pill as close to the middle as it can. Only one confirmation stays open at a time: a new one
  * folds the previous away.
- *
- * A pressed pill widens by taking room from its neighbors, so the row keeps its width, as an
- * expressive button group answers a press. Neither a label nor a touch target is cut for it.
  */
 @Composable
 fun ActionPillRow(
     modifier: Modifier = Modifier,
-    spacing: Dp = PillRowSpacing,
+    spacing: Dp = 8.dp,
     stretchLabelsTo: Int = 0,
     content: @Composable () -> Unit
 ) {
@@ -652,22 +633,11 @@ fun ActionPillRow(
             (pillData[it]?.emphasis?.invoke() ?: 0f).coerceIn(0f, 1f)
         }
         val stretchable = BooleanArray(measurables.size) { pillData[it]?.labeled == true }
-        // Measured against pills at the regular spacing, so a row spaced otherwise still lines up
-        // with the plain rows it is meant to match
         val stretchTo = if (stretchLabelsTo > 0) {
-            val target = stretchLabelsTo * PillMinWidth.roundToPx() +
-                    PillRowSpacing.roundToPx() * (stretchLabelsTo - 1)
+            val target = stretchLabelsTo * PillMinWidth.roundToPx() + spacingPx * (stretchLabelsTo - 1)
             minOf(rowWidth, target) - spacingPx * (measurables.size - 1)
         } else 0
         val widths = pillWidths(natural, compact, stretchable, stretchTo, emphasis, available, rowWidth)
-        val press = FloatArray(measurables.size) {
-            (pillData[it]?.press?.invoke() ?: 0f).coerceAtLeast(0f)
-        }
-        // A labeled pill only gives up room it was stretched by, an icon-only one down to a touch target
-        val floor = IntArray(measurables.size) {
-            if (labeled[it]) natural[it] else minOf(compactPx, natural[it])
-        }
-        widenPressed(widths, press, floor)
 
         val placeables = measurables.mapIndexed { index, measurable ->
             val width = widths[index]

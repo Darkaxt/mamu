@@ -5,10 +5,14 @@
 
 package app.morphe.manager.ui.screen.shared
 
+import android.content.ContentResolver
+import app.morphe.manager.util.pickedFolder
+import app.morphe.manager.util.getOrCreateFile
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
@@ -49,7 +53,7 @@ import app.morphe.manager.util.rememberImagePicker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.io.IOException
+import java.io.File
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
@@ -210,12 +214,12 @@ fun DrawScope.drawPicture(image: ImageBitmap, bounds: Rect, tint: Color? = null)
     )
 }
 
+/**
+ * The folder at [uri], whether the system picker granted it or Morphe's own picker named it by
+ * path, which needs no grant once storage access is given.
+ */
 fun DocumentFile.getOrCreateDir(name: String): DocumentFile? =
     findFile(name) ?: createDirectory(name)
-
-/** [getOrCreateDir] for a folder the set cannot do without, so a missing one fails it whole. */
-fun DocumentFile.requireDir(name: String): DocumentFile =
-    getOrCreateDir(name) ?: throw IOException("Could not create $name")
 
 /**
  * The branding folder, kept out of the gallery. A picked folder already named so is used as it is,
@@ -229,15 +233,12 @@ fun DocumentFile.brandingFolder(): DocumentFile? {
 
 /** Writes [bitmap] into this folder as the PNG [name], replacing an earlier one, then frees it. */
 fun DocumentFile.writePng(context: Context, name: String, bitmap: Bitmap) {
-    try {
-        // Thrown rather than skipped, or the patch is pointed at a folder missing some of its images
-        val file = getOrCreateFile("image/png", name) ?: throw IOException("Could not create $name")
-        val written = context.contentResolver.openOutputStream(file.uri, "wt")
-            ?.use { out -> bitmap.compress(Bitmap.CompressFormat.PNG, 100, out) }
-        if (written != true) throw IOException("Could not write $name")
-    } finally {
-        bitmap.recycle()
+    getOrCreateFile("image/png", name)?.let { file ->
+        context.contentResolver.openOutputStream(file.uri, "wt")?.use { out ->
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
+        }
     }
+    bitmap.recycle()
 }
 
 /** Antialiased paint with bicubic filtering, for scaling pictures without jagged edges. */

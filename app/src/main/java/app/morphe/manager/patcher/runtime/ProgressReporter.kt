@@ -25,8 +25,17 @@ internal class ProgressReporter(
     private val onProgress: ProgressEventHandler,
     private val onPatchCompleted: suspend (String) -> Unit,
     private val onPatchFailed: (String) -> Unit,
-    private val onTaskProgress: TaskProgressHandler
+    private val onPatchOutcome: (Int, String, String?) -> Unit = { _, _, _ -> },
+    private val onTaskProgress: TaskProgressHandler = { _, _, _ -> },
+    private val onRejected: ((app.morphe.manager.patcher.patch.PatchRejection) -> Unit)? = null
 ) : PatchingListener {
+    private var hasRejection = false
+    private val reportedTasks = java.util.Collections.synchronizedSet(mutableSetOf<PatcherTask>())
+    override suspend fun patchesRejected(rejection: app.morphe.manager.patcher.patch.PatchRejection) {
+        hasRejection = onRejected != null
+        onRejected?.invoke(rejection)
+        rejection.affected.forEach { logger.warn("Patch omitted: ${it.sourceUid}:${it.key}: ${rejection.reason}") }
+    }
     override suspend fun stepCompleted() = onProgress(null, State.COMPLETED, null)
 
     override suspend fun splitPreparation(event: SplitPreparationEvent) {
@@ -37,11 +46,28 @@ internal class ProgressReporter(
 
     override suspend fun patchesStarted() = onProgress(null, State.RUNNING, null)
 
+    override suspend fun patchOutcome(bundleUid: Int, patchKey: String, failure: String?) =
+        onPatchOutcome(bundleUid, patchKey, failure)
+
     override suspend fun patchSucceeded(name: String) = onPatchCompleted(name)
 
-    override fun taskProgress(task: PatcherTask, done: Long, total: Long) = onTaskProgress(task, done, total)
+    override fun patchExecuting(name: String) { logger.info("Applying $name") }
+
+    override fun taskProgress(task: PatcherTask, done: Long, total: Long) {
+        if (reportedTasks.add(task)) logger.info(context.getString(when(task) {
+            PatcherTask.DECODING_DEX -> R.string.patcher_task_decoding_dex
+            PatcherTask.EXTRACTING_RESOURCES -> R.string.patcher_task_extracting_resources
+            PatcherTask.DECODING_RESOURCES -> R.string.patcher_task_decoding_resources
+            PatcherTask.INDEXING_CLASSES -> R.string.patcher_task_indexing_classes
+            PatcherTask.COMPILING_DEX -> R.string.patcher_task_compiling_dex
+            PatcherTask.COMPILING_RESOURCES -> R.string.patcher_task_compiling_resources
+            PatcherTask.WRITING_APK -> R.string.patcher_task_writing_apk
+        }))
+        onTaskProgress(task, done, total)
+    }
 
     override suspend fun patchFailed(name: String?, stackTrace: String) {
+        if (hasRejection) return // The clean retry reports the omission and resets real counters.
         onProgress(context.getString(R.string.failed_to_execute_patch, name), State.FAILED, stackTrace)
         name?.let(onPatchFailed)
     }

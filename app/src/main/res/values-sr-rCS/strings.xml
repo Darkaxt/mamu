@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">Android 11 greška</string>
     <string name="android_11_bug_dialog_description">Dozvola za instalaciju aplikacije mora biti odobrena prethodno kako bi se izbjegla greška u Android 11 sistemu koja će negativno utjecati na korisničko iskustvo</string>
     <string name="deep_link_add_source_title">Dodaj izvor</string>
-    <string name="deep_link_add_source_message">Da li želite da dodate ovaj izvor patch-a u Morphe?</string>
+    <string name="deep_link_add_source_message">Da li želite da dodate ovaj izvor patch-a u Mamu?</string>
     <string name="deep_link_add_source_warning">Dodajte samo izvore kojima verujete</string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">Dodata je samo ova aplikacija. Možete dodati druge aplikacije iz liste aplikacija izvora</string>
@@ -44,15 +44,15 @@
     <string name="mpp_import_unreadable">Ovaj fajl ne može biti pročitan</string>
     <string name="incoming_file_not_patch_source">Ovaj fajl nije izvor zakrpe</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">Dostupno ažuriranje za Morphe</string>
+    <string name="home_update_available">Dostupno ažuriranje za Mamu</string>
     <string name="home_update_available_subtitle">Novu verziju možete instalirati</string>
     <string name="home_blocked_source_title">Detektovan blokiran izvor zakrpe</string>
     <string name="home_blocked_source_subtitle">Dodirnite da biste pregledali i uklonili</string>
     <string name="home_metadata_errors_title">Neki izvori zakrpe nisu dostupni</string>
     <string name="home_metadata_errors_subtitle">Dodirnite da biste pregledali izvore</string>
-    <string name="home_outdated_manager_title">Morphe je zastareo</string>
+    <string name="home_outdated_manager_title">Mamu je zastareo</string>
     <string name="home_outdated_manager_subtitle">Neki izvori zakrpa zahtevaju noviju verziju</string>
-    <string name="home_held_back_title">Jedan izvor zakrpa je srušio Morphe</string>
+    <string name="home_held_back_title">Jedan izvor zakrpa je srušio Mamu</string>
     <string name="home_held_back_subtitle">Preskočen je da bi se aplikacija pokrenula. Dodirnite da biste pregledali.</string>
     <string name="home_source_updates_title">Dostupna su ažuriranja zakrpa</string>
     <string name="home_source_updates_subtitle">Dodirnite da biste ih preuzeli</string>
@@ -204,10 +204,10 @@
     <string name="sources_management_metadata_unavailable_hint">Datoteka sa daljinskim metapodacima nije dostupna. Primena instaliranog paketa i dalje funkcioniše, ali automatsko ažuriranje je onemogućeno za ovaj izvor.</string>
     <string name="sources_management_metadata_unavailable_hint_missing">Paket zakrpa nije uspeo da se preuzme. URL adresa izvora može biti netačna ili datoteka ne postoji.</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">Paket zakrpa nije mogao biti preuzet. Izvorni URL je možda neispravan ili datoteka ne postoji. Dodirnite da biste ga promenili</string>
-    <string name="sources_management_outdated_manager_badge">Ažuriraj Morphe</string>
-    <string name="sources_management_outdated_manager_hint">Ovaj izvor je napravljen za patcher %1$s, ali Morphe %2$s uključuje patcher %3$s. Ažuriraj Morphe da bi ga koristio</string>
+    <string name="sources_management_outdated_manager_badge">Ažuriraj Mamu</string>
+    <string name="sources_management_outdated_manager_hint">Ovaj izvor je napravljen za patcher %1$s, ali Mamu %2$s uključuje patcher %3$s. Ažuriraj Mamu da bi ga koristio</string>
     <string name="sources_management_held_back_badge">Srušio se</string>
-    <string name="sources_management_held_back_hint">Ovaj izvor je srušio Morphe tokom učitavanja, pa se preskače. Ažurirajte ga ili ponovo uvezite da biste pokušali ponovo.</string>
+    <string name="sources_management_held_back_hint">Ovaj izvor je srušio Mamu tokom učitavanja, pa se preskače. Ažurirajte ga ili ponovo uvezite da biste pokušali ponovo.</string>
     <string name="sources_management_signed_by">Potpisao</string>
     <string name="sources_management_signing_key_changed_badge">Ključ je promenjen</string>
     <string name="sources_management_signing_key_changed_hint">Najnovije izdanje nije potpisano ključem koji je ovaj izvor ranije koristio, pa nije instalirano. Dodirnite da ga pregledate</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">Zakrpe zajednice</string>
     <string name="sources_dialog_choose_apps">Izaberite aplikacije</string>
     <string name="sources_dialog_choose_apps_description">Izaberite koje od njegovih aplikacija da zadržite nakon što se izvor učita.</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">Izvori zakrpa trećih strana</string>
-    <string name="sources_dialog_community_notice_message">"Izvore zakrpa zajednice prave i održavaju njihovi autori. Morphe ne pregleda niti proverava zakrpe trećih strana i nije odgovoran za njihov sadržaj niti za ono što one rade na vašem uređaju"</string>
+    <string name="sources_dialog_community_notice_message">"Izvore zakrpa zajednice prave i održavaju njihovi autori. Mamu ne pregleda niti proverava zakrpe trećih strana i nije odgovoran za njihov sadržaj niti za ono što one rade na vašem uređaju"</string>
     <string name="sources_update_success">Uspešno ažurirano</string>
     <string name="sources_update_unavailable">Nema dostupnih ažuriranja</string>
     <string name="sources_download_fail">Neuspešno preuzimanje izvora: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">Aplikacija za pomoć je instalirana, ali još uvek nije poverljiva, pa se ne nudi ovde</string>
     <string name="home_apk_helper_untrusted_action">Pregledajte pomoćne aplikacije</string>
     <string name="home_apk_helper_title">Preuzmite pomoću pomoćne aplikacije</string>
-    <string name="home_apk_helper_description">Morphe će zamoliti pomoćnu aplikaciju u nastavku da preuzme originalni APK i vrati datoteku</string>
+    <string name="home_apk_helper_description">Mamu će zamoliti pomoćnu aplikaciju u nastavku da preuzme originalni APK i vrati datoteku</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">Otvori pomoć</string>
-    <string name="home_apk_helper_warning">Nastavite samo ako verujete ovoj pomoćnoj aplikaciji. Morphe proverava paket, verziju i potpis onoga što primi pre zakrpljivanja</string>
-    <string name="home_apk_helper_warning_unverified">Nastavite samo ako verujete ovoj pomoćnoj aplikaciji. Morphe ne može da potvrdi potpis ovog APK-a, pa izmenjena datoteka ne bi bila otkrivena</string>
+    <string name="home_apk_helper_warning">Nastavite samo ako verujete ovoj pomoćnoj aplikaciji. Mamu proverava paket, verziju i potpis onoga što primi pre zakrpljivanja</string>
+    <string name="home_apk_helper_warning_unverified">Nastavite samo ako verujete ovoj pomoćnoj aplikaciji. Mamu ne može da potvrdi potpis ovog APK-a, pa izmenjena datoteka ne bi bila otkrivena</string>
     <string name="home_apk_helper_no_result">Pomoćna aplikacija nije vratila APK</string>
     <string name="home_apk_helper_no_access">Pomoćna aplikacija nije dozvolila pristup APK datoteci koju je vratila</string>
     <string name="home_apk_helper_no_package">Pomoćna aplikacija nije navela koju instaliranu aplikaciju treba koristiti</string>
     <string name="home_apk_helper_wrong_package">Pomoćna aplikacija je vratila drugu aplikaciju od one koja se zakrpljuje</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe nije mogao da koristi instaliranu aplikaciju</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu nije mogao da koristi instaliranu aplikaciju</string>
     <string name="home_apk_helper_installed_incompatible">Instalirana verzija ne može da se zakrpi</string>
     <string name="home_apk_use_saved_copy">Koristi sačuvanu kopiju</string>
     <string name="home_apk_use_installed_app">Koristi instaliranu aplikaciju</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">Nije bilo moguće da se potvrdi potpis instalirane aplikacije, tako da je možda već ispravljena</string>
     <string name="home_unverified">Neverifikovano</string>
     <string name="home_install_verification_pending">Provera instalacije…</string>
-    <string name="home_app_info_install_unverified">Morphe ne može potvrditi da je instalirana aplikacija verzija koju je ispravio. Ponovite ispravljanje ili je ponovo instalirajte iz sačuvanog APK-a kako biste vratili njene funkcionalnosti</string>
+    <string name="home_app_info_install_unverified">Mamu ne može potvrditi da je instalirana aplikacija verzija koju je ispravio. Ponovite ispravljanje ili je ponovo instalirajte iz sačuvanog APK-a kako biste vratili njene funkcionalnosti</string>
     <string name="home_app_info_no_saved_apk">Nema sačuvanog APK-a. Krpljenje će zahtevati ponovni odabir APK datoteke</string>
     <string name="home_version_requires_android">Zahteva Android %s+</string>
     <string name="home_apk_no_compatible_versions_title">Nije podržano na ovom uređaju</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">Skrolujte niz veb stranicu i pritisnite njeno dugme za preuzimanje</string>
     <string name="home_download_instructions_step2_variant">Skrolujte niz veb stranicu i pritisnite dugme za preuzimanje gornje &lt;b&gt;APK varijante&lt;/b&gt;</string>
     <string name="home_download_instructions_step2_search">Otvorite rezultat pretrage sa veb sajta kojem verujete</string>
-    <string name="home_download_instructions_step2_search_note">Morphe ne može da garantuje za ove veb sajtove. Preskočite one koji nude svoju prodavnicu aplikacija umesto APK datoteke</string>
+    <string name="home_download_instructions_step2_search_note">Mamu ne može da garantuje za ove veb sajtove. Preskočite one koji nude svoju prodavnicu aplikacija umesto APK datoteke</string>
     <string name="home_download_instructions_step3_search">Na tom veb sajtu preuzmite APK za verziju &lt;b&gt;%s&lt;/b&gt;, a ne najnoviju</string>
     <string name="home_download_instructions_step3_search_any">Na tom veb sajtu preuzmite APK aplikacije. &lt;b&gt;Bilo koja verzija&lt;/b&gt; može da se zakrpi</string>
     <string name="home_download_instructions_step2_github">U odeljku &lt;b&gt;Assets&lt;/b&gt; verzije &lt;b&gt;%s&lt;/b&gt;, pritisnite datoteku koja se završava sa &lt;b&gt;.apk&lt;/b&gt;</string>
@@ -314,11 +314,11 @@
     <string name="home_download_instructions_download_button_toast_3">Praksa čini savršenstvo i napreduješ 💪</string>
     <string name="home_download_instructions_download_button_toast_4">Još nisi tu… još nisi tu… 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">U redu, poštujem posvećenost 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">Sada ste zvanični tester Morphe dugmeta 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">Sada ste zvanični tester Mamu dugmeta 🏅</string>
     <string name="home_download_instructions_step3">Sačekajte da preuzimanje bude završeno, i &lt;b&gt;nemojte instalirati&lt;/b&gt; APK</string>
     <string name="home_download_instructions_step3_mount">Sačekajte da preuzimanje bude završeno, a onda &lt;b&gt;instalirajte APK&lt;/b&gt;</string>
-    <string name="home_download_instructions_step4">Nakon što se preuzimanje završi, vratite se na Morphe</string>
-    <string name="home_download_instructions_step4_mount">Nakon instaliranja originalnog APK-a, vratite se na Morphe</string>
+    <string name="home_download_instructions_step4">Nakon što se preuzimanje završi, vratite se na Mamu</string>
+    <string name="home_download_instructions_step4_mount">Nakon instaliranja originalnog APK-a, vratite se na Mamu</string>
     <string name="home_download_instructions_continue_to">Nastavite na %s</string>
     <string name="home_download_instructions_destination">stranicu za preuzimanje</string>
     <string name="home_download_instructions_copy_link">Kopiraj link</string>
@@ -446,12 +446,12 @@ Za najbolje rezultate, ova aplikacija preporučuje zakrpljivanje &lt;b&gt;celog 
     <string name="adaptive_icon_themed">Tematska</string>
     <string name="adaptive_icon_background_color">Boja pozadine</string>
     <string name="adaptive_icon_reset_transform">Resetuj položaj i razmeru </string>
-    <string name="adaptive_icon_no_transparency_warning">Ova slika nema transparentnih piksela, pa tematske ikonice i ikonice obaveštenja zadržavaju Morphe logo</string>
+    <string name="adaptive_icon_no_transparency_warning">Ova slika nema transparentnih piksela, pa tematske ikonice i ikonice obaveštenja zadržavaju Mamu logo</string>
     <string name="adaptive_icon_created_success">Adaptivna ikona je uspešno kreirana</string>
     <string name="adaptive_icon_creation_failed">Neuspešno kreiranje adaptivne ikone</string>
     <string name="adaptive_icon_guide">Uputstvo za kreiranje ikone</string>
     <string name="adaptive_icon_guide_png_title">Koristite PNG sa transparentnom pozadinom</string>
-    <string name="adaptive_icon_guide_png_body">Najbolje funkcioniše logo na transparentnoj pozadini, sa bojom pozadine odabranom ispod. Slika bez transparentnosti umesto toga ispunjava celu ikonicu, a tematske ikonice i ikonice obaveštenja tada zadržavaju Morphe logo.</string>
+    <string name="adaptive_icon_guide_png_body">Najbolje funkcioniše logo na transparentnoj pozadini, sa bojom pozadine odabranom ispod. Slika bez transparentnosti umesto toga ispunjava celu ikonicu, a tematske ikonice i ikonice obaveštenja tada zadržavaju Mamu logo.</string>
     <string name="adaptive_icon_guide_safe_zones_title">Sigurne zone</string>
     <string name="adaptive_icon_guide_safe_zones_body">Kontura prikazuje oblik ikonice vašeg pokretača, a sve izvan nje se odseca. Drugi pokretači koriste druge oblike, zato važne detalje držite unutar isprekidane kružnice, koju svaki oblik prikazuje.</string>
     <string name="adaptive_icon_guide_notification_title">Ikona obaveštenja</string>
@@ -557,8 +557,8 @@ Za najbolje rezultate, ova aplikacija preporučuje zakrpljivanje &lt;b&gt;celog 
     <string name="home_app_info_version_move">Instalirana %1$s, najnovija podržana %2$s</string>
     <string name="home_app_info_version_restore">Instaliran %1$s, zakrpljen %2$s</string>
     <string name="home_app_info_app_deleted_warning">Aplikacija je deinstalirana</string>
-    <string name="home_app_info_app_deleted_description">Ova aplikacija je deinstalirana izvan Morphe. Ponovo je instalirajte da bi obnovili funkcionalnost</string>
-    <string name="home_app_info_not_patched_description">Instalirana je nezakrpana verzija ove aplikacije. Morphe i dalje ima svoj prethodni zapis o zakrpi</string>
+    <string name="home_app_info_app_deleted_description">Ova aplikacija je deinstalirana izvan Mamu. Ponovo je instalirajte da bi obnovili funkcionalnost</string>
+    <string name="home_app_info_not_patched_description">Instalirana je nezakrpana verzija ove aplikacije. Mamu i dalje ima svoj prethodni zapis o zakrpi</string>
     <string name="home_app_info_mount_replaced_description">Druga verzija je zamenila montiranu aplikaciju, tako da zakrpa više ne važi. Vraćanje vraća zakrpljenu verziju</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play je ažurirao montiranu aplikaciju, tako da zakrpa više ne važi. Vraćanje vraća zakrpljenu verziju. Isključite automatsko ažuriranje za nju u Google Play-u da bi ostala zakrpljena</string>
     <string name="app_links_title">Podržani veb linkovi</string>
@@ -589,7 +589,7 @@ Za najbolje rezultate, ova aplikacija preporučuje zakrpljivanje &lt;b&gt;celog 
     <string name="root_pre_patch_installer_description">Vaš uređaj ima root pristup. Izaberite da li bi ova aplikacija trebalo da bude zakrpljena za root montažu ili standardnu instalaciju</string>
     <string name="root_pre_patch_installer_mount_title">Režim root montaže</string>
     <string name="root_pre_patch_installer_mount_description">Zakrpe za root montažu, zatim montira APK preko odgovarajuće fabričke aplikacije. Nije potreban GmsCore</string>
-    <string name="root_mount_module_unmount_warning">Ako KernelSU ima uključenu opciju „Otkači module podrazumevano“, otvorite KernelSU &gt; Superkorisnik &gt; aplikaciju koju ste montirali &gt; Profil &gt; Prilagođeno i isključite „Otkači module“. Inače, montirani zakrpljeni APK možda neće stupiti na snagu, čak i ako Morphe prikazuje da je montiran</string>
+    <string name="root_mount_module_unmount_warning">Ako KernelSU ima uključenu opciju „Otkači module podrazumevano“, otvorite KernelSU &gt; Superkorisnik &gt; aplikaciju koju ste montirali &gt; Profil &gt; Prilagođeno i isključite „Otkači module“. Inače, montirani zakrpljeni APK možda neće stupiti na snagu, čak i ako Mamu prikazuje da je montiran</string>
     <string name="root_pre_patch_installer_standard_title">Standardni način instalacije</string>
     <string name="root_pre_patch_installer_standard_description">Zakrpljuje se kao običan APK uz podršku GmsCore-a. Vaša postavka instalera se koristi nakon zakrpljivanja</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -652,7 +652,7 @@ Za najbolje rezultate, ova aplikacija preporučuje zakrpljivanje &lt;b&gt;celog 
     <string name="patcher_conflict_subtitle">Morate deinstalirati postojeću verziju</string>
     <string name="patcher_conflict_hint">Popravljena aplikacija koristi drugačiji sertifikat od instalirane verzije. Deinstalacija će obrisati sve podatke aplikacije.</string>
     <string name="patcher_installed_conflict_title">Potrebno je deinstalirati</string>
-    <string name="patcher_installed_conflict_body">"Morphe potpisuje modifikovane aplikacije sopstvenim sertifikatom, koji se razlikuje od originalnog. Android zahteva uklanjanje postojeće verzije pre instalacije modifikovane aplikacije.
+    <string name="patcher_installed_conflict_body">"Mamu potpisuje modifikovane aplikacije sopstvenim sertifikatom, koji se razlikuje od originalnog. Android zahteva uklanjanje postojeće verzije pre instalacije modifikovane aplikacije.
 
 Deinstalacija će trajno obrisati sve podatke aplikacije"</string>
     <string name="patcher_install_error_title">Greška pri instalaciji</string>
@@ -662,8 +662,8 @@ Deinstalacija će trajno obrisati sve podatke aplikacije"</string>
     <string name="patcher_patches_excluded_for_installer">Nije dostupno za ovu metodu instalacije i isključeno: %s</string>
     <string name="patcher_storage_permission_dialog_title">Ne mogu pristupiti putu za pohranu</string>
     <string name="patcher_incompatible_patcher_title">Ažuriranje je potrebno</string>
-    <string name="patcher_incompatible_patcher_description">Izvor &lt;b&gt;%1$s&lt;/b&gt; zahteva patcher &lt;b&gt;%2$s&lt;/b&gt; ili noviji. Ažurirajte Morphe da biste ga koristili</string>
-    <string name="patcher_storage_permission_description_api30">Jedna ili više opcija patch-a pokazuju na putanje koje Morphe ne može da čita. Dajte dozvolu za skladište i dodirnite dugme, a zatim će se patching automatski pokrenuti</string>
+    <string name="patcher_incompatible_patcher_description">Izvor &lt;b&gt;%1$s&lt;/b&gt; zahteva patcher &lt;b&gt;%2$s&lt;/b&gt; ili noviji. Ažurirajte Mamu da biste ga koristili</string>
+    <string name="patcher_storage_permission_description_api30">Jedna ili više opcija patch-a pokazuju na putanje koje Mamu ne može da čita. Dajte dozvolu za skladište i dodirnite dugme, a zatim će se patching automatski pokrenuti</string>
     <string name="patcher_storage_permission_description_legacy">Jedan ili više opcija za patching ukazuju na putove koje ne mogu biti pristupili. Ažurirajte putove u opcijama za patching i pokušajte ponovo</string>
     <string name="patcher_storage_permission_grant">Dajte dozvolu za pohranu</string>
     <string name="patcher_storage_permission_denied_warning">Dozvola za pohranu je odbijena. Dopustite ovu putanju da biste je koristili ili premestite fajlove u privatni direktorijum aplikacije</string>
@@ -680,7 +680,7 @@ Deinstalacija će trajno obrisati sve podatke aplikacije"</string>
     <string name="patcher_option_paths_rejected_title">Datoteke opcija zakrpe se ne mogu koristiti</string>
     <string name="patcher_option_paths_rejected_description">Jedna ili više opcija zakrpe ukazuju na datoteke koje nedostaju ili nemaju ono što zakrpa zahteva. Uklonite putanje kako biste izvršili zakrpu bez njih, ili popravite datoteke prema uputstvima opcije i pokušajte ponovo</string>
     <string name="patcher_option_paths_clear">Ukloni putanje i nastavi</string>
-    <string name="patcher_storage_permission_hint">Savet: Premestite fajlove u /Android/data/app.morphe.manager/files/ - ne potrebne su dodatne dopuštenja</string>
+    <string name="patcher_storage_permission_hint">Savet: Premestite fajlove u /Android/data/app.morphe.extended/files/ - ne potrebne su dodatne dopuštenja</string>
     <!-- Patcher Screen - Patcher Steps -->
     <string name="patcher_step_group_preparing">Priprema</string>
     <string name="patcher_step_load_patches">Učitavanje zakrpa</string>
@@ -699,7 +699,7 @@ Deinstalacija će trajno obrisati sve podatke aplikacije"</string>
     <string name="patcher_task_writing_apk">Zapisivanje APK datoteke</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">Zaštita od zakrpljivanja u pozadini</string>
-    <string name="battery_optimization_dialog_description">Neki uređaji mogu zaustaviti program za zakrpljivanje kada je aplikacija minimizovana. Dopustite programu Morphe da radi bez ograničenja potrošnje baterije kako biste osigurali pouzdano završavanje zakrpljivanja.</string>
+    <string name="battery_optimization_dialog_description">Neki uređaji mogu zaustaviti program za zakrpljivanje kada je aplikacija minimizovana. Dopustite programu Mamu da radi bez ograničenja potrošnje baterije kako biste osigurali pouzdano završavanje zakrpljivanja.</string>
     <string name="battery_optimization_not_now">Ne sada</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">Zakrpljivanje je u toku…</string>
@@ -754,8 +754,8 @@ Deinstalacija će trajno obrisati sve podatke aplikacije"</string>
     <string name="install_ignore_signature">Ipak instaliraj</string>
     <string name="install_ignore_signature_description">Čuva podatke aplikacije, ali funkcioniše samo ako root modul onemogući verifikaciju potpisa Androida</string>
     <string name="uninstall_app_fail">Nije uspešno deinstalirana aplikacija: %s</string>
-    <string name="uninstall_app_unverified">Ostavljeno na mestu: Morphe nije mogao da potvrdi da je instalirana aplikacija verzija koju je zakrpio.</string>
-    <string name="launch_app_unverified">Morphe nije mogao da potvrdi da je instalirana aplikacija verzija koju je zakrpio.</string>
+    <string name="uninstall_app_unverified">Ostavljeno na mestu: Mamu nije mogao da potvrdi da je instalirana aplikacija verzija koju je zakrpio.</string>
+    <string name="launch_app_unverified">Mamu nije mogao da potvrdi da je instalirana aplikacija verzija koju je zakrpio.</string>
     <string name="uninstall_timeout">Vreme isteka deinstalacije je isteklo</string>
     <string name="save_apk_success">Sačuvana APK datoteka</string>
     <string name="saved_app_export_failed">Nije uspelo izvoz zakrpljene aplikacije</string>
@@ -847,7 +847,7 @@ Deinstalacija će trajno obrisati sve podatke aplikacije"</string>
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">Jezik aplikacije</string>
     <string name="settings_appearance_app_language_current">Trenutni jezik</string>
-    <string name="settings_appearance_translate">Pomozite da se prevede Morphe</string>
+    <string name="settings_appearance_translate">Pomozite da se prevede Mamu</string>
     <string name="settings_appearance_translations_info_title">Prevodi za neke jezike mogu biti nepotpuni ili nedostajati</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">Razmera interfejsa</string>
@@ -876,7 +876,7 @@ Deinstalacija će trajno obrisati sve podatke aplikacije"</string>
     <string name="settings_appearance_app_card_colors_bundle_description">Ovde koristite sopstvenu boju svake aplikacije ili izvora, automatski nijansiranu kako bi odgovarala</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">Ikonica aplikacije</string>
-    <string name="settings_appearance_app_icon_selector_description">Kako Morphe izgleda na vašem početnom ekranu i u fioci aplikacija</string>
+    <string name="settings_appearance_app_icon_selector_description">Kako Mamu izgleda na vašem početnom ekranu i u fioci aplikacija</string>
     <string name="settings_appearance_app_icon_default">Podrazumevana</string>
     <string name="settings_appearance_app_icon_light_2">Nebesno</string>
     <string name="settings_appearance_app_icon_light_3">Zalazni</string>
@@ -900,23 +900,23 @@ Deinstalacija će trajno obrisati sve podatke aplikacije"</string>
     <string name="settings_appearance_app_icon_mark_black">Crna</string>
     <string name="settings_appearance_app_icon_change_dialog_title">Promeni ikonu aplikacije? </string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">Morphe se ponovo pokreće kako bi prešao na &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="settings_appearance_app_icon_change_restarts">Mamu se ponovo pokreće kako bi prešao na &lt;b&gt;%s&lt;/b&gt;</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">Promeni ikonu</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">Ažuriranja predizdanja</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">Rani pristup novim Morphe verzijama</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">Rani pristup novim Mamu verzijama</string>
     <string name="settings_advanced_updates_prerelease_warning_title">Omogući ažuriranja predizdanja?</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"Verzije Morphe-a u predizdanju su još u razvoju i mogu biti nestabilne.
+    <string name="settings_advanced_updates_prerelease_warning_message">"Verzije Mamu-a u predizdanju su još u razvoju i mogu biti nestabilne.
 
 Zakrpe nisu pogođene: omogućite zakrpe predizdanja za svaki izvor na listi izvora zakrpa"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">Automatska ažuriranja</string>
-    <string name="settings_auto_updates_description">Šta Morphe radi povodom ažuriranja prilikom otvaranja. Povlačenje za osvežavanje uvek proverava</string>
+    <string name="settings_auto_updates_description">Šta Mamu radi povodom ažuriranja prilikom otvaranja. Povlačenje za osvežavanje uvek proverava</string>
     <string name="settings_auto_updates_download">Preuzmi automatski</string>
-    <string name="settings_auto_updates_download_description">Proverava ažuriranja kada se Morphe otvori i preuzima ažuriranja zakrpa putem bilo koje mreže</string>
+    <string name="settings_auto_updates_download_description">Proverava ažuriranja kada se Mamu otvori i preuzima ažuriranja zakrpa putem bilo koje mreže</string>
     <string name="settings_auto_updates_wifi_only">Preuzimaj samo putem Wi-Fi mreže</string>
     <string name="settings_auto_updates_wifi_only_description">Na mobilnim podacima, samo proverava i prikazuje šta je dostupno</string>
     <string name="settings_auto_updates_check_only">Samo proveri</string>
@@ -937,27 +937,27 @@ Zakrpe nisu pogođene: omogućite zakrpe predizdanja za svaki izvor na listi izv
     <string name="settings_advanced_external_batch_patch">Dozvoli eksterne okidače</string>
     <string name="settings_advanced_external_batch_patch_description">Omogućava automatizovanim aplikacijama da pokreću grupno zakrpljivanje</string>
     <string name="external_batch_patch_title">Pokreni masovno zakrpljivanje?</string>
-    <string name="external_batch_patch_description">%s želi da Morphe zakrpi i instalira aplikacije</string>
+    <string name="external_batch_patch_description">%s želi da Mamu zakrpi i instalira aplikacije</string>
     <string name="external_batch_patch_trust_caller">Uvek dozvoli ovu aplikaciju</string>
     <string name="external_batch_patch_unknown_caller">Nepoznata aplikacija</string>
     <!-- Notification content -->
     <string name="notification_bundle_update_title">Nove zakrpe su dostupne</string>
     <string name="notification_update_text">Verzija %s je spremna za preuzimanje</string>
-    <string name="notification_bundle_update_text_unversioned">Dodirnite da otvorite Morphe i ažurirate</string>
+    <string name="notification_bundle_update_text_unversioned">Dodirnite da otvorite Mamu i ažurirate</string>
     <string name="notification_permission_dialog_title">Dozvoli obaveštenja</string>
-    <string name="notification_permission_dialog_description">Morphe treba dozvolu za obaveštenja da vas upozori kada su ažuriranja dostupna u pozadini</string>
+    <string name="notification_permission_dialog_description">Mamu treba dozvolu za obaveštenja da vas upozori kada su ažuriranja dostupna u pozadini</string>
     <string name="notification_post_patch_dialog_title">Da li biste hteli da budete obavešteni kada su ažuriranja dostupna?</string>
-    <string name="notification_channel_manager_updates">Morphe ažuriranja</string>
-    <string name="notification_channel_manager_updates_description">Obaveštenja o novim Morphe izdanjima</string>
+    <string name="notification_channel_manager_updates">Mamu ažuriranja</string>
+    <string name="notification_channel_manager_updates_description">Obaveštenja o novim Mamu izdanjima</string>
     <string name="notification_channel_patch_updates">Ažuriranja zakrpa</string>
     <string name="notification_channel_patch_updates_description">Obaveštenja o novim zakrpama</string>
-    <string name="notification_channel_patcher_description">Prikazuje se dok Morphe zakrpava aplikaciju u pozadini</string>
+    <string name="notification_channel_patcher_description">Prikazuje se dok Mamu zakrpava aplikaciju u pozadini</string>
     <string name="notification_channel_patching_results">Rezultati zakrpljivanja</string>
-    <string name="notification_channel_patching_results_description">Kada se zakrpljivanje završi ili kada instalacija čeka na vas dok je Morphe u pozadini</string>
+    <string name="notification_channel_patching_results_description">Kada se zakrpljivanje završi ili kada instalacija čeka na vas dok je Mamu u pozadini</string>
     <string name="notification_channel_mounted_apps">Montirane aplikacije</string>
     <string name="notification_channel_mounted_apps_description">Kada druga verzija zameni montiranu aplikaciju i njena zakrpa više ne važi</string>
     <string name="notification_mount_replaced_title">%1$s više nije zakrpljen</string>
-    <string name="notification_mount_replaced_text">v%1$s je zamenio zakrpljeni v%2$s. Otvori Morphe da ga vratiš</string>
+    <string name="notification_mount_replaced_text">v%1$s je zamenio zakrpljeni v%2$s. Otvori Mamu da ga vratiš</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">Napredni način</string>
     <string name="settings_advanced_expert_mode_description">Otključava napredna podešavanja zakrpljivanja i opcije zakrpa</string>
@@ -979,7 +979,7 @@ Zakrpe nisu pogođene: omogućite zakrpe predizdanja za svaki izvor na listi izv
     <string name="settings_advanced_github_pat_unreachable">Nije moguće povezati se sa GitHub-om radi provere ovog tokena</string>
     <string name="settings_advanced_github_pat_export_include_label">Uključeno u postavke izvoza</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">Dodaje ovaj PAT u izvezena podešavanja Morphe-a</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">Dodaje ovaj PAT u izvezena podešavanja Mamu-a</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">Ne deli svoj PAT. Ako ga uključiš u postavke izvoza, čuvaj taj fajl privatno jer sadrži token</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1074,7 +1074,7 @@ Dimenzije slika moraju biti sledeće:
     <string name="installer_status_not_supported">Nije podržano za ovu akciju</string>
     <string name="installer_status_shizuku_not_installed">Instalirajte Shizuku ili Sui da biste koristili ovu opciju</string>
     <string name="installer_status_shizuku_not_running">Pokrenite Shizuku ili Sui i pokušajte ponovo</string>
-    <string name="installer_status_shizuku_permission">Dajte dozvolu Morphe-u iz Shizuku aplikacije</string>
+    <string name="installer_status_shizuku_permission">Dajte dozvolu Mamu-u iz Shizuku aplikacije</string>
     <string name="installer_mount_warning_install">Režim zakrpljivanja je postavljen na root mount. Ova sačuvana aplikacija nije instalirana putem mount-a</string>
     <string name="mount_version_mismatch_message">Verzija originalne aplikacije (%2$s) ne podudara se sa verzijom patchane aplikacije (%1$s). Mountujte podudaranu verziju originalne aplikacije, a zatim pokušajte ponovo</string>
     <string name="mount_stock_restore_failed_message">Android je odbacio originalni sačuvani APK. Instalirajte odgovarajuću fabričku verziju, a zatim ponovo pokušajte sa montažom</string>
@@ -1115,7 +1115,7 @@ Dimenzije slika moraju biti sledeće:
     <string name="settings_ignore_install_target_rules">Ignoriši zahteve cilja instalacije</string>
     <string name="settings_ignore_install_target_rules_description">Omogućava isključivanje zakrpa koje cilj instalacije zahteva i uključivanje onih koje isključuje. Zakrpljena aplikacija možda neće raditi</string>
     <string name="settings_auto_uninstall_warning_title">Omogući automatsku deinstalaciju?</string>
-    <string name="settings_auto_uninstall_warning_message">Ako Android prijavljuje konflikt potpisa tokom Shizuku auto-instalacije, Morphe će deinstalirati postojeću aplikaciju pre instaliranja popravljenog APK-a</string>
+    <string name="settings_auto_uninstall_warning_message">Ako Android prijavljuje konflikt potpisa tokom Shizuku auto-instalacije, Mamu će deinstalirati postojeću aplikaciju pre instaliranja popravljenog APK-a</string>
     <string name="settings_auto_uninstall_warning_risk">Ovo može ukloniti podatke aplikacije. Ako popravljeni APK ne uspe da se instalira nakon deinstalacije, prethodna aplikacija je možda već uklonjena</string>
     <string name="installer_shizuku_status_action">Proveri status Shizuku-a</string>
     <string name="installer_shizuku_status_title">Status Shizuku-a</string>
@@ -1133,7 +1133,7 @@ Dimenzije slika moraju biti sledeće:
     <string name="installer_shizuku_install_fail_with_details">"Shizuku instalacija nije uspela: %1$s
 
 Detalji: %2$s"</string>
-    <string name="installer_shizuku_error_permission">Nedostaje dozvola Shizuku-a. Dajte dozvolu Morphe-u i pokušajte ponovo</string>
+    <string name="installer_shizuku_error_permission">Nedostaje dozvola Shizuku-a. Dajte dozvolu Mamu-u i pokušajte ponovo</string>
     <string name="installer_shizuku_error_timeout">Shizuku nije vratio rezultat instalacije. Uverite se da je i dalje u pokretu i pokušajte ponovo</string>
     <string name="installer_shizuku_error_downgrade">Android je ovo blokirao jer bi to smanjilo verziju instalirane aplikacije</string>
     <string name="installer_shizuku_error_signature">Android je ovo blokirao jer instalirana aplikacija ima drugačiji potpis</string>
@@ -1144,13 +1144,13 @@ Detalji: %2$s"</string>
     <string name="settings_system_battery_optimization_description">Drži patcher pokrenutim kada je aplikacija minimizovana</string>
     <string name="settings_system_process_runtime">Izvršno okruženje zakrpljivača</string>
     <string name="settings_system_jvm_runtime_enable">Koristi ugrađeni VM</string>
-    <string name="settings_system_jvm_runtime_description">Zakrpe u Morphe-ovoj sopstvenoj Java VM, koja može koristiti više memorije. Isključite da biste koristili Androidovo izvršno okruženje</string>
+    <string name="settings_system_jvm_runtime_description">Zakrpe u Mamu-ovoj sopstvenoj Java VM, koja može koristiti više memorije. Isključite da biste koristili Androidovo izvršno okruženje</string>
     <string name="settings_system_jvm_runtime_unavailable">Potreban je ARM ili 64-bitni x86 uređaj</string>
     <string name="settings_system_patcher_completion_sound">Zvuk završetka</string>
     <string name="settings_system_patcher_completion_sound_description">Reprodukuje poseban ton za uspeh ili neuspeh kada se patchovanje završi</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">Obaveštenja</string>
-    <string name="settings_system_notifications_description">Kako vas Morphe obaveštava</string>
+    <string name="settings_system_notifications_description">Kako vas Mamu obaveštava</string>
     <string name="settings_system_notifications_success_sound">Zvuk uspeha</string>
     <string name="settings_system_notifications_error_sound">Zvuk greške</string>
     <string name="settings_system_notifications_sound_default">Podrazumevana</string>
@@ -1162,8 +1162,8 @@ Detalji: %2$s"</string>
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">Ključ za potpisivanje</string>
     <string name="settings_system_signing_key_description">Pravi rezervne kopije ili vraća ključ koji potpisuje zakrpljene aplikacije</string>
-    <string name="settings_system_signing_key_dialog_description">Svaka aplikacija koju Morphe zakrpi potpisana je ovim ključem. Sačuvajte kopiju: bez njega, zakrpljene aplikacije se mogu ažurirati samo nakon deinstalacije.</string>
-    <string name="settings_system_signing_key_missing">Morphe ga kreira pri vašoj prvoj zakrpi.</string>
+    <string name="settings_system_signing_key_dialog_description">Svaka aplikacija koju Mamu zakrpi potpisana je ovim ključem. Sačuvajte kopiju: bez njega, zakrpljene aplikacije se mogu ažurirati samo nakon deinstalacije.</string>
+    <string name="settings_system_signing_key_missing">Mamu ga kreira pri vašoj prvoj zakrpi.</string>
     <string name="settings_system_signing_key_created">Kreirano %s</string>
     <string name="settings_system_signing_key_fingerprint">SHA-256 otisak</string>
     <string name="settings_system_backup_appearance_description">Tema, boje i jezik</string>
@@ -1185,8 +1185,8 @@ Detalji: %2$s"</string>
     <string name="settings_system_export_keystore_failed">Nije uspelo izvozivanje skladišta ključeva</string>
     <string name="settings_system_show_password_field">Prikaži lozinku</string>
     <string name="settings_system_hide_password_field">Sakrij lozinku</string>
-    <string name="settings_system_morphe_settings">Morphe podešavanja</string>
-    <string name="settings_system_import_manager_settings_description">Pravi backup i vraća vaše podešavanje aplikacije Morphe</string>
+    <string name="settings_system_morphe_settings">Mamu podešavanja</string>
+    <string name="settings_system_import_manager_settings_description">Pravi backup i vraća vaše podešavanje aplikacije Mamu</string>
     <string name="settings_system_export_manager_settings_title">Izvoz podešavanja Morphea</string>
     <string name="settings_system_export_manager_settings_description">Čuva podešavanja koja odaberete u datoteku</string>
     <string name="settings_system_import_manager_settings_file_description">Vraća podešavanja iz rezervne datoteke</string>
@@ -1194,22 +1194,22 @@ Detalji: %2$s"</string>
     <string name="settings_system_auto_backup_switch">Rezerviši automatski</string>
     <string name="settings_system_auto_backup_now">Rezerviši sada</string>
     <string name="settings_system_auto_backup_saved">Rezervna kopija sačuvana</string>
-    <string name="settings_system_auto_backup_interval_description">Morphe čeka najmanje ovoliko vremena nakon kopije pre pravljenja sledeće</string>
-    <string name="settings_system_auto_backup_description">Čuva vaša Morphe podešavanja u folder koji odaberete</string>
+    <string name="settings_system_auto_backup_interval_description">Mamu čeka najmanje ovoliko vremena nakon kopije pre pravljenja sledeće</string>
+    <string name="settings_system_auto_backup_description">Čuva vaša Mamu podešavanja u folder koji odaberete</string>
     <string name="settings_system_auto_backup_last">Poslednja rezervna kopija: %s</string>
     <string name="settings_system_auto_backup_folder">Folder</string>
-    <string name="settings_system_auto_backup_folder_name">Morphe rezervne kopije</string>
+    <string name="settings_system_auto_backup_folder_name">Mamu rezervne kopije</string>
     <string name="settings_system_auto_backup_folder_failed">Nije moguće koristiti ovaj folder: %s</string>
     <string name="settings_system_auto_backup_interval">Učestalost rezervne kopije</string>
     <string name="settings_system_auto_backup_signing_key">Uključi ključ za potpisivanje</string>
     <string name="settings_system_auto_backup_signing_key_description">Čuva ključ koji potpisuje modifikovane aplikacije pored podešavanja</string>
     <string name="settings_system_auto_backup_signing_key_warning_title">Napraviti rezervnu kopiju ključa za potpisivanje?</string>
     <string name="settings_system_auto_backup_signing_key_warning_message">Svatko ko dobije ovu datoteku može potpisati ažuriranja koja se instaliraju preko vaših modifikovanih aplikacija. Držite folder privatnim i delite ga samo sa sopstvenim uređajima</string>
-    <string name="settings_system_auto_backup_footer">Kopija se čuva kada napustite Morphe nakon što nešto promenite. Najnoviji %s se zadržavaju</string>
+    <string name="settings_system_auto_backup_footer">Kopija se čuva kada napustite Mamu nakon što nešto promenite. Najnoviji %s se zadržavaju</string>
     <string name="settings_system_auto_backup_failed">Poslednja rezervna kopija nije mogla biti sačuvana. Ponovo izaberite folder</string>
-    <string name="settings_system_import_manager_settings_fail">Nije uspelo uvoženje podešavanja Morphe-a: %s</string>
-    <string name="settings_system_import_manager_settings_success">Uvezena su podešavanja Morphe-a</string>
-    <string name="settings_system_import_manager_settings_mode_title">Uvoz podešavanja Morphe</string>
+    <string name="settings_system_import_manager_settings_fail">Nije uspelo uvoženje podešavanja Mamu-a: %s</string>
+    <string name="settings_system_import_manager_settings_success">Uvezena su podešavanja Mamu-a</string>
+    <string name="settings_system_import_manager_settings_mode_title">Uvoz podešavanja Mamu</string>
     <string name="settings_system_import_manager_settings_mode_description">Izaberite kako da se primene uvezeni podaci i izvori</string>
     <string name="settings_system_import_selections_mode_title">Uvoz izbora paketa</string>
     <string name="settings_system_import_selections_mode_description">Izaberite kako da se primene uvezeni izbori i opcije zakrpe</string>
@@ -1217,8 +1217,8 @@ Detalji: %2$s"</string>
     <string name="import_mode_replace_description">Tačno uporedi sa rezervnom kopijom. Stavke koje nedostaju u rezervnoj kopiji biće uklonjene</string>
     <string name="import_mode_merge_title">Spoji sa postojećim</string>
     <string name="import_mode_merge_description">Dodaj nedostajuće stavke iz rezervne kopije. Postojeće stavke ostaju nepromenjene</string>
-    <string name="settings_system_export_manager_settings_fail">Nije uspelo izvoženje podešavanja Morphe-a: %s</string>
-    <string name="settings_system_export_manager_settings_success">Izvezena su podešavanja Morphe-a</string>
+    <string name="settings_system_export_manager_settings_fail">Nije uspelo izvoženje podešavanja Mamu-a: %s</string>
+    <string name="settings_system_export_manager_settings_success">Izvezena su podešavanja Mamu-a</string>
     <string name="settings_system_export_debug_logs">Izvezi evidencije otklanjanja grešaka</string>
     <string name="settings_system_export_debug_logs_description">Čuva sistemske logove za rešavanje problema</string>
     <string name="settings_system_export_debug_logs_export_read_failed">Neuspeh pri čitanju dnevnika (kôd izlaza %s)</string>
@@ -1236,7 +1236,7 @@ Detalji: %2$s"</string>
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">Upravljanje skladištem</string>
     <string name="settings_system_storage_management_description">Prikazuje upotrebu diska i čisti keširane datoteke</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s slobodno</string>
     <string name="settings_system_storage_saved_apks">Sačuvani APK-ovi</string>
     <string name="settings_system_storage_caches">Keš memorije</string>
@@ -1259,7 +1259,7 @@ Detalji: %2$s"</string>
     <string name="settings_system_storage_clear_anyway">Ukloni svejedno</string>
     <string name="settings_system_storage_nothing_to_clear">Nema ničega za čišćenje</string>
     <string name="settings_system_storage_open_app_info_title">Otvorite skladište Android aplikacija</string>
-    <string name="settings_system_storage_open_app_info_description">Upravljajte ili očistite sve Morphe podatke putem sistemskih postavki</string>
+    <string name="settings_system_storage_open_app_info_description">Upravljajte ili očistite sve Mamu podatke putem sistemskih postavki</string>
     <string name="settings_system_save_original_apks_title">Sačuvaj originalne APK fajlove</string>
     <string name="settings_system_save_original_apks_description">Sačuvaj APK datoteku pre zakrpljivanja kako bi mogla ponovo da se koriste za ponovno zakrpljivanje bez ponovnog odabira datoteke</string>
     <string name="settings_system_save_patched_apks_title">Sačuvaj zakrpane APK fajlove</string>
@@ -1313,13 +1313,13 @@ Detalji: %2$s"</string>
     <string name="copy_selection_available_format">%1$s od %2$s dostupno</string>
     <!-- Settings - System Tab - Custom file picker -->
     <string name="settings_system_custom_file_picker">Prilagođeni odabir datoteka</string>
-    <string name="settings_system_custom_file_picker_description">Koristi Morphe-ov ugrađeni birač fajlova umesto sistemskog</string>
+    <string name="settings_system_custom_file_picker_description">Koristi Mamu-ov ugrađeni birač fajlova umesto sistemskog</string>
     <!-- Settings - System Tab - APK download helper -->
     <string name="settings_system_apk_download_helper">Preuzimač APK datoteka</string>
     <string name="settings_system_apk_download_helper_trusted_count">Pouzdano: %1$d od %2$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">Pomoćne aplikacije mogu da preuzimaju originalne APK-ove umesto vas. U uputstvima za preuzimanje nude se samo one kojima ovde verujete.</string>
     <string name="settings_system_apk_download_helper_trust_title">Verujete li ovom pomoćniku?</string>
-    <string name="settings_system_apk_download_helper_warning">APK dolazi od pomoćne aplikacije, zato verujte samo aplikacijama koje poznajete. Morphe i dalje proverava paket, verziju i potpis svake datoteke pre zakrpljivanja.</string>
+    <string name="settings_system_apk_download_helper_warning">APK dolazi od pomoćne aplikacije, zato verujte samo aplikacijama koje poznajete. Mamu i dalje proverava paket, verziju i potpis svake datoteke pre zakrpljivanja.</string>
     <string name="settings_system_apk_download_helper_installed_by">Instalirao: %s</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">Instalater nepoznat</string>
     <string name="settings_system_apk_download_helper_open_directly">Odmah otvori pomoćnika</string>
@@ -1352,7 +1352,7 @@ Detalji: %2$s"</string>
     <string name="settings_about_section_project">Projekat</string>
     <string name="settings_about_section_help">Pomoć</string>
     <string name="credits_prior_development">Prethodni razvoj</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">Menadžer</string>
     <string name="about_update_available">Dostupno ažuriranje: %s</string>
     <string name="about_up_to_date">Ažurno</string>
@@ -1365,7 +1365,7 @@ Detalji: %2$s"</string>
     <string name="contributors_all_time">Svo vreme</string>
     <string name="contributors_6_months">6 meseci</string>
     <string name="contributors_3_months">3 meseca</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">Podrška</string>
     <string name="supporters_description">Prisutni na Open Collective</string>
     <string name="supporters_become">Postanite podržavač</string>
@@ -1373,7 +1373,7 @@ Detalji: %2$s"</string>
     <string name="people_more">I još %s osoba</string>
     <string name="people_unavailable">Nije moguće učitati listu</string>
     <string name="opensource_licenses">Open-source licence</string>
-    <string name="opensource_licenses_description">Knjižnice na kojima je Morphe izgrađen</string>
+    <string name="opensource_licenses_description">Knjižnice na kojima je Mamu izgrađen</string>
     <string name="opensource_licenses_search">Pretraži biblioteke i licence</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">Izbor</string>
@@ -1398,7 +1398,7 @@ Detalji: %2$s"</string>
     <string name="settings_section_patcher">Zakrpljivač</string>
     <string name="settings_section_updates">Ažuriranja</string>
     <string name="settings_section_patching">Zakrpljivanje</string>
-    <string name="settings_section_appearance_summary">Kako Morphe izgleda</string>
+    <string name="settings_section_appearance_summary">Kako Mamu izgleda</string>
     <string name="settings_section_patch_options_summary">Čime jednostavni režim zakrpljuje aplikacije</string>
     <string name="settings_section_general">Opšte</string>
     <string name="settings_section_patcher_summary">Način zakrpljivanja aplikacija na ovom uređaju</string>
@@ -1566,7 +1566,7 @@ Detalji: %2$s"</string>
     <string name="update_completed">Ažuriranje instalirano</string>
     <string name="install_update_manager_failed">Neuspešno instaliranje ažuriranja</string>
     <string name="installing_manager_update">Instaliranje ažuriranja…</string>
-    <string name="installing_manager_update_hint">Morphe će se zatvoriti da bi završio ažuriranje</string>
+    <string name="installing_manager_update_hint">Mamu će se zatvoriti da bi završio ažuriranje</string>
     <string name="downloading_manager_update">Preuzimanje ažuriranja…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">%1$s MB preuzeto</string>
@@ -1589,7 +1589,7 @@ Da li i dalje želite da nastavite?"</string>
     <string name="onboarding_signing_key_desc">Napravi rezervnu kopiju ključa kojim potpisuješ zakrpljene aplikacije. Bez njega, one se mogu ažurirati samo nakon deinstalacije</string>
     <string name="onboarding_swipe_title">Gestovi prevlačenja</string>
     <string name="onboarding_swipe_desc">Prevučite prstom udesno na kartici aplikacije da biste videli dostupne zakrpe. Prevučite prstom ulevo da biste sakrili karticu sa početnog ekrana.</string>
-    <string name="onboarding_settings_desc">Prilagodite Morphe: izgled, napredne opcije i sistemske alate.</string>
+    <string name="onboarding_settings_desc">Prilagodite Mamu: izgled, napredne opcije i sistemske alate.</string>
     <string name="onboarding_sources_patches_desc">Dodirnite da biste videli sve zakrpe dostupne iz ovog izvora.</string>
     <string name="onboarding_sources_version_desc">Dodirnite verziju da biste videli kompletan spisak izmena za ovaj izvor.</string>
     <string name="onboarding_sources_apps_desc">Dodirni da vidiš koje aplikacije ovaj izvor zakrpljuje i odaberi za koje od njih nudi zakrpe</string>
@@ -1601,9 +1601,28 @@ Da li i dalje želite da nastavite?"</string>
     <string name="onboarding_system_file_picker_desc">Omogućite ovo da biste koristili ugrađeni pregledač datoteka umesto sistemskog birača prilikom odabira APK-a ili keystore-a.</string>
     <!-- Tour prompt dialog shown after first successful patch install -->
     <string name="tour_prompt_title">Brza tura po funkcijama</string>
-    <string name="tour_prompt_desc">Želite brzu turu po ključnim funkcijama Morphe?</string>
+    <string name="tour_prompt_desc">Želite brzu turu po ključnim funkcijama Mamu?</string>
     <!-- Label of a footer button beside "Skip". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="tour_prompt_confirm">Pokaži mi</string>
     <string name="onboarding_restart_title">Tura po funkcijama</string>
     <string name="onboarding_restart_desc">Vođeni obilazak ključnih funkcija</string>
+
+    <string name="home_app_filter_all_description">Sve aplikacije na početnom ekranu</string>
+    <string name="home_app_filter_patched_description">Aplikacije koje ste zakrpili ili sačuvali koristeći Mamu</string>
+    <string name="home_app_filter_not_patched_description">Aplikacije koje još niste zakrpili u aplikaciji Mamu</string>
+    <string name="home_app_filter_installed_description">Aplikacije koje su trenutno instalirane na ovom uređaju</string>
+    <string name="home_app_filter_uninstalled_description">Aplikacije zakrpljene pomoću Mamu-a koje više nisu na ovom uređaju</string>
+    <string name="home_app_filter_clones_description">Aplikacije napravljene pod sopstvenim imenom paketa, instalirane pored originala</string>
+    <string name="home_app_sort_name_asc_description">Abecedni redosled, A do Š</string>
+    <string name="home_app_sort_name_desc_description">Obrnuti abecedni redosled, od Z do A</string>
+    <string name="home_app_sort_recently_patched_description">Najskorije zakrpljene aplikacije prvo</string>
+    <string name="home_category_custom">Prilagođeno</string>
+    <string name="sources_filter_all_description">Svaki izvor</string>
+    <string name="sources_filter_enabled_description">Zakrpe za izvore su preuzete sa</string>
+    <string name="sources_filter_disabled_description">Izviisci isključeni</string>
+    <string name="sources_filter_issues_description">Izvori koji su blokirani, nisu se učitavali ili zahtevaju noviju verziju Mamu-a</string>
+    <string name="sources_sort_last_updated_description">Prvo najnovija ažuriranja izvora</string>
+    <string name="sources_sort_enabled_first_description">Prikaži aktivne izvore pre onemogućenih izvora</string>
+    <string name="home_apk_availability_installed_version">Instalirano na ovom uređaju: %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">Format kejstora</string>
 </resources>

@@ -19,6 +19,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.InsertDriveFile
+import androidx.compose.material.icons.automirrored.outlined.Sort
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -59,9 +63,6 @@ import app.morphe.manager.util.WILDCARD_MIMETYPE
 import app.morphe.manager.util.enumByNameOrNull
 import app.morphe.manager.util.externalStorageVolumes
 import app.morphe.manager.util.formatBytes
-import app.morphe.manager.util.thumbnailSampleSize
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -69,7 +70,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.compose.koinInject
 import java.io.File
-import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -138,9 +138,9 @@ private fun storageRoots(context: Context, hasRoot: Boolean): List<Pair<String, 
 private fun storageRootIcon(root: File): ImageVector {
     val primary = Environment.getExternalStorageDirectory()
     return when {
-        root.absolutePath == "/" -> MaterialSymbols.Rounded.Developer_mode
-        root.absolutePath.startsWith(primary.absolutePath) -> MaterialSymbols.Rounded.Storage
-        else -> MaterialSymbols.Rounded.Sd_card
+        root.absolutePath == "/" -> Icons.Outlined.DeveloperMode
+        root.absolutePath.startsWith(primary.absolutePath) -> Icons.Outlined.Storage
+        else -> Icons.Outlined.SdCard
     }
 }
 
@@ -159,31 +159,36 @@ private val folderItemCountCache = LruCache<String, Int>(200)
 private fun decodeSplitIcon(file: File): ImageBitmap? = runCatching {
     java.util.zip.ZipFile(file).use { zip ->
         val entry = zip.getEntry("icon.png") ?: return@runCatching null
-        decodeSampledThumbnail { zip.getInputStream(entry) }
+        val opts = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        zip.getInputStream(entry).use { BitmapFactory.decodeStream(it, null, opts) }
+        var sampleSize = 1
+        while (opts.outWidth / (sampleSize * 2) >= 128 && opts.outHeight / (sampleSize * 2) >= 128) {
+            sampleSize *= 2
+        }
+        zip.getInputStream(entry).use {
+            BitmapFactory.decodeStream(it, null, BitmapFactory.Options().apply { inSampleSize = sampleSize })
+                ?.asImageBitmap()
+        }
     }
 }.getOrNull()
 
 private fun decodeThumbnail(file: File): ImageBitmap? = runCatching {
-    decodeSampledThumbnail { file.inputStream() }
-}.getOrNull()
-
-/** Reads the image [open] gives once for its size and once more, sampled down, for the picture. */
-private fun decodeSampledThumbnail(open: () -> InputStream): ImageBitmap? {
-    val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-    open().use { BitmapFactory.decodeStream(it, null, bounds) }
-    val sampleSize = thumbnailSampleSize(bounds.outWidth, bounds.outHeight, minDimension = 128)
-    return open().use {
-        BitmapFactory.decodeStream(it, null, BitmapFactory.Options().apply { inSampleSize = sampleSize })
-            ?.asImageBitmap()
+    val opts = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+    BitmapFactory.decodeFile(file.absolutePath, opts)
+    var sampleSize = 1
+    while (opts.outWidth / (sampleSize * 2) >= 128 && opts.outHeight / (sampleSize * 2) >= 128) {
+        sampleSize *= 2
     }
-}
+    BitmapFactory.decodeFile(file.absolutePath, BitmapFactory.Options().apply { inSampleSize = sampleSize })
+        ?.asImageBitmap()
+}.getOrNull()
 
 private enum class SortMode {
     NAME_ASC, NAME_DESC, SIZE_DESC, SIZE_ASC, DATE_DESC, DATE_ASC;
 
     fun labelRes() = when (this) {
-        NAME_ASC  -> R.string.list_sort_name_asc
-        NAME_DESC -> R.string.list_sort_name_desc
+        NAME_ASC  -> R.string.file_picker_sort_name_asc
+        NAME_DESC -> R.string.file_picker_sort_name_desc
         SIZE_DESC -> R.string.file_picker_sort_size_desc
         SIZE_ASC  -> R.string.file_picker_sort_size_asc
         DATE_DESC -> R.string.file_picker_sort_date_desc
@@ -224,10 +229,9 @@ private fun modDateFormat(context: Context): SimpleDateFormat {
  *
  * [onPicked] gets the open folder with [allowFolderSelection], the tapped file by default, and
  * with [multiple] the files checked across every folder visited, in the order they were checked.
- * Picking a folder can also make a new one, named [suggestedFolderName] until the user types another.
  */
 @Composable
-fun DialogHostScope.FilePicker(
+fun FilePicker(
     mimeTypes: Array<String>,
     onDismiss: () -> Unit,
     onPicked: (List<File>) -> Unit,
@@ -253,7 +257,7 @@ fun DialogHostScope.FilePicker(
     var currentDir by remember { mutableStateOf(downloadsDir) }
     var refreshKey by remember { mutableIntStateOf(0) }
     var sortMode by remember {
-        mutableStateOf(enumByNameOrNull<SortMode>(prefs.filePickerSortMode.getBlocking()) ?: SortMode.DATE_DESC)
+        mutableStateOf(enumByNameOrNull<SortMode>(prefs.filePickerSortMode.getBlocking()) ?: SortMode.NAME_ASC)
     }
     var showHiddenFiles by remember { mutableStateOf(prefs.filePickerShowHiddenFiles.getBlocking()) }
     var showViewMenu by remember { mutableStateOf(false) }
@@ -286,17 +290,6 @@ fun DialogHostScope.FilePicker(
         }
     }
 
-    // Picks up what changed on disk while the picker was open, such as a file just downloaded or
-    // access just granted. Counts, icons and APK details are read once per path, so they go too,
-    // for a file replaced at the same path to show its new one
-    val refresh: () -> Unit = {
-        folderItemCountCache.evictAll()
-        apkPackageInfoCache.evictAll()
-        imageThumbnailCache.evictAll()
-        splitIconCache.evictAll()
-        refreshKey++
-    }
-
     val navigateBack = {
         val atStorageRoot = roots.any { (_, root) -> root == currentDir }
         currentDir = if (atStorageRoot) null else currentDir?.parentFile
@@ -305,18 +298,18 @@ fun DialogHostScope.FilePicker(
     DialogHost(target = currentDir.takeIf { showNewFolder }) { parent ->
         NewFolderDialog(
             parent = parent,
-            parentLabel = held(breadcrumbs.lastOrNull()?.first.orEmpty()),
+            parentLabel = breadcrumbs.lastOrNull()?.first.orEmpty(),
             suggestedName = suggestedFolderName,
             onDismiss = { showNewFolder = false },
             onCreated = { folder ->
                 showNewFolder = false
-                refresh()
+                refreshKey++
                 currentDir = folder
             }
         )
     }
 
-    ListDialog(
+    AppDialog(
         onDismissRequest = {
             when {
                 search.visible -> search.collapse()
@@ -353,237 +346,166 @@ fun DialogHostScope.FilePicker(
                 )
             }
         },
-        header = {
-            val accent = MaterialTheme.colorScheme.primary
-            // With a single storage its list holds nothing the trail does not already lead to
-            val showStorages = roots.size > 1
-            ListDialogHeader(
-                decorativeIcon = true,
-                icon = { modifier ->
-                    ListDialogHeaderIcon(
-                        icon = if (allowFolderSelection) MaterialSymbols.Rounded.Folder else MaterialSymbols.Rounded.Draft.autoMirrored,
-                        color = accent,
-                        modifier = modifier
-                    )
-                },
-                title = stringResource(
-                    when {
-                        allowFolderSelection -> R.string.select_folder
-                        multiple -> R.string.select_files
-                        else -> R.string.select_file
-                    }
-                ),
-                // What the picker takes where it narrows the files down, else where it is
-                subtitle = allowedExtensions?.sorted()?.joinToString(" · ") { ".$it" }
-                    ?: breadcrumbs.lastOrNull()?.first.orEmpty(),
-                search = search,
-                searchLabel = stringResource(R.string.search),
-                searchEnabled = currentDir != null,
-                accentColor = accent,
-                content = if (showStorages || breadcrumbs.isNotEmpty()) {
-                    {
-                        FolderTrail(
-                            breadcrumbs = breadcrumbs,
-                            showStorages = showStorages,
-                            onOpen = { currentDir = it },
-                            modifier = Modifier.padding(top = Defaults.SpaceMedium)
-                        )
-                    }
-                } else null
-            ) {
-                if (allowFolderSelection) {
-                    TitleAction(
-                        icon = MaterialSymbols.Rounded.Create_new_folder,
-                        contentDescription = stringResource(R.string.file_picker_new_folder),
-                        onClick = { showNewFolder = true },
-                        style = TitleActionStyle.Accent,
-                        enabled = currentDir != null
-                    )
-                }
-                Box {
-                    TitleAction(
-                        icon = MaterialSymbols.Rounded.Sort.autoMirrored,
-                        contentDescription = stringResource(R.string.sort),
-                        onClick = { showViewMenu = true },
-                        style = TitleActionStyle.Toggle,
-                        active = showViewMenu
-                    )
-                    AppDropdownMenu(
-                        expanded = showViewMenu,
-                        onDismissRequest = { showViewMenu = false }
-                    ) {
-                        SortMode.entries.forEach { mode ->
-                            AppDropdownMenuItem(
-                                text = stringResource(mode.labelRes()),
-                                selected = sortMode == mode,
-                                onClick = {
-                                    sortMode = mode
-                                    showViewMenu = false
-                                    coroutineScope.launch { prefs.filePickerSortMode.update(mode.name) }
-                                }
-                            )
-                        }
-                        SettingsDivider(fullWidth = true)
-                        AppDropdownMenuItem(
-                            text = stringResource(R.string.file_picker_show_hidden_files),
-                            trailing = {
-                                SelectionCheckIndicator(
-                                    ToggleableState(showHiddenFiles)
-                                )
-                            },
-                            modifier = Modifier.semantics { role = Role.Checkbox },
-                            onClick = {
-                                val next = !showHiddenFiles
-                                showHiddenFiles = next
-                                coroutineScope.launch { prefs.filePickerShowHiddenFiles.update(next) }
-                            }
-                        )
-                        // Pulling the list down does the same, but a gesture is out of reach on a
-                        // D-pad and for screen readers
-                        AppDropdownMenuItem(
-                            text = stringResource(R.string.refresh),
-                            onClick = {
-                                refresh()
-                                showViewMenu = false
-                            }
-                        )
-                    }
-                }
-            }
-        },
+        padding = DialogPadding.Compact,
+        scrollable = false,
+        contentArrangement = Arrangement.Top,
+        fillContentHeight = true,
         hideFooterWhileTyping = true
     ) {
-        val barInsets = LocalDialogBarInsets.current
-        AppPullToRefreshBox(
-            // The listing shows its placeholders while it reads the folder again
-            isRefreshing = false,
-            onRefresh = refresh,
-            // The list of storages has nothing to read again
-            enabled = currentDir != null,
-            // Out from under the header, which floats over the list
-            indicatorTop = { barInsets.calculateTopPadding() },
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
+        val accent = MaterialTheme.colorScheme.primary
+        ListDialogHeader(
+            icon = { modifier ->
+                ListDialogHeaderIcon(
+                    icon = if (allowFolderSelection) Icons.Outlined.Folder else Icons.AutoMirrored.Outlined.InsertDriveFile,
+                    color = accent,
+                    modifier = modifier
+                )
+            },
+            title = stringResource(
+                when {
+                    allowFolderSelection -> R.string.select_folder
+                    multiple -> R.string.select_files
+                    else -> R.string.select_file
+                }
+            ),
+            // What the picker takes where it narrows the files down, else where it is
+            subtitle = allowedExtensions?.sorted()?.joinToString(" · ") { ".$it" }
+                ?: breadcrumbs.lastOrNull()?.first.orEmpty(),
+            search = search,
+            searchLabel = stringResource(R.string.search),
+            searchEnabled = currentDir != null,
+            accentColor = accent
         ) {
-            // A folder slides in from the side it lies on, deeper ones from the end and the ones
-            // above from the start, so moving about the tree reads as moving along it
-            AnimatedContent(
-                targetState = currentDir,
-                transitionSpec = {
-                    val from = initialState
-                    val deeper = from == null ||
-                        targetState?.absolutePath?.startsWith(from.absolutePath + File.separator) == true
-                    val direction = if (deeper) 1 else -1
-                    (slideInHorizontally(tween(Defaults.ANIMATION_DURATION)) { it / 4 * direction } +
-                        fadeIn(tween(Defaults.ANIMATION_DURATION))) togetherWith
-                        (slideOutHorizontally(tween(Defaults.ANIMATION_DURATION)) { -it / 4 * direction } +
-                            fadeOut(tween(Defaults.ANIMATION_DURATION_SHORT)))
-                },
-                modifier = Modifier.fillMaxSize(),
-                label = "filePickerFolder"
-            ) { dir ->
-                FolderListing(
-                    dir = dir,
-                    roots = roots,
-                    allowedExtensions = allowedExtensions,
-                    sortMode = sortMode,
-                    showHiddenFiles = showHiddenFiles,
-                    // Only the folder on screen answers the search and the refresh
-                    query = if (dir == currentDir) search.query else "",
-                    refreshKey = refreshKey,
-                    pm = pm,
-                    mppIcon = mppIcon,
-                    modDateFormat = modDateFormat,
-                    checkedFiles = if (multiple) checkedFiles else null,
-                    onOpen = { currentDir = it },
-                    onFilePicked = { file ->
-                        when {
-                            allowFolderSelection -> Unit
-                            multiple -> if (!checkedFiles.remove(file)) checkedFiles += file
-                            else -> onPicked(listOf(file))
-                        }
-                    },
-                    onRetry = refresh
+            if (allowFolderSelection) {
+                TitleAction(
+                    icon = Icons.Outlined.CreateNewFolder,
+                    contentDescription = stringResource(R.string.file_picker_new_folder),
+                    onClick = { showNewFolder = true },
+                    style = TitleActionStyle.Accent,
+                    enabled = currentDir != null
                 )
             }
+            Box {
+                TitleAction(
+                    icon = Icons.AutoMirrored.Outlined.Sort,
+                    contentDescription = stringResource(R.string.sort),
+                    onClick = { showViewMenu = true },
+                    style = TitleActionStyle.Toggle,
+                    active = showViewMenu
+                )
+                AppDropdownMenu(
+                    expanded = showViewMenu,
+                    onDismissRequest = { showViewMenu = false }
+                ) {
+                    SortMode.entries.forEach { mode ->
+                        AppDropdownMenuItem(
+                            text = stringResource(mode.labelRes()),
+                            selected = sortMode == mode,
+                            onClick = {
+                                sortMode = mode
+                                showViewMenu = false
+                                coroutineScope.launch { prefs.filePickerSortMode.update(mode.name) }
+                            }
+                        )
+                    }
+                    SettingsDivider(fullWidth = true)
+                    AppDropdownMenuItem(
+                        text = stringResource(R.string.file_picker_show_hidden_files),
+                        trailing = {
+                            SelectionCheckIndicator(
+                                if (showHiddenFiles) ToggleableState.On else ToggleableState.Off
+                            )
+                        },
+                        modifier = Modifier.semantics { role = Role.Checkbox },
+                        onClick = {
+                            val next = !showHiddenFiles
+                            showHiddenFiles = next
+                            coroutineScope.launch { prefs.filePickerShowHiddenFiles.update(next) }
+                        }
+                    )
+                    // Picks up what changed on disk while the picker was open, such as a file
+                    // just downloaded or access just granted
+                    AppDropdownMenuItem(
+                        text = stringResource(R.string.refresh),
+                        onClick = {
+                            // Counts are read once per folder, so they go too to be read afresh
+                            folderItemCountCache.evictAll()
+                            refreshKey++
+                            showViewMenu = false
+                        }
+                    )
+                }
+            }
+        }
+
+        // With a single storage its list holds nothing the trail does not already lead to
+        val showStorages = roots.size > 1
+        if (showStorages || breadcrumbs.isNotEmpty()) {
+            FolderTrail(
+                breadcrumbs = breadcrumbs,
+                showStorages = showStorages,
+                onOpen = { currentDir = it },
+                modifier = Modifier.padding(top = Defaults.ItemSpacing)
+            )
+        }
+
+        AppDialogSearchHeader(
+            visible = search.visible,
+            value = search.query,
+            onValueChange = { search.query = it },
+            label = stringResource(R.string.search),
+            modifier = Modifier.padding(top = Defaults.ItemSpacing)
+        )
+
+        // A folder slides in from the side it lies on, deeper ones from the end and the ones
+        // above from the start, so moving about the tree reads as moving along it
+        AppPullToRefreshBox(isRefreshing = false, enabled = currentDir != null,
+            modifier = Modifier.fillMaxWidth().weight(1f), onRefresh = {
+                folderItemCountCache.evictAll()
+                refreshKey++
+            }) {
+        AnimatedContent(
+            targetState = currentDir,
+            transitionSpec = {
+                val from = initialState
+                val deeper = from == null ||
+                    targetState?.absolutePath?.startsWith(from.absolutePath + File.separator) == true
+                val direction = if (deeper) 1 else -1
+                (slideInHorizontally(tween(Defaults.ANIMATION_DURATION)) { it / 4 * direction } +
+                    fadeIn(tween(Defaults.ANIMATION_DURATION))) togetherWith
+                    (slideOutHorizontally(tween(Defaults.ANIMATION_DURATION)) { -it / 4 * direction } +
+                        fadeOut(tween(Defaults.ANIMATION_DURATION_SHORT)))
+            },
+            modifier = Modifier
+                .fillMaxSize(),
+            label = "filePickerFolder"
+        ) { dir ->
+            FolderListing(
+                dir = dir,
+                roots = roots,
+                allowedExtensions = allowedExtensions,
+                sortMode = sortMode,
+                showHiddenFiles = showHiddenFiles,
+                // Only the folder on screen answers the search and the refresh
+                query = if (dir == currentDir) search.query else "",
+                refreshKey = refreshKey,
+                pm = pm,
+                mppIcon = mppIcon,
+                modDateFormat = modDateFormat,
+                checkedFiles = if (multiple) checkedFiles else null,
+                onOpen = { currentDir = it },
+                onFilePicked = { file ->
+                    when {
+                        allowFolderSelection -> Unit
+                        multiple -> if (!checkedFiles.remove(file)) checkedFiles += file
+                        else -> onPicked(listOf(file))
+                    }
+                },
+                onRetry = { refreshKey++ }
+            )
+        }
         }
     }
-}
-
-// Characters a folder name cannot hold on every storage, FAT formatted SD cards being the strictest
-private const val FOLDER_NAME_FORBIDDEN_CHARS = "\"*/:<>?\\|"
-
-/** [name], or the first of "name (2)", "name (3)" and on that [dir] does not hold yet. */
-private fun freeChildName(dir: File, name: String): String {
-    if (!File(dir, name).exists()) return name
-    return generateSequence(2) { it + 1 }
-        .map { "$name ($it)" }
-        .first { !File(dir, it).exists() }
-}
-
-/**
- * Asks for the name of a folder to make in [parent], shown as [parentLabel], led by [suggestedName]
- * where there is one, numbered past the folders already called so. Hands the folder made to [onCreated].
- */
-@Composable
-private fun DialogHostScope.NewFolderDialog(
-    parent: File,
-    parentLabel: String,
-    suggestedName: String?,
-    onDismiss: () -> Unit,
-    onCreated: (File) -> Unit
-) {
-    val messages: UserMessages = koinInject()
-    val coroutineScope = rememberCoroutineScope()
-    val failedMessage = stringResource(R.string.file_picker_new_folder_failed)
-    var name by remember { mutableStateOf("") }
-    var isCreating by remember { mutableStateOf(false) }
-    val trimmed = name.trim()
-
-    LaunchedEffect(parent, suggestedName) {
-        if (suggestedName == null) return@LaunchedEffect
-        val freeName = withContext(Dispatchers.IO) { freeChildName(parent, suggestedName) }
-        // A name the user has started typing stays
-        if (name.isEmpty()) name = freeName
-    }
-
-    // Also catches the entries for the folder itself and its parent, which every folder holds
-    val isTaken by produceState(false, parent, trimmed) {
-        value = trimmed.isNotEmpty() && withContext(Dispatchers.IO) { File(parent, trimmed).exists() }
-    }
-    val hasForbiddenChar = trimmed.any { it in FOLDER_NAME_FORBIDDEN_CHARS || it.isISOControl() }
-    val nameError = when {
-        hasForbiddenChar -> R.string.file_picker_folder_name_invalid
-        isTaken -> R.string.file_picker_folder_name_taken
-        else -> null
-    }
-    val canCreate = trimmed.isNotEmpty() && nameError == null && !isCreating
-
-    val create: () -> Unit = {
-        isCreating = true
-        coroutineScope.launch {
-            val folder = File(parent, trimmed)
-            val made = withContext(Dispatchers.IO) { folder.mkdir() }
-            isCreating = false
-            if (made) onCreated(folder) else messages.show(failedMessage)
-        }
-    }
-
-    TextInputDialog(
-        title = stringResource(R.string.file_picker_new_folder),
-        description = stringResource(R.string.file_picker_new_folder_description, parentLabel),
-        value = name,
-        onValueChange = { name = it },
-        label = stringResource(R.string.file_picker_folder_name),
-        leadingIcon = MaterialSymbols.Rounded.Folder,
-        isError = nameError != null,
-        confirmText = stringResource(R.string.create),
-        confirmEnabled = canCreate,
-        onConfirm = create,
-        onDismiss = onDismiss,
-        supporting = nameError?.let { { Footnote(text = stringResource(it), tone = SemanticTone.Error) } }
-    )
 }
 
 /**
@@ -608,7 +530,7 @@ private fun FolderTrail(
             .fillMaxWidth()
             .horizontalScrollFade(scrollState)
             .horizontalScroll(scrollState),
-        horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceExtraSmall),
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         if (showStorages) {
@@ -616,7 +538,7 @@ private fun FolderTrail(
             AppFilterChip(
                 selected = isOpen,
                 onClick = { if (!isOpen) onOpen(null) },
-                icon = MaterialSymbols.Rounded.Home,
+                icon = Icons.Outlined.Home,
                 contentDescription = stringResource(R.string.file_picker_storages)
             )
         }
@@ -629,7 +551,7 @@ private fun FolderTrail(
                 selected = isOpen,
                 onClick = { if (!isOpen) onOpen(dir) },
                 label = label,
-                selectedIcon = if (index == 0) storageRootIcon(dir) else MaterialSymbols.Rounded.Folder_open
+                selectedIcon = if (index == 0) storageRootIcon(dir) else Icons.Outlined.FolderOpen
             )
         }
     }
@@ -706,6 +628,7 @@ private fun FolderListing(
 
     DialogLazyList(
         modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(vertical = Defaults.ItemSpacing),
         verticalArrangement = Arrangement.spacedBy(CompactCardSpacing)
     ) {
         val contents = dirContents
@@ -725,9 +648,9 @@ private fun FolderListing(
             contents.isFailure -> item(key = "__error__") {
                 EmptyState(
                     message = stringResource(R.string.file_picker_read_error),
-                    icon = MaterialSymbols.Rounded.Lock,
+                    icon = Icons.Outlined.Lock,
                     action = CardAction(
-                        icon = MaterialSymbols.Rounded.Refresh,
+                        icon = Icons.Outlined.Refresh,
                         label = stringResource(R.string.retry),
                         onClick = onRetry
                     )
@@ -737,14 +660,14 @@ private fun FolderListing(
             sortedContents.isEmpty() -> item(key = "__empty__") {
                 EmptyState(
                     message = stringResource(R.string.file_picker_no_files),
-                    icon = MaterialSymbols.Rounded.Folder_off
+                    icon = Icons.Outlined.FolderOff
                 )
             }
 
             displayedContents.isEmpty() -> item(key = "__no_results__") {
                 EmptyState(
                     message = stringResource(R.string.search_no_results),
-                    icon = MaterialSymbols.Rounded.Search_off
+                    icon = Icons.Outlined.SearchOff
                 )
             }
 
@@ -754,7 +677,6 @@ private fun FolderListing(
                     pm = pm,
                     mppIcon = mppIcon,
                     modDateFormat = modDateFormat,
-                    refreshKey = refreshKey,
                     checked = checkedFiles?.takeUnless { file.isDirectory }?.let { file in it },
                     onClick = { if (file.isDirectory) onOpen(file) else onFilePicked(file) },
                     modifier = Modifier.animatedListItem(this)
@@ -777,8 +699,6 @@ private fun FileEntryRow(
     pm: PM,
     mppIcon: ImageBitmap?,
     modDateFormat: SimpleDateFormat,
-    /** Bumped by a refresh, which reads what the row shows afresh. */
-    refreshKey: Int,
     /** Whether the file is checked, or null where files are picked outright rather than checked. */
     checked: Boolean?,
     onClick: () -> Unit,
@@ -794,7 +714,7 @@ private fun FileEntryRow(
     val isImage = ext in IMAGE_EXTENSIONS
     val isSplitBundle = ext in SPLIT_ICON_EXTENSIONS
 
-    val packageInfo by produceState<PackageInfo?>(null, file, refreshKey) {
+    val packageInfo by produceState<PackageInfo?>(null, file) {
         if (canLoadIcon) {
             value = apkPackageInfoCache.get(file.absolutePath)
                 ?: withContext(iconLoadDispatcher) { pm.getPackageInfo(file) }
@@ -802,7 +722,7 @@ private fun FileEntryRow(
         }
     }
 
-    val thumbnail by produceState<ImageBitmap?>(null, file, refreshKey) {
+    val thumbnail by produceState<ImageBitmap?>(null, file) {
         if (isImage) {
             value = imageThumbnailCache.get(file.absolutePath)
                 ?: withContext(iconLoadDispatcher) { decodeThumbnail(file) }
@@ -815,7 +735,7 @@ private fun FileEntryRow(
     }
 
     // A folder says how much it holds, which takes a read of its own
-    val itemCount by produceState<Int?>(null, file, refreshKey) {
+    val itemCount by produceState<Int?>(null, file) {
         if (isDir) {
             value = folderItemCountCache.get(file.absolutePath)
                 ?: withContext(iconLoadDispatcher) { file.list()?.size }
@@ -826,13 +746,13 @@ private fun FileEntryRow(
     val isMpp = ext == MPP_EXTENSION
     // What the entry shows until its app icon or picture loads, or where it has none
     val icon = when {
-        isDir -> MaterialSymbols.Rounded.Folder
-        isApk -> MaterialSymbols.Rounded.Android
-        ext in KEYSTORE_EXTENSIONS -> MaterialSymbols.Rounded.Key
-        ext == JSON_EXTENSION -> MaterialSymbols.Rounded.Data_object
-        isImage -> MaterialSymbols.Rounded.Image
-        ext in AUDIO_EXTENSIONS -> MaterialSymbols.Rounded.Music_note
-        else -> MaterialSymbols.Rounded.Draft.autoMirrored
+        isDir -> Icons.Outlined.Folder
+        isApk -> Icons.Outlined.Android
+        ext in KEYSTORE_EXTENSIONS -> Icons.Outlined.Key
+        ext == "json" -> Icons.Outlined.DataObject
+        isImage -> Icons.Outlined.Image
+        ext in AUDIO_EXTENSIONS -> Icons.Outlined.MusicNote
+        else -> Icons.AutoMirrored.Outlined.InsertDriveFile
     }
     val detail = if (isDir) {
         itemCount?.let { pluralStringResource(R.plurals.file_picker_item_count, it, it.toString()) }
@@ -851,7 +771,7 @@ private fun FileEntryRow(
         modifier = modifier,
         trailing = checked?.let { isChecked ->
             {
-                SelectionCheckIndicator(ToggleableState(isChecked))
+                SelectionCheckIndicator(if (isChecked) ToggleableState.On else ToggleableState.Off)
             }
         }
     )
@@ -887,7 +807,7 @@ private fun FilePickerRow(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(CompactCardIconSize)
-                    .clip(RoundedCornerShape(Defaults.CornerMedium))
+                    .clip(RoundedCornerShape(Defaults.CompactCornerRadius))
             )
 
             else -> CompactCardIconTile {
@@ -902,4 +822,79 @@ private fun FilePickerRow(
         CardHeadingText(name = name, description = detail, modifier = Modifier.weight(1f))
         trailing?.invoke()
     }
+}
+
+// Characters a folder name cannot hold on every storage, FAT formatted SD cards being the strictest
+private const val FOLDER_NAME_FORBIDDEN_CHARS = "\"*/:<>?\\|"
+
+/** [name], or the first of "name (2)", "name (3)" and on that [dir] does not hold yet. */
+private fun freeChildName(dir: File, name: String): String {
+    if (!File(dir, name).exists()) return name
+    return generateSequence(2) { it + 1 }
+        .map { "$name ($it)" }
+        .first { !File(dir, it).exists() }
+}
+
+/**
+ * Asks for the name of a folder to make in [parent], shown as [parentLabel], led by [suggestedName]
+ * where there is one, numbered past the folders already called so. Hands the folder made to [onCreated].
+ */
+@Composable
+private fun DialogHostScope.NewFolderDialog(
+    parent: File,
+    parentLabel: String,
+    suggestedName: String?,
+    onDismiss: () -> Unit,
+    onCreated: (File) -> Unit
+) {
+    val messages: UserMessages = koinInject()
+    val coroutineScope = rememberCoroutineScope()
+    val failedMessage = stringResource(R.string.file_picker_new_folder_failed)
+    var name by remember { mutableStateOf("") }
+    var isCreating by remember { mutableStateOf(false) }
+    val trimmed = name.trim()
+
+    LaunchedEffect(parent, suggestedName) {
+        if (suggestedName == null) return@LaunchedEffect
+        val freeName = withContext(Dispatchers.IO) { freeChildName(parent, suggestedName) }
+        // A name the user has started typing stays
+        if (name.isEmpty()) name = freeName
+    }
+
+    // Also catches the entries for the folder itself and its parent, which every folder holds
+    val isTaken by produceState(false, parent, trimmed) {
+        value = trimmed.isNotEmpty() && withContext(Dispatchers.IO) { File(parent, trimmed).exists() }
+    }
+    val hasForbiddenChar = trimmed.any { it in FOLDER_NAME_FORBIDDEN_CHARS || it.isISOControl() }
+    val nameError = when {
+        hasForbiddenChar -> R.string.file_picker_folder_name_invalid
+        isTaken -> R.string.file_picker_folder_name_taken
+        else -> null
+    }
+    val canCreate = trimmed.isNotEmpty() && nameError == null && !isCreating
+
+    val create: () -> Unit = {
+        isCreating = true
+        coroutineScope.launch {
+            val folder = File(parent, trimmed)
+            val made = withContext(Dispatchers.IO) { folder.mkdir() }
+            isCreating = false
+            if (made) onCreated(folder) else messages.show(failedMessage)
+        }
+    }
+
+    TextInputDialog(
+        title = stringResource(R.string.file_picker_new_folder),
+        description = stringResource(R.string.file_picker_new_folder_description, parentLabel),
+        value = name,
+        onValueChange = { name = it },
+        label = stringResource(R.string.file_picker_folder_name),
+        leadingIcon = Icons.Outlined.Folder,
+        isError = nameError != null,
+        confirmText = stringResource(R.string.create),
+        confirmEnabled = canCreate,
+        onConfirm = create,
+        onDismiss = onDismiss,
+        supporting = nameError?.let { { Footnote(text = stringResource(it), tone = SemanticTone.Error) } }
+    )
 }

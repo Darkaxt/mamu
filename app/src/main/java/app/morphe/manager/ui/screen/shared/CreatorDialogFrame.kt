@@ -6,16 +6,20 @@
 package app.morphe.manager.ui.screen.shared
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Save
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import app.morphe.manager.R
 import app.morphe.manager.util.KnownApps
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
 
 /**
  * Dialog of a creator that makes a picture for an app to be patched with, such as its icon or its
@@ -27,7 +31,7 @@ import com.composables.icons.materialsymbols.rounded.*
  * @param isCreating Covers the dialog while the files are written, and keeps it from closing.
  */
 @Composable
-fun DialogHostScope.CreatorDialogFrame(
+fun CreatorDialogFrame(
     packageName: String,
     title: String,
     guideTitle: String,
@@ -39,53 +43,59 @@ fun DialogHostScope.CreatorDialogFrame(
     content: @Composable ColumnScope.() -> Unit
 ) {
     var showGuide by remember { mutableStateOf(false) }
+    val scrollState = rememberScrollState()
 
-    ListDialog(
+    AppDialog(
         onDismissRequest = { if (!isCreating) onDismiss() },
         accentColor = rememberAppColor(packageName),
-        header = {
-            ListDialogHeader(
-                icon = { modifier ->
-                    AppIcon(packageName = packageName, contentDescription = null, modifier = modifier)
-                },
-                title = title,
-                subtitle = KnownApps.getAppName(packageName),
-                alwaysShowBand = true
-            ) {
-                TitleAction(
-                    icon = MaterialSymbols.Rounded.Info,
-                    contentDescription = guideTitle,
-                    onClick = { showGuide = true },
-                    style = TitleActionStyle.Accent
-                )
-            }
-        },
         footer = {
             AppDialogButton(
                 text = title,
                 onClick = onCreate,
                 enabled = createEnabled && !isCreating,
-                icon = MaterialSymbols.Rounded.Save,
+                icon = Icons.Outlined.Save,
                 modifier = Modifier.fillMaxWidth()
             )
         },
+        padding = DialogPadding.Compact,
+        scrollable = false,
+        contentArrangement = Arrangement.Top,
+        fillContentHeight = true,
         overlay = {
             ContentOverlay(visible = isCreating) {
                 PulsingLogoWithCaption(caption = stringResource(R.string.creating))
             }
         }
     ) {
-        DialogScrollColumn(
+        ListDialogHeader(
+            icon = { modifier ->
+                AppIcon(packageName = packageName, contentDescription = null, modifier = modifier)
+            },
+            title = title,
+            subtitle = KnownApps.getAppName(packageName)
+        ) {
+            TitleAction(
+                icon = Icons.Outlined.Info,
+                contentDescription = guideTitle,
+                onClick = { showGuide = true },
+                style = TitleActionStyle.Accent
+            )
+        }
+
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f),
+                .weight(1f)
+                .verticalScrollFade(scrollState)
+                .verticalScroll(scrollState)
+                .padding(vertical = Defaults.ItemSpacing),
             // Spaced as the option cards that open the creator
-            verticalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall),
+            verticalArrangement = Arrangement.spacedBy(Defaults.ContentPaddingSmall),
             content = content
         )
     }
 
-    DialogHost(visible = showGuide) {
+    if (showGuide) {
         CreatorGuideDialog(title = guideTitle, sections = guide, onDismiss = { showGuide = false })
     }
 }
@@ -98,7 +108,7 @@ fun CreatorCard(title: String, content: @Composable ColumnScope.() -> Unit) {
 
 /** A creator's guide, each section a title over what it explains. */
 @Composable
-private fun DialogHostScope.CreatorGuideDialog(
+private fun CreatorGuideDialog(
     title: String,
     sections: List<Pair<String, String>>,
     onDismiss: () -> Unit
@@ -116,10 +126,10 @@ private fun DialogHostScope.CreatorGuideDialog(
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(Defaults.SpaceLarge)
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             sections.forEach { (sectionTitle, body) ->
-                Column(verticalArrangement = Arrangement.spacedBy(Defaults.SpaceExtraSmall)) {
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text(
                         text = sectionTitle,
                         style = MaterialTheme.typography.bodyMedium,

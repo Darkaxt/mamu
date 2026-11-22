@@ -11,12 +11,14 @@
 package app.morphe.manager.di
 
 import app.morphe.manager.patcher.worker.PatcherWorker
+import app.morphe.manager.downloaders.OriginalDownloadWorker
 import app.morphe.manager.worker.AutoBackupWorker
 import app.morphe.manager.worker.UpdateCheckWorker
 import org.koin.androidx.workmanager.dsl.workerOf
 import org.koin.dsl.module
 
 val workerModule = module {
+    workerOf(::OriginalDownloadWorker)
     workerOf(::PatcherWorker)
     workerOf(::UpdateCheckWorker)
     workerOf(::AutoBackupWorker)

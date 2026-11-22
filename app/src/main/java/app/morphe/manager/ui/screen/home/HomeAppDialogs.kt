@@ -6,21 +6,28 @@
 package app.morphe.manager.ui.screen.home
 
 import android.view.HapticFeedbackConstants
-import androidx.annotation.PluralsRes
-import androidx.annotation.StringRes
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.state.ToggleableState
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.morphe.manager.R
@@ -28,51 +35,75 @@ import app.morphe.manager.domain.repository.PatchBundleRepository
 import app.morphe.manager.domain.repository.SourceMuteRepository
 import app.morphe.manager.domain.repository.appsToKeepFrom
 import app.morphe.manager.patcher.patch.PatchInfo
+import app.morphe.manager.patcher.patch.appSpecificPatches
+import app.morphe.manager.patcher.patch.customPatchCount
+import app.morphe.manager.patcher.patch.patchSourceDisplayOrder
+import app.morphe.manager.util.compareVersions
 import app.morphe.manager.patcher.patch.appColorFor
 import app.morphe.manager.ui.model.HomeAppItem
 import app.morphe.manager.ui.screen.shared.*
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
+import app.morphe.manager.util.toast
+import app.morphe.manager.util.withToast
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
 import java.util.Locale
 
 /**
  * Dialog that shows available patches for a specific app, one block per source they come from.
- * Shown when the user swipes right on a home app card.
- *
- * @param onOpenApp Opens the app on the device, null when it is not installed or has no launcher.
+ * Shown from the info shortcut or swipe action on a home app card, before APK acquisition.
  */
 @Composable
-fun DialogHostScope.AppPatchesDialog(
+fun AppPatchesDialog(
     item: HomeAppItem,
     patchesByBundle: Map<Int, List<PatchInfo>>,
     bundleNames: Map<Int, String>,
     onDismiss: () -> Unit,
-    isLoading: Boolean = false,
-    onOpenApp: (() -> Unit)? = null
+    isLoading: Boolean = false
 ) {
     val sourcesByUid = rememberSourcesByUid()
-    val sourceAccents = patchesByBundle.keys.associateWith { uid ->
+    val store: app.morphe.manager.network.PlayStoreIcons = koinInject()
+    val storeListings by store.listings.collectAsStateWithLifecycle()
+    val listing = storeListings[item.packageName]
+    val storeCategory = app.morphe.manager.ui.viewmodel.StoreCategory.of(listing)
+    val specificPatches = remember(patchesByBundle, item.packageName) {
+        patchesByBundle.appSpecificPatches(item.packageName)
+    }
+    var includeUniversal by remember(item.packageName) { mutableStateOf(false) }
+    val canIncludeUniversal = specificPatches.isNotEmpty() && specificPatches != patchesByBundle
+    val previewPatches = if (includeUniversal || specificPatches.isEmpty()) patchesByBundle else specificPatches
+    val versions = remember(patchesByBundle, item.packageName) {
+        patchesByBundle.values.flatten().flatMap { patch ->
+            patch.compatiblePackages.orEmpty().filter { it.packageName == item.packageName }
+                .flatMap { it.versions.orEmpty() }
+        }.distinct().sortedWith { a, b -> compareVersions(b, a) }
+    }
+    var pickedVersion by remember(item.packageName) { mutableStateOf<String?>(null) }
+    val selectedVersion = pickedVersion ?: versions.firstOrNull()
+    var versionMenuOpen by remember { mutableStateOf(false) }
+    val customLabel = stringResource(R.string.extended_custom_patch_count,
+        patchesByBundle.values.sumOf { customPatchCount(it, item.packageName, selectedVersion) })
+    val otherVersionsLabel = stringResource(R.string.extended_patches_other_versions)
+    val sourceAccents = previewPatches.keys.associateWith { uid ->
         key(uid) { sourcesByUid[uid]?.let { rememberBundleAccent(it) } }
     }
 
-    // Sources with at least one patch written for this app come first, then those with universal
-    // patches alone, each by name. Within a source its specific patches lead its universal ones
-    val sections = remember(patchesByBundle, bundleNames, item.packageName, sourcesByUid, sourceAccents) {
-        val isMultiBundle = patchesByBundle.size > 1
-        patchesByBundle.entries
+    // Rank custom coverage for the chosen version; universal patches never inflate the rank.
+    val sections = remember(previewPatches, bundleNames, item.packageName, sourcesByUid, sourceAccents, selectedVersion, otherVersionsLabel) {
+        val isMultiBundle = previewPatches.size > 1
+        previewPatches.entries
             .sortedWith(
-                compareBy(
-                    { (_, patches) -> patches.all { it.isUniversal } },
-                    { (uid, _) -> bundleNames[uid] ?: uid.toString() }
-                )
+                patchSourceDisplayOrder(item.packageName, selectedVersion) { it.value }
             )
             .map { (uid, patches) ->
-                val (universal, specific) = patches.partition { it.isUniversal }
+                val (specific, universal) = patches.partition { patch ->
+                    patch.compatiblePackages.orEmpty().any { it.packageName == item.packageName }
+                }
+                val differentVersion = specific.isNotEmpty() && selectedVersion != null &&
+                    customPatchCount(specific, item.packageName, selectedVersion) == 0
                 PatchListSection(
                     key = uid.toString(),
-                    title = bundleNames[uid] ?: uid.toString(),
+                    title = (bundleNames[uid] ?: uid.toString()) +
+                        if (differentVersion) " · $otherVersionsLabel" else "",
                     patches = specific.sortedBy { it.name } + universal.sortedBy { it.name },
                     packageName = item.packageName,
                     // Several sources side by side each wear the color of their icon. One whose icon
@@ -89,7 +120,7 @@ fun DialogHostScope.AppPatchesDialog(
                             BundleIcon(bundle = source, modifier = modifier, enabled = source.enabled)
                         } else {
                             Icon(
-                                imageVector = MaterialSymbols.Rounded.Layers,
+                                imageVector = Icons.Outlined.Layers,
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = modifier
@@ -116,20 +147,42 @@ fun DialogHostScope.AppPatchesDialog(
             )
         },
         title = item.displayName,
-        subtitle = pluralStringResource(R.plurals.patch_count, patchCount, patchCount.toString()),
+        subtitle = listOfNotNull(storeCategory?.let { stringResource(it.label) }, listing?.developer,
+            pluralStringResource(R.plurals.patch_count, patchCount, patchCount.toString())).joinToString(" · "),
         sections = sections,
         isLoading = isLoading,
         saveStateKey = "app_patches_${item.id}",
         onDismiss = onDismiss,
         accentColor = brandColor,
-        headerActions = {
-            if (onOpenApp != null) {
-                TitleAction(
-                    icon = MaterialSymbols.Rounded.Open_in_new.autoMirrored,
-                    contentDescription = stringResource(R.string.open),
-                    onClick = onOpenApp,
-                    style = TitleActionStyle.Neutral
-                )
+        notice = if (versions.isEmpty() && !canIncludeUniversal) null else {
+            {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    if (versions.isNotEmpty()) {
+                        Box {
+                            AppDialogOutlinedButton(
+                                text = "v$selectedVersion · $customLabel",
+                                onClick = { versionMenuOpen = true },
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                            DropdownMenu(expanded = versionMenuOpen, onDismissRequest = { versionMenuOpen = false }) {
+                                versions.forEach { version ->
+                                    val count = patchesByBundle.values.sumOf { customPatchCount(it, item.packageName, version) }
+                                    DropdownMenuItem(
+                                        text = { Text("v$version · " + stringResource(R.string.extended_custom_patch_count, count)) },
+                                        onClick = { pickedVersion = version; versionMenuOpen = false }
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    if (canIncludeUniversal) {
+                        SelectionCheckRow(
+                            text = stringResource(R.string.extended_show_universal_patches),
+                            checked = includeUniversal,
+                            onCheckedChange = { includeUniversal = it }
+                        )
+                    }
+                }
             }
         }
     )
@@ -139,7 +192,7 @@ fun DialogHostScope.AppPatchesDialog(
  * Confirmation dialog asking user whether to hide the app.
  */
 @Composable
-internal fun DialogHostScope.HideAppDialog(
+internal fun HideAppDialog(
     item: HomeAppItem,
     onDismiss: () -> Unit,
     onHide: () -> Unit
@@ -148,70 +201,65 @@ internal fun DialogHostScope.HideAppDialog(
         onDismissRequest = onDismiss,
         accentColor = rememberAppColor(item.packageName),
         title = stringResource(R.string.home_app_hide_title),
-        description = stringResource(R.string.home_app_hide_message),
         footer = {
             AppDialogButtonRow(
                 primaryText = stringResource(R.string.hide),
-                primaryIcon = MaterialSymbols.Rounded.Visibility_off,
+                primaryIcon = Icons.Outlined.VisibilityOff,
                 onPrimaryClick = onHide,
                 secondaryText = stringResource(android.R.string.cancel),
                 onSecondaryClick = onDismiss
             )
         },
+        padding = DialogPadding.Compact
     ) {
-        // Original app card preview
-        AppCardLayout(
-            gradientColors = item.gradientColors,
-            onClick = {},
-            modifier = Modifier.fillMaxWidth()
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            AppCardContent(
-                packageName = item.id,
-                storePackageName = item.packageName,
-                packageInfo = item.packageInfo,
-                displayName = item.displayName,
-                subtitle = AppCardLine(stringResource(R.string.home_app_will_be_hidden))
+            // Original app card preview
+            AppCardLayout(
+                gradientColors = item.gradientColors,
+                onClick = {},
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                AppCardContent(
+                    packageName = item.id,
+                    packageInfo = item.packageInfo,
+                    displayName = item.displayName,
+                    subtitle = stringResource(R.string.home_app_will_be_hidden),
+                    gradientColors = item.gradientColors,
+                )
+            }
+
+            // Explanation text
+            Text(
+                text = stringResource(R.string.home_app_hide_message),
+                style = MaterialTheme.typography.bodyLarge,
+                color = dialogSecondaryTextColor(),
+                textAlign = TextAlign.Center
             )
         }
     }
-}
-
-/** Asks before [apps] go back to the home screen together, naming each of them. */
-@Composable
-private fun DialogHostScope.UnhideAppsDialog(
-    apps: List<HomeAppItem>,
-    onConfirm: () -> Unit,
-    onDismiss: () -> Unit
-) {
-    ConfirmDialog(
-        title = pluralStringResource(R.plurals.home_apps_unhide_title, apps.size, apps.size.toString()),
-        message = stringResource(R.string.home_apps_unhide_message),
-        primaryText = stringResource(R.string.unhide),
-        isPrimaryDestructive = false,
-        onConfirm = onConfirm,
-        onDismiss = onDismiss,
-        items = apps.map { ConfirmItem(MaterialSymbols.Rounded.Visibility, it.displayName) }
-    )
 }
 
 /**
  * Dialog listing all hidden apps.
  *
  * Swipe gestures (disabled in multi-select mode):
- * - Swipe toward the start → unhide
- * - Swipe toward the end   → patches dialog
+ * - Swipe LEFT  → Patches dialog
+ * - Swipe RIGHT → Unhide
  *
- * Long-press enters multi-select; bulk unhide via the selection bar.
+ * Long-press enters multi-select; bulk unhide via footer button.
  */
 @Composable
-internal fun DialogHostScope.HiddenAppsDialog(
+internal fun HiddenAppsDialog(
     hiddenAppItems: List<HomeAppItem>,
     onUnhide: (String) -> Unit,
     onUnhideMultiple: (Set<String>) -> Unit = {},
     onShowPatches: (HomeAppItem) -> Unit,
     onDismiss: () -> Unit
 ) {
-    val messages = koinInject<UserMessages>()
+    val context = LocalContext.current
     val itemSpacing = rememberWindowSize().itemSpacing
     val isMultiSelectMode = remember { mutableStateOf(false) }
     val selectedPackages = rememberSelectionState<String>()
@@ -224,58 +272,15 @@ internal fun DialogHostScope.HiddenAppsDialog(
     }
 
     val view = LocalView.current
-    val unhideConfig = rememberUnhideSwipeAction()
+    val density = LocalDensity.current
+    val actionThresholdPx = with(density) { 90.dp.toPx() }
 
-    // The apps a bulk unhide waits to be confirmed for
-    val pendingUnhide = remember { mutableStateOf<List<HomeAppItem>?>(null) }
+    val startConfig = rememberUnhideSwipeAction()
 
-    DialogHost(target = pendingUnhide.value) { apps ->
-        UnhideAppsDialog(
-            apps = apps,
-            onConfirm = messages.confirming(appsShownMessage(apps)) {
-                pendingUnhide.value = null
-                onUnhideMultiple(apps.mapTo(mutableSetOf()) { it.id })
-                isMultiSelectMode.value = false
-                selectedPackages.clear()
-            },
-            onDismiss = { pendingUnhide.value = null }
-        )
-    }
-
-    val accent = MaterialTheme.colorScheme.primary
-    ListDialog(
+    AppDialog(
         onDismissRequest = onDismiss,
         dismissOnClickOutside = !isMultiSelectMode.value,
-        header = {
-            ListDialogHeader(
-                decorativeIcon = true,
-                icon = { modifier ->
-                    ListDialogHeaderIcon(icon = MaterialSymbols.Rounded.Visibility_off, color = accent, modifier = modifier)
-                },
-                title = stringResource(R.string.home_app_hidden_apps_title),
-                subtitle = pluralStringResource(
-                    R.plurals.home_category_app_count,
-                    hiddenAppItems.size,
-                    hiddenAppItems.size.toString()
-                ),
-                accentColor = accent,
-                actions = {
-                    // Gives way to the selection bar, which unhides whatever part of the list is picked
-                    AnimatedVisibility(
-                        visible = hiddenAppItems.isNotEmpty() && !isMultiSelectMode.value,
-                        enter = Animations.headerActionEnter,
-                        exit = Animations.headerActionExit
-                    ) {
-                        TitleAction(
-                            icon = MaterialSymbols.Rounded.Visibility,
-                            contentDescription = stringResource(R.string.show_all),
-                            onClick = { pendingUnhide.value = hiddenAppItems },
-                            style = TitleActionStyle.Neutral
-                        )
-                    }
-                }
-            )
-        },
+        title = stringResource(R.string.home_app_hidden_apps_title),
         footer = {
             AppDialogOutlinedButton(
                 text = stringResource(R.string.close),
@@ -285,7 +290,7 @@ internal fun DialogHostScope.HiddenAppsDialog(
         },
         bottomBar = if (isMultiSelectMode.value) {
             {
-                DockedPanel(
+                MultiSelectShell(
                     visible = true,
                     onBack = {
                         isMultiSelectMode.value = false
@@ -301,10 +306,12 @@ internal fun DialogHostScope.HiddenAppsDialog(
                         onDeselectAll = { selectedPackages.clear() },
                         actions = listOf(
                             SelectionAction(
-                                icon = MaterialSymbols.Rounded.Visibility,
+                                icon = Icons.Outlined.Visibility,
                                 label = stringResource(R.string.unhide),
-                                onClick = {
-                                    pendingUnhide.value = hiddenAppItems.filter { selectedPackages.contains(it.id) }
+                                onClick = context.withToast(stringResource(R.string.unhide_done)) {
+                                    onUnhideMultiple(selectedPackages.keys.toSet())
+                                    isMultiSelectMode.value = false
+                                    selectedPackages.clear()
                                 },
                                 tone = ActionTone.Tertiary
                             )
@@ -316,64 +323,85 @@ internal fun DialogHostScope.HiddenAppsDialog(
                     )
                 }
             }
-        } else null
+        } else null,
+        padding = DialogPadding.Compact,
+        scrollable = false
     ) {
-        DialogLazyList(
-            modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(itemSpacing)
-        ) {
-            if (hiddenAppItems.isEmpty()) {
-                item(key = "empty_state") {
-                    EmptyState(
-                        message = stringResource(R.string.home_app_no_hidden),
-                        icon = MaterialSymbols.Rounded.Visibility,
-                        modifier = Modifier.animateItem()
-                    )
-                }
-            }
+        if (hiddenAppItems.isEmpty()) {
+            EmptyState(
+                message = stringResource(R.string.home_app_no_hidden),
+                icon = Icons.Outlined.Visibility
+            )
+        } else {
+            DialogLazyList(
+                // The dialog is centered, so its height eases with the cards rather than jumping
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .animateContentSize(),
+                verticalArrangement = Arrangement.spacedBy(itemSpacing)
+            ) {
+                items(
+                    items = hiddenAppItems,
+                    key = { it.id }
+                ) { item ->
+                    val isSelected = selectedPackages.contains(item.id)
+                    val offsetX = remember(item.id) { Animatable(0f) }
 
-            items(
-                items = hiddenAppItems,
-                key = { it.id }
-            ) { item ->
-                val isSelected = selectedPackages.contains(item.id)
-                val unhide = unhideReporting(item, onUnhide)
+                    // Snap card back when entering multi-select
+                    LaunchedEffect(isMultiSelectMode.value) {
+                        if (isMultiSelectMode.value) offsetX.animateTo(0f, tween(200))
+                    }
 
-                SelectableCard(
-                    modifier = Modifier.animatedListItem(this),
-                    isSelected = isSelected,
-                    isSelectionMode = isMultiSelectMode.value
-                ) {
-                    SwipeableCardContainer(
-                        start = SwipeAction(unhideConfig, unhide),
-                        end = SwipeAction(rememberPatchesSwipeAction(item.packageName)) { onShowPatches(item) },
-                        enabled = !isMultiSelectMode.value
+                    SelectableCard(
+                        modifier = Modifier.animatedListItem(this),
+                        isSelected = isSelected,
+                        isSelectionMode = isMultiSelectMode.value
                     ) {
-                        AppCardLayout(
-                            gradientColors = item.gradientColors,
-                            onClick = {
-                                if (isMultiSelectMode.value) {
-                                    selectedPackages.toggle(item.id)
-                                } else {
-                                    unhide()
-                                }
-                            },
-                            selected = isSelected.takeIf { isMultiSelectMode.value },
-                            onLongClick = {
-                                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
-                                isMultiSelectMode.value = true
-                                selectedPackages.toggle(item.id)
-                            },
-                            modifier = Modifier.fillMaxWidth()
+                        SwipeableCardContainer(
+                            offsetX = offsetX,
+                            actionThresholdPx = actionThresholdPx,
+                            onSwipeToStart = { onUnhide(item.id) },
+                            onSwipeToEnd = { onShowPatches(item) },
+                            startHaptic = HapticFeedbackConstants.LONG_PRESS,
+                            endHaptic = HapticFeedbackConstants.VIRTUAL_KEY,
+                            enabled = !isMultiSelectMode.value,
+                            background = { startProgress, endProgress ->
+                                SwipeBackground(
+                                    startProgress = startProgress,
+                                    endProgress = endProgress,
+                                    startConfig = startConfig,
+                                    endConfig = rememberPatchesSwipeAction(item.packageName),
+                                    modifier = Modifier
+                                        .matchParentSize()
+                                        .clip(RoundedCornerShape(24.dp))
+                                )
+                            }
                         ) {
-                            AppCardContent(
-                                packageName = item.id,
-                                storePackageName = item.packageName,
-                                packageInfo = item.packageInfo,
-                                displayName = item.displayName,
-                                subtitle = if (isMultiSelectMode.value) null
-                                else AppCardLine(stringResource(R.string.home_app_hidden_apps_hint))
-                            )
+                            AppCardLayout(
+                                gradientColors = item.gradientColors,
+                                onClick = {
+                                    if (isMultiSelectMode.value) {
+                                        selectedPackages.toggle(item.id)
+                                    } else {
+                                        onUnhide(item.id)
+                                    }
+                                },
+                                onLongClick = {
+                                    view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+                                    isMultiSelectMode.value = true
+                                    selectedPackages.toggle(item.id)
+                                },
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                AppCardContent(
+                                    packageName = item.id,
+                                    packageInfo = item.packageInfo,
+                                    displayName = item.displayName,
+                                    subtitle = if (isMultiSelectMode.value) null
+                                    else stringResource(R.string.home_app_hidden_apps_hint),
+                                    gradientColors = item.gradientColors,
+                                )
+                            }
                         }
                     }
                 }
@@ -390,7 +418,7 @@ internal fun DialogHostScope.HiddenAppsDialog(
  * everywhere else - this only decides whether these apps are offered it.
  */
 @Composable
-fun DialogHostScope.AppPatchSourcesDialog(
+fun AppPatchSourcesDialog(
     packages: Set<String>,
     onDismiss: () -> Unit
 ) {
@@ -398,7 +426,7 @@ fun DialogHostScope.AppPatchSourcesDialog(
     val sourceMuteRepository: SourceMuteRepository = koinInject()
     val scope = rememberCoroutineScope()
 
-    val messages = koinInject<UserMessages>()
+    val context = LocalContext.current
     val lastSourceMessage = stringResource(R.string.home_app_patch_sources_last)
 
     val bundleInfo by patchBundleRepository.bundleInfoFlow.collectAsStateWithLifecycle(emptyMap())
@@ -412,7 +440,10 @@ fun DialogHostScope.AppPatchSourcesDialog(
         packages.associateWith { packageName ->
             bundleInfo.entries.mapNotNullTo(mutableSetOf()) { (uid, info) ->
                 uid.takeIf {
-                    info.patches.any { it.compatibleWith(packageName) }
+                    info.patches.any { patch ->
+                        patch.isUniversal ||
+                                patch.compatiblePackages?.any { it.packageName == packageName } == true
+                    }
                 }
             }
         }
@@ -444,11 +475,12 @@ fun DialogHostScope.AppPatchSourcesDialog(
                 modifier = Modifier.fillMaxWidth()
             )
         },
+        padding = DialogPadding.Compact,
         scrollable = false
     ) {
         DialogLazyList(
             modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(SegmentGap)
+            verticalArrangement = Arrangement.spacedBy(Defaults.ContentPaddingSmall)
         ) {
             itemsIndexed(items = rows, key = { _, (uid, _, _) -> uid }) { index, (uid, title, counts) ->
                 val segment = ListSegment.of(index, rows.size)
@@ -472,7 +504,7 @@ fun DialogHostScope.AppPatchSourcesDialog(
                                 // Refusing to leave an app with nothing to patch from would
                                 // otherwise read as a checkbox that does nothing
                                 if (reached.isEmpty()) {
-                                    messages.show(lastSourceMessage)
+                                    context.toast(lastSourceMessage)
                                 }
                                 reached.forEach { sourceMuteRepository.mute(it, uid) }
                             } else {
@@ -520,23 +552,3 @@ fun DialogHostScope.AppPatchSourcesDialog(
         }
     }
 }
-
-/** What hiding [apps] reports: the app by name when it is the only one, otherwise how many went. */
-@Composable
-internal fun appsHiddenMessage(apps: List<HomeAppItem>): String =
-    appsVisibilityMessage(apps, R.string.home_app_hidden_named, R.plurals.home_apps_hidden_count)
-
-/** Shows [item] again through [onUnhide], reporting it as [appsShownMessage] does. */
-@Composable
-internal fun unhideReporting(item: HomeAppItem, onUnhide: (String) -> Unit): () -> Unit =
-    koinInject<UserMessages>().confirming(appsShownMessage(listOf(item))) { onUnhide(item.id) }
-
-/** What showing [apps] again reports, as [appsHiddenMessage] does for hiding them. */
-@Composable
-internal fun appsShownMessage(apps: List<HomeAppItem>): String =
-    appsVisibilityMessage(apps, R.string.home_app_shown_named, R.plurals.home_apps_shown_count)
-
-@Composable
-private fun appsVisibilityMessage(apps: List<HomeAppItem>, @StringRes named: Int, @PluralsRes counted: Int): String =
-    apps.singleOrNull()?.let { stringResource(named, it.displayName) }
-        ?: pluralStringResource(counted, apps.size, apps.size.toString())

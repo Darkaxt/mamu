@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.toArgb
 import app.morphe.manager.data.room.apps.installed.InstalledApp
 import app.morphe.manager.domain.bundles.AppVersionStatus
 import app.morphe.manager.ui.model.HomeAppItem
+import app.morphe.manager.util.tag
 import app.morphe.manager.util.LOG_TAG
 import app.morphe.manager.util.enumByNameOrNull
 import app.morphe.manager.util.writeTextAtomically
@@ -52,7 +53,11 @@ internal class HomeCardCache(private val file: File) {
         )
         if (cached == lastWritten && file.exists()) return
         runCatching {
-            file.writeTextAtomically(json.encodeToString(CachedHome.serializer(), cached))
+            file.parentFile?.mkdirs()
+            val temp = File(file.path + ".tmp")
+            temp.writeText(json.encodeToString(CachedHome.serializer(), cached))
+            // Atomic swap, so a killed write keeps the previous file
+            if (!temp.renameTo(file)) error("Could not replace ${file.name}")
             lastWritten = cached
         }.onFailure { Log.w(LOG_TAG, "Could not keep the home cards", it) }
     }
@@ -71,15 +76,17 @@ internal data class CachedHome(
     /** These cards, with records from [installedApps] and the sort mode from [prefs]. */
     fun toCards(installedApps: List<InstalledApp>, prefs: HomePrefs): HomeCards {
         val records = installedApps.associateBy { it.currentPackageName }
-        // Split as the user has it now, as hiding or showing an app while the bundles load must
-        // not wait for them
-        val (hiddenCards, visibleCards) = (visible + hidden)
-            // Cards are keyed by id on screen, and a file kept by an older build can repeat one
-            .distinctBy { it.id }
+        // Apply current visibility before bundles finish loading, then preserve Extended ordering.
+        val (hiddenCards, visibleCards) = (visible + hidden).distinctBy { it.id }
             .partition { it.id in prefs.hiddenPackages }
         return HomeCards(
-            visible = visibleCards.map { it.toItem(records) },
-            hidden = hiddenCards.map { it.toItem(records) },
+            visible = sortHomeAppItems(
+                visibleCards.map { it.toItem(records) }, prefs.sortMode, prefs.customOrder
+            ),
+            hidden = sortHomeAppItems(
+                hiddenCards.map { it.toItem(records) }, prefs.sortMode, prefs.customOrder
+            ),
+            sortMode = prefs.sortMode,
             sourceGroups = sourceGroups.map { it.toGroup() }
         )
     }
@@ -107,8 +114,7 @@ internal data class CachedCard(
     val versionStatus: CachedVersionStatus?,
     val isClone: Boolean,
     val nameSuffix: String?,
-    // By name, as the enum belongs to the patcher and a file from an older build has none
-    val formFactor: String? = null
+    val patchCount: Int = 0
 ) {
     constructor(item: HomeAppItem) : this(
         id = item.id,
@@ -127,33 +133,35 @@ internal data class CachedCard(
         versionStatus = item.versionStatus?.let(::CachedVersionStatus),
         isClone = item.isClone,
         nameSuffix = item.nameSuffix,
-        formFactor = item.formFactor?.name
+        patchCount = item.patchCount
     )
 
-    fun toItem(records: Map<String, InstalledApp>) = HomeAppItem(
+    fun toItem(records: Map<String, InstalledApp>): HomeAppItem {
+        val record = installedPackage?.let(records::get)
+        return HomeAppItem(
         id = id,
         packageName = packageName,
         displayName = displayName,
         gradientColors = colors.map(::Color),
         // A removed record no longer claims an install
-        installedApp = installedPackage?.let(records::get),
+        installedApp = record,
         packageInfo = null,
         version = version,
         isPinnedByDefault = isPinnedByDefault,
-        isInstalledOnDevice = isInstalledOnDevice,
+        isInstalledOnDevice = isInstalledOnDevice && (installedPackage == null || record != null),
         isDeleted = isDeleted,
         isInstallStateNotPatched = isInstallStateNotPatched,
-        isInstallStateUnknown = isInstallStateUnknown,
-        isInstallStatePending = false,
+        isInstallStateUnknown = isInstallStateUnknown || (installedPackage != null && record == null),
+        isInstallStatePending = record != null,
         // Saved APKs can be cleared while the app is closed
         savedApkFile = savedApkPath?.let(::File)?.takeIf { it.exists() },
         hasUpdate = hasUpdate,
         versionStatus = versionStatus?.toStatus(),
-        patchCount = 0,
+        patchCount = patchCount,
         isClone = isClone,
-        nameSuffix = nameSuffix,
-        formFactor = enumByNameOrNull<FormFactor>(formFactor)
+        nameSuffix = nameSuffix
     )
+    }
 }
 
 @Serializable

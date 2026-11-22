@@ -135,4 +135,7 @@
     <plurals name="app_links_count_unverified">
         <item quantity="other">%d tautan belum diverifikasi</item>
     </plurals>
+    <plurals name="sources_search_patch_matches">
+        <item quantity="other">%s tambalan yang cocok</item>
+    </plurals>
 </resources>

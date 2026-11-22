@@ -1,6 +1,7 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.CompileUsingKotlinDaemon
 import kotlin.random.Random
 
 plugins {
@@ -9,7 +10,6 @@ plugins {
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.devtools)
-    alias(libs.plugins.google.services)
     alias(libs.plugins.licensee)
     signing
 }
@@ -22,6 +22,7 @@ val patcherHost: Configuration = configurations.create("patcherHost") {
 dependencies {
     // AndroidX Core
     implementation(libs.androidx.ktx)
+    implementation("com.github.pgreze:kotlin-process:1.5.1")
     implementation(libs.runtime.ktx)
     implementation(libs.runtime.compose)
     implementation(libs.splash.screen)
@@ -35,6 +36,7 @@ dependencies {
     implementation(libs.compose.ui.preview)
     debugImplementation(libs.compose.ui.tooling)
     implementation(libs.compose.material3)
+    implementation("androidx.compose.material:material-icons-extended")
     implementation(libs.navigation.compose)
 
     // Haze (blur of what scrolls under floating dialog chrome)
@@ -83,6 +85,8 @@ dependencies {
     // Ktor
     implementation(libs.ktor.core)
     implementation(libs.ktor.okhttp)
+    // Anonymous Play delivery without installing or replacing the target app.
+    implementation("com.auroraoss:gplayapi:4.0.0")
     implementation(libs.ktor.content.negotiation)
     implementation(libs.ktor.serialization)
 
@@ -94,17 +98,26 @@ dependencies {
     // Reorderable lists
     implementation(libs.reorderable)
 
-    // Icons
+    // Extended presentation dependencies retained with its approved layout.
+    implementation("com.github.BenjaminHalko.compose-icons:font-awesome:1.2.4")
+    implementation("com.github.GIGAMOLE:ComposeFadingEdges:1.0.4")
+
+    // Icons used by the adopted source trust and named-selection surfaces.
     implementation(libs.icons.material.symbols.rounded)
     implementation(libs.icons.material.symbols.rounded.filled)
     implementation(libs.icons.font.awesome.brands)
 
     // Unit tests
     testImplementation(libs.kotlin.test.junit)
+    // Extended archive fixtures and stable Compose/Robolectric qualification.
+    testImplementation(libs.arsclib)
+    testImplementation("org.json:json:20231013")
+    testImplementation(platform(libs.compose.bom))
     // Compose UI under Robolectric, for behavior only a composition shows
     testImplementation(libs.compose.ui.test.junit4)
     testImplementation(libs.robolectric)
     debugImplementation(libs.compose.ui.test.manifest)
+    implementation("org.jsoup:jsoup:1.23.2")
 }
 
 // The full Kotlin reflection comes with the patcher, yet neither it, the patches nor the app go
@@ -333,20 +346,12 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "app.morphe.manager"
+        applicationId = "app.morphe.extended"
         minSdk = 26
 
         versionName = version.toString()
 
-        // VersionCode derived from current time (1-minute intervals) + offset.
-        val nowMillis = System.currentTimeMillis()
-        val timestampVersionCode = (nowMillis / (60 * 1000)).toInt()
-        // Offset of the prior v1.1.1 version code to ensure the code is always newer for old installations.
-        // If a new app is used this offset should be changed to zero.
-        // 1 minute rounding and this offset still gives ~4,000 years of valid version codes
-        // and still fall into Play store max version code range.
-        val versionCodeOffset = 10010100
-        versionCode = timestampVersionCode + versionCodeOffset
+        versionCode = project.property("extendedVersionCode").toString().toInt()
 
         // Expose the resolved morphe-patcher version so PatcherViewModel can compare it
         // against the Patcher-Version declared in .mpp bundle manifests at runtime.
@@ -384,12 +389,14 @@ android {
                 proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             }
 
-            val keystoreFile = file("keystore.jks")
+            val keystoreFile = project.findProperty("extendedKeystore")?.toString()?.let { project.file(it) }
+                ?: file("keystore.jks")
 
-            signingConfig = if (project.hasProperty("signAsDebug") || !keystoreFile.exists()) {
+            signingConfig = if (project.hasProperty("signAsDebug")) {
                 signingConfigs.getByName("debug")
             } else {
                 signingConfigs.create("release") {
+                    require(keystoreFile.exists()) { "Provide the persistent Extended release key with -PextendedKeystore (resolved: ${keystoreFile.absolutePath})" }
                     storeFile = keystoreFile
                     storePassword = System.getenv("KEYSTORE_PASSWORD")
                     keyAlias = System.getenv("KEYSTORE_ENTRY_ALIAS")
@@ -504,11 +511,20 @@ ksp {
 }
 
 kotlin {
+    jvmToolchain(25)
     compilerOptions {
         jvmTarget = JvmTarget.JVM_17
         freeCompilerArgs.addAll(
             "-opt-in=kotlin.time.ExperimentalTime"
         )
+    }
+}
+
+// Observe the task-level strategy, which can override the invocation's Gradle property.
+tasks.withType<CompileUsingKotlinDaemon>().configureEach {
+    val strategy = compilerExecutionStrategy
+    doFirst {
+        logger.lifecycle("EXTENDED_KOTLIN_PROFILE: $path strategy=${strategy.get()}")
     }
 }
 
@@ -524,6 +540,9 @@ val licensesByUrl = mapOf(
     "https://github.com/composablehorizons/composeicons/blob/main/LICENSE" to "MIT",
     "https://github.com/RikkaApps/Shizuku-API/blob/master/LICENSE" to "MIT",
     "https://opensource.org/license/mit" to "MIT",
+    "https://jsoup.org/license" to "MIT",
+    "https://github.com/devsrsouza/compose-icons/blob/master/LICENSE" to "MIT",
+    "https://www.gnu.org/licenses/gpl-3.0.txt" to "GPL-3.0-or-later",
 )
 
 // A dependency under any other license fails the build, as the app could not be shipped with it
@@ -534,6 +553,7 @@ licensee {
     // JitPack builds come without a license, so these are listed by hand in licenses/licenses.json
     ignoreDependencies("com.github.MorpheApp", "ARSCLib") { because("Apache-2.0, listed by hand") }
     ignoreDependencies("com.github.topjohnwu.libsu", "core") { because("Apache-2.0, listed by hand") }
+    ignoreDependencies("com.github.GIGAMOLE", "ComposeFadingEdges") { because("MIT at the pinned 1.0.4 LICENSE.txt; listed by hand") }
 }
 
 tasks {

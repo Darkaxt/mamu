@@ -5,10 +5,14 @@
 
 package app.morphe.manager.ui.screen.games
 
+import app.morphe.manager.ui.screen.shared.shapedIndication
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Flag
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -22,9 +26,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import app.morphe.manager.R
 import app.morphe.manager.ui.screen.shared.Defaults
-import app.morphe.manager.ui.screen.shared.shapedIndication
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
 import kotlin.random.Random
 
 private const val MINE_GRID = 9
@@ -181,9 +182,9 @@ fun MinerGame(state: MinerGameState) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .clip(RoundedCornerShape(Defaults.CornerMedium))
+            .clip(RoundedCornerShape(Defaults.CompactCornerRadius))
             .background(MineBg)
-            .padding(Defaults.SpaceExtraSmall),
+            .padding(6.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         BoxWithConstraints(modifier = Modifier.weight(1f).fillMaxWidth()) {
@@ -233,7 +234,7 @@ private fun MineCell(state: MinerGameState, index: Int, size: Dp) {
             revealed && mine -> Box(
                 modifier = Modifier
                     .size(size * 0.42f)
-                    .clip(Defaults.PillShape)
+                    .clip(RoundedCornerShape(50))
                     .background(Color.Black)
             )
             revealed && count > 0 -> Text(
@@ -244,7 +245,7 @@ private fun MineCell(state: MinerGameState, index: Int, size: Dp) {
                 fontSize = with(LocalDensity.current) { (size * 0.52f).toSp() }
             )
             !revealed && flagged -> Icon(
-                imageVector = MaterialSymbols.Rounded.Flag,
+                imageVector = Icons.Outlined.Flag,
                 contentDescription = null,
                 tint = MineFlag,
                 modifier = Modifier.size(size * 0.56f)

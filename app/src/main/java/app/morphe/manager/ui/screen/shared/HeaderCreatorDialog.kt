@@ -5,9 +5,9 @@
 
 package app.morphe.manager.ui.screen.shared
 
+import android.util.Log
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
@@ -15,6 +15,10 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Image
+import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -37,13 +41,9 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import app.morphe.manager.R
 import app.morphe.manager.util.*
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
-import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.compose.koinInject
 
 private const val MIN_SCALE = 0.3f
 private const val MAX_SCALE = 3f
@@ -150,14 +150,13 @@ private class HeaderVariant(val theme: HeaderTheme) {
  * header slot and shown in the app bar it lands in, then written for every density the patch takes.
  */
 @Composable
-fun DialogHostScope.HeaderCreatorDialog(
+fun HeaderCreatorDialog(
     packageName: String,
     onDismiss: () -> Unit,
     onHeaderCreated: (String) -> Unit
 ) {
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
-    val messages = koinInject<UserMessages>()
     val layout = remember(packageName) { HeaderLayout.of(packageName) }
     val variants = remember(layout) { layout.themes.map(::HeaderVariant) }
 
@@ -172,11 +171,11 @@ fun DialogHostScope.HeaderCreatorDialog(
             val result = createHeaderFiles(context, uri, layout, variants)
             isCreating.value = false
             if (result != null) {
-                messages.show(successMessage)
+                context.toast(successMessage)
                 onHeaderCreated(result)
                 onDismiss()
             } else {
-                messages.show(failureMessage)
+                context.toast(failureMessage)
             }
         }
     }
@@ -250,7 +249,7 @@ private fun HeaderVariantCard(layout: HeaderLayout, variant: HeaderVariant) {
             AppDialogOutlinedButton(
                 text = stringResource(R.string.adaptive_icon_change_image),
                 onClick = { openPicker() },
-                icon = MaterialSymbols.Rounded.Image,
+                icon = Icons.Outlined.Image,
                 modifier = Modifier.fillMaxWidth()
             )
         }
@@ -279,7 +278,7 @@ private fun HeaderEditor(
         label = "header_guides"
     )
     val selectImage = stringResource(R.string.adaptive_icon_select_image)
-    val shape = RoundedCornerShape(Defaults.CornerMedium)
+    val shape = RoundedCornerShape(Defaults.CompactCornerRadius)
 
     val input = Modifier.imageEditorInput(
         hasImage = picture != null,
@@ -317,11 +316,11 @@ private fun HeaderEditor(
     ) {
         if (picture == null) {
             Row(
-                horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
-                    imageVector = MaterialSymbols.Rounded.Image,
+                    imageVector = Icons.Outlined.Image,
                     contentDescription = null,
                     tint = theme.content,
                     modifier = Modifier.size(24.dp)
@@ -344,7 +343,7 @@ private fun AppBarPreview(
     picture: PickedImage?,
     transform: ImageTransform
 ) {
-    val shape = RoundedCornerShape(Defaults.CornerMedium)
+    val shape = RoundedCornerShape(Defaults.CompactCornerRadius)
 
     Row(
         modifier = Modifier
@@ -379,7 +378,7 @@ private fun AppBarPreview(
                     contentAlignment = Alignment.CenterEnd
                 ) {
                     Icon(
-                        imageVector = MaterialSymbols.Rounded.Search,
+                        imageVector = Icons.Outlined.Search,
                         contentDescription = null,
                         tint = theme.content,
                         modifier = Modifier
@@ -392,16 +391,16 @@ private fun AppBarPreview(
             HeaderLayout.Music -> {
                 Spacer(Modifier.weight(1f))
                 Icon(
-                    imageVector = MaterialSymbols.Rounded.Notifications,
+                    imageVector = Icons.Outlined.Notifications,
                     contentDescription = null,
                     tint = theme.content,
                     modifier = Modifier
-                        .padding(Defaults.SpaceMedium)
+                        .padding(12.dp)
                         .size(Defaults.IconSize)
                 )
                 Box(
                     modifier = Modifier
-                        .padding(start = Defaults.SpaceSmall, end = Defaults.SpaceMedium)
+                        .padding(start = 8.dp, end = 12.dp)
                         .size(32.dp)
                         .clip(CircleShape)
                         .background(theme.field)
@@ -428,7 +427,7 @@ private suspend fun createHeaderFiles(
             ?: return@withContext null
 
         layout.densities.forEach { density ->
-            val drawableDocDir = headerDocDir.requireDir(density.folderName)
+            val drawableDocDir = headerDocDir.getOrCreateDir(density.folderName) ?: return@forEach
             val frame = Size(density.width.toFloat(), density.height.toFloat())
             variants.forEach { variant ->
                 val picture = variant.picture ?: return@forEach
@@ -440,8 +439,6 @@ private suspend fun createHeaderFiles(
 
         // Convert back to a real path so the patcher can reference it as a patch option value
         headerDocDir.uri.toFilePath()
-    } catch (e: CancellationException) {
-        throw e
     } catch (e: Exception) {
         Log.e(LOG_TAG, "Failed to create header images", e)
         null

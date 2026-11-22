@@ -15,11 +15,14 @@ import app.morphe.manager.BuildConfig
 import app.morphe.manager.domain.bundles.PatchBundleSource
 import app.morphe.manager.domain.bundles.PatchSourceHeaders
 import app.morphe.manager.domain.manager.PreferencesManager
+import app.morphe.manager.domain.bundles.CommunityCatalogue
 import app.morphe.manager.network.dto.*
 import app.morphe.manager.network.service.HttpService
 import app.morphe.manager.network.utils.APIFailure
 import app.morphe.manager.network.utils.APIResponse
 import app.morphe.manager.network.utils.getOrNull
+import app.morphe.manager.network.utils.getOrThrow
+import java.io.IOException
 import app.morphe.manager.util.*
 import io.ktor.client.request.header
 import io.ktor.client.request.url
@@ -30,9 +33,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
-import java.time.LocalDateTime
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
 
 private const val GITHUB_URL_PREFIX = "https://$GITHUB_HOST/"
 
@@ -96,22 +96,49 @@ internal fun parseReleaseAssetUrl(downloadUrl: String): ReleaseAssetRef? {
     )
 }
 
-/**
- * Parses ISO-8601 / GitHub timestamp strings into [LocalDateTime] (UTC).
- *
- * Handles:
- *  - Full ISO-8601 with Z suffix: `2024-01-15T12:00:00Z`
- *  - With offset: `2024-01-15T12:00:00+02:00`
- *  - Without timezone (assumed UTC): `2024-01-15T12:00:00`
- */
-internal fun parseTimestamp(timestamp: String): LocalDateTime {
-    val normalized = when {
-        timestamp.endsWith("Z", ignoreCase = true) -> timestamp
-        timestamp.contains("+") -> timestamp
-        timestamp.contains("T") && timestamp.lastIndexOf("-") > 10 -> timestamp
-        else -> "${timestamp}Z" // No timezone info, assume UTC
+/** Only the Extended release identity may enter the manager's self-update path. */
+internal fun isExtendedManagerRelease(downloadUrl: String): Boolean {
+    val ref = parseReleaseAssetUrl(downloadUrl) ?: return false
+    return ref.owner.equals(MANAGER_GITHUB_OWNER, ignoreCase = true) &&
+        ref.repo.equals(MANAGER_GITHUB_REPO, ignoreCase = true) &&
+        ref.decodedFileName.startsWith(MANAGER_APK_PREFIX) &&
+        ref.decodedFileName.endsWith(".apk") && '/' !in ref.decodedFileName
+}
+
+/** GitHub list order is not numeric version order (for example .9 can precede .10). */
+internal fun orderedExtendedManagerReleases(releases: List<GitHubRelease>): List<GitHubRelease> {
+    val eligible = releases.filter { release ->
+        !release.draft && !release.prerelease &&
+            release.assets.any { isExtendedManagerRelease(it.downloadUrl) }
     }
-    return OffsetDateTime.parse(normalized).atZoneSameInstant(ZoneOffset.UTC).toLocalDateTime()
+    eligible.forEach { release ->
+        if (compareExtendedManagerVersions(release.tagName, release.tagName) == null) {
+            throw IOException("The manager release has an invalid version: ${release.tagName}")
+        }
+    }
+    return eligible.sortedWith { left, right ->
+        compareExtendedManagerVersions(right.tagName, left.tagName)!!
+    }
+}
+
+/** Private stable notes use the same admitted numeric order as update discovery. */
+internal fun extendedManagerChangelog(releases: List<GitHubRelease>): List<ChangelogEntry> =
+    orderedExtendedManagerReleases(releases).map { release ->
+        ChangelogEntry(
+            version = release.tagName.removePrefix("v"),
+            date = (release.publishedAt ?: release.createdAt)?.substringBefore('T'),
+            content = release.body.orEmpty().trim()
+        )
+    }
+
+/** Failed discovery is not evidence that the installed version is current. */
+internal fun managerUpdateCandidate(response: APIResponse<ReleaseAsset>, installed: String, allowPrereleases: Boolean): ReleaseAsset? {
+    val candidate = response.getOrThrow()
+    val comparison = compareExtendedManagerVersions(candidate.version, installed)
+        ?: throw IOException("The manager release has an invalid version.")
+    if ((!allowPrereleases && candidate.version.contains('-')) || comparison <= 0) return null
+    if (!isExtendedManagerRelease(candidate.downloadUrl)) throw IOException("The update is not a Mamu release.")
+    return candidate
 }
 
 /**
@@ -122,8 +149,8 @@ internal fun parseTimestamp(timestamp: String): LocalDateTime {
  *  - Fetching and parsing CHANGELOG.md files from repositories
  *  - Resolving GitHub pull request build artifacts
  *
- * All methods return [APIResponse] or nullable results, no exceptions propagate to callers
- * except [getAssetFromPullRequest], which throws on hard failure.
+ * All methods return [APIResponse] or nullable results — no exceptions propagate to callers
+ * except [getAssetFromPullRequest] and [checkAppUpdate], which preserve hard failures.
  */
 class ReleaseAPI(
     @PublishedApi internal val client: HttpService,
@@ -158,6 +185,12 @@ class ReleaseAPI(
     // Lazy so URL parsing doesn't happen on construction, only when first needed
     private val managerConfig: RepoConfig by lazy { parseRepoUrl(MANAGER_REPO_URL) }
     private val patchesConfig: RepoConfig by lazy { parseRepoUrl(SOURCE_REPO_URL) }
+
+    internal suspend fun fetchCommunityCatalogue(): CommunityCatalogue =
+        client.request<CommunityCatalogue> {
+            url("$COMMUNITY_PATCHES_URL/data/bundles.json")
+            header("Cache-Control", "no-cache")
+        }.successOrThrow("community patch catalogue")
 
     /**
      * Accepts both human-readable GitHub URLs (https://github.com/owner/repo)
@@ -381,18 +414,11 @@ class ReleaseAPI(
 
     /** Returns true if [asset] looks like an Android APK by name or content-type. */
     private fun isManagerAsset(asset: GitHubAsset): Boolean =
-        asset.name.endsWith(".apk", ignoreCase = true) ||
-                asset.contentType?.contains("android.package-archive", ignoreCase = true) == true
+        isExtendedManagerRelease(asset.downloadUrl)
 
     /** True when the currently installed manager is a dev/pre-release build. */
     val isDevBuild: Boolean
-        get() = BuildConfig.VERSION_NAME.contains('-')
-
-    /** Fetches the latest manager release metadata from GitHub Releases. */
-    private suspend fun getManagerFromGitHub(): APIResponse<ReleaseAsset> {
-        val includePrerelease = prefs.useManagerPrereleases.get()
-        return fetchReleaseAsset(managerConfig, includePrerelease, ::isManagerAsset)
-    }
+        get() = false // Extended revisions are built exclusively on stable upstream releases.
 
     /**
      * Fetches manager metadata from the static JSON endpoint (bypasses GitHub API rate limits).
@@ -441,31 +467,42 @@ class ReleaseAPI(
         val usePrereleases = prefs.useManagerPrereleases.get()
         val branch = if (usePrereleases) BRANCH_DEV else BRANCH_STABLE
 
-        val candidate = if (USE_MANAGER_DIRECT_JSON) {
+        val response = if (USE_MANAGER_DIRECT_JSON) {
             getManagerFromJson(branch).fallbackTo {
                 Log.w(LOG_TAG, "Manager JSON unavailable, falling back to GitHub API")
                 getManagerFromGitHub()
             }
         } else {
             getManagerFromGitHub()
-        }.getOrNull() ?: return AppUpdateCheck.Failed
+        }
 
         // Return only if the remote version is strictly newer than what's installed. The stable
         // channel offers stable builds alone: merging dev into main carries the dev release file
         // along, and it stays there until the stable release replaces it
-        val update = candidate.takeIf {
-            (usePrereleases || !it.version.contains('-')) &&
-                    isNewerVersion(BuildConfig.VERSION_NAME, it.version)
-        } ?: return AppUpdateCheck.UpToDate
+        val update = managerUpdateCandidate(response, BuildConfig.VERSION_NAME, usePrereleases) ?: return AppUpdateCheck.UpToDate
 
         // Only a definitive "not there" hides the update: a check that could not run at all
         // must not keep a real release from being offered
-        if (client.isReachable(update.downloadUrl) == false) {
-            Log.d(LOG_TAG, "Manager update ${update.version} is announced but its APK is not downloadable yet")
-            return AppUpdateCheck.UpToDate
+        if (prefs.gitHubPat.get().isBlank()) throw IOException("Configure GitHub access in Advanced settings to receive private Extended updates.")
+        val downloadUrl = resolvePrivateManagerDownload(update.downloadUrl)
+            ?: throw IOException("GitHub could not authorize the update download. Check access to the private Extended repository.")
+        if (client.isReachable(downloadUrl) == false) {
+            Log.d(tag, "Manager update ${update.version} is announced but its APK is not downloadable yet")
+            throw IOException("The update is announced but its APK is not available yet. Check again after the release upload finishes.")
         }
 
         return AppUpdateCheck.Available(update)
+    }
+
+    /** With a PAT, downloads go through GitHub's API (rate limit, forks kept private); null means download anonymously. */
+    suspend fun resolvePrivateManagerDownload(downloadUrl: String): String? {
+        require(isExtendedManagerRelease(downloadUrl)) { "Not a Mamu manager release" }
+        val pat = prefs.gitHubPat.get().takeIf { it.isNotBlank() } ?: return null
+        val assetUrl = releaseAssetApiUrl(downloadUrl) ?: return null
+        return client.resolveRedirect(assetUrl) {
+            header("Accept", "application/octet-stream")
+            header("Authorization", "Bearer $pat")
+        }
     }
 
     /**
@@ -520,26 +557,14 @@ class ReleaseAPI(
         }
     }
 
-    /**
-     * Fetches the most recent GitHub release that passes [matcher] for its assets.
-     *
-     * Pre-releases are included only when [includePrerelease] is true.
-     * Draft releases are always skipped.
-     */
-    private suspend fun fetchReleaseAsset(
-        config: RepoConfig,
-        includePrerelease: Boolean,
-        matcher: (GitHubAsset) -> Boolean
-    ): APIResponse<ReleaseAsset> {
+    /** Fetches the highest numeric stable Extended release, regardless of API array order. */
+    private suspend fun getManagerFromGitHub(): APIResponse<ReleaseAsset> {
+        val config = managerConfig
         return when (val r = githubRequest<List<GitHubRelease>>(config, "releases")) {
             is APIResponse.Success -> runCatching {
-                val release = r.data.firstOrNull { release ->
-                    !release.draft
-                            && (includePrerelease || !release.prerelease)
-                            && release.assets.any(matcher)
-                } ?: throw IllegalStateException("No matching release found in ${config.name}")
-
-                mapReleaseToAsset(config, release, release.assets.first(matcher))
+                val release = orderedExtendedManagerReleases(r.data).firstOrNull()
+                    ?: throw IllegalStateException("No matching release found in ${config.name}")
+                mapReleaseToAsset(config, release, release.assets.first(::isManagerAsset))
             }.fold(
                 onSuccess = { APIResponse.Success(it) },
                 onFailure = { APIResponse.Failure(APIFailure(it, null)) }
@@ -550,11 +575,14 @@ class ReleaseAPI(
         }
     }
 
-    /** Fetches and parses the manager's CHANGELOG.md from the appropriate branch. */
-    suspend fun fetchManagerChangelog(forDevBranch: Boolean = isDevBuild): List<ChangelogEntry> {
-        val branch = if (forDevBranch) BRANCH_DEV else BRANCH_STABLE
-        return fetchChangelogFromRepo(managerConfig, branch, CHANGELOG_FILE)
-    }
+    /** Private release notes use the same authenticated API as update discovery. */
+    @Suppress("UNUSED_PARAMETER")
+    suspend fun fetchManagerChangelog(forDevBranch: Boolean = isDevBuild): List<ChangelogEntry> =
+        when (val response = githubRequest<List<GitHubRelease>>(managerConfig, "releases")) {
+            is APIResponse.Success -> extendedManagerChangelog(response.data)
+            is APIResponse.Error -> throw response.error
+            is APIResponse.Failure -> throw response.error
+        }
 
     /** Fetches and parses CHANGELOG.md from the first-party patches repository. */
     suspend fun fetchPatchesChangelog(branch: String = BRANCH_STABLE, stopAfterFirstStable: Boolean = false): List<ChangelogEntry> =

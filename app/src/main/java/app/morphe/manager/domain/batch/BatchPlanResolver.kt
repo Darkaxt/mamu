@@ -165,13 +165,14 @@ class BatchPlanResolver(
     private val pm: PM
 ) {
     /** Resolves every package in parallel and returns the items in the requested order. */
-    suspend fun resolve(targets: List<BatchTarget>): List<BatchPatchItem> = coroutineScope {
-        // Read once for the whole plan rather than once per app
+    suspend fun resolve(targets: List<BatchTarget>, mountChoices: Map<String, Boolean> = emptyMap()): List<BatchPatchItem> = coroutineScope {
+        // Built once for the whole plan: it is derived from every patch of every source, and
+        // resolving it per app would repeat that work for each one of them
         val compatible = versionCatalog.compatibleVersions.first()
         targets
             .map { target ->
                 async {
-                    resolve(target, compatibleVersions = compatible[target.packageName].orEmpty())
+                    resolve(target, useMount = mountChoices[target.id], compatibleVersions = compatible[target.packageName].orEmpty())
                 }
             }
             .awaitAll()
@@ -188,7 +189,6 @@ class BatchPlanResolver(
      *   plan already read them; looked up here otherwise.
      * @param allowUnverifiedSignature Set once the user has accepted an APK whose signing
      *   certificate no bundle vouches for, so the same file is not questioned twice.
-     * @param chosenBundleUid The one source simple mode was told to patch the app from.
      */
     suspend fun resolve(
         target: BatchTarget,
@@ -197,8 +197,7 @@ class BatchPlanResolver(
         compatibleVersions: List<BundledAppTarget>? = null,
         allowIncompatible: Boolean = false,
         allowUnverifiedSignature: Boolean = false,
-        preferInstalled: Boolean = false,
-        chosenBundleUid: Int? = null
+        preferInstalled: Boolean = false
     ): BatchPatchItem = withContext(Dispatchers.IO) {
         val packageName = target.packageName
         val appName = resolveAppName(target)
@@ -261,8 +260,7 @@ class BatchPlanResolver(
             useMount = mount,
             compatibleVersions = compatibleVersions
                 ?: versionCatalog.compatibleVersions.first()[packageName].orEmpty(),
-            forceIncompatible = allowIncompatible,
-            chosenBundleUid = chosenBundleUid
+            forceIncompatible = allowIncompatible
         )
     }
 
@@ -301,9 +299,8 @@ class BatchPlanResolver(
     }
 
     /**
-     * Rebuilds an existing item against a newly attached APK. A forced item stays runnable after
-     * swapping its APK, so the user does not have to confirm the same version warning twice, and
-     * keeps the patches that came with it. The new file has its signature checked afresh.
+     * Rebuilds an existing item against a newly attached APK, keeping the user's
+     * force-version choice.
      */
     suspend fun reattach(item: BatchPatchItem, file: File): BatchPatchItem =
         reresolve(item, attachedFile = file, acceptSignature = false)
@@ -351,12 +348,10 @@ class BatchPlanResolver(
         attachedFile = attachedFile,
         allowIncompatible = forceVersion,
         allowUnverifiedSignature = acceptSignature,
-        preferInstalled = preferInstalled,
-        chosenBundleUid = item.chosenBundleUid
+        preferInstalled = preferInstalled
     ).copy(
         forceVersionMismatch = forceVersion,
-        forceUnverifiedSignature = acceptSignature,
-        chosenBundleUid = item.chosenBundleUid
+        forceUnverifiedSignature = acceptSignature
     )
 
     private suspend fun buildItem(
@@ -365,15 +360,11 @@ class BatchPlanResolver(
         source: BatchApkSource,
         useMount: Boolean,
         compatibleVersions: List<BundledAppTarget>,
-        forceIncompatible: Boolean,
-        chosenBundleUid: Int?
+        forceIncompatible: Boolean
     ): BatchPatchItem {
         val packageName = target.packageName
-        // A chosen source is the only one the app is patched from, and the version warnings
-        // are its own
-        val bundles = patchBundleRepository.resolvingBundleInfo(
-            packageName, source.version, source.versionCode, chosenBundleUid
-        )
+        val bundles = patchBundleRepository.resolvingBundleInfo(packageName, source.version, source.versionCode,
+            target.versionSourceUid.takeIf { target.versionSourceVersion == source.version })
 
         // Asked of the bundles the APK is being resolved against rather than of the version
         // catalog, so the badge cannot disagree with the warning the single-app flow shows
@@ -384,14 +375,11 @@ class BatchPlanResolver(
         val versionMismatch = support.isMismatch && !allowIncompatible
 
         /**
-         * Nothing to run with. Which of the reasons it is matters: an app whose patches simply
-         * declare other versions, or are all left unselected, still has a way forward, and
-         * calling that "no patches" would hide both the reason and the buttons that fix it.
+         * Nothing to run with. Which of the two reasons it is matters: an app whose patches
+         * simply declare other versions still has a way forward, and calling that "no patches"
+         * would hide both the reason and the buttons that fix it.
          */
-        fun blocked(
-            contributing: List<PatchBundleInfo.Scoped> = emptyList(),
-            nothingSelected: Boolean = false
-        ) = BatchPatchItem(
+        fun blocked(contributing: List<PatchBundleInfo.Scoped> = emptyList(), nothingSelected: Boolean = false) = BatchPatchItem(
             target = target,
             appName = appName,
             source = source,
@@ -403,7 +391,6 @@ class BatchPlanResolver(
             experimentalVersion = support.isExperimental,
             state = when {
                 versionMismatch -> BatchItemState.VERSION_MISMATCH
-                nothingSelected -> BatchItemState.NO_SELECTION
                 else -> BatchItemState.NO_PATCHES
             },
             useMount = useMount
@@ -579,8 +566,15 @@ class BatchPlanResolver(
      * Where a target's saved patches and options live: its own package once it is an install of
      * its own, falling back to the app for a clone that predates configurations of their own.
      */
-    private suspend fun configurationKeyFor(target: BatchTarget): String =
-        patchSelectionRepository.configurationKeyFor(target.packageName, target.repatchedPackageName)
+    private suspend fun configurationKeyFor(target: BatchTarget): String {
+        val repatched = target.repatchedPackageName?.takeUnless { it == target.packageName }
+            ?: return target.packageName
+
+        val hasOwnConfiguration = patchSelectionRepository
+            .getAllSelectionsForPackage(repatched)
+            .isNotEmpty()
+        return if (hasOwnConfiguration) repatched else target.packageName
+    }
 
     /**
      * Same resolution the home screen uses. Patching renames packages, so an app that is only

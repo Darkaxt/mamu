@@ -7,7 +7,8 @@ package app.morphe.manager.ui.screen.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CornerBasedShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -17,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -28,57 +30,106 @@ import app.morphe.manager.patcher.patch.PatchInfo
 import app.morphe.manager.patcher.patch.PatchLockState
 import app.morphe.manager.patcher.patch.blocksToggle
 import app.morphe.manager.ui.screen.shared.*
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
-import org.koin.compose.koinInject
+import app.morphe.manager.util.toast
 
 /**
- * Buttons turning every patch in view on and off, for the source the selection panel is headed
- * with. Each stays where it is and does the same thing, out of reach while there is nothing for it.
+ * Bundle controls: pill row with per-bundle bulk actions.
  *
- * Turning all on is staged as a run sets it up: the regular patches first, the universal ones on
- * the next tap and after a warning, as enabling every one of them is a common cause of conflicts.
- *
- * @param canEnableMore Whether a patch in view is off and free to be turned on.
- * @param canDisable Whether a patch in view is on and free to be turned off.
- * @param holdsUniversalPatches Whether turning all on leaves the universal patches for the next tap.
- * @param warnOnUniversalAll Whether this tap would turn the universal patches on.
+ * A null [onCopyFromBundle] drops that pill, for the callers where a selection has nowhere
+ * to be copied from.
  */
 @Composable
-internal fun BulkSelectActions(
-    canEnableMore: Boolean,
-    canDisable: Boolean,
+internal fun BundlePatchControls(
+    enabledCount: Int,
+    totalCount: Int,
     holdsUniversalPatches: Boolean,
-    warnOnUniversalAll: Boolean,
     onSelectAll: () -> Unit,
-    onDeselectAll: () -> Unit
+    onDeselectAll: () -> Unit,
+    onResetToDefault: () -> Unit,
+    onRestoreSaved: () -> Unit,
+    onCopyFromBundle: (() -> Unit)?,
+    hasSavedSelection: Boolean,
+    modifier: Modifier = Modifier,
+    /** True when this "Enable all" tap would also enable the universal patches. */
+    warnOnUniversalAll: Boolean = false,
+    /** Source/unsupported pickers answer first; pending or cancelled actions must not report success. */
+    confirmActions: Boolean = true,
+    selectAllFeedback: PillConfirmationState? = null
 ) {
-    val messages = koinInject<UserMessages>()
-    val pendingUniversal = stringResource(R.string.expert_mode_enable_all_universal_pending)
+    val selectAllLabel = stringResource(R.string.expert_mode_enable_all)
+    val defaultLabel = stringResource(R.string.expert_mode_reset_to_default)
+    val restoreLabel = stringResource(R.string.expert_mode_restore_saved)
+    val deselectAllLabel = stringResource(R.string.expert_mode_disable_all)
+
+    // The second "Enable all" tap applies every universal patch at once, which is a common
+    // cause of conflicts and failed patching. Confirmation makes that risk explicit.
     var showUniversalAllWarning by remember { mutableStateOf(false) }
 
+    // Universal patches stay off until a second tap, so the first one must not claim otherwise
+    val enabledDone = if (holdsUniversalPatches) {
+        stringResource(R.string.expert_mode_enable_all_universal_pending)
+    } else {
+        stringResource(R.string.expert_mode_enable_all_done)
+    }
+    val disabledDone = stringResource(R.string.expert_mode_disable_all_done)
+    val resetDone = stringResource(R.string.expert_mode_reset_to_default_done)
+    val restoredDone = stringResource(R.string.expert_mode_restore_saved_done)
+
+    // Played by hand rather than on tap, since the tap may only open the warning below
+    val ownSelectAllConfirmation = rememberPillConfirmationState()
+    val selectAllConfirmation = selectAllFeedback ?: ownSelectAllConfirmation
     val selectAll = {
         onSelectAll()
-        // Nothing on screen may change with this tap, so it says what the next one does
-        if (holdsUniversalPatches) messages.show(pendingUniversal)
+        if (confirmActions) selectAllConfirmation.show(enabledDone)
     }
 
-    TitleAction(
-        icon = MaterialSymbols.Rounded.Remove_done,
-        contentDescription = stringResource(R.string.disable_all),
-        onClick = onDeselectAll,
-        style = TitleActionStyle.Neutral,
-        enabled = canDisable
-    )
-    TitleAction(
-        icon = MaterialSymbols.Rounded.Done_all,
-        contentDescription = stringResource(R.string.enable_all),
-        onClick = { if (warnOnUniversalAll) showUniversalAllWarning = true else selectAll() },
-        style = TitleActionStyle.Neutral,
-        enabled = canEnableMore
-    )
+    ActionPillRow(modifier = modifier) {
+        ActionPillButton(
+            onClick = {
+                if (warnOnUniversalAll) showUniversalAllWarning = true else selectAll()
+            },
+            icon = Icons.Outlined.DoneAll,
+            contentDescription = selectAllLabel,
+            tooltip = selectAllLabel,
+            confirmationState = selectAllConfirmation,
+            enabled = enabledCount < totalCount
+        )
+        ActionPillButton(
+            onClick = onResetToDefault,
+            icon = Icons.Outlined.Recommend,
+            contentDescription = defaultLabel,
+            tooltip = defaultLabel,
+            confirmation = resetDone.takeIf { confirmActions }
+        )
+        ActionPillButton(
+            onClick = onRestoreSaved,
+            icon = Icons.Outlined.History,
+            contentDescription = restoreLabel,
+            tooltip = restoreLabel,
+            confirmation = restoredDone.takeIf { confirmActions },
+            enabled = hasSavedSelection
+        )
+        if (onCopyFromBundle != null) {
+            val copyLabel = stringResource(R.string.expert_mode_copy_from_bundle)
+            ActionPillButton(
+                onClick = onCopyFromBundle,
+                icon = Icons.Outlined.ContentCopy,
+                contentDescription = copyLabel,
+                tooltip = copyLabel
+            )
+        }
+        ActionPillButton(
+            onClick = onDeselectAll,
+            icon = Icons.Outlined.ClearAll,
+            contentDescription = deselectAllLabel,
+            tooltip = deselectAllLabel,
+            confirmation = disabledDone.takeIf { confirmActions },
+            enabled = enabledCount > 0,
+            destructive = true
+        )
+    }
 
-    DialogHost(visible = showUniversalAllWarning) {
+    if (showUniversalAllWarning) {
         ConfirmDialog(
             title = stringResource(R.string.expert_mode_universal_all_warning_title),
             message = stringResource(R.string.expert_mode_universal_all_warning_message),
@@ -111,8 +162,6 @@ private fun tonalIconColors(
 
 /**
  * Individual patch card with toggle and options button.
- *
- * @param shape Its place among the rows of its block, see [ListSegment].
  */
 @Composable
 internal fun PatchCard(
@@ -127,7 +176,9 @@ internal fun PatchCard(
     onToggle: () -> Unit,
     onConfigureOptions: () -> Unit,
     hasOptions: Boolean,
-    shape: CornerBasedShape? = null
+    versionLabel: String? = null,
+    versionTone: SemanticTone = SemanticTone.Neutral,
+    sourceAction: (@Composable () -> Unit)? = null
 ) {
     // Localized strings for accessibility
     val settings = stringResource(R.string.settings)
@@ -138,19 +189,19 @@ internal fun PatchCard(
     val cloneLabel = stringResource(R.string.clone)
     val customizedLabel = stringResource(R.string.expert_mode_options_customized)
     // The card speaks for its whole contents, so the badges have to be read out here or not at all
-    val badges = listOfNotNull(newLabel.takeIf { isNew }, cloneLabel.takeIf { buildsClone })
+    val badges = listOfNotNull(newLabel.takeIf { isNew }, cloneLabel.takeIf { buildsClone }, versionLabel)
     val contentDesc = remember(patch.displayName, patchState, badges) {
         (listOf(patch.displayName, patchState) + badges).joinToString(", ")
     }
 
-    val messages = koinInject<UserMessages>()
+    val context = LocalContext.current
     val lockedMessage = when (lockState) {
         PatchLockState.LOCKED_ON  -> stringResource(R.string.expert_mode_patch_required_by_installer)
         PatchLockState.LOCKED_OFF -> stringResource(R.string.expert_mode_patch_unavailable_for_installer)
         PatchLockState.NONE       -> null
     }
     val onCardClick: () -> Unit = if (lockState.blocksToggle(isEnabled) && lockedMessage != null) {
-        { messages.show(lockedMessage) }
+        { context.toast(lockedMessage) }
     } else onToggle
 
     val colors = MaterialTheme.colorScheme
@@ -173,7 +224,6 @@ internal fun PatchCard(
     SettingsItemCard(
         onClick = onCardClick,
         color = containerColor,
-        shape = shape,
         showBorder = true,
         borderColor = when {
             showMissingRequired -> colors.error.copy(alpha = 0.6f)
@@ -189,16 +239,16 @@ internal fun PatchCard(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(Defaults.SpaceLarge),
+                    .padding(Defaults.ContentPadding),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 // Dimming alone leaves the state easy to miss. The card is what toggles, and it
                 // already reads the state out, so the indicator only shows it
                 SelectionCheckIndicator(
-                    state = ToggleableState(isEnabled),
+                    state = if (isEnabled) ToggleableState.On else ToggleableState.Off,
                     enabled = !lockState.blocksToggle(isEnabled),
-                    modifier = Modifier.padding(end = Defaults.SpaceMedium)
+                    modifier = Modifier.padding(end = Defaults.ItemSpacing)
                 )
 
                 // Patch info, with the "New" badge inline
@@ -210,6 +260,9 @@ internal fun PatchCard(
                         .weight(1f)
                         .padding(end = if (hasOptions) 8.dp else 0.dp)
                 ) {
+                    if (versionLabel != null) {
+                        StatusBadge(text = versionLabel, tone = versionTone)
+                    }
                     if (isNew) {
                         StatusBadge(
                             text = newLabel,
@@ -221,54 +274,53 @@ internal fun PatchCard(
                     if (buildsClone) {
                         StatusBadge(
                             text = cloneLabel,
-                            icon = MaterialSymbols.Rounded.Content_copy,
+                            icon = Icons.Outlined.ContentCopy,
                             tone = SemanticTone.Warning
                         )
                     }
                 }
 
+                sourceAction?.invoke()
+
                 // Options button (only enabled if patch is enabled)
                 if (hasOptions) {
-                    // The card already names the patch, so the tooltip only says what the button opens
-                    IconTooltip(text = settings) {
-                        FilledTonalIconButton(
-                            onClick = {
-                                // Prevent click propagation to card
-                                onConfigureOptions()
+                    FilledTonalIconButton(
+                        onClick = {
+                            // Prevent click propagation to card
+                            onConfigureOptions()
+                        },
+                        modifier = Modifier
+                            .size(48.dp)
+                            .semantics {
+                                contentDescription = optionsDesc
                             },
-                            modifier = Modifier
-                                .size(36.dp)
-                                .semantics {
-                                    contentDescription = optionsDesc
-                                },
-                            enabled = isEnabled,
-                            colors = tonalIconColors(
-                                // Changed options take the app's color where the list has one, as its
-                                // other controls do, while missing ones stay in the error palette
-                                container = when {
-                                    showMissingRequired -> colors.errorContainer.copy(alpha = 0.8f)
-                                    showCustomOptions -> customizedAccent?.copy(alpha = AccentAlpha.LEAD)
-                                        ?: colors.primaryContainer.copy(alpha = 0.7f)
-                                    else -> colors.secondaryContainer.copy(alpha = 0.6f)
-                                },
-                                content = when {
-                                    showMissingRequired -> colors.error
-                                    showCustomOptions -> if (customizedAccent != null) {
-                                        colors.onBackground
-                                    } else {
-                                        colors.onPrimaryContainer
-                                    }
-                                    else -> colors.onSecondaryContainer
-                                },
-                                disabledContent = colors.onSurfaceVariant.copy(alpha = 0.3f)
-                            )
-                        ) {
-                            Icon(
-                                imageVector = MaterialSymbols.Rounded.Settings,
-                                contentDescription = null,
-                                modifier = Modifier.size(18.dp)
-                            )
-                        }
+                        enabled = isEnabled,
+                        colors = tonalIconColors(
+                            // Changed options take the app's color where the list has one, as its
+                            // other controls do, while missing ones stay in the error palette
+                            container = when {
+                                showMissingRequired -> colors.errorContainer.copy(alpha = 0.8f)
+                                showCustomOptions -> customizedAccent?.copy(alpha = AccentAlpha.LEAD)
+                                    ?: colors.primaryContainer.copy(alpha = 0.7f)
+                                else -> colors.secondaryContainer.copy(alpha = 0.6f)
+                            },
+                            content = when {
+                                showMissingRequired -> colors.error
+                                showCustomOptions -> if (customizedAccent != null) {
+                                    colors.onBackground
+                                } else {
+                                    colors.onPrimaryContainer
+                                }
+                                else -> colors.onSecondaryContainer
+                            },
+                            disabledContent = colors.onSurfaceVariant.copy(alpha = 0.3f)
+                        )
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Settings,
+                            contentDescription = null,
+                            modifier = Modifier.size(18.dp)
+                        )
                     }
                 }
             }
@@ -280,20 +332,20 @@ internal fun PatchCard(
                         .fillMaxWidth()
                         .background(colors.onSurface.copy(alpha = 0.06f))
                         .padding(
-                            horizontal = Defaults.SpaceLarge,
-                            vertical = Defaults.SpaceSmall,
+                            horizontal = Defaults.ContentPadding,
+                            vertical = Defaults.ContentPaddingSmall,
                         ),
                     contentAlignment = Alignment.Center,
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall),
+                        horizontalArrangement = Arrangement.spacedBy(6.dp),
                     ) {
                         Icon(
                             imageVector = when (lockState) {
-                                PatchLockState.LOCKED_ON  -> MaterialSymbols.Rounded.Lock
-                                PatchLockState.LOCKED_OFF -> MaterialSymbols.Rounded.Block
-                                PatchLockState.NONE       -> MaterialSymbols.Rounded.Lock
+                                PatchLockState.LOCKED_ON  -> Icons.Outlined.Lock
+                                PatchLockState.LOCKED_OFF -> Icons.Outlined.Block
+                                PatchLockState.NONE       -> Icons.Outlined.Lock
                             },
                             contentDescription = null,
                             modifier = Modifier.size(14.dp),

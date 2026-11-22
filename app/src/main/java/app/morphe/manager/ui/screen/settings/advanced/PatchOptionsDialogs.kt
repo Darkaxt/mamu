@@ -6,6 +6,10 @@
 package app.morphe.manager.ui.screen.settings.advanced
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -24,15 +28,13 @@ import app.morphe.manager.ui.screen.shared.*
 import app.morphe.manager.ui.viewmodel.OptionInfo
 import app.morphe.manager.ui.viewmodel.PatchOptionsViewModel
 import app.morphe.manager.util.KnownApps
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
 
 /**
  * Custom branding dialog: the name and icon the patched app is built with, with the adaptive icon
  * creator for an icon of one's own.
  */
 @Composable
-fun DialogHostScope.CustomBrandingDialog(
+fun CustomBrandingDialog(
     patchOptionsPrefs: PatchOptionsPreferencesManager,
     patchOptionsViewModel: PatchOptionsViewModel,
     packageName: String,
@@ -40,10 +42,10 @@ fun DialogHostScope.CustomBrandingDialog(
 ) {
     val context = LocalContext.current
 
-    // Get current values from preferences, read again for another app
-    val appName = remember(packageName) { mutableStateOf(patchOptionsPrefs.customAppName(packageName).getBlocking()) }
-    val iconPath = remember(packageName) { mutableStateOf(patchOptionsPrefs.customIconPath(packageName).getBlocking()) }
-    val appIconStyle = remember(packageName) { mutableStateOf(patchOptionsPrefs.appIconStyle(packageName).getBlocking()) }
+    // Get current values from preferences
+    val appName = remember { mutableStateOf(patchOptionsPrefs.customAppName(packageName).getBlocking()) }
+    val iconPath = remember { mutableStateOf(patchOptionsPrefs.customIconPath(packageName).getBlocking()) }
+    val appIconStyle = remember { mutableStateOf(patchOptionsPrefs.appIconStyle(packageName).getBlocking()) }
 
     // Get branding options from bundle
     val brandingOptions = patchOptionsViewModel.getBrandingOptions(packageName)
@@ -113,9 +115,10 @@ fun DialogHostScope.CustomBrandingDialog(
                 )
 
                 if (missingCustomIcon) {
-                    Footnote(
+                    Notice(
                         text = stringResource(R.string.settings_advanced_patch_options_custom_branding_app_icon_needs_folder),
-                        tone = SemanticTone.Error
+                        tone = SemanticTone.Error,
+                        density = NoticeDensity.Compact
                     )
                 }
             }
@@ -152,7 +155,7 @@ fun DialogHostScope.CustomBrandingDialog(
  * one's own.
  */
 @Composable
-fun DialogHostScope.CustomHeaderDialog(
+fun CustomHeaderDialog(
     patchOptionsPrefs: PatchOptionsPreferencesManager,
     patchOptionsViewModel: PatchOptionsViewModel,
     packageName: String,
@@ -160,7 +163,7 @@ fun DialogHostScope.CustomHeaderDialog(
 ) {
     val context = LocalContext.current
 
-    val headerPath = remember(packageName) {
+    val headerPath = remember {
         mutableStateOf(patchOptionsPrefs.customHeaderPath(packageName).getBlocking())
     }
 
@@ -227,7 +230,7 @@ private fun folderHeading(option: OptionInfo, title: String, value: String, miss
  * @param hasOptions Whether the app's patches offer any of the options, which it says instead.
  */
 @Composable
-private fun DialogHostScope.SettingsOptionsDialog(
+private fun SettingsOptionsDialog(
     packageName: String,
     title: String,
     hasOptions: Boolean,
@@ -236,19 +239,11 @@ private fun DialogHostScope.SettingsOptionsDialog(
     saveEnabled: Boolean = true,
     content: @Composable ColumnScope.() -> Unit
 ) {
-    ListDialog(
+    val scrollState = rememberScrollState()
+
+    AppDialog(
         onDismissRequest = onDismiss,
         accentColor = rememberAppColor(packageName),
-        header = {
-            ListDialogHeader(
-                icon = { modifier ->
-                    AppIcon(packageName = packageName, contentDescription = null, modifier = modifier)
-                },
-                title = title,
-                subtitle = KnownApps.getAppName(packageName),
-                alwaysShowBand = true
-            )
-        },
         footer = {
             AppDialogButtonRow(
                 primaryText = stringResource(R.string.save),
@@ -258,21 +253,36 @@ private fun DialogHostScope.SettingsOptionsDialog(
                 onSecondaryClick = onDismiss
             )
         },
+        padding = DialogPadding.Compact,
+        scrollable = false,
+        contentArrangement = Arrangement.Top,
+        fillContentHeight = true,
         hideFooterWhileTyping = true
     ) {
-        DialogScrollColumn(
+        ListDialogHeader(
+            icon = { modifier ->
+                AppIcon(packageName = packageName, contentDescription = null, modifier = modifier)
+            },
+            title = title,
+            subtitle = KnownApps.getAppName(packageName)
+        )
+
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f),
+                .weight(1f)
+                .verticalScrollFade(scrollState)
+                .verticalScroll(scrollState)
+                .padding(vertical = Defaults.ItemSpacing),
             // Spaced as the options edited while patching
-            verticalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall)
+            verticalArrangement = Arrangement.spacedBy(Defaults.ContentPaddingSmall)
         ) {
             if (hasOptions) {
                 content()
             } else {
                 EmptyState(
                     message = stringResource(R.string.settings_advanced_patch_options_no_available),
-                    icon = MaterialSymbols.Rounded.Tune
+                    icon = Icons.Outlined.Tune
                 )
             }
         }

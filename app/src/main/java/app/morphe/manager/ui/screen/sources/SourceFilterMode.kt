@@ -13,12 +13,13 @@ import app.morphe.manager.domain.manager.SortModeSpec
 
 /** Which sources the sources page lists. */
 enum class SourceFilterMode(
-    @param:StringRes override val labelRes: Int
+    @param:StringRes override val labelRes: Int,
+    @param:StringRes override val descriptionRes: Int
 ) : SortModeSpec {
-    ALL(R.string.all),
-    ENABLED(R.string.enabled),
-    DISABLED(R.string.disabled),
-    ISSUES(R.string.sources_filter_issues);
+    ALL(R.string.all, R.string.sources_filter_all_description),
+    ENABLED(R.string.enabled, R.string.sources_filter_enabled_description),
+    DISABLED(R.string.disabled, R.string.sources_filter_disabled_description),
+    ISSUES(R.string.sources_filter_issues, R.string.sources_filter_issues_description);
 
     val isActive: Boolean get() = this != ALL
 

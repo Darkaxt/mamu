@@ -221,4 +221,9 @@
         <item quantity="two">%d קישורים לא מאומתים</item>
         <item quantity="other">%d קישורים לא מאומתים</item>
     </plurals>
+    <plurals name="sources_search_patch_matches">
+        <item quantity="one">%s תיקון תואם</item>
+        <item quantity="two">%s תיקונים תואמים</item>
+        <item quantity="other">%s תיקונים תואמים</item>
+    </plurals>
 </resources>

@@ -44,13 +44,13 @@
     <string name="mpp_import_unreadable">Tätä tiedostoa ei voida lukea</string>
     <string name="incoming_file_not_patch_source">Tämä tiedosto ei ole paikkalähde</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">Morphe-päivitys saatavilla</string>
+    <string name="home_update_available">Mamu-päivitys saatavilla</string>
     <string name="home_update_available_subtitle">Uusi versio valmis asennettavaksi</string>
     <string name="home_blocked_source_title">Estetty lisäosalähde havaittu</string>
     <string name="home_blocked_source_subtitle">Napauta tarkistaaksesi ja poistaaksesi</string>
     <string name="home_metadata_errors_title">Jotkin lisäosalähteet eivät ole käytettävissä</string>
     <string name="home_metadata_errors_subtitle">Napauta tarkistaaksesi lähteet</string>
-    <string name="home_outdated_manager_title">Morphe on vanhentunut</string>
+    <string name="home_outdated_manager_title">Mamu on vanhentunut</string>
     <string name="home_outdated_manager_subtitle">Jotkin päivityslähteet vaativat uudemman version</string>
     <string name="home_held_back_title">Korjauslähde kaatoi Morphen</string>
     <string name="home_held_back_subtitle">Se ohitettiin, jotta sovellus voisi käynnistyä. Napauta tarkistaaksesi</string>
@@ -204,8 +204,8 @@
     <string name="sources_management_metadata_unavailable_hint">Etämetatietotiedosto ei ole saatavilla. Muokkaaminen asennetulla lisäosapaketilla onnistuu edelleen, mutta automaattinen päivitys on poistettu käytöstä tässä lähteessä</string>
     <string name="sources_management_metadata_unavailable_hint_missing">Lisäosapaketin lataaminen epäonnistui. Lähteen URL-osoite saattaa olla virheellinen tai tiedostoa ei ole olemassa</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">Lisäosapaketin lataaminen epäonnistui. Lähteen URL-osoite saattaa olla virheellinen tai tiedostoa ei ole olemassa. Napauta muuttaaksesi sitä</string>
-    <string name="sources_management_outdated_manager_badge">Päivitä Morphe</string>
-    <string name="sources_management_outdated_manager_hint">Tämä lähde on rakennettu paikkaajalle %1$s, mutta Morphe %2$s sisältää paikkaajan %3$s. Päivitä Morphe käyttääksesi sitä</string>
+    <string name="sources_management_outdated_manager_badge">Päivitä Mamu</string>
+    <string name="sources_management_outdated_manager_hint">Tämä lähde on rakennettu paikkaajalle %1$s, mutta Mamu %2$s sisältää paikkaajan %3$s. Päivitä Mamu käyttääksesi sitä</string>
     <string name="sources_management_held_back_badge">Kaatui</string>
     <string name="sources_management_held_back_hint">Tämä lähde kaatoi Morphen latauksen aikana, joten se ohitetaan. Päivitä tai tuo se uudelleen, niin voit yrittää uudelleen.</string>
     <string name="sources_management_signed_by">Allekirjoittanut</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">Yhteisön korjaukset</string>
     <string name="sources_dialog_choose_apps">Valitse sovellukset</string>
     <string name="sources_dialog_choose_apps_description">Valitse, mitkä sen sovelluksista pidät, kun lähde on latautunut.</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">Kolmannen osapuolen korjauslähteet</string>
-    <string name="sources_dialog_community_notice_message">"Yhteisön paikkalähteet ovat niiden omien tekijöiden luomia ja ylläpitämiä. Morphe ei tarkista tai vahvista kolmansien osapuolten paikkoja, eikä se ole vastuussa niiden sisällöstä tai siitä, mitä ne tekevät laitteellesi"</string>
+    <string name="sources_dialog_community_notice_message">"Yhteisön paikkalähteet ovat niiden omien tekijöiden luomia ja ylläpitämiä. Mamu ei tarkista tai vahvista kolmansien osapuolten paikkoja, eikä se ole vastuussa niiden sisällöstä tai siitä, mitä ne tekevät laitteellesi"</string>
     <string name="sources_update_success">Päivitys onnistui</string>
     <string name="sources_update_unavailable">Päivityksiä ei ole saatavilla</string>
     <string name="sources_download_fail">Lähteiden lataaminen epäonnistui: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">Apuohjelma on asennettu, mutta sitä ei ole vielä merkitty luotettavaksi, joten sitä ei tarjota tässä</string>
     <string name="home_apk_helper_untrusted_action">Arvioi avustajat</string>
     <string name="home_apk_helper_title">Lataa apuohjelman avulla</string>
-    <string name="home_apk_helper_description">Morphe pyytää alla olevaa apuohjelmaa lataamaan alkuperäisen APK-tiedoston ja palauttamaan tiedoston</string>
+    <string name="home_apk_helper_description">Mamu pyytää alla olevaa apuohjelmaa lataamaan alkuperäisen APK-tiedoston ja palauttamaan tiedoston</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">Avaa avustaja</string>
-    <string name="home_apk_helper_warning">Jatka vain, jos luotat tähän apuohjelmaan. Morphe tarkistaa paketin, version ja allekirjoituksen kaikesta, mitä se vastaanottaa ennen korjaamista</string>
-    <string name="home_apk_helper_warning_unverified">Jatka vain, jos luotat tähän apuohjelmaan. Morphe ei voi vahvistaa tämän APK-tiedoston allekirjoitusta, joten muokattua tiedostoa ei havaita</string>
+    <string name="home_apk_helper_warning">Jatka vain, jos luotat tähän apuohjelmaan. Mamu tarkistaa paketin, version ja allekirjoituksen kaikesta, mitä se vastaanottaa ennen korjaamista</string>
+    <string name="home_apk_helper_warning_unverified">Jatka vain, jos luotat tähän apuohjelmaan. Mamu ei voi vahvistaa tämän APK-tiedoston allekirjoitusta, joten muokattua tiedostoa ei havaita</string>
     <string name="home_apk_helper_no_result">Apuohjelma ei palauttanut APK-tiedostoa</string>
     <string name="home_apk_helper_no_access">Apuohjelma ei myöntänyt pääsyä palauttamalleen APK-tiedostolle</string>
     <string name="home_apk_helper_no_package">Apusovellus ei kertonut, mitä asennettua sovellusta käytetään</string>
     <string name="home_apk_helper_wrong_package">Apusovellus palautti eri sovelluksen kuin se, jota paikataan</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe ei voinut käyttää asennettua sovellusta</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu ei voinut käyttää asennettua sovellusta</string>
     <string name="home_apk_helper_installed_incompatible">Asennettua versiota ei voi paikata</string>
     <string name="home_apk_use_saved_copy">Käytä tallennettua kopiota</string>
     <string name="home_apk_use_installed_app">Käytä asennettua sovellusta</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">Sovelluksen asennetun version allekirjoitusta ei voitu vahvistaa, joten se on ehkä jo muutettu</string>
     <string name="home_unverified">Vahvistamaton</string>
     <string name="home_install_verification_pending">Tarkistetaan asennusta…</string>
-    <string name="home_app_info_install_unverified">Morphe ei voi vahvistaa, että asennettu sovellus on se koontiversio, jonka se paikkasi. Paikkaa se uudelleen tai asenna se uudelleen tallennetusta APK:sta palauttaaksesi sen toiminnot.</string>
+    <string name="home_app_info_install_unverified">Mamu ei voi vahvistaa, että asennettu sovellus on se koontiversio, jonka se paikkasi. Paikkaa se uudelleen tai asenna se uudelleen tallennetusta APK:sta palauttaaksesi sen toiminnot.</string>
     <string name="home_app_info_no_saved_apk">Ei tallennettua APK:ta. Muokkaaminen edellyttää APK-tiedoston valitsemista uudelleen.</string>
     <string name="home_version_requires_android">Vaatii Android-version %s tai uudemman</string>
     <string name="home_apk_no_compatible_versions_title">Ei tueta tällä laitteella</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">Vieritä verkkosivua alaspäin ja paina sen latauspainiketta</string>
     <string name="home_download_instructions_step2_variant">Vieritä verkkosivua alaspäin ja paina ylimmän &lt;b&gt;APK-variantin&lt;/b&gt; latauspainiketta</string>
     <string name="home_download_instructions_step2_search">Avaa hakutulos verkkosivustolta, johon luotat</string>
-    <string name="home_download_instructions_step2_search_note">Morphe ei voi mennä takuuseen näistä verkkosivustoista. Ohita ne, jotka tarjoavat omaa sovelluskauppaansa APK-tiedoston sijaan</string>
+    <string name="home_download_instructions_step2_search_note">Mamu ei voi mennä takuuseen näistä verkkosivustoista. Ohita ne, jotka tarjoavat omaa sovelluskauppaansa APK-tiedoston sijaan</string>
     <string name="home_download_instructions_step3_search">Lataa siltä verkkosivustolta version &lt;b&gt;%s&lt;/b&gt; APK, ei uusinta</string>
     <string name="home_download_instructions_step3_search_any">Lataa siltä verkkosivustolta sovelluksen APK. &lt;b&gt;Mikä tahansa versio&lt;/b&gt; voidaan paikata</string>
     <string name="home_download_instructions_step2_github">Valitse julkaisun &lt;b&gt;%s&lt;/b&gt; &lt;b&gt;Assets&lt;/b&gt;-kohdasta tiedosto, joka päättyy päätteeseen &lt;b&gt;.apk&lt;/b&gt;</string>
@@ -314,7 +314,7 @@
     <string name="home_download_instructions_download_button_toast_3">Harjoitus tekee mestarin, ja olet jo pitkällä 💪</string>
     <string name="home_download_instructions_download_button_toast_4">Ei vielä täällä… ei vielä täällä… 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">OK, kunnioitan omistautumista 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">Olet nyt virallinen Morphe-painikoiden testaaja 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">Olet nyt virallinen Mamu-painikoiden testaaja 🏅</string>
     <string name="home_download_instructions_step3">Odota, että lataus valmistuu. &lt;b&gt;Älä asenna&lt;/b&gt; APK:ta</string>
     <string name="home_download_instructions_step3_mount">Odota, että lataus valmistuu, ja &lt;b&gt;asenna sitten APK&lt;/b&gt;</string>
     <string name="home_download_instructions_step4">Kun lataus on valmis, palaa Morpheen</string>
@@ -446,12 +446,12 @@ Parhaan tuloksen saavuttamiseksi sovellus suosittelee &lt;b&gt;kokonaisen APK:n&
     <string name="adaptive_icon_themed">Teema</string>
     <string name="adaptive_icon_background_color">Taustaväri</string>
     <string name="adaptive_icon_reset_transform">Palauta sijainti ja mittakaava</string>
-    <string name="adaptive_icon_no_transparency_warning">Tässä kuvassa ei ole läpinäkyviä pikseleitä, joten teema- ja ilmoituskuvakkeet säilyttävät Morphe-logon</string>
+    <string name="adaptive_icon_no_transparency_warning">Tässä kuvassa ei ole läpinäkyviä pikseleitä, joten teema- ja ilmoituskuvakkeet säilyttävät Mamu-logon</string>
     <string name="adaptive_icon_created_success">Adaptiivinen kuvake on luotu</string>
     <string name="adaptive_icon_creation_failed">Adaptiivisen kuvakkeen luominen epäonnistui</string>
     <string name="adaptive_icon_guide">Mukautetun kuvakkeen opas</string>
     <string name="adaptive_icon_guide_png_title">Käytä PNG-tiedostoa, jossa on läpinäkyvä tausta</string>
-    <string name="adaptive_icon_guide_png_body">Läpinäkyvällä taustalla oleva logo toimii parhaiten, ja taustaväri valitaan alhaalta. Kuva ilman läpinäkyvyyttä täyttää sen sijaan koko kuvakkeen, jolloin teema- ja ilmoituskuvakkeet säilyttävät Morphe-logon.</string>
+    <string name="adaptive_icon_guide_png_body">Läpinäkyvällä taustalla oleva logo toimii parhaiten, ja taustaväri valitaan alhaalta. Kuva ilman läpinäkyvyyttä täyttää sen sijaan koko kuvakkeen, jolloin teema- ja ilmoituskuvakkeet säilyttävät Mamu-logon.</string>
     <string name="adaptive_icon_guide_safe_zones_title">Turva-alueet</string>
     <string name="adaptive_icon_guide_safe_zones_body">Ääriviiva näyttää käynnistimesi kuvakkeen muodon, ja kaikki sen ulkopuolelle jäävä leikataan pois. Muut käynnistimet käyttävät muita muotoja, joten pidä tärkeät yksityiskohdat katkoviivaympyrän sisällä, jonka kaikki muodot näyttävät.</string>
     <string name="adaptive_icon_guide_notification_title">Ilmoituskuvake</string>
@@ -589,7 +589,7 @@ Parhaan tuloksen saavuttamiseksi sovellus suosittelee &lt;b&gt;kokonaisen APK:n&
     <string name="root_pre_patch_installer_description">Laitteellasi on root-oikeudet. Valitse, paikataanko sovellus root-liitosta vai tavallista asennusta varten</string>
     <string name="root_pre_patch_installer_mount_title">Root-liitostila</string>
     <string name="root_pre_patch_installer_mount_description">Paikkaukset root-liitosta varten ja APK asennetaan vastaavan vakiosovelluksen päälle. GmsCorea ei tarvita.</string>
-    <string name="root_mount_module_unmount_warning">Jos KernelSU:ssa on \"Poista moduulit oletuksena\" -toiminto käytössä, avaa KernelSU > Superuser > sovellus, jonka asensit > Profiili > Mukauta ja poista \"Poista moduulit\" -asetus käytöstä. Muuten asennettu korjattu APK-tiedosto ei ehkä tule voimaan, vaikka Morphe näyttää sen asennetuksi</string>
+    <string name="root_mount_module_unmount_warning">Jos KernelSU:ssa on \"Poista moduulit oletuksena\" -toiminto käytössä, avaa KernelSU > Superuser > sovellus, jonka asensit > Profiili > Mukauta ja poista \"Poista moduulit\" -asetus käytöstä. Muuten asennettu korjattu APK-tiedosto ei ehkä tule voimaan, vaikka Mamu näyttää sen asennetuksi</string>
     <string name="root_pre_patch_installer_standard_title">Vakioasennustila</string>
     <string name="root_pre_patch_installer_standard_description">Paikkaa normaalina APK-tiedostona GmsCore-tuella. Asennusasetuksiasi käytetään paikkaamisen jälkeen.</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -652,7 +652,7 @@ Parhaan tuloksen saavuttamiseksi sovellus suosittelee &lt;b&gt;kokonaisen APK:n&
     <string name="patcher_conflict_subtitle">Sinun on poistettava olemassa oleva versio</string>
     <string name="patcher_conflict_hint">Korjattu sovellus käyttää eri sertifikaattia kuin asennettu versio. Poistaminen poistaa kaikki sovelluksen tiedot</string>
     <string name="patcher_installed_conflict_title">Poisto vaaditaan</string>
-    <string name="patcher_installed_conflict_body">"Morphe allekirjoittaa korjatut sovellukset omalla sertifikaatillaan, joka poikkeaa alkuperäisestä. Android edellyttää olemassa olevan version poistamista, ennen kuin korjattua sovellusta voidaan asentaa.
+    <string name="patcher_installed_conflict_body">"Mamu allekirjoittaa korjatut sovellukset omalla sertifikaatillaan, joka poikkeaa alkuperäisestä. Android edellyttää olemassa olevan version poistamista, ennen kuin korjattua sovellusta voidaan asentaa.
 
 Poistaminen poistaa pysyvästi kaikki sovelluksen tiedot."</string>
     <string name="patcher_install_error_title">Asennusvirhe</string>
@@ -662,8 +662,8 @@ Poistaminen poistaa pysyvästi kaikki sovelluksen tiedot."</string>
     <string name="patcher_patches_excluded_for_installer">Ei saatavilla tälle asennusmenetelmälle ja pois suljettu: %s</string>
     <string name="patcher_storage_permission_dialog_title">Tallennuspolkua ei voida käyttää</string>
     <string name="patcher_incompatible_patcher_title">Päivitys vaaditaan</string>
-    <string name="patcher_incompatible_patcher_description">Lähde &lt;b&gt;%1$s&lt;/b&gt; vaatii &lt;b&gt;%2$s&lt;/b&gt;-patcherin tai uudemman. Päivitä Morphe käyttääksesi sitä</string>
-    <string name="patcher_storage_permission_description_api30">Yksi tai useampi lisäosien asetus osoittaa polkuihin, joita Morphe ei voi lukea. Anna lupa tallennustilan käyttöön ja napauta painiketta, niin muokkaus alkaa automaattisesti</string>
+    <string name="patcher_incompatible_patcher_description">Lähde &lt;b&gt;%1$s&lt;/b&gt; vaatii &lt;b&gt;%2$s&lt;/b&gt;-patcherin tai uudemman. Päivitä Mamu käyttääksesi sitä</string>
+    <string name="patcher_storage_permission_description_api30">Yksi tai useampi lisäosien asetus osoittaa polkuihin, joita Mamu ei voi lukea. Anna lupa tallennustilan käyttöön ja napauta painiketta, niin muokkaus alkaa automaattisesti</string>
     <string name="patcher_storage_permission_description_legacy">Yksi tai useampi lisäosien asetus osoittaa polkuihin, joita ei voida käyttää. Päivitä polut lisäosien asetuksissa ja yritä uudelleen</string>
     <string name="patcher_storage_permission_grant">Anna lupa tallennustilan käyttöön</string>
     <string name="patcher_storage_permission_denied_warning">Lupa tallennustilan käyttöön evättiin. Anna lupa käyttää tätä polkua tai siirrä tiedostot sovelluksen yksityiseen kansioon</string>
@@ -680,7 +680,7 @@ Poistaminen poistaa pysyvästi kaikki sovelluksen tiedot."</string>
     <string name="patcher_option_paths_rejected_title">Paikkausvaihtoehtojen tiedostoja ei voida käyttää</string>
     <string name="patcher_option_paths_rejected_description">Yksi tai useampi paikkausvaihtoehto viittaa tiedostoihin, jotka puuttuvat tai joista puuttuu paikkauksen vaatima sisältö. Poista polut ja paikkaa ilman niitä, tai korjaa tiedostot vaihtoehdon ohjeiden mukaisesti ja yritä uudelleen</string>
     <string name="patcher_option_paths_clear">Poista polut ja jatka</string>
-    <string name="patcher_storage_permission_hint">Vinkki: Siirrä tiedostot /Android/data/app.morphe.manager/files/ – ei tarvita ylimääräisiä lupia</string>
+    <string name="patcher_storage_permission_hint">Vinkki: Siirrä tiedostot /Android/data/app.morphe.extended/files/ – ei tarvita ylimääräisiä lupia</string>
     <!-- Patcher Screen - Patcher Steps -->
     <string name="patcher_step_group_preparing">Valmistellaan</string>
     <string name="patcher_step_load_patches">Ladataan lisäosia</string>
@@ -754,8 +754,8 @@ Poistaminen poistaa pysyvästi kaikki sovelluksen tiedot."</string>
     <string name="install_ignore_signature">Asenna silti</string>
     <string name="install_ignore_signature_description">Säilyttää sovellustiedot, mutta toimii vain, jos root-moduuli poistaa Androidin allekirjoituksen vahvistuksen käytöstä.</string>
     <string name="uninstall_app_fail">Sovelluksen poistaminen epäonnistui: %s</string>
-    <string name="uninstall_app_unverified">Jätetty paikalleen: Morphe ei voinut vahvistaa, että asennettu sovellus on se koontiversio, jonka se korjasi</string>
-    <string name="launch_app_unverified">Morphe ei voinut vahvistaa, että asennettu sovellus on se koontiversio, jonka se korjasi</string>
+    <string name="uninstall_app_unverified">Jätetty paikalleen: Mamu ei voinut vahvistaa, että asennettu sovellus on se koontiversio, jonka se korjasi</string>
+    <string name="launch_app_unverified">Mamu ei voinut vahvistaa, että asennettu sovellus on se koontiversio, jonka se korjasi</string>
     <string name="uninstall_timeout">Asennuksen poistaminen aikakatkaistiin</string>
     <string name="save_apk_success">APK tallennettu</string>
     <string name="saved_app_export_failed">Muokatun sovelluksen vienti epäonnistui</string>
@@ -847,7 +847,7 @@ Poistaminen poistaa pysyvästi kaikki sovelluksen tiedot."</string>
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">Sovelluksen kieli</string>
     <string name="settings_appearance_app_language_current">Nykyinen kieli</string>
-    <string name="settings_appearance_translate">Auta kääntämään Morphe</string>
+    <string name="settings_appearance_translate">Auta kääntämään Mamu</string>
     <string name="settings_appearance_translations_info_title">Joidenkin kielten käännökset saattavat puuttua tai olla puutteellisia</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">Käyttöliittymän skaalaus</string>
@@ -876,7 +876,7 @@ Poistaminen poistaa pysyvästi kaikki sovelluksen tiedot."</string>
     <string name="settings_appearance_app_card_colors_bundle_description">Käytä tässä kunkin sovelluksen tai lähteen omaa väriä, joka säätyy automaattisesti sopivaksi</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">Sovelluskuvake</string>
-    <string name="settings_appearance_app_icon_selector_description">Miltä Morphe näyttää aloitusnäytöllä ja sovelluslokerossa</string>
+    <string name="settings_appearance_app_icon_selector_description">Miltä Mamu näyttää aloitusnäytöllä ja sovelluslokerossa</string>
     <string name="settings_appearance_app_icon_default">Oletus</string>
     <string name="settings_appearance_app_icon_light_2">Taivas</string>
     <string name="settings_appearance_app_icon_light_3">Auringonlasku</string>
@@ -900,23 +900,23 @@ Poistaminen poistaa pysyvästi kaikki sovelluksen tiedot."</string>
     <string name="settings_appearance_app_icon_mark_black">Musta</string>
     <string name="settings_appearance_app_icon_change_dialog_title">Vaihda sovelluksen kuvake?</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">Morphe käynnistyy uudelleen vaihtaakseen kuvakkeeksi &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="settings_appearance_app_icon_change_restarts">Mamu käynnistyy uudelleen vaihtaakseen kuvakkeeksi &lt;b&gt;%s&lt;/b&gt;</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">Vaihda kuvake</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">Esijulkaisupäivitykset</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">Varhainen pääsy uusiin Morphe-versioihin</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">Varhainen pääsy uusiin Mamu-versioihin</string>
     <string name="settings_advanced_updates_prerelease_warning_title">Ota käyttöön esijulkaisupäivitykset?</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
     <string name="settings_advanced_updates_prerelease_warning_message">"Morphen esijulkaisuversiot ovat vielä kehityksessä ja voivat olla epävakaita.
 
 Paikkaukset eivät ole vaikutuksen alaisia: ota käyttöön esijulkaisupaikkaukset jokaiselle lähteelle paikkauslähteiden luettelossa"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">Automaattiset päivitykset</string>
-    <string name="settings_auto_updates_description">Mitä Morphe tekee päivitysten suhteen avautuessaan. Vedä alas päivittääksesi tarkistaa aina päivitykset</string>
+    <string name="settings_auto_updates_description">Mitä Mamu tekee päivitysten suhteen avautuessaan. Vedä alas päivittääksesi tarkistaa aina päivitykset</string>
     <string name="settings_auto_updates_download">Lataa automaattisesti</string>
-    <string name="settings_auto_updates_download_description">Tarkistaa päivitykset, kun Morphe avautuu, ja lataa lisäosien päivitykset missä tahansa verkossa</string>
+    <string name="settings_auto_updates_download_description">Tarkistaa päivitykset, kun Mamu avautuu, ja lataa lisäosien päivitykset missä tahansa verkossa</string>
     <string name="settings_auto_updates_wifi_only">Lataa vain Wi-Fi-verkossa</string>
     <string name="settings_auto_updates_wifi_only_description">Mobiilidatalla tarkistetaan ja näytetään vain saatavilla olevat päivitykset</string>
     <string name="settings_auto_updates_check_only">Vain tarkistus</string>
@@ -943,21 +943,21 @@ Paikkaukset eivät ole vaikutuksen alaisia: ota käyttöön esijulkaisupaikkauks
     <!-- Notification content -->
     <string name="notification_bundle_update_title">Uusia lisäosia saatavilla</string>
     <string name="notification_update_text">Versio %s on valmis ladattavaksi</string>
-    <string name="notification_bundle_update_text_unversioned">Avaa Morphe ja päivitä napauttamalla</string>
+    <string name="notification_bundle_update_text_unversioned">Avaa Mamu ja päivitä napauttamalla</string>
     <string name="notification_permission_dialog_title">Salli ilmoitukset</string>
-    <string name="notification_permission_dialog_description">Morphe tarvitsee ilmoitusluvan, jotta voit saada ilmoituksen päivityksistä, kun sovellus on taustalla</string>
+    <string name="notification_permission_dialog_description">Mamu tarvitsee ilmoitusluvan, jotta voit saada ilmoituksen päivityksistä, kun sovellus on taustalla</string>
     <string name="notification_post_patch_dialog_title">Haluatko saada ilmoitusta, kun päivityksiä on saatavilla?</string>
-    <string name="notification_channel_manager_updates">Morphe-päivitykset</string>
-    <string name="notification_channel_manager_updates_description">Ilmoitukset uusista Morphe-julkaisuista</string>
+    <string name="notification_channel_manager_updates">Mamu-päivitykset</string>
+    <string name="notification_channel_manager_updates_description">Ilmoitukset uusista Mamu-julkaisuista</string>
     <string name="notification_channel_patch_updates">Korjauspäivitykset</string>
     <string name="notification_channel_patch_updates_description">Ilmoitukset uusista korjausjulkaisuista</string>
-    <string name="notification_channel_patcher_description">Näytetään, kun Morphe paikkaa sovellusta taustalla</string>
+    <string name="notification_channel_patcher_description">Näytetään, kun Mamu paikkaa sovellusta taustalla</string>
     <string name="notification_channel_patching_results">Muokkaustulokset</string>
     <string name="notification_channel_patching_results_description">Kun muokkaus päättyy tai asennus odottaa sinua Morphen ollessa taustalla</string>
     <string name="notification_channel_mounted_apps">Mountatut sovellukset</string>
     <string name="notification_channel_mounted_apps_description">Kun toinen versio korvasi mountatun sovelluksen eikä sen korjaus enää päde</string>
     <string name="notification_mount_replaced_title">%1$s ei ole enää korjattu</string>
-    <string name="notification_mount_replaced_text">v%1$s korvasi korjatun v%2$s:n. Avaa Morphe palauttaaksesi sen</string>
+    <string name="notification_mount_replaced_text">v%1$s korvasi korjatun v%2$s:n. Avaa Mamu palauttaaksesi sen</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">Asiantuntijatila</string>
     <string name="settings_advanced_expert_mode_description">Avaa edistyneet patchausasetukset ja -vaihtoehdot</string>
@@ -1115,7 +1115,7 @@ Kuvien mittojen on oltava seuraavat:
     <string name="settings_ignore_install_target_rules">Ohita asennuskohdemääritykset</string>
     <string name="settings_ignore_install_target_rules_description">Sallii asennuskohteen vaatimien paikkausten poistamisen käytöstä ja niiden kytkemisen päälle, jotka se sulkee pois. Paikkattu sovellus ei välttämättä toimi</string>
     <string name="settings_auto_uninstall_warning_title">Ota automaattinen poisto käyttöön?</string>
-    <string name="settings_auto_uninstall_warning_message">Jos Android raportoi allekirjoitusristiriidasta Shizukun automaattisen asennuksen aikana, Morphe poistaa olemassa olevan sovelluksen ennen korjatun APK:n asentamista</string>
+    <string name="settings_auto_uninstall_warning_message">Jos Android raportoi allekirjoitusristiriidasta Shizukun automaattisen asennuksen aikana, Mamu poistaa olemassa olevan sovelluksen ennen korjatun APK:n asentamista</string>
     <string name="settings_auto_uninstall_warning_risk">Tämä voi poistaa sovelluksen tiedot. Jos korjattu APK ei asennu poiston jälkeen, edellinen sovellus on ehkä jo poistettu</string>
     <string name="installer_shizuku_status_action">Tarkista Shizukun tila</string>
     <string name="installer_shizuku_status_title">Shizukun tila</string>
@@ -1150,7 +1150,7 @@ Yksityiskohdat: %2$s"</string>
     <string name="settings_system_patcher_completion_sound_description">Toistaa erillisen äänen onnistumisesta tai epäonnistumisesta paikkauksen valmistuttua</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">Ilmoitukset</string>
-    <string name="settings_system_notifications_description">Kuinka Morphe pitää sinut ajan tasalla</string>
+    <string name="settings_system_notifications_description">Kuinka Mamu pitää sinut ajan tasalla</string>
     <string name="settings_system_notifications_success_sound">Onnistumisen ääni</string>
     <string name="settings_system_notifications_error_sound">Virheääni</string>
     <string name="settings_system_notifications_sound_default">Oletus</string>
@@ -1163,7 +1163,7 @@ Yksityiskohdat: %2$s"</string>
     <string name="settings_system_signing_key">Allekirjoitusavain</string>
     <string name="settings_system_signing_key_description">Varmuuskopioi tai palauttaa paikattujen sovellusten allekirjoitusavaimen</string>
     <string name="settings_system_signing_key_dialog_description">Jokainen Morphen korjaama sovellus allekirjoitetaan tällä avaimella. Säilytä kopio: ilman sitä korjattuja sovelluksia voi päivittää vain poistamalla ne</string>
-    <string name="settings_system_signing_key_missing">Morphe luo avaimen ensimmäisen korjauksesi yhteydessä</string>
+    <string name="settings_system_signing_key_missing">Mamu luo avaimen ensimmäisen korjauksesi yhteydessä</string>
     <string name="settings_system_signing_key_created">Luotu %s</string>
     <string name="settings_system_signing_key_fingerprint">SHA-256-sormenjälki</string>
     <string name="settings_system_backup_appearance_description">Teema, värit ja kieli</string>
@@ -1185,7 +1185,7 @@ Yksityiskohdat: %2$s"</string>
     <string name="settings_system_export_keystore_failed">Avainsäilön vienti epäonnistui</string>
     <string name="settings_system_show_password_field">Näytä salasana</string>
     <string name="settings_system_hide_password_field">Piilota salasana</string>
-    <string name="settings_system_morphe_settings">Morphe-asetukset</string>
+    <string name="settings_system_morphe_settings">Mamu-asetukset</string>
     <string name="settings_system_import_manager_settings_description">Varmuuskopioi ja palauta Morphen asetukset</string>
     <string name="settings_system_export_manager_settings_title">Vie Morphen asetukset</string>
     <string name="settings_system_export_manager_settings_description">Tallentaa valitsemasi asetukset tiedostoon</string>
@@ -1194,11 +1194,11 @@ Yksityiskohdat: %2$s"</string>
     <string name="settings_system_auto_backup_switch">Varmuuskopioi automaattisesti</string>
     <string name="settings_system_auto_backup_now">Varmuuskopioi nyt</string>
     <string name="settings_system_auto_backup_saved">Varmuuskopio tallennettu</string>
-    <string name="settings_system_auto_backup_interval_description">Morphe odottaa vähintään tämän ajan kopioinnin jälkeen ennen seuraavaa kopiota</string>
-    <string name="settings_system_auto_backup_description">Tallentaa Morphe-asetuksesi valitsemaasi kansioon</string>
+    <string name="settings_system_auto_backup_interval_description">Mamu odottaa vähintään tämän ajan kopioinnin jälkeen ennen seuraavaa kopiota</string>
+    <string name="settings_system_auto_backup_description">Tallentaa Mamu-asetuksesi valitsemaasi kansioon</string>
     <string name="settings_system_auto_backup_last">Viimeisin varmuuskopio: %s</string>
     <string name="settings_system_auto_backup_folder">Kansio</string>
-    <string name="settings_system_auto_backup_folder_name">Morphe-varmuuskopiot</string>
+    <string name="settings_system_auto_backup_folder_name">Mamu-varmuuskopiot</string>
     <string name="settings_system_auto_backup_folder_failed">Tätä kansiota ei voitu käyttää: %s</string>
     <string name="settings_system_auto_backup_interval">Varmuuskopiointitiheys</string>
     <string name="settings_system_auto_backup_signing_key">Sisällytä allekirjoitusavain</string>
@@ -1236,7 +1236,7 @@ Yksityiskohdat: %2$s"</string>
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">Tallennustilan hallinta</string>
     <string name="settings_system_storage_management_description">Näyttää levytilankäytön ja tyhjentää välimuistitiedostot</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s vapaata</string>
     <string name="settings_system_storage_saved_apks">Tallennetut APK-tiedostot</string>
     <string name="settings_system_storage_caches">Välimuistit</string>
@@ -1259,7 +1259,7 @@ Yksityiskohdat: %2$s"</string>
     <string name="settings_system_storage_clear_anyway">Tyhjennä joka tapauksessa</string>
     <string name="settings_system_storage_nothing_to_clear">Ei tyhjennettävää</string>
     <string name="settings_system_storage_open_app_info_title">Avaa Android-sovellustilan tallennustiedot</string>
-    <string name="settings_system_storage_open_app_info_description">Hallitse tai tyhjennä kaikki Morphe-tiedot järjestelmäasetusten kautta</string>
+    <string name="settings_system_storage_open_app_info_description">Hallitse tai tyhjennä kaikki Mamu-tiedot järjestelmäasetusten kautta</string>
     <string name="settings_system_save_original_apks_title">Säilytä alkuperäiset APK-tiedostot</string>
     <string name="settings_system_save_original_apks_description">Tallenna korjaamaton APK-tiedosto, jotta sitä voidaan käyttää uudelleen korjaamiseen ilman, että tiedostoa tarvitsee valita uudelleen</string>
     <string name="settings_system_save_patched_apks_title">Säilytä korjatut APK-tiedostot</string>
@@ -1319,7 +1319,7 @@ Yksityiskohdat: %2$s"</string>
     <string name="settings_system_apk_download_helper_trusted_count">Luotettu: %1$d / %2$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">Apusovellukset voivat ladata alkuperäisiä APK-tiedostoja puolestasi. Vain ne sovellukset, joihin luotat täällä, tarjotaan latausohjeissa.</string>
     <string name="settings_system_apk_download_helper_trust_title">Luotetaanko tähän apuohjelmaan?</string>
-    <string name="settings_system_apk_download_helper_warning">APK tulee apusovelluksesta, joten luota vain tuntemiisi sovelluksiin. Morphe tarkistaa silti jokaisen tiedoston paketin, version ja allekirjoituksen ennen korjausta.</string>
+    <string name="settings_system_apk_download_helper_warning">APK tulee apusovelluksesta, joten luota vain tuntemiisi sovelluksiin. Mamu tarkistaa silti jokaisen tiedoston paketin, version ja allekirjoituksen ennen korjausta.</string>
     <string name="settings_system_apk_download_helper_installed_by">Asentanut %s</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">Asentajaa ei tunneta</string>
     <string name="settings_system_apk_download_helper_open_directly">Avaa apuohjelma heti</string>
@@ -1352,7 +1352,7 @@ Yksityiskohdat: %2$s"</string>
     <string name="settings_about_section_project">Projekti</string>
     <string name="settings_about_section_help">Ohjeet</string>
     <string name="credits_prior_development">Aikaisempi kehitys</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">Hallinta</string>
     <string name="about_update_available">Päivitys saatavilla: %s</string>
     <string name="about_up_to_date">Ajantasainen</string>
@@ -1365,7 +1365,7 @@ Yksityiskohdat: %2$s"</string>
     <string name="contributors_all_time">Koko ajan</string>
     <string name="contributors_6_months">6 kuukautta</string>
     <string name="contributors_3_months">3 kuukautta</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">Tukijat</string>
     <string name="supporters_description">Tukijat Open Collectivessa</string>
     <string name="supporters_become">Tule tukijaksi</string>
@@ -1373,7 +1373,7 @@ Yksityiskohdat: %2$s"</string>
     <string name="people_more">Ja %s muuta</string>
     <string name="people_unavailable">Listaa ei voitu ladata</string>
     <string name="opensource_licenses">Avoimen lähdekoodin lisenssit</string>
-    <string name="opensource_licenses_description">Kirjastot, joille Morphe perustuu</string>
+    <string name="opensource_licenses_description">Kirjastot, joille Mamu perustuu</string>
     <string name="opensource_licenses_search">Hae kirjastoja ja lisenssejä</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">Valinta</string>
@@ -1398,7 +1398,7 @@ Yksityiskohdat: %2$s"</string>
     <string name="settings_section_patcher">Päivitystyökalu</string>
     <string name="settings_section_updates">Päivitykset</string>
     <string name="settings_section_patching">Muokkaaminen</string>
-    <string name="settings_section_appearance_summary">Miten Morphe näyttää</string>
+    <string name="settings_section_appearance_summary">Miten Mamu näyttää</string>
     <string name="settings_section_patch_options_summary">Miten yksinkertainen tila paikkaa sovellukset</string>
     <string name="settings_section_general">Yleiset</string>
     <string name="settings_section_patcher_summary">Tapat, joilla sovelluksia korjataan tällä laitteella</string>
@@ -1566,7 +1566,7 @@ Yksityiskohdat: %2$s"</string>
     <string name="update_completed">Päivitys asennettu</string>
     <string name="install_update_manager_failed">Päivityksen asentaminen epäonnistui</string>
     <string name="installing_manager_update">Asennetaan päivitystä…</string>
-    <string name="installing_manager_update_hint">Morphe sulkeutuu viimeistelläkseen päivityksen</string>
+    <string name="installing_manager_update_hint">Mamu sulkeutuu viimeistelläkseen päivityksen</string>
     <string name="downloading_manager_update">Ladataan päivitystä…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">Ladattu %1$s Mt</string>
@@ -1606,4 +1606,23 @@ Haluatko silti jatkaa?"</string>
     <string name="tour_prompt_confirm">Näytä minulle</string>
     <string name="onboarding_restart_title">Ominaisuusesittely</string>
     <string name="onboarding_restart_desc">Opastettu kierros keskeisistä ominaisuuksista</string>
+
+    <string name="home_app_filter_all_description">Kaikki aloitusnäytön sovellukset</string>
+    <string name="home_app_filter_patched_description">Morphella paikkaamasi tai tallentamasi sovellukset</string>
+    <string name="home_app_filter_not_patched_description">Sovellukset, joita et ole vielä paikannut Morphessa</string>
+    <string name="home_app_filter_installed_description">Sovellukset, jotka on tällä hetkellä asennettu tähän laitteeseen</string>
+    <string name="home_app_filter_uninstalled_description">Morphella muokatut sovellukset, joita ei ole enää tällä laitteella</string>
+    <string name="home_app_filter_clones_description">Sovellukset, jotka on rakennettu oman pakettinimen alle ja asennettu alkuperäisen rinnalle</string>
+    <string name="home_app_sort_name_asc_description">Aakkosjärjestyksessä, A–Z</string>
+    <string name="home_app_sort_name_desc_description">Aakkosjärjestys käänteinen, Z:sta A:han</string>
+    <string name="home_app_sort_recently_patched_description">Viimeksi patchatut sovellukset ensin</string>
+    <string name="home_category_custom">Mukautettu</string>
+    <string name="sources_filter_all_description">Jokainen lähde</string>
+    <string name="sources_filter_enabled_description">Lähtekohdat poistetaan lähdekoodista</string>
+    <string name="sources_filter_disabled_description">Lähteet pois päältä</string>
+    <string name="sources_filter_issues_description">Lähteet, jotka on estetty, joita ei voitu ladata tai jotka vaativat uudemman Morphen</string>
+    <string name="sources_sort_last_updated_description">Uusimmat lisäosien päivitykset ensin</string>
+    <string name="sources_sort_enabled_first_description">Näytä aktiiviset lähteet ennen poistettuja lähteitä</string>
+    <string name="home_apk_availability_installed_version">Asennettu tähän laitteeseen: %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">Avainsäilön muoto</string>
 </resources>

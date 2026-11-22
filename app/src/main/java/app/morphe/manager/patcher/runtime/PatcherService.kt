@@ -71,7 +71,7 @@ class PatcherService : Service() {
             val (commandsFile, eventsFile) = hostArgs(commands, events)
             thread(name = "PatcherHost") {
                 // ART reports no time spent collecting, and throws once its heap is spent anyway
-                serveRun(commandsFile, eventsFile, null) { PatchBundle.Loader.patches(PatchBundle(it.path)) }
+                serveRun(commandsFile, eventsFile) { PatchBundle.Loader.patches(PatchBundle(it.path)) }
             }
             return HostStarted(Process.myPid(), heapLimitMebibytes())
         }

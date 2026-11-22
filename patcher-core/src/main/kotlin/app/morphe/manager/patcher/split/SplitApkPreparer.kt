@@ -159,17 +159,17 @@ object SplitApkPreparer {
             )
 
             // Patches read the OBB files of the bundle, which are not part of the merged APK.
-            // Most patches never read them, so a bundle whose OBB cannot be extracted is still
-            // patched, and a patch that needs it fails on its own
+            // An extraction IO failure must stay a preparation failure, rather than becoming
+            // a guessed patch failure eligible for autoretry with omissions.
             val obbDir = workingDir.resolve("obb")
             val obbFiles = try {
                 runInterruptible(Dispatchers.IO) {
                     ApkMerger(logger.toPatcherLogger()).extractObbFiles(source, obbDir)
                 }
             } catch (e: IOException) {
-                logger.warn("Failed to extract the OBB files, patching without them: $e")
+                logger.error("Failed to extract the OBB files: $e")
                 obbDir.deleteRecursively()
-                emptyMap()
+                throw e
             }
             if (obbFiles.isNotEmpty()) {
                 logger.info(

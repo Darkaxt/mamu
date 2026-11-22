@@ -27,7 +27,8 @@ class OptionPathFailureTest {
         patchName = "Custom branding",
         optionKey = "customIcon",
         path = "/storage/emulated/0/icons",
-        reason = PathValidationResult.Reason.Missing
+        reason = PathValidationResult.Reason.Missing,
+        bundleUid = 0
     )
 
     @Test
@@ -60,14 +61,14 @@ class OptionPathFailureTest {
     }
 
     @Test
-    fun `every bundle that set the option loses it`() {
+    fun `every source whose path fails loses only its own option`() {
         val options = mapOf(
             0 to mapOf("Custom branding" to mapOf("customIcon" to "/storage/emulated/0/icons")),
             1 to mapOf("Custom branding" to mapOf("customIcon" to "/storage/emulated/0/icons"))
         )
 
         assertTrue(
-            options.withoutFailingPaths(listOf(brandingIcon))
+            options.withoutFailingPaths(listOf(brandingIcon, brandingIcon.copy(bundleUid = 1)))
                 .values
                 .all { patches -> patches.getValue("Custom branding").isEmpty() }
         )
@@ -122,8 +123,8 @@ class OptionPathValidationTest {
         universal = emptyList()
     )
 
-    // Only a path starting at the root is checked, which a Windows host reaches without its drive
-    private val path = folder.invariantSeparatorsPath.substringAfter(':')
+    // Keep the actual platform root: dropping a Windows drive would inspect a different drive.
+    private val path = folder.invariantSeparatorsPath
 
     private val options = mapOf(0 to mapOf("Change header" to mapOf<String, Any?>("custom" to path)))
 
@@ -161,6 +162,16 @@ class OptionPathValidationTest {
         )
 
         assertTrue(validateOptionPaths(options, listOf(bundle), APP).isEmpty())
+    }
+
+    @Test
+    fun `a rejecting source cannot clear another sources same-named option`() {
+        val selected = options + (1 to options.getValue(0))
+        val failures = validateOptionPaths(selected, listOf(bundle { false }, bundle { true }.copy(uid = 1)), APP)
+        assertEquals(listOf(0), failures.map { it.bundleUid })
+        val reviewed = selected.withoutFailingPaths(failures)
+        assertTrue(reviewed.getValue(0).getValue("Change header").isEmpty())
+        assertEquals(selected[1], reviewed[1])
     }
 
     private companion object {

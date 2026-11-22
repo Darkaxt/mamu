@@ -39,7 +39,9 @@ class Session(
     input: File,
     obbFiles: Map<String, File>,
     keepArchitectures: Set<CpuArchitecture>,
-    private val listener: PatchingListener
+    private val listener: PatchingListener,
+    private val onPatchOutcome: suspend (Patch, Throwable?) -> Unit = { _, _ -> },
+    private val onRejected: suspend (Patch, Throwable) -> Unit = { _, _ -> }
 ) : Closeable {
     private val tempDir = temporaryDir.resolve("patcher").also { it.mkdirs() }
 
@@ -47,8 +49,7 @@ class Session(
     // when it starts, and not the cache root to avoid colliding with the other caches there
     private val fileWorkspace = workspaceDir.also { it.mkdirs() }
 
-    private val patcher = Patcher(
-        PatcherConfig(
+    private val config = PatcherConfig(
             apkFile = input,
             temporaryFilesPath = tempDir,
             // The patcher drops every other ABI while it writes the output, sparing a second pass over it
@@ -56,26 +57,25 @@ class Session(
             fileWorkspacePath = fileWorkspace,
             progress = PatcherProgress(listener::taskProgress),
             obbFiles = obbFiles
-        )
     )
+    private val patcher = Patcher(config)
 
     private suspend fun Patcher.applyPatchesVerbose(selectedPatches: PatchList) {
         listener.patchesStarted()
 
-        this { patch -> listener.patchExecuting(patch.toString()) }.collect { (patch, exception) ->
-            if (patch !in selectedPatches) return@collect
-
-            if (exception != null) {
+        executeInPackOrder(config, selectedPatches,
+            executing = { listener.patchExecuting(it.toString()) },
+            succeeded = { patch ->
+                onPatchOutcome(patch, null)
+                listener.patchSucceeded(patch.name.orEmpty())
+                logger.info("${patch.name} succeeded")
+            }, rejected = { patch, failure ->
+                onRejected(patch, failure)
+                if (patch in selectedPatches) onPatchOutcome(patch, failure)
                 logger.error("${patch.name} failed:")
-                logger.error(exception.stackTraceToString())
-                listener.patchFailed(patch.name, exception.stackTraceToString())
-                throw exception
-            }
-
-            listener.patchSucceeded(patch.name.orEmpty())
-
-            logger.info("${patch.name} succeeded")
-        }
+                logger.error(failure.stackTraceToString())
+                listener.patchFailed(patch.name, failure.stackTraceToString())
+            })
 
         listener.patchesFinished(selectedPatches.size)
     }
@@ -97,7 +97,7 @@ class Session(
                 this += selectedPatches.toSet()
 
                 logger.info("Applying patches...")
-                applyPatchesVerbose(selectedPatches.sortedBy { it.name })
+                applyPatchesVerbose(selectedPatches)
             }
         }
 
@@ -123,11 +123,15 @@ class Session(
     }
 
     override fun close() {
-        tempDir.deleteRecursively()
-        // A patch that loads a native library from the workspace marks its directory read-only for Android 15+ W^X
-        fileWorkspace.walkTopDown().forEach { it.setWritable(true) }
-        fileWorkspace.deleteRecursively()
-        patcher.close()
+        try { patcher.close() } finally {
+            for (directory in listOf(tempDir, fileWorkspace)) {
+                val root = directory.toPath()
+                if (Files.exists(root, java.nio.file.LinkOption.NOFOLLOW_LINKS)) {
+                    Files.walk(root).use { paths -> paths.forEach { if (!Files.isSymbolicLink(it)) it.toFile().setWritable(true) } }
+                    Files.walk(root).use { paths -> paths.sorted(Comparator.reverseOrder()).forEach(Files::delete) }
+                }
+            }
+        }
     }
 
     companion object {

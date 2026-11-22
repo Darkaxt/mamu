@@ -13,6 +13,7 @@ import app.morphe.patcher.PatcherTask
  * happens, the app puts them into words in its own language.
  */
 interface PatchingListener {
+    suspend fun patchesRejected(rejection: app.morphe.manager.patcher.patch.PatchRejection) {}
     /** One of the fixed steps is done: loading patches, merging splits, reading the APK or saving it. */
     suspend fun stepCompleted()
 
@@ -21,6 +22,8 @@ interface PatchingListener {
 
     suspend fun patchesStarted()
 
+    /** Exact selected source/key identity, with an attributable execution cause only. */
+    suspend fun patchOutcome(bundleUid: Int, patchKey: String, failure: String?) {}
     /**
      * A patch, or a dependency of one, is about to run or finalize. Not suspending, as the patcher
      * reports it from deep inside the run, where nothing can suspend. Progress moves on finished

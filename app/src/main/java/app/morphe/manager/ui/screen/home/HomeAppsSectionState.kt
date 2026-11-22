@@ -5,9 +5,6 @@
 
 package app.morphe.manager.ui.screen.home
 
-import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.runtime.*
 import app.morphe.manager.domain.manager.HomeAppCategory
 import app.morphe.manager.ui.model.HomeAppItem
@@ -30,8 +27,6 @@ internal data class CategoryNameRequest(
 @Stable
 internal class HomeAppsSectionState(
     val selectedPackages: SelectionState<String>,
-    /** The app list's scroll, which the screen around the list follows too. */
-    val listState: LazyListState,
     initialOrder: List<String>,
     initialSourceGroupOrder: List<Int>,
     initialCategoryOrder: List<String>,
@@ -39,10 +34,8 @@ internal class HomeAppsSectionState(
 ) {
     // Selection
     var isMultiSelectMode by mutableStateOf(false)
-    /** The card the latest pick selected, which the list keeps clear of the selection panel. */
-    var selectedAppRequester by mutableStateOf<BringIntoViewRequester?>(null)
-    /** Group the latest card was picked in, which decides the selection's group when an app sits in several. */
-    var pickedGroupKey by mutableStateOf<String?>(null)
+    /** Group the current selection belongs to, so a grouped view cannot select across groups. */
+    var selectedGroupKey by mutableStateOf<String?>(null)
 
     // Reorder
     var isReorderMode by mutableStateOf(false)
@@ -73,9 +66,6 @@ internal class HomeAppsSectionState(
     var localSourceGroupOrder by mutableStateOf(initialSourceGroupOrder)
     var localCategoryOrder by mutableStateOf(initialCategoryOrder)
 
-    /** The options the list is sorted, filtered and grouped by, docked under it while open. */
-    var isListOptionsOpen by mutableStateOf(false)
-
     // Loading. hasEverLoaded latches so the shimmer never comes back on resume
     var hasEverLoaded by mutableStateOf(hasContent)
     var isLoading by mutableStateOf(!hasContent)
@@ -92,10 +82,6 @@ internal class HomeAppsSectionState(
 
     /** True while any bar owns the footer slot, which the list pads for. */
     val isFooterBarVisible: Boolean
-        get() = isMultiSelectMode || isReorderMode || isCategoryBarVisible || isListOptionsOpen
-
-    /** True while a selection or a reorder is under way, which the list options give way to. */
-    val isEditing: Boolean
         get() = isMultiSelectMode || isReorderMode || isCategoryBarVisible
 
     val isCategoryBarVisible: Boolean
@@ -103,9 +89,8 @@ internal class HomeAppsSectionState(
 
     fun exitMultiSelect() {
         isMultiSelectMode = false
-        selectedAppRequester = null
         selectedPackages.clear()
-        pickedGroupKey = null
+        selectedGroupKey = null
     }
 
     /** Leaves reorder mode and drops the scope it was entered with. [order] restores the list. */
@@ -116,7 +101,7 @@ internal class HomeAppsSectionState(
         scopedSourceOrder = null
         reorderGroupFollowers = null
         selectedPackages.clear()
-        pickedGroupKey = null
+        selectedGroupKey = null
         if (order != null) localOrder = order
     }
 
@@ -126,16 +111,12 @@ internal class HomeAppsSectionState(
         isCategoryReorderMode = false
     }
 
-    /** Toggles a card, which [requester] brings out from under the selection panel once selected. */
-    fun toggleSelection(packageName: String, requester: BringIntoViewRequester) {
-        selectedAppRequester = requester.takeUnless { selectedPackages.contains(packageName) }
+    /** Toggles a card in a grouped view, keeping the selection inside a single group. */
+    fun toggleInGroup(packageName: String, groupKey: String) {
+        if (selectedGroupKey != null && selectedGroupKey != groupKey) selectedPackages.clear()
+        selectedGroupKey = groupKey
         selectedPackages.toggle(packageName)
-    }
-
-    /** Toggles a card in a grouped view, remembering the group it was picked in. */
-    fun toggleInGroup(packageName: String, groupKey: String, requester: BringIntoViewRequester) {
-        pickedGroupKey = groupKey
-        toggleSelection(packageName, requester)
+        if (selectedPackages.isEmpty) selectedGroupKey = null
     }
 }
 
@@ -147,11 +128,9 @@ internal fun rememberHomeAppsSectionState(
     hasContent: Boolean,
 ): HomeAppsSectionState {
     val selectedPackages = rememberSelectionState<String>()
-    val listState = rememberLazyListState()
-    return remember(selectedPackages, listState) {
+    return remember(selectedPackages) {
         HomeAppsSectionState(
             selectedPackages = selectedPackages,
-            listState = listState,
             initialOrder = initialOrder,
             initialSourceGroupOrder = initialSourceGroupOrder,
             initialCategoryOrder = initialCategoryOrder,

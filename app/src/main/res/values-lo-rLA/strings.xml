@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">ບັກ Android 11</string>
     <string name="android_11_bug_dialog_description">ຕ້ອງອະນຸຍາດສິດການຕິດຕັ້ງແອັບລ່ວງໜ້າເພື່ອຫຼີກເວັ້ນບັກໃນລະບົບ Android 11 ທີ່ຈະສົ່ງຜົນກະທົບທາງລົບຕໍ່ປະສົບການຜູ້ໃຊ້</string>
     <string name="deep_link_add_source_title">ເພີ່ມແຫຼ່ງຂໍ້ມູນ</string>
-    <string name="deep_link_add_source_message">ທ່ານຕ້ອງການເພີ່ມແຫຼ່ງຊຸດແພດນີ້ໃສ່ Morphe ບໍ?</string>
+    <string name="deep_link_add_source_message">ທ່ານຕ້ອງການເພີ່ມແຫຼ່ງຊຸດແພດນີ້ໃສ່ Mamu ບໍ?</string>
     <string name="deep_link_add_source_warning">ເພີ່ມແຫຼ່ງຂໍ້ມູນທີ່ທ່ານໄວ້ໃຈເທົ່ານັ້ນ</string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">ມີພຽງແອັບນີ້ເທົ່ານັ້ນທີ່ຖືກເພີ່ມເຂົ້າໄປ. ທ່ານສາມາດເພີ່ມແອັບອື່ນໆຈາກລາຍຊື່ແອັບຂອງແຫຼ່ງທີ່ມາໄດ້</string>
@@ -44,15 +44,15 @@
     <string name="mpp_import_unreadable">ໄຟລ໌ນີ້ບໍ່ສາມາດອ່ານໄດ້</string>
     <string name="incoming_file_not_patch_source">ໄຟລ໌ນີ້ບໍ່ແມ່ນແຫຼ່ງຂໍ້ມູນ patch</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">ມີອັບເດດ Morphe</string>
+    <string name="home_update_available">ມີອັບເດດ Mamu</string>
     <string name="home_update_available_subtitle">ມີເວີຊັນໃໝ່ພ້ອມຕິດຕັ້ງ</string>
     <string name="home_blocked_source_title">ພົບແຫຼ່ງຊຸດແພດທີ່ຖືກບລັອກ</string>
     <string name="home_blocked_source_subtitle">ແຕະເພື່ອກວດສອບ ແລະລຶບອອກ</string>
     <string name="home_metadata_errors_title">ບາງແຫຼ່ງຊຸດແພດບໍ່ສາມາດໃຊ້ໄດ້</string>
     <string name="home_metadata_errors_subtitle">ແຕະເພື່ອກວດສອບແຫຼ່ງຂໍ້ມູນ</string>
-    <string name="home_outdated_manager_title">Morphe ເກົ່າເກີນໄປ</string>
+    <string name="home_outdated_manager_title">Mamu ເກົ່າເກີນໄປ</string>
     <string name="home_outdated_manager_subtitle">ບາງແຫຼ່ງ patch ຕ້ອງການເວີຊັນທີ່ໃໝ່ກວ່າ</string>
-    <string name="home_held_back_title">ແຫຼ່ງ patch ທີ່ໜຶ່ງເຮັດໃຫ້ Morphe ຢຸດເຮັດວຽກ</string>
+    <string name="home_held_back_title">ແຫຼ່ງ patch ທີ່ໜຶ່ງເຮັດໃຫ້ Mamu ຢຸດເຮັດວຽກ</string>
     <string name="home_held_back_subtitle">ມັນຖືກຂ້າມໄປເພື່ອໃຫ້ແອັບສາມາດເລີ່ມຕົ້ນໄດ້. ແຕະເພື່ອທົບທວນ</string>
     <string name="home_source_updates_title">ມີການອັບເດດ Patch ໃຫ້ໃຊ້ງານ</string>
     <string name="home_source_updates_subtitle">ແຕະເພື່ອດາວໂຫລດ</string>
@@ -204,10 +204,10 @@
     <string name="sources_management_metadata_unavailable_hint">ໄຟລ໌ຂໍ້ມູນກຳກັບຣີໂມດບໍ່ສາມາດໃຊ້ໄດ້. ການແພດດ້ວຍຊຸດທີ່ຕິດຕັ້ງໄວ້ຍັງເຮັດວຽກໄດ້, ແຕ່ການອັບເດດອັດຕະໂນມັດຈະຖືກປິດສຳລັບແຫຼ່ງນີ້</string>
     <string name="sources_management_metadata_unavailable_hint_missing">ບໍ່ສາມາດດາວໂຫຼດຊຸດແພດໄດ້. URL ແຫຼ່ງຂໍ້ມູນອາດບໍ່ຖືກຕ້ອງ ຫຼືໄຟລ໌ບໍ່ມີຢູ່</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">ບໍ່ສາມາດດາວໂຫຼດຊຸດແພັດໄດ້. URL ຕົ້ນທາງອາດຈະບໍ່ຖືກຕ້ອງ ຫຼື ໄຟລ໌ບໍ່ມີຢູ່. ແຕະເພື່ອປ່ຽນມັນ</string>
-    <string name="sources_management_outdated_manager_badge">ອັບເດດ Morphe</string>
-    <string name="sources_management_outdated_manager_hint">ແຫຼ່ງນີ້ຖືກສ້າງມາສຳລັບ patcher %1$s, ແຕ່ Morphe %2$s ປະກອບມີ patcher %3$s. ກະລຸນາອັບເດດ Morphe ເພື່ອໃຊ້ງານ</string>
+    <string name="sources_management_outdated_manager_badge">ອັບເດດ Mamu</string>
+    <string name="sources_management_outdated_manager_hint">ແຫຼ່ງນີ້ຖືກສ້າງມາສຳລັບ patcher %1$s, ແຕ່ Mamu %2$s ປະກອບມີ patcher %3$s. ກະລຸນາອັບເດດ Mamu ເພື່ອໃຊ້ງານ</string>
     <string name="sources_management_held_back_badge">ຢຸດເຮັດວຽກ</string>
-    <string name="sources_management_held_back_hint">ແຫຼ່ງນີ້ເຮັດໃຫ້ Morphe ຢຸດເຮັດວຽກໃນຂະນະທີ່ກຳລັງໂຫຼດ, ດັ່ງນັ້ນມັນຈຶ່ງຖືກຂ້າມໄປ. ອັບເດດ ຫຼື ນຳເຂົ້າໃໝ່ເພື່ອລອງອີກຄັ້ງ</string>
+    <string name="sources_management_held_back_hint">ແຫຼ່ງນີ້ເຮັດໃຫ້ Mamu ຢຸດເຮັດວຽກໃນຂະນະທີ່ກຳລັງໂຫຼດ, ດັ່ງນັ້ນມັນຈຶ່ງຖືກຂ້າມໄປ. ອັບເດດ ຫຼື ນຳເຂົ້າໃໝ່ເພື່ອລອງອີກຄັ້ງ</string>
     <string name="sources_management_signed_by">ລົງນາມໂດຍ</string>
     <string name="sources_management_signing_key_changed_badge">ຄີຖືກປ່ຽນແປງ</string>
     <string name="sources_management_signing_key_changed_hint">ເວີຊັນຫຼ້າສຸດບໍ່ໄດ້ຖືກລົງນາມດ້ວຍຄີທີ່ແຫຼ່ງນີ້ເຄີຍໃຊ້ມາກ່ອນ, ດັ່ງນັ້ນມັນຈຶ່ງບໍ່ໄດ້ຖືກຕິດຕັ້ງ. ແຕະເພື່ອທົບທວນມັນ</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">Patch ຈາກຊຸມຊົນ</string>
     <string name="sources_dialog_choose_apps">ເລືອກແອັບ</string>
     <string name="sources_dialog_choose_apps_description">ເລືອກແອັບທີ່ຈະເກັບໄວ້ ເມື່ອແຫຼ່ງຂໍ້ມູນໂຫຼດສຳເລັດແລ້ວ</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">ແຫຼ່ງຂໍ້ມູນ patch ຈາກພາກສ່ວນທີສາມ</string>
-    <string name="sources_dialog_community_notice_message">"ແຫຼ່ງການປັບປຸງຂອງຊຸມຊົນຖືກສ້າງ ແລະ ບຳລຸງຮັກສາໂດຍຜູ້ຂຽນຂອງພວກເຂົາເອງ. Morphe ບໍ່ໄດ້ກວດສອບ ຫຼື ຢືນຢັນການປັບປຸງຂອງບຸກຄົນທີສາມ, ແລະ ບໍ່ຮັບຜິດຊອບຕໍ່ເນື້ອຫາຂອງພວກເຂົາ ຫຼື ສິ່ງທີ່ພວກເຂົາເຮັດກັບອຸປະກອນຂອງທ່ານ"</string>
+    <string name="sources_dialog_community_notice_message">"ແຫຼ່ງການປັບປຸງຂອງຊຸມຊົນຖືກສ້າງ ແລະ ບຳລຸງຮັກສາໂດຍຜູ້ຂຽນຂອງພວກເຂົາເອງ. Mamu ບໍ່ໄດ້ກວດສອບ ຫຼື ຢືນຢັນການປັບປຸງຂອງບຸກຄົນທີສາມ, ແລະ ບໍ່ຮັບຜິດຊອບຕໍ່ເນື້ອຫາຂອງພວກເຂົາ ຫຼື ສິ່ງທີ່ພວກເຂົາເຮັດກັບອຸປະກອນຂອງທ່ານ"</string>
     <string name="sources_update_success">ອັບເດດສຳເລັດ</string>
     <string name="sources_update_unavailable">ບໍ່ມີອັບເດດ</string>
     <string name="sources_download_fail">ດາວໂຫຼດແຫຼ່ງຂໍ້ມູນລົ້ມເຫຼວ: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">ແອັບຕົວຊ່ວຍຖືກຕິດຕັ້ງແລ້ວ ແຕ່ຍັງບໍ່ທັນໄດ້ຮັບຄວາມເຊື່ອໝັ້ນ, ດັ່ງນັ້ນຈຶ່ງບໍ່ມີໃຫ້ເລືອກຢູ່ທີ່ນີ້</string>
     <string name="home_apk_helper_untrusted_action">ກວດສອບຕົວຊ່ວຍ</string>
     <string name="home_apk_helper_title">ດາວໂຫລດດ້ວຍແອັບຊ່ວຍ</string>
-    <string name="home_apk_helper_description">Morphe ຈະຂໍໃຫ້ແອັບຊ່ວຍລຸ່ມນີ້ດາວໂຫລດ APK ຕົ້ນສະບັບ ແລະ ສົ່ງໄຟລ໌ຄືນມາ</string>
+    <string name="home_apk_helper_description">Mamu ຈະຂໍໃຫ້ແອັບຊ່ວຍລຸ່ມນີ້ດາວໂຫລດ APK ຕົ້ນສະບັບ ແລະ ສົ່ງໄຟລ໌ຄືນມາ</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">ເປີດຕົວຊ່ວຍ</string>
-    <string name="home_apk_helper_warning">ດຳເນີນການຕໍ່ເມື່ອທ່ານໄວ້ວາງໃຈແອັບຊ່ວຍນີ້ເທົ່ານັ້ນ. Morphe ຈະກວດສອບແພັກເກັດ, ເວີຊັນ ແລະ ລາຍເຊັນຂອງສິ່ງທີ່ໄດ້ຮັບກ່ອນການປັບປຸງ</string>
-    <string name="home_apk_helper_warning_unverified">ດຳເນີນການຕໍ່ເມື່ອທ່ານໄວ້ວາງໃຈແອັບຊ່ວຍເຫຼືອນີ້ເທົ່ານັ້ນ. Morphe ບໍ່ສາມາດກວດສອບລາຍເຊັນຂອງ APK ນີ້ໄດ້, ດັ່ງນັ້ນ ໄຟລ໌ທີ່ຖືກດັດແກ້ຈະບໍ່ຖືກກວດພົບ</string>
+    <string name="home_apk_helper_warning">ດຳເນີນການຕໍ່ເມື່ອທ່ານໄວ້ວາງໃຈແອັບຊ່ວຍນີ້ເທົ່ານັ້ນ. Mamu ຈະກວດສອບແພັກເກັດ, ເວີຊັນ ແລະ ລາຍເຊັນຂອງສິ່ງທີ່ໄດ້ຮັບກ່ອນການປັບປຸງ</string>
+    <string name="home_apk_helper_warning_unverified">ດຳເນີນການຕໍ່ເມື່ອທ່ານໄວ້ວາງໃຈແອັບຊ່ວຍເຫຼືອນີ້ເທົ່ານັ້ນ. Mamu ບໍ່ສາມາດກວດສອບລາຍເຊັນຂອງ APK ນີ້ໄດ້, ດັ່ງນັ້ນ ໄຟລ໌ທີ່ຖືກດັດແກ້ຈະບໍ່ຖືກກວດພົບ</string>
     <string name="home_apk_helper_no_result">ແອັບຊ່ວຍເຫຼືອບໍ່ໄດ້ສົ່ງຄືນ APK</string>
     <string name="home_apk_helper_no_access">ແອັບຊ່ວຍເຫຼືອບໍ່ໄດ້ອະນຸຍາດໃຫ້ເຂົ້າເຖິງ APK ທີ່ມັນສົ່ງຄືນ</string>
     <string name="home_apk_helper_no_package">ແອັບຊ່ວຍເຫຼືອບໍ່ໄດ້ລະບຸວ່າຈະໃຊ້ແອັບທີ່ຕິດຕັ້ງໃດ</string>
     <string name="home_apk_helper_wrong_package">ແອັບຊ່ວຍເຫຼືອສົ່ງຄືນແອັບທີ່ແຕກຕ່າງຈາກແອັບທີ່ກຳລັງຖືກປັບປຸງ</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe ບໍ່ສາມາດໃຊ້ແອັບທີ່ຕິດຕັ້ງໄວ້ໄດ້</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu ບໍ່ສາມາດໃຊ້ແອັບທີ່ຕິດຕັ້ງໄວ້ໄດ້</string>
     <string name="home_apk_helper_installed_incompatible">ເວີຊັນທີ່ຕິດຕັ້ງໄວ້ບໍ່ສາມາດປັບແຕ່ງໄດ້</string>
     <string name="home_apk_use_saved_copy">ໃຊ້ສຳເນົາທີ່ບັນທຶກໄວ້</string>
     <string name="home_apk_use_installed_app">ໃຊ້ແອັບທີ່ຕິດຕັ້ງແລ້ວ</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">ບໍ່ສາມາດກວດສອບລາຍເຊັນຂອງແອັບທີ່ຕິດຕັ້ງໄດ້, ດັ່ງນັ້ນມັນອາດຈະຖືກ patch ແລ້ວ</string>
     <string name="home_unverified">ບໍ່ໄດ້ຮັບການຢືນຢັນ</string>
     <string name="home_install_verification_pending">ກຳລັງກວດສອບການຕິດຕັ້ງ…</string>
-    <string name="home_app_info_install_unverified">Morphe ບໍ່ສາມາດຢືນຢັນໄດ້ວ່າແອັບທີ່ຕິດຕັ້ງແມ່ນ build ທີ່ມັນໄດ້ patch. ໃຫ້ patch ຄືນ ຫຼື ຕິດຕັ້ງຄືນຈາກ APK ທີ່ບັນທຶກໄວ້ ເພື່ອຟື້ນຟູການເຮັດວຽກຂອງມັນ</string>
+    <string name="home_app_info_install_unverified">Mamu ບໍ່ສາມາດຢືນຢັນໄດ້ວ່າແອັບທີ່ຕິດຕັ້ງແມ່ນ build ທີ່ມັນໄດ້ patch. ໃຫ້ patch ຄືນ ຫຼື ຕິດຕັ້ງຄືນຈາກ APK ທີ່ບັນທຶກໄວ້ ເພື່ອຟື້ນຟູການເຮັດວຽກຂອງມັນ</string>
     <string name="home_app_info_no_saved_apk">ບໍ່ມີ APK ທີ່ບັນທຶກໄວ້. ການແພດຈະຕ້ອງເລືອກໄຟລ໌ APK ອີກຄັ້ງ</string>
     <string name="home_version_requires_android">ຕ້ອງການ Android %s+</string>
     <string name="home_apk_no_compatible_versions_title">ບໍ່ຮອງຮັບໃນອຸປະກອນນີ້</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">ເລື່ອນລົງໃນໜ້າເວັບໄຊທ໌ ແລະ ກົດປຸ່ມດາວໂຫຼດ</string>
     <string name="home_download_instructions_step2_variant">ເລື່ອນລົງໃນໜ້າເວັບໄຊທ໌ ແລະ ກົດປຸ່ມດາວໂຫຼດຂອງ &lt;b&gt;APK variant&lt;/b&gt; ອັນເທິງສຸດ</string>
     <string name="home_download_instructions_step2_search">ເປີດຜົນການຄົ້ນຫາຈາກເວັບໄຊທ໌ທີ່ທ່ານໄວ້ວາງໃຈ</string>
-    <string name="home_download_instructions_step2_search_note">Morphe ບໍ່ສາມາດຮັບປະກັນເວັບໄຊທ໌ເຫຼົ່ານີ້ໄດ້. ໃຫ້ຂ້າມເວັບໄຊທ໌ທີ່ສະເໜີ app store ຂອງພວກເຂົາເອງ ແທນທີ່ຈະເປັນໄຟລ໌ APK</string>
+    <string name="home_download_instructions_step2_search_note">Mamu ບໍ່ສາມາດຮັບປະກັນເວັບໄຊທ໌ເຫຼົ່ານີ້ໄດ້. ໃຫ້ຂ້າມເວັບໄຊທ໌ທີ່ສະເໜີ app store ຂອງພວກເຂົາເອງ ແທນທີ່ຈະເປັນໄຟລ໌ APK</string>
     <string name="home_download_instructions_step3_search">ໃນເວັບໄຊທ໌ນັ້ນ, ໃຫ້ດາວໂຫຼດ APK ຂອງເວີຊັນ &lt;b&gt;%s&lt;/b&gt;, ບໍ່ແມ່ນເວີຊັນໃໝ່ສຸດ</string>
     <string name="home_download_instructions_step3_search_any">ໃນເວັບໄຊທ໌ນັ້ນ, ໃຫ້ດາວໂຫຼດ APK ຂອງແອັບ. &lt;b&gt;ທຸກເວີຊັນ&lt;/b&gt; ສາມາດ patch ໄດ້</string>
     <string name="home_download_instructions_step2_github">ພາຍໃຕ້ &lt;b&gt;Assets&lt;/b&gt; ຂອງເວີຊັນ &lt;b&gt;%s&lt;/b&gt;, ໃຫ້ກົດທີ່ໄຟລ໌ທີ່ລົງທ້າຍດ້ວຍ &lt;b&gt;.apk&lt;/b&gt;</string>
@@ -314,11 +314,11 @@
     <string name="home_download_instructions_download_button_toast_3">ຝຶກຫຼາຍເຮັດໃຫ້ຊຳນານ ແລະເຈົ້າໃກ້ຈະໄດ້ແລ້ວ 💪</string>
     <string name="home_download_instructions_download_button_toast_4">ຍັງບໍ່ມາ… ຍັງບໍ່ມາ… 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">ໂອເຄ, ຂ້ອຍນັບຖືຄວາມຕັ້ງໃຈ 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">ຕອນນີ້ທ່ານເປັນຜູ້ທົດສອບປຸ່ມ Morphe ຢ່າງເປັນທາງການແລ້ວ 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">ຕອນນີ້ທ່ານເປັນຜູ້ທົດສອບປຸ່ມ Mamu ຢ່າງເປັນທາງການແລ້ວ 🏅</string>
     <string name="home_download_instructions_step3">ລໍຖ້າການດາວໂຫຼດໃຫ້ສຳເລັດ, ແລະ &lt;b&gt;ຢ່າຕິດຕັ້ງ&lt;/b&gt; APK</string>
     <string name="home_download_instructions_step3_mount">ລໍຖ້າການດາວໂຫຼດໃຫ້ສຳເລັດ, ແລ້ວ &lt;b&gt;ຕິດຕັ້ງ APK&lt;/b&gt;</string>
-    <string name="home_download_instructions_step4">ຫຼັງຈາກດາວໂຫຼດສຳເລັດ, ກັບມາທີ່ Morphe</string>
-    <string name="home_download_instructions_step4_mount">ຫຼັງຈາກຕິດຕັ້ງ APK ຕົ້ນສະບັບ, ກັບມາທີ່ Morphe</string>
+    <string name="home_download_instructions_step4">ຫຼັງຈາກດາວໂຫຼດສຳເລັດ, ກັບມາທີ່ Mamu</string>
+    <string name="home_download_instructions_step4_mount">ຫຼັງຈາກຕິດຕັ້ງ APK ຕົ້ນສະບັບ, ກັບມາທີ່ Mamu</string>
     <string name="home_download_instructions_continue_to">ດຳເນີນການຕໍ່ໄປທີ່ %s</string>
     <string name="home_download_instructions_destination">ໜ້າດາວໂຫຼດ</string>
     <string name="home_download_instructions_copy_link">ຄັດລອກລິ້ງ</string>
@@ -446,12 +446,12 @@
     <string name="adaptive_icon_themed">ຕາມຮູບແບບ</string>
     <string name="adaptive_icon_background_color">ສີພື້ນຫຼັງ</string>
     <string name="adaptive_icon_reset_transform">ຣີເຊັດຕຳແໜ່ງ ແລະຂະໜາດ</string>
-    <string name="adaptive_icon_no_transparency_warning">ຮູບພາບນີ້ບໍ່ມີພິກເຊລໂປ່ງໃສ, ດັ່ງນັ້ນໄອຄອນຕາມຮູບແບບ ແລະ ໄອຄອນການແຈ້ງເຕືອນຈະຍັງຄົງໃຊ້ໂລໂກ້ Morphe</string>
+    <string name="adaptive_icon_no_transparency_warning">ຮູບພາບນີ້ບໍ່ມີພິກເຊລໂປ່ງໃສ, ດັ່ງນັ້ນໄອຄອນຕາມຮູບແບບ ແລະ ໄອຄອນການແຈ້ງເຕືອນຈະຍັງຄົງໃຊ້ໂລໂກ້ Mamu</string>
     <string name="adaptive_icon_created_success">ສ້າງໄອຄອນແບບປັບຕົວສຳເລັດ</string>
     <string name="adaptive_icon_creation_failed">ສ້າງໄອຄອນແບບປັບຕົວລົ້ມເຫຼວ</string>
     <string name="adaptive_icon_guide">ຄູ່ມືການສ້າງໄອຄອນ</string>
     <string name="adaptive_icon_guide_png_title">ໃຊ້ PNG ທີ່ມີພື້ນຫຼັງໂປ່ງໃສ</string>
-    <string name="adaptive_icon_guide_png_body">ໂລໂກ້ທີ່ມີພື້ນຫຼັງໂປ່ງໃສຈະເຮັດວຽກໄດ້ດີທີ່ສຸດ, ໂດຍເລືອກສີພື້ນຫຼັງຢູ່ລຸ່ມນີ້. ຮູບພາບທີ່ບໍ່ມີຄວາມໂປ່ງໃສຈະເຕັມໄອຄອນທັງໝົດ ແທນ, ແລະ ໄອຄອນຕາມຮູບແບບ ແລະ ໄອຄອນການແຈ້ງເຕືອນຈະຍັງຄົງໃຊ້ໂລໂກ້ Morphe.</string>
+    <string name="adaptive_icon_guide_png_body">ໂລໂກ້ທີ່ມີພື້ນຫຼັງໂປ່ງໃສຈະເຮັດວຽກໄດ້ດີທີ່ສຸດ, ໂດຍເລືອກສີພື້ນຫຼັງຢູ່ລຸ່ມນີ້. ຮູບພາບທີ່ບໍ່ມີຄວາມໂປ່ງໃສຈະເຕັມໄອຄອນທັງໝົດ ແທນ, ແລະ ໄອຄອນຕາມຮູບແບບ ແລະ ໄອຄອນການແຈ້ງເຕືອນຈະຍັງຄົງໃຊ້ໂລໂກ້ Mamu.</string>
     <string name="adaptive_icon_guide_safe_zones_title">ເຂດປອດໄພ</string>
     <string name="adaptive_icon_guide_safe_zones_body">ເສັ້ນຂອບສະແດງຮູບຮ່າງໄອຄອນຂອງ launcher ຂອງທ່ານ, ແລະ ທຸກຢ່າງທີ່ຢູ່ນອກເສັ້ນນັ້ນຈະຖືກຕັດອອກ. launcher ອື່ນໆໃຊ້ຮູບຮ່າງອື່ນ, ດັ່ງນັ້ນຈົ່ງຮັກສາລາຍລະອຽດທີ່ສຳຄັນໄວ້ພາຍໃນວົງມົນເສັ້ນປະ, ເຊິ່ງທຸກຮູບຮ່າງຈະສະແດງໃຫ້ເຫັນ.</string>
     <string name="adaptive_icon_guide_notification_title">ໄອຄອນແຈ້ງເຕືອນ</string>
@@ -557,8 +557,8 @@
     <string name="home_app_info_version_move">ຕິດຕັ້ງແລ້ວ %1$s, ເວີຊັນໃໝ່ສຸດທີ່ຮອງຮັບ %2$s</string>
     <string name="home_app_info_version_restore">ຕິດຕັ້ງ %1$s, ປັບປຸງແລ້ວ %2$s</string>
     <string name="home_app_info_app_deleted_warning">ແອັບຖືກຖອນການຕິດຕັ້ງແລ້ວ</string>
-    <string name="home_app_info_app_deleted_description">ແອັບນີ້ຖືກຖອນການຕິດຕັ້ງຢູ່ພາຍນອກ Morphe. ແພດມັນໃໝ່ເພື່ອຟື້ນຟູການເຮັດວຽກ</string>
-    <string name="home_app_info_not_patched_description">ເວີຊັນທີ່ບໍ່ໄດ້ປັບແກ້ໄຂຂອງແອັບນີ້ຖືກຕິດຕັ້ງຢູ່. Morphe ຍັງມີບັນທຶກການປັບແກ້ໄຂກ່ອນໜ້ານີ້</string>
+    <string name="home_app_info_app_deleted_description">ແອັບນີ້ຖືກຖອນການຕິດຕັ້ງຢູ່ພາຍນອກ Mamu. ແພດມັນໃໝ່ເພື່ອຟື້ນຟູການເຮັດວຽກ</string>
+    <string name="home_app_info_not_patched_description">ເວີຊັນທີ່ບໍ່ໄດ້ປັບແກ້ໄຂຂອງແອັບນີ້ຖືກຕິດຕັ້ງຢູ່. Mamu ຍັງມີບັນທຶກການປັບແກ້ໄຂກ່ອນໜ້ານີ້</string>
     <string name="home_app_info_mount_replaced_description">ເວີຊັນອື່ນໄດ້ປ່ຽນແທນແອັບທີ່ຖືກ Mount ໄວ້, ດັ່ງນັ້ນການປັບປຸງຈຶ່ງບໍ່ມີຜົນອີກຕໍ່ໄປ. ການ Restore ຈະນຳເອົາເວີຊັນທີ່ປັບປຸງແລ້ວກັບຄືນມາ</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play ໄດ້ອັບເດດແອັບທີ່ຖືກ Mount ໄວ້, ດັ່ງນັ້ນການປັບປຸງຈຶ່ງບໍ່ມີຜົນອີກຕໍ່ໄປ. ການ Restore ຈະນຳເອົາເວີຊັນທີ່ປັບປຸງແລ້ວກັບຄືນມາ. ໃຫ້ປິດການອັບເດດອັດຕະໂນມັດສຳລັບແອັບນີ້ໃນ Google Play ເພື່ອຮັກສາການປັບປຸງໄວ້</string>
     <string name="app_links_title">ລິ້ງເວັບໄຊທີ່ຮອງຮັບ</string>
@@ -589,7 +589,7 @@
     <string name="root_pre_patch_installer_description">ອຸປະກອນຂອງທ່ານມີການເຂົ້າເຖິງ root. ເລືອກວ່າແອັບນີ້ຄວນຖືກ patch ສຳລັບ root mount ຫຼື ຕິດຕັ້ງແບບມາດຕະຖານ</string>
     <string name="root_pre_patch_installer_mount_title">ໂໝດ Root mount</string>
     <string name="root_pre_patch_installer_mount_description">ປັບແຕ່ງສຳລັບ root mount, ຈາກນັ້ນ mount APK ທັບແອັບດັ້ງເດີມທີ່ກົງກັນ. ບໍ່ຈຳເປັນຕ້ອງມີ GmsCore</string>
-    <string name="root_mount_module_unmount_warning">ຖ້າ KernelSU ເປີດ \"Unmount modules by default\" ໄວ້, ໃຫ້ເປີດ KernelSU &gt; Superuser &gt; ແອັບທີ່ທ່ານ mount &gt; Profile &gt; Custom ແລະ ປິດ \"Unmount modules\". ຖ້າບໍ່ດັ່ງນັ້ນ, APK ທີ່ຖືກ patch ແລະ mount ອາດຈະບໍ່ມີຜົນ, ເຖິງແມ່ນວ່າ Morphe ຈະສະແດງວ່າມັນຖືກ mount ແລ້ວກໍຕາມ</string>
+    <string name="root_mount_module_unmount_warning">ຖ້າ KernelSU ເປີດ \"Unmount modules by default\" ໄວ້, ໃຫ້ເປີດ KernelSU &gt; Superuser &gt; ແອັບທີ່ທ່ານ mount &gt; Profile &gt; Custom ແລະ ປິດ \"Unmount modules\". ຖ້າບໍ່ດັ່ງນັ້ນ, APK ທີ່ຖືກ patch ແລະ mount ອາດຈະບໍ່ມີຜົນ, ເຖິງແມ່ນວ່າ Mamu ຈະສະແດງວ່າມັນຖືກ mount ແລ້ວກໍຕາມ</string>
     <string name="root_pre_patch_installer_standard_title">ໂໝດການຕິດຕັ້ງມາດຕະຖານ</string>
     <string name="root_pre_patch_installer_standard_description">ປັບແຕ່ງເປັນ APK ປົກກະຕິ ພ້ອມດ້ວຍການຮອງຮັບ GmsCore. ການຕັ້ງຄ່າຕົວຕິດຕັ້ງຂອງທ່ານຈະຖືກນຳໃຊ້ຫຼັງຈາກການປັບແຕ່ງ</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -652,7 +652,7 @@
     <string name="patcher_conflict_subtitle">ທ່ານຕ້ອງຖອນການຕິດຕັ້ງເວີຊັນທີ່ມີຢູ່ກ່ອນ</string>
     <string name="patcher_conflict_hint">ແອັບທີ່ແພດແລ້ວໃຊ້ໃບຮັບຮອງທີ່ແຕກຕ່າງຈາກເວີຊັນທີ່ຕິດຕັ້ງໄວ້. ການຖອນການຕິດຕັ້ງຈະລຶບຂໍ້ມູນແອັບທັງໝົດ</string>
     <string name="patcher_installed_conflict_title">ຕ້ອງຖອນການຕິດຕັ້ງ</string>
-    <string name="patcher_installed_conflict_body">"Morphe ເຊັນແອັບທີ່ແພດແລ້ວດ້ວຍໃບຮັບຮອງຂອງມັນເອງ, ເຊິ່ງແຕກຕ່າງຈາກຕົ້ນສະບັບ. Android ຮຽກຮ້ອງໃຫ້ລຶບເວີຊັນທີ່ມີຢູ່ກ່ອນອອກກ່ອນຈຶ່ງຈະຕິດຕັ້ງແອັບທີ່ແພດແລ້ວໄດ້.
+    <string name="patcher_installed_conflict_body">"Mamu ເຊັນແອັບທີ່ແພດແລ້ວດ້ວຍໃບຮັບຮອງຂອງມັນເອງ, ເຊິ່ງແຕກຕ່າງຈາກຕົ້ນສະບັບ. Android ຮຽກຮ້ອງໃຫ້ລຶບເວີຊັນທີ່ມີຢູ່ກ່ອນອອກກ່ອນຈຶ່ງຈະຕິດຕັ້ງແອັບທີ່ແພດແລ້ວໄດ້.
 
 ການຖອນການຕິດຕັ້ງຈະລຶບຂໍ້ມູນແອັບທັງໝົດຖາວອນ"</string>
     <string name="patcher_install_error_title">ຂໍ້ຜິດພາດການຕິດຕັ້ງ</string>
@@ -662,8 +662,8 @@
     <string name="patcher_patches_excluded_for_installer">ບໍ່ມີໃຫ້ໃຊ້ສຳລັບວິທີການຕິດຕັ້ງນີ້ ແລະ ຖືກຍົກເວັ້ນ: %s</string>
     <string name="patcher_storage_permission_dialog_title">ບໍ່ສາມາດເຂົ້າເຖິງເສັ້ນທາງທີ່ຢູ່ໃນການເກັບຂໍ້ມູນ</string>
     <string name="patcher_incompatible_patcher_title">ຕ້ອງອັບເດດ</string>
-    <string name="patcher_incompatible_patcher_description">ແຫຼ່ງທີ່ມາ &lt;b&gt;%1$s&lt;/b&gt; ຕ້ອງການ patcher &lt;b&gt;%2$s&lt;/b&gt; ຫຼື ໃໝ່ກວ່າ. ອັບເດດ Morphe ເພື່ອໃຊ້ງານມັນ</string>
-    <string name="patcher_storage_permission_description_api30">ຕົວເລືອກຊຸດແພດອັນໜຶ່ງ ຫຼືຫຼາຍອັນຊີ້ໄປທີ່ເສັ້ນທາງທີ່ Morphe ອ່ານບໍ່ໄດ້. ອະນຸຍາດການເຂົ້າເຖິງການເກັບຂໍ້ມູນແລ້ວແຕະປຸ່ມ, ການແພດຈະເລີ່ມອັດຕະໂນມັດ</string>
+    <string name="patcher_incompatible_patcher_description">ແຫຼ່ງທີ່ມາ &lt;b&gt;%1$s&lt;/b&gt; ຕ້ອງການ patcher &lt;b&gt;%2$s&lt;/b&gt; ຫຼື ໃໝ່ກວ່າ. ອັບເດດ Mamu ເພື່ອໃຊ້ງານມັນ</string>
+    <string name="patcher_storage_permission_description_api30">ຕົວເລືອກຊຸດແພດອັນໜຶ່ງ ຫຼືຫຼາຍອັນຊີ້ໄປທີ່ເສັ້ນທາງທີ່ Mamu ອ່ານບໍ່ໄດ້. ອະນຸຍາດການເຂົ້າເຖິງການເກັບຂໍ້ມູນແລ້ວແຕະປຸ່ມ, ການແພດຈະເລີ່ມອັດຕະໂນມັດ</string>
     <string name="patcher_storage_permission_description_legacy">ຕົວເລືອກຊຸດແພດອັນໜຶ່ງ ຫຼືຫຼາຍອັນຊີ້ໄປທີ່ເສັ້ນທາງທີ່ບໍ່ສາມາດເຂົ້າເຖິງໄດ້. ອັບເດດເສັ້ນທາງໃນຕົວເລືອກຊຸດແພດແລ້ວລອງໃໝ່</string>
     <string name="patcher_storage_permission_grant">ອະນຸຍາດສິດເຂົ້າເຖິງການເກັບຂໍ້ມູນ</string>
     <string name="patcher_storage_permission_denied_warning">ຖືກປະຕິເສດສິດເຂົ້າເຖິງການເກັບຂໍ້ມູນ. ອະນຸຍາດສິດເພື່ອໃຊ້ເສັ້ນທາງນີ້, ຫຼືຍ້າຍໄຟລ໌ໄປທີ່ໄດເລັກທໍຣີສ່ວນຕົວຂອງແອັບ</string>
@@ -699,7 +699,7 @@
     <string name="patcher_task_writing_apk">ກຳລັງຂຽນໄຟລ໌ APK</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">ການປ້ອງກັນການແພດໃນພື້ນຫຼັງ</string>
-    <string name="battery_optimization_dialog_description">ບາງອຸປະກອນອາດຢຸດຕົວແພດເມື່ອແອັບຖືກຍ່ອຍ. ອະນຸຍາດໃຫ້ Morphe ເຮັດວຽກໂດຍບໍ່ມີຂໍ້ຈຳກັດແບັດເຕີຣີເພື່ອໃຫ້ການແພດສຳເລັດຢ່າງໜ້າເຊື່ອຖື</string>
+    <string name="battery_optimization_dialog_description">ບາງອຸປະກອນອາດຢຸດຕົວແພດເມື່ອແອັບຖືກຍ່ອຍ. ອະນຸຍາດໃຫ້ Mamu ເຮັດວຽກໂດຍບໍ່ມີຂໍ້ຈຳກັດແບັດເຕີຣີເພື່ອໃຫ້ການແພດສຳເລັດຢ່າງໜ້າເຊື່ອຖື</string>
     <string name="battery_optimization_not_now">ບໍ່ໃນຕອນນີ້</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">ກຳລັງແພດ…</string>
@@ -754,8 +754,8 @@
     <string name="install_ignore_signature">ຕິດຕັ້ງຕໍ່ໄປ</string>
     <string name="install_ignore_signature_description">ຮັກສາຂໍ້ມູນແອັບໄວ້, ແຕ່ຈະເຮັດວຽກໄດ້ກໍ່ຕໍ່ເມື່ອ root module ປິດການກວດສອບລາຍເຊັນຂອງ Android</string>
     <string name="uninstall_app_fail">ຖອນການຕິດຕັ້ງແອັບບໍ່ສຳເລັດ: %s</string>
-    <string name="uninstall_app_unverified">ປ່ອຍໄວ້ບ່ອນເກົ່າ: Morphe ບໍ່ສາມາດຢືນຢັນໄດ້ວ່າແອັບທີ່ຕິດຕັ້ງແມ່ນເວີຊັນທີ່ມັນໄດ້ patch ໄວ້</string>
-    <string name="launch_app_unverified">Morphe ບໍ່ສາມາດຢືນຢັນໄດ້ວ່າແອັບທີ່ຕິດຕັ້ງແມ່ນເວີຊັນທີ່ມັນໄດ້ patch ໄວ້</string>
+    <string name="uninstall_app_unverified">ປ່ອຍໄວ້ບ່ອນເກົ່າ: Mamu ບໍ່ສາມາດຢືນຢັນໄດ້ວ່າແອັບທີ່ຕິດຕັ້ງແມ່ນເວີຊັນທີ່ມັນໄດ້ patch ໄວ້</string>
+    <string name="launch_app_unverified">Mamu ບໍ່ສາມາດຢືນຢັນໄດ້ວ່າແອັບທີ່ຕິດຕັ້ງແມ່ນເວີຊັນທີ່ມັນໄດ້ patch ໄວ້</string>
     <string name="uninstall_timeout">ການຖອນການຕິດຕັ້ງໝົດເວລາ</string>
     <string name="save_apk_success">ບັນທຶກ APK ແລ້ວ</string>
     <string name="saved_app_export_failed">ສົ່ງອອກແອັບທີ່ແພດແລ້ວລົ້ມເຫຼວ</string>
@@ -847,7 +847,7 @@
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">ພາສາຂອງແອັບ</string>
     <string name="settings_appearance_app_language_current">ພາສາປັດຈຸບັນ</string>
-    <string name="settings_appearance_translate">ຊ່ວຍແປ Morphe</string>
+    <string name="settings_appearance_translate">ຊ່ວຍແປ Mamu</string>
     <string name="settings_appearance_translations_info_title">ຄຳແປສຳລັບບາງພາສາອາດຂາດຫາຍ ຫຼືບໍ່ຄົບຖ້ວນ</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">ຂະໜາດຂອງອິນເຕີເຟສ</string>
@@ -876,7 +876,7 @@
     <string name="settings_appearance_app_card_colors_bundle_description">ໃຊ້ສີຂອງແຕ່ລະແອັບ ຫຼື ແຫຼ່ງທີ່ມາຢູ່ທີ່ນີ້, ໂດຍຈະປັບສີໃຫ້ເໝາະສົມໂດຍອັດຕະໂນມັດ</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">ໄອຄອນແອັບ</string>
-    <string name="settings_appearance_app_icon_selector_description">ຮູບລັກສະນະຂອງ Morphe ຢູ່ໜ້າຈໍຫຼັກ ແລະ ໃນລີ້ນແອັບຂອງທ່ານ</string>
+    <string name="settings_appearance_app_icon_selector_description">ຮູບລັກສະນະຂອງ Mamu ຢູ່ໜ້າຈໍຫຼັກ ແລະ ໃນລີ້ນແອັບຂອງທ່ານ</string>
     <string name="settings_appearance_app_icon_default">ຄ່າເລີ່ມຕົ້ນ</string>
     <string name="settings_appearance_app_icon_light_2">ທ້ອງຟ້າ</string>
     <string name="settings_appearance_app_icon_light_3">ຕາເວັນຕົກ</string>
@@ -900,23 +900,23 @@
     <string name="settings_appearance_app_icon_mark_black">ສີດຳ</string>
     <string name="settings_appearance_app_icon_change_dialog_title">ປ່ຽນໄອຄອນແອັບບໍ?</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">Morphe ຈະເລີ່ມຕົ້ນໃໝ່ເພື່ອປ່ຽນໄປໃຊ້ &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="settings_appearance_app_icon_change_restarts">Mamu ຈະເລີ່ມຕົ້ນໃໝ່ເພື່ອປ່ຽນໄປໃຊ້ &lt;b&gt;%s&lt;/b&gt;</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">ປ່ຽນໄອຄອນ</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">ການອັບເດດເວີຊັນ Pre-release</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">ເຂົ້າເຖິງ Morphe ເວີຊັນໃໝ່ກ່ອນໃຜ</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">ເຂົ້າເຖິງ Mamu ເວີຊັນໃໝ່ກ່ອນໃຜ</string>
     <string name="settings_advanced_updates_prerelease_warning_title">ເປີດໃຊ້ການອັບເດດເວີຊັນ pre-release ຫຼື ບໍ່?</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"ເວີຊັນ pre-release ຂອງ Morphe ຍັງຢູ່ໃນຂັ້ນຕອນການພັດທະນາ ແລະ ອາດຈະບໍ່ມີຄວາມສະຖຽນ.
+    <string name="settings_advanced_updates_prerelease_warning_message">"ເວີຊັນ pre-release ຂອງ Mamu ຍັງຢູ່ໃນຂັ້ນຕອນການພັດທະນາ ແລະ ອາດຈະບໍ່ມີຄວາມສະຖຽນ.
 
 Patch ຈະບໍ່ໄດ້ຮັບຜົນກະທົບ: ໃຫ້ເປີດໃຊ້ pre-release patches ສຳລັບແຕ່ລະແຫຼ່ງຂໍ້ມູນໃນລາຍຊື່ແຫຼ່ງຂໍ້ມູນ patch"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">ອັບເດດອັດຕະໂນມັດ</string>
-    <string name="settings_auto_updates_description">ສິ່ງທີ່ Morphe ເຮັດກ່ຽວກັບການອັບເດດເມື່ອເປີດແອັບ. ການດຶງລົງເພື່ອຣີເຟຣຊຈະກວດສອບສະເໝີ</string>
+    <string name="settings_auto_updates_description">ສິ່ງທີ່ Mamu ເຮັດກ່ຽວກັບການອັບເດດເມື່ອເປີດແອັບ. ການດຶງລົງເພື່ອຣີເຟຣຊຈະກວດສອບສະເໝີ</string>
     <string name="settings_auto_updates_download">ດາວໂຫລດອັດຕະໂນມັດ</string>
-    <string name="settings_auto_updates_download_description">ກວດສອບການອັບເດດເມື່ອເປີດ Morphe ແລະ ດາວໂຫລດການອັບເດດ patch ຜ່ານທຸກເຄືອຂ່າຍ</string>
+    <string name="settings_auto_updates_download_description">ກວດສອບການອັບເດດເມື່ອເປີດ Mamu ແລະ ດາວໂຫລດການອັບເດດ patch ຜ່ານທຸກເຄືອຂ່າຍ</string>
     <string name="settings_auto_updates_wifi_only">ດາວໂຫລດຜ່ານ Wi-Fi ເທົ່ານັ້ນ</string>
     <string name="settings_auto_updates_wifi_only_description">ສຳລັບຂໍ້ມູນມືຖື, ຈະກວດສອບ ແລະ ສະແດງສິ່ງທີ່ມີໃຫ້ໃຊ້ງານເທົ່ານັ້ນ</string>
     <string name="settings_auto_updates_check_only">ກວດສອບເທົ່ານັ້ນ</string>
@@ -937,27 +937,27 @@ Patch ຈະບໍ່ໄດ້ຮັບຜົນກະທົບ: ໃຫ້ເປ
     <string name="settings_advanced_external_batch_patch">ອະນຸຍາດໃຫ້ມີຕົວກະຕຸ້ນພາຍນອກ</string>
     <string name="settings_advanced_external_batch_patch_description">ອະນຸຍາດໃຫ້ແອັບອັດຕະໂນມັດເລີ່ມການປັບແກ້ແບບກຸ່ມ</string>
     <string name="external_batch_patch_title">ເລີ່ມຕົ້ນການແພັດແບບກຸ່ມບໍ?</string>
-    <string name="external_batch_patch_description">%s ຕ້ອງການໃຫ້ Morphe ແພັດ ແລະ ຕິດຕັ້ງແອັບ</string>
+    <string name="external_batch_patch_description">%s ຕ້ອງການໃຫ້ Mamu ແພັດ ແລະ ຕິດຕັ້ງແອັບ</string>
     <string name="external_batch_patch_trust_caller">ອະນຸຍາດແອັບນີ້ສະເໝີ</string>
     <string name="external_batch_patch_unknown_caller">ແອັບທີ່ບໍ່ຮູ້ຈັກ</string>
     <!-- Notification content -->
     <string name="notification_bundle_update_title">ມີຊຸດແພດໃໝ່</string>
     <string name="notification_update_text">ເວີຊັນ %s ພ້ອມດາວໂຫຼດ</string>
-    <string name="notification_bundle_update_text_unversioned">ແຕະເພື່ອເປີດ Morphe ແລະອັບເດດ</string>
+    <string name="notification_bundle_update_text_unversioned">ແຕະເພື່ອເປີດ Mamu ແລະອັບເດດ</string>
     <string name="notification_permission_dialog_title">ອະນຸຍາດການແຈ້ງເຕືອນ</string>
-    <string name="notification_permission_dialog_description">Morphe ຕ້ອງການສິດແຈ້ງເຕືອນເພື່ອແຈ້ງໃຫ້ທ່ານຮູ້ເມື່ອມີອັບເດດໃນພື້ນຫຼັງ</string>
+    <string name="notification_permission_dialog_description">Mamu ຕ້ອງການສິດແຈ້ງເຕືອນເພື່ອແຈ້ງໃຫ້ທ່ານຮູ້ເມື່ອມີອັບເດດໃນພື້ນຫຼັງ</string>
     <string name="notification_post_patch_dialog_title">ທ່ານຕ້ອງການໃຫ້ແຈ້ງເຕືອນເມື່ອມີອັບເດດບໍ?</string>
-    <string name="notification_channel_manager_updates">ການອັບເດດ Morphe</string>
-    <string name="notification_channel_manager_updates_description">ການແຈ້ງເຕືອນກ່ຽວກັບການປ່ອຍເວີຊັນ Morphe ໃໝ່</string>
+    <string name="notification_channel_manager_updates">ການອັບເດດ Mamu</string>
+    <string name="notification_channel_manager_updates_description">ການແຈ້ງເຕືອນກ່ຽວກັບການປ່ອຍເວີຊັນ Mamu ໃໝ່</string>
     <string name="notification_channel_patch_updates">ການອັບເດດ Patch</string>
     <string name="notification_channel_patch_updates_description">ການແຈ້ງເຕືອນກ່ຽວກັບການປ່ອຍ Patch ໃໝ່</string>
-    <string name="notification_channel_patcher_description">ສະແດງໃນຂະນະທີ່ Morphe ກຳລັງແພດແອັບໃນພື້ນຫຼັງ</string>
+    <string name="notification_channel_patcher_description">ສະແດງໃນຂະນະທີ່ Mamu ກຳລັງແພດແອັບໃນພື້ນຫຼັງ</string>
     <string name="notification_channel_patching_results">ຜົນການປັບປຸງ</string>
-    <string name="notification_channel_patching_results_description">ເມື່ອການປັບປຸງສິ້ນສຸດລົງ ຫຼື ການຕິດຕັ້ງກຳລັງລໍຖ້າທ່ານ ໃນຂະນະທີ່ Morphe ເຮັດວຽກຢູ່ພື້ນຫຼັງ</string>
+    <string name="notification_channel_patching_results_description">ເມື່ອການປັບປຸງສິ້ນສຸດລົງ ຫຼື ການຕິດຕັ້ງກຳລັງລໍຖ້າທ່ານ ໃນຂະນະທີ່ Mamu ເຮັດວຽກຢູ່ພື້ນຫຼັງ</string>
     <string name="notification_channel_mounted_apps">ແອັບທີ່ຖືກ Mount ໄວ້</string>
     <string name="notification_channel_mounted_apps_description">ເມື່ອເວີຊັນອື່ນໄດ້ປ່ຽນແທນແອັບທີ່ຖືກ Mount ໄວ້ ແລະ ການປັບປຸງຂອງມັນບໍ່ມີຜົນອີກຕໍ່ໄປ</string>
     <string name="notification_mount_replaced_title">%1$s ບໍ່ໄດ້ຖືກປັບປຸງແລ້ວ</string>
-    <string name="notification_mount_replaced_text">v%1$s ໄດ້ປ່ຽນແທນ v%2$s ທີ່ຖືກປັບປຸງແລ້ວ. ເປີດ Morphe ເພື່ອ Restore ມັນຄືນມາ</string>
+    <string name="notification_mount_replaced_text">v%1$s ໄດ້ປ່ຽນແທນ v%2$s ທີ່ຖືກປັບປຸງແລ້ວ. ເປີດ Mamu ເພື່ອ Restore ມັນຄືນມາ</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">ໂໝດຜູ້ຊ່ຽວຊານ</string>
     <string name="settings_advanced_expert_mode_description">ປົດລັອກການຕັ້ງຄ່າການປັບແກ້ຂັ້ນສູງ ແລະ ຕົວເລືອກການປັບແກ້</string>
@@ -979,7 +979,7 @@ Patch ຈະບໍ່ໄດ້ຮັບຜົນກະທົບ: ໃຫ້ເປ
     <string name="settings_advanced_github_pat_unreachable">ບໍ່ສາມາດເຊື່ອມຕໍ່ກັບ GitHub ເພື່ອກວດສອບໂທເຄັນນີ້ໄດ້</string>
     <string name="settings_advanced_github_pat_export_include_label">ລວມໃນການສົ່ງອອກການຕັ້ງຄ່າ</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">ເພີ່ມ PAT ນີ້ໃສ່ການຕັ້ງຄ່າ Morphe ທີ່ສົ່ງອອກ</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">ເພີ່ມ PAT ນີ້ໃສ່ການຕັ້ງຄ່າ Mamu ທີ່ສົ່ງອອກ</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">ຢ່າແບ່ງປັນ PAT ຂອງທ່ານ. ຖ້າທ່ານລວມມັນໃນການສົ່ງອອກການຕັ້ງຄ່າ, ໃຫ້ເກັບໄຟລ໌ນັ້ນເປັນຄວາມລັບເພາະມັນມີ token</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1074,7 +1074,7 @@ morphe_header_custom_dark.png
     <string name="installer_status_not_supported">ບໍ່ຮອງຮັບສຳລັບການກະທຳນີ້</string>
     <string name="installer_status_shizuku_not_installed">ຕິດຕັ້ງ Shizuku ຫຼື Sui ເພື່ອໃຊ້ຕົວເລືອກນີ້</string>
     <string name="installer_status_shizuku_not_running">ເປີດ Shizuku ຫຼື Sui ແລ້ວລອງໃໝ່</string>
-    <string name="installer_status_shizuku_permission">ອະນຸຍາດສິດໃຫ້ Morphe ຈາກແອັບ Shizuku</string>
+    <string name="installer_status_shizuku_permission">ອະນຸຍາດສິດໃຫ້ Mamu ຈາກແອັບ Shizuku</string>
     <string name="installer_mount_warning_install">ໂໝດການ Patch ຖືກຕັ້ງເປັນ root mount. ແອັບທີ່ບັນທຶກໄວ້ນີ້ບໍ່ໄດ້ຖືກຕິດຕັ້ງໂດຍໃຊ້ mount</string>
     <string name="mount_version_mismatch_message">ເວີຊັນແອັບຕົ້ນສະບັບ (%2$s) ບໍ່ກົງກັບເວີຊັນແອັບທີ່ແພດແລ້ວ (%1$s). ແນບເວີຊັນຕົ້ນສະບັບທີ່ກົງກັນ, ແລ້ວລອງໃໝ່</string>
     <string name="mount_stock_restore_failed_message">Android ປະຕິເສດ APK ຕົ້ນສະບັບທີ່ບັນທຶກໄວ້. ກະລຸນາຕິດຕັ້ງເວີຊັນດັ້ງເດີມທີ່ກົງກັນ, ຈາກນັ້ນລອງ Mount ອີກຄັ້ງ</string>
@@ -1115,7 +1115,7 @@ morphe_header_custom_dark.png
     <string name="settings_ignore_install_target_rules">ບໍ່ສົນໃຈຂໍ້ກຳນົດຂອງເປົ້າໝາຍການຕິດຕັ້ງ</string>
     <string name="settings_ignore_install_target_rules_description">ອະນຸຍາດໃຫ້ປິດການປັບປຸງທີ່ເປົ້າໝາຍການຕິດຕັ້ງຕ້ອງການ ແລະ ເປີດການປັບປຸງທີ່ມັນກຳນົດອອກ. ແອັບທີ່ຖືກປັບປຸງອາດຈະບໍ່ເຮັດວຽກ</string>
     <string name="settings_auto_uninstall_warning_title">ເປີດການຖອນການຕິດຕັ້ງອັດຕະໂນມັດບໍ?</string>
-    <string name="settings_auto_uninstall_warning_message">ຖ້າ Android ລາຍງານວ່າການເຊັນຊື່ຂັດແຍ່ງກັນໃນລະຫວ່າງການຕິດຕັ້ງ Shizuku ແບບອັດຕະໂນມັດ, Morphe ຈະຖອນການຕິດຕັ້ງແອັບທີ່ມີຢູ່ກ່ອນທີ່ຈະຕິດຕັ້ງ APK ທີ່ຖືກປັບແກ້</string>
+    <string name="settings_auto_uninstall_warning_message">ຖ້າ Android ລາຍງານວ່າການເຊັນຊື່ຂັດແຍ່ງກັນໃນລະຫວ່າງການຕິດຕັ້ງ Shizuku ແບບອັດຕະໂນມັດ, Mamu ຈະຖອນການຕິດຕັ້ງແອັບທີ່ມີຢູ່ກ່ອນທີ່ຈະຕິດຕັ້ງ APK ທີ່ຖືກປັບແກ້</string>
     <string name="settings_auto_uninstall_warning_risk">ສິ່ງນີ້ອາດຈະລຶບຂໍ້ມູນຂອງແອັບ. ຖ້າ APK ທີ່ຖືກປັບແກ້ຕິດຕັ້ງບໍ່ສຳເລັດຫຼັງຈາກການຖອນການຕິດຕັ້ງ, ແອັບກ່ອນໜ້ານີ້ອາດຈະຫາຍໄປແລ້ວ</string>
     <string name="installer_shizuku_status_action">ກວດສອບສະຖານະ Shizuku</string>
     <string name="installer_shizuku_status_title">ສະຖານະ Shizuku</string>
@@ -1133,7 +1133,7 @@ morphe_header_custom_dark.png
     <string name="installer_shizuku_install_fail_with_details">"ການຕິດຕັ້ງ Shizuku ລົ້ມເຫຼວ: %1$s
 
 ລາຍລະອຽດ: %2$s"</string>
-    <string name="installer_shizuku_error_permission">ການອະນຸຍາດຂອງ Shizuku ຂາດຫາຍ. ກະລຸນາອະນຸຍາດໃຫ້ Morphe ແລະລອງໃໝ່ອີກຄັ້ງ</string>
+    <string name="installer_shizuku_error_permission">ການອະນຸຍາດຂອງ Shizuku ຂາດຫາຍ. ກະລຸນາອະນຸຍາດໃຫ້ Mamu ແລະລອງໃໝ່ອີກຄັ້ງ</string>
     <string name="installer_shizuku_error_timeout">Shizuku ບໍ່ໄດ້ສົ່ງຜົນການຕິດຕັ້ງກັບຄືນມາ. ກະລຸນາກວດສອບໃຫ້ແນ່ໃຈວ່າ ມັນຍັງເຮັດວຽກຢູ່ ແລະລອງໃໝ່ອີກຄັ້ງ</string>
     <string name="installer_shizuku_error_downgrade">Android ໄດ້ບລັອກສິ່ງນີ້ ເພາະວ່າມັນຈະຫຼຸດເວີຊັນຂອງແອັບທີ່ຕິດຕັ້ງໄວ້</string>
     <string name="installer_shizuku_error_signature">Android ໄດ້ບລັອກສິ່ງນີ້ ເນື່ອງຈາກວ່າແອັບທີ່ຕິດຕັ້ງມີລາຍເຊັນທີ່ແຕກຕ່າງກັນ</string>
@@ -1144,13 +1144,13 @@ morphe_header_custom_dark.png
     <string name="settings_system_battery_optimization_description">ເຮັດໃຫ້ຕົວແພດເຮັດວຽກຕໍ່ໄປເມື່ອແອັບຖືກຍ່ອຍ</string>
     <string name="settings_system_process_runtime">ເວລາເຮັດວຽກຂອງ Patcher</string>
     <string name="settings_system_jvm_runtime_enable">ໃຊ້ VM ທີ່ຝັງມາ</string>
-    <string name="settings_system_jvm_runtime_description">ປັບປຸງໃນ Java VM ຂອງ Morphe ເອງ, ເຊິ່ງສາມາດໃຊ້ໜ່ວຍຄວາມຈຳໄດ້ຫຼາຍຂຶ້ນ. ປິດເພື່ອໃຊ້ runtime ຂອງ Android</string>
+    <string name="settings_system_jvm_runtime_description">ປັບປຸງໃນ Java VM ຂອງ Mamu ເອງ, ເຊິ່ງສາມາດໃຊ້ໜ່ວຍຄວາມຈຳໄດ້ຫຼາຍຂຶ້ນ. ປິດເພື່ອໃຊ້ runtime ຂອງ Android</string>
     <string name="settings_system_jvm_runtime_unavailable">ຕ້ອງການອຸປະກອນ ARM ຫຼື x86 64-ບິດ</string>
     <string name="settings_system_patcher_completion_sound">ສຽງສຳເລັດ</string>
     <string name="settings_system_patcher_completion_sound_description">ຫຼິ້ນສຽງທີ່ແຕກຕ່າງກັນສຳລັບຄວາມສຳເລັດ ຫຼື ຄວາມລົ້ມເຫຼວ ເມື່ອ patch ສຳເລັດ</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">ການແຈ້ງເຕືອນ</string>
-    <string name="settings_system_notifications_description">ວິທີທີ່ Morphe ແຈ້ງເຕືອນໃຫ້ທ່ານຊາບ</string>
+    <string name="settings_system_notifications_description">ວິທີທີ່ Mamu ແຈ້ງເຕືອນໃຫ້ທ່ານຊາບ</string>
     <string name="settings_system_notifications_success_sound">ສຽງຄວາມສຳເລັດ</string>
     <string name="settings_system_notifications_error_sound">ສຽງຄວາມລົ້ມເຫຼວ</string>
     <string name="settings_system_notifications_sound_default">ຄ່າເລີ່ມຕົ້ນ</string>
@@ -1162,8 +1162,8 @@ morphe_header_custom_dark.png
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">ຄີລາຍເຊັນ</string>
     <string name="settings_system_signing_key_description">ສຳຮອງ ຫຼື ຟື້ນຟູຄີທີ່ໃຊ້ເຊັນແອັບທີ່ຖືກ patched</string>
-    <string name="settings_system_signing_key_dialog_description">ທຸກແອັບທີ່ Morphe patch ແມ່ນຖືກລົງລາຍເຊັນດ້ວຍຄີນີ້. ກະລຸນາເກັບສຳເນົາໄວ້: ຖ້າບໍ່ມີມັນ, ແອັບທີ່ຖືກ patch ຈະສາມາດອັບເດດໄດ້ຫຼັງຈາກຖອນການຕິດຕັ້ງເທົ່ານັ້ນ</string>
-    <string name="settings_system_signing_key_missing">Morphe ຈະສ້າງຄີນີ້ຂຶ້ນໃນການ patch ຄັ້ງທຳອິດຂອງທ່ານ</string>
+    <string name="settings_system_signing_key_dialog_description">ທຸກແອັບທີ່ Mamu patch ແມ່ນຖືກລົງລາຍເຊັນດ້ວຍຄີນີ້. ກະລຸນາເກັບສຳເນົາໄວ້: ຖ້າບໍ່ມີມັນ, ແອັບທີ່ຖືກ patch ຈະສາມາດອັບເດດໄດ້ຫຼັງຈາກຖອນການຕິດຕັ້ງເທົ່ານັ້ນ</string>
+    <string name="settings_system_signing_key_missing">Mamu ຈະສ້າງຄີນີ້ຂຶ້ນໃນການ patch ຄັ້ງທຳອິດຂອງທ່ານ</string>
     <string name="settings_system_signing_key_created">ສ້າງເມື່ອ %s</string>
     <string name="settings_system_signing_key_fingerprint">ລາຍເຊັນນິ້ວມື SHA-256</string>
     <string name="settings_system_backup_appearance_description">ຮູບແບບ, ສີ ແລະ ພາສາ</string>
@@ -1185,31 +1185,31 @@ morphe_header_custom_dark.png
     <string name="settings_system_export_keystore_failed">ສົ່ງອອກ keystore ລົ້ມເຫຼວ</string>
     <string name="settings_system_show_password_field">ສະແດງລະຫັດຜ່ານ</string>
     <string name="settings_system_hide_password_field">ເຊື່ອງລະຫັດຜ່ານ</string>
-    <string name="settings_system_morphe_settings">ການຕັ້ງຄ່າ Morphe</string>
-    <string name="settings_system_import_manager_settings_description">ສຳຮອງ ແລະກູ້ຄືນການຕັ້ງຄ່າ Morphe ຂອງທ່ານ</string>
-    <string name="settings_system_export_manager_settings_title">ສົ່ງອອກການຕັ້ງຄ່າ Morphe</string>
+    <string name="settings_system_morphe_settings">ການຕັ້ງຄ່າ Mamu</string>
+    <string name="settings_system_import_manager_settings_description">ສຳຮອງ ແລະກູ້ຄືນການຕັ້ງຄ່າ Mamu ຂອງທ່ານ</string>
+    <string name="settings_system_export_manager_settings_title">ສົ່ງອອກການຕັ້ງຄ່າ Mamu</string>
     <string name="settings_system_export_manager_settings_description">ບັນທຶກການຕັ້ງຄ່າທີ່ທ່ານເລືອກລົງໃນໄຟລ໌</string>
     <string name="settings_system_import_manager_settings_file_description">ກູ້ຄືນການຕັ້ງຄ່າຈາກໄຟລ໌ສຳຮອງ</string>
     <string name="settings_system_auto_backup">ສຳຮອງຂໍ້ມູນອັດຕະໂນມັດ</string>
     <string name="settings_system_auto_backup_switch">ສຳຮອງຂໍ້ມູນອັດຕະໂນມັດ</string>
     <string name="settings_system_auto_backup_now">ສຳຮອງຂໍ້ມູນດຽວນີ້</string>
     <string name="settings_system_auto_backup_saved">ບັນທຶກການສຳຮອງຂໍ້ມູນແລ້ວ</string>
-    <string name="settings_system_auto_backup_interval_description">Morphe ຈະລໍຖ້າຢ່າງໜ້ອຍໄລຍະເວລານີ້ ຫຼັງຈາກການຄັດລອກ ກ່ອນທີ່ຈະສຳຮອງຂໍ້ມູນຄັ້ງຕໍ່ໄປ</string>
-    <string name="settings_system_auto_backup_description">ບັນທຶກການຕັ້ງຄ່າ Morphe ຂອງທ່ານລົງໃນໂຟນເດີທີ່ທ່ານເລືອກ</string>
+    <string name="settings_system_auto_backup_interval_description">Mamu ຈະລໍຖ້າຢ່າງໜ້ອຍໄລຍະເວລານີ້ ຫຼັງຈາກການຄັດລອກ ກ່ອນທີ່ຈະສຳຮອງຂໍ້ມູນຄັ້ງຕໍ່ໄປ</string>
+    <string name="settings_system_auto_backup_description">ບັນທຶກການຕັ້ງຄ່າ Mamu ຂອງທ່ານລົງໃນໂຟນເດີທີ່ທ່ານເລືອກ</string>
     <string name="settings_system_auto_backup_last">ສຳຮອງຂໍ້ມູນຫຼ້າສຸດ: %s</string>
     <string name="settings_system_auto_backup_folder">ໂຟນເດີ</string>
-    <string name="settings_system_auto_backup_folder_name">ການສຳຮອງຂໍ້ມູນຂອງ Morphe</string>
+    <string name="settings_system_auto_backup_folder_name">ການສຳຮອງຂໍ້ມູນຂອງ Mamu</string>
     <string name="settings_system_auto_backup_folder_failed">ບໍ່ສາມາດໃຊ້ໂຟນເດີນີ້ໄດ້: %s</string>
     <string name="settings_system_auto_backup_interval">ຄວາມຖີ່ໃນການສຳຮອງຂໍ້ມູນ</string>
     <string name="settings_system_auto_backup_signing_key">ລວມເອົາກຸນແຈລົງລາຍເຊັນ</string>
     <string name="settings_system_auto_backup_signing_key_description">ບັນທຶກກຸນແຈທີ່ໃຊ້ລົງລາຍເຊັນແອັບທີ່ຖືກປັບແກ້ໄວ້ຂ້າງໆການຕັ້ງຄ່າ</string>
     <string name="settings_system_auto_backup_signing_key_warning_title">ສຳຮອງຂໍ້ມູນກຸນແຈລົງລາຍເຊັນບໍ?</string>
     <string name="settings_system_auto_backup_signing_key_warning_message">ໃຜກໍຕາມທີ່ໄດ້ໄຟລ໌ນີ້ສາມາດລົງລາຍເຊັນການອັບເດດທີ່ຕິດຕັ້ງທັບແອັບທີ່ຖືກປັບແກ້ຂອງທ່ານໄດ້. ໃຫ້ເກັບຮັກສາໂຟນເດີເປັນຄວາມລັບ ແລະ ແບ່ງປັນມັນໃຫ້ກັບອຸປະກອນຂອງທ່ານເອງເທົ່ານັ້ນ</string>
-    <string name="settings_system_auto_backup_footer">ສຳເນົາຈະຖືກບັນທຶກໄວ້ເມື່ອທ່ານອອກຈາກ Morphe ຫຼັງຈາກການປ່ຽນແປງບາງຢ່າງ. %s ຫຼ້າສຸດຈະຖືກເກັບໄວ້</string>
+    <string name="settings_system_auto_backup_footer">ສຳເນົາຈະຖືກບັນທຶກໄວ້ເມື່ອທ່ານອອກຈາກ Mamu ຫຼັງຈາກການປ່ຽນແປງບາງຢ່າງ. %s ຫຼ້າສຸດຈະຖືກເກັບໄວ້</string>
     <string name="settings_system_auto_backup_failed">ບໍ່ສາມາດບັນທຶກການສຳຮອງຂໍ້ມູນຄັ້ງຫຼ້າສຸດໄດ້. ກະລຸນາເລືອກໂຟນເດີອີກຄັ້ງ</string>
-    <string name="settings_system_import_manager_settings_fail">ນຳເຂົ້າການຕັ້ງຄ່າ Morphe ລົ້ມເຫຼວ: %s</string>
-    <string name="settings_system_import_manager_settings_success">ນຳເຂົ້າການຕັ້ງຄ່າ Morphe ແລ້ວ</string>
-    <string name="settings_system_import_manager_settings_mode_title">ນຳເຂົ້າການຕັ້ງຄ່າ Morphe</string>
+    <string name="settings_system_import_manager_settings_fail">ນຳເຂົ້າການຕັ້ງຄ່າ Mamu ລົ້ມເຫຼວ: %s</string>
+    <string name="settings_system_import_manager_settings_success">ນຳເຂົ້າການຕັ້ງຄ່າ Mamu ແລ້ວ</string>
+    <string name="settings_system_import_manager_settings_mode_title">ນຳເຂົ້າການຕັ້ງຄ່າ Mamu</string>
     <string name="settings_system_import_manager_settings_mode_description">ເລືອກວິທີນຳໃຊ້ການຕັ້ງຄ່າ ແລະແຫຼ່ງຂໍ້ມູນທີ່ນຳເຂົ້າ</string>
     <string name="settings_system_import_selections_mode_title">ນຳເຂົ້າການເລືອກຊຸດແພດ</string>
     <string name="settings_system_import_selections_mode_description">ເລືອກວິທີນຳໃຊ້ການເລືອກ ແລະຕົວເລືອກຊຸດແພດທີ່ນຳເຂົ້າ</string>
@@ -1217,8 +1217,8 @@ morphe_header_custom_dark.png
     <string name="import_mode_replace_description">ໃຫ້ກົງກັບຂໍ້ມູນສຳຮອງຢ່າງຖືກຕ້ອງ. ລາຍການທີ່ຂາດຈາກຂໍ້ມູນສຳຮອງຈະຖືກລຶບອອກ</string>
     <string name="import_mode_merge_title">ຮວມກັບອັນທີ່ມີຢູ່</string>
     <string name="import_mode_merge_description">ເພີ່ມລາຍການທີ່ຂາດຫາຍຈາກຂໍ້ມູນສຳຮອງ. ລາຍການທີ່ມີຢູ່ຈະຖືກເກັບໄວ້ຄືເກົ່າ</string>
-    <string name="settings_system_export_manager_settings_fail">ສົ່ງອອກການຕັ້ງຄ່າ Morphe ລົ້ມເຫຼວ: %s</string>
-    <string name="settings_system_export_manager_settings_success">ສົ່ງອອກການຕັ້ງຄ່າ Morphe ແລ້ວ</string>
+    <string name="settings_system_export_manager_settings_fail">ສົ່ງອອກການຕັ້ງຄ່າ Mamu ລົ້ມເຫຼວ: %s</string>
+    <string name="settings_system_export_manager_settings_success">ສົ່ງອອກການຕັ້ງຄ່າ Mamu ແລ້ວ</string>
     <string name="settings_system_export_debug_logs">ສົ່ງອອກບັນທຶກການດີບັກ</string>
     <string name="settings_system_export_debug_logs_description">ບັນທຶກລະບົບເພື່ອໃຊ້ໃນການແກ້ໄຂບັນຫາ</string>
     <string name="settings_system_export_debug_logs_export_read_failed">ອ່ານບັນທຶກລົ້ມເຫຼວ (ລະຫັດອອກ %s)</string>
@@ -1236,7 +1236,7 @@ morphe_header_custom_dark.png
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">ການຈັດການທີ່ເກັບຂໍ້ມູນ</string>
     <string name="settings_system_storage_management_description">ສະແດງການນຳໃຊ້ພື້ນທີ່ດິດສ໌ ແລະ ລຶບໄຟລ໌ແຄຊ</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">ຫວ່າງ %1$s</string>
     <string name="settings_system_storage_saved_apks">APK ທີ່ບັນທຶກໄວ້</string>
     <string name="settings_system_storage_caches">ແຄຊ</string>
@@ -1259,7 +1259,7 @@ morphe_header_custom_dark.png
     <string name="settings_system_storage_clear_anyway">ລຶບອອກທັງໝົດ</string>
     <string name="settings_system_storage_nothing_to_clear">ບໍ່ມີຫຍັງໃຫ້ລ້າງ</string>
     <string name="settings_system_storage_open_app_info_title">ເປີດທີ່ເກັບຂໍ້ມູນແອັບ Android</string>
-    <string name="settings_system_storage_open_app_info_description">ຈັດການ ຫຼືລ້າງຂໍ້ມູນ Morphe ທັງໝົດຜ່ານການຕັ້ງຄ່າລະບົບ</string>
+    <string name="settings_system_storage_open_app_info_description">ຈັດການ ຫຼືລ້າງຂໍ້ມູນ Mamu ທັງໝົດຜ່ານການຕັ້ງຄ່າລະບົບ</string>
     <string name="settings_system_save_original_apks_title">ເກັບ APK ຕົ້ນສະບັບໄວ້</string>
     <string name="settings_system_save_original_apks_description">ບັນທຶກ APK ກ່ອນແພດເພື່ອໃຫ້ສາມາດນຳມາໃຊ້ໃໝ່ສຳລັບການແພດໂດຍບໍ່ຕ້ອງເລືອກໄຟລ໌ອີກ</string>
     <string name="settings_system_save_patched_apks_title">ເກັບ APK ທີ່ແພດແລ້ວໄວ້</string>
@@ -1313,13 +1313,13 @@ morphe_header_custom_dark.png
     <string name="copy_selection_available_format">%1$s ຈາກ %2$s ທີ່ມີຢູ່</string>
     <!-- Settings - System Tab - Custom file picker -->
     <string name="settings_system_custom_file_picker">ຕົວເລືອກໄຟລ໌ທີ່ກຳນົດເອງ</string>
-    <string name="settings_system_custom_file_picker_description">ໃຊ້ຕົວເລືອກໄຟລ໌ໃນຕົວຂອງ Morphe ແທນທີ່ຕົວເລືອກຂອງລະບົບ</string>
+    <string name="settings_system_custom_file_picker_description">ໃຊ້ຕົວເລືອກໄຟລ໌ໃນຕົວຂອງ Mamu ແທນທີ່ຕົວເລືອກຂອງລະບົບ</string>
     <!-- Settings - System Tab - APK download helper -->
     <string name="settings_system_apk_download_helper">ຕົວຊ່ວຍດາວໂຫຼດ APK</string>
     <string name="settings_system_apk_download_helper_trusted_count">ເຊື່ອຖືໄດ້: %1$d ຈາກ %2$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">ແອັບຊ່ວຍເຫຼືອສາມາດດາວໂຫຼດ APK ຕົ້ນສະບັບໃຫ້ທ່ານໄດ້. ມີພຽງແຕ່ແອັບທີ່ທ່ານເຊື່ອຖືຢູ່ທີ່ນີ້ເທົ່ານັ້ນ ທີ່ຈະຖືກສະເໜີໃນຄຳແນະນຳການດາວໂຫຼດ</string>
     <string name="settings_system_apk_download_helper_trust_title">ເຊື່ອໝັ້ນຕົວຊ່ວຍນີ້ບໍ?</string>
-    <string name="settings_system_apk_download_helper_warning">APK ມາຈາກແອັບຊ່ວຍເຫຼືອ, ດັ່ງນັ້ນຈົ່ງເຊື່ອຖືສະເພາະແອັບທີ່ທ່ານຮູ້ຈັກເທົ່ານັ້ນ. Morphe ຍັງຄົງກວດສອບແພັກເກດ, ເວີຊັນ ແລະ ລາຍເຊັນຂອງທຸກໄຟລ໌ກ່ອນການ patching</string>
+    <string name="settings_system_apk_download_helper_warning">APK ມາຈາກແອັບຊ່ວຍເຫຼືອ, ດັ່ງນັ້ນຈົ່ງເຊື່ອຖືສະເພາະແອັບທີ່ທ່ານຮູ້ຈັກເທົ່ານັ້ນ. Mamu ຍັງຄົງກວດສອບແພັກເກດ, ເວີຊັນ ແລະ ລາຍເຊັນຂອງທຸກໄຟລ໌ກ່ອນການ patching</string>
     <string name="settings_system_apk_download_helper_installed_by">ຕິດຕັ້ງໂດຍ %s</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">ບໍ່ຮູ້ຜູ້ຕິດຕັ້ງ</string>
     <string name="settings_system_apk_download_helper_open_directly">ເປີດຕົວຊ່ວຍທັນທີ</string>
@@ -1352,7 +1352,7 @@ morphe_header_custom_dark.png
     <string name="settings_about_section_project">ໂຄງການ</string>
     <string name="settings_about_section_help">ຄວາມຊ່ວຍເຫຼືອ</string>
     <string name="credits_prior_development">ການພັດທະນາກ່ອນໜ້າ</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">ຜູ້ຈັດການ</string>
     <string name="about_update_available">ມີການອັບເດດ: %s</string>
     <string name="about_up_to_date">ເປັນເວີຊັນຫຼ້າສຸດແລ້ວ</string>
@@ -1365,7 +1365,7 @@ morphe_header_custom_dark.png
     <string name="contributors_all_time">ຕະຫຼອດເວລາ</string>
     <string name="contributors_6_months">6 ເດືອນ</string>
     <string name="contributors_3_months">3 ເດືອນ</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">ຜູ້ສະໜັບສະໜູນ</string>
     <string name="supporters_description">ຜູ້ສະໜັບສະໜູນໃນ Open Collective</string>
     <string name="supporters_become">ກາຍເປັນຜູ້ສະໜັບສະໜູນ</string>
@@ -1373,7 +1373,7 @@ morphe_header_custom_dark.png
     <string name="people_more">ແລະ ອີກ %s ຄົນ</string>
     <string name="people_unavailable">ບໍ່ສາມາດໂຫຼດລາຍຊື່ໄດ້</string>
     <string name="opensource_licenses">ໃບອະນຸຍາດໂອເພນຊອດ</string>
-    <string name="opensource_licenses_description">ໄລບຣາຣີທີ່ Morphe ຖືກສ້າງຂຶ້ນ</string>
+    <string name="opensource_licenses_description">ໄລບຣາຣີທີ່ Mamu ຖືກສ້າງຂຶ້ນ</string>
     <string name="opensource_licenses_search">ຄົ້ນຫາຫໍສະໝຸດ ແລະ ໃບອະນຸຍາດ</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">ທາງເລືອກ</string>
@@ -1398,12 +1398,12 @@ morphe_header_custom_dark.png
     <string name="settings_section_patcher">ຕົວແພັດຊ໌</string>
     <string name="settings_section_updates">ການອັບເດດ</string>
     <string name="settings_section_patching">ການແພັດຊ໌</string>
-    <string name="settings_section_appearance_summary">ຮູບລັກສະນະຂອງ Morphe</string>
+    <string name="settings_section_appearance_summary">ຮູບລັກສະນະຂອງ Mamu</string>
     <string name="settings_section_patch_options_summary">ໂໝດງ່າຍດາຍຈະປັບປຸງແອັບດ້ວຍຫຍັງ</string>
     <string name="settings_section_general">ທົ່ວໄປ</string>
     <string name="settings_section_patcher_summary">ວິທີທີ່ແອັບຖືກແພັດຊ໌ໃນອຸປະກອນນີ້</string>
     <string name="settings_section_help_info">ຄວາມຊ່ວຍເຫຼືອ &amp; ຂໍ້ມູນ</string>
-    <string name="settings_section_about_summary">ຂໍ້ມູນເພີ່ມເຕີມກ່ຽວກັບ Morphe ແລະ ການຊ່ວຍເຫຼືອ</string>
+    <string name="settings_section_about_summary">ຂໍ້ມູນເພີ່ມເຕີມກ່ຽວກັບ Mamu ແລະ ການຊ່ວຍເຫຼືອ</string>
     <string name="settings_section_local_files">ໄຟລ໌</string>
     <string name="settings_section_backup">ສຳຮອງຂໍ້ມູນ</string>
     <string name="settings_section_import_export">ນຳເຂົ້າ ແລະ ສົ່ງອອກ</string>
@@ -1566,7 +1566,7 @@ morphe_header_custom_dark.png
     <string name="update_completed">ຕິດຕັ້ງອັບເດດແລ້ວ</string>
     <string name="install_update_manager_failed">ຕິດຕັ້ງອັບເດດລົ້ມເຫຼວ</string>
     <string name="installing_manager_update">ກຳລັງຕິດຕັ້ງອັບເດດ…</string>
-    <string name="installing_manager_update_hint">Morphe ຈະປິດລົງເພື່ອໃຫ້ການອັບເດດສຳເລັດ</string>
+    <string name="installing_manager_update_hint">Mamu ຈະປິດລົງເພື່ອໃຫ້ການອັບເດດສຳເລັດ</string>
     <string name="downloading_manager_update">ກຳລັງດາວໂຫຼດອັບເດດ…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">ດາວໂຫຼດແລ້ວ %1$s MB</string>
@@ -1589,7 +1589,7 @@ morphe_header_custom_dark.png
     <string name="onboarding_signing_key_desc">ສຳຮອງຂໍ້ມູນກຸນແຈທີ່ໃຊ້ເຊັນແອັບທີ່ຖືກປັບແກ້ຂອງທ່ານ. ຖ້າບໍ່ມີມັນ, ແອັບເຫຼົ່ານັ້ນຈະສາມາດອັບເດດໄດ້ຫຼັງຈາກຖອນການຕິດຕັ້ງເທົ່ານັ້ນ</string>
     <string name="onboarding_swipe_title">ທ່າທາງປັດ</string>
     <string name="onboarding_swipe_desc">ປັດຂວາໃສ່ກາດແອັບເພື່ອເບິ່ງຊຸດແພດທີ່ມີໃຫ້. ປັດຊ້າຍເພື່ອເຊື່ອງກາດຈາກໜ້າຫຼັກ</string>
-    <string name="onboarding_settings_desc">ປັບແຕ່ງ Morphe: ຮູບລັກສະນະ, ຕົວເລືອກຂັ້ນສູງ, ແລະເຄື່ອງມືລະບົບ</string>
+    <string name="onboarding_settings_desc">ປັບແຕ່ງ Mamu: ຮູບລັກສະນະ, ຕົວເລືອກຂັ້ນສູງ, ແລະເຄື່ອງມືລະບົບ</string>
     <string name="onboarding_sources_patches_desc">ແຕະເພື່ອເບິ່ງຊຸດແພດທັງໝົດທີ່ມີຈາກແຫຼ່ງນີ້</string>
     <string name="onboarding_sources_version_desc">ແຕະທີ່ເວີຊັນເພື່ອເບິ່ງບັນທຶກການປ່ຽນແປງເຕັມສຳລັບແຫຼ່ງນີ້</string>
     <string name="onboarding_sources_apps_desc">ແຕະເພື່ອເບິ່ງແອັບທີ່ແຫຼ່ງຂໍ້ມູນນີ້ປັບແກ້ ແລະ ເລືອກວ່າຈະໃຫ້ມັນສະເໜີການປັບແກ້ສຳລັບແອັບໃດແດ່</string>
@@ -1601,9 +1601,28 @@ morphe_header_custom_dark.png
     <string name="onboarding_system_file_picker_desc">ເປີດໃຊ້ເພື່ອໃຊ້ຕົວທ່ອງເວັບໄຟລ໌ໃນຕົວແທນຕົວເລືອກຂອງລະບົບເມື່ອເລືອກ APK ຫຼື keystore</string>
     <!-- Tour prompt dialog shown after first successful patch install -->
     <string name="tour_prompt_title">ທົວຟີເຈີແບບດ່ວນ</string>
-    <string name="tour_prompt_desc">ຕ້ອງການທົວຟີເຈີຫຼັກຂອງ Morphe ແບບດ່ວນບໍ?</string>
+    <string name="tour_prompt_desc">ຕ້ອງການທົວຟີເຈີຫຼັກຂອງ Mamu ແບບດ່ວນບໍ?</string>
     <!-- Label of a footer button beside "Skip". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="tour_prompt_confirm">ພາຂ້ອຍເບິ່ງ</string>
     <string name="onboarding_restart_title">ທົວຟີເຈີ</string>
     <string name="onboarding_restart_desc">ການແນະນຳຄຸນສົມບັດຫຼັກ</string>
+
+    <string name="home_app_filter_all_description">ທຸກໆແອັບໃນໜ້າຈໍຫຼັກ</string>
+    <string name="home_app_filter_patched_description">ແອັບທີ່ທ່ານໄດ້ປັບແຕ່ງ ຫຼື ບັນທຶກໄວ້ດ້ວຍ Mamu</string>
+    <string name="home_app_filter_not_patched_description">ແອັບທີ່ທ່ານຍັງບໍ່ທັນໄດ້ປັບແຕ່ງໃນ Mamu</string>
+    <string name="home_app_filter_installed_description">ແອັບທີ່ຕິດຕັ້ງຢູ່ໃນອຸປະກອນນີ້ໃນປັດຈຸບັນ</string>
+    <string name="home_app_filter_uninstalled_description">ແອັບທີ່ຖືກ patch ດ້ວຍ Mamu ທີ່ບໍ່ມີຢູ່ໃນອຸປະກອນນີ້ອີກຕໍ່ໄປ</string>
+    <string name="home_app_filter_clones_description">ແອັບທີ່ຖືກສ້າງພາຍໃຕ້ຊື່ package ຂອງພວກເຂົາເອງ, ຖືກຕິດຕັ້ງຄວບຄູ່ໄປກັບຕົ້ນສະບັບ</string>
+    <string name="home_app_sort_name_asc_description">ຕາມຕົວອັກສອນ, A ຫາ Z</string>
+    <string name="home_app_sort_name_desc_description">ກົງກັນຂ້າມຕາມຕົວອັກສອນ, Z ຫາ A</string>
+    <string name="home_app_sort_recently_patched_description">ສະແດງແອັບທີ່ຖືກແພັດຊ໌ຫຼ້າສຸດກ່ອນ</string>
+    <string name="home_category_custom">ກຳນົດເອງ</string>
+    <string name="sources_filter_all_description">ທຸກແຫຼ່ງທີ່ມາ</string>
+    <string name="sources_filter_enabled_description">ແຫຼ່ງທີ່ມາທີ່ໃຊ້ໃນການດຶງ Patch</string>
+    <string name="sources_filter_disabled_description">ແຫຼ່ງທີ່ມາທີ່ຖືກປິດ</string>
+    <string name="sources_filter_issues_description">ແຫຼ່ງທີ່ມາທີ່ຖືກບລັອກ, ໂຫລດບໍ່ສຳເລັດ ຫຼື ຕ້ອງການ Mamu ເວີຊັນໃໝ່ກວ່າ</string>
+    <string name="sources_sort_last_updated_description">ອັບເດດແຫຼ່ງຂໍ້ມູນໃໝ່ທີ່ສຸດກ່ອນ</string>
+    <string name="sources_sort_enabled_first_description">ສະແດງແຫຼ່ງທີ່ເຮັດວຽກກ່ອນແຫຼ່ງທີ່ປິດໃຊ້ງານ</string>
+    <string name="home_apk_availability_installed_version">ຕິດຕັ້ງໃນອຸປະກອນນີ້: %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">ຮູບແບບ keystore</string>
 </resources>

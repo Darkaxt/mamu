@@ -10,7 +10,10 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
 
 /** Log tag of the manager, which a file with logs of its own extends as "Morphe <area>". */
-const val LOG_TAG = "Morphe Manager"
+const val LOG_TAG = "Mamu"
+
+/** Extended code predating upstream's LOG_TAG rename. */
+const val tag = LOG_TAG
 
 /** Log tag of a patching run, apart from the rest of the manager. */
 const val PATCHER_LOG_TAG = "Morphe Patcher"
@@ -36,15 +39,23 @@ const val DEFAULT_BUNDLE_FILE = "patches-bundle.json"
 
 const val MORPHE_GITHUB_ORG = "MorpheApp"
 const val MORPHE_GITHUB_URL = "https://$GITHUB_HOST/$MORPHE_GITHUB_ORG"
-const val MANAGER_REPO_URL = "$MORPHE_GITHUB_URL/morphe-manager"
 const val SOURCE_REPO_URL = "$MORPHE_GITHUB_URL/morphe-patches"
+
+// Mamu releases (public)
+
+const val MANAGER_GITHUB_OWNER = "Darkaxt"
+const val MANAGER_GITHUB_REPO = "mamu"
+
+const val MANAGER_REPO_URL = "https://$GITHUB_HOST/$MANAGER_GITHUB_OWNER/$MANAGER_GITHUB_REPO"
+const val MANAGER_APK_PREFIX = "Mamu-"
+const val USE_UPSTREAM_FCM = false
 
 const val SOURCE_NAME = "Morphe Patches"
 
 /** Key the releases of [SOURCE_REPO_URL] are signed with, see PatchBundleSignature. */
 const val SOURCE_SIGNING_KEY = "g8Ys9leTu2yeixojeR35HrNkK6eOSLpA6nNIizRutqI="
 
-private const val MANAGER_RAW_URL = "https://$GITHUB_RAW_HOST/$MORPHE_GITHUB_ORG/morphe-manager/refs/heads"
+private const val MANAGER_RAW_URL = "https://$GITHUB_RAW_HOST/$MANAGER_GITHUB_OWNER/$MANAGER_GITHUB_REPO/refs/heads"
 
 /** Raw GitHub URL for the stable manager release JSON (main branch). */
 const val MANAGER_RELEASE_JSON_URL = "$MANAGER_RAW_URL/main/app-release.json"
@@ -54,9 +65,9 @@ const val MANAGER_PRERELEASE_JSON_URL = "$MANAGER_RAW_URL/dev/app-release.json"
 
 /**
  * Controls whether manager updates are fetched directly from JSON files in the repository instead
- * of using the GitHub API.
+ * of using the GitHub API. Extended publishes no app-release.json and updates from GitHub releases.
  */
-const val USE_MANAGER_DIRECT_JSON = true
+const val USE_MANAGER_DIRECT_JSON = false
 
 /**
  * Controls whether patches are fetched directly from JSON files in the repository instead of using
@@ -85,8 +96,6 @@ const val ADD_SOURCE_PATH = "/add-source"
 
 const val BLOCKED_SOURCES_URL = "$MORPHE_API_URL/v2/blocked-sources"
 
-/** Who works on Morphe and who backs it, see [app.morphe.manager.domain.repository.PeopleRepository]. */
-const val PEOPLE_URL = "$MORPHE_API_URL/v2/people"
 
 // Timings
 

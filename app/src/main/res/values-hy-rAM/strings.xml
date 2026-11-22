@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">Android 11-ի սխալ</string>
     <string name="android_11_bug_dialog_description">Հավելվածի տեղադրման թույլտվությունը պետք է տրվի նախապես՝ Android 11 համակարգի սխալից խուսափելու համար, որը բացասաբար կազդի օգտատիրոջ փորձի վրա</string>
     <string name="deep_link_add_source_title">Ավելացնել աղբյուրը</string>
-    <string name="deep_link_add_source_message">Ցանկանո՞ւմ եք այս փաթեթի աղբյուրը ավելացնել Morphe-ին:</string>
+    <string name="deep_link_add_source_message">Ցանկանո՞ւմ եք այս փաթեթի աղբյուրը ավելացնել Mamu-ին:</string>
     <string name="deep_link_add_source_warning">Ավելացրեք միայն այն աղբյուրները, որոնց վստահում եք</string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">Ավելացվել է միայն այս հավելվածը: Դուք կարող եք ավելացնել այլ հավելվածներ աղբյուրի հավելվածների ցուցակից</string>
@@ -44,15 +44,15 @@
     <string name="mpp_import_unreadable">Այս ֆայլը հնարավոր չէ կարդալ</string>
     <string name="incoming_file_not_patch_source">Այս ֆայլը փաչի աղբյուր չէ</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">Հասանելի է Morphe-ի թարմացում</string>
+    <string name="home_update_available">Հասանելի է Mamu-ի թարմացում</string>
     <string name="home_update_available_subtitle">Նոր տարբերակը պատրաստ է տեղադրման համար</string>
     <string name="home_blocked_source_title">Հայտնաբերվել է արգելափակված փոփոխման աղբյուր</string>
     <string name="home_blocked_source_subtitle">Հպեք՝ վերանայելու և հեռացնելու համար</string>
     <string name="home_metadata_errors_title">Փոփոխման որոշ աղբյուրներ անհասանելի են</string>
     <string name="home_metadata_errors_subtitle">Հպեք՝ աղբյուրները վերանայելու համար</string>
-    <string name="home_outdated_manager_title">Morphe-ն հնացած է</string>
+    <string name="home_outdated_manager_title">Mamu-ն հնացած է</string>
     <string name="home_outdated_manager_subtitle">Որոշ փաթեթների աղբյուրներ պահանջում են ավելի նոր տարբերակ</string>
-    <string name="home_held_back_title">Փոփոխման աղբյուրը խափանեց Morphe-ը</string>
+    <string name="home_held_back_title">Փոփոխման աղբյուրը խափանեց Mamu-ը</string>
     <string name="home_held_back_subtitle">Այն բաց է թողնվել, որպեսզի հավելվածը կարողանա միանալ: Հպեք՝ վերանայելու համար</string>
     <string name="home_source_updates_title">Հասանելի են պատչերի թարմացումներ</string>
     <string name="home_source_updates_subtitle">Հպեք՝ դրանք ներբեռնելու համար</string>
@@ -204,10 +204,10 @@
     <string name="sources_management_metadata_unavailable_hint">Հեռակա մետատվյալների ֆայլը հասանելի չէ: Տեղադրված փաթեթի միջոցով փոփոխությունների կիրառումը դեռ աշխատում է, սակայն այս աղբյուրի համար ավտոմատ թարմացումը անջատված է</string>
     <string name="sources_management_metadata_unavailable_hint_missing">Փոփոխությունների փաթեթը հնարավոր չեղավ ներբեռնել: Աղբյուրի URL-ը կարող է լինել սխալ, կամ ֆայլը գոյություն չունի</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">Թարմացման փաթեթը հնարավոր չեղավ ներբեռնել: Աղբյուրի URL-ը կարող է լինել սխալ, կամ ֆայլը գոյություն չունի: Պատկերեք փոփոխելու համար</string>
-    <string name="sources_management_outdated_manager_badge">Թարմացնել Morphe-ը</string>
-    <string name="sources_management_outdated_manager_hint">Այս աղբյուրը ստեղծված է %1$s փաթեթավորիչի համար, սակայն Morphe %2$s-ը ներառում է %3$s փաթեթավորիչը: Թարմացրեք Morphe-ը դրա համար</string>
+    <string name="sources_management_outdated_manager_badge">Թարմացնել Mamu-ը</string>
+    <string name="sources_management_outdated_manager_hint">Այս աղբյուրը ստեղծված է %1$s փաթեթավորիչի համար, սակայն Mamu %2$s-ը ներառում է %3$s փաթեթավորիչը: Թարմացրեք Mamu-ը դրա համար</string>
     <string name="sources_management_held_back_badge">Բռնվել է</string>
-    <string name="sources_management_held_back_hint">Այս աղբյուրը բեռնման ժամանակ խափանեց Morphe-ը, ուստի այն բաց է թողնվում: Թարմացրեք կամ կրկին ներմուծեք այն՝ նորից փորձելու համար</string>
+    <string name="sources_management_held_back_hint">Այս աղբյուրը բեռնման ժամանակ խափանեց Mamu-ը, ուստի այն բաց է թողնվում: Թարմացրեք կամ կրկին ներմուծեք այն՝ նորից փորձելու համար</string>
     <string name="sources_management_signed_by">Ստորագրված է</string>
     <string name="sources_management_signing_key_changed_badge">Բանալին փոխվել է</string>
     <string name="sources_management_signing_key_changed_hint">Հպեք՝ վերանայելու համար</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">Համայնքային փաթեթներ</string>
     <string name="sources_dialog_choose_apps">Ընտրել հավելվածները</string>
     <string name="sources_dialog_choose_apps_description">Ընտրեք, թե որ հավելվածները պահպանել, երբ աղբյուրը բեռնվի</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">Երրորդ կողմի փաթեթների աղբյուրներ</string>
-    <string name="sources_dialog_community_notice_message">"Համայնքային փոփոխությունների աղբյուրները ստեղծվում և սպասարկվում են իրենց հեղինակների կողմից: Morphe-ը չի վերանայում կամ ստուգում երրորդ կողմի փոփոխությունները և պատասխանատու չէ դրանց բովանդակության կամ ձեր սարքի վրա դրանց կատարած գործողությունների համար"</string>
+    <string name="sources_dialog_community_notice_message">"Համայնքային փոփոխությունների աղբյուրները ստեղծվում և սպասարկվում են իրենց հեղինակների կողմից: Mamu-ը չի վերանայում կամ ստուգում երրորդ կողմի փոփոխությունները և պատասխանատու չէ դրանց բովանդակության կամ ձեր սարքի վրա դրանց կատարած գործողությունների համար"</string>
     <string name="sources_update_success">Թարմացումը հաջողությամբ ավարտվել է</string>
     <string name="sources_update_unavailable">Թարմացումներ հասանելի չեն</string>
     <string name="sources_download_fail">Չհաջողվեց ներբեռնել աղբյուրները՝ %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">Օգնական հավելվածը տեղադրված է, բայց դեռ վստահված չէ, ուստի այն այստեղ առաջարկված չէ</string>
     <string name="home_apk_helper_untrusted_action">Վերանայել օգնականներին</string>
     <string name="home_apk_helper_title">Ներբեռնել օգնող հավելվածի միջոցով</string>
-    <string name="home_apk_helper_description">Morphe-ը կխնդրի ստորև նշված օգնող հավելվածին ներբեռնել բնօրինակ APK-ն և վերադարձնել ֆայլը</string>
+    <string name="home_apk_helper_description">Mamu-ը կխնդրի ստորև նշված օգնող հավելվածին ներբեռնել բնօրինակ APK-ն և վերադարձնել ֆայլը</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">Բացել օգնականը</string>
-    <string name="home_apk_helper_warning">Շարունակեք միայն, եթե վստահում եք այս օգնող հավելվածին: Morphe-ը ստուգում է փաթեթը, տարբերակը և ստորագրությունը, որն ստանում է նախքան փատչինգը</string>
-    <string name="home_apk_helper_warning_unverified">Շարունակեք միայն եթե վստահում եք այս օգնական հավելվածին: Morphe-ը չի կարող ստուգել այս APK-ի ստորագրությունը, ուստի փոփոխված ֆայլը չի հայտնաբերվի</string>
+    <string name="home_apk_helper_warning">Շարունակեք միայն, եթե վստահում եք այս օգնող հավելվածին: Mamu-ը ստուգում է փաթեթը, տարբերակը և ստորագրությունը, որն ստանում է նախքան փատչինգը</string>
+    <string name="home_apk_helper_warning_unverified">Շարունակեք միայն եթե վստահում եք այս օգնական հավելվածին: Mamu-ը չի կարող ստուգել այս APK-ի ստորագրությունը, ուստի փոփոխված ֆայլը չի հայտնաբերվի</string>
     <string name="home_apk_helper_no_result">Օգնական հավելվածը APK չի վերադարձրել</string>
     <string name="home_apk_helper_no_access">Օգնական հավելվածը չի տրամադրել հասանելիություն իր վերադարձրած APK-ին</string>
     <string name="home_apk_helper_no_package">Օգնական հավելվածը չի նշել, թե որ տեղադրված հավելվածն օգտագործել</string>
     <string name="home_apk_helper_wrong_package">Օգնական հավելվածը վերադարձրել է այլ հավելված, քան այն մեկը, որը փոփոխվում է</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe-ը չկարողացավ օգտագործել տեղադրված հավելվածը</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu-ը չկարողացավ օգտագործել տեղադրված հավելվածը</string>
     <string name="home_apk_helper_installed_incompatible">Տեղադրված տարբերակը հնարավոր չէ փոփոխել</string>
     <string name="home_apk_use_saved_copy">Օգտագործել պահպանված պատճենը</string>
     <string name="home_apk_use_installed_app">Օգտագործել տեղադրված հավելվածը</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">Չհաջողվեց ստուգել տեղադրված հավելվածի ստորագրությունը, ուստի այն կարող է արդեն իսկ լինել փոփոխված</string>
     <string name="home_unverified">Չհաստատված</string>
     <string name="home_install_verification_pending">Ստուգել տեղադրումը…</string>
-    <string name="home_app_info_install_unverified">Morphe-ը չի կարող հաստատել, որ տեղադրված հավելվածը այն build-ն է, որը նա փոփոխել է: Փոփոխեք կամ վերատեղադրեք այն պահպանված APK-ից՝ գործողությունները վերականգնելու համար</string>
+    <string name="home_app_info_install_unverified">Mamu-ը չի կարող հաստատել, որ տեղադրված հավելվածը այն build-ն է, որը նա փոփոխել է: Փոփոխեք կամ վերատեղադրեք այն պահպանված APK-ից՝ գործողությունները վերականգնելու համար</string>
     <string name="home_app_info_no_saved_apk">Պահված APK չկա: Փոփոխությունների համար կպահանջվի նորից ընտրել APK ֆայլը</string>
     <string name="home_version_requires_android">Պահանջվում է Android %s+</string>
     <string name="home_apk_no_compatible_versions_title">Այս սարքի վրա չի աջակցվի</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">Թերթեք վեբ-էջը ներքև և սեղմեք ներբեռնման կոճակը</string>
     <string name="home_download_instructions_step2_variant">Թերթեք վեբ-էջը ներքև և սեղմեք ամենավերևի &lt;b&gt;APK տարբերակի&lt;/b&gt; ներբեռնման կոճակը</string>
     <string name="home_download_instructions_step2_search">Բացեք որոնման արդյունքը վստահելի վեբ-կայքից</string>
-    <string name="home_download_instructions_step2_search_note">Morphe-ը չի կարող երաշխավորել այս վեբ-կայքերը: Բաց թողեք նրանք, որոնք առաջարկում են իրենց սեփական հավելվածների խանութը APK ֆայլի փոխարեն</string>
+    <string name="home_download_instructions_step2_search_note">Mamu-ը չի կարող երաշխավորել այս վեբ-կայքերը: Բաց թողեք նրանք, որոնք առաջարկում են իրենց սեփական հավելվածների խանութը APK ֆայլի փոխարեն</string>
     <string name="home_download_instructions_step3_search">Այդ վեբ-կայքում ներբեռնեք &lt;b&gt;%s&lt;/b&gt; տարբերակի APK-ն, ոչ թե ամենանորը</string>
     <string name="home_download_instructions_step3_search_any">Այդ վեբ-կայքում ներբեռնեք հավելվածի APK-ն: &lt;b&gt;Ցանկացած տարբերակ&lt;/b&gt; կարող է փոփոխվել</string>
     <string name="home_download_instructions_step2_github">Թողարկման &lt;b&gt;%s&lt;/b&gt; &lt;b&gt;Assets&lt;/b&gt; բաժնում սեղմեք &lt;b&gt;.apk&lt;/b&gt; հավելվածով ավարտվող ֆայլի վրա</string>
@@ -314,11 +314,11 @@
     <string name="home_download_instructions_download_button_toast_3">Պրակտիկան կատարելին է դարձնում, և դուք արդեն հասնում եք դրան 💪</string>
     <string name="home_download_instructions_download_button_toast_4">Դեռ չկա… դեռ չկա… 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">Լավ, ես հարգում եմ նվիրվածությունը 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">Դուք այլևս Morphe կոճակների պաշտոնական թեստավորող եք 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">Դուք այլևս Mamu կոճակների պաշտոնական թեստավորող եք 🏅</string>
     <string name="home_download_instructions_step3">Սպասեք ներբեռնման ավարտին և &lt;b&gt;մի տեղադրեք&lt;/b&gt; APK-ն</string>
     <string name="home_download_instructions_step3_mount">Սպասեք ներբեռնման ավարտին, ապա &lt;b&gt;տեղադրեք APK-ն&lt;/b&gt;</string>
-    <string name="home_download_instructions_step4">Ներբեռնումն ավարտելուց հետո վերադարձեք Morphe-ին</string>
-    <string name="home_download_instructions_step4_mount">Օրիգինալ APK-ն տեղադրելուց հետո վերադարձեք Morphe-ին</string>
+    <string name="home_download_instructions_step4">Ներբեռնումն ավարտելուց հետո վերադարձեք Mamu-ին</string>
+    <string name="home_download_instructions_step4_mount">Օրիգինալ APK-ն տեղադրելուց հետո վերադարձեք Mamu-ին</string>
     <string name="home_download_instructions_continue_to">Շարունակել դեպի %s</string>
     <string name="home_download_instructions_destination">ներբեռնման էջը</string>
     <string name="home_download_instructions_copy_link">Պատճենել հղումը</string>
@@ -446,12 +446,12 @@
     <string name="adaptive_icon_themed">Թեմայացված</string>
     <string name="adaptive_icon_background_color">Ֆոնի գույնը</string>
     <string name="adaptive_icon_reset_transform">Վերակայացնել դիրքը և մասշտաբը</string>
-    <string name="adaptive_icon_no_transparency_warning">Այս պատկերը չունի թափանցիկ պիքսելներ, ուստի թեմայացված և ծանուցումների սիկոնները պահպանում են Morphe լոգոն</string>
+    <string name="adaptive_icon_no_transparency_warning">Այս պատկերը չունի թափանցիկ պիքսելներ, ուստի թեմայացված և ծանուցումների սիկոնները պահպանում են Mamu լոգոն</string>
     <string name="adaptive_icon_created_success">Ադապտիվ սիմվոլը հաջողությամբ ստեղծվեց</string>
     <string name="adaptive_icon_creation_failed">Ադապտիվ սիմվոլի ստեղծումը ձախողվեց</string>
     <string name="adaptive_icon_guide">Սիկոնի ստեղծման ուղեցույց</string>
     <string name="adaptive_icon_guide_png_title">Օգտագործեք թափանցիկ ֆոնով PNG</string>
-    <string name="adaptive_icon_guide_png_body">Թափանցիկ ֆոնի վրայի լոգոն աշխատում է լավագույնս, երբ ֆոնի գույնը ընտրված է ստորև: Առանց թափանցիկության պատկերը լրացնում է ամբողջ սիկոնը, և այդ դեպքում թեմայացված ու ծանուցումների սիկոնները պահպանում են Morphe լոգոն:</string>
+    <string name="adaptive_icon_guide_png_body">Թափանցիկ ֆոնի վրայի լոգոն աշխատում է լավագույնս, երբ ֆոնի գույնը ընտրված է ստորև: Առանց թափանցիկության պատկերը լրացնում է ամբողջ սիկոնը, և այդ դեպքում թեմայացված ու ծանուցումների սիկոնները պահպանում են Mamu լոգոն:</string>
     <string name="adaptive_icon_guide_safe_zones_title">Անվտանգ գոտիներ</string>
     <string name="adaptive_icon_guide_safe_zones_body">Կոնտուրը ցույց է տալիս ձեր լաունչերի սիկոնի ձևը, և դրանից դուրս գտնվող ամեն ինչ կտրվում է: Այլ լաունչերներ օգտագործում են այլ ձևեր, ուստի կարևոր մանրամասները պահեք կիսաշրջանագծի ներսում, որը երևում է բոլոր ձևերի դեպքում:</string>
     <string name="adaptive_icon_guide_notification_title">Ծանուցման սիկոն</string>
@@ -557,8 +557,8 @@
     <string name="home_app_info_version_move">Տեղադրված է %1$s, ամենանոր աջակցվողը՝ %2$s</string>
     <string name="home_app_info_version_restore">Տեղադրված է %1$s, փոփոխված է %2$s</string>
     <string name="home_app_info_app_deleted_warning">Հավելվածը հեռացվել է</string>
-    <string name="home_app_info_app_deleted_description">Այս հավելվածը հեռացվել է Morphe-ից դուրս: Վերապատչեք այն՝ գործառույթները վերականգնելու համար</string>
-    <string name="home_app_info_not_patched_description">Այս հավելվածի չփոփոխված տարբերակն տեղադրված է: Morphe-ն դեռ ունի իր նախկին փոփոխման տվյալները</string>
+    <string name="home_app_info_app_deleted_description">Այս հավելվածը հեռացվել է Mamu-ից դուրս: Վերապատչեք այն՝ գործառույթները վերականգնելու համար</string>
+    <string name="home_app_info_not_patched_description">Այս հավելվածի չփոփոխված տարբերակն տեղադրված է: Mamu-ն դեռ ունի իր նախկին փոփոխման տվյալները</string>
     <string name="home_app_info_mount_replaced_description">Մի այլ տարբերակը փոխարինել է տեղադրված հավելվածը, ուստի փոփոխությունը այլևս չի գործում: Վերականգնումը վերադարձնում է փոփոխված տարբերակը</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play-ը թարմացրել է տեղադրված հավելվածը, ուստի փոփոխությունը այլևս չի գործում: Վերականգնումը վերադարձնում է փոփոխված տարբերակը: Անջատեք ավտոմատ թարմացումը Google Play-ում՝ այն փոփոխված պահելու համար</string>
     <string name="app_links_title">Աջակցվող վեբ հղումներ</string>
@@ -589,7 +589,7 @@
     <string name="root_pre_patch_installer_description">Ձեր սարքն ունի root հասանելիություն: Ընտրեք՝ արդյոք այս հավելվածը պետք է փաթեթավորվի root mount-ի թե ստանդարտ տեղադրման համար</string>
     <string name="root_pre_patch_installer_mount_title">Root mount ռեժիմ</string>
     <string name="root_pre_patch_installer_mount_description">Փաթեթավորում է root mount-ի համար, այնուհետև տեղադրում է APK-ն համապատասխան ստանդարտ հավելվածի վրա: GmsCore-ի կարիք չկա</string>
-    <string name="root_mount_module_unmount_warning">Եթե KernelSU-ում միացված է \"Unmount modules by default\" տարբերակը, բացեք KernelSU &gt; Superuser &gt; ձեր միացրած հավելվածը &gt; Profile &gt; Custom և անջատեք \"Unmount modules\" տարբերակը: Հակառակ դեպքում միացված փոփոխված APK-ն կարող է չգործել, նույնիսկ եթե Morphe-ը ցույց է տալիս, որ այն միացված է</string>
+    <string name="root_mount_module_unmount_warning">Եթե KernelSU-ում միացված է \"Unmount modules by default\" տարբերակը, բացեք KernelSU &gt; Superuser &gt; ձեր միացրած հավելվածը &gt; Profile &gt; Custom և անջատեք \"Unmount modules\" տարբերակը: Հակառակ դեպքում միացված փոփոխված APK-ն կարող է չգործել, նույնիսկ եթե Mamu-ը ցույց է տալիս, որ այն միացված է</string>
     <string name="root_pre_patch_installer_standard_title">Ստանդարտ տեղադրման ռեժիմ</string>
     <string name="root_pre_patch_installer_standard_description">Փաթեթավորում է որպես սովորական APK՝ GmsCore-ի աջակցությամբ: Ձեր տեղադրման կարգավորումն օգտագործվում է փաթեթավորումից հետո</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -652,7 +652,7 @@
     <string name="patcher_conflict_subtitle">Դուք պետք է հեռացնեք գոյություն ունեցող տարբերակը</string>
     <string name="patcher_conflict_hint">Թարմացված հավելվածն օգտագործում է այլ սերտիֆիկատ, քան տեղադրված տարբերակը: Հեռացումը կջնջի հավելվածի բոլոր տվյալները</string>
     <string name="patcher_installed_conflict_title">Պահանջվում է հեռացում</string>
-    <string name="patcher_installed_conflict_body">"Morphe-ը ստորագրում է փոփոխված հավելվածները իր սեփական սերտիֆիկատով, որը տարբերվում է բնօրինակից: Android-ը պահանջում է հեռացնել առկա տարբերակը, նախքան փոփոխված հավելվածը հնարավոր կլինի տեղադրել:
+    <string name="patcher_installed_conflict_body">"Mamu-ը ստորագրում է փոփոխված հավելվածները իր սեփական սերտիֆիկատով, որը տարբերվում է բնօրինակից: Android-ը պահանջում է հեռացնել առկա տարբերակը, նախքան փոփոխված հավելվածը հնարավոր կլինի տեղադրել:
 
 Հեռացումը կջնջի հավելվածի բոլոր տվյալները ընդմիշտ"</string>
     <string name="patcher_install_error_title">Տեղադրման սխալ</string>
@@ -662,8 +662,8 @@
     <string name="patcher_patches_excluded_for_installer">Հասանելի չէ տեղակայման այս մեթոդի համար և բացառված է՝ %s</string>
     <string name="patcher_storage_permission_dialog_title">Հնարավոր չէ մուտք գործել պահեստի ուղուն</string>
     <string name="patcher_incompatible_patcher_title">Թարմացումը պարտադիր է</string>
-    <string name="patcher_incompatible_patcher_description">Աղբյուրը &lt;b&gt;%1$s&lt;/b&gt;-ը պահանջում է patcher &lt;b&gt;%2$s&lt;/b&gt; կամ ավելի նոր տարբերակ: Թարմացրեք Morphe-ը՝ այն օգտագործելու համար</string>
-    <string name="patcher_storage_permission_description_api30">Պատչերի մեկ կամ մի քանի տարբերակներ հղվում են այն ուղիներին, որոնք Morphe-ը չի կարող կարդալ: Տրամադրեք հասանելիություն պահոցին և սեղմեք կոճակը, ապա փոփոխումը կսկսվի ավտոմատ կերպով</string>
+    <string name="patcher_incompatible_patcher_description">Աղբյուրը &lt;b&gt;%1$s&lt;/b&gt;-ը պահանջում է patcher &lt;b&gt;%2$s&lt;/b&gt; կամ ավելի նոր տարբերակ: Թարմացրեք Mamu-ը՝ այն օգտագործելու համար</string>
+    <string name="patcher_storage_permission_description_api30">Պատչերի մեկ կամ մի քանի տարբերակներ հղվում են այն ուղիներին, որոնք Mamu-ը չի կարող կարդալ: Տրամադրեք հասանելիություն պահոցին և սեղմեք կոճակը, ապա փոփոխումը կսկսվի ավտոմատ կերպով</string>
     <string name="patcher_storage_permission_description_legacy">Մեկ կամ մի քանի փեթչի տարբերակներ հղվում են ուղիներին, որոնց հասանելիությունը սահմանափակված է: Թարմացրեք ուղիները փեթչի տարբերակներում և փորձեք նորից</string>
     <string name="patcher_storage_permission_grant">Տրամադրել պահպանման թույլտվություն</string>
     <string name="patcher_storage_permission_denied_warning">Պահպանման թույլտվությունը մերժվել է: Տրամադրեք թույլտվությունը այս ուղին օգտագործելու համար կամ տեղափոխեք ֆայլերը հավելվածի անհատական թղթապանակ</string>
@@ -699,7 +699,7 @@
     <string name="patcher_task_writing_apk">APK ֆայլի գրում</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">Ֆոնային փոփոխման պաշտպանություն</string>
-    <string name="battery_optimization_dialog_description">Որոշ սարքեր կարող են կանգնեցնել փոփոխիչը, երբ հավելվածը փոքրացվում է: Թույլ տվեք Morphe-ին աշխատել առանց մարտկոցի սահմանափակումների՝ ապահովելու համար, որ փոփոխումն ավարտվի հուսալիորեն</string>
+    <string name="battery_optimization_dialog_description">Որոշ սարքեր կարող են կանգնեցնել փոփոխիչը, երբ հավելվածը փոքրացվում է: Թույլ տվեք Mamu-ին աշխատել առանց մարտկոցի սահմանափակումների՝ ապահովելու համար, որ փոփոխումն ավարտվի հուսալիորեն</string>
     <string name="battery_optimization_not_now">Հիմա ոչ</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">Փոփոխումը ընթացքի մեջ է…</string>
@@ -754,8 +754,8 @@
     <string name="install_ignore_signature">Այնուամենայնիվ տեղադրել</string>
     <string name="install_ignore_signature_description">Պահպանում է հավելվածի տվյալները, բայց աշխատում է միայն, եթե root մոդուլը անջատում է Android-ի ստորագրության ստուգումը</string>
     <string name="uninstall_app_fail">Հավելվածի հեռացումը ձախողվեց՝ %s</string>
-    <string name="uninstall_app_unverified">Թողնվել է տեղում. Morphe-ը չկարողացավ հաստատել, որ տեղադրված հավելվածն այն տարբերակն է, որը նա փոփոխել էր</string>
-    <string name="launch_app_unverified">Morphe-ը չկարողացավ հաստատել, որ տեղադրված հավելվածն այն տարբերակն է, որը նա փոփոխել էր</string>
+    <string name="uninstall_app_unverified">Թողնվել է տեղում. Mamu-ը չկարողացավ հաստատել, որ տեղադրված հավելվածն այն տարբերակն է, որը նա փոփոխել էր</string>
+    <string name="launch_app_unverified">Mamu-ը չկարողացավ հաստատել, որ տեղադրված հավելվածն այն տարբերակն է, որը նա փոփոխել էր</string>
     <string name="uninstall_timeout">Հեռացման ժամանակը սպառվեց</string>
     <string name="save_apk_success">APK-ն պահվեց</string>
     <string name="saved_app_export_failed">Փոփոխված հավելվածի արտահանմանը ձախողվեց</string>
@@ -847,7 +847,7 @@
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">Հավելվածի լեզուն</string>
     <string name="settings_appearance_app_language_current">Ընթացիկ լեզուն</string>
-    <string name="settings_appearance_translate">Օգնեք թարգմանել Morphe-ը</string>
+    <string name="settings_appearance_translate">Օգնեք թարգմանել Mamu-ը</string>
     <string name="settings_appearance_translations_info_title">Որոշ լեզուների համար թարգմանությունները կարող են բացակայել կամ լինել թերի</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">Ինտերֆեյսի մասշտաբ</string>
@@ -876,7 +876,7 @@
     <string name="settings_appearance_app_card_colors_bundle_description">Այստեղ օգտագործեք յուրաքանչյուր հավելվածի կամ աղբյուրի սեփական գույնը, որն ավտոմատ կերպով կհարմարեցվի</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">Հավելվածի սիմվոլ</string>
-    <string name="settings_appearance_app_icon_selector_description">Ինչպես է Morphe-ը երևում ձեր գլխավոր էկրանին և հավելվածների ցանկում</string>
+    <string name="settings_appearance_app_icon_selector_description">Ինչպես է Mamu-ը երևում ձեր գլխավոր էկրանին և հավելվածների ցանկում</string>
     <string name="settings_appearance_app_icon_default">Լռելյայն</string>
     <string name="settings_appearance_app_icon_light_2">Երկինք</string>
     <string name="settings_appearance_app_icon_light_3">Մայրամուտ</string>
@@ -900,23 +900,23 @@
     <string name="settings_appearance_app_icon_mark_black">Սև</string>
     <string name="settings_appearance_app_icon_change_dialog_title">Փոխե՞լ հավելվածի պատկերակը։</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">Morphe-ն վերագործարկվում է &lt;b&gt;%s&lt;/b&gt;-ին անցնելու համար</string>
+    <string name="settings_appearance_app_icon_change_restarts">Mamu-ն վերագործարկվում է &lt;b&gt;%s&lt;/b&gt;-ին անցնելու համար</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">Փոխել պատկերակը</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">Նախնական թարմացումներ</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">Morphe-ի նոր տարբերակների վաղ հասանելիություն</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">Mamu-ի նոր տարբերակների վաղ հասանելիություն</string>
     <string name="settings_advanced_updates_prerelease_warning_title">Միացնե՞լ նախնական թարմացումները։</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"Morphe-ի նախնական տարբերակները դեռևս մշակվում են և կարող են լինել անկայուն
+    <string name="settings_advanced_updates_prerelease_warning_message">"Mamu-ի նախնական տարբերակները դեռևս մշակվում են և կարող են լինել անկայուն
 
 Փաթեթները չեն ազդի. միացրեք նախնական փաթեթները յուրաքանչյուր աղբյուրի համար փաթեթների աղբյուրների ցուցակում"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">Ավտոմատ թարմացումներ</string>
-    <string name="settings_auto_updates_description">Ինչ է անում Morphe-ը թարմացումների հետ բացվելիս: «Քաշելու համար թարմացնել»-ը միշտ ստուգում է</string>
+    <string name="settings_auto_updates_description">Ինչ է անում Mamu-ը թարմացումների հետ բացվելիս: «Քաշելու համար թարմացնել»-ը միշտ ստուգում է</string>
     <string name="settings_auto_updates_download">Ներբեռնել ավտոմատ կերպով</string>
-    <string name="settings_auto_updates_download_description">Ստուգում է թարմացումները, երբ Morphe-ը բացվում է, և ներբեռնում է պատչերի թարմացումները ցանկացած ցանցի միջոցով</string>
+    <string name="settings_auto_updates_download_description">Ստուգում է թարմացումները, երբ Mamu-ը բացվում է, և ներբեռնում է պատչերի թարմացումները ցանկացած ցանցի միջոցով</string>
     <string name="settings_auto_updates_wifi_only">Ներբեռնել միայն Wi-Fi-ով</string>
     <string name="settings_auto_updates_wifi_only_description">Բջջային տվյալների դեպքում միայն ստուգում և ցույց է տալիս հասանելի տարբերակները</string>
     <string name="settings_auto_updates_check_only">Միայն ստուգել</string>
@@ -937,27 +937,27 @@
     <string name="settings_advanced_external_batch_patch">Թույլատրել արտաքին գրգռիչները</string>
     <string name="settings_advanced_external_batch_patch_description">Թույլ է տալիս ավտոմատացման հավելվածներին սկսել խմբակային փոփոխումները</string>
     <string name="external_batch_patch_title">Սկսե՞լ խմբակային փոփոխումը։</string>
-    <string name="external_batch_patch_description">%s-ը ցանկանում է, որ Morphe-ը թարմացնի և տեղադրի հավելվածները</string>
+    <string name="external_batch_patch_description">%s-ը ցանկանում է, որ Mamu-ը թարմացնի և տեղադրի հավելվածները</string>
     <string name="external_batch_patch_trust_caller">Միշտ թույլատրել այս հավելվածին</string>
     <string name="external_batch_patch_unknown_caller">Անհայտ հավելված</string>
     <!-- Notification content -->
     <string name="notification_bundle_update_title">Հասանելի են նոր փաթեթներ</string>
     <string name="notification_update_text">Տարբերակ %s-ը պատրաստ է ներբեռնման համար</string>
-    <string name="notification_bundle_update_text_unversioned">Սեղմեք Morphe-ը բացելու և թարմացնելու համար</string>
+    <string name="notification_bundle_update_text_unversioned">Սեղմեք Mamu-ը բացելու և թարմացնելու համար</string>
     <string name="notification_permission_dialog_title">Թույլ տվեք ծանուցումները</string>
-    <string name="notification_permission_dialog_description">Morphe-ին անհրաժեշտ է ծանուցումների թույլտվություն, որպեսզի ձեզ տեղեկացնի, երբ ֆոնային ռեժիմում թարմացումներ հասանելի դառնան</string>
+    <string name="notification_permission_dialog_description">Mamu-ին անհրաժեշտ է ծանուցումների թույլտվություն, որպեսզի ձեզ տեղեկացնի, երբ ֆոնային ռեժիմում թարմացումներ հասանելի դառնան</string>
     <string name="notification_post_patch_dialog_title">Ցանկանո՞ւմ եք ծանուցում ստանալ, երբ թարմացումները հասանելի լինեն:</string>
-    <string name="notification_channel_manager_updates">Morphe-ի թարմացումներ</string>
-    <string name="notification_channel_manager_updates_description">Ծանուցումներ Morphe-ի նոր թողարկումների մասին</string>
+    <string name="notification_channel_manager_updates">Mamu-ի թարմացումներ</string>
+    <string name="notification_channel_manager_updates_description">Ծանուցումներ Mamu-ի նոր թողարկումների մասին</string>
     <string name="notification_channel_patch_updates">Պատչերի թարմացումներ</string>
     <string name="notification_channel_patch_updates_description">Ծանուցումներ պատչերի նոր թողարկումների մասին</string>
-    <string name="notification_channel_patcher_description">Ցուցադրվում է, երբ Morphe-ը ֆոնային ռեժիմում փոփոխում է հավելվածը</string>
+    <string name="notification_channel_patcher_description">Ցուցադրվում է, երբ Mamu-ը ֆոնային ռեժիմում փոփոխում է հավելվածը</string>
     <string name="notification_channel_patching_results">Պատչավորման արդյունքները</string>
-    <string name="notification_channel_patching_results_description">Երբ պատչավորումն ավարտվում է կամ տեղադրումը սպասում է ձեզ, մինչ Morphe-ը գտնվում է հետին պլանում</string>
+    <string name="notification_channel_patching_results_description">Երբ պատչավորումն ավարտվում է կամ տեղադրումը սպասում է ձեզ, մինչ Mamu-ը գտնվում է հետին պլանում</string>
     <string name="notification_channel_mounted_apps">Տեղադրված հավելվածներ</string>
     <string name="notification_channel_mounted_apps_description">Երբ մի այլ տարբերակը փոխարինում է տեղադրված հավելվածը, և դրա փոփոխությունը այլևս չի գործում</string>
     <string name="notification_mount_replaced_title">%1$s-ը այլևս փոփոխված չէ</string>
-    <string name="notification_mount_replaced_text">v%1$s-ը փոխարինել է փոփոխված v%2$s-ը: Բացեք Morphe-ը՝ այն վերականգնելու համար</string>
+    <string name="notification_mount_replaced_text">v%1$s-ը փոխարինել է փոփոխված v%2$s-ը: Բացեք Mamu-ը՝ այն վերականգնելու համար</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">Էքսպերտի ռեժիմ</string>
     <string name="settings_advanced_expert_mode_description">Բացում է փոփոխման առաջադեմ կարգավորումները և տարբերակները</string>
@@ -979,7 +979,7 @@
     <string name="settings_advanced_github_pat_unreachable">Չհաջողվեց կապ հաստատել GitHub-ի հետ տոկենը ստուգելու համար</string>
     <string name="settings_advanced_github_pat_export_include_label">Ներառել կարգավորումների արտահանման մեջ</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">Ավելացնում է այս PAT-ը արտահանված Morphe կարգավորումներին</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">Ավելացնում է այս PAT-ը արտահանված Mamu կարգավորումներին</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">Մի՛ կիսվեք ձեր PAT-ով: Եթե այն ներառեք կարգավորումների արտահանման մեջ, պահեք այդ ֆայլը գաղտնի, քանի որ այն պարունակում է թոքենը</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1074,7 +1074,7 @@ morphe_header_custom_dark.png
     <string name="installer_status_not_supported">Չի աջակցվում այս գործողության համար</string>
     <string name="installer_status_shizuku_not_installed">Այս տարբերակն օգտագործելու համար տեղադրեք Shizuku-ն կամ Sui-ն</string>
     <string name="installer_status_shizuku_not_running">Միացրեք Shizuku-ն կամ Sui-ն և փորձեք նորից</string>
-    <string name="installer_status_shizuku_permission">Տրամադրել թույլտվություն Morphe-ին Shizuku հավելվածից</string>
+    <string name="installer_status_shizuku_permission">Տրամադրել թույլտվություն Mamu-ին Shizuku հավելվածից</string>
     <string name="installer_mount_warning_install">Պատչի ռեժիմը սահմանված է root mount-ի վրա: Այս պահպանված հավելվածը չի տեղադրվել mount-ի միջոցով</string>
     <string name="mount_version_mismatch_message">Stock հավելվածի տարբերակը (%2$s) չի համընկնում փոփոխված հավելվածի տարբերակի հետ (%1$s): Mount արեք համապատասխան stock տարբերակը, ապա փորձեք նորից</string>
     <string name="mount_stock_restore_failed_message">Android-ը մերժեց պահպանված բնօրինակ APK-ն: Տեղադրեք համապատասխան ստանդարտ տարբերակը, ապա կրկին փորձեք Mount-ը</string>
@@ -1115,7 +1115,7 @@ morphe_header_custom_dark.png
     <string name="settings_ignore_install_target_rules">Անտեսել տեղադրման թիրախի պահանջները</string>
     <string name="settings_ignore_install_target_rules_description">Թույլ է տալիս անջատել տեղադրման թիրախի համար պահանջվող փոփոխությունները և միացնել նրանք, որոնք բացառված են: Փոփոխված հավելվածը կարող է չաշխատել</string>
     <string name="settings_auto_uninstall_warning_title">Միացնել ավտոմատ հեռացումը:</string>
-    <string name="settings_auto_uninstall_warning_message">Եթե Shizuku-ի ավտոմատ տեղադրման ժամանակ Android-ը հայտնի ստորագրության կոնֆլիկտի մասին, Morphe-ը կհեռացնի գոյություն ունեցող հավելվածը նախքան փոփոխված APK-ն տեղադրելը</string>
+    <string name="settings_auto_uninstall_warning_message">Եթե Shizuku-ի ավտոմատ տեղադրման ժամանակ Android-ը հայտնի ստորագրության կոնֆլիկտի մասին, Mamu-ը կհեռացնի գոյություն ունեցող հավելվածը նախքան փոփոխված APK-ն տեղադրելը</string>
     <string name="settings_auto_uninstall_warning_risk">Սա կարող է հեռացնել հավելվածի տվյալները: Եթե հեռացումից հետո փոփոխված APK-ի տեղադրումը ձախողվի, նախկին հավելվածն արդեն կարող է չլինել</string>
     <string name="installer_shizuku_status_action">Ստուգել Shizuku-ի կարգավիճակը</string>
     <string name="installer_shizuku_status_title">Shizuku-ի կարգավիճակ</string>
@@ -1133,7 +1133,7 @@ morphe_header_custom_dark.png
     <string name="installer_shizuku_install_fail_with_details">"Shizuku-ի տեղադրումը ձախցվեց. %1$s
 
 Մանրամասներ. %2$s"</string>
-    <string name="installer_shizuku_error_permission">Shizuku-ի թույլտվությունը բացակայում է: Տվեք թույլտվությունը Morphe-ին և փորձեք նորից</string>
+    <string name="installer_shizuku_error_permission">Shizuku-ի թույլտվությունը բացակայում է: Տվեք թույլտվությունը Mamu-ին և փորձեք նորից</string>
     <string name="installer_shizuku_error_timeout">Shizuku-ն տեղադրման արդյունք չվերադարձրեց: Համոզվեք, որ այն դեռ աշխատում է, և փորձեք նորից</string>
     <string name="installer_shizuku_error_downgrade">Android-ը արգելեց սա, քանի որ այն կիջնացներ տեղադրված հավելվածի տարբերակը</string>
     <string name="installer_shizuku_error_signature">Android-ը արգելեց սա, քանի որ տեղադրված հավելվածն ունի տարբեր ստորագրություն</string>
@@ -1144,13 +1144,13 @@ morphe_header_custom_dark.png
     <string name="settings_system_battery_optimization_description">Պահպանում է փաթեթավորիչի աշխատանքը, երբ հավելվածը փոքրացված է</string>
     <string name="settings_system_process_runtime">Փաթեթավորողի աշխատանքային միջավայր</string>
     <string name="settings_system_jvm_runtime_enable">Օգտագործել ներկառուցված VM-ը</string>
-    <string name="settings_system_jvm_runtime_description">Փոփոխություններ Morphe-ի սեփական Java VM-ում, որը կարող է ավելի շատ հիշողություն օգտագործել: Անջատեք՝ Android-ի runtime-ն օգտագործելու համար</string>
+    <string name="settings_system_jvm_runtime_description">Փոփոխություններ Mamu-ի սեփական Java VM-ում, որը կարող է ավելի շատ հիշողություն օգտագործել: Անջատեք՝ Android-ի runtime-ն օգտագործելու համար</string>
     <string name="settings_system_jvm_runtime_unavailable">Անհրաժեշտ է ARM կամ 64-բիթանոց x86 սարք</string>
     <string name="settings_system_patcher_completion_sound">Ավարտի ձայն</string>
     <string name="settings_system_patcher_completion_sound_description">Հնչեցնում է առանձին մեղեդի հաջողության կամ ձախողման դեպքում, երբ թարմացումն ավարտվում է</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">Ծանուցումներ</string>
-    <string name="settings_system_notifications_description">Ինչպես է Morphe-ը տեղեկացնում ձեզ</string>
+    <string name="settings_system_notifications_description">Ինչպես է Mamu-ը տեղեկացնում ձեզ</string>
     <string name="settings_system_notifications_success_sound">Հաջողության հնչյուն</string>
     <string name="settings_system_notifications_error_sound">Ձախողման հնչյուն</string>
     <string name="settings_system_notifications_sound_default">Լռելյայն</string>
@@ -1162,8 +1162,8 @@ morphe_header_custom_dark.png
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">Ստորագրման բանալի</string>
     <string name="settings_system_signing_key_description">Պահպանում է կամ վերականգնում բանալին, որով ստորագրվում են փոփոխված հավելվածները</string>
-    <string name="settings_system_signing_key_dialog_description">Յուրաքանչյուր հավելված, որը Morphe-ը պատչում է, ստորագրվում է այս բանալիով: Պահեք պատճենը. առանց դրա պատչված հավելվածները կարելի է թարմացնել միայն հեռացնելուց հետո</string>
-    <string name="settings_system_signing_key_missing">Morphe-ը կստեղծի մեկը ձեր առաջին փեթչի ժամանակ</string>
+    <string name="settings_system_signing_key_dialog_description">Յուրաքանչյուր հավելված, որը Mamu-ը պատչում է, ստորագրվում է այս բանալիով: Պահեք պատճենը. առանց դրա պատչված հավելվածները կարելի է թարմացնել միայն հեռացնելուց հետո</string>
+    <string name="settings_system_signing_key_missing">Mamu-ը կստեղծի մեկը ձեր առաջին փեթչի ժամանակ</string>
     <string name="settings_system_signing_key_created">Ստեղծվել է %s</string>
     <string name="settings_system_signing_key_fingerprint">SHA-256 մատնահետք</string>
     <string name="settings_system_backup_appearance_description">Թեմա, գույներ և լեզու</string>
@@ -1185,31 +1185,31 @@ morphe_header_custom_dark.png
     <string name="settings_system_export_keystore_failed">Բանալիների պահոցի արտահանումը ձախողվեց</string>
     <string name="settings_system_show_password_field">Ցուցադրել գաղտնաբառը</string>
     <string name="settings_system_hide_password_field">Թաքցնել գաղտնաբառը</string>
-    <string name="settings_system_morphe_settings">Morphe-ի կարգավորումներ</string>
-    <string name="settings_system_import_manager_settings_description">Պահպանում և վերականգնում է ձեր Morphe կարգավորումները</string>
-    <string name="settings_system_export_manager_settings_title">Արտահանել Morphe-ի կարգավորումները</string>
+    <string name="settings_system_morphe_settings">Mamu-ի կարգավորումներ</string>
+    <string name="settings_system_import_manager_settings_description">Պահպանում և վերականգնում է ձեր Mamu կարգավորումները</string>
+    <string name="settings_system_export_manager_settings_title">Արտահանել Mamu-ի կարգավորումները</string>
     <string name="settings_system_export_manager_settings_description">Պահպանում է ձեր ընտրած կարգավորումները ֆայլի մեջ</string>
     <string name="settings_system_import_manager_settings_file_description">Վերականգնում է կարգավորումները պահուստային պատճենի ֆայլից</string>
     <string name="settings_system_auto_backup">Ավտոմատ պահուստավորում</string>
     <string name="settings_system_auto_backup_switch">Պահուստավորել ավտոմատ կերպով</string>
     <string name="settings_system_auto_backup_now">Պահուստավորել հիմա</string>
     <string name="settings_system_auto_backup_saved">Պահուստային պատճենը պահպանված է</string>
-    <string name="settings_system_auto_backup_interval_description">Morphe-ն սպասում է առնվազն այսքան ժամանակ պատճենի ստեղծումից առաջ՝ հաջորդը կատարելու համար</string>
-    <string name="settings_system_auto_backup_description">Պահպանում է ձեր Morphe կարգավորումները ձեր ընտրած թղթապանակում</string>
+    <string name="settings_system_auto_backup_interval_description">Mamu-ն սպասում է առնվազն այսքան ժամանակ պատճենի ստեղծումից առաջ՝ հաջորդը կատարելու համար</string>
+    <string name="settings_system_auto_backup_description">Պահպանում է ձեր Mamu կարգավորումները ձեր ընտրած թղթապանակում</string>
     <string name="settings_system_auto_backup_last">Վերջին պահուստավորումը՝ %s</string>
     <string name="settings_system_auto_backup_folder">Թղթապանակ</string>
-    <string name="settings_system_auto_backup_folder_name">Morphe-ի պահուստային պատճենները</string>
+    <string name="settings_system_auto_backup_folder_name">Mamu-ի պահուստային պատճենները</string>
     <string name="settings_system_auto_backup_folder_failed">Չհաջողվեց օգտագործել այս թղթապանակը. %s</string>
     <string name="settings_system_auto_backup_interval">Պահպանման հաճախականությունը</string>
     <string name="settings_system_auto_backup_signing_key">Ներառել ստորագրման բանալին</string>
     <string name="settings_system_auto_backup_signing_key_description">Պահպանում է փոփոխված հավելվածները ստորագրող բանալին կարգավորումների կողքին</string>
     <string name="settings_system_auto_backup_signing_key_warning_title">Պահպանե՞լ ստորագրման բանալին։</string>
     <string name="settings_system_auto_backup_signing_key_warning_message">Ցանկացած ոք, ով կստանա այս ֆայլը, կարող է ստորագրել թարմացումներ, որոնք կտեղադրվեն ձեր փոփոխված հավելվածների վրա: Պահպանեք թղթապանակը գաղտնի և կիսվեք դրան միայն ձեր սեփական սարքերի հետ</string>
-    <string name="settings_system_auto_backup_footer">Պատճենը պահպանվում է, երբ դուք լքում եք Morphe-ը՝ որևէ բան փոփոխելուց հետո: Պահպանվում են ամենանոր %s-ները</string>
+    <string name="settings_system_auto_backup_footer">Պատճենը պահպանվում է, երբ դուք լքում եք Mamu-ը՝ որևէ բան փոփոխելուց հետո: Պահպանվում են ամենանոր %s-ները</string>
     <string name="settings_system_auto_backup_failed">Վերջին պահպանումը չհաջողվեց կատարել։ Ընտրեք թղթապանակը նորից</string>
-    <string name="settings_system_import_manager_settings_fail">Morphe կարգավորումների ներմուծումը ձախողվեց. %s</string>
-    <string name="settings_system_import_manager_settings_success">Morphe կարգավորումները ներմուծվեցին</string>
-    <string name="settings_system_import_manager_settings_mode_title">Ներմուծել Morphe-ի կարգավորումները</string>
+    <string name="settings_system_import_manager_settings_fail">Mamu կարգավորումների ներմուծումը ձախողվեց. %s</string>
+    <string name="settings_system_import_manager_settings_success">Mamu կարգավորումները ներմուծվեցին</string>
+    <string name="settings_system_import_manager_settings_mode_title">Ներմուծել Mamu-ի կարգավորումները</string>
     <string name="settings_system_import_manager_settings_mode_description">Ընտրեք, թե ինչպես պետք է կիրառվեն ներմուծված կարգավորումները և աղբյուրները</string>
     <string name="settings_system_import_selections_mode_title">Ներմուծել փաթեթների ընտրությունները</string>
     <string name="settings_system_import_selections_mode_description">Ընտրեք, թե ինչպես պետք է կիրառվեն ներմուծված ընտրությունները և փաթեթի տարբերակները</string>
@@ -1217,8 +1217,8 @@ morphe_header_custom_dark.png
     <string name="import_mode_replace_description">Ճշգրիտ համընկնել պահուստային պատճենի հետ: Պահուստային պատճենում բացակայող տարրերը կհեռացվեն</string>
     <string name="import_mode_merge_title">Միացնել գոյություն ունեցողի հետ</string>
     <string name="import_mode_merge_description">Ավելացնել պահուստային պատճենի բացակայող տարրերը: Գոյություն ունեցող տարրերը կմնան անփոփոխ</string>
-    <string name="settings_system_export_manager_settings_fail">Morphe կարգավորումների արտահանումը ձախողվեց. %s</string>
-    <string name="settings_system_export_manager_settings_success">Morphe կարգավորումները արտահանվեցին</string>
+    <string name="settings_system_export_manager_settings_fail">Mamu կարգավորումների արտահանումը ձախողվեց. %s</string>
+    <string name="settings_system_export_manager_settings_success">Mamu կարգավորումները արտահանվեցին</string>
     <string name="settings_system_export_debug_logs">Արտահանել դեբագ լոգերը</string>
     <string name="settings_system_export_debug_logs_description">Պահպանում է համակարգի մատյանները խնդիրների լուծման համար</string>
     <string name="settings_system_export_debug_logs_export_read_failed">Չհաջողվեց կարդալ մատյանները (ելքի կոդը %s)</string>
@@ -1236,7 +1236,7 @@ morphe_header_custom_dark.png
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">Պահեստի կառավարում</string>
     <string name="settings_system_storage_management_description">Ցուցադրում է սկավառակի օգտագործումը և մաքրում քեշավորված ֆայլերը</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s ազատ</string>
     <string name="settings_system_storage_saved_apks">Պահպանված APK-ները</string>
     <string name="settings_system_storage_caches">Քեշեր</string>
@@ -1259,7 +1259,7 @@ morphe_header_custom_dark.png
     <string name="settings_system_storage_clear_anyway">Այնուամենայնիվ, մաքրել</string>
     <string name="settings_system_storage_nothing_to_clear">Մաքրելու ոչինչ չկա</string>
     <string name="settings_system_storage_open_app_info_title">Բացել Android հավելվածի տվյալները</string>
-    <string name="settings_system_storage_open_app_info_description">Կառավարեք կամ մաքրեք Morphe-ի բոլոր տվյալները համակարգի կարգավորումների միջոցով</string>
+    <string name="settings_system_storage_open_app_info_description">Կառավարեք կամ մաքրեք Mamu-ի բոլոր տվյալները համակարգի կարգավորումների միջոցով</string>
     <string name="settings_system_save_original_apks_title">Պահպանել բնօրինակ APK-ները</string>
     <string name="settings_system_save_original_apks_description">Պահպանել նախնական փաթեթավորված APK-ն, որպեսզի այն կարողանա օգտագործվել կրկնակի փաթեթավորման համար առանց ֆայլը նորից ընտրելու</string>
     <string name="settings_system_save_patched_apks_title">Պահպանել փաթեթավորված APK-ները</string>
@@ -1313,13 +1313,13 @@ morphe_header_custom_dark.png
     <string name="copy_selection_available_format">Հասանելի է %1$s-ը %2$s-ից</string>
     <!-- Settings - System Tab - Custom file picker -->
     <string name="settings_system_custom_file_picker">Ֆայլերի սեփական ընտրիչ</string>
-    <string name="settings_system_custom_file_picker_description">Օգտագործում է Morphe-ի ներկառուցված ֆայլերի ընտրիչը համակարգայինի փոխարեն</string>
+    <string name="settings_system_custom_file_picker_description">Օգտագործում է Mamu-ի ներկառուցված ֆայլերի ընտրիչը համակարգայինի փոխարեն</string>
     <!-- Settings - System Tab - APK download helper -->
     <string name="settings_system_apk_download_helper">APK ներբեռնման օգնական</string>
     <string name="settings_system_apk_download_helper_trusted_count">Վստահելի՝ %1$d %2$d-ից</string>
     <string name="settings_system_apk_download_helper_dialog_description">Օգնող հավելվածները կարող են ներբեռնել բնօրինակ APK-ները ձեզ համար: Ներբեռնման հրահանգներում առաջարկվում են միայն նրանք, որոնց դուք վստահում եք այստեղ</string>
     <string name="settings_system_apk_download_helper_trust_title">Վստահե՞լ այս օգնականին։</string>
-    <string name="settings_system_apk_download_helper_warning">APK-ն գալիս է օգնող հավելվածից, ուստի վստահեք միայն ծանոթ հավելվածներին: Morphe-ը դեռևս ստուգում է յուրաքանչյուր ֆայլի փաթեթը, տարբերակը և ստորագրությունը նախքան փոփոխությունները կատարելը</string>
+    <string name="settings_system_apk_download_helper_warning">APK-ն գալիս է օգնող հավելվածից, ուստի վստահեք միայն ծանոթ հավելվածներին: Mamu-ը դեռևս ստուգում է յուրաքանչյուր ֆայլի փաթեթը, տարբերակը և ստորագրությունը նախքան փոփոխությունները կատարելը</string>
     <string name="settings_system_apk_download_helper_installed_by">Տեղադրված է %s-ի կողմից</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">Տեղադրողը անհայտ է</string>
     <string name="settings_system_apk_download_helper_open_directly">Անմիջապես բացել օգնականը</string>
@@ -1352,7 +1352,7 @@ morphe_header_custom_dark.png
     <string name="settings_about_section_project">Նախագիծ</string>
     <string name="settings_about_section_help">Օգնություն</string>
     <string name="credits_prior_development">Նախկին մշակում</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">Կառավարիչ</string>
     <string name="about_update_available">Հասանելի է թարմացում՝ %s</string>
     <string name="about_up_to_date">Թարմացված է</string>
@@ -1365,7 +1365,7 @@ morphe_header_custom_dark.png
     <string name="contributors_all_time">Ամբողջ ժամանակահատվածում</string>
     <string name="contributors_6_months">6 ամիս</string>
     <string name="contributors_3_months">3 ամիս</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">Աջակիցներ</string>
     <string name="supporters_description">Աջակիցներ Open Collective-ում</string>
     <string name="supporters_become">Դարձիր աջակից</string>
@@ -1373,7 +1373,7 @@ morphe_header_custom_dark.png
     <string name="people_more">Եվ ևս %s</string>
     <string name="people_unavailable">Չհաջողվեց բեռնել ցուցակը</string>
     <string name="opensource_licenses">Բաց կոդի լիցենզիաներ</string>
-    <string name="opensource_licenses_description">Գրադարանները, որոնց վրա կառուցված է Morphe-ը</string>
+    <string name="opensource_licenses_description">Գրադարանները, որոնց վրա կառուցված է Mamu-ը</string>
     <string name="opensource_licenses_search">Որոնել գրադարանները և լիցենզիաները</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">Ընտրություն</string>
@@ -1398,12 +1398,12 @@ morphe_header_custom_dark.png
     <string name="settings_section_patcher">Պատչեր</string>
     <string name="settings_section_updates">Թարմացումներ</string>
     <string name="settings_section_patching">Փաթեթավորում</string>
-    <string name="settings_section_appearance_summary">Ինչպիսին է Morphe-ը</string>
+    <string name="settings_section_appearance_summary">Ինչպիսին է Mamu-ը</string>
     <string name="settings_section_patch_options_summary">Թե ինչով են պարզ ռեժիմը փաթեթավորում հավելվածները</string>
     <string name="settings_section_general">Ընդհանուր</string>
     <string name="settings_section_patcher_summary">Ինչպես են հավելվածները փոփոխվում այս սարքի վրա</string>
     <string name="settings_section_help_info">Օգնություն &amp; տեղեկություն</string>
-    <string name="settings_section_about_summary">Ավելին Morphe-ի մասին և օգնության ստացում</string>
+    <string name="settings_section_about_summary">Ավելին Mamu-ի մասին և օգնության ստացում</string>
     <string name="settings_section_local_files">Ֆայլեր</string>
     <string name="settings_section_backup">Պահպանման պատճեն</string>
     <string name="settings_section_import_export">Ներմուծում և արտահանում</string>
@@ -1566,7 +1566,7 @@ morphe_header_custom_dark.png
     <string name="update_completed">Թարմացումը տեղադրված է</string>
     <string name="install_update_manager_failed">Չհաջողվեց տեղադրել թարմացումը</string>
     <string name="installing_manager_update">Տեղադրվում է թարմացումը…</string>
-    <string name="installing_manager_update_hint">Morphe-ը կփակվի թարմացումն ավարտելու համար</string>
+    <string name="installing_manager_update_hint">Mamu-ը կփակվի թարմացումն ավարտելու համար</string>
     <string name="downloading_manager_update">Ներբեռնվում է թարմացումը…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">Ներբեռնված է %1$s ՄԲ</string>
@@ -1589,7 +1589,7 @@ morphe_header_custom_dark.png
     <string name="onboarding_signing_key_desc">Պահպանեք այն բանալին, որով ստորագրվում են ձեր փոփոխված հավելվածները: Առանց դրա դրանք կարող են թարմացվել միայն վերատեղադրումից հետո</string>
     <string name="onboarding_swipe_title">Սահելու ժեստեր</string>
     <string name="onboarding_swipe_desc">Սահեցրեք հավելվածի քարտը դեպի աջ՝ հասանելի փաթեթները տեսնելու համար: Սահեցրեք դեպի ձախ՝ քարտը գլխավոր էկրանից թաքցնելու համար</string>
-    <string name="onboarding_settings_desc">Անհատականացրեք Morphe-ը՝ արտաքին տեսքը, ընդլայնված կարգավորումները և համակարգային գործիքները</string>
+    <string name="onboarding_settings_desc">Անհատականացրեք Mamu-ը՝ արտաքին տեսքը, ընդլայնված կարգավորումները և համակարգային գործիքները</string>
     <string name="onboarding_sources_patches_desc">Հպեք՝ այս աղբյուրից հասանելի բոլոր թարմացումները տեսնելու համար</string>
     <string name="onboarding_sources_version_desc">Հպեք տարբերակին՝ այս աղբյուրի փոփոխությունների ամբողջական ցանկը տեսնելու համար</string>
     <string name="onboarding_sources_apps_desc">Հպեք՝ տեսնելու համար այն հավելվածները, որոնք փոփոխում է այս աղբյուրը, և ընտրեք, թե որոնց համար են առաջարկվում փոփոխություններ</string>
@@ -1601,9 +1601,28 @@ morphe_header_custom_dark.png
     <string name="onboarding_system_file_picker_desc">Միացրեք՝ APK-ներ կամ keystore-ներ ընտրելիս համակարգային ընտրիչի փոխարեն ներկառուցված ֆայլերի բրաուզերը օգտագործելու համար</string>
     <!-- Tour prompt dialog shown after first successful patch install -->
     <string name="tour_prompt_title">Ֆունկցիաների արագ ծանոթացում</string>
-    <string name="tour_prompt_desc">Ցանկանո՞ւմ եք արագ ծանոթանալ Morphe-ի հիմնական ֆունկցիաներին:</string>
+    <string name="tour_prompt_desc">Ցանկանո՞ւմ եք արագ ծանոթանալ Mamu-ի հիմնական ֆունկցիաներին:</string>
     <!-- Label of a footer button beside "Skip". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="tour_prompt_confirm">Ցույց տվեք ինձ</string>
     <string name="onboarding_restart_title">Ֆունկցիաների ծանոթացում</string>
     <string name="onboarding_restart_desc">Հիմնական գործառույթների ուղեցույց շրջայց</string>
+
+    <string name="home_app_filter_all_description">Բոլոր հավելվածները գլխավոր էկրանին</string>
+    <string name="home_app_filter_patched_description">Հավելվածներ, որոնք դուք փոփոխել եք կամ պահպանել Mamu-ի միջոցով</string>
+    <string name="home_app_filter_not_patched_description">Հավելվածներ, որոնք դուք դեռ չեք փոփոխել Mamu-ում</string>
+    <string name="home_app_filter_installed_description">Այս սարքի վրա տեղադրված հավելվածները</string>
+    <string name="home_app_filter_uninstalled_description">Mamu-ով փոփոխված հավելվածներ, որոնք այլևս չկան այս սարքի վրա</string>
+    <string name="home_app_filter_clones_description">Սեփական փաթեթի անվամբ կառուցված հավելվածներ, որոնք տեղադրված են բնօրինակի կողքին</string>
+    <string name="home_app_sort_name_asc_description">Այբբենական, Ա-ից Զ</string>
+    <string name="home_app_sort_name_desc_description">Հակառակ այբբենական, Զ-ից Ա</string>
+    <string name="home_app_sort_recently_patched_description">Նախ ստեղծված վերջերս պատչված հավելվածները</string>
+    <string name="home_category_custom">Անհատական</string>
+    <string name="sources_filter_all_description">Յուրաքանչյուր աղբյուր</string>
+    <string name="sources_filter_enabled_description">Աղբյուրներ, որտեղից վերցվում են փաթեթները</string>
+    <string name="sources_filter_disabled_description">Անջատված աղբյուրներ</string>
+    <string name="sources_filter_issues_description">Աղբյուրներ, որոնք արգելափակված են, չեն բեռնվել կամ պահանջում են Mamu-ի ավելի նոր տարբերակ</string>
+    <string name="sources_sort_last_updated_description">Ամենանոր աղբյուրների թարմացումները՝ առաջին հերթին</string>
+    <string name="sources_sort_enabled_first_description">Ցուցադրել ակտիվ աղբյուրները לפני անջատված աղբյուրները</string>
+    <string name="home_apk_availability_installed_version">Տեղադրված է այս սարքի վրա՝ %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">Բանալիների պահոցի ձևաչափը</string>
 </resources>

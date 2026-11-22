@@ -8,6 +8,8 @@ package app.morphe.manager.ui.screen.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -15,15 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import app.morphe.manager.R
-import app.morphe.manager.ui.screen.shared.Defaults
 import app.morphe.manager.ui.screen.shared.dialogSecondaryTextColor
 import app.morphe.manager.ui.screen.shared.AppDialog
 import app.morphe.manager.ui.screen.shared.AppDialogButtonRow
-import app.morphe.manager.ui.screen.shared.DialogHostScope
 import app.morphe.manager.ui.screen.shared.SelectionCheckRow
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
 
 /**
  * Confirmation for a batch patch run requested by another app.
@@ -32,14 +31,13 @@ import com.composables.icons.materialsymbols.rounded.*
  * The user can trust the calling app once, which stores it in the allowlist.
  */
 @Composable
-fun DialogHostScope.ExternalBatchPatchDialog(
+fun ExternalBatchPatchDialog(
     callerPackage: String?,
     packageCount: Int,
     onConfirm: (trustCaller: Boolean) -> Unit,
     onDismiss: () -> Unit
 ) {
-    // Keyed by caller, so a request from another app never inherits the trust ticked for the last one
-    var trustCaller by remember(callerPackage) { mutableStateOf(false) }
+    var trustCaller by remember { mutableStateOf(false) }
     val caller = callerPackage ?: stringResource(R.string.external_batch_patch_unknown_caller)
 
     AppDialog(
@@ -49,7 +47,7 @@ fun DialogHostScope.ExternalBatchPatchDialog(
         footer = {
             AppDialogButtonRow(
                 primaryText = stringResource(R.string.continue_),
-                primaryIcon = MaterialSymbols.Rounded.Check,
+                primaryIcon = Icons.Outlined.Check,
                 onPrimaryClick = { onConfirm(trustCaller && callerPackage != null) },
                 secondaryText = stringResource(android.R.string.cancel),
                 onSecondaryClick = onDismiss
@@ -58,7 +56,7 @@ fun DialogHostScope.ExternalBatchPatchDialog(
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(Defaults.SpaceMedium)
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Text(
                 text = pluralStringResource(

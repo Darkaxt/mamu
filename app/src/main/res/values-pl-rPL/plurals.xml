@@ -264,4 +264,10 @@
         <item quantity="many">%d niezweryfikowanych linków</item>
         <item quantity="other">%d niezweryfikowanych linków</item>
     </plurals>
+    <plurals name="sources_search_patch_matches">
+        <item quantity="one">%s pasująca modyfikacja</item>
+        <item quantity="few">%s pasujące modyfikacje</item>
+        <item quantity="many">%s pasujących modyfikacji</item>
+        <item quantity="other">%s pasujących modyfikacji</item>
+    </plurals>
 </resources>

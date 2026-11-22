@@ -10,12 +10,15 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.*
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -32,8 +35,6 @@ import app.morphe.manager.R
 import app.morphe.manager.patcher.patch.CompatiblePackage
 import app.morphe.manager.patcher.patch.PatchInfo
 import app.morphe.manager.ui.screen.shared.*
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
 
 /**
  * One block of a patch list dialog: the patches of one app, of one source, or the universal ones.
@@ -61,10 +62,9 @@ internal class PatchListSection(
  * @param notice Shown above the list, for what the user should know before reading it.
  * @param onExpertBadgeClick Marks the patches left out by default, and explains the mark.
  * @param headerActions What the list's owner offers in the header, ahead of the filter.
- * @param initialSection Key of the block the filter opens on, the whole list where null.
  */
 @Composable
-internal fun DialogHostScope.PatchListDialog(
+internal fun PatchListDialog(
     icon: @Composable (Modifier) -> Unit,
     title: String,
     subtitle: String,
@@ -73,16 +73,21 @@ internal fun DialogHostScope.PatchListDialog(
     saveStateKey: String,
     onDismiss: () -> Unit,
     initialQuery: String = "",
-    initialSection: String? = null,
     accentColor: Color? = null,
     notice: (@Composable () -> Unit)? = null,
     onExpertBadgeClick: (() -> Unit)? = null,
     headerActions: @Composable RowScope.() -> Unit = {}
 ) {
-    val search = rememberSearchFieldState(initialQuery = initialQuery)
+    val search = rememberSearchFieldState()
+    LaunchedEffect(Unit) {
+        if (initialQuery.isNotBlank()) {
+            search.toggle()
+            search.query = initialQuery
+        }
+    }
 
-    var selectedKey by remember { mutableStateOf(initialSection) }
-    var showFilterPanel by remember { mutableStateOf(false) }
+    var selectedKey by remember { mutableStateOf<String?>(null) }
+    var showFilterSheet by remember { mutableStateOf(false) }
     // A block the list no longer holds cannot stay picked, or the filter would hide everything
     val selected = selectedKey?.takeIf { key -> sections.any { it.key == key } }
     var foldedKeys by remember { mutableStateOf(emptySet<String>()) }
@@ -124,10 +129,23 @@ internal fun DialogHostScope.PatchListDialog(
     val searchLabel = stringResource(R.string.expert_mode_search)
     val hasSections = sections.size > 1
 
-    ListDialog(
+    AppDialog(
         onDismissRequest = onDismiss,
+        title = null,
         accentColor = accentColor,
-        header = {
+        footer = { PatchListFooter(onClose = onDismiss) },
+        padding = DialogPadding.Compact,
+        scrollable = false,
+        contentArrangement = Arrangement.Top,
+        fillContentHeight = true,
+        hideFooterWhileTyping = true
+    ) {
+        // Back closes the search, then the filter, before the dialog itself. The last handler
+        // registered is the first one asked, so they go in reverse
+        BackHandler(enabled = selected != null) { selectedKey = null }
+        SearchFieldBackHandler(search)
+
+        Column(modifier = Modifier.fillMaxSize()) {
             ListDialogHeader(
                 icon = icon,
                 title = title,
@@ -154,140 +172,144 @@ internal fun DialogHostScope.PatchListDialog(
                 // A source can patch dozens of apps, more than a row of chips could hold
                 if (hasSections) {
                     TitleAction(
-                        icon = MaterialSymbols.Rounded.Filter_list,
+                        icon = Icons.Outlined.FilterList,
                         contentDescription = stringResource(R.string.filter),
-                        onClick = { showFilterPanel = !showFilterPanel },
+                        onClick = { showFilterSheet = true },
                         style = TitleActionStyle.Toggle,
-                        // Engaged while the panel is open, and marked while one block is shown alone
-                        active = showFilterPanel,
-                        marked = selected != null
+                        active = selected != null
                     )
                 }
             }
-        },
-        footer = { PatchListFooter(onClose = onDismiss) },
-        // Docked under the list rather than over it, so the list stays live and narrows as a block is picked
-        bottomBar = if (showFilterPanel) {
-            {
-                SectionFilterPanel(
-                    sections = sections,
-                    selectedKey = selected,
-                    onSelect = { selectedKey = it },
-                    onClose = { showFilterPanel = false }
-                )
-            }
-        } else null,
-        hideFooterWhileTyping = true
-    ) {
-        // Back closes the search, then the filter, before the dialog itself. The last handler
-        // registered is the first one asked, so they go in reverse
-        BackHandler(enabled = selected != null) { selectedKey = null }
-        SearchFieldBackHandler(search)
 
-        // A list read from the database arrives a frame or two late, and an empty list reads
-        // as "nothing to patch" until it does
-        AnimatedContent(
-            targetState = isLoading,
-            transitionSpec = Animations.fadeCrossfade(),
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
-            label = "patchListLoading"
-        ) { loading ->
-            if (loading) {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    PulsingLogoIndicator(delayed = true)
-                }
-                return@AnimatedContent
-            }
-
-            val listState = rememberLazyListState()
-            // The list otherwise holds on to whichever row led it, which another block leaves
-            // somewhere in the middle, so picking one starts the list over from its top
-            LaunchedEffect(selected) { listState.scrollToItem(0) }
-            DialogLazyList(
-                modifier = Modifier.fillMaxSize(),
-                state = listState,
-                verticalArrangement = Arrangement.spacedBy(SegmentGap)
-            ) {
-                if (notice != null) item(key = "notice") { Box(Modifier.endsBlock()) { notice() } }
-
-                if (shownSections.isEmpty()) {
-                    item(key = "empty_state") {
-                        PatchesListEmptyState(modifier = Modifier.animatedListItem(this))
+            // A list read from the database arrives a frame or two late, and an empty list reads
+            // as "nothing to patch" until it does
+            AnimatedContent(
+                targetState = isLoading,
+                transitionSpec = Animations.fadeCrossfade(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                label = "patchListLoading"
+            ) { loading ->
+                if (loading) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        PulsingLogoIndicator(delayed = true)
                     }
+                    return@AnimatedContent
                 }
 
-                shownSections.forEach { (section, groups) ->
-                    // A filter narrows the list far enough that a fold would only hide results
-                    val isFolded = !isFiltering && section.key in foldedKeys
+                val listState = rememberLazyListState()
+                // The list otherwise holds on to whichever row led it, which another block leaves
+                // somewhere in the middle, so picking one starts the list over from its top
+                LaunchedEffect(selected) {
+                    listState.scrollToItem(0)
+                }
+                DialogLazyList(
+                    modifier = Modifier.fillMaxSize(),
+                    state = listState,
+                    verticalArrangement = Arrangement.spacedBy(Defaults.ItemSpacing),
+                    pinnedFirstRow = true
+                ) {
+                    // A row of the list rather than a field above it, so the rows below ease into
+                    // place as it comes and goes. The row stays while the field is closed, and its
+                    // share of the spacing makes the gap under the header
+                    stickyHeader(key = "search") {
+                        AppDialogSearchHeader(
+                            visible = search.visible,
+                            value = search.query,
+                            onValueChange = { search.query = it },
+                            label = searchLabel,
+                            // Opaque, so rows scrolled under the gap stay hidden
+                            modifier = Modifier
+                                .background(MaterialTheme.colorScheme.background)
+                                .padding(top = Defaults.ItemSpacing)
+                        )
+                    }
 
-                    val target = commonTargets[section.key]
-                    val targetVersions = target?.versions.orEmpty().toList()
+                    if (notice != null) item(key = "notice") { notice() }
 
-                    // A list of several apps heads each one's patches as a block of its own
-                    val head = if (!hasSections) null else PatchBlockHead(
-                        key = "section_${section.key}",
-                        folded = isFolded
-                    ) { segment ->
-                        var versionsExpanded by rememberSaveable(saveStateKey, section.key) {
-                            mutableStateOf(false)
+                    if (shownSections.isEmpty()) {
+                        item(key = "empty_state") {
+                            PatchesListEmptyState(modifier = Modifier.animatedListItem(this))
                         }
-                        PatchGroupHeader(
-                            title = section.title,
-                            count = groups.sumOf { it.items.size },
-                            isExpanded = !isFolded,
-                            onToggle = if (isFiltering) null else ({
-                                foldedKeys = if (isFolded) foldedKeys - section.key
-                                else foldedKeys + section.key
-                            }),
-                            leading = { section.icon(Modifier.size(24.dp)) },
-                            accentColor = section.accentColor,
-                            // The versions belong to the block's app, unless the list's header names them
-                            badges = if (headerTarget == null && targetVersions.isNotEmpty()) {
-                                {
-                                    VersionBadges(
-                                        versions = targetVersions,
-                                        experimental = target?.experimentalVersions.orEmpty(),
-                                        expanded = versionsExpanded,
-                                        onToggle = { versionsExpanded = !versionsExpanded },
-                                        accentColor = section.accentColor
-                                    )
-                                }
-                            } else null,
-                            shape = segment.shape,
-                            modifier = Modifier
-                                .animatedListItem(this)
-                                .endsBlock(segment.endsBlock)
-                        )
                     }
 
-                    patchGroupRows(
-                        sectionKey = section.key,
-                        groups = groups,
-                        key = { (index, _): IndexedValue<PatchInfo> -> "${section.key}:$index" },
-                        isFiltering = isFiltering,
-                        folds = patchFolds,
-                        onToggle = { group -> patchSections.toggle(section.key, group) },
-                        accentColor = section.accentColor,
-                        head = head
-                    ) { (_, patch), segment ->
-                        PatchItemCard(
-                            patch = patch,
-                            saveStateKey = "$saveStateKey:${section.key}",
-                            packageName = section.packageName,
-                            commonVersions = target?.versions,
-                            onExpertBadgeClick = onExpertBadgeClick,
-                            accentColor = section.accentColor,
-                            shape = segment.shape,
-                            modifier = Modifier
-                                .animatedListItem(this)
-                                .endsBlock(segment.endsBlock)
-                        )
+                    shownSections.forEach { (section, groups) ->
+                        // A filter narrows the list far enough that a fold would only hide results
+                        val isFolded = !isFiltering && section.key in foldedKeys
+
+                        val target = commonTargets[section.key]
+                        val targetVersions = target?.versions.orEmpty().toList()
+
+                        if (hasSections) {
+                            item(key = "section_${section.key}") {
+                                var versionsExpanded by rememberSaveable(saveStateKey, section.key) {
+                                    mutableStateOf(false)
+                                }
+                                PatchGroupHeader(
+                                    title = section.title,
+                                    count = groups.sumOf { it.items.size },
+                                    isExpanded = !isFolded,
+                                    onToggle = if (isFiltering) null else ({
+                                        foldedKeys = if (isFolded) foldedKeys - section.key
+                                        else foldedKeys + section.key
+                                    }),
+                                    leading = { section.icon(Modifier.size(24.dp)) },
+                                    accentColor = section.accentColor,
+                                    // The versions belong to the block's app, unless the list's header names them
+                                    badges = if (headerTarget == null && targetVersions.isNotEmpty()) {
+                                        {
+                                            VersionBadges(
+                                                versions = targetVersions,
+                                                experimental = target?.experimentalVersions.orEmpty(),
+                                                expanded = versionsExpanded,
+                                                onToggle = { versionsExpanded = !versionsExpanded },
+                                                accentColor = section.accentColor
+                                            )
+                                        }
+                                    } else null,
+                                    modifier = Modifier.animatedListItem(this)
+                                )
+                            }
+                        }
+
+                        if (!isFolded) {
+                            patchGroupRows(
+                                sectionKey = section.key,
+                                groups = groups,
+                                key = { (index, _): IndexedValue<PatchInfo> -> "${section.key}:$index" },
+                                isFiltering = isFiltering,
+                                folds = patchFolds,
+                                onToggle = { group -> patchSections.toggle(section.key, group) },
+                                accentColor = section.accentColor
+                            ) { (_, patch) ->
+                                PatchItemCard(
+                                    patch = patch,
+                                    saveStateKey = "$saveStateKey:${section.key}",
+                                    packageName = section.packageName,
+                                    commonVersions = target?.versions,
+                                    onExpertBadgeClick = onExpertBadgeClick,
+                                    accentColor = section.accentColor,
+                                    modifier = Modifier.animatedListItem(this)
+                                )
+                            }
+                        }
                     }
                 }
             }
         }
+    }
+
+    if (showFilterSheet) {
+        SectionFilterSheet(
+            sections = sections,
+            selectedKey = selected,
+            onSelect = { key ->
+                selectedKey = key
+                showFilterSheet = false
+            },
+            onDismiss = { showFilterSheet = false }
+        )
     }
 }
 
@@ -310,39 +332,36 @@ private fun PatchListFooter(onClose: () -> Unit) {
     )
 }
 
-/** Panel picking one block of the list to show alone, in the order the list has them. */
+/** Sheet picking one block of the list to show alone, in the order the list has them. */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun SectionFilterPanel(
+private fun SectionFilterSheet(
     sections: List<PatchListSection>,
     selectedKey: String?,
     onSelect: (String?) -> Unit,
-    onClose: () -> Unit
+    onDismiss: () -> Unit
 ) {
-    DockedPanel(visible = true, onBack = onClose) {
-        Column(modifier = Modifier.fillMaxWidth()) {
-            PanelHeader(title = { PanelTitle(text = stringResource(R.string.filter)) }) {
-                TitleAction(
-                    icon = MaterialSymbols.Rounded.Close,
-                    contentDescription = stringResource(R.string.close),
-                    onClick = onClose,
-                    style = TitleActionStyle.Neutral
-                )
-            }
+    AppBottomSheet(onDismissRequest = onDismiss) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .navigationBarsPadding()
+        ) {
+            PanelHeader(title = { PanelTitle(text = stringResource(R.string.filter)) })
             val scrollState = rememberScrollState()
-            // Held short of the list it filters, which stays in view above it
-            Box(Modifier.fillMaxWidth().heightIn(max = SectionFilterMaxHeight)) {
+            Box(Modifier.fillMaxWidth()) {
                 FlowRow(
                     modifier = Modifier
                         .verticalScrollFade(scrollState)
                         .verticalScroll(scrollState)
-                        .padding(start = Defaults.SpaceLarge, end = Defaults.SpaceLarge, bottom = Defaults.SpaceLarge),
-                    horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall)
+                        .padding(start = Defaults.ContentPadding, end = Defaults.ContentPadding, bottom = Defaults.ContentPadding),
+                    horizontalArrangement = Arrangement.spacedBy(Defaults.ContentPaddingSmall)
                 ) {
                     AppFilterChip(
                         selected = selectedKey == null,
                         onClick = { onSelect(null) },
                         label = stringResource(R.string.all),
-                        selectedIcon = MaterialSymbols.Rounded.Done_all
+                        selectedIcon = Icons.Outlined.DoneAll
                     )
                     sections.forEach { section ->
                         val isSelected = section.key == selectedKey
@@ -354,13 +373,11 @@ private fun SectionFilterPanel(
                     }
                 }
 
-                ListScrollbar(scrollState = scrollState, modifier = Modifier.padding(vertical = Defaults.SpaceMedium))
+                ListScrollbar(scrollState = scrollState)
             }
         }
     }
 }
-
-private val SectionFilterMaxHeight = 280.dp
 
 /**
  * One patch of a patch list: its name, description and what sets it apart from the rest of its
@@ -368,7 +385,6 @@ private val SectionFilterMaxHeight = 280.dp
  * and the options fold out from a badge naming how many there are.
  *
  * @param packageName App the block lists the patch under, whose versions the card compares.
- * @param shape Its place among the rows of its block, see [ListSegment].
  */
 @Composable
 internal fun PatchItemCard(
@@ -378,8 +394,7 @@ internal fun PatchItemCard(
     commonVersions: Set<String>?,
     modifier: Modifier = Modifier,
     onExpertBadgeClick: (() -> Unit)? = null,
-    accentColor: Color? = null,
-    shape: CornerBasedShape? = null
+    accentColor: Color? = null
 ) {
     var expandVersions by rememberSaveable(saveStateKey, patch.name, "versions") {
         mutableStateOf(false)
@@ -389,7 +404,7 @@ internal fun PatchItemCard(
     }
 
     val options = patch.options.orEmpty()
-    val compatible = packageName?.let(patch::targetFor)
+    val compatible = patch.compatiblePackages?.firstOrNull { it.packageName == packageName }
     // A universal patch has none, and most others share the versions their block names above them
     val versions = compatible?.versions.orEmpty().takeIf { it != commonVersions }.orEmpty().toList()
     val isExpertOnly = !patch.include && onExpertBadgeClick != null
@@ -405,31 +420,20 @@ internal fun PatchItemCard(
         modifier = modifier,
         showBorder = true,
         borderColor = appAccentBorder(accentColor),
-        color = cardColor,
-        shape = shape
+        color = cardColor
     ) {
         // The badges on the card take the app's color, as its edge does
         ProvideCardAccent(badgeAccent, cardColor) {
-            // The gaps go with what they part, so the options bring theirs as they fold out rather
-            // than the column opening it at once
-            Column(modifier = Modifier.padding(Defaults.SpaceLarge)) {
-                Row(horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceMedium)) {
-                    PatchCardText(
-                        name = patch.displayName,
-                        description = patch.description,
-                        modifier = Modifier.weight(1f)
-                    )
-                    // The whole card folds the options out, and the chevron says so
-                    if (options.isNotEmpty()) {
-                        ExpandChevron(expanded = expandOptions, announced = true)
-                    }
-                }
+            Column(
+                modifier = Modifier.padding(Defaults.ContentPadding),
+                verticalArrangement = Arrangement.spacedBy(Defaults.ItemSpacing)
+            ) {
+                PatchCardText(name = patch.displayName, description = patch.description)
 
                 if (versions.isNotEmpty() || options.isNotEmpty() || isExpertOnly) {
                     FlowRow(
-                        modifier = Modifier.padding(top = Defaults.SpaceMedium),
-                        horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall),
-                        verticalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall)
+                        horizontalArrangement = Arrangement.spacedBy(Defaults.ContentPaddingSmall),
+                        verticalArrangement = Arrangement.spacedBy(Defaults.ContentPaddingSmall)
                     ) {
                         VersionBadges(
                             versions = versions,
@@ -441,7 +445,7 @@ internal fun PatchItemCard(
                         if (options.isNotEmpty()) {
                             AppAccentBadge(
                                 text = pluralStringResource(R.plurals.option_count, options.size, options.size.toString()),
-                                icon = MaterialSymbols.Rounded.Tune,
+                                icon = if (expandOptions) Icons.Outlined.ExpandLess else Icons.Outlined.Tune,
                                 onClick = { expandOptions = !expandOptions }
                             )
                         }
@@ -450,7 +454,7 @@ internal fun PatchItemCard(
                         if (isExpertOnly) {
                             StatusBadge(
                                 text = stringResource(R.string.sources_patch_expert_badge),
-                                icon = MaterialSymbols.Rounded.Lock,
+                                icon = Icons.Outlined.Lock,
                                 tone = SemanticTone.Warning,
                                 onClick = onExpertBadgeClick
                             )
@@ -459,20 +463,21 @@ internal fun PatchItemCard(
                 }
 
                 if (options.isNotEmpty()) {
-                    ListRowFold(visible = expandOptions) {
-                        Column(
-                            modifier = Modifier.padding(top = Defaults.SpaceMedium),
-                            verticalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall)
-                        ) {
+                    AnimatedVisibility(
+                        visible = expandOptions,
+                        enter = Animations.expandFadeEnter,
+                        exit = Animations.shrinkFadeExit
+                    ) {
+                        Column(verticalArrangement = Arrangement.spacedBy(Defaults.ContentPaddingSmall)) {
                             options.forEach { option ->
                                 Surface(
                                     modifier = Modifier.fillMaxWidth(),
-                                    shape = RoundedCornerShape(Defaults.CornerMedium),
+                                    shape = RoundedCornerShape(Defaults.CompactCornerRadius),
                                     color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f)
                                 ) {
                                     Column(
-                                        modifier = Modifier.padding(Defaults.SpaceMedium),
-                                        verticalArrangement = Arrangement.spacedBy(Defaults.SpaceExtraSmall)
+                                        modifier = Modifier.padding(Defaults.ItemSpacing),
+                                        verticalArrangement = Arrangement.spacedBy(6.dp)
                                     ) {
                                         Text(
                                             text = option.title,
@@ -536,10 +541,7 @@ private fun FoldingBadge(
     content: @Composable () -> Unit
 ) {
     val state = remember { MutableTransitionState(visible) }
-    // A badge coming or going can wrap the row onto another line, resizing the card at once. It
-    // follows a frame behind, so the rows below have let go of their spring by the time it does
-    ListRowResizes(resizing = state.targetState != visible || !state.isIdle)
-    LaunchedEffect(visible) { state.targetState = visible }
+    state.targetState = visible
 
     val enter = remember(order) { Animations.chipEnterStaggered(order) }
     // Gone at once: a badge fading out would hold its place, and the toggle after the run would
@@ -564,7 +566,7 @@ private fun PatchVersionBadge(
     AppAccentBadge(
         text = version,
         accentColor = accentColor.takeUnless { isExperimental },
-        icon = if (isExperimental) VersionTag.Experimental.icon else MaterialSymbols.Rounded.Code,
+        icon = if (isExperimental) VersionTag.Experimental.icon else Icons.Outlined.Code,
         tone = if (isExperimental) VersionTag.Experimental.tone else SemanticTone.Neutral
     )
 }
@@ -576,7 +578,7 @@ private fun PatchVersionBadge(
 private fun commonTargetOf(patches: List<PatchInfo>, packageName: String?): CompatiblePackage? {
     if (packageName == null) return null
     return patches
-        .mapNotNull { patch -> patch.targetFor(packageName) }
+        .mapNotNull { patch -> patch.compatiblePackages?.firstOrNull { it.packageName == packageName } }
         .filter { !it.versions.isNullOrEmpty() }
         .groupBy { it.versions }
         .maxByOrNull { (_, entries) -> entries.size }

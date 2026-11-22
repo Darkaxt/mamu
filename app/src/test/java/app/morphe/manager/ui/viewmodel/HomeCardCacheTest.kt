@@ -8,6 +8,8 @@ package app.morphe.manager.ui.viewmodel
 import androidx.compose.ui.graphics.Color
 import app.morphe.manager.domain.bundles.AppVersionStatus
 import app.morphe.manager.domain.manager.HomeAppSortMode
+import app.morphe.manager.data.room.apps.installed.InstalledApp
+import app.morphe.manager.data.room.apps.installed.InstallType
 import app.morphe.manager.ui.model.HomeAppItem
 import app.morphe.manager.ui.model.homeAppItem
 import java.io.File
@@ -52,6 +54,7 @@ class HomeCardCacheTest {
     private fun cards(vararg items: HomeAppItem) = HomeCards(
         visible = items.toList(),
         hidden = emptyList(),
+        sortMode = prefs.sortMode,
         sourceGroups = listOf(HomeAppSourceGroup(0, "Morphe", setOf("a"), listOf("a"), false, null, null))
     )
 
@@ -106,5 +109,19 @@ class HomeCardCacheTest {
         file.writeText(file.readText().replace("\"format\":1", "\"format\":0"))
 
         assertNull(HomeCardCache(file).read())
+    }
+
+    @Test fun `cached tracked records are pending until current inspection and removed records confer no badges`() {
+        val record = InstalledApp("clone", "original", "2.0", InstallType.DEFAULT)
+        val tracked = item("clone").copy(installedApp = record, patchCount = 7)
+        HomeCardCache(file).write(cards(tracked))
+        val cache = assertNotNull(HomeCardCache(file).read())
+        val restored = cache.toCards(listOf(record), prefs).visible.single()
+        assertTrue(restored.isInstallStatePending)
+        assertTrue(!restored.isCurrentPatchedInstall && !restored.showsRebuildBadge)
+        assertEquals(7, restored.patchCount)
+        val removed = cache.toCards(emptyList(), prefs).visible.single()
+        assertNull(removed.installedApp)
+        assertTrue(!removed.isCurrentPatchedInstall && !removed.showsRebuildBadge)
     }
 }

@@ -5,7 +5,11 @@
 
 package app.morphe.manager.ui.screen.patcher
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -25,8 +29,6 @@ import app.morphe.manager.ui.model.PatchProgressSource
 import app.morphe.manager.ui.model.State
 import app.morphe.manager.ui.screen.shared.*
 import app.morphe.manager.ui.viewmodel.HomeAndPatcherMessages
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.seconds
 
@@ -128,10 +130,10 @@ private fun AdaptiveProgressContent(
     val useTwoColumns = isLandscape()
 
     if (useTwoColumns) {
-        // Two-column layout for landscape, each column as wide as a dialog's pane
+        // Two-column layout for landscape
         Row(
             modifier = Modifier
-                .contentColumn(Defaults.SplitContentMaxWidth)
+                .fillMaxWidth()
                 .padding(horizontal = contentPadding),
             horizontalArrangement = Arrangement.spacedBy(itemSpacing * 3),
             verticalAlignment = Alignment.CenterVertically
@@ -245,11 +247,15 @@ private fun ProgressDetailsSection(
         verticalArrangement = Arrangement.spacedBy(windowSize.itemSpacing)
     ) {
         // Long step warning
-        FoldingVisibility(visible = showLongStepWarning) {
+        AnimatedVisibility(
+            visible = showLongStepWarning,
+            enter = Animations.expandFadeEnter,
+            exit = Animations.shrinkFadeExit
+        ) {
             Notice(
                 text = stringResource(R.string.patcher_long_step_warning),
                 tone = SemanticTone.Primary,
-                icon = MaterialSymbols.Rounded.Info,
+                icon = Icons.Outlined.Info,
                 isCentered = true,
                 density = NoticeDensity.Compact
             )
@@ -268,18 +274,35 @@ private fun ProgressDetailsSection(
  */
 @Composable
 private fun AnimatedMessage(messageResId: Int) {
-    CrossfadeText(
-        text = stringResource(messageResId),
-        transitionSpec = Animations.fadeCrossfade(1000),
-        // A step under the home greeting, so the rotating line reads as status rather than a heading
-        style = MaterialTheme.typography.titleLarge.copy(fontSize = 20.sp, lineHeight = 26.sp),
-        color = MaterialTheme.colorScheme.onBackground,
-        textAlign = TextAlign.Center,
-        maxLines = 4,
-        overflow = TextOverflow.Ellipsis,
-        modifier = Modifier.fillMaxWidth(),
-        label = "message_animation"
-    )
+    val reduceMotion = rememberAccessibilityEnabled()
+    val message = stringResource(messageResId)
+    if (reduceMotion) {
+        Text(
+            text = message,
+            style = MaterialTheme.typography.titleLarge,
+            textAlign = TextAlign.Center,
+            color = MaterialTheme.colorScheme.onBackground,
+            modifier = Modifier.fillMaxWidth(),
+            maxLines = 4,
+            overflow = TextOverflow.Ellipsis
+        )
+    } else {
+        AnimatedContent(
+            targetState = message,
+            transitionSpec = Animations.fadeCrossfade(1000),
+            label = "message_animation"
+        ) { rotatingMessage ->
+            Text(
+                text = rotatingMessage,
+                style = MaterialTheme.typography.titleLarge,
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier.fillMaxWidth(),
+                maxLines = 4,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
+    }
 }
 
 /**
@@ -322,7 +345,7 @@ private fun CircularProgressWithStats(
                 color = MaterialTheme.colorScheme.onBackground
             )
 
-            Spacer(Modifier.height(Defaults.SpaceSmall))
+            Spacer(Modifier.height(8.dp))
 
             val totalPatchesText = pluralStringResource(
                 R.plurals.patch_count,
@@ -357,6 +380,8 @@ fun CurrentStepIndicator(
             patchProgress.steps.firstOrNull { it.state == State.RUNNING }
         }
     }
+    val reduceMotion = rememberAccessibilityEnabled()
+    val stepName = currentStep?.name
     // In the app's color, as the ring above it is
     val stepColor = LocalAccent.current ?: MaterialTheme.colorScheme.primary
 
@@ -365,13 +390,32 @@ fun CurrentStepIndicator(
         else -> MaterialTheme.typography.titleMedium
     }
 
-    CrossfadeText(
-        text = currentStep?.name,
-        transitionSpec = Animations.fadeCrossfade(400),
-        style = stepStyle,
-        color = stepColor,
-        textAlign = TextAlign.Center,
-        modifier = Modifier.fillMaxWidth(),
-        label = "step_animation"
-    )
+    if (reduceMotion) {
+        // Skip crossfade so the main thread isn't busy animating when TalkBack tries to announce
+        if (stepName != null) {
+            Text(
+                text = stepName,
+                style = stepStyle,
+                color = stepColor,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+    } else {
+        AnimatedContent(
+            targetState = stepName,
+            transitionSpec = Animations.fadeCrossfade(400),
+            label = "step_animation"
+        ) { name ->
+            if (name != null) {
+                Text(
+                    text = name,
+                    style = stepStyle,
+                    color = stepColor,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+        }
+    }
 }

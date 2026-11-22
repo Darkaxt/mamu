@@ -8,6 +8,11 @@ package app.morphe.manager.ui.screen.shared
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AutoAwesome
+import androidx.compose.material.icons.outlined.Folder
+import androidx.compose.material.icons.outlined.Image
+import androidx.compose.material.icons.outlined.Restore
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.surfaceColorAtElevation
@@ -23,8 +28,6 @@ import androidx.compose.ui.unit.offset
 import app.morphe.manager.R
 import app.morphe.manager.util.rememberFolderPickerWithPermission
 import app.morphe.manager.util.toFilePath
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -95,11 +98,11 @@ fun OptionCard(
         // No size animation of its own: what grows inside, such as the instructions or the exact
         // value input of a slider, already animates, and a second one trails behind it
         Column(
-            modifier = Modifier.padding(Defaults.SpaceLarge),
-            verticalArrangement = Arrangement.spacedBy(Defaults.SpaceMedium)
+            modifier = Modifier.padding(Defaults.ContentPadding),
+            verticalArrangement = Arrangement.spacedBy(Defaults.ItemSpacing)
         ) {
             Row(
-                horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceMedium),
+                horizontalArrangement = Arrangement.spacedBy(Defaults.ItemSpacing),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 // Eases the badges onto a line of their own and back, as an edit shows or hides one.
@@ -143,7 +146,7 @@ private fun RowScope.OptionStatus(heading: OptionHeading) {
     ) {
         StatusBadge(
             text = stringResource(R.string.patch_option_changed),
-            icon = MaterialSymbols.Rounded.History,
+            icon = Icons.Outlined.Restore,
             tone = SemanticTone.Primary,
             onClick = heading.onReset
         )
@@ -186,13 +189,13 @@ fun AssetCreatorAction(
         ),
         onClick = { showCreator = true },
         icon = when (asset) {
-            OptionAsset.Icon -> MaterialSymbols.Rounded.Auto_awesome
-            OptionAsset.Header -> MaterialSymbols.Rounded.Image
+            OptionAsset.Icon -> Icons.Outlined.AutoAwesome
+            OptionAsset.Header -> Icons.Outlined.Image
         },
         modifier = Modifier.fillMaxWidth()
     )
 
-    DialogHost(visible = showCreator) {
+    if (showCreator) {
         val onDone: (String) -> Unit = { path ->
             onCreated(path)
             showCreator = false
@@ -242,7 +245,7 @@ fun FolderOptionCard(
             PickerButtonRow(
                 label = stringResource(R.string.select_folder),
                 selectedPath = value,
-                icon = MaterialSymbols.Rounded.Folder,
+                icon = Icons.Outlined.Folder,
                 onPick = { folderPicker() },
                 onClear = { onValueChange("") }
             )
@@ -258,9 +261,10 @@ fun FolderOptionCard(
         }
 
         if (isGone) {
-            Footnote(
+            Notice(
                 text = stringResource(R.string.settings_advanced_patch_options_path_gone),
-                tone = SemanticTone.Error
+                tone = SemanticTone.Error,
+                density = NoticeDensity.Compact
             )
         }
 

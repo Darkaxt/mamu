@@ -33,8 +33,8 @@
       "@MorpheApp/changelog", {
         "releaseJson": {
           "path": "app-release.json",
-          "downloadUrlTemplate": "https://github.com/${owner}/${repo}/releases/download/v${version}/morphe-manager-${version}.apk",
-          "signatureUrlTemplate": "https://github.com/${owner}/${repo}/releases/download/v${version}/morphe-manager-${version}.apk.asc"
+          "downloadUrlTemplate": "https://github.com/${owner}/${repo}/releases/download/v${version}/Morphe-Extended-${version}.apk",
+          "signatureUrlTemplate": "https://github.com/${owner}/${repo}/releases/download/v${version}/Morphe-Extended-${version}.apk.asc"
         }
       }
     ],

@@ -213,7 +213,13 @@ abstract class PrepareEmbeddedJvmTask : DefaultTask() {
     private fun File.isElf() = inputStream().use { it.readNBytes(ELF_MAGIC.size) }.contentEquals(ELF_MAGIC)
 
     private fun run(vararg command: String) {
-        exec.exec { commandLine(*command) }
+        // Bounds the heap of the JDK tools; the NDK strip tool is not a JVM and takes no -J option
+        if (command.first() == stripTool.get().asFile.path) {
+            exec.exec { commandLine(*command) }
+            return
+        }
+        logger.lifecycle("EXTENDED_JDK_TOOL_PROFILE: ${File(command.first()).name} heap=512m")
+        exec.exec { commandLine(command.first(), "-J-Xmx512m", *command.drop(1).toTypedArray()) }
     }
 
     private companion object {

@@ -32,20 +32,6 @@ import com.composables.icons.materialsymbols.rounded.*
  * is given. [applicableCount] is the count of source patches that survive intersection with the
  * target bundle's patch names.
  */
-@Immutable
-data class CopySelectionCandidate(
-    val bundleUid: Int,
-    val bundleName: String,
-    val packageName: String,
-    val packageDisplayName: String,
-    val sourceCount: Int,
-    val applicableCount: Int,
-    val isSameSource: Boolean,
-    val isSamePackage: Boolean,
-    val setUid: Int? = null,
-    val setName: String? = null
-)
-
 /**
  * The sets kept for the app a selection is being made for, the selection it opened with and the
  * patches the open source recommends, for the screens that edit a selection before it is used.

@@ -61,6 +61,9 @@ sealed interface HostEvent {
     }
 
     @Serializable
+    @SerialName("patches_rejected")
+    data class PatchesRejected(val rejection: app.morphe.manager.patcher.patch.PatchRejection) : HostEvent
+    @Serializable
     @SerialName("log")
     data class Log(val level: LogLevel, val message: String) : HostEvent
 
@@ -98,6 +101,10 @@ sealed interface HostEvent {
     @Serializable
     @SerialName("patches_done")
     data class PatchesFinished(val count: Int) : HostEvent
+
+    @Serializable
+    @SerialName("patch_outcome")
+    data class PatchOutcome(val bundleUid: Int, val patchKey: String, val failure: String?) : HostEvent
 
     /** The last event of a run, with what it failed on, if it did. */
     @Serializable

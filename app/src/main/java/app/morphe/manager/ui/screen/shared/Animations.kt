@@ -5,26 +5,15 @@
 
 package app.morphe.manager.ui.screen.shared
 
+import androidx.compose.runtime.*
+
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.IntSize
-
-/** [value], or the last one it held once it is gone, so content animating out has something to show. */
-@Composable
-fun <T : Any> rememberLatest(value: T?): T? {
-    val latest = remember { LatestValue<T>() }
-    if (value != null) latest.value = value
-    return value ?: latest.value
-}
-
-private class LatestValue<T : Any> {
-    var value: T? = null
-}
 
 /**
  * Placement and fade animation for a lazy list row, so a list that filters, folds or reorders
@@ -33,99 +22,20 @@ private class LatestValue<T : Any> {
  */
 @Composable
 fun Modifier.animatedListItem(itemScope: LazyItemScope): Modifier = with(itemScope) {
-    val resizing = LocalListRowResizing.current?.isActive == true
     this@animatedListItem.animateItem(
         fadeInSpec = tween(Defaults.ANIMATION_DURATION),
         fadeOutSpec = tween(Defaults.ANIMATION_DURATION_SHORT),
-        placementSpec = if (resizing) null else Animations.listSpring()
+        placementSpec = Animations.listSpring()
     )
 }
 
 /**
- * Rows of a lazy list resizing in place, see [ListRowResizes]. The rows below would chase
- * every frame of it with their placement spring and trail behind, opening and closing the gap
- * under the row, so [animatedListItem] lets them follow its edge until it settles.
- */
-@Stable
-class ListRowResizing {
-    internal var count by mutableIntStateOf(0)
-
-    val isActive: Boolean get() = count > 0
-}
-
-/** The [ListRowResizing] of the lazy list a row is in, null outside one. */
-val LocalListRowResizing = staticCompositionLocalOf<ListRowResizing?> { null }
-
-/** Marks the row this is in as resizing while [resizing] holds, see [ListRowResizing]. */
-@Composable
-fun ListRowResizes(resizing: Boolean) {
-    val rows = LocalListRowResizing.current ?: return
-    if (resizing) {
-        DisposableEffect(rows) {
-            rows.count++
-            onDispose { rows.count-- }
-        }
-    }
-}
-
-/**
- * Content folding in and out of a lazy list row, unrolling under what stands above it. The rows
- * below keep to the row's edge while it does, see [ListRowResizing].
- */
-@Composable
-fun ListRowFold(
-    visible: Boolean,
-    modifier: Modifier = Modifier,
-    enter: EnterTransition = Animations.expandTopFadeIn,
-    exit: ExitTransition = Animations.shrinkTopFadeOut,
-    content: @Composable AnimatedVisibilityScope.() -> Unit
-) {
-    val state = remember { MutableTransitionState(visible) }
-    state.targetState = visible
-    ListRowResizes(resizing = !state.isIdle)
-
-    AnimatedVisibility(
-        visibleState = state,
-        modifier = modifier,
-        enter = enter,
-        exit = exit,
-        content = content
-    )
-}
-
-private const val SHARED_AXIS_DURATION = 300
-// The outgoing page fades within the first part, the incoming one over the rest
-private const val SHARED_AXIS_FADE_OUT = 90
-private const val SHARED_AXIS_FADE_IN = SHARED_AXIS_DURATION - SHARED_AXIS_FADE_OUT
-// Shared Z axis: the screen coming in grows from a step below its size when entered and shrinks
-// from a step above it when returned to, while the one leaving goes the other way
-private const val SHARED_AXIS_Z_BELOW = 0.8f
-private const val SHARED_AXIS_Z_ABOVE = 1.1f
-private val SharedAxisScale = tween<Float>(SHARED_AXIS_DURATION, easing = FastOutSlowInEasing)
-
-private val SharedAxisFadeIn =
-    fadeIn(tween(SHARED_AXIS_FADE_IN, delayMillis = SHARED_AXIS_FADE_OUT, easing = LinearOutSlowInEasing))
-private val SharedAxisFadeOut = fadeOut(tween(SHARED_AXIS_FADE_OUT, easing = FastOutLinearInEasing))
-
-/**
- * Material's shared Z axis, for a screen opened deeper than the one it came from: it grows into
- * place as the one it covers swells and fades away, and back runs it in reverse. [forward] is the
- * way into the deeper screen.
- */
-fun sharedAxisZEnter(forward: Boolean): EnterTransition =
-    scaleIn(SharedAxisScale, initialScale = if (forward) SHARED_AXIS_Z_BELOW else SHARED_AXIS_Z_ABOVE) + SharedAxisFadeIn
-
-/** The screen making way in a [sharedAxisZEnter]. */
-fun sharedAxisZExit(forward: Boolean): ExitTransition =
-    scaleOut(SharedAxisScale, targetScale = if (forward) SHARED_AXIS_Z_ABOVE else SHARED_AXIS_Z_BELOW) + SharedAxisFadeOut
-
-/**
- * Shared [EnterTransition] and [ExitTransition] for all AppDialog and ListDialog instances and
+ * Shared [EnterTransition] and [ExitTransition] for all AppDialog instances and
  * dialog-level AnimatedVisibility wrappers. Changing these values updates every dialog
  * animation in the app at once.
  */
 object Animations {
-    // Helper to avoid repeating tween specifications, also for motion that has to keep pace with these
+    // Private helper to avoid repeating tween specifications
     fun <T> defaultTween(
         duration: Int = Defaults.ANIMATION_DURATION,
         easing: Easing = LinearOutSlowInEasing
@@ -149,6 +59,15 @@ object Animations {
     val overlayEnter = fadeIn
     val overlayExit = fadeOut
 
+    // Screen transitions.
+    // Enter uses a longer duration; exit is identical to dialogExit so we reuse it directly
+    val screenEnter = fadeIn(defaultTween(Defaults.SCREEN_ENTER_DURATION)) +
+            scaleIn(
+                initialScale = Defaults.DIALOG_SCALE,
+                animationSpec = defaultTween(Defaults.SCREEN_ENTER_DURATION, FastOutSlowInEasing)
+            )
+    val screenExit = dialogExit
+
     /**
      * The spring lazy list rows move on, for anything that resizes alongside them.
      *
@@ -157,14 +76,6 @@ object Animations {
      */
     fun <T> listSpring(dampingRatio: Float = 0.8f): SpringSpec<T> =
         spring(stiffness = 400f, dampingRatio = dampingRatio)
-
-    // Vertical expand/Shrink
-    val expandFadeEnter = expandVertically(defaultTween()) + fadeIn
-    val shrinkFadeExit = shrinkVertically(defaultTween()) + fadeOut
-
-    // Horizontal expand/Shrink
-    val expandHorizFadeIn = expandHorizontally(defaultTween()) + fadeIn
-    val shrinkHorizFadeOut = shrinkHorizontally(defaultTween()) + fadeOut
 
     // A pill in a row of them, its slot opening and closing while it scales as a whole, rather
     // than being cut off along one edge as a clipped expand would
@@ -183,6 +94,18 @@ object Animations {
     val headerActionEnter = expandHorizontally(spring(stiffness = Spring.StiffnessMediumLow), clip = false) + popEnter
     val headerActionExit = popExit + shrinkHorizontally(defaultTween(), clip = false)
 
+
+    // Vertical expand/Shrink
+    val expandFadeEnter = expandVertically(defaultTween()) + fadeIn
+    val shrinkFadeExit = shrinkVertically(defaultTween()) + fadeOut
+
+    val expandVertEnter = expandVertically(defaultTween())
+    val shrinkVertExit = shrinkVertically(defaultTween())
+
+    // Horizontal expand/Shrink
+    val expandHorizFadeIn = expandHorizontally(defaultTween()) + fadeIn
+    val shrinkHorizFadeOut = shrinkHorizontally(defaultTween()) + fadeOut
+
     const val STAGGER_STEP = 40
     private const val STAGGER_MAX_STEPS = 8
 
@@ -197,12 +120,21 @@ object Animations {
             scaleIn(tween(Defaults.ANIMATION_DURATION, delay, LinearOutSlowInEasing), initialScale = 0.8f)
     }
 
-    /**
-     * A page drawn back by the predictive back gesture: it shrinks away under the finger, as
-     * Material has a screen do, revealing the one it returns to.
-     */
-    val predictiveBackExit = scaleOut(tween(SHARED_AXIS_DURATION, easing = FastOutSlowInEasing), targetScale = 0.9f) +
-            fadeOut(tween(SHARED_AXIS_DURATION, easing = FastOutLinearInEasing))
+    // Slide + fade + size collapse
+    val slideUpFadeEnter = slideInVertically(defaultTween()) { -it } +
+        fadeIn(defaultTween()) +
+        expandVertically(defaultTween())
+    val slideUpFadeExit = slideOutVertically(defaultTween()) { -it } +
+        fadeOut(defaultTween()) +
+        shrinkVertically(defaultTween())
+
+    // Push transitions (Settings screen slides up over home, returns by sliding down)
+    val pushEnter = slideInVertically(
+        animationSpec = defaultTween(Defaults.SCREEN_ENTER_DURATION, FastOutSlowInEasing)
+    ) { it } + fadeIn(defaultTween(Defaults.SCREEN_ENTER_DURATION))
+    val pushExit = slideOutVertically(
+        animationSpec = defaultTween(Defaults.SCREEN_ENTER_DURATION, FastOutSlowInEasing)
+    ) { it } + fadeOut(tween(Defaults.SCREEN_ENTER_DURATION, easing = LinearEasing))
 
     // Spring & custom transitions
     val springSlideUpEnter = slideInVertically(
@@ -264,6 +196,73 @@ object Animations {
     fun fadeOut(duration: Int): ExitTransition = fadeOut(tween(duration))
 }
 
+
+/**
+ * Rows of a lazy list resizing in place, see [ListRowResizes]. The rows below would chase
+ * every frame of it with their placement spring and trail behind, opening and closing the gap
+ * under the row, so [animatedListItem] lets them follow its edge until it settles.
+ */
+@Stable
+class ListRowResizing {
+    internal var count by mutableIntStateOf(0)
+
+    val isActive: Boolean get() = count > 0
+}
+
+/** The [ListRowResizing] of the lazy list a row is in, null outside one. */
+val LocalListRowResizing = staticCompositionLocalOf<ListRowResizing?> { null }
+
+/** Marks the row this is in as resizing while [resizing] holds, see [ListRowResizing]. */
+@Composable
+fun ListRowResizes(resizing: Boolean) {
+    val rows = LocalListRowResizing.current ?: return
+    if (resizing) {
+        DisposableEffect(rows) {
+            rows.count++
+            onDispose { rows.count-- }
+        }
+    }
+}
+
+/**
+ * Content folding in and out of a lazy list row, unrolling under what stands above it. The rows
+ * below keep to the row's edge while it does, see [ListRowResizing].
+ */
+@Composable
+fun ListRowFold(
+    visible: Boolean,
+    modifier: Modifier = Modifier,
+    enter: EnterTransition = Animations.expandTopFadeIn,
+    exit: ExitTransition = Animations.shrinkTopFadeOut,
+    content: @Composable AnimatedVisibilityScope.() -> Unit
+) {
+    val state = remember { MutableTransitionState(visible) }
+    state.targetState = visible
+    ListRowResizes(resizing = !state.isIdle)
+
+    AnimatedVisibility(
+        visibleState = state,
+        modifier = modifier,
+        enter = enter,
+        exit = exit,
+        content = content
+    )
+}
+
+
+/** [value], or the last one it held once it is gone, so content animating out has something to show. */
+@Composable
+fun <T : Any> rememberLatest(value: T?): T? {
+    val latest = remember { LatestValue<T>() }
+    if (value != null) latest.value = value
+    return value ?: latest.value
+}
+
+private class LatestValue<T : Any> {
+    var value: T? = null
+}
+
+
 /**
  * Shows [content] while [visible], folding it in and out of the surrounding layout rather than
  * letting it pop, so what stands below slides along.
@@ -299,3 +298,37 @@ fun FoldingVisibility(
         CompositionLocalProvider(LocalRowLeaving provides leaving) { content() }
     }
 }
+
+private const val SHARED_AXIS_DURATION = 300
+// The outgoing page fades within the first part, the incoming one over the rest
+private const val SHARED_AXIS_FADE_OUT = 90
+private const val SHARED_AXIS_FADE_IN = SHARED_AXIS_DURATION - SHARED_AXIS_FADE_OUT
+// Shared Z axis: the screen coming in grows from a step below its size when entered and shrinks
+// from a step above it when returned to, while the one leaving goes the other way
+private const val SHARED_AXIS_Z_BELOW = 0.8f
+private const val SHARED_AXIS_Z_ABOVE = 1.1f
+private val SharedAxisScale = tween<Float>(SHARED_AXIS_DURATION, easing = FastOutSlowInEasing)
+
+private val SharedAxisFadeIn =
+    fadeIn(tween(SHARED_AXIS_FADE_IN, delayMillis = SHARED_AXIS_FADE_OUT, easing = LinearOutSlowInEasing))
+private val SharedAxisFadeOut = fadeOut(tween(SHARED_AXIS_FADE_OUT, easing = FastOutLinearInEasing))
+
+/**
+ * Material's shared Z axis, for a screen opened deeper than the one it came from: it grows into
+ * place as the one it covers swells and fades away, and back runs it in reverse. [forward] is the
+ * way into the deeper screen.
+ */
+fun sharedAxisZEnter(forward: Boolean): EnterTransition =
+    scaleIn(SharedAxisScale, initialScale = if (forward) SHARED_AXIS_Z_BELOW else SHARED_AXIS_Z_ABOVE) + SharedAxisFadeIn
+
+/** The screen making way in a [sharedAxisZEnter]. */
+fun sharedAxisZExit(forward: Boolean): ExitTransition =
+    scaleOut(SharedAxisScale, targetScale = if (forward) SHARED_AXIS_Z_ABOVE else SHARED_AXIS_Z_BELOW) + SharedAxisFadeOut
+
+/**
+ * The backdrop of something leaving with its screen in a [sharedAxisZExit]: it gives way to the
+ * screen fading in, so the one leaving under it never shows through.
+ */
+fun sharedAxisZBackdropExit(): ExitTransition = fadeOut(
+    tween(SHARED_AXIS_FADE_IN, delayMillis = SHARED_AXIS_FADE_OUT, easing = LinearOutSlowInEasing)
+)

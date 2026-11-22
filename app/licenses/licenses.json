@@ -43,16 +43,20 @@
   },
   "libraries": [
     {
-      "name": "Morphe Manager",
-      "website": "https://Morphe.software",
-      "licenses": ["GPL-3.0-only"],
+      "name": "Mamu",
+      "website": "https://github.com/Darkaxt/mamu",
+      "licenses": [
+        "GPL-3.0-only"
+      ],
       "text": "NOTICE.txt"
     },
     {
       "name": "OpenJDK",
       "description": "The Java runtime that patching runs in, built for Linux by BellSoft (Liberica). Its source is at https://github.com/openjdk/jdk25u and https://github.com/bell-sw/Liberica",
       "website": "https://openjdk.org",
-      "licenses": ["GPL-2.0-with-classpath-exception"]
+      "licenses": [
+        "GPL-2.0-with-classpath-exception"
+      ]
     },
     {
       "name": "GNU C Library",
@@ -75,12 +79,25 @@
     {
       "name": "ARSCLib",
       "website": "https://github.com/REAndroid/ARSCLib",
-      "licenses": ["Apache-2.0"]
+      "licenses": [
+        "Apache-2.0"
+      ]
     },
     {
       "name": "libsu (core)",
       "website": "https://github.com/topjohnwu/libsu",
-      "licenses": ["Apache-2.0"]
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "name": "ComposeFadingEdges",
+      "version": "1.0.4",
+      "website": "https://github.com/GIGAMOLE/ComposeFadingEdges",
+      "licenses": [
+        "MIT"
+      ],
+      "text": "ComposeFadingEdges.txt"
     }
   ]
 }

@@ -21,11 +21,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Android
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
@@ -46,7 +49,11 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toDrawable
 import app.morphe.manager.util.AppDataResolver
+// Extended's Play listing icons of supported apps, beside upstream's icon lookup in util
+import app.morphe.manager.network.PlayStoreIcons as PlayListingIcons
+import app.morphe.manager.domain.repository.PatchBundleRepository
 import app.morphe.manager.util.AppDataSource
+import app.morphe.manager.util.ResolvedIconSnapshot
 import app.morphe.manager.util.PlayStoreIconData
 import app.morphe.manager.util.PlayStoreIcons
 import app.morphe.manager.util.endEdgeX
@@ -57,8 +64,6 @@ import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.DataSource
 import coil.transform.Transformation
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.roundedfilled.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import me.zhanghai.android.appiconloader.iconloaderlib.BaseIconFactory
@@ -71,7 +76,7 @@ import coil.size.Size as CoilSize
  * Universal app icon component.
  *
  * Automatically resolves icon from available sources:
- * installed app → original APK → patched APK → Play Store → fallback
+ * installed app → original APK → patched APK → official Play icon → fallback
  *
  * A handed in [packageInfo] and one resolved from [packageName] share one code path, so the icon
  * stays on screen when a card gets its info later. [icon] stands in where no source has one.
@@ -95,6 +100,8 @@ fun AppIcon(
     val resolving = packageInfo == null && packageName != null && resolved == null
     val shownInfo = packageInfo ?: resolved?.packageInfo
     val shownDrawable = resolved?.drawable ?: icon
+    val remoteIcon = rememberPlayIcon(resolved?.playPackage.takeIf { shownInfo == null && shownDrawable == null })
+
     // Same placeholder while loading and when nothing was found, where the caller gives one
     val placeholder: @Composable (loading: Boolean) -> Unit = { loading ->
         when {
@@ -122,7 +129,9 @@ fun AppIcon(
             contentDescription = contentDescription,
             modifier = modifier
         )
-        // Nothing on the device has an icon for it
+        // The listing of an app a patch source supports, as Extended has shown it
+        remoteIcon != null -> PlayStoreAppIcon(remoteIcon, contentDescription, modifier, placeholderGradientColors)
+        // Nothing on the device has an icon for it, so upstream's store lookup has a go
         !resolving && storePackageName != null -> PlayStoreIcon(
             packageName = storePackageName,
             contentDescription = contentDescription,
@@ -134,25 +143,50 @@ fun AppIcon(
 }
 
 /** What [AppDataResolver] found for a package: its PackageInfo, else a raw Drawable. */
-private class ResolvedIcon(val packageInfo: PackageInfo?, val drawable: Drawable?)
 
 /** The icon resolved for [packageName], or null while it is being resolved or without a name. */
 @Composable
-private fun rememberResolvedIcon(packageName: String?, preferredSource: AppDataSource): ResolvedIcon? {
+private fun rememberResolvedIcon(packageName: String?, preferredSource: AppDataSource): ResolvedIconSnapshot? {
+    if (packageName == null) return null
     val appDataResolver: AppDataResolver = koinInject()
-    return produceState<ResolvedIcon?>(null, packageName, preferredSource) {
-        // Cleared first, so another package never shows the icon of the one before it
-        value = null
-        if (packageName == null) return@produceState
-        value = withContext(Dispatchers.IO) {
-            val resolvedData = appDataResolver.resolveAppData(packageName, preferredSource)
-            // Decoded only without packageInfo, which Coil loads on its own
-            ResolvedIcon(
-                packageInfo = resolvedData.packageInfo,
-                drawable = if (resolvedData.packageInfo == null) resolvedData.icon else null
-            )
+    val revision by appDataResolver.iconSnapshots.revision.collectAsState()
+    return key(packageName, preferredSource, revision) {
+        val cached = appDataResolver.iconSnapshots.peek(packageName, preferredSource)
+        produceState(cached) {
+            if (cached == null) value = appDataResolver.resolveIcon(packageName, preferredSource)
+        }.value
+    }
+}
+
+@Composable
+private fun rememberPlayIcon(originalPackage: String?): String? {
+    if (originalPackage == null) return null
+    // Cached home cards can appear before bundles finish loading. Eligibility must react
+    // to metadata becoming available rather than remembering that initial empty snapshot.
+    val bundles: PatchBundleRepository = koinInject()
+    val metadata by bundles.allAppMetadata.collectAsState()
+    val supported = originalPackage in metadata
+    val icons: PlayListingIcons = koinInject()
+    return key(originalPackage, supported) {
+        produceState(if (supported) icons.peekIcon(originalPackage) else null) {
+            if (supported) value = icons.resolve(originalPackage)
+        }.value
+    }
+}
+
+@Composable
+private fun PlayStoreAppIcon(url: String, contentDescription: String?, modifier: Modifier, colors: List<Color>?) {
+    val context = LocalContext.current
+    val request = remember(url, context) { coil.request.ImageRequest.Builder(context).data(url).size(AppIconPixels).build() }
+    val painter = rememberAsyncImagePainter(request)
+    Box(modifier = modifier, contentAlignment = Alignment.Center) {
+        if (painter.state !is AsyncImagePainter.State.Success) {
+            if (colors != null) GlassPlaceholderIcon(colors, Modifier.fillMaxSize())
+            else FallbackIcon(contentDescription, Modifier.fillMaxSize())
         }
-    }.value
+        // Coil can draw its memory hit in the first frame while its state is still Empty.
+        Image(painter, contentDescription, Modifier.fillMaxSize(AppIconContentFraction).clip(AppIconShape))
+    }
 }
 
 /**
@@ -353,7 +387,7 @@ private fun FallbackIcon(
     contentDescription: String?,
     modifier: Modifier = Modifier
 ) {
-    val image = rememberVectorPainter(MaterialSymbols.RoundedFilled.Android)
+    val image = rememberVectorPainter(Icons.Default.Android)
     val colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
 
     Image(

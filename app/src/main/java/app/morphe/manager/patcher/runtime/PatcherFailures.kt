@@ -15,7 +15,11 @@ class JvmUnavailableException(message: String, cause: Throwable? = null) : Excep
  *
  * @param originalStackTrace The stack trace of what it failed on there.
  */
-class PatcherFailureException(val originalStackTrace: String) : Exception()
+class PatcherFailureException(val originalStackTrace: String) : Exception() {
+    /** A different/wrapped/suppressed failure is not authority to omit a patch. */
+    internal fun confirms(rejection: app.morphe.manager.patcher.patch.PatchRejection?): Boolean =
+        rejection != null && originalStackTrace == rejection.stackTrace
+}
 
 /**
  * The patcher ran out of the heap it was given, which no other heap the device allows would fix.

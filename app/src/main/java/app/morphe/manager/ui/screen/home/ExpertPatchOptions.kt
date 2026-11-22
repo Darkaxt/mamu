@@ -6,9 +6,20 @@
 package app.morphe.manager.ui.screen.home
 
 import android.graphics.drawable.Drawable
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.InsertDriveFile
+import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.Image
+import androidx.compose.material.icons.outlined.Restore
+import androidx.compose.material.icons.outlined.SearchOff
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -29,8 +40,6 @@ import app.morphe.manager.ui.screen.shared.*
 import app.morphe.manager.ui.screen.shared.colorpicker.ColorPresetGrid
 import app.morphe.manager.ui.screen.shared.colorpicker.ColorPresetSwatch
 import app.morphe.manager.util.*
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
 import kotlinx.collections.immutable.ImmutableList
 import kotlin.math.roundToInt
 import kotlin.reflect.KClass
@@ -215,7 +224,7 @@ private fun optionValueEquals(a: Any?, b: Any?): Boolean = when {
  * @param accentColor Color of that app, which tints the header band.
  */
 @Composable
-internal fun DialogHostScope.PatchOptionsDialog(
+internal fun PatchOptionsDialog(
     patch: PatchInfo,
     packageName: String,
     appName: String,
@@ -242,31 +251,11 @@ internal fun DialogHostScope.PatchOptionsDialog(
     val shownOptions = remember(options, matchesOption) { options.filter(matchesOption) }
 
     val showColorPicker = remember { mutableStateOf<Pair<String, String>?>(null) }
-    ListDialog(
+    val scrollState = rememberScrollState()
+
+    AppDialog(
         onDismissRequest = onDismiss,
         accentColor = accentColor,
-        header = {
-            ListDialogHeader(
-                icon = { modifier ->
-                    AppIcon(packageName = packageName, icon = appIcon, contentDescription = null, modifier = modifier)
-                },
-                title = patch.displayName,
-                subtitle = listOf(
-                    appName,
-                    pluralStringResource(R.plurals.option_count, options.size, options.size.toString())
-                ).joinToString(" · "),
-                search = search,
-                alwaysShowBand = true
-            ) {
-                TitleAction(
-                    icon = MaterialSymbols.Rounded.History,
-                    contentDescription = stringResource(R.string.reset),
-                    onClick = onReset,
-                    style = TitleActionStyle.Accent,
-                    enabled = anyChanged
-                )
-            }
-        },
         footer = {
             AppDialogOutlinedButton(
                 text = stringResource(R.string.close),
@@ -274,16 +263,43 @@ internal fun DialogHostScope.PatchOptionsDialog(
                 modifier = Modifier.fillMaxWidth()
             )
         },
+        padding = DialogPadding.Compact,
+        scrollable = false,
+        contentArrangement = Arrangement.Top,
+        fillContentHeight = true,
         hideFooterWhileTyping = true
     ) {
+        ListDialogHeader(
+            icon = { modifier ->
+                AppIcon(packageName = packageName, icon = appIcon, contentDescription = null, modifier = modifier)
+            },
+            title = patch.displayName,
+            subtitle = listOf(
+                appName,
+                pluralStringResource(R.plurals.option_count, options.size, options.size.toString())
+            ).joinToString(" · "),
+            search = search
+        ) {
+            TitleAction(
+                icon = Icons.Outlined.Restore,
+                contentDescription = stringResource(R.string.reset),
+                onClick = onReset,
+                style = TitleActionStyle.Accent,
+                enabled = anyChanged
+            )
+        }
+
         SearchFieldBackHandler(search)
 
-        DialogScrollColumn(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f),
+                .weight(1f)
+                .verticalScrollFade(scrollState)
+                .verticalScroll(scrollState)
+                .padding(vertical = Defaults.ItemSpacing),
             // Spaced as the patch list the dialog opens from
-            verticalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall)
+            verticalArrangement = Arrangement.spacedBy(Defaults.ContentPaddingSmall)
         ) {
             // What the patch does leads into its options, and a search looks for an option instead
             if (!search.isFiltering && !patch.description.isNullOrBlank()) {
@@ -294,7 +310,13 @@ internal fun DialogHostScope.PatchOptionsDialog(
                 )
             }
 
-            val editor: @Composable (Option<*>) -> Unit = { option ->
+            if (shownOptions.isEmpty()) {
+                EmptyState(
+                    message = stringResource(R.string.search_no_results),
+                    icon = Icons.Outlined.SearchOff
+                )
+            }
+            shownOptions.forEach { option ->
                 val value = valueOf(option)
                 PatchOptionEditor(
                     option = option,
@@ -315,26 +337,11 @@ internal fun DialogHostScope.PatchOptionsDialog(
                     onCustomColorClick = { showColorPicker.value = option.key to it }
                 )
             }
-            // Switches stand together as one segmented group, as the settings keep theirs, while
-            // every other option keeps a card of its own
-            if (shownOptions.isEmpty()) {
-                EmptyState(
-                    message = stringResource(R.string.search_no_results),
-                    icon = MaterialSymbols.Rounded.Search_off
-                )
-            }
-            shownOptions.runsBy { resolveOptionKind(it, valueOf(it)) == OptionKind.BooleanToggle }.forEach { (toggles, run) ->
-                if (toggles && run.size > 1) {
-                    SettingsGroup { run.forEach { editor(it) } }
-                } else {
-                    run.forEach { editor(it) }
-                }
-            }
         }
     }
 
     // Color picker dialog
-    DialogHost(target = showColorPicker.value) { (key, currentColor) ->
+    showColorPicker.value?.let { (key, currentColor) ->
         ColorPickerDialog(
             title = options.find { it.key == key }?.title ?: key,
             currentColor = currentColor,
@@ -345,17 +352,6 @@ internal fun DialogHostScope.PatchOptionsDialog(
             onDismiss = { showColorPicker.value = null }
         )
     }
-}
-
-/** This list cut into runs of neighbors that agree on [key], each run with the key it shares. */
-private fun <T, K> List<T>.runsBy(key: (T) -> K): List<Pair<K, List<T>>> {
-    val runs = mutableListOf<Pair<K, MutableList<T>>>()
-    forEach { item ->
-        val k = key(item)
-        val last = runs.lastOrNull()
-        if (last != null && last.first == k) last.second.add(item) else runs.add(k to mutableListOf(item))
-    }
-    return runs
 }
 
 /**
@@ -600,16 +596,14 @@ private fun ColorOptionWithPresets(
     val isCustom = entries.none { (_, preset) -> preset == value }
 
     OptionCard(heading) {
-        // The choices the app gives everywhere, one row to a named preset, named in the type of
+        // The choices the app gives everywhere, one card to a named preset, named in the type of
         // the option cards they sit in
-        SettingsGroup {
-            named.forEach { (label, preset) ->
-                RadioSelectionCard(
-                    selected = preset == value,
-                    onSelect = { onPresetSelect(preset) }
-                ) {
-                    CardHeadingText(name = label, description = null, modifier = Modifier.weight(1f))
-                }
+        named.forEach { (label, preset) ->
+            RadioSelectionCard(
+                selected = preset == value,
+                onSelect = { onPresetSelect(preset) }
+            ) {
+                CardHeadingText(name = label, description = null, modifier = Modifier.weight(1f))
             }
         }
 
@@ -629,18 +623,28 @@ private fun ColorOptionWithPresets(
                 onCustomClick = onCustomColorClick
             )
 
-            FoldingVisibility(visible = swatchName != null) {
-                CrossfadeText(
-                    text = swatchName ?: lastSwatchName,
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.SemiBold,
-                    color = dialogTextColor(),
-                    textAlign = TextAlign.Center,
+            AnimatedVisibility(
+                visible = swatchName != null,
+                enter = Animations.expandFadeEnter,
+                exit = Animations.shrinkFadeExit
+            ) {
+                AnimatedContent(
+                    targetState = swatchName ?: lastSwatchName,
+                    transitionSpec = Animations.fadeCrossfade(),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = Defaults.SpaceMedium),
+                        .padding(top = Defaults.ItemSpacing),
                     label = "colorOptionSwatchName"
-                )
+                ) { name ->
+                    Text(
+                        text = name,
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.SemiBold,
+                        color = dialogTextColor(),
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
             }
         }
     }
@@ -812,7 +816,7 @@ private fun ListStringInputOption(
     OptionCard(heading) {
         if (value.isNotEmpty()) {
             // A chip already keeps a touch target's height around it, which spaces the lines
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall)) {
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(Defaults.ContentPaddingSmall)) {
                 value.forEachIndexed { index, item ->
                     AppInputChip(
                         label = item,
@@ -823,7 +827,7 @@ private fun ListStringInputOption(
         }
 
         Row(
-            horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall),
+            horizontalArrangement = Arrangement.spacedBy(Defaults.ContentPaddingSmall),
             verticalAlignment = Alignment.CenterVertically
         ) {
             AppDialogTextField(
@@ -843,7 +847,7 @@ private fun ListStringInputOption(
                 modifier = Modifier.weight(1f)
             )
             TitleAction(
-                icon = MaterialSymbols.Rounded.Add,
+                icon = Icons.Outlined.Add,
                 contentDescription = stringResource(R.string.add),
                 onClick = ::addInput,
                 style = TitleActionStyle.Accent
@@ -885,7 +889,7 @@ private fun FilePickerOption(
         PickerButtonRow(
             label = stringResource(R.string.select_file),
             selectedPath = value,
-            icon = MaterialSymbols.Rounded.Draft.autoMirrored,
+            icon = Icons.AutoMirrored.Outlined.InsertDriveFile,
             onPick = { filePicker() },
             onClear = { onValueChange("") },
         )
@@ -918,7 +922,7 @@ private fun ImageInputOption(
         PickerButtonRow(
             label = stringResource(R.string.adaptive_icon_select_image),
             selectedPath = value,
-            icon = MaterialSymbols.Rounded.Image,
+            icon = Icons.Outlined.Image,
             onPick = { filePicker() },
             onClear = { onValueChange("") },
         )

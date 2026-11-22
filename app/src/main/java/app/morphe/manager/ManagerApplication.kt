@@ -141,6 +141,10 @@ class ManagerApplication : Application() {
                     add(PlayStoreIconKeyer())
                     add(PlayStoreIconFetcher.Factory())
                 }
+                // Play icon URLs name their image, so a copy on disk never goes out of date. With
+                // cache headers respected, a copy past its max-age had to be checked online first
+                // and failed without a connection, leaving the card without its icon offline
+                .respectCacheHeaders(false)
                 .build()
         )
 
@@ -180,7 +184,7 @@ class ManagerApplication : Application() {
 
             // On GMS devices FCM is the primary delivery channel - WorkManager is not needed.
             // Cancel any previously scheduled jobs on GMS devices
-            val hasGms = hasGooglePlayServices()
+            val hasGms = USE_UPSTREAM_FCM && hasGooglePlayServices()
 
             if (notificationsEnabled && !hasGms) {
                 UpdateCheckWorker.schedule(this@ManagerApplication, prefs.updateCheckInterval.get())

@@ -5,11 +5,17 @@
 
 package app.morphe.manager.ui.viewmodel
 
+import kotlinx.coroutines.*
+
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.compose.runtime.Immutable
+import app.morphe.manager.patcher.runtime.jvm.JvmInstallation
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,7 +23,6 @@ import app.morphe.manager.domain.installer.InstallerManager
 import app.morphe.manager.domain.installer.RootInstaller
 import app.morphe.manager.domain.installer.SessionInstaller
 import app.morphe.manager.domain.manager.AfterPatching
-import app.morphe.manager.domain.manager.AutoUpdates
 import app.morphe.manager.domain.manager.PreferencesManager
 import app.morphe.manager.domain.manager.RootPatchMode
 import app.morphe.manager.domain.repository.PatchBundleRepository
@@ -27,23 +32,17 @@ import app.morphe.manager.domain.repository.PatchSelectionRepository
 import app.morphe.manager.domain.repository.SelectionSetRepository
 import app.morphe.manager.domain.repository.SelectionSetSummary
 import app.morphe.manager.domain.repository.SourceMuteRepository
-import app.morphe.manager.patcher.runtime.jvm.JvmInstallation
-import app.morphe.manager.network.api.ReleaseAPI
 import app.morphe.manager.patcher.patch.PatchInfo
 import app.morphe.manager.ui.screen.settings.system.CopyTarget
 import app.morphe.manager.ui.screen.shared.CopySelectionCandidate
-import app.morphe.manager.util.ApkDownloadHelperContract
 import app.morphe.manager.util.AppDataResolver
 import app.morphe.manager.util.AppDataSource
 import app.morphe.manager.util.hasGooglePlayServices
 import app.morphe.manager.util.syncFcmTopics
+import app.morphe.manager.util.USE_UPSTREAM_FCM
 import app.morphe.manager.worker.ScheduleInterval
 import app.morphe.manager.worker.UpdateCheckWorker
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -80,17 +79,15 @@ class SettingsViewModel(
     private val optionsRepository: PatchOptionsRepository,
     private val patchBundleRepository: PatchBundleRepository,
     private val appDataResolver: AppDataResolver,
-    private val api: ReleaseAPI,
     private val appContext: Context,
     jvmInstallation: JvmInstallation,
     /** State behind the copy panel, see [openCopy], and behind renaming and deleting sets. */
     val selectionPanel: SelectionPanelController
 ) : ViewModel() {
-    /** Whether this device can patch in the embedded JVM at all. */
     val jvmRuntimeAvailable = jvmInstallation.isAvailable
 
     /** True when Google Play Services is available; FCM handles notifications on these devices. */
-    val hasGms: Boolean = appContext.hasGooglePlayServices()
+    val hasGms: Boolean = USE_UPSTREAM_FCM && appContext.hasGooglePlayServices()
 
     /** True when POST_NOTIFICATIONS is granted (always true below Android 13). */
     fun hasNotificationPermission(): Boolean =
@@ -180,7 +177,8 @@ class SettingsViewModel(
         if (!hasGms) UpdateCheckWorker.schedule(appContext, interval)
     }
 
-    fun setAutoUpdates(mode: AutoUpdates) = viewModelScope.launch {
+    /** Persists the automatic update policy; explicit checks remain available. */
+    fun setAutoUpdates(mode: app.morphe.manager.domain.manager.AutoUpdates) = viewModelScope.launch {
         prefs.autoUpdates.update(mode)
     }
 
@@ -198,6 +196,27 @@ class SettingsViewModel(
      * True for the duration of the current settings session after the user enables expert mode for the first time.
      * Reset to false when the user disables expert mode again.
      */
+    var showExpertModeNotice by mutableStateOf(false)
+        private set
+
+    private var previousExpertMode: Boolean? = null
+
+    /**
+     * Must be called from the UI whenever useExpertMode changes so the VM can
+     * derive [showExpertModeNotice] without holding its own coroutine-based observer here
+     * (the pref is already observed as Compose state in the composable).
+     */
+    fun onExpertModeChanged(newValue: Boolean) {
+        val prev = previousExpertMode
+        if (prev != null && newValue && !prev) {
+            showExpertModeNotice = true
+        }
+        if (!newValue) {
+            showExpertModeNotice = false
+        }
+        previousExpertMode = newValue
+    }
+
     fun setExpertMode(enabled: Boolean) = viewModelScope.launch {
         prefs.useExpertMode.update(enabled)
         if (enabled && !prefs.customFilePickerUserConfigured.get()) {
@@ -209,17 +228,11 @@ class SettingsViewModel(
         prefs.useJvmRuntime.update(enabled)
     }
 
+
     /** Enables/disables native library stripping for plain APKs, and simultaneously split APK filtering for split bundles. */
     fun setStripUnusedNativeLibs(enabled: Boolean) = viewModelScope.launch {
         prefs.stripUnusedNativeLibs.update(enabled)
     }
-
-    /** Whether GitHub has turned down the token in use, which leaves requests going out without it. */
-    val gitHubPatRejected = combine(prefs.gitHubPat.flow, api.rejectedPat) { pat, rejected ->
-        pat.isNotBlank() && pat == rejected
-    }
-
-    suspend fun checkGitHubPat(pat: String) = api.checkGitHubPat(pat)
 
     fun setGitHubPat(pat: String, includeInExport: Boolean) = viewModelScope.launch {
         prefs.gitHubPat.update(pat)
@@ -252,35 +265,9 @@ class SettingsViewModel(
         prefs.customFilePickerUserConfigured.update(true)
     }
 
-    private val _apkDownloadHelpers = MutableStateFlow(emptyList<ApkDownloadHelperApp>())
-
-    /**
-     * The APK download helpers installed on the device, one per app. Kept here rather than looked
-     * up by each page that lists them, so a page coming back shows them at once instead of growing
-     * a row under a scroll it restored, see [refreshApkDownloadHelpers].
-     */
-    val apkDownloadHelpers: StateFlow<List<ApkDownloadHelperApp>> = _apkDownloadHelpers.asStateFlow()
-
-    /** Looks the installed helpers up again, as one may have come or gone since the last look. */
-    fun refreshApkDownloadHelpers() = viewModelScope.launch {
-        _apkDownloadHelpers.value = withContext(Dispatchers.IO) {
-            ApkDownloadHelperContract.findHelpers(appContext)
-                .distinctBy { it.componentName.packageName }
-                .map { ApkDownloadHelperApp(packageName = it.componentName.packageName, label = it.label) }
-        }
-    }
-
     fun setApkDownloadHelperTrusted(packageName: String, trusted: Boolean) = viewModelScope.launch {
         val current = prefs.trustedApkDownloadHelpers.get()
         prefs.trustedApkDownloadHelpers.update(if (trusted) current + packageName else current - packageName)
-    }
-
-    fun setOpenApkDownloadHelperDirectly(enabled: Boolean) = viewModelScope.launch {
-        prefs.openApkDownloadHelperDirectly.update(enabled)
-    }
-
-    fun setAutoDownloadApkHelpersInBatch(enabled: Boolean) = viewModelScope.launch {
-        prefs.autoDownloadApkHelpersInBatch.update(enabled)
     }
 
     fun setPatcherCompletionSound(enabled: Boolean) = viewModelScope.launch {
@@ -308,11 +295,16 @@ class SettingsViewModel(
         prefs.rootPatchMode.update(mode)
     }
 
-    /** The installers to pick from for [installTarget], the preferred [token] always among them. */
+    /**
+     * Returns a deduplicated, validated list of installer entries for [installTarget],
+     * ensuring the currently-preferred [token] is always present in the list.
+     */
     fun getInstallerEntries(
         installTarget: InstallerManager.InstallTarget,
         token: InstallerManager.Token,
-    ): List<InstallerManager.Entry> = installerManager.listEntries(installTarget, token)
+    ): List<InstallerManager.Entry> {
+        return installerManager.listEntries(installTarget, token)
+    }
 
     fun parseInstallerToken(preference: String): InstallerManager.Token =
         installerManager.parseToken(preference)
@@ -320,11 +312,12 @@ class SettingsViewModel(
     fun describeInstallerEntry(
         token: InstallerManager.Token,
         installTarget: InstallerManager.InstallTarget,
-    ): InstallerManager.Entry = installerManager.describeEntry(token, installTarget)
+    ): InstallerManager.Entry? = installerManager.describeEntry(token, installTarget)
 
     fun openShizukuApp(): Boolean = installerManager.openShizukuApp()
 
-    fun getShizukuStatus(): SessionInstaller.ShizukuStatus = installerManager.shizukuStatus()
+    fun getShizukuStatus(): SessionInstaller.ShizukuStatus =
+        installerManager.shizukuStatus()
 
     fun requestShizukuPermission(): Boolean = installerManager.requestShizukuPermission()
 
@@ -405,6 +398,12 @@ class SettingsViewModel(
         val packages = optionsRepository.getPackagesWithSavedOptions().first()
         packages.sumOf { optionsRepository.getOptionsCountForPackage(it) }
     }
+
+    /** Loads the options count for a single package (used by the per-package confirmation dialog). */
+    suspend fun loadOptionsCountForPackage(packageName: String): Int =
+        withContext(Dispatchers.IO) {
+            optionsRepository.getOptionsCountForPackage(packageName)
+        }
 
     /** Loads the options count for a specific package+bundle (used by bundle confirmation dialog). */
     suspend fun loadOptionsCountForBundle(packageName: String, bundleUid: Int): Int =

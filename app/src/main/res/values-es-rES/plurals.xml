@@ -178,4 +178,8 @@
         <item quantity="one">%d enlace no verificado</item>
         <item quantity="other">%d enlaces no verificados</item>
     </plurals>
+    <plurals name="sources_search_patch_matches">
+        <item quantity="one">%s parche coincidente</item>
+        <item quantity="other">%s parches coincidentes</item>
+    </plurals>
 </resources>

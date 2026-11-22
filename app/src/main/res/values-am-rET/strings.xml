@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">የአንድሮይድ 11 ስህተት</string>
     <string name="android_11_bug_dialog_description">የተጠቃሚውን ተሞክሮ የሚያበላሸውን የ Android 11 ሲስተም ስህተት ለማስወገድ፣ የአፕሊኬሽን ጭነት ፈቃድ አስቀድሞ መሰጠት አለበት</string>
     <string name="deep_link_add_source_title">ምንጭ አክል</string>
-    <string name="deep_link_add_source_message">ይህንን የፓች ምንጭ ወደ Morphe መጨመር ይፈልጋሉ?</string>
+    <string name="deep_link_add_source_message">ይህንን የፓች ምንጭ ወደ Mamu መጨመር ይፈልጋሉ?</string>
     <string name="deep_link_add_source_warning">የሚተማመኑባቸውን ምንጮች ብቻ ያክሉ</string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">ይህ መተግበሪያ ብቻ ነው የተጨመረው። ሌሎች መተግበሪያዎችን ከምንጩ የመተግበሪያ ዝርዝር ውስጥ መጨመር ይችላሉ</string>
@@ -50,9 +50,9 @@
     <string name="home_blocked_source_subtitle">ለመገምገም እና ለማስወገድ ይጫኑ</string>
     <string name="home_metadata_errors_title">አንዳንድ የፓች ምንጮች አይገኙም</string>
     <string name="home_metadata_errors_subtitle">ምንጮችን ለመገምገም ይጫኑ</string>
-    <string name="home_outdated_manager_title">Morphe ጊዜ ያለፈበት ነው</string>
+    <string name="home_outdated_manager_title">Mamu ጊዜ ያለፈበት ነው</string>
     <string name="home_outdated_manager_subtitle">አንዳንድ የፓች ምንጮች አዲስ ስሪት ያስፈልጋቸዋል</string>
-    <string name="home_held_back_title">የፓች ምንጭ Morphe እንዲበላሽ አድርጓል</string>
+    <string name="home_held_back_title">የፓች ምንጭ Mamu እንዲበላሽ አድርጓል</string>
     <string name="home_held_back_subtitle">መተግበሪያው እንዲጀምር ተዘልሏል። ለመገምገም ይጫኑ</string>
     <string name="home_source_updates_title">የፓች ማዘመኛዎች ይገኛሉ</string>
     <string name="home_source_updates_subtitle">ለማውረድ ይጫኑ</string>
@@ -205,9 +205,9 @@
     <string name="sources_management_metadata_unavailable_hint_missing">የፓች ባንድሉን ማውረድ አልተቻለም። የምንጭ URL ስህተት ሊሆን ይችላል ወይም ፋይሉ የለም</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">የፓች ባንድሉ ሊወርድ አልቻለም። የምንጩ URL ስህተት ሊሆን ይችላል ወይም ፋይሉ የለም። ለመቀየር ይጫኑ</string>
     <string name="sources_management_outdated_manager_badge">Morpheን ያዘምኑ</string>
-    <string name="sources_management_outdated_manager_hint">ይህ ምንጭ ለፓቸር %1$s የተገነባ ነው፣ ነገር ግን Morphe %2$s ፓቸር %3$sን ያካትታል። ለመጠቀም Morpheን አዘምን</string>
+    <string name="sources_management_outdated_manager_hint">ይህ ምንጭ ለፓቸር %1$s የተገነባ ነው፣ ነገር ግን Mamu %2$s ፓቸር %3$sን ያካትታል። ለመጠቀም Morpheን አዘምን</string>
     <string name="sources_management_held_back_badge">ተበላሽቷል</string>
-    <string name="sources_management_held_back_hint">ይህ ምንጭ በሚጫንበት ጊዜ Morphe እንዲበላሽ አድርጓል፣ ስለዚህ ተዘልሏል። እንደገና ለመሞከር ያዘምኑት ወይም እንደገና ያስመጡት</string>
+    <string name="sources_management_held_back_hint">ይህ ምንጭ በሚጫንበት ጊዜ Mamu እንዲበላሽ አድርጓል፣ ስለዚህ ተዘልሏል። እንደገና ለመሞከር ያዘምኑት ወይም እንደገና ያስመጡት</string>
     <string name="sources_management_signed_by">የተፈረመው በ</string>
     <string name="sources_management_signing_key_changed_badge">ቁልፍ ተቀይሯል</string>
     <string name="sources_management_signing_key_changed_hint">የመጨረሻው ስሪት ይህ ምንጭ ቀደም ሲል የተጠቀመው ቁልፍ አልተፈረመበትም፣ ስለዚህ አልተጫነም። ለመገምገም ይጫኑት</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">የማህበረሰብ ፓቾች</string>
     <string name="sources_dialog_choose_apps">መተግበሪያዎችን ይምረጡ</string>
     <string name="sources_dialog_choose_apps_description">ምንጩ ከተጫነ በኋላ የትኞቹን መተግበሪያዎች ማቆየት እንደሚፈልጉ ይምረጡ</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">የሶስተኛ ወገን የፓች ምንጮች</string>
-    <string name="sources_dialog_community_notice_message">"የማህበረሰብ ፓች ምንጮች በራሳቸው ደራሲያን የተሰሩ እና የሚጠበቁ ናቸው። Morphe የሶስተኛ ወገን ፓቾችን አይገመግምም ወይም አያረጋግጥም፣ እንዲሁም ለይዘታቸው ወይም በመሳሪያዎ ላይ ለሚያደርጉት ነገር ተጠያቂ አይደለም"</string>
+    <string name="sources_dialog_community_notice_message">"የማህበረሰብ ፓች ምንጮች በራሳቸው ደራሲያን የተሰሩ እና የሚጠበቁ ናቸው። Mamu የሶስተኛ ወገን ፓቾችን አይገመግምም ወይም አያረጋግጥም፣ እንዲሁም ለይዘታቸው ወይም በመሳሪያዎ ላይ ለሚያደርጉት ነገር ተጠያቂ አይደለም"</string>
     <string name="sources_update_success">ማዘመኛው ስኬታማ ነበር</string>
     <string name="sources_update_unavailable">ምንም የሚገኝ ማዘመኛ የለም</string>
     <string name="sources_download_fail">ምንጮችን ለማውረድ አልተቻለም: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">ረዳት መተግበሪያ ተጭኗል ነገር ግን ገና አልተመነ፣ ስለዚህ እዚህ አልቀረበም</string>
     <string name="home_apk_helper_untrusted_action">ረዳቶችን ይገምግሙ</string>
     <string name="home_apk_helper_title">በረዳት መተግበሪያ ያውርዱ</string>
-    <string name="home_apk_helper_description">Morphe ኦሪጅናል APK-ን እንዲያወርድ እና ፋይሉን መልሶ እንዲያስተላልፍ ከታች ያለውን ረዳት መተግበሪያ ይጠይቃል</string>
+    <string name="home_apk_helper_description">Mamu ኦሪጅናል APK-ን እንዲያወርድ እና ፋይሉን መልሶ እንዲያስተላልፍ ከታች ያለውን ረዳት መተግበሪያ ይጠይቃል</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">ረዳቱን ክፈት</string>
-    <string name="home_apk_helper_warning">ይህንን ረዳት መተግበሪያ ካመኑት ብቻ ይቀጥሉ። Morphe ማንኛውንም ነገር ከመጠገኑ በፊት የጥቅሉን፣ የስሪቱን እና የፊርማውን ትክክለኛነት ያረጋግጣል</string>
-    <string name="home_apk_helper_warning_unverified">ይህንን ረዳት መተግበሪያ ካመኑ ብቻ ይቀጥሉ። Morphe የዚህን APK ፊርማ ማረጋገጥ አይችልም፣ ስለዚህ የተሻሻለ ፋይል ቢኖር አይታወቅም</string>
+    <string name="home_apk_helper_warning">ይህንን ረዳት መተግበሪያ ካመኑት ብቻ ይቀጥሉ። Mamu ማንኛውንም ነገር ከመጠገኑ በፊት የጥቅሉን፣ የስሪቱን እና የፊርማውን ትክክለኛነት ያረጋግጣል</string>
+    <string name="home_apk_helper_warning_unverified">ይህንን ረዳት መተግበሪያ ካመኑ ብቻ ይቀጥሉ። Mamu የዚህን APK ፊርማ ማረጋገጥ አይችልም፣ ስለዚህ የተሻሻለ ፋይል ቢኖር አይታወቅም</string>
     <string name="home_apk_helper_no_result">ረዳት መተግበሪያው APK አልመለሰም</string>
     <string name="home_apk_helper_no_access">ረዳት መተግበሪያው ለመለሰው APK ፈቃድ አልሰጠም</string>
     <string name="home_apk_helper_no_package">ረዳት መተግበሪያው የትኛው የተጫነ መተግበሪያ ጥቅም ላይ መዋል እንዳለበት አልገለጸም</string>
     <string name="home_apk_helper_wrong_package">ረዳት መተግበሪያው እየተስተካከለ ካለው መተግበሪያ የተለየ መተግበሪያ መልሷል</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe የተጫነውን መተግበሪያ መጠቀም አልቻለም</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu የተጫነውን መተግበሪያ መጠቀም አልቻለም</string>
     <string name="home_apk_helper_installed_incompatible">የተጫነው ስሪት ፓች ሊደረግ አይችልም</string>
     <string name="home_apk_use_saved_copy">የተቀመጠውን ኮፒ ይጠቀሙ</string>
     <string name="home_apk_use_installed_app">የተጫነውን መተግበሪያ ይጠቀሙ</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">የተጫነው መተግበሪያ ፊርማ ማረጋገጥ አልተቻለም፣ ስለዚህ አስቀድሞ ተስተካክሎ ሊሆን ይችላል</string>
     <string name="home_unverified">ያልተረጋገጠ</string>
     <string name="home_install_verification_pending">ጭነት እየተረጋገጠ ነው…</string>
-    <string name="home_app_info_install_unverified">Morphe የተጫነው መተግበሪያ እርሱ የፓች ያደረገው መሆኑን ማረጋገጥ አይችልም። ተግባራቱን ለመመለስ እንደገና ፓች ያድርጉት ወይም ከተቀመጠው APK እንደገና ይጫኑት</string>
+    <string name="home_app_info_install_unverified">Mamu የተጫነው መተግበሪያ እርሱ የፓች ያደረገው መሆኑን ማረጋገጥ አይችልም። ተግባራቱን ለመመለስ እንደገና ፓች ያድርጉት ወይም ከተቀመጠው APK እንደገና ይጫኑት</string>
     <string name="home_app_info_no_saved_apk">የተቀመጠ APK የለም። ፓቺንግ ለማድረግ እንደገና የ APK ፋይልን መምረጥ ያስፈልጋል</string>
     <string name="home_version_requires_android">Android %s+ ያስፈልገዋል</string>
     <string name="home_apk_no_compatible_versions_title">በዚህ መሳሪያ ላይ የማይሰራ</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">የድረ-ገጹን ገጽ ወደ ታች በማውረድ የዳውንሎድ ቁልፉን ይጫኑ</string>
     <string name="home_download_instructions_step2_variant">የድረ-ገጹን ገጽ ወደ ታች በማውረድ የላይኛውን &lt;b&gt;APK variant&lt;/b&gt; የዳውንሎድ ቁልፍ ይጫኑ</string>
     <string name="home_download_instructions_step2_search">ከሚያምኑት ድረ-ገጽ ላይ የፍለጋ ውጤትን ይክፈቱ</string>
-    <string name="home_download_instructions_step2_search_note">Morphe ለእነዚህ ድረ-ገጾች ዋስትና ሊሰጥ አይችልም። ከAPK ፋይል ይልቅ የራሳቸውን መተግበሪያ መደብር የሚያቀርቡትን ይዘለሉ</string>
+    <string name="home_download_instructions_step2_search_note">Mamu ለእነዚህ ድረ-ገጾች ዋስትና ሊሰጥ አይችልም። ከAPK ፋይል ይልቅ የራሳቸውን መተግበሪያ መደብር የሚያቀርቡትን ይዘለሉ</string>
     <string name="home_download_instructions_step3_search">በዚያ ድረ-ገጽ ላይ፣ አዲሱን ሳይሆን የመተግበሪያውን ስሪት &lt;b&gt;%s&lt;/b&gt; APK ያውርዱ</string>
     <string name="home_download_instructions_step3_search_any">በዚያ ድረ-ገጽ ላይ የመተግበሪያውን APK ያውርዱ። &lt;b&gt;ማንኛውም ስሪት&lt;/b&gt; ሊስተካከል ይችላል</string>
     <string name="home_download_instructions_step2_github">በ&lt;b&gt;%s&lt;/b&gt; ስሪት ስር ባለው &lt;b&gt;Assets&lt;/b&gt; ውስጥ፣ በ&lt;b&gt;.apk&lt;/b&gt; የሚጨርሰውን ፋይል ይጫኑ</string>
@@ -314,11 +314,11 @@
     <string name="home_download_instructions_download_button_toast_3">ልምምድ ፍጹም ያደርጋል፣ እርስዎም እየደረሱበት ነው 💪</string>
     <string name="home_download_instructions_download_button_toast_4">አሁንም እዚህ የለም… አሁንም እዚህ የለም… 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">እሺ ለጽናቱ አከብራለሁ 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">አሁን ይፋዊ የ Morphe ቁልፍ ሞካሪ ሆነዋል 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">አሁን ይፋዊ የ Mamu ቁልፍ ሞካሪ ሆነዋል 🏅</string>
     <string name="home_download_instructions_step3">ማውረዱ እስኪያልቅ ይጠብቁ እና APKውን &lt;b&gt;አይጫኑ&lt;/b&gt;</string>
     <string name="home_download_instructions_step3_mount">ማውረዱ እስኪያልቅ ይጠብቁ፣ ከዚያ &lt;b&gt;APKውን ይጫኑ&lt;/b&gt;</string>
-    <string name="home_download_instructions_step4">የማውረዱ ሂደት ሲጠናቀቅ ወደ Morphe ይመለሱ</string>
-    <string name="home_download_instructions_step4_mount">የመጀመሪያውን APK ከጫኑ በኋላ ወደ Morphe ይመለሱ</string>
+    <string name="home_download_instructions_step4">የማውረዱ ሂደት ሲጠናቀቅ ወደ Mamu ይመለሱ</string>
+    <string name="home_download_instructions_step4_mount">የመጀመሪያውን APK ከጫኑ በኋላ ወደ Mamu ይመለሱ</string>
     <string name="home_download_instructions_continue_to">ወደ %s ይቀጥሉ</string>
     <string name="home_download_instructions_destination">የማውረጃ ገጹ</string>
     <string name="home_download_instructions_copy_link">ሊንኩን ኮፒ አድርግ</string>
@@ -557,8 +557,8 @@
     <string name="home_app_info_version_move">የተጫነው %1$s፣ አዲሱ የተደገፈ %2$s</string>
     <string name="home_app_info_version_restore">የተጫነው %1$s፣ የተስተካከለው %2$s</string>
     <string name="home_app_info_app_deleted_warning">መተግበሪያው ተራግፏል</string>
-    <string name="home_app_info_app_deleted_description">ይህ መተግበሪያ ከ Morphe ውጭ ተራግፏል። ተግባሩን ለመመለስ እንደገና ፓች ያድርጉት</string>
-    <string name="home_app_info_not_patched_description">የዚህ መተግበሪያ ያልተስተካከለ ስሪት ተጭኗል። Morphe አሁንም የቀድሞው የፓች መዝገቡ አለው</string>
+    <string name="home_app_info_app_deleted_description">ይህ መተግበሪያ ከ Mamu ውጭ ተራግፏል። ተግባሩን ለመመለስ እንደገና ፓች ያድርጉት</string>
+    <string name="home_app_info_not_patched_description">የዚህ መተግበሪያ ያልተስተካከለ ስሪት ተጭኗል። Mamu አሁንም የቀድሞው የፓች መዝገቡ አለው</string>
     <string name="home_app_info_mount_replaced_description">ሌላ ስሪት የተጫነውን መተግበሪያ ተክቶታል፣ ስለዚህ ማስተካከያው ከአሁን በኋላ አይሰራም። ወደ ነበረበት መመለስ የተስተካከለውን ስሪት መልሶ ይጭናል</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play የተጫነውን መተግበሪያ አዘምኖታል፣ ስለዚህ ማስተካከያው ከአሁን በኋላ አይሰራም። ወደ ነበረበት መመለስ የተስተካከለውን ስሪት መልሶ ይጭናል። ማስተካከያው እንዲቀጥል በGoogle Play ውስጥ አውቶማቲክ ማዘመኛውን ያጥፉ</string>
     <string name="app_links_title">የሚደገፉ የድረ-ገጽ ሊንኮች</string>
@@ -589,7 +589,7 @@
     <string name="root_pre_patch_installer_description">መሣሪያዎ የሩት መዳረሻ አለው። ይህ መተግበሪያ ለሩት ማውንት ወይስ ለመደበኛ ጭነት ፓች እንዲደረግ ይምረጡ</string>
     <string name="root_pre_patch_installer_mount_title">የሩት ማውንት ሞድ</string>
     <string name="root_pre_patch_installer_mount_description">ለroot mount ፓቾችን ያደርጋል፣ ከዚያም APKን ከሚዛመደው stock አፕሊኬሽን በላይ ይጭነዋል። GmsCore አያስፈልግም</string>
-    <string name="root_mount_module_unmount_warning">KernelSU \"Unmount modules by default\" የሚለው በርቶ ከሆነ፣ KernelSU &gt; Superuser &gt; የጫኑት መተግበሪያ &gt; Profile &gt; Custom ውስጥ በመግባት \"Unmount modules\" የሚለውን ያጥፉ። አለበለዚያ፣ Morphe እንደተጫነ ቢያሳይም የተጫነው የተስተካከለ APK ውጤታማ ላይሆን ይችላል</string>
+    <string name="root_mount_module_unmount_warning">KernelSU \"Unmount modules by default\" የሚለው በርቶ ከሆነ፣ KernelSU &gt; Superuser &gt; የጫኑት መተግበሪያ &gt; Profile &gt; Custom ውስጥ በመግባት \"Unmount modules\" የሚለውን ያጥፉ። አለበለዚያ፣ Mamu እንደተጫነ ቢያሳይም የተጫነው የተስተካከለ APK ውጤታማ ላይሆን ይችላል</string>
     <string name="root_pre_patch_installer_standard_title">መደበኛ የጫን ዘዴ</string>
     <string name="root_pre_patch_installer_standard_description">ከGmsCore ድጋፍ ጋር እንደ መደበኛ APK ፓች ያደርጋል። ከፓቺንግ በኋላ የእርስዎ የጫኚ ቅንብር ጥቅም ላይ ይውላል</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -652,7 +652,7 @@
     <string name="patcher_conflict_subtitle">ያለውን ስሪት ማጥፋት አለብዎት</string>
     <string name="patcher_conflict_hint">የተጠገነው መተግበሪያ ከተጫነው ስሪት የተለየ ሰርተፍኬት ይጠቀማል። ማስወገድ ሁሉንም የመተግበሪያ መረጃዎች ያጠፋል</string>
     <string name="patcher_installed_conflict_title">ማስወገድ ያስፈልጋል</string>
-    <string name="patcher_installed_conflict_body">"Morphe የተጠገኑ መተግበሪያዎችን በራሱ ሰርተፍኬት ነው የሚያስመዘግበው፣ ይህም ከመጀመሪያው ይለያል። የተጠገነው መተግበሪያ ሊጫን እንዲችል Android የነበረውን ስሪት ማስወገድን ይጠይቃል።
+    <string name="patcher_installed_conflict_body">"Mamu የተጠገኑ መተግበሪያዎችን በራሱ ሰርተፍኬት ነው የሚያስመዘግበው፣ ይህም ከመጀመሪያው ይለያል። የተጠገነው መተግበሪያ ሊጫን እንዲችል Android የነበረውን ስሪት ማስወገድን ይጠይቃል።
 
 ማስወገድ ሁሉንም የመተግበሪያ መረጃዎች በቋሚነት ያጠፋል"</string>
     <string name="patcher_install_error_title">የመጫን ስህተት</string>
@@ -663,7 +663,7 @@
     <string name="patcher_storage_permission_dialog_title">የማከማቻ መንገድን ማግኘት አልተቻለም</string>
     <string name="patcher_incompatible_patcher_title">ማዘመኛ ያስፈልጋል</string>
     <string name="patcher_incompatible_patcher_description">ምንጩ &lt;b&gt;%1$s&lt;/b&gt; ፓቸር &lt;b&gt;%2$s&lt;/b&gt; ወይም ከዚያ በላይ ይፈልጋል። ለመጠቀም Morpheን ያዘምኑ</string>
-    <string name="patcher_storage_permission_description_api30">አንዱ ወይም ከዚያ በላይ የፓች አማራጮች Morphe ሊያነባቸው የማይችላቸውን መንገዶች ያመለክታሉ። የማከማቻ መዳረሻን ይፍቀዱ እና ቁልፉን ይጫኑ ከዚያም ፓቺንግ በራሱ ይጀምራል</string>
+    <string name="patcher_storage_permission_description_api30">አንዱ ወይም ከዚያ በላይ የፓች አማራጮች Mamu ሊያነባቸው የማይችላቸውን መንገዶች ያመለክታሉ። የማከማቻ መዳረሻን ይፍቀዱ እና ቁልፉን ይጫኑ ከዚያም ፓቺንግ በራሱ ይጀምራል</string>
     <string name="patcher_storage_permission_description_legacy">አንድ ወይም ከዚያ በላይ የፓች አማራጮች ሊደረሱባቸው የማይችሉ መንገዶችን ያመለክታሉ። እባክዎን በፓች አማራጮች ውስጥ መንገዶቹን ያዘምኑ እና እንደገና ይሞክሩ</string>
     <string name="patcher_storage_permission_grant">የማከማቻ ፈቃድ ይስጡ</string>
     <string name="patcher_storage_permission_denied_warning">የማከማቻ ፈቃድ ተከልክሏል። ይህንን መንገድ ለመጠቀም ፈቃድ ይስጡ፣ ወይም ፋይሎቹን ወደ መተግበሪያው የግል ማህደር ያዛውሩ</string>
@@ -699,7 +699,7 @@
     <string name="patcher_task_writing_apk">የ APK ፋይል እየጻፈ ነው</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">የዳራ ጥገና ጥበቃ</string>
-    <string name="battery_optimization_dialog_description">አንዳንድ መሳሪያዎች መተግበሪያው ሲቀንስ ጥገናውን ሊያቋርጡ ይችላሉ። ጥገናው በልበ ሙሉነት መጠናቀቁን ለማረጋገጥ Morphe ያለ ባትሪ ገደቦች እንዲሰራ ይፍቀዱ</string>
+    <string name="battery_optimization_dialog_description">አንዳንድ መሳሪያዎች መተግበሪያው ሲቀንስ ጥገናውን ሊያቋርጡ ይችላሉ። ጥገናው በልበ ሙሉነት መጠናቀቁን ለማረጋገጥ Mamu ያለ ባትሪ ገደቦች እንዲሰራ ይፍቀዱ</string>
     <string name="battery_optimization_not_now">አሁን አይደለም</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">ማስተካከያ በመከናወን ላይ ነው…</string>
@@ -754,8 +754,8 @@
     <string name="install_ignore_signature">ያም ሆኖ ይጫኑ</string>
     <string name="install_ignore_signature_description">የመተግበሪያውን መረጃ ይይዛል፣ ነገር ግን የሚሠራው የሩት ሞጁል የአንድሮይድን የፊርማ ማረጋገጫ ካገደ ብቻ ነው</string>
     <string name="uninstall_app_fail">መተግበሪያውን ለማራገፍ አልተቻለም: %s</string>
-    <string name="uninstall_app_unverified">በቦታው ተተውለዋል፦ የተጫነው መተግበሪያ Morphe ያስተካከለው ስሪት መሆኑን ማረጋገጥ አልቻለም</string>
-    <string name="launch_app_unverified">የተጫነው መተግበሪያ Morphe ያስተካከለው ስሪት መሆኑን ማረጋገጥ አልቻለም</string>
+    <string name="uninstall_app_unverified">በቦታው ተተውለዋል፦ የተጫነው መተግበሪያ Mamu ያስተካከለው ስሪት መሆኑን ማረጋገጥ አልቻለም</string>
+    <string name="launch_app_unverified">የተጫነው መተግበሪያ Mamu ያስተካከለው ስሪት መሆኑን ማረጋገጥ አልቻለም</string>
     <string name="uninstall_timeout">የማራገፍ ጊዜው አልቋል</string>
     <string name="save_apk_success">APK ተቀምጧል</string>
     <string name="saved_app_export_failed">የተስተካከለውን መተግበሪያ ኤክስፖርት ማድረግ አልተቻለም</string>
@@ -876,7 +876,7 @@
     <string name="settings_appearance_app_card_colors_bundle_description">እዚህ ላይ የእያንዳንዱን መተግበሪያ ወይም ምንጭ የራሱን ቀለም ይጠቀሙ፣ ይህም በራስ-ሰር እንዲስማማ ተደርጎ ይቀለማል</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">የመተግበሪያ አዶ</string>
-    <string name="settings_appearance_app_icon_selector_description">Morphe በቤት ስክሪንዎ እና በመተግበሪያ መሳቢያው ላይ እንዴት እንደሚታይ</string>
+    <string name="settings_appearance_app_icon_selector_description">Mamu በቤት ስክሪንዎ እና በመተግበሪያ መሳቢያው ላይ እንዴት እንደሚታይ</string>
     <string name="settings_appearance_app_icon_default">መደበኛ</string>
     <string name="settings_appearance_app_icon_light_2">ሰማያዊ</string>
     <string name="settings_appearance_app_icon_light_3">የፀሐይ መግቢያ</string>
@@ -900,23 +900,23 @@
     <string name="settings_appearance_app_icon_mark_black">ጥቁር</string>
     <string name="settings_appearance_app_icon_change_dialog_title">የመተግበሪያ አዶውን ይቀይሩ?</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">ወደ &lt;b&gt;%s&lt;/b&gt; ለመቀየር Morphe እንደገና ይጀምራል</string>
+    <string name="settings_appearance_app_icon_change_restarts">ወደ &lt;b&gt;%s&lt;/b&gt; ለመቀየር Mamu እንደገና ይጀምራል</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">አዶውን ቀይር</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">ቅድመ-ልቀት ማሻሻያዎች</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">ለአዳዲስ የ Morphe ስሪቶች ቀድሞ የመጠቀም ዕድል</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">ለአዳዲስ የ Mamu ስሪቶች ቀድሞ የመጠቀም ዕድል</string>
     <string name="settings_advanced_updates_prerelease_warning_title">ቅድመ-ልቀት ማሻሻያዎችን ያብሩ?</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"የ Morphe ቅድመ-ልቀት ስሪቶች አሁንም በልማት ላይ ናቸው እና ያልተረጋጉ ሊሆኑ ይችላሉ።
+    <string name="settings_advanced_updates_prerelease_warning_message">"የ Mamu ቅድመ-ልቀት ስሪቶች አሁንም በልማት ላይ ናቸው እና ያልተረጋጉ ሊሆኑ ይችላሉ።
 
 ፓቾች በዚህ አይነኩም፦ ለእያንዳንዱ ምንጭ ቅድመ-ልቀት ፓቾችን በፓች ምንጮች ዝርዝር ውስጥ ያብሩ"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">ራስ-ሰር ማዘመኛዎች</string>
-    <string name="settings_auto_updates_description">Morphe ሲከፈት ስለ ማዘመኛዎች የሚያደርገው ነገር። ወደ ታች በመሳብ ማደስ ሁልጊዜ ያረጋግጣል</string>
+    <string name="settings_auto_updates_description">Mamu ሲከፈት ስለ ማዘመኛዎች የሚያደርገው ነገር። ወደ ታች በመሳብ ማደስ ሁልጊዜ ያረጋግጣል</string>
     <string name="settings_auto_updates_download">በራስ-ሰር አውርድ</string>
-    <string name="settings_auto_updates_download_description">Morphe ሲከፈት ማዘመኛዎችን ያረጋግጣል እና በማንኛውም የኔትወርክ ግንኙነት የፓች ማዘመኛዎችን ያወርዳል</string>
+    <string name="settings_auto_updates_download_description">Mamu ሲከፈት ማዘመኛዎችን ያረጋግጣል እና በማንኛውም የኔትወርክ ግንኙነት የፓች ማዘመኛዎችን ያወርዳል</string>
     <string name="settings_auto_updates_wifi_only">በ Wi-Fi ብቻ አውርድ</string>
     <string name="settings_auto_updates_wifi_only_description">በሞባይል ዳታ ላይ፣ የሚገኙትን ብቻ ይፈትሻል እና ያሳያል</string>
     <string name="settings_auto_updates_check_only">ይፈትሽ ብቻ</string>
@@ -937,7 +937,7 @@
     <string name="settings_advanced_external_batch_patch">የውጭ ማነቃቂያዎችን ይፍቀዱ</string>
     <string name="settings_advanced_external_batch_patch_description">የአውቶሜሽን መተግበሪያዎች የጅምላ ማስተካከያ እንዲጀምሩ ያስችላል</string>
     <string name="external_batch_patch_title">ባች ፓቺንግ ይጀምሩ?</string>
-    <string name="external_batch_patch_description">%s Morphe መተግበሪያዎችን እንዲፓች እና እንዲጭን ይፈልጋል</string>
+    <string name="external_batch_patch_description">%s Mamu መተግበሪያዎችን እንዲፓች እና እንዲጭን ይፈልጋል</string>
     <string name="external_batch_patch_trust_caller">ሁልጊዜ ይህንን መተግበሪያ ይፍቀዱ</string>
     <string name="external_batch_patch_unknown_caller">ያልታወቀ መተግበሪያ</string>
     <!-- Notification content -->
@@ -945,15 +945,15 @@
     <string name="notification_update_text">ስሪት %s ለማውረድ ዝግጁ ነው</string>
     <string name="notification_bundle_update_text_unversioned">Morpheን ለመክፈት እና ለማዘመን ይጫኑ</string>
     <string name="notification_permission_dialog_title">ማሳወቂያዎችን ይፍቀዱ</string>
-    <string name="notification_permission_dialog_description">በጀርባ ዝመናዎች ሲኖሩ ለማሳወቅ Morphe የማሳወቂያ ፍቃድ ያስፈልገዋል</string>
+    <string name="notification_permission_dialog_description">በጀርባ ዝመናዎች ሲኖሩ ለማሳወቅ Mamu የማሳወቂያ ፍቃድ ያስፈልገዋል</string>
     <string name="notification_post_patch_dialog_title">ማሻሻያዎች ሲኖሩ እንዲያሳውቅዎት ይፈልጋሉ?</string>
     <string name="notification_channel_manager_updates">የMorphe ዝማኔዎች</string>
     <string name="notification_channel_manager_updates_description">ስለ አዳዲስ የMorphe ስሪቶች የሚላኩ ማሳወቂያዎች</string>
     <string name="notification_channel_patch_updates">የፓች ዝማኔዎች</string>
     <string name="notification_channel_patch_updates_description">ስለ አዳዲስ የፓች ስሪቶች የሚላኩ ማሳወቂያዎች</string>
-    <string name="notification_channel_patcher_description">Morphe በጀርባ አንድን መተግበሪያ ፓች በሚያደርግበት ጊዜ ይታያል</string>
+    <string name="notification_channel_patcher_description">Mamu በጀርባ አንድን መተግበሪያ ፓች በሚያደርግበት ጊዜ ይታያል</string>
     <string name="notification_channel_patching_results">የፓቺንግ ውጤቶች</string>
-    <string name="notification_channel_patching_results_description">ፓቺንግ ሲያበቃ ወይም Morphe ከጀርባ ስራ ላይ እያለ ጭነት ይጠብቅዎት በሚሆንበት ጊዜ</string>
+    <string name="notification_channel_patching_results_description">ፓቺንግ ሲያበቃ ወይም Mamu ከጀርባ ስራ ላይ እያለ ጭነት ይጠብቅዎት በሚሆንበት ጊዜ</string>
     <string name="notification_channel_mounted_apps">የተጫኑ መተግበሪያዎች</string>
     <string name="notification_channel_mounted_apps_description">ሌላ ስሪት የተጫነውን መተግበሪያ ሲተካ እና ማስተካከያው ከአሁን በኋላ የማይሰራምበት ጊዜ</string>
     <string name="notification_mount_replaced_title">%1$s ከአሁን በኋላ አልተስተካከለም</string>
@@ -1074,7 +1074,7 @@ morphe_header_custom_dark.png
     <string name="installer_status_not_supported">ለዚህ ተግባር አይደገፍም</string>
     <string name="installer_status_shizuku_not_installed">ይህንን አማራጭ ለመጠቀም Shizuku ወይም Sui ይጫኑ</string>
     <string name="installer_status_shizuku_not_running">Shizuku ወይም Suiን ያስጀምሩ እና እንደገና ይሞክሩ</string>
-    <string name="installer_status_shizuku_permission">ከ Shizuku መተግበሪያ ውስጥ ለ Morphe ፈቃድ ይስጡ</string>
+    <string name="installer_status_shizuku_permission">ከ Shizuku መተግበሪያ ውስጥ ለ Mamu ፈቃድ ይስጡ</string>
     <string name="installer_mount_warning_install">የፓች ሞዱ root mount ላይ ተጥሏል። ይህ የተቀመጠ መተግበሪያ በmount ስላልተጫነ</string>
     <string name="mount_version_mismatch_message">የመጀመሪያው የመተግበሪያ ስሪት (%2$s) ከተስተካከለው የመተግበሪያ ስሪት (%1$s) ጋር አይዛመድም። ተዛማጅ የሆነውን የመጀመሪያ ስሪት mount ያድርጉ፣ ከዚያ እንደገና ይሞክሩ</string>
     <string name="mount_stock_restore_failed_message">አንድሮይድ የተቀመጠውን ኦሪጅናል APK ውድቅ አድርጓል። የሚዛመደውን stock ስሪት ይጫኑ፣ ከዚያም Mountን እንደገና ይሞክሩ</string>
@@ -1115,7 +1115,7 @@ morphe_header_custom_dark.png
     <string name="settings_ignore_install_target_rules">የተከላ ኢላማ መስፈርቶችን ችላ በል</string>
     <string name="settings_ignore_install_target_rules_description">የጫን መድረሻው የሚፈልጋቸውን ፓቾች ማጥፋት እና የሚቃወላቸውን ማብራት ያስችላል። የተጠገነው መተግበሪያ ላይሰራ ይችላል</string>
     <string name="settings_auto_uninstall_warning_title">በራስ-ሰር ማራገፍን ያብሩ?</string>
-    <string name="settings_auto_uninstall_warning_message">Android በ Shizuku አውቶ-ጭነት ወቅት የፊርማ ግጭት ካሳወቀ፣ Morphe የተስተካከለውን APK ከመጫኑ በፊት ያለውን መተግበሪያ ያራግፈዋል</string>
+    <string name="settings_auto_uninstall_warning_message">Android በ Shizuku አውቶ-ጭነት ወቅት የፊርማ ግጭት ካሳወቀ፣ Mamu የተስተካከለውን APK ከመጫኑ በፊት ያለውን መተግበሪያ ያራግፈዋል</string>
     <string name="settings_auto_uninstall_warning_risk">ይህ የመተግበሪያ ዳታን ሊያጠፋ ይችላል። ከተራገፈ በኋላ የተስተካከለው APK ለመጫን ካልተቻለ፣ የቀድሞው መተግበሪያ ቀድሞውኑ ጠፍቶ ሊሆን ይችላል</string>
     <string name="installer_shizuku_status_action">የ Shizuku ሁኔታን ያረጋግጡ</string>
     <string name="installer_shizuku_status_title">የ Shizuku ሁኔታ</string>
@@ -1150,7 +1150,7 @@ morphe_header_custom_dark.png
     <string name="settings_system_patcher_completion_sound_description">ፓቺንግ ሲያበቃ ለስኬት ወይም ለውድቀት የተለየ ቶን ያጫውታል</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">ማሳወቂያዎች</string>
-    <string name="settings_system_notifications_description">Morphe እንዴት ያሳውቅዎታል</string>
+    <string name="settings_system_notifications_description">Mamu እንዴት ያሳውቅዎታል</string>
     <string name="settings_system_notifications_success_sound">የስኬት ድምጽ</string>
     <string name="settings_system_notifications_error_sound">የውድቀት ድምጽ</string>
     <string name="settings_system_notifications_sound_default">መደበኛ</string>
@@ -1162,8 +1162,8 @@ morphe_header_custom_dark.png
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">የፊርማ ቁልፍ</string>
     <string name="settings_system_signing_key_description">የተስተካከሉ መተግበሪያዎችን የሚፈርመውን ቁልፍ ያስቀድማል ወይም ወደ ነበረበት ይመልሳል</string>
-    <string name="settings_system_signing_key_dialog_description">Morphe ፓች የሚያደርገው እያንዳንዱ መተግበሪያ በዚህ ቁልፍ ይፈርማል። ቅጂ ያስቀምጡ፡ ያለ እሱ ፓች የተደረጉ መተግበሪያዎች ሊዘመኑ የሚችሉት ከተራገፉ በኋላ ብቻ ነው</string>
-    <string name="settings_system_signing_key_missing">Morphe ከመጀመሪያው ፓችዎ ጋር አንድ ይፈጥራል</string>
+    <string name="settings_system_signing_key_dialog_description">Mamu ፓች የሚያደርገው እያንዳንዱ መተግበሪያ በዚህ ቁልፍ ይፈርማል። ቅጂ ያስቀምጡ፡ ያለ እሱ ፓች የተደረጉ መተግበሪያዎች ሊዘመኑ የሚችሉት ከተራገፉ በኋላ ብቻ ነው</string>
+    <string name="settings_system_signing_key_missing">Mamu ከመጀመሪያው ፓችዎ ጋር አንድ ይፈጥራል</string>
     <string name="settings_system_signing_key_created">የተፈጠረው %s</string>
     <string name="settings_system_signing_key_fingerprint">የSHA-256 የጣት አሻራ</string>
     <string name="settings_system_backup_appearance_description">ቲም፣ ቀለሞች እና ቋንቋ</string>
@@ -1194,7 +1194,7 @@ morphe_header_custom_dark.png
     <string name="settings_system_auto_backup_switch">በራስ-ሰር ባክአፕ ያድርጉ</string>
     <string name="settings_system_auto_backup_now">አሁን ባክአፕ ያድርጉ</string>
     <string name="settings_system_auto_backup_saved">ባክአፕ ተቀምጧል</string>
-    <string name="settings_system_auto_backup_interval_description">Morphe ቀጣዩን ቅጂ ከመሥራቱ በፊት ከአንድ ቅጂ በኋላ ቢያንስ ይህን ያህል ጊዜ ይጠብቃል</string>
+    <string name="settings_system_auto_backup_interval_description">Mamu ቀጣዩን ቅጂ ከመሥራቱ በፊት ከአንድ ቅጂ በኋላ ቢያንስ ይህን ያህል ጊዜ ይጠብቃል</string>
     <string name="settings_system_auto_backup_description">የMorphe ቅንብሮችዎን እርስዎ በሚመርጡት ፎልደር ውስጥ ያስቀምጣል</string>
     <string name="settings_system_auto_backup_last">የመጨረሻው ባክአፕ፦ %s</string>
     <string name="settings_system_auto_backup_folder">ፎልደር</string>
@@ -1236,7 +1236,7 @@ morphe_header_custom_dark.png
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">የማከማቻ አስተዳደር</string>
     <string name="settings_system_storage_management_description">የዲስክ አጠቃቀምን ያሳያል እና የተቀመጡ (cached) ፋይሎችን ያጸዳል</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s ክፍት</string>
     <string name="settings_system_storage_saved_apks">የተቀመጡ APKዎች</string>
     <string name="settings_system_storage_caches">ኬሾች</string>
@@ -1259,7 +1259,7 @@ morphe_header_custom_dark.png
     <string name="settings_system_storage_clear_anyway">ቢሆንም አጽዳ</string>
     <string name="settings_system_storage_nothing_to_clear">የሚጸዳ ምንም ነገር የለም</string>
     <string name="settings_system_storage_open_app_info_title">የአንድሮይድ መተግበሪያ ማከማቻን ክፈት</string>
-    <string name="settings_system_storage_open_app_info_description">በሲስተም ቅንብሮች በኩል ሁሉንም የ Morphe ዳታ ያስተዳድሩ ወይም ያጽዱ</string>
+    <string name="settings_system_storage_open_app_info_description">በሲስተም ቅንብሮች በኩል ሁሉንም የ Mamu ዳታ ያስተዳድሩ ወይም ያጽዱ</string>
     <string name="settings_system_save_original_apks_title">ኦሪጅናል APKዎችን አቆይ</string>
     <string name="settings_system_save_original_apks_description">ፋይሉን እንደገና ሳይመርጡ ለድጋሚ ፓቺንግ ጥቅም ላይ እንዲውል ከፓች በፊት ያለውን APK ያስቀምጡ</string>
     <string name="settings_system_save_patched_apks_title">ፓች የተደረጉ APKዎችን አቆይ</string>
@@ -1319,7 +1319,7 @@ morphe_header_custom_dark.png
     <string name="settings_system_apk_download_helper_trusted_count">የታመኑ፦ %1$d ከ %2$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">ረዳት መተግበሪያዎች ኦሪጅናል APKዎችን ለእርስዎ ማውረድ ይችላሉ። እዚህ ላይ የሚያምኑባቸው ብቻ በዳውንሎድ መመሪያዎች ውስጥ ቀርበው ይገኛሉ</string>
     <string name="settings_system_apk_download_helper_trust_title">ይህንን ረዳት ያምኑ?</string>
-    <string name="settings_system_apk_download_helper_warning">APKው የሚመጣው ከረዳት መተግበሪያው ነው፣ ስለዚህ የሚያውቋቸውን መተግበሪያዎች ብቻ ያምኑ። Morphe አሁንም ከመጠገኑ በፊት የእያንዳንዱን ፋይል ፓኬጅ፣ ስሪት እና ፊርማ ያረጋግጣል</string>
+    <string name="settings_system_apk_download_helper_warning">APKው የሚመጣው ከረዳት መተግበሪያው ነው፣ ስለዚህ የሚያውቋቸውን መተግበሪያዎች ብቻ ያምኑ። Mamu አሁንም ከመጠገኑ በፊት የእያንዳንዱን ፋይል ፓኬጅ፣ ስሪት እና ፊርማ ያረጋግጣል</string>
     <string name="settings_system_apk_download_helper_installed_by">በ%s የተጫነ</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">ጫኚው አይታወቅም</string>
     <string name="settings_system_apk_download_helper_open_directly">ረዳቱን ወዲያውኑ ክፈት</string>
@@ -1352,7 +1352,7 @@ morphe_header_custom_dark.png
     <string name="settings_about_section_project">ፕሮጀክት</string>
     <string name="settings_about_section_help">እርዳታ</string>
     <string name="credits_prior_development">የቀድሞ ልማት</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">አስተዳዳሪ</string>
     <string name="about_update_available">ማዘመኛ ይገኛል: %s</string>
     <string name="about_up_to_date">ወቅታዊ ነው</string>
@@ -1365,7 +1365,7 @@ morphe_header_custom_dark.png
     <string name="contributors_all_time">ሁልጊዜ</string>
     <string name="contributors_6_months">6 ወራት</string>
     <string name="contributors_3_months">3 ወራት</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">ደጋፊዎች</string>
     <string name="supporters_description">በ Open Collective ላይ ደጋፊዎች</string>
     <string name="supporters_become">ደጋፊ ይሁኑ</string>
@@ -1373,7 +1373,7 @@ morphe_header_custom_dark.png
     <string name="people_more">እና %s ተጨማሪ</string>
     <string name="people_unavailable">ዝርዝሩን መጫን አልተቻለም</string>
     <string name="opensource_licenses">የክፍት-ምንጭ ፈቃዶች</string>
-    <string name="opensource_licenses_description">Morphe የተገነባባቸው ላይብረሪዎች</string>
+    <string name="opensource_licenses_description">Mamu የተገነባባቸው ላይብረሪዎች</string>
     <string name="opensource_licenses_search">ቤተ-መጻሕፍትን እና ፈቃዶችን ፈልግ</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">አንድ ምርጫ</string>
@@ -1398,12 +1398,12 @@ morphe_header_custom_dark.png
     <string name="settings_section_patcher">ፓቸር</string>
     <string name="settings_section_updates">ማሻሻያዎች</string>
     <string name="settings_section_patching">ፓቺንግ</string>
-    <string name="settings_section_appearance_summary">Morphe እንዴት እንደሚታይ</string>
+    <string name="settings_section_appearance_summary">Mamu እንዴት እንደሚታይ</string>
     <string name="settings_section_patch_options_summary">ቀላል ሁነታ አፕሊኬሽኖችን በምን እንደሚጠግን ያሳያል</string>
     <string name="settings_section_general">ጠቅላላ</string>
     <string name="settings_section_patcher_summary">በዚህ መሳሪያ ላይ አፖች እንዴት እንደሚጠገኑ</string>
     <string name="settings_section_help_info">እርዳታ &amp; መረጃ</string>
-    <string name="settings_section_about_summary">ስለ Morphe ተጨማሪ መረጃ እና እርዳታ ማግኘት</string>
+    <string name="settings_section_about_summary">ስለ Mamu ተጨማሪ መረጃ እና እርዳታ ማግኘት</string>
     <string name="settings_section_local_files">ፋይሎች</string>
     <string name="settings_section_backup">ባክአፕ</string>
     <string name="settings_section_import_export">አስገባ እና ላክ</string>
@@ -1566,7 +1566,7 @@ morphe_header_custom_dark.png
     <string name="update_completed">ማሻሻያው ተጫኗል</string>
     <string name="install_update_manager_failed">ማሻሻያውን ለመጫን አልተሳካም</string>
     <string name="installing_manager_update">ማሻሻያ እየተጫነ ነው…</string>
-    <string name="installing_manager_update_hint">Morphe ማዘመኛውን ለማጠናቀቅ ይዘጋል</string>
+    <string name="installing_manager_update_hint">Mamu ማዘመኛውን ለማጠናቀቅ ይዘጋል</string>
     <string name="downloading_manager_update">የማሻሻያ ፋይል እየወረደ ነው…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">%1$s MB ተውርዷል</string>
@@ -1589,7 +1589,7 @@ morphe_header_custom_dark.png
     <string name="onboarding_signing_key_desc">ፓች የተደረጉ አፕሊኬሽኖችን የሚፈርመውን ቁልፍ ባክአፕ ያድርጉ። ያለ እሱ፣ አፕሊኬሽኖቹን ለማዘመን መጀመሪያ ማጥፋት ይኖርብዎታል</string>
     <string name="onboarding_swipe_title">የስላይድ ምልክቶች</string>
     <string name="onboarding_swipe_desc">ለሚገኙ ፓቾች ለማየት በአንድ የመተግበሪያ ካርድ ላይ ወደ ቀኝ ስላይድ ያድርጉ። ካርዱን ከቤት ስክሪኑ ለመደበቅ ወደ ግራ ስላይድ ያድርጉ</string>
-    <string name="onboarding_settings_desc">Morphe-ን ያበጁ፡ ገጽታ፣ የላቁ አማራጮች እና የስርዓት መሳሪያዎች</string>
+    <string name="onboarding_settings_desc">Mamu-ን ያበጁ፡ ገጽታ፣ የላቁ አማራጮች እና የስርዓት መሳሪያዎች</string>
     <string name="onboarding_sources_patches_desc">ከዚህ ምንጭ የሚገኙ ሁሉንም ፓቾች ለማየት ይጫኑ</string>
     <string name="onboarding_sources_version_desc">የዚህን ምንጭ ሙሉ የለውጥ ዝርዝር ለማየት ስሪቱን ይጫኑ</string>
     <string name="onboarding_sources_apps_desc">ይህ ምንጭ የሚጠግናቸውን መተግበሪያዎች ለማየት እና የትኞቹን እንደሚጠግን ለመምረጥ ይጫኑ</string>
@@ -1606,4 +1606,23 @@ morphe_header_custom_dark.png
     <string name="tour_prompt_confirm">አሳዩኝ</string>
     <string name="onboarding_restart_title">የባህሪያት ጉብኝት</string>
     <string name="onboarding_restart_desc">የቁልፍ ባህሪያት መመሪያ ጉብኝት</string>
+
+    <string name="home_app_filter_all_description">በመነሻ ስክሪኑ ላይ ያሉ ሁሉም መተግበሪያዎች</string>
+    <string name="home_app_filter_patched_description">በMorphe ፓች ያደረጓቸው ወይም ያስቀመጧቸው መተግበሪያዎች</string>
+    <string name="home_app_filter_not_patched_description">በMorphe እስካሁን ፓች ያላደረጓቸው መተግበሪያዎች</string>
+    <string name="home_app_filter_installed_description">በአሁኑ ጊዜ በዚህ መሳሪያ ላይ የተጫኑ መተግበሪያዎች</string>
+    <string name="home_app_filter_uninstalled_description">በMorphe የተስተካከሉ ነገር ግን በዚህ መሳሪያ ላይ የማይገኙ መተግበሪያዎች</string>
+    <string name="home_app_filter_clones_description">በራሳቸው የፓኬጅ ስም የተሰሩ እና ከዋናው መተግበሪያ ጋር ተጫንተው የሚገኙ መተግበሪያዎች</string>
+    <string name="home_app_sort_name_asc_description">በፊደል ቅደም ተከተል፣ ከሀ እስከ ፐ</string>
+    <string name="home_app_sort_name_desc_description">በተገላቢጦሽ የፊደል ቅደም ተከተል፣ ከፐ እስከ ሀ</string>
+    <string name="home_app_sort_recently_patched_description">በቅርቡ ፓች የተደረጉ መተግበሪያዎች መጀመሪያ ይመጣሉ</string>
+    <string name="home_category_custom">ብጁ</string>
+    <string name="sources_filter_all_description">ሁሉም ምንጮች</string>
+    <string name="sources_filter_enabled_description">የምንጮች ፓቾች የሚወሰዱበት ቦታ</string>
+    <string name="sources_filter_disabled_description">የጠፉ ምንጮች</string>
+    <string name="sources_filter_issues_description">የተከለከሉ፣ ለመጫን የከሸፉ ወይም አዲስ Mamu የሚፈልጉ ምንጮች</string>
+    <string name="sources_sort_last_updated_description">አዳዲስ የምንጭ ማሻሻያዎች መጀመሪያ</string>
+    <string name="sources_sort_enabled_first_description">ያልነቁ ምንጮችን ከመመልከትዎ በፊት ንቁ ምንጮችን ያሳዩ</string>
+    <string name="home_apk_availability_installed_version">በዚህ መሣሪያ ላይ የተጫነው፡ %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">የኪይስቶር ፎርማት</string>
 </resources>

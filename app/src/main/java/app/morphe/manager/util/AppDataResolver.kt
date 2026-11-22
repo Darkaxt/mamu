@@ -100,6 +100,7 @@ class AppDataResolver(
     // Avoids redundant IO when multiple composables resolve the same package simultaneously.
     // Entries live until the package is invalidated.
     private val cache = ConcurrentHashMap<Pair<String, AppDataSource>, ResolvedAppData>()
+    internal val iconSnapshots = ResolvedIconCache()
 
     // Per-source lookups keyed by the source they came from rather than the caller's preference.
     // The same APK is otherwise re-read once per preferredSource, and every archive read costs a
@@ -149,17 +150,37 @@ class AppDataResolver(
      * that affects what source the package data comes from.
      */
     fun invalidate(packageName: String) {
-        generations.merge(packageName, 1L, Long::plus)
-        cache.keys.removeAll { it.first == packageName }
-        sourceCache.keys.removeAll { it.first == packageName }
+        iconSnapshots.invalidate(packageName) {
+            cache.keys.removeAll { it.first == packageName }
+            sourceCache.keys.removeAll { it.first == packageName }
+        }
     }
 
     /** Invalidate all cached data. Call this when a global refresh is needed. */
     fun invalidateAll() {
-        globalGeneration++
-        cache.clear()
-        sourceCache.clear()
+        iconSnapshots.invalidate {
+            cache.clear()
+            sourceCache.clear()
+        }
     }
+
+    /** Original identity for a missing icon, including a removed renamed/clone installation. */
+    suspend fun originalPlayPackage(packageName: String): String = withContext(Dispatchers.IO) {
+        installedAppRepository.getAll().first()
+            .firstOrNull { it.currentPackageName == packageName }?.originalPackageName ?: packageName
+    }
+
+    /** IO owns local resolution, fallback drawable decode and clone identity lookup. */
+    internal suspend fun resolveIcon(packageName: String, source: AppDataSource): ResolvedIconSnapshot =
+        withContext(Dispatchers.IO) {
+            iconSnapshots.peek(packageName, source)?.let { return@withContext it }
+            val revision = iconSnapshots.revision.value
+            val data = resolveAppData(packageName, source)
+            val drawable = if (data.packageInfo == null) data.icon else null
+            ResolvedIconSnapshot(data.packageInfo, drawable,
+                if (data.packageInfo == null && drawable == null) originalPlayPackage(packageName) else null)
+                .also { iconSnapshots.publish(packageName, source, it, revision) }
+        }
 
     /**
      * Resolve app data from any available source.
@@ -180,8 +201,10 @@ class AppDataResolver(
         preferredSource: AppDataSource = AppDataSource.INSTALLED,
         records: ResolverRecords? = null
     ): ResolvedAppData = withContext(Dispatchers.IO) {
-        cache[packageName to preferredSource]?.let { return@withContext it }
-        val generation = generationOf(packageName)
+        val revision = synchronized(iconSnapshots) {
+            cache[packageName to preferredSource]?.let { return@withContext it }
+            iconSnapshots.revision.value
+        }
 
         // APK sources ordered by preference - provide icon, packageInfo and raw label
         val apkSources = when (preferredSource) {
@@ -206,7 +229,7 @@ class AppDataResolver(
         // Read only once a saved APK is looked for, and then once for the whole lookup
         var lookupRecords = records
         val apkResult = apkSources.firstNotNullOfOrNull { source ->
-            resolveFromSource(packageName, source) {
+            resolveFromSource(packageName, source, revision) {
                 lookupRecords ?: ResolverRecords(
                     installedAppRepository.getAll().first(),
                     originalApkRepository.getAll().first()
@@ -242,12 +265,9 @@ class AppDataResolver(
             source = apkResult?.source
                 ?: if (bundleName != null) AppDataSource.BUNDLE_METADATA else AppDataSource.CONSTANTS,
             loadIcon = { apkResult?.icon ?: fallbackIcon?.loadIcon(packageManager) }
-        ).also {
-            // Bundle metadata may not have loaded yet, so a constants name is not worth keeping
-            if (it.source != AppDataSource.CONSTANTS) {
-                cache.putUnlessInvalidated(packageName to preferredSource, it, packageName, generation)
-            }
-        }
+        ).also { data -> synchronized(iconSnapshots) {
+            if (iconSnapshots.revision.value == revision) cache[packageName to preferredSource] = data
+        } }
     }
 
     /**
@@ -263,8 +283,9 @@ class AppDataResolver(
     private suspend fun resolveFromSource(
         packageName: String,
         source: AppDataSource,
+        revision: Long,
         records: suspend () -> ResolverRecords
-    ): ResolvedAppData? = cachedSource(packageName, source) {
+    ): ResolvedAppData? = cachedSource(packageName, source, revision) {
         when (source) {
             AppDataSource.INSTALLED -> tryGetFromInstalled(packageName)
             AppDataSource.ORIGINAL_APK -> tryGetFromOriginalApk(packageName, records())
@@ -279,14 +300,19 @@ class AppDataResolver(
     private inline fun cachedSource(
         packageName: String,
         source: AppDataSource,
+        revision: Long = iconSnapshots.revision.value,
         read: () -> ResolvedAppData?
     ): ResolvedAppData? {
-        val key = packageName to source
-        sourceCache[key]?.let { return it.orElse(null) }
-        val generation = generationOf(packageName)
-        val value = Optional.ofNullable(read())
-        sourceCache.putUnlessInvalidated(key, value, packageName, generation)
-        return value.orElse(null)
+        synchronized(iconSnapshots) {
+            sourceCache[packageName to source]?.let { return it.orElse(null) }
+        }
+        // IO/PackageManager work never holds the cache monitor. Reject late writes after invalidation.
+        val result = read()
+        synchronized(iconSnapshots) {
+            if (iconSnapshots.revision.value == revision)
+                sourceCache.putIfAbsent(packageName to source, Optional.ofNullable(result))
+        }
+        return result
     }
 
     /**

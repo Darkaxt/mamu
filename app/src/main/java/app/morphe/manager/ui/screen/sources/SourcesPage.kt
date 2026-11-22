@@ -5,6 +5,12 @@
 
 package app.morphe.manager.ui.screen.sources
 
+import androidx.compose.ui.layout.boundsInWindow
+
+import androidx.compose.ui.layout.onGloballyPositioned
+
+import app.morphe.manager.ui.screen.shared.BundleIcon
+
 import android.content.Intent
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
@@ -88,7 +94,7 @@ fun SourcesPage(
     homeViewModel: HomeViewModel,
     bottomBarHeight: Dp,
     state: SourcesPageState,
-    onboardingState: OnboardingState? = null,
+    onboardingState: GlobalOnboardingState? = null,
     alertsHeight: () -> Dp = { 0.dp },
     onHeaderHeightChange: (Dp) -> Unit = {},
     onSourceAdded: () -> Unit = {}
@@ -166,7 +172,7 @@ fun SourcesPage(
 private fun SourcesPageContent(
     bottomBarHeight: Dp,
     state: SourcesPageState,
-    onboardingState: OnboardingState?,
+    onboardingState: GlobalOnboardingState?,
     alertsHeight: () -> Dp,
     onHeaderHeightChange: (Dp) -> Unit,
     addSourcePanel: @Composable () -> Unit,
@@ -183,12 +189,13 @@ private fun SourcesPageContent(
     val messages: UserMessages = koinInject()
     val scope = rememberCoroutineScope()
 
-    val sources by patchBundleRepository.sources.collectAsStateWithLifecycle()
+    val sources by patchBundleRepository.visibleSources.collectAsStateWithLifecycle()
     val bundleState by patchBundleRepository.bundleState.collectAsStateWithLifecycle()
     val isLoadingSources = bundleState is PatchBundleRepository.BundleState.Loading
     val patchCounts by patchBundleRepository.patchCountsFlow.collectAsStateWithLifecycle(emptyMap())
     val activeUpdateUids by patchBundleRepository.activeUpdateUidsFlow.collectAsStateWithLifecycle(emptySet())
     val metadataFetchErrors by patchBundleRepository.metadataFetchErrors.collectAsStateWithLifecycle(emptyMap())
+    val manualUpdateInfo by patchBundleRepository.manualUpdateInfo.collectAsStateWithLifecycle(emptyMap())
     val experimentalVersionsEnabled by prefs.bundleExperimentalVersionsEnabled.getAsState()
     // Every source, not only the enabled ones: a disabled source still answers a patch search
     // and still declares whether it carries experimental targets
@@ -215,7 +222,7 @@ private fun SourcesPageContent(
     }
 
     // The tour points into the first source, so it stays open while the tour runs
-    val isTourRunning = onboardingState != null
+    val isTourRunning = onboardingState?.sheetOnboardingActive == true
 
     // The sources a delete waits on confirmation for, one from its card or several from a selection
     val bundlesToDelete = remember { mutableStateOf<List<PatchBundleSource>>(emptyList()) }
@@ -239,9 +246,14 @@ private fun SourcesPageContent(
     val listState = rememberLazyListState()
     // The rows the tour points at are on the first card, which has to be in the list for them to
     // bring themselves into view
-    val tourTarget = onboardingState?.target
-    LaunchedEffect(tourTarget) {
-        if (tourTarget in SourceTourTargets && listState.firstVisibleItemIndex > 0) listState.scrollToItem(0)
+    LaunchedEffect(onboardingState, sources) {
+        onboardingState?.onScrollToFirstSource = {
+            expandedBundleUids = sources.firstOrNull()?.uid?.let(::setOf).orEmpty()
+            scope.launch { listState.scrollToItem(0) }
+        }
+        onboardingState?.onScrollToPrerelease = {
+            scope.launch { listState.scrollToItem(0) }
+        }
     }
     var localOrder by remember { mutableStateOf(sources.map { it.uid }) }
     var isDragging by remember { mutableStateOf(false) }
@@ -281,7 +293,7 @@ private fun SourcesPageContent(
                 if (uid in blockedSources) return@forEach
                 val matches = SourceSearchMatches(
                     apps = listedAppsBySource[uid].orEmpty().count { packageName ->
-                        appMatchesQuery(packageName, appMetadata[packageName]?.displayName, query)
+                        (packageName.contains(query, ignoreCase = true) || appMetadata[packageName]?.displayName?.contains(query, ignoreCase = true) == true)
                     },
                     patches = info.patches.count { it.matchesQuery(query) }
                 )
@@ -451,7 +463,7 @@ private fun SourcesPageContent(
                     contentDescription = stringResource(R.string.add),
                     onClick = state::openAddSource,
                     style = TitleActionStyle.Accent,
-                    modifier = Modifier.tourTarget(TourTarget.ADD_SOURCE, onboardingState)
+                    modifier = Modifier
                 )
             }
         },
@@ -563,6 +575,7 @@ private fun SourcesPageContent(
                                 BundleManagementCard(
                                     bundle = bundle,
                                     info = SourceCardInfo(
+                                        updateInfo = manualUpdateInfo[bundle.uid],
                                         patchCount = patchCounts[bundle.uid] ?: 0,
                                         searchMatches = searchMatches[bundle.uid],
                                         appCount = appCounts[bundle.uid] ?: SourceAppCount.NONE,
@@ -735,7 +748,7 @@ private fun SourcesPageContent(
     }
 
     DialogHost(target = bundleToShowApps.value) { src ->
-        SourceAppsDialog(
+        app.morphe.manager.ui.screen.home.SourceAppsDialog(
             onDismissRequest = { bundleToShowApps.value = null },
             src = src,
             initialQuery = search.query
@@ -825,6 +838,7 @@ private data class SourceSearchMatches(val apps: Int, val patches: Int)
 
 /** What a source card reports about its source, beyond the source itself. */
 private data class SourceCardInfo(
+    val updateInfo: PatchBundleRepository.ManualBundleUpdateInfo? = null,
     val patchCount: Int,
     /** What the page's search finds in the source, or null while it finds nothing there. */
     val searchMatches: SourceSearchMatches?,
@@ -855,14 +869,6 @@ private class SourceCardActions(
     val onUpdate: () -> Unit,
     val onRename: () -> Unit,
     val onDelete: () -> Unit
-)
-
-/** Rows of the first card the tour points at. */
-private val SourceTourTargets = setOf(
-    TourTarget.SOURCE_PATCHES,
-    TourTarget.SOURCE_VERSION,
-    TourTarget.SOURCE_APPS,
-    TourTarget.SOURCE_PRERELEASE
 )
 
 /** How far a folded card of a source switched off fades back from the ones that are on. */
@@ -901,7 +907,7 @@ private fun BundleManagementCard(
     dragHandleModifier: Modifier? = null,
     onMove: ((Int) -> Unit)? = null,
     // Set on the card the tour points into
-    tour: OnboardingState? = null
+    tour: GlobalOnboardingState? = null
 ) {
     // Localized strings for accessibility
     val expandedState = stringResource(R.string.expanded)
@@ -1097,6 +1103,12 @@ private fun BundleManagementCard(
                                     onClick = actions.onChangeLink
                                 )
 
+                                info.updateInfo?.let { update ->
+                                    Notice(text = stringResource(R.string.extended_source_manual_update, update.latestVersion.orEmpty()),
+                                        tone = SemanticTone.Warning, density = NoticeDensity.Compact,
+                                        action = update.pageUrl?.let { url -> NoticeAction(stringResource(R.string.view)) { actions.onOpenInBrowser() } })
+                                }
+
                                 // Signing key hint (shown when an update was refused for its signer)
                                 CardNotice(
                                     visible = signingKeyChanged,
@@ -1128,7 +1140,7 @@ private fun BundleManagementCard(
                                 // What the source holds, in one panel the way the app details list theirs
                                 InfoPanel {
                                     InfoRow(
-                                        modifier = Modifier.tourTarget(TourTarget.SOURCE_PATCHES, tour),
+                                        modifier = Modifier.onGloballyPositioned { tour?.sourcesPatchesBounds = it.boundsInWindow() },
                                         icon = MaterialSymbols.Rounded.Info,
                                         label = stringResource(R.string.patches),
                                         value = info.searchMatches?.patches?.takeIf { it > 0 }
@@ -1144,7 +1156,7 @@ private fun BundleManagementCard(
                                     SettingsDivider()
 
                                     InfoRow(
-                                        modifier = Modifier.tourTarget(TourTarget.SOURCE_VERSION, tour),
+                                        modifier = Modifier.onGloballyPositioned { tour?.sourcesVersionBounds = it.boundsInWindow() },
                                         icon = MaterialSymbols.Rounded.Update,
                                         label = stringResource(R.string.version),
                                         value = bundle.version?.normalizeVersion()?.isolateLtr() ?: "N/A",
@@ -1186,7 +1198,7 @@ private fun BundleManagementCard(
                                             listedApps.toString()
                                         }
                                         InfoRow(
-                                            modifier = Modifier.tourTarget(TourTarget.SOURCE_APPS, tour),
+                                            modifier = Modifier,
                                             icon = MaterialSymbols.Rounded.Apps,
                                             label = stringResource(R.string.sources_apps),
                                             value = if (unseenApps > 0) {
@@ -1253,7 +1265,7 @@ private fun BundleManagementCard(
                                             enabled = !info.isUpdating,
                                             isLoading = info.isUpdating,
                                             showDivider = false,
-                                            rowModifier = Modifier.tourTarget(TourTarget.SOURCE_PRERELEASE, tour)
+                                            rowModifier = Modifier
                                         )
                                     }
 
@@ -1472,9 +1484,9 @@ private fun BundleCardHeader(
                 // re-ordering on every keystroke
                 if (searchMatches != null) {
                     val (count, plural) = if (searchMatches.apps > 0) {
-                        searchMatches.apps to R.plurals.home_category_app_count
+                        searchMatches.apps to R.plurals.sources_search_app_matches
                     } else {
-                        searchMatches.patches to R.plurals.patch_count
+                        searchMatches.patches to R.plurals.sources_search_patch_matches
                     }
                     StatusBadge(
                         text = pluralStringResource(plural, count, count.toString()),
@@ -1567,7 +1579,7 @@ private fun CardNotice(
             icon = icon,
             tone = SemanticTone.Error,
             density = NoticeDensity.Compact,
-            onClick = onClick
+            action = onClick?.let { NoticeAction(stringResource(R.string.view), it) }
         )
     }
 }

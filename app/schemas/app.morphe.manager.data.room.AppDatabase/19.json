@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 19,
-    "identityHash": "e37681f1e4284d48effa5223ca9b5931",
+    "identityHash": "50d03dded6f92856397f280881236a5c",
     "entities": [
       {
         "tableName": "patch_bundles",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER NOT NULL, `name` TEXT NOT NULL, `display_name` TEXT, `version` TEXT, `source` TEXT NOT NULL, `enabled` INTEGER NOT NULL, `sort_order` INTEGER NOT NULL, `created_at` INTEGER, `updated_at` INTEGER, PRIMARY KEY(`uid`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER NOT NULL, `name` TEXT NOT NULL, `display_name` TEXT, `version` TEXT, `source` TEXT NOT NULL, `auto_update` INTEGER NOT NULL, `enabled` INTEGER NOT NULL, `sort_order` INTEGER NOT NULL, `created_at` INTEGER, `updated_at` INTEGER, PRIMARY KEY(`uid`))",
         "fields": [
           {
             "fieldPath": "uid",
@@ -34,6 +34,12 @@
             "fieldPath": "source",
             "columnName": "source",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "autoUpdate",
+            "columnName": "auto_update",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -796,7 +802,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e37681f1e4284d48effa5223ca9b5931')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '50d03dded6f92856397f280881236a5c')"
     ]
   }
 }

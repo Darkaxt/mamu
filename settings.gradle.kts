@@ -51,7 +51,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "morphe-manager"
+rootProject.name = "Mamu"
 include(":app")
 include(":patcher-core")
 

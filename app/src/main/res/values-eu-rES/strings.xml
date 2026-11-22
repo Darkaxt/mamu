@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">Android 11ren akatsa</string>
     <string name="android_11_bug_dialog_description">Aplikazioaren instalazio baimena aldez aurretik eman behar da, Android 11 sistemako akats bat saihesteko, erabiltzailearen esperientziari kalte egingo lioke</string>
     <string name="deep_link_add_source_title">Iturria gehitu</string>
-    <string name="deep_link_add_source_message">Patch iturri hau Morphe-ra gehitu nahi duzu?</string>
+    <string name="deep_link_add_source_message">Patch iturri hau Mamu-ra gehitu nahi duzu?</string>
     <string name="deep_link_add_source_warning">Konfiantza duzun iturriak soilik gehitu</string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">Aplikazio hau bakarrik gehitu da. Iturriaren aplikazio-zerrendatik beste aplikazioak gehitu ditzakezu</string>
@@ -44,15 +44,15 @@
     <string name="mpp_import_unreadable">Fitxategi hau ezin da irakurri</string>
     <string name="incoming_file_not_patch_source">Fitxamen hau ez da patch-iturri bat</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">Morphe eguneratze bat dago eskuragarri</string>
+    <string name="home_update_available">Mamu eguneratze bat dago eskuragarri</string>
     <string name="home_update_available_subtitle">Bertsio berria instalatzeko prest</string>
     <string name="home_blocked_source_title">Patch-iturri blokeatua detektatu da</string>
     <string name="home_blocked_source_subtitle">Sakatu berrikusteko eta kentzeko</string>
     <string name="home_metadata_errors_title">Patch-iturri batzuk ez daude eskuragarri</string>
     <string name="home_metadata_errors_subtitle">Sakatu iturriak berrikutzeko</string>
-    <string name="home_outdated_manager_title">Morphe zaharkituta dago</string>
+    <string name="home_outdated_manager_title">Mamu zaharkituta dago</string>
     <string name="home_outdated_manager_subtitle">Patch-iturri batzuek bertsio berriago bat behar dute</string>
-    <string name="home_held_back_title">Patch-iturri batek Morphe-ren crash eragin du</string>
+    <string name="home_held_back_title">Patch-iturri batek Mamu-ren crash eragin du</string>
     <string name="home_held_back_subtitle">Aplikazioa hasi ahal izateko saltatu da. Sakatu berrikusteko</string>
     <string name="home_source_updates_title">Patch-en eguneratzeak eskuragarri dira</string>
     <string name="home_source_updates_subtitle">Sakatu deskargatzeko</string>
@@ -204,10 +204,10 @@
     <string name="sources_management_metadata_unavailable_hint">Urruneko metadatuen fitxategia ez dago eskuragarri. Instalatutako bundle-arekin patchatzeak funtzionatzen jarraitzen du, baina automatikoki eguneratzea desaktibatuta dago iturri honentzat</string>
     <string name="sources_management_metadata_unavailable_hint_missing">Patch-bundle-a ezin izan da deskargatu. Iturri-URLa okerra izan daiteke edo fitxategia ez dago</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">Patch-bundlea ezin da deskargatu. Iturriaren URLa okerra izan daiteke edo fitxategia ez da existitzen. Sakatu aldatzeko</string>
-    <string name="sources_management_outdated_manager_badge">Eguneratu Morphe</string>
-    <string name="sources_management_outdated_manager_hint">Iturri hau %1$s patcherrarentzat egin da, baina Morphe %2$s-ek %3$s patcherra dauka. Eguneratu Morphe erabiltzeko</string>
+    <string name="sources_management_outdated_manager_badge">Eguneratu Mamu</string>
+    <string name="sources_management_outdated_manager_hint">Iturri hau %1$s patcherrarentzat egin da, baina Mamu %2$s-ek %3$s patcherra dauka. Eguneratu Mamu erabiltzeko</string>
     <string name="sources_management_held_back_badge">Crash egin du</string>
-    <string name="sources_management_held_back_hint">Iturri honek Morphe-ren crash eragin du kargatzean, beraz saltatu egin da. Eguneratu edo inportatu berriro saiatzeko</string>
+    <string name="sources_management_held_back_hint">Iturri honek Mamu-ren crash eragin du kargatzean, beraz saltatu egin da. Eguneratu edo inportatu berriro saiatzeko</string>
     <string name="sources_management_signed_by">Sinatzailea</string>
     <string name="sources_management_signing_key_changed_badge">Giltza aldatu da</string>
     <string name="sources_management_signing_key_changed_hint">Azken bertsioa ez dago iturri honek lehenago erabili zuen gakoarekin sinatuta, beraz ez da instalatu. Sakatu berrikusteko</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">Komunitateko patch-ak</string>
     <string name="sources_dialog_choose_apps">Aukeratu aplikazioak</string>
     <string name="sources_dialog_choose_apps_description">Hautatu iturria kargatu ondoren zein aplikazio gorde</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">Hirugarrenen patch-iturriak</string>
-    <string name="sources_dialog_community_notice_message">"Komunitateko patch-iturriak haien egileek sortu eta mantentzen dituzte. Morphe-k ez ditu hirugarren alderdiko patch-ak berrikusten edo egiaztatzen, eta ez da erantzule haien edukiaz edo zure gailuan egiten dutenaz"</string>
+    <string name="sources_dialog_community_notice_message">"Komunitateko patch-iturriak haien egileek sortu eta mantentzen dituzte. Mamu-k ez ditu hirugarren alderdiko patch-ak berrikusten edo egiaztatzen, eta ez da erantzule haien edukiaz edo zure gailuan egiten dutenaz"</string>
     <string name="sources_update_success">Eguneratzea ongi egin da</string>
     <string name="sources_update_unavailable">Ez dago eguneratzerik eskuragarri</string>
     <string name="sources_download_fail">Iturriak deskargatzeak huts egin du: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">Laguntzaile aplikazio bat instalatuta dago, baina oraindik ez zaio konfiantzarik eman, beraz ez da hemen eskaintzen</string>
     <string name="home_apk_helper_untrusted_action">Laguntzaileak berrikusi</string>
     <string name="home_apk_helper_title">Deskargatu laguntza-aplikazio batekin</string>
-    <string name="home_apk_helper_description">Morphe-k beheko laguntza-aplikazioari eskatuko dio original APKa deskargatzeko eta fitxategia itzultzeko</string>
+    <string name="home_apk_helper_description">Mamu-k beheko laguntza-aplikazioari eskatuko dio original APKa deskargatzeko eta fitxategia itzultzeko</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">Laguntzailea ireki</string>
-    <string name="home_apk_helper_warning">Jarraitu soilik laguntza-aplikazio honetan konfiantza baduzu. Morphe-k paketea, bertsioa eta sinpeatura egiaztatzen ditu jasotzen duen edozein fitxategi patch-atu aurretik</string>
-    <string name="home_apk_helper_warning_unverified">Jarraitu soilik laguntzaile aplikazio honetan konfiantza baduzu. Morphe-k ezin du APK honen sinadura egiaztatu, beraz fitxategi aldatua ez litzateke detektatuko</string>
+    <string name="home_apk_helper_warning">Jarraitu soilik laguntza-aplikazio honetan konfiantza baduzu. Mamu-k paketea, bertsioa eta sinpeatura egiaztatzen ditu jasotzen duen edozein fitxategi patch-atu aurretik</string>
+    <string name="home_apk_helper_warning_unverified">Jarraitu soilik laguntzaile aplikazio honetan konfiantza baduzu. Mamu-k ezin du APK honen sinadura egiaztatu, beraz fitxategi aldatua ez litzateke detektatuko</string>
     <string name="home_apk_helper_no_result">Laguntzaile aplikazioak ez du APK bat itzuli</string>
     <string name="home_apk_helper_no_access">Laguntzaile aplikazioak ez du itzuli duen APKra sartzeko baimena eman</string>
     <string name="home_apk_helper_no_package">Laguntzaile aplikazioak ez du zein aplikazio instalatua erabili behar den esan</string>
     <string name="home_apk_helper_wrong_package">Laguntzaile aplikazioak patch-atu nahi den aplikazioa ez dena itzuli du</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe-k ezin du instalatutako aplikazioa erabili</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu-k ezin du instalatutako aplikazioa erabili</string>
     <string name="home_apk_helper_installed_incompatible">Instalatuta dagoen bertsioa ezin da patchatu</string>
     <string name="home_apk_use_saved_copy">Erabili gordetako kopia</string>
     <string name="home_apk_use_installed_app">Erabili instalatutako aplikazioa</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">Ezin izan da instalatutako aplikazioaren sinadura egiaztatu, beraz agian jada patchatuta dago</string>
     <string name="home_unverified">Egiaztatu gabe</string>
     <string name="home_install_verification_pending">Instalazioa egiaztatzen...</string>
-    <string name="home_app_info_install_unverified">Patchatu berriro edo instalatu gordetako APKtik, bere ekintzak berreskuratzeko. Morphe-k ezin du konfirmatu instalatutako aplikazioa patchatutako build-a dela</string>
+    <string name="home_app_info_install_unverified">Patchatu berriro edo instalatu gordetako APKtik, bere ekintzak berreskuratzeko. Mamu-k ezin du konfirmatu instalatutako aplikazioa patchatutako build-a dela</string>
     <string name="home_app_info_no_saved_apk">APK gordetarik ez dago. Patchatzeak APK fitxategia berriro hautatzea eskatuko du</string>
     <string name="home_version_requires_android">Android %s+ behar du</string>
     <string name="home_apk_no_compatible_versions_title">Ez dago onartuta gailu honetan</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">Joan webgunearen behealdera eta sakatu deskarga botoia</string>
     <string name="home_download_instructions_step2_variant">Joan behealdera eta sakatu goiko &lt;b&gt;APK bertsioaren&lt;/b&gt; deskarga botoia</string>
     <string name="home_download_instructions_step2_search">Ireki konfiantzazko webgune bateko bilaketa emaitza bat</string>
-    <string name="home_download_instructions_step2_search_note">Morphe-k ezin ditu webgune hauek bermatu. APK fitxategi baten ordez beren aplikazio-denda eskaintzen dutenak saltatu</string>
+    <string name="home_download_instructions_step2_search_note">Mamu-k ezin ditu webgune hauek bermatu. APK fitxategi baten ordez beren aplikazio-denda eskaintzen dutenak saltatu</string>
     <string name="home_download_instructions_step3_search">Webgun horretan, deskargatu &lt;b&gt;%s&lt;/b&gt; bertsioaren APKa, ez berriena</string>
     <string name="home_download_instructions_step3_search_any">Webgun horretan, deskargatu aplikazioaren APKa. &lt;b&gt;Bertsio edozein&lt;/b&gt; patchatuko da</string>
     <string name="home_download_instructions_step2_github">%s releaseko &lt;b&gt;Assets&lt;/b&gt; atarean, sakatu &lt;b&gt;.apk&lt;/b&gt; bota duten fitxategia</string>
@@ -314,11 +314,11 @@
     <string name="home_download_instructions_download_button_toast_3">Praktikak perfekzioa ekartzen du, eta lortzen ari zara 💪</string>
     <string name="home_download_instructions_download_button_toast_4">Oraindik ez dago hemen… oraindik ez dago hemen… 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">Ados, dedikazioa eskertzen dut 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">Orain Morphe-ren botoi-probatzaile ofiziala zara 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">Orain Mamu-ren botoi-probatzaile ofiziala zara 🏅</string>
     <string name="home_download_instructions_step3">Itxaro deskarga amaitu arte, eta &lt;b&gt;ez instalatu&lt;/b&gt; APKa</string>
     <string name="home_download_instructions_step3_mount">Itxaro deskarga amaitu arte, eta gero &lt;b&gt;instalatu APKa&lt;/b&gt;</string>
-    <string name="home_download_instructions_step4">Deskarga amaitu ondoren, itzuli Morphe-ra</string>
-    <string name="home_download_instructions_step4_mount">APK originala instalatu ondoren, itzuli Morphe-ra</string>
+    <string name="home_download_instructions_step4">Deskarga amaitu ondoren, itzuli Mamu-ra</string>
+    <string name="home_download_instructions_step4_mount">APK originala instalatu ondoren, itzuli Mamu-ra</string>
     <string name="home_download_instructions_continue_to">Jarraitu %s-ra</string>
     <string name="home_download_instructions_destination">deskarga orrialdean</string>
     <string name="home_download_instructions_copy_link">Kopiatu esteka</string>
@@ -446,12 +446,12 @@ Emaitza onenak lortzeko, aplikazio honek &lt;b&gt;APK osoa&lt;/b&gt; patchatzea 
     <string name="adaptive_icon_themed">Tematikoa</string>
     <string name="adaptive_icon_background_color">Atzeko kolorea</string>
     <string name="adaptive_icon_reset_transform">Berrezarri posizioa eta eskala</string>
-    <string name="adaptive_icon_no_transparency_warning">Irudi honek ez ditu pixel transparentekirik, beraz tematikoko eta jakinarazpen ikonoei Morphe logotipoa mantentuko zaie</string>
+    <string name="adaptive_icon_no_transparency_warning">Irudi honek ez ditu pixel transparentekirik, beraz tematikoko eta jakinarazpen ikonoei Mamu logotipoa mantentuko zaie</string>
     <string name="adaptive_icon_created_success">Ikono adaptatiboa ongi sortu da</string>
     <string name="adaptive_icon_creation_failed">Ikono adaptatiboa sortzeak huts egin du</string>
     <string name="adaptive_icon_guide">Ikonoak sortzeko gida</string>
     <string name="adaptive_icon_guide_png_title">Atzeko plano gardena duen PNG bat erabili</string>
-    <string name="adaptive_icon_guide_png_body">Atzeko planoa gardena duen logotipo batek hobeto funtzionatzen du, behean aukeratutako fondo kolorearekin. Gardentasunik gabeko irudi batek ikono osoa betetzen du, eta orduan tematikoko eta jakinarazpen ikonoei Morphe logotipoa mantentuko zaie.</string>
+    <string name="adaptive_icon_guide_png_body">Atzeko planoa gardena duen logotipo batek hobeto funtzionatzen du, behean aukeratutako fondo kolorearekin. Gardentasunik gabeko irudi batek ikono osoa betetzen du, eta orduan tematikoko eta jakinarazpen ikonoei Mamu logotipoa mantentuko zaie.</string>
     <string name="adaptive_icon_guide_safe_zones_title">Eremu seguruak</string>
     <string name="adaptive_icon_guide_safe_zones_body">Ertzak zure abiarazlearen ikono-forma erakusten du, eta kanpoko guztia mozten da. Beste abiarazle batzuek beste forma batzuk erabiltzen dituzte, beraz, garrantzitsuenak puntuzko zirkuluaren barruan mantendu, forma guztiek erakusten duten eremua baita.</string>
     <string name="adaptive_icon_guide_notification_title">Jakinarazpen-ikonoa</string>
@@ -556,9 +556,9 @@ Emaitza onenak lortzeko, aplikazio honek &lt;b&gt;APK osoa&lt;/b&gt; patchatzea 
     <string name="home_app_info_newest_supported_version">Onartutako bertsio berriena</string>
     <string name="home_app_info_version_move">Instalatua %1$s, onartutako berriena %2$s</string>
     <string name="home_app_info_version_restore">%1$s instalatuta, %2$s patchatuta</string>
-    <string name="home_app_info_app_deleted_warning">Aplikazioa Morphe-tik kanpo desinstalatu da</string>
-    <string name="home_app_info_app_deleted_description">Aplikazio hau Morphe-tik kanpo desinstalatu da. Patch-atu berriro funtzionalitatea berreskuratzeko</string>
-    <string name="home_app_info_not_patched_description">Aplikazio honen bertsio patchagaririk gabea instalatuta dago. Morphe-k aurreko patch-erregistroa oraindik dauka</string>
+    <string name="home_app_info_app_deleted_warning">Aplikazioa Mamu-tik kanpo desinstalatu da</string>
+    <string name="home_app_info_app_deleted_description">Aplikazio hau Mamu-tik kanpo desinstalatu da. Patch-atu berriro funtzionalitatea berreskuratzeko</string>
+    <string name="home_app_info_not_patched_description">Aplikazio honen bertsio patchagaririk gabea instalatuta dago. Mamu-k aurreko patch-erregistroa oraindik dauka</string>
     <string name="home_app_info_mount_replaced_description">Beste bertsio batek ordezkatutako du mountatutako aplikazioa, beraz patcha ez da aplikatzen. Restore-k patchatutako bertsioa berriz jartzen du</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play-k mountatutako aplikazioa eguneratu du, beraz patcha ez da aplikatzen. Restore-k patchatutako bertsioa berriz jartzen du. Patchatuta mantentzeko, Google Play-en automatiko eguneratzeak desaktibatu aplikazio horretarako</string>
     <string name="app_links_title">Onartutako web-estekak</string>
@@ -589,7 +589,7 @@ Emaitza onenak lortzeko, aplikazio honek &lt;b&gt;APK osoa&lt;/b&gt; patchatzea 
     <string name="root_pre_patch_installer_description">Zure gailuak root sarbidea du. Aukeratu aplikazio hau root mount-erako patch-otu behar den ala instalazio standarrea egin</string>
     <string name="root_pre_patch_installer_mount_title">Root mount modua</string>
     <string name="root_pre_patch_installer_mount_description">Root mount-erako patch-otzen du, eta gero APKa stock aplikazio egokiari gainez mount-atzen du. GmsCore ez da beharrezkoa</string>
-    <string name="root_mount_module_unmount_warning">KernelSU-k \"Unmount modules by default\" aktibatuta badu, ireki KernelSU &gt; Superuser &gt; muntatu duzun aplikazioa &gt; Profile &gt; Custom eta desaktibatu \"Unmount modules\". Bestela, muntatu den APK patchatua agian ez da eraginkorra izango, Morphe-k muntatuta erakusten badu ere</string>
+    <string name="root_mount_module_unmount_warning">KernelSU-k \"Unmount modules by default\" aktibatuta badu, ireki KernelSU &gt; Superuser &gt; muntatu duzun aplikazioa &gt; Profile &gt; Custom eta desaktibatu \"Unmount modules\". Bestela, muntatu den APK patchatua agian ez da eraginkorra izango, Mamu-k muntatuta erakusten badu ere</string>
     <string name="root_pre_patch_installer_standard_title">Instalazio standarren modua</string>
     <string name="root_pre_patch_installer_standard_description">APK normal batean patch-otzen du GmsCore support-arekin. Zure instalatzailearen konfigurazioa erabiltzen da patch-otzearen ondoren</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -652,7 +652,7 @@ Emaitza onenak lortzeko, aplikazio honek &lt;b&gt;APK osoa&lt;/b&gt; patchatzea 
     <string name="patcher_conflict_subtitle">Lehendik dagoen bertsioa desinstalatu behar duzu</string>
     <string name="patcher_conflict_hint">Patchatutako aplikazioak instalatutako bertsioaren ziurtagiri desberdina erabiltzen du. Desinstalatzeak aplikazioaren datu guztiak ezabatuko ditu</string>
     <string name="patcher_installed_conflict_title">Desinstalazioa beharrezkoa da</string>
-    <string name="patcher_installed_conflict_body">"Morphe-k patchatutako aplikazioak bere ziurtagiriarekin sinatzen ditu, jatorrizkoarekin bat ez datorrena. Androidek lehendik dagoen bertsioa kentzea behar du patchatutako aplikazioa instalatu aurretik.
+    <string name="patcher_installed_conflict_body">"Mamu-k patchatutako aplikazioak bere ziurtagiriarekin sinatzen ditu, jatorrizkoarekin bat ez datorrena. Androidek lehendik dagoen bertsioa kentzea behar du patchatutako aplikazioa instalatu aurretik.
 
 Desinstalatzeak aplikazioaren datu guztiak betiko ezabatuko ditu"</string>
     <string name="patcher_install_error_title">Instalazio errorea</string>
@@ -662,8 +662,8 @@ Desinstalatzeak aplikazioaren datu guztiak betiko ezabatuko ditu"</string>
     <string name="patcher_patches_excluded_for_installer">Ez dago eskuragarri instalazio metodo honetarako eta kanpokoa da: %s</string>
     <string name="patcher_storage_permission_dialog_title">Ezin da biltegi-bidera sartu</string>
     <string name="patcher_incompatible_patcher_title">Eguneratzea beharrezkoa da</string>
-    <string name="patcher_incompatible_patcher_description">Iturriak &lt;b&gt;%1$s&lt;/b&gt; patcher &lt;b&gt;%2$s&lt;/b&gt; edo berriagoa eskatzen ditu. Eguneratu Morphe erabiltzeko</string>
-    <string name="patcher_storage_permission_description_api30">Patch aukera batek edo gehiagok Morphe-k irakurri ezin dituen bideetara jotzen dute. Eman biltegi sarbidea eta sakatu botoia, eta patchatzea automatikoki hasiko da</string>
+    <string name="patcher_incompatible_patcher_description">Iturriak &lt;b&gt;%1$s&lt;/b&gt; patcher &lt;b&gt;%2$s&lt;/b&gt; edo berriagoa eskatzen ditu. Eguneratu Mamu erabiltzeko</string>
+    <string name="patcher_storage_permission_description_api30">Patch aukera batek edo gehiagok Mamu-k irakurri ezin dituen bideetara jotzen dute. Eman biltegi sarbidea eta sakatu botoia, eta patchatzea automatikoki hasiko da</string>
     <string name="patcher_storage_permission_description_legacy">Patch aukera batek edo gehiagok sarbiderik ez duten bideetara jotzen dute. Eguneratu bideak patch aukeretan eta saiatu berriro</string>
     <string name="patcher_storage_permission_grant">Eman biltegi baimena</string>
     <string name="patcher_storage_permission_denied_warning">Biltegi baimena ukatu da. Eman baimena bide hau erabiltzeko, edo mugitu fitxategiak aplikazioaren fitxategi pribatura</string>
@@ -699,7 +699,7 @@ Desinstalatzeak aplikazioaren datu guztiak betiko ezabatuko ditu"</string>
     <string name="patcher_task_writing_apk">APK fitxategia idazten</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">Atzeko planeko patching babesa</string>
-    <string name="battery_optimization_dialog_description">Gailu batzuek patching-a gelditu dezakete aplikazioa minimizatzen denean. Eman Morphe-ri bateria-mugarik gabe ibiltzeko baimena, patchatzea fidagarriro amaitzeko</string>
+    <string name="battery_optimization_dialog_description">Gailu batzuek patching-a gelditu dezakete aplikazioa minimizatzen denean. Eman Mamu-ri bateria-mugarik gabe ibiltzeko baimena, patchatzea fidagarriro amaitzeko</string>
     <string name="battery_optimization_not_now">Orain ez</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">Patch-egiteko prozesua martxan…</string>
@@ -754,8 +754,8 @@ Desinstalatzeak aplikazioaren datu guztiak betiko ezabatuko ditu"</string>
     <string name="install_ignore_signature">Instalatu hala ere</string>
     <string name="install_ignore_signature_description">Aplikazioaren datuak gordetzen ditu, baina root modulu batek Androiden sinadura egiaztapena desaktibatzen badu bakarrik funtzionatzen du</string>
     <string name="uninstall_app_fail">Appa desinstalatzea huts egin da: %s</string>
-    <string name="uninstall_app_unverified">Hor utzi da: Morphe-k ezin du egiaztatu instalatutako aplikazioa patchatutako build-a dela</string>
-    <string name="launch_app_unverified">Morphe-k ezin du egiaztatu instalatutako aplikazioa patchatutako build-a dela</string>
+    <string name="uninstall_app_unverified">Hor utzi da: Mamu-k ezin du egiaztatu instalatutako aplikazioa patchatutako build-a dela</string>
+    <string name="launch_app_unverified">Mamu-k ezin du egiaztatu instalatutako aplikazioa patchatutako build-a dela</string>
     <string name="uninstall_timeout">Desinstalazioa iraungi da</string>
     <string name="save_apk_success">APK gorde da</string>
     <string name="saved_app_export_failed">Patch-atutako aplikazioa esportatzeak huts egin du</string>
@@ -847,7 +847,7 @@ Desinstalatzeak aplikazioaren datu guztiak betiko ezabatuko ditu"</string>
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">Aplikazioaren hizkuntza</string>
     <string name="settings_appearance_app_language_current">Oraineko hizkuntza</string>
-    <string name="settings_appearance_translate">Lagundu Morphe itzultzen</string>
+    <string name="settings_appearance_translate">Lagundu Mamu itzultzen</string>
     <string name="settings_appearance_translations_info_title">Hizkuntza batzuen itzulpenak falta edo osatugabeak izan daitezke</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">Interfazearen eskala</string>
@@ -876,7 +876,7 @@ Desinstalatzeak aplikazioaren datu guztiak betiko ezabatuko ditu"</string>
     <string name="settings_appearance_app_card_colors_bundle_description">Erabili hemen aplikazio edo iturri bakoitzaren kolorea, automatikoki moldatuta</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">Aplikazioaren ikona</string>
-    <string name="settings_appearance_app_icon_selector_description">Morphe zure hasierako pantailan eta aplikazioen zerrendan nola agertzen den</string>
+    <string name="settings_appearance_app_icon_selector_description">Mamu zure hasierako pantailan eta aplikazioen zerrendan nola agertzen den</string>
     <string name="settings_appearance_app_icon_default">Lehenetsia</string>
     <string name="settings_appearance_app_icon_light_2">Zerua</string>
     <string name="settings_appearance_app_icon_light_3">Ilunabarra</string>
@@ -900,23 +900,23 @@ Desinstalatzeak aplikazioaren datu guztiak betiko ezabatuko ditu"</string>
     <string name="settings_appearance_app_icon_mark_black">Beltza</string>
     <string name="settings_appearance_app_icon_change_dialog_title">Aplikazioaren ikona aldatu nahi duzu?</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">Morphe berrifiziatu egiten da &lt;b&gt;%s&lt;/b&gt;ra aldatzeko</string>
+    <string name="settings_appearance_app_icon_change_restarts">Mamu berrifiziatu egiten da &lt;b&gt;%s&lt;/b&gt;ra aldatzeko</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">Ikona aldatu</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">Aurre-lanzamenduko eguneratzeak</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">Morphe-ren bertsio berrien sarrera goiztiarra</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">Mamu-ren bertsio berrien sarrera goiztiarra</string>
     <string name="settings_advanced_updates_prerelease_warning_title">Gaitu aurre-lanzamenduko eguneratzeak?</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"Morphe-ren aurre-lanzamenduko bertsioak garapenean daude oraindik eta ezegonkorrak izan daitezke.
+    <string name="settings_advanced_updates_prerelease_warning_message">"Mamu-ren aurre-lanzamenduko bertsioak garapenean daude oraindik eta ezegonkorrak izan daitezke.
 
 Patch-ak ez dira eraginduak: gaitu aurre-lanzamenduko patchak iturri bakoitzaren patch-iturrien zerrendan"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">Eguneratze automatikoak</string>
-    <string name="settings_auto_updates_description">Morphe-k eguneratzeekin egiten duena irekitzean. Beheko bultzada batek beti egiaztatzen du</string>
+    <string name="settings_auto_updates_description">Mamu-k eguneratzeekin egiten duena irekitzean. Beheko bultzada batek beti egiaztatzen du</string>
     <string name="settings_auto_updates_download">Deskargatu automatikoki</string>
-    <string name="settings_auto_updates_download_description">Eguneratzeak egiaztatzen ditu Morphe irekitzean eta patch-en eguneratzeak edozein sarean deskargatzen ditu</string>
+    <string name="settings_auto_updates_download_description">Eguneratzeak egiaztatzen ditu Mamu irekitzean eta patch-en eguneratzeak edozein sarean deskargatzen ditu</string>
     <string name="settings_auto_updates_wifi_only">Wi-Fi bidez bakarrik deskargatu</string>
     <string name="settings_auto_updates_wifi_only_description">Datu mugikorrekin, eskuragarria dena soilik egiaztatzen eta erakusten du</string>
     <string name="settings_auto_updates_check_only">Egiaztatu soilik</string>
@@ -937,27 +937,27 @@ Patch-ak ez dira eraginduak: gaitu aurre-lanzamenduko patchak iturri bakoitzaren
     <string name="settings_advanced_external_batch_patch">Kanpoko piztagaileak onartu</string>
     <string name="settings_advanced_external_batch_patch_description">Automatizazio-aplikazioei batch-patchinga hasten utzi</string>
     <string name="external_batch_patch_title">Batch patching hasi?</string>
-    <string name="external_batch_patch_description">%s-k aplikazioak patchatu eta instalatzea nahi du Morphe-ren bidez</string>
+    <string name="external_batch_patch_description">%s-k aplikazioak patchatu eta instalatzea nahi du Mamu-ren bidez</string>
     <string name="external_batch_patch_trust_caller">Aplikazio hau beti onartu</string>
     <string name="external_batch_patch_unknown_caller">Aplikazio ezezagun bat</string>
     <!-- Notification content -->
     <string name="notification_bundle_update_title">Patch berriak eskuragarri</string>
     <string name="notification_update_text">%s bertsioa deskargatzeko prest dago</string>
-    <string name="notification_bundle_update_text_unversioned">Sakatu Morphe irekitzeko eta eguneratzeko</string>
+    <string name="notification_bundle_update_text_unversioned">Sakatu Mamu irekitzeko eta eguneratzeko</string>
     <string name="notification_permission_dialog_title">Jakinarazpenak baimendu</string>
-    <string name="notification_permission_dialog_description">Morphe-k jakinarazpen baimena behar du atzealdean eguneratzeak eskuragarri daudenean abisatzeko</string>
+    <string name="notification_permission_dialog_description">Mamu-k jakinarazpen baimena behar du atzealdean eguneratzeak eskuragarri daudenean abisatzeko</string>
     <string name="notification_post_patch_dialog_title">Eguneratzeak eskuragarri daudenean jakinarazi nahi zaituzu?</string>
-    <string name="notification_channel_manager_updates">Morphe eguneratzeak</string>
-    <string name="notification_channel_manager_updates_description">Morphe bertsio berrien jakinarazpenak</string>
+    <string name="notification_channel_manager_updates">Mamu eguneratzeak</string>
+    <string name="notification_channel_manager_updates_description">Mamu bertsio berrien jakinarazpenak</string>
     <string name="notification_channel_patch_updates">Patch eguneratzeak</string>
     <string name="notification_channel_patch_updates_description">Patch bertsio berrien jakinarazpenak</string>
-    <string name="notification_channel_patcher_description">Morphe-k aplikazio bat atzeko planoan patchatzen ari denean agertzen da</string>
+    <string name="notification_channel_patcher_description">Mamu-k aplikazio bat atzeko planoan patchatzen ari denean agertzen da</string>
     <string name="notification_channel_patching_results">Patching emaitzak</string>
-    <string name="notification_channel_patching_results_description">Patching amaitzen denean edo instalazio bat zure zain dagoenean, Morphe atzeko planoan dagoen bitartean</string>
+    <string name="notification_channel_patching_results_description">Patching amaitzen denean edo instalazio bat zure zain dagoenean, Mamu atzeko planoan dagoen bitartean</string>
     <string name="notification_channel_mounted_apps">Mountatutako aplikazioak</string>
     <string name="notification_channel_mounted_apps_description">Beste bertsio batek mountatutako aplikazio bat ordezkatzean eta haren patcha ez denean aplikatzen</string>
     <string name="notification_mount_replaced_title">%1$s ez dago patchatuta</string>
-    <string name="notification_mount_replaced_text">v%1$s-k ordezkatuta du v%2$s patchatua. Ireki Morphe berriz jartzeko</string>
+    <string name="notification_mount_replaced_text">v%1$s-k ordezkatuta du v%2$s patchatua. Ireki Mamu berriz jartzeko</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">Aditu modua</string>
     <string name="settings_advanced_expert_mode_description">Patching-eko konfigurazio aurreratuak eta patch aukerak desblokeatzen ditu</string>
@@ -979,7 +979,7 @@ Patch-ak ez dira eraginduak: gaitu aurre-lanzamenduko patchak iturri bakoitzaren
     <string name="settings_advanced_github_pat_unreachable">Ezin izan da GitHub-era konektatu token hau egiaztatzeko</string>
     <string name="settings_advanced_github_pat_export_include_label">Sartu konfigurazio-esportazioan</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">Gehitu PAT hau esportatutako Morphe konfigurazioei</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">Gehitu PAT hau esportatutako Mamu konfigurazioei</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">Ez partekatu zure PAT-a. Konfigurazio-esportazioan sartzen baduzu, mantendu fitxategia pribatu tokena daukalako</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1074,7 +1074,7 @@ Irudien dimentsioak hauek izan behar dira:
     <string name="installer_status_not_supported">Ez da onartzen ekintza honetarako</string>
     <string name="installer_status_shizuku_not_installed">Instalatu Shizuku edo Sui aukera hau erabiltzeko</string>
     <string name="installer_status_shizuku_not_running">Hasi Shizuku edo Sui eta saiatu berriz</string>
-    <string name="installer_status_shizuku_permission">Eman baimena Morphe-ri Shizuku aplikaziotik</string>
+    <string name="installer_status_shizuku_permission">Eman baimena Mamu-ri Shizuku aplikaziotik</string>
     <string name="installer_mount_warning_install">Gordetako aplikazio hau ez da mount erabiliz instalatu</string>
     <string name="mount_version_mismatch_message">Stock aplikazioaren bertsioa (%2$s) ez dator bat patched aplikazioaren bertsioarekin (%1$s). Muntatu bat datorren stock bertsioa, eta saiatu berriro</string>
     <string name="mount_stock_restore_failed_message">Android-ek uste du gorde zen APK originala. Instalatu bertsio stock dagokiona, eta saiatu Mount berriro</string>
@@ -1133,7 +1133,7 @@ Irudien dimentsioak hauek izan behar dira:
     <string name="installer_shizuku_install_fail_with_details">"Shizuku-ren instalazioa huts egin du: %1$s
 
 Xehetasunak: %2$s"</string>
-    <string name="installer_shizuku_error_permission">Shizuku baimenik ez du. Eman baimena Morphe-ri eta saiatu berriro</string>
+    <string name="installer_shizuku_error_permission">Shizuku baimenik ez du. Eman baimena Mamu-ri eta saiatu berriro</string>
     <string name="installer_shizuku_error_timeout">Shizuku-k ez du instalazio emaitzarik itzuli. Ziurtatu martxan dagoela eta saiatu berriro</string>
     <string name="installer_shizuku_error_downgrade">Android-ek blokeatu du honek instalatutako aplikazioa downgrade egingo lukeelako</string>
     <string name="installer_shizuku_error_signature">Android-ek blokeatu du honek instalatutako aplikazioak sinadura desberdina duelako</string>
@@ -1144,13 +1144,13 @@ Xehetasunak: %2$s"</string>
     <string name="settings_system_battery_optimization_description">Patcher-a martxan mantentzen du aplikazioa minimizatuta dagoenean</string>
     <string name="settings_system_process_runtime">Patcher-en runtime-a</string>
     <string name="settings_system_jvm_runtime_enable">Erabili txertatutako VM-a</string>
-    <string name="settings_system_jvm_runtime_description">Morphe-ren Java VM propioan patchatzen du, memoria gehiago erabil dezake. Desaktibatu Android-en runtime-a erabiltzeko</string>
+    <string name="settings_system_jvm_runtime_description">Mamu-ren Java VM propioan patchatzen du, memoria gehiago erabil dezake. Desaktibatu Android-en runtime-a erabiltzeko</string>
     <string name="settings_system_jvm_runtime_unavailable">ARM edo 64-bit x86 gailu bat behar du</string>
     <string name="settings_system_patcher_completion_sound">Amaierako soinua</string>
     <string name="settings_system_patcher_completion_sound_description">Arrazoizko edo huts egineko tonu bereizia txarondoa amaitzean</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">Jakinarazpenak</string>
-    <string name="settings_system_notifications_description">Morphe-k nola mantentzen zaituen informatuta</string>
+    <string name="settings_system_notifications_description">Mamu-k nola mantentzen zaituen informatuta</string>
     <string name="settings_system_notifications_success_sound">Arrakasteko soinua</string>
     <string name="settings_system_notifications_error_sound">Huts egiteko soinua</string>
     <string name="settings_system_notifications_sound_default">Lehenetsua</string>
@@ -1162,8 +1162,8 @@ Xehetasunak: %2$s"</string>
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">Sinatzeko giltzea</string>
     <string name="settings_system_signing_key_description">Egin segurtasun-kopia edo berreskuratu patchatutako aplikazioak sinatzen dituen gakoa</string>
-    <string name="settings_system_signing_key_dialog_description">Morphe-k patchatutako aplikazio guztiak giltza honekin sinatzen dira. Gorde kopia bat: giltzarik gabe, patchatutako aplikazioak ez dira eguneratu ahal izango desinstalatu ondoren soilik</string>
-    <string name="settings_system_signing_key_missing">Morphe-k bat sortuko du zure lehen patch-arekin</string>
+    <string name="settings_system_signing_key_dialog_description">Mamu-k patchatutako aplikazio guztiak giltza honekin sinatzen dira. Gorde kopia bat: giltzarik gabe, patchatutako aplikazioak ez dira eguneratu ahal izango desinstalatu ondoren soilik</string>
+    <string name="settings_system_signing_key_missing">Mamu-k bat sortuko du zure lehen patch-arekin</string>
     <string name="settings_system_signing_key_created">%s sortuta</string>
     <string name="settings_system_signing_key_fingerprint">SHA-256 hatz-marka</string>
     <string name="settings_system_backup_appearance_description">Tema, koloreak eta hizkuntza</string>
@@ -1185,31 +1185,31 @@ Xehetasunak: %2$s"</string>
     <string name="settings_system_export_keystore_failed">Gordetako gakoen fitxategia esportatzeak huts egin du</string>
     <string name="settings_system_show_password_field">Erakutsi pasahitza</string>
     <string name="settings_system_hide_password_field">Ezkutatu pasahitza</string>
-    <string name="settings_system_morphe_settings">Morphe konfigurazioak</string>
-    <string name="settings_system_import_manager_settings_description">Zure Morphe konfigurazioaren babes-kopia egiten du eta berrezartzen du</string>
-    <string name="settings_system_export_manager_settings_title">Esportatu Morphe-ren konfigurazioak</string>
+    <string name="settings_system_morphe_settings">Mamu konfigurazioak</string>
+    <string name="settings_system_import_manager_settings_description">Zure Mamu konfigurazioaren babes-kopia egiten du eta berrezartzen du</string>
+    <string name="settings_system_export_manager_settings_title">Esportatu Mamu-ren konfigurazioak</string>
     <string name="settings_system_export_manager_settings_description">Hautatzen dituzun konfigurazioak fitxategi batean gordetzen ditu</string>
     <string name="settings_system_import_manager_settings_file_description">Konfigurazioak kopia bateko fitxategi batetik berreskuratzen ditu</string>
     <string name="settings_system_auto_backup">Kopia automatikoa</string>
     <string name="settings_system_auto_backup_switch">Kopia automatikoa egin</string>
     <string name="settings_system_auto_backup_now">Kopia orain egin</string>
     <string name="settings_system_auto_backup_saved">Kopia gordeta da</string>
-    <string name="settings_system_auto_backup_interval_description">Morphe-k kopia bat egin ondoren, gutxienez denbora hau itxaroko du hurrengoa egiteko</string>
-    <string name="settings_system_auto_backup_description">Zure Morphe konfigurazioak hautatzen duzun karpetan gordetzen ditu</string>
+    <string name="settings_system_auto_backup_interval_description">Mamu-k kopia bat egin ondoren, gutxienez denbora hau itxaroko du hurrengoa egiteko</string>
+    <string name="settings_system_auto_backup_description">Zure Mamu konfigurazioak hautatzen duzun karpetan gordetzen ditu</string>
     <string name="settings_system_auto_backup_last">Azken kopia: %s</string>
     <string name="settings_system_auto_backup_folder">Karpeta</string>
-    <string name="settings_system_auto_backup_folder_name">Morphe backupak</string>
+    <string name="settings_system_auto_backup_folder_name">Mamu backupak</string>
     <string name="settings_system_auto_backup_folder_failed">Ezin izan da karpeta hau erabili: %s</string>
     <string name="settings_system_auto_backup_interval">Backup-en maiztasuna</string>
     <string name="settings_system_auto_backup_signing_key">Saga-giltza inprimatu</string>
     <string name="settings_system_auto_backup_signing_key_description">Aplikazio patchedak sinatzen dituen giltza gordetzen du arauetan ondo</string>
     <string name="settings_system_auto_backup_signing_key_warning_title">Saga-giltza backup-atu?</string>
     <string name="settings_system_auto_backup_signing_key_warning_message">Fitxategi hau lortu duen edozein norbitek zure aplikazio patchedak gainditzen dituzten eguneratzeak sinatu ditzake. Mantendu karpeta pribatu eta parteka soilik zure gailuekin</string>
-    <string name="settings_system_auto_backup_footer">Kopia bat gorde egiten da zerbait aldatu ondoren Morphe utzi zuenean. Berrienak %s mantentzen dira</string>
+    <string name="settings_system_auto_backup_footer">Kopia bat gorde egiten da zerbait aldatu ondoren Mamu utzi zuenean. Berrienak %s mantentzen dira</string>
     <string name="settings_system_auto_backup_failed">Azken backup-a ezin izan da gorde. Aukeratu berriro karpeta</string>
-    <string name="settings_system_import_manager_settings_fail">Morphe konfigurazioa inportatzeak huts egin du: %s</string>
-    <string name="settings_system_import_manager_settings_success">Morphe konfigurazioak importatu dira</string>
-    <string name="settings_system_import_manager_settings_mode_title">Inportatu Morphe-ren konfigurazioak</string>
+    <string name="settings_system_import_manager_settings_fail">Mamu konfigurazioa inportatzeak huts egin du: %s</string>
+    <string name="settings_system_import_manager_settings_success">Mamu konfigurazioak importatu dira</string>
+    <string name="settings_system_import_manager_settings_mode_title">Inportatu Mamu-ren konfigurazioak</string>
     <string name="settings_system_import_manager_settings_mode_description">Aukeratu nola aplikatu inportatutako konfigurazioak eta iturriak</string>
     <string name="settings_system_import_selections_mode_title">Inportatu patch-hautapenak</string>
     <string name="settings_system_import_selections_mode_description">Aukeratu nola aplikatu inportatutako hautapenak eta patch aukerak</string>
@@ -1217,8 +1217,8 @@ Xehetasunak: %2$s"</string>
     <string name="import_mode_replace_description">Babes-kopiarekin bat etorri. Babes-kopian ez dauden elementuak kenduko dira</string>
     <string name="import_mode_merge_title">Batu existitzen direnekin</string>
     <string name="import_mode_merge_description">Gehitu babes-kopiako falta diren elementuak. Dauden elementuak aldatu gabe mantenduko dira</string>
-    <string name="settings_system_export_manager_settings_fail">Morphe konfigurazioa esportatzeak huts egin du: %s</string>
-    <string name="settings_system_export_manager_settings_success">Morphe konfigurazioak esportatu dira</string>
+    <string name="settings_system_export_manager_settings_fail">Mamu konfigurazioa esportatzeak huts egin du: %s</string>
+    <string name="settings_system_export_manager_settings_success">Mamu konfigurazioak esportatu dira</string>
     <string name="settings_system_export_debug_logs">Esportatu debug log-ak</string>
     <string name="settings_system_export_debug_logs_description">Sistemaren log-ak gordetzen ditu arazoak konpontzeko</string>
     <string name="settings_system_export_debug_logs_export_read_failed">Log-ak irakurtzeak huts egin du (%s irteera-kodea)</string>
@@ -1236,7 +1236,7 @@ Xehetasunak: %2$s"</string>
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">Biltegiratzea kudeatzea</string>
     <string name="settings_system_storage_management_description">Erakutsi diskoaren erabilera eta garbitu cache fitxategiak</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s erabilgarri</string>
     <string name="settings_system_storage_saved_apks">Gordetako APKak</string>
     <string name="settings_system_storage_caches">Cache-ak</string>
@@ -1259,7 +1259,7 @@ Xehetasunak: %2$s"</string>
     <string name="settings_system_storage_clear_anyway">Garbitu hala ere</string>
     <string name="settings_system_storage_nothing_to_clear">Garbitzeko ezer ez dago</string>
     <string name="settings_system_storage_open_app_info_title">Ireki Android aplikazioaren biltegia</string>
-    <string name="settings_system_storage_open_app_info_description">Kudeatu edo garbitu Morphe-ren datu guztiak sistemaren ezarpenen bidez</string>
+    <string name="settings_system_storage_open_app_info_description">Kudeatu edo garbitu Mamu-ren datu guztiak sistemaren ezarpenen bidez</string>
     <string name="settings_system_save_original_apks_title">Gorde jatorrizko APK-ak</string>
     <string name="settings_system_save_original_apks_description">Gorde patching aurreko APKa, berriro patchatzeko fitxategia berriro hautatu gabe berrerabili ahal izateko</string>
     <string name="settings_system_save_patched_apks_title">Gorde patch-atutako APKak</string>
@@ -1313,13 +1313,13 @@ Xehetasunak: %2$s"</string>
     <string name="copy_selection_available_format">%2$s-tik %1$s eskuragarri</string>
     <!-- Settings - System Tab - Custom file picker -->
     <string name="settings_system_custom_file_picker">Fitxategi hautatzaile pertsonalizatua</string>
-    <string name="settings_system_custom_file_picker_description">Erabili Morphe-ren fitxategi-hautagailu integratua sistemaren ordez</string>
+    <string name="settings_system_custom_file_picker_description">Erabili Mamu-ren fitxategi-hautagailu integratua sistemaren ordez</string>
     <!-- Settings - System Tab - APK download helper -->
     <string name="settings_system_apk_download_helper">APK deskarga laguntzailea</string>
     <string name="settings_system_apk_download_helper_trusted_count">Fidagarriak: %1$d / %2$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">Laguntza-aplikazioek APK originalak deskargatu ditzakete zuretzat. Hemen fidatzen dituzun horiek soilik agertzen dira deskarga argibideetan</string>
     <string name="settings_system_apk_download_helper_trust_title">Laguntzaile honi konfiantza eman?</string>
-    <string name="settings_system_apk_download_helper_warning">APKak laguntza-aplikazioetatik datoz, beraz, ez fidatu ezagutzen ez dituzun aplikazioez. Morphe-k oraindik egiaztatzen ditu fitxategi bakoitzaren paketea, bertsioa eta sinadura patchatu aurretik</string>
+    <string name="settings_system_apk_download_helper_warning">APKak laguntza-aplikazioetatik datoz, beraz, ez fidatu ezagutzen ez dituzun aplikazioez. Mamu-k oraindik egiaztatzen ditu fitxategi bakoitzaren paketea, bertsioa eta sinadura patchatu aurretik</string>
     <string name="settings_system_apk_download_helper_installed_by">%s-ek instalatu du</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">Instalatzailea ezaguna ez da</string>
     <string name="settings_system_apk_download_helper_open_directly">Ireki laguntzailea berehala</string>
@@ -1352,7 +1352,7 @@ Xehetasunak: %2$s"</string>
     <string name="settings_about_section_project">Proiektua</string>
     <string name="settings_about_section_help">Laguntza</string>
     <string name="credits_prior_development">Aurreko garapena</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">Kudeatzailea</string>
     <string name="about_update_available">Eguneratzea eskuragarri: %s</string>
     <string name="about_up_to_date">Eguneratuta</string>
@@ -1365,7 +1365,7 @@ Xehetasunak: %2$s"</string>
     <string name="contributors_all_time">Denbora guztian</string>
     <string name="contributors_6_months">6 hilabete</string>
     <string name="contributors_3_months">3 hilabete</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">Sarea</string>
     <string name="supporters_description">Open Collective-ko babesleak</string>
     <string name="supporters_become">Bifesi laguntzaile bat</string>
@@ -1373,7 +1373,7 @@ Xehetasunak: %2$s"</string>
     <string name="people_more">Eta %s gehiago</string>
     <string name="people_unavailable">Ezin izan da zerrenda kargatu</string>
     <string name="opensource_licenses">Iturri irekiko lizentziak</string>
-    <string name="opensource_licenses_description">Morphe-k erabiltzen dituen liburutegiak</string>
+    <string name="opensource_licenses_description">Mamu-k erabiltzen dituen liburutegiak</string>
     <string name="opensource_licenses_search">Bilatu liburutegiak eta lizentziak</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">Aukera bat</string>
@@ -1398,12 +1398,12 @@ Xehetasunak: %2$s"</string>
     <string name="settings_section_patcher">Patcher-a</string>
     <string name="settings_section_updates">Eguneratzeak</string>
     <string name="settings_section_patching">Patchatzea</string>
-    <string name="settings_section_appearance_summary">Morphe-ren itxura</string>
+    <string name="settings_section_appearance_summary">Mamu-ren itxura</string>
     <string name="settings_section_patch_options_summary">Modu sinpleak zer erabiltzen duen aplikazioak patchatzeko</string>
     <string name="settings_section_general">Orokorra</string>
     <string name="settings_section_patcher_summary">Aplikazioak gailu honetan nola patchatzen diren</string>
     <string name="settings_section_help_info">Laguntza &amp; informazioa</string>
-    <string name="settings_section_about_summary">Morphe-ri buruz gehiago eta laguntza jasotzeko</string>
+    <string name="settings_section_about_summary">Mamu-ri buruz gehiago eta laguntza jasotzeko</string>
     <string name="settings_section_local_files">Fitxategiak</string>
     <string name="settings_section_backup">Babeskopia</string>
     <string name="settings_section_import_export">Importatu eta esportatu</string>
@@ -1566,7 +1566,7 @@ Xehetasunak: %2$s"</string>
     <string name="update_completed">Eguneratzea instalatuta</string>
     <string name="install_update_manager_failed">Eguneratzea instalatzeak huts egin du</string>
     <string name="installing_manager_update">Eguneratzea instalatzen…</string>
-    <string name="installing_manager_update_hint">Morphe itxi egingo da eguneratzea amaitzeko</string>
+    <string name="installing_manager_update_hint">Mamu itxi egingo da eguneratzea amaitzeko</string>
     <string name="downloading_manager_update">Eguneratzea deskargatzen…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">%1$s MB deskargatuta</string>
@@ -1589,7 +1589,7 @@ Oraindik jarraitu nahi duzu?"</string>
     <string name="onboarding_signing_key_desc">Egin segurtasun-kopia zure aplikazio patchatuak sinatzen dituen gakoaren. Gakorik gabe, aplikazioak desinstalatu ondoren bakarrik eguneratu ahal izango dira</string>
     <string name="onboarding_swipe_title">Irristatzeko keinuak</string>
     <string name="onboarding_swipe_desc">Irristatu eskuinera aplikazio-txartelean eskuragarri dauden patchak ikusteko. Irristatu ezkerrera txartela hasierako pantailatik ezkutatzeko</string>
-    <string name="onboarding_settings_desc">Pertsonalizatu Morphe: itxura, aukera aurreratuak eta sistema-tresnak</string>
+    <string name="onboarding_settings_desc">Pertsonalizatu Mamu: itxura, aukera aurreratuak eta sistema-tresnak</string>
     <string name="onboarding_sources_patches_desc">Sakatu iturri honetako patch guztiak ikusteko</string>
     <string name="onboarding_sources_version_desc">Sakatu bertsioan iturri honen aldaketa-erregistro osoa ikusteko</string>
     <string name="onboarding_sources_apps_desc">Sakatu iturriak patchatzen dituen aplikazioak ikusteko eta zein eskaintzen dituen aukeratzeko</string>
@@ -1601,9 +1601,28 @@ Oraindik jarraitu nahi duzu?"</string>
     <string name="onboarding_system_file_picker_desc">Gaitu APKak edo keystore-ak hautatzean sistemaren hautatzailearen ordez barneko fitxategi arakatzailea erabiltzeko</string>
     <!-- Tour prompt dialog shown after first successful patch install -->
     <string name="tour_prompt_title">Ezaugarrien bidaia azkarra</string>
-    <string name="tour_prompt_desc">Morphe-ren ezaugarri nagusien bidaia azkar bat nahi duzu?</string>
+    <string name="tour_prompt_desc">Mamu-ren ezaugarri nagusien bidaia azkar bat nahi duzu?</string>
     <!-- Label of a footer button beside "Skip". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="tour_prompt_confirm">Erakutsi nazazu</string>
     <string name="onboarding_restart_title">Ezaugarrien bidaia</string>
     <string name="onboarding_restart_desc">Ezaugarri nagusien gidatutako tour bat</string>
+
+    <string name="home_app_filter_all_description">Pantaila nagusiko aplikazio guztiak</string>
+    <string name="home_app_filter_patched_description">Mamu-rekin patching egin dituzun edo gorde dituzun aplikazioak</string>
+    <string name="home_app_filter_not_patched_description">Mamu-n oraindik patching egin ez dituzun aplikazioak</string>
+    <string name="home_app_filter_installed_description">Gailu honetan instalatuta dauden aplikazioak</string>
+    <string name="home_app_filter_uninstalled_description">Mamu-rekin patchatutako aplikazioak, gailu honetan ez daudenak</string>
+    <string name="home_app_filter_clones_description">Package-izenen propioak erabiliz eraikitako aplikazioak, originalarekin ondoan instalatuak</string>
+    <string name="home_app_sort_name_asc_description">Alfabetiko, A-tik Z-ra</string>
+    <string name="home_app_sort_name_desc_description">Alfabetiko逆, Z-tik A-ra</string>
+    <string name="home_app_sort_recently_patched_description">Berriki patchatutako aplikazioak lehenik</string>
+    <string name="home_category_custom">Kustomizatua</string>
+    <string name="sources_filter_all_description">Iturri guztiak</string>
+    <string name="sources_filter_enabled_description">Iturriak patchak hartzen dituztenak</string>
+    <string name="sources_filter_disabled_description">Iturriak txalratuta</string>
+    <string name="sources_filter_issues_description">Blokatuta dauden, karga huts egin duten edo Mamu bertsio berriago bat behar duten iturriak</string>
+    <string name="sources_sort_last_updated_description">Iturri eguneratze berrienak lehenik</string>
+    <string name="sources_sort_enabled_first_description">Iturri aktiboak erakutsi iturri desaktibatuen aurretik</string>
+    <string name="home_apk_availability_installed_version">Gailu honetan instalatuta: %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">Gorde-gakoen formatua</string>
 </resources>

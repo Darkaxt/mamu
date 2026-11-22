@@ -9,6 +9,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Clear
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,12 +20,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import app.morphe.manager.R
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
 
 /**
  * Picker row: the main "select…" outlined button plus an inline trailing
- * [MaterialSymbols.Rounded.Close] icon button. The clear button is only rendered when
+ * [Icons.Outlined.Clear] icon button. The clear button is only rendered when
  * [selectedPath] is not blank.
  */
 @Composable
@@ -34,7 +36,7 @@ fun PickerButtonRow(
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceExtraSmall),
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         AppDialogOutlinedButton(
@@ -46,13 +48,16 @@ fun PickerButtonRow(
         )
 
         if (selectedPath.isNotBlank()) {
-            TooltipIconButton(
+            IconButton(
                 onClick = onClear,
-                icon = MaterialSymbols.Rounded.Close,
-                contentDescription = stringResource(R.string.clear),
                 modifier = Modifier.size(40.dp),
-                tint = dialogTextColor().copy(alpha = 0.7f),
-            )
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Clear,
+                    contentDescription = stringResource(R.string.clear),
+                    tint = dialogTextColor().copy(alpha = 0.7f),
+                )
+            }
         }
     }
 }

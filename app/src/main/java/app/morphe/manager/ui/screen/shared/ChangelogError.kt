@@ -12,6 +12,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ErrorOutline
+import androidx.compose.material.icons.outlined.WifiOff
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -27,8 +30,6 @@ import androidx.compose.ui.unit.dp
 import app.morphe.manager.R
 import app.morphe.manager.data.platform.NetworkInfo
 import app.morphe.manager.util.simpleMessage
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
 import org.koin.compose.koinInject
 
 /**
@@ -61,7 +62,7 @@ fun ChangelogError(
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
-                        imageVector = if (offline) MaterialSymbols.Rounded.Wifi_off else MaterialSymbols.Rounded.Error,
+                        imageVector = if (offline) Icons.Outlined.WifiOff else Icons.Outlined.ErrorOutline,
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.error,
                         modifier = Modifier.size(40.dp)

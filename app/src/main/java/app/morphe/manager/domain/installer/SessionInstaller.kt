@@ -17,13 +17,13 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Process
 import android.util.Log
+import app.morphe.manager.BuildConfig
 import app.morphe.manager.ManagerApplication
 import app.morphe.manager.R
 import app.morphe.manager.notification.PatchingNotifications
 import app.morphe.manager.util.APK_MIMETYPE
 import app.morphe.manager.util.PLAY_STORE_INSTALLER_PACKAGE
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -31,14 +31,15 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import rikka.shizuku.Shizuku
 import java.io.File
+import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.time.Duration.Companion.seconds
 
 private const val TAG = "Morphe SessionInstaller"
-private const val ACTION_INSTALL_STATUS = "app.morphe.manager.INSTALL_STATUS"
-private const val ACTION_UNINSTALL_STATUS = "app.morphe.manager.UNINSTALL_STATUS"
+private val ACTION_INSTALL_STATUS = "${BuildConfig.APPLICATION_ID}.INSTALL_STATUS"
+private val ACTION_UNINSTALL_STATUS = "${BuildConfig.APPLICATION_ID}.UNINSTALL_STATUS"
 private const val EXTRA_SESSION_ID = "session_id"
 private const val EXTRA_UNINSTALL_REQUEST_ID = "uninstall_request_id"
 
@@ -105,7 +106,8 @@ class SessionInstaller(private val app: Application) {
     @SuppressLint("RequestInstallPackagesPolicy")
     private suspend fun commitSession(apkFile: File, requireUserAction: Boolean): InstallResult {
         // With the dialog asked for up front, an abort can only be the user dismissing it
-        var userActionShown = requireUserAction
+        // Written by the status receiver and read by the watchdog, which run on different threads
+        val userActionShown = AtomicBoolean(requireUserAction)
         val installer = app.packageManager.packageInstaller
         val params = PackageInstaller.SessionParams(
             PackageInstaller.SessionParams.MODE_FULL_INSTALL
@@ -155,7 +157,10 @@ class SessionInstaller(private val app: Application) {
                 awaitSessionGone(installer, sessionId)
                 delay(SESSION_GONE_GRACE)
                 Log.w(TAG, "Session $sessionId ended without a status")
-                throw InstallCancelledException()
+                // A silent session the system dropped without a word is a refused silent update, so
+                // the install is asked again with the dialog rather than reported as cancelled
+                throw if (userActionShown.get()) InstallCancelledException()
+                else SilentInstallRefusedException("Session ended without a status")
             }
             try {
                 suspendCancellableCoroutine { cont ->
@@ -180,14 +185,14 @@ class SessionInstaller(private val app: Application) {
                                         PackageInstaller.STATUS_PENDING_USER_ACTION -> {
                                             // The session may be killed by a system component after this
                                             // broadcast, so the receiver is kept alive intentionally.
-                                            userActionShown = true
+                                            userActionShown.set(true)
                                             launchUserConfirmation(intent)
                                         }
 
                                         PackageInstaller.STATUS_FAILURE_ABORTED -> {
                                             app.unregisterReceiver(this)
                                             cont.resumeWithException(
-                                                if (userActionShown) {
+                                                if (userActionShown.get()) {
                                                     InstallCancelledException()
                                                 } else {
                                                     SilentInstallRefusedException(message)
@@ -351,8 +356,6 @@ class SessionInstaller(private val app: Application) {
                 PackageInstaller.STATUS_FAILURE_ABORTED -> throw InstallCancelledException()
                 else -> InstallResult.Failure(e.message)
             }
-        } catch (_: TimeoutCancellationException) {
-            InstallResult.Failure("Timed out waiting for Shizuku install result")
         }
     }
 
@@ -375,8 +378,6 @@ class SessionInstaller(private val app: Application) {
                 PackageInstaller.STATUS_FAILURE_ABORTED -> throw UninstallCancelledException()
                 else -> UninstallResult.Failure(e.message)
             }
-        } catch (_: TimeoutCancellationException) {
-            UninstallResult.Failure("Timed out waiting for Shizuku uninstall result")
         }
     }
 

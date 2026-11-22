@@ -10,6 +10,8 @@
 
 package app.morphe.manager.di
 
+import android.content.Context
+import app.morphe.manager.BuildConfig
 import app.morphe.manager.data.platform.Filesystem
 import app.morphe.manager.util.MORPHE_USER_AGENT
 import io.ktor.client.*
@@ -67,7 +69,7 @@ val httpModule = module {
             requestTimeoutMillis = 10 * 60_000L
         }
         install(UserAgent) {
-            agent = MORPHE_USER_AGENT
+            agent = "Morphe-Extended/${BuildConfig.VERSION_CODE}"
         }
     }
 

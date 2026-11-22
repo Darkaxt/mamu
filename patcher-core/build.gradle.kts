@@ -13,6 +13,7 @@ java {
 }
 
 kotlin {
+    jvmToolchain(25)
     compilerOptions {
         jvmTarget = JvmTarget.JVM_17
     }
@@ -25,6 +26,8 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     testImplementation(libs.kotlin.test.junit)
+    // Actual APK/DEX retry regression fixtures; not an analysis production dependency.
+    testImplementation("com.github.MorpheApp.smali:smali-dexlib2:ac700e1942")
 }
 
 // The full Kotlin reflection, which neither the patcher nor patches use, is the largest library
@@ -79,9 +82,8 @@ val shrunkHostJar = tasks.register<ShrinkJarTask>("shrinkHostJar") {
     rules.from("host-rules.pro")
     // The rules are read before shrinking, and the build information only matters to Maven
     excludes.addAll("META-INF/proguard/**", "META-INF/com.android.tools/**", "META-INF/maven/**")
-    // The oldest JDK the embedded JVM is built from, see embeddedJvms of the app, as the host has to
-    // run on every one of them
-    jdk.set(javaToolchains.launcherFor { languageVersion.set(JavaLanguageVersion.of(17)) })
+    // The JDK the embedded JVM is built from, see embeddedJvms of the app
+    jdk.set(javaToolchains.launcherFor { languageVersion.set(JavaLanguageVersion.of(25)) })
     proguardClasspath.from(proguard)
     outputJar.set(layout.buildDirectory.file("libs/${project.name}-host-shrunk.jar"))
 }
@@ -92,3 +94,5 @@ configurations.create("hostJar") {
     isCanBeResolved = false
     outgoing.artifact(shrunkHostJar.flatMap { it.outputJar })
 }
+
+tasks.withType<Test>().configureEach { maxParallelForks = 1; maxHeapSize = "512m" }

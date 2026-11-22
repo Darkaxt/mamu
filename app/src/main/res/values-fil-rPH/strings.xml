@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">Isang pagkakamali sa Android 11</string>
     <string name="android_11_bug_dialog_description">Dapat pahintulutan nang maaga ang pag-install ng app para maiwasan ang isang pagkakamali sa sistema ng Android 11 na negatibong makakaapekto sa karanasan ng tagagamit</string>
     <string name="deep_link_add_source_title">Magdagdag ng mapagkukunan</string>
-    <string name="deep_link_add_source_message">Gusto mo bang idagdag ang patch source na ito sa Morphe?</string>
+    <string name="deep_link_add_source_message">Gusto mo bang idagdag ang patch source na ito sa Mamu?</string>
     <string name="deep_link_add_source_warning">Magdagdag lamang ng mga mapagkukunan na pinagkakatiwalaan mo</string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">Ilang app lang ang idinagdag. Maaari kang magdagdag ng iba pang app mula sa listahan ng mga app ng pinagmulan</string>
@@ -44,15 +44,15 @@
     <string name="mpp_import_unreadable">Hindi mabasa ang file na ito</string>
     <string name="incoming_file_not_patch_source">Ang file na ito ay hindi patch source</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">May available na update para sa Morphe</string>
+    <string name="home_update_available">May available na update para sa Mamu</string>
     <string name="home_update_available_subtitle">Handa na mag-install ang bagong bersyon</string>
     <string name="home_blocked_source_title">Natukoy ang naharang na pinagmulan ng patch</string>
     <string name="home_blocked_source_subtitle">Pindutin ang button upang suriin at alisin</string>
     <string name="home_metadata_errors_title">Mayroong ilang mga pinagmumulan ng patch na hindi magagamit</string>
     <string name="home_metadata_errors_subtitle">I-tap upang suriin ang mga pinagmulan</string>
-    <string name="home_outdated_manager_title">Luma na ang Morphe</string>
+    <string name="home_outdated_manager_title">Luma na ang Mamu</string>
     <string name="home_outdated_manager_subtitle">Ang ilang mga mapagkukunan ng patch ay nangangailangan ng mas bagong bersyon</string>
-    <string name="home_held_back_title">Nagpa-crash sa Morphe ang isang patch source. </string>
+    <string name="home_held_back_title">Nagpa-crash sa Mamu ang isang patch source. </string>
     <string name="home_held_back_subtitle">Nilaktawan ito para makapagsimula ang app. I-tap upang suriin</string>
     <string name="home_source_updates_title">Magagamit ang mga update sa patch</string>
     <string name="home_source_updates_subtitle">I-tap upang i-download ang mga ito</string>
@@ -204,10 +204,10 @@
     <string name="sources_management_metadata_unavailable_hint">Hindi available ang remote metadata file. Gumagana pa rin ang pag-patch gamit ang naka-install na bundle, ngunit hindi pinagana ang auto-update para sa source na ito.</string>
     <string name="sources_management_metadata_unavailable_hint_missing">Hindi ma-download ang patch bundle. Maaaring mali ang source URL o hindi umiiral ang file.</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">Hindi ma-download ang patch bundle. Maaaring mali ang source URL o hindi umiiral ang file. I-tap para baguhin ito</string>
-    <string name="sources_management_outdated_manager_badge">I-update ang Morphe</string>
-    <string name="sources_management_outdated_manager_hint">Ang mapagkukunang ito ay binuo para sa patcher %1$s, ngunit ang Morphe %2$s ay may kasamang patcher %3$s. I-update ang Morphe para gamitin ito</string>
+    <string name="sources_management_outdated_manager_badge">I-update ang Mamu</string>
+    <string name="sources_management_outdated_manager_hint">Ang mapagkukunang ito ay binuo para sa patcher %1$s, ngunit ang Mamu %2$s ay may kasamang patcher %3$s. I-update ang Mamu para gamitin ito</string>
     <string name="sources_management_held_back_badge">Nag-crash</string>
-    <string name="sources_management_held_back_hint">Habang nilo-load ang source na ito, nag-crash ang Morphe, kaya nilalaktawan ito. I-update o i-import ito muli upang subukan muli</string>
+    <string name="sources_management_held_back_hint">Habang nilo-load ang source na ito, nag-crash ang Mamu, kaya nilalaktawan ito. I-update o i-import ito muli upang subukan muli</string>
     <string name="sources_management_signed_by">Nilagdaan ni</string>
     <string name="sources_management_signing_key_changed_badge">Nabago ang key</string>
     <string name="sources_management_signing_key_changed_hint">Ang pinakabagong release ay hindi nilagdaan ng key na ginamit ng source na ito noon, kaya hindi ito na-install. I-tap upang suriin ito</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">Mga patch ng komunidad</string>
     <string name="sources_dialog_choose_apps">Pumili ng mga app</string>
     <string name="sources_dialog_choose_apps_description">Piliin kung alin sa mga app nito ang pananatilihin kapag na-load na ang source.</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">Mga pinagmulan ng third-party patch</string>
-    <string name="sources_dialog_community_notice_message">"Ang mga community patch source ay ginawa at pinapanatili ng kani-kanilang mga awtor. Hindi sinusuri o bineberipika ng Morphe ang mga third-party patch, at hindi ito responsable sa nilalaman ng mga ito o sa kung ano ang ginagawa ng mga ito sa iyong device"</string>
+    <string name="sources_dialog_community_notice_message">"Ang mga community patch source ay ginawa at pinapanatili ng kani-kanilang mga awtor. Hindi sinusuri o bineberipika ng Mamu ang mga third-party patch, at hindi ito responsable sa nilalaman ng mga ito o sa kung ano ang ginagawa ng mga ito sa iyong device"</string>
     <string name="sources_update_success">Matagumpay ang pag-update</string>
     <string name="sources_update_unavailable">Walang update na magagamit</string>
     <string name="sources_download_fail">Nabigong mag-download ang mga mapagkukunan: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">May nakainstall na helper app ngunit hindi pa itinuturing, kaya hindi ito inaalok dito</string>
     <string name="home_apk_helper_untrusted_action">Tingnan ang mga helper</string>
     <string name="home_apk_helper_title">I-download gamit ang isang helper app</string>
-    <string name="home_apk_helper_description">Hihingi ang Morphe sa helper app sa ibaba na i-download ang orihinal na APK at ibalik ang file</string>
+    <string name="home_apk_helper_description">Hihingi ang Mamu sa helper app sa ibaba na i-download ang orihinal na APK at ibalik ang file</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">Buksan ang helper</string>
-    <string name="home_apk_helper_warning">Magpatuloy lamang kung pinagkakatiwalaan mo ang helper app na ito. Sinusuri ng Morphe ang package, bersyon at lagda ng anumang matatanggap nito bago i-patch</string>
-    <string name="home_apk_helper_warning_unverified">Magpatuloy lamang kung pinagkakatiwalaan mo ang helper app na ito. Hindi maaaring i-verify ng Morphe ang lagda ng APK na ito, kaya ang binagong file ay hindi matutukoy</string>
+    <string name="home_apk_helper_warning">Magpatuloy lamang kung pinagkakatiwalaan mo ang helper app na ito. Sinusuri ng Mamu ang package, bersyon at lagda ng anumang matatanggap nito bago i-patch</string>
+    <string name="home_apk_helper_warning_unverified">Magpatuloy lamang kung pinagkakatiwalaan mo ang helper app na ito. Hindi maaaring i-verify ng Mamu ang lagda ng APK na ito, kaya ang binagong file ay hindi matutukoy</string>
     <string name="home_apk_helper_no_result">Hindi nagbalik ng APK ang helper app</string>
     <string name="home_apk_helper_no_access">Hindi nagbigay ng pahintulot ang helper app na i-access ang APK na ibinalik nito</string>
     <string name="home_apk_helper_no_package">Hindi sinabi ng helper app kung aling naka-install na app ang gagamitin</string>
     <string name="home_apk_helper_wrong_package">Ang helper app ay nagbalik ng ibang app kaysa sa pinapa-patch</string>
-    <string name="home_apk_helper_installed_unavailable">Hindi magamit ni Morphe ang naka-install na app</string>
+    <string name="home_apk_helper_installed_unavailable">Hindi magamit ni Mamu ang naka-install na app</string>
     <string name="home_apk_helper_installed_incompatible">Ang naka-install na bersyon ay hindi maaaring i-patch</string>
     <string name="home_apk_use_saved_copy">Gamitin ang naka-save na kopya</string>
     <string name="home_apk_use_installed_app">Gamitin ang naka-install na app</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">Hindi mapatunayan ang lagda ng naka-install na app, kaya maaaring na-patch na ito</string>
     <string name="home_unverified">Hindi na-verify</string>
     <string name="home_install_verification_pending">Sinusuri ang pag-install…</string>
-    <string name="home_app_info_install_unverified">Hindi makumpirma ng Morphe na ang naka-install na app ay ang build na na-patch nito. I-repatch o i-reinstall ito mula sa naka-save na APK upang maibalik ang mga aksyon nito.</string>
+    <string name="home_app_info_install_unverified">Hindi makumpirma ng Mamu na ang naka-install na app ay ang build na na-patch nito. I-repatch o i-reinstall ito mula sa naka-save na APK upang maibalik ang mga aksyon nito.</string>
     <string name="home_app_info_no_saved_apk">Walang nakaimbak na APK. Ang pag-patch na ito ay mangangailangan ng muling pagpili ng APK file</string>
     <string name="home_version_requires_android">Nangangailangan ng Android %s+</string>
     <string name="home_apk_no_compatible_versions_title">Hindi suportado sa aparatong ito</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">I-scroll pababa ang webpage at pindutin ang download button nito</string>
     <string name="home_download_instructions_step2_variant">I-scroll pababa ang webpage at pindutin ang download button ng nangungunang &lt;b&gt;APK variant&lt;/b&gt;</string>
     <string name="home_download_instructions_step2_search">Buksan ang isang resulta ng paghahanap mula sa website na pinagkakatiwalaan mo</string>
-    <string name="home_download_instructions_step2_search_note">Hindi magagarantiya ng Morphe ang mga website na ito. Laktawan ang mga nag-aalok ng sarili nilang app store sa halip na APK file</string>
+    <string name="home_download_instructions_step2_search_note">Hindi magagarantiya ng Mamu ang mga website na ito. Laktawan ang mga nag-aalok ng sarili nilang app store sa halip na APK file</string>
     <string name="home_download_instructions_step3_search">Sa website na iyon, i-download ang APK ng bersyon &lt;b&gt;%s&lt;/b&gt;, hindi ang pinakabago</string>
     <string name="home_download_instructions_step3_search_any">Sa website na iyon, i-download ang APK ng app. &lt;b&gt;Anumang bersyon&lt;/b&gt; ay maaaring i-patch</string>
     <string name="home_download_instructions_step2_github">Sa ilalim ng &lt;b&gt;Assets&lt;/b&gt; ng release &lt;b&gt;%s&lt;/b&gt;, pindutin ang file na nagtatapos sa &lt;b&gt;.apk&lt;/b&gt;</string>
@@ -314,11 +314,11 @@
     <string name="home_download_instructions_download_button_toast_3">Ang pagsasanay ang magpapahusay sa iyo at papalapit ka na! 💪</string>
     <string name="home_download_instructions_download_button_toast_4">Wala pa rin… wala pa rin… 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">OK, iginagalang ko ang dedikasyon 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">Opisyal ka nang Morphe button tester 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">Opisyal ka nang Mamu button tester 🏅</string>
     <string name="home_download_instructions_step3">Hintaying makumpleto ang pag-download, at &lt;b&gt;huwag i-install&lt;/b&gt; ang APK</string>
     <string name="home_download_instructions_step3_mount">Hintaying makumpleto ang pag-download, pagkatapos &lt;b&gt;i-install ang APK&lt;/b&gt;</string>
-    <string name="home_download_instructions_step4">Pagkatapos ang pag-download, bumalik sa Morphe</string>
-    <string name="home_download_instructions_step4_mount">Pagkatapos ang pag-install ng orihinal na APK, bumalik sa Morphe</string>
+    <string name="home_download_instructions_step4">Pagkatapos ang pag-download, bumalik sa Mamu</string>
+    <string name="home_download_instructions_step4_mount">Pagkatapos ang pag-install ng orihinal na APK, bumalik sa Mamu</string>
     <string name="home_download_instructions_continue_to">Magpatuloy sa %s</string>
     <string name="home_download_instructions_destination">ang pahina ng pag-download</string>
     <string name="home_download_instructions_copy_link">Kopyahin ang link</string>
@@ -446,12 +446,12 @@ Para sa pinakamahusay na resulta, nirerekomenda ng app na ito na i-patch ang isa
     <string name="adaptive_icon_themed">May tema</string>
     <string name="adaptive_icon_background_color">Likurang kulay</string>
     <string name="adaptive_icon_reset_transform">Ipawalang-bisa ang posisyon at sukat</string>
-    <string name="adaptive_icon_no_transparency_warning">Ang larawang ito ay walang mga transparent na pixel, kaya pinapanatili ng mga icon na themed at notification ang logo ng Morphe</string>
+    <string name="adaptive_icon_no_transparency_warning">Ang larawang ito ay walang mga transparent na pixel, kaya pinapanatili ng mga icon na themed at notification ang logo ng Mamu</string>
     <string name="adaptive_icon_created_success">Matagumpay na nalikha ang naangkop na icon</string>
     <string name="adaptive_icon_creation_failed">Nabigong maglikha ng inaangkop na icon</string>
     <string name="adaptive_icon_guide">Gabay sa paggawa ng icon</string>
     <string name="adaptive_icon_guide_png_title">Gumamit ng PNG na may transparent na background</string>
-    <string name="adaptive_icon_guide_png_body">Ang isang logo sa transparent na background ay pinakamahusay na gumagana, na ang kulay ng background ay pinili sa ibaba. Ang isang larawang walang transparency ay pumupuno sa buong icon sa halip, at pinapanatili ng mga icon na themed at notification ang logo ng Morphe.</string>
+    <string name="adaptive_icon_guide_png_body">Ang isang logo sa transparent na background ay pinakamahusay na gumagana, na ang kulay ng background ay pinili sa ibaba. Ang isang larawang walang transparency ay pumupuno sa buong icon sa halip, at pinapanatili ng mga icon na themed at notification ang logo ng Mamu.</string>
     <string name="adaptive_icon_guide_safe_zones_title">Mga safe zone</string>
     <string name="adaptive_icon_guide_safe_zones_body">Ipinapakita ng balangkas ang hugis ng icon ng iyong launcher, at lahat ng nasa labas nito ay pinuputol. Ang ibang mga launcher ay gumagamit ng ibang mga hugis, kaya panatilihin ang mahahalagang detalye sa loob ng tuldok-tuldok na bilog, na ipinapakita ng bawat hugis.</string>
     <string name="adaptive_icon_guide_notification_title">Icon ng notification</string>
@@ -557,8 +557,8 @@ Para sa pinakamahusay na resulta, nirerekomenda ng app na ito na i-patch ang isa
     <string name="home_app_info_version_move">Naka-install ang %1$s, pinakabagong suportado ang %2$s.</string>
     <string name="home_app_info_version_restore">Naka-install %1$s, na-patch %2$s</string>
     <string name="home_app_info_app_deleted_warning">Binura ang aplikasyon </string>
-    <string name="home_app_info_app_deleted_description">Binura ang aplikasyong ito sa labas ng Morphe. Ire-patch ito upang maibalik ang kanyang punksyonalidad</string>
-    <string name="home_app_info_not_patched_description">Naka-install ang hindi na-patch na bersyon ng app na ito. Mayroon pa ring dating patch record ang Morphe</string>
+    <string name="home_app_info_app_deleted_description">Binura ang aplikasyong ito sa labas ng Mamu. Ire-patch ito upang maibalik ang kanyang punksyonalidad</string>
+    <string name="home_app_info_not_patched_description">Naka-install ang hindi na-patch na bersyon ng app na ito. Mayroon pa ring dating patch record ang Mamu</string>
     <string name="home_app_info_mount_replaced_description">Pinalitan ng ibang bersyon ang naka-mount na app, kaya hindi na naaangkop ang patch. Ibinabalik ng Restore ang na-patch na bersyon</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">In-update ng Google Play ang naka-mount na app, kaya hindi na naaangkop ang patch. Ibinabalik ng Restore ang na-patch na bersyon. I-off ang auto-update para dito sa Google Play upang manatiling naka-patch</string>
     <string name="app_links_title">Mga sinusuportahang web link</string>
@@ -589,7 +589,7 @@ Para sa pinakamahusay na resulta, nirerekomenda ng app na ito na i-patch ang isa
     <string name="root_pre_patch_installer_description">May root access ang iyong device. Piliin kung dapat i-patch ang app na ito para sa root mount o standard install</string>
     <string name="root_pre_patch_installer_mount_title">Root mount mode</string>
     <string name="root_pre_patch_installer_mount_description">Mga patch para sa root mount, pagkatapos ay ima-mount ang APK sa ibabaw ng katugmang stock app. Hindi kailangan ng GmsCore</string>
-    <string name="root_mount_module_unmount_warning">Kung naka-on ang \"Unmount modules by default\" sa KernelSU, buksan ang KernelSU &gt; Superuser &gt; ang app na in-mount mo &gt; Profile &gt; Custom at i-off ang \"Unmount modules\". Kung hindi, maaaring hindi maging epektibo ang naka-mount na patched APK, kahit ipakita ito ng Morphe bilang naka-mount</string>
+    <string name="root_mount_module_unmount_warning">Kung naka-on ang \"Unmount modules by default\" sa KernelSU, buksan ang KernelSU &gt; Superuser &gt; ang app na in-mount mo &gt; Profile &gt; Custom at i-off ang \"Unmount modules\". Kung hindi, maaaring hindi maging epektibo ang naka-mount na patched APK, kahit ipakita ito ng Mamu bilang naka-mount</string>
     <string name="root_pre_patch_installer_standard_title">Standard na pag-install</string>
     <string name="root_pre_patch_installer_standard_description">Mga patch bilang isang normal na APK na may suporta sa GmsCore. Ang iyong setting ng installer ay ginagamit pagkatapos ng pag-patch.</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -652,7 +652,7 @@ Para sa pinakamahusay na resulta, nirerekomenda ng app na ito na i-patch ang isa
     <string name="patcher_conflict_subtitle">Kailangan mong burahin ang umiiral na bersyon</string>
     <string name="patcher_conflict_hint">Gumagamit ang patched app ng ibang certificate kaysa sa naka-install na bersyon. Ang pag-uninstall ay magbubura ng lahat ng data ng app.</string>
     <string name="patcher_installed_conflict_title">Kinakailangan ang pag-uninstall</string>
-    <string name="patcher_installed_conflict_body">"Nilalagdaan ng Morphe ang mga patched app gamit ang sarili nitong sertipiko, na naiiba sa orihinal. Kinakailangan ng Android na alisin ang kasalukuyang bersyon bago mai-install ang patched app.
+    <string name="patcher_installed_conflict_body">"Nilalagdaan ng Mamu ang mga patched app gamit ang sarili nitong sertipiko, na naiiba sa orihinal. Kinakailangan ng Android na alisin ang kasalukuyang bersyon bago mai-install ang patched app.
 
 Ang pag-uninstall ay permanenteng bubura sa lahat ng data ng app."</string>
     <string name="patcher_install_error_title">Pagkakamali sa pag-install</string>
@@ -662,8 +662,8 @@ Ang pag-uninstall ay permanenteng bubura sa lahat ng data ng app."</string>
     <string name="patcher_patches_excluded_for_installer">Hindi magagamit para sa paraang ito ng pag-install at hindi kasama: %s</string>
     <string name="patcher_storage_permission_dialog_title">Hindi ma-access ang landas ng imbakan</string>
     <string name="patcher_incompatible_patcher_title">Kinakailangan ang pag-update</string>
-    <string name="patcher_incompatible_patcher_description">Ang source &lt;b&gt;%1$s&lt;/b&gt; ay nangangailangan ng patcher &lt;b&gt;%2$s&lt;/b&gt; o mas bago. I-update ang Morphe upang magamit ito</string>
-    <string name="patcher_storage_permission_description_api30">Isa o higit pang mga pagpipilian sa patch ay tumuturo sa mga landas na hindi mabasa ng Morphe. Bigyan ng access sa imbakan at i-tap ang button at pagkatapos ay awtomatikong magsisimula ang pag-patch</string>
+    <string name="patcher_incompatible_patcher_description">Ang source &lt;b&gt;%1$s&lt;/b&gt; ay nangangailangan ng patcher &lt;b&gt;%2$s&lt;/b&gt; o mas bago. I-update ang Mamu upang magamit ito</string>
+    <string name="patcher_storage_permission_description_api30">Isa o higit pang mga pagpipilian sa patch ay tumuturo sa mga landas na hindi mabasa ng Mamu. Bigyan ng access sa imbakan at i-tap ang button at pagkatapos ay awtomatikong magsisimula ang pag-patch</string>
     <string name="patcher_storage_permission_description_legacy">Isa o higit pang mga pagpipilian sa patch ay tumuturo sa mga landas na hindi ma-access. I-update ang mga landas sa pagpipilian ng patch at subukan muli</string>
     <string name="patcher_storage_permission_grant">Pahintulutan ang pahintulot sa imbakan</string>
     <string name="patcher_storage_permission_denied_warning">Hindi pinahihintulutan ang pahintulot sa imbakan. Payagan ang pahintulot na ito upang gamitin ang landas, o ilipat ang mga file sa pribadong direktoryo ng aplikasyon </string>
@@ -680,7 +680,7 @@ Ang pag-uninstall ay permanenteng bubura sa lahat ng data ng app."</string>
     <string name="patcher_option_paths_rejected_title">Hindi maaaring gamitin ang mga patch option file</string>
     <string name="patcher_option_paths_rejected_description">Ang isa o higit pang mga patch option ay tumuturo sa mga file na nawawala o walang hinihingi ang patch. Alisin ang mga path upang mag-patch nang wala ang mga ito, o ayusin ang mga file ayon sa inilalarawan ng mga tagubilin sa option at subukan muli</string>
     <string name="patcher_option_paths_clear">Alisin ang mga path at magpatuloy.</string>
-    <string name="patcher_storage_permission_hint">Pahiwatig: Ilipat ang mga file sa /Android/data/app.morphe.manager/files/ - hindi na kailangan ng karagdagang mga pahintulot</string>
+    <string name="patcher_storage_permission_hint">Pahiwatig: Ilipat ang mga file sa /Android/data/app.morphe.extended/files/ - hindi na kailangan ng karagdagang mga pahintulot</string>
     <!-- Patcher Screen - Patcher Steps -->
     <string name="patcher_step_group_preparing">Inihahanda</string>
     <string name="patcher_step_load_patches">Inilo-load ang mga patch</string>
@@ -699,7 +699,7 @@ Ang pag-uninstall ay permanenteng bubura sa lahat ng data ng app."</string>
     <string name="patcher_task_writing_apk">Pagsusulat ng APK file</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">Proteksyon sa pag-patch sa background</string>
-    <string name="battery_optimization_dialog_description">Maaaring itigil ng ilang device ang patcher kapag na-minimize ang app. Payagan ang Morphe na tumakbo nang walang mga paghihigpit sa baterya upang matiyak na kumpleto ang pag-patch nang maaasahan</string>
+    <string name="battery_optimization_dialog_description">Maaaring itigil ng ilang device ang patcher kapag na-minimize ang app. Payagan ang Mamu na tumakbo nang walang mga paghihigpit sa baterya upang matiyak na kumpleto ang pag-patch nang maaasahan</string>
     <string name="battery_optimization_not_now">Hindi na ngayon</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">Pinoproseso ang pagpa-patch…</string>
@@ -754,8 +754,8 @@ Ang pag-uninstall ay permanenteng bubura sa lahat ng data ng app."</string>
     <string name="install_ignore_signature">I-install pa rin</string>
     <string name="install_ignore_signature_description">Pinapanatili ang data ng app, ngunit gagana lamang kung ang isang root module ay nag-disable sa pag-verify ng signature ng Android</string>
     <string name="uninstall_app_fail">Nabigong i-uninstall ang app: %s</string>
-    <string name="uninstall_app_unverified">Iniwan sa lugar: Hindi ma-verify ng Morphe na ang naka-install na app ay ang build na ni-patch nito</string>
-    <string name="launch_app_unverified">Hindi ma-verify ng Morphe na ang naka-install na app ay ang build na ni-patch nito</string>
+    <string name="uninstall_app_unverified">Iniwan sa lugar: Hindi ma-verify ng Mamu na ang naka-install na app ay ang build na ni-patch nito</string>
+    <string name="launch_app_unverified">Hindi ma-verify ng Mamu na ang naka-install na app ay ang build na ni-patch nito</string>
     <string name="uninstall_timeout">Nag-time out ang pag-uninstall</string>
     <string name="save_apk_success">Na-save ang APK</string>
     <string name="saved_app_export_failed">Nabigong mag-export ang na-patch na aplikasyon</string>
@@ -847,7 +847,7 @@ Ang pag-uninstall ay permanenteng bubura sa lahat ng data ng app."</string>
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">Wika ng aplikasyon</string>
     <string name="settings_appearance_app_language_current">Kasalukuyang wika</string>
-    <string name="settings_appearance_translate">Tulungan sa pagsasalin ng Morphe</string>
+    <string name="settings_appearance_translate">Tulungan sa pagsasalin ng Mamu</string>
     <string name="settings_appearance_translations_info_title">Maaaring nawawala o hindi kumpleto ang pagsasalin-wika para sa ibang wika</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">Sukat ng interface</string>
@@ -876,7 +876,7 @@ Ang pag-uninstall ay permanenteng bubura sa lahat ng data ng app."</string>
     <string name="settings_appearance_app_card_colors_bundle_description">Gamitin dito ang sariling kulay ng bawat app o source, na awtomatikong binabago ang shade para bumagay</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">Icon ng aplikasyon</string>
-    <string name="settings_appearance_app_icon_selector_description">Kung paano lumalabas ang Morphe sa iyong home screen at sa app drawer</string>
+    <string name="settings_appearance_app_icon_selector_description">Kung paano lumalabas ang Mamu sa iyong home screen at sa app drawer</string>
     <string name="settings_appearance_app_icon_default">Panimula</string>
     <string name="settings_appearance_app_icon_light_2">Langit</string>
     <string name="settings_appearance_app_icon_light_3">Paglubog ng araw</string>
@@ -900,23 +900,23 @@ Ang pag-uninstall ay permanenteng bubura sa lahat ng data ng app."</string>
     <string name="settings_appearance_app_icon_mark_black">Itim</string>
     <string name="settings_appearance_app_icon_change_dialog_title">Baguhin ang icon ng aplikasyon?</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">Magre-restart ang Morphe para lumipat sa &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="settings_appearance_app_icon_change_restarts">Magre-restart ang Mamu para lumipat sa &lt;b&gt;%s&lt;/b&gt;</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">Baguhin ang icon</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">Mga update na pre-release</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">Maagang pag-access sa mga bagong bersyon ng Morphe</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">Maagang pag-access sa mga bagong bersyon ng Mamu</string>
     <string name="settings_advanced_updates_prerelease_warning_title">Paganahin ang mga pre-release na update?</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"Ang mga bersyon ng Morphe na pre-release ay nasa development pa at maaaring maging hindi matatag.
+    <string name="settings_advanced_updates_prerelease_warning_message">"Ang mga bersyon ng Mamu na pre-release ay nasa development pa at maaaring maging hindi matatag.
 
 Hindi maaapektuhan ang mga patch: paganahin ang mga patch na pre-release para sa bawat pinagmulan ng patch sa listahan ng mga pinagmulan ng patch"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">Awtomatikong mga update</string>
-    <string name="settings_auto_updates_description">Ang ginagawa ng Morphe tungkol sa mga update kapag bumubukas ito. Laging nagsusuri ang pull to refresh</string>
+    <string name="settings_auto_updates_description">Ang ginagawa ng Mamu tungkol sa mga update kapag bumubukas ito. Laging nagsusuri ang pull to refresh</string>
     <string name="settings_auto_updates_download">I-download nang awtomatiko</string>
-    <string name="settings_auto_updates_download_description">Nagsusuri ng mga update kapag bumubukas ang Morphe at nag-da-download ng mga update sa patch sa anumang network</string>
+    <string name="settings_auto_updates_download_description">Nagsusuri ng mga update kapag bumubukas ang Mamu at nag-da-download ng mga update sa patch sa anumang network</string>
     <string name="settings_auto_updates_wifi_only">I-download sa Wi-Fi lamang</string>
     <string name="settings_auto_updates_wifi_only_description">Sa mobile data, sinusuri at ipinapakita lamang kung ano ang available</string>
     <string name="settings_auto_updates_check_only">Suriin lamang</string>
@@ -937,27 +937,27 @@ Hindi maaapektuhan ang mga patch: paganahin ang mga patch na pre-release para sa
     <string name="settings_advanced_external_batch_patch">Payagan ang mga panlabas na trigger</string>
     <string name="settings_advanced_external_batch_patch_description">Pinahihintulutan ng automation apps ang pagsisimula ng batch patching</string>
     <string name="external_batch_patch_title">Magsimulang mag-batch patch?</string>
-    <string name="external_batch_patch_description">%s ay gustong i-patch at i-install ang mga app ng Morphe</string>
+    <string name="external_batch_patch_description">%s ay gustong i-patch at i-install ang mga app ng Mamu</string>
     <string name="external_batch_patch_trust_caller">Payagan ang app na ito palagi</string>
     <string name="external_batch_patch_unknown_caller">Isang hindi kilalang app</string>
     <!-- Notification content -->
     <string name="notification_bundle_update_title">Magagamit ang mga bagong patch</string>
     <string name="notification_update_text">Handa mag-download ang bersyong %s</string>
-    <string name="notification_bundle_update_text_unversioned">I-tap para buksan ang Morphe at i-update</string>
+    <string name="notification_bundle_update_text_unversioned">I-tap para buksan ang Mamu at i-update</string>
     <string name="notification_permission_dialog_title">Payagan ang mga notipikasyon</string>
-    <string name="notification_permission_dialog_description">Kailangan ng Morphe ang pahintulot sa notipikasyon upang abisuhan ka kapag may mga update na magagamit sa background</string>
+    <string name="notification_permission_dialog_description">Kailangan ng Mamu ang pahintulot sa notipikasyon upang abisuhan ka kapag may mga update na magagamit sa background</string>
     <string name="notification_post_patch_dialog_title">Nais mo bang abisuhan ka kung may magagamit na mga update?</string>
-    <string name="notification_channel_manager_updates">Mga update sa Morphe</string>
-    <string name="notification_channel_manager_updates_description">Mga notification tungkol sa mga bagong release ng Morphe</string>
+    <string name="notification_channel_manager_updates">Mga update sa Mamu</string>
+    <string name="notification_channel_manager_updates_description">Mga notification tungkol sa mga bagong release ng Mamu</string>
     <string name="notification_channel_patch_updates">Mga update sa patch</string>
     <string name="notification_channel_patch_updates_description">Mga notification tungkol sa mga bagong patch release</string>
-    <string name="notification_channel_patcher_description">Ipinapakita habang ina-patch ng Morphe ang isang app sa background</string>
+    <string name="notification_channel_patcher_description">Ipinapakita habang ina-patch ng Mamu ang isang app sa background</string>
     <string name="notification_channel_patching_results">Mga resulta ng pag-patch</string>
-    <string name="notification_channel_patching_results_description">Kapag natapos ang pag-patch o may install na naghihintay sa iyo habang ang Morphe ay nasa background</string>
+    <string name="notification_channel_patching_results_description">Kapag natapos ang pag-patch o may install na naghihintay sa iyo habang ang Mamu ay nasa background</string>
     <string name="notification_channel_mounted_apps">Mga naka-mount na app</string>
     <string name="notification_channel_mounted_apps_description">Kapag pinalitan ng ibang bersyon ang naka-mount na app at hindi na naaangkop ang patch nito</string>
     <string name="notification_mount_replaced_title">Hindi na naka-patch ang %1$s</string>
-    <string name="notification_mount_replaced_text">Pinalitan ng v%1$s ang naka-patch na v%2$s. Buksan ang Morphe upang maibalik ito</string>
+    <string name="notification_mount_replaced_text">Pinalitan ng v%1$s ang naka-patch na v%2$s. Buksan ang Mamu upang maibalik ito</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">Expert mode</string>
     <string name="settings_advanced_expert_mode_description">Binubuksan ang advanced na settings sa patching at mga opsyon sa patch</string>
@@ -979,7 +979,7 @@ Hindi maaapektuhan ang mga patch: paganahin ang mga patch na pre-release para sa
     <string name="settings_advanced_github_pat_unreachable">Hindi maabot ang GitHub para suriin ang token na ito</string>
     <string name="settings_advanced_github_pat_export_include_label">Isama sa settings export</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">Idinaragdag ang PAT na ito sa mga na-export na setting ng Morphe</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">Idinaragdag ang PAT na ito sa mga na-export na setting ng Mamu</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">Huwag mong ibahagi ang iyong PAT. Kung isasama mo ito sa isang settings export, panatilihing pribado ang file na iyon dahil naglalaman ito ng token</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1074,7 +1074,7 @@ Dapat ang mga sumusunod na sukat ng larawan ay:
     <string name="installer_status_not_supported">Hindi suportado para sa aksyong ito</string>
     <string name="installer_status_shizuku_not_installed">I-install sa pamamagitan ng Shizuku o Sui upang gamitin ang opsyon na ito</string>
     <string name="installer_status_shizuku_not_running">Simulan ang Shizuku o Sui at subukan muli</string>
-    <string name="installer_status_shizuku_permission">Bigyan ng pahintulot ang Morphe mula sa Shizuku app</string>
+    <string name="installer_status_shizuku_permission">Bigyan ng pahintulot ang Mamu mula sa Shizuku app</string>
     <string name="installer_mount_warning_install">Nakatakda ang patch mode sa root mount. Ang na-save na app na ito ay hindi na-install gamit ang mount</string>
     <string name="mount_version_mismatch_message">Hindi tumutugma sa na-patch na bersyon ng aplikasyon (%1$s) ang stock na bersyon ng aplikasyon (%2$s). I-mount ang tumutugmang stock na bersyon, at subukan muli</string>
     <string name="mount_stock_restore_failed_message">Tinanggihan ng Android ang na-save na orihinal na APK. I-install ang katumbas na stock na bersyon, pagkatapos ay subukang Mount muli.</string>
@@ -1115,7 +1115,7 @@ Dapat ang mga sumusunod na sukat ng larawan ay:
     <string name="settings_ignore_install_target_rules">I-ignore ang mga kinailangan ng target ng pag-install</string>
     <string name="settings_ignore_install_target_rules_description">Pinapayagan ang pag-off ng mga patch na kinakailangan ng install target at pag-on ng mga ito na tinanggal nito. Maaaring hindi gumana ang na-patch na app</string>
     <string name="settings_auto_uninstall_warning_title">Paganahin ang auto-uninstall?</string>
-    <string name="settings_auto_uninstall_warning_message">Kung mag-uulat ang Android ng salungatan sa lagda sa panahon ng Shizuku auto-install, ia-uninstall ng Morphe ang kasalukuyang app bago i-install ang na-patch na APK</string>
+    <string name="settings_auto_uninstall_warning_message">Kung mag-uulat ang Android ng salungatan sa lagda sa panahon ng Shizuku auto-install, ia-uninstall ng Mamu ang kasalukuyang app bago i-install ang na-patch na APK</string>
     <string name="settings_auto_uninstall_warning_risk">Maaari nitong alisin ang data ng app. Kung mabigo ang na-patch na APK na i-install pagkatapos ng pag-uninstall, maaaring wala na ang nakaraang app</string>
     <string name="installer_shizuku_status_action">Suriin ang katayuan ng Shizuku</string>
     <string name="installer_shizuku_status_title">Katayuan ng Shizuku</string>
@@ -1133,7 +1133,7 @@ Dapat ang mga sumusunod na sukat ng larawan ay:
     <string name="installer_shizuku_install_fail_with_details">"Nabigo ang pag-install ng Shizuku: %1$s
 
 Mga Detalye: %2$s"</string>
-    <string name="installer_shizuku_error_permission">Nawawala ang pahintulot ng Shizuku. Ipagkaloob ang pahintulot sa Morphe at subukang muli</string>
+    <string name="installer_shizuku_error_permission">Nawawala ang pahintulot ng Shizuku. Ipagkaloob ang pahintulot sa Mamu at subukang muli</string>
     <string name="installer_shizuku_error_timeout">Hindi nagbalik ang Shizuku ng resulta ng pag-install. Tiyakin na ito ay tumatakbo pa rin at subukang muli</string>
     <string name="installer_shizuku_error_downgrade">Hinarangan ito ng Android dahil bababa ang bersyon ng naka-install na app</string>
     <string name="installer_shizuku_error_signature">Hinarangan ito ng Android dahil ang naka-install na app ay mayroong ibang lagda</string>
@@ -1144,13 +1144,13 @@ Mga Detalye: %2$s"</string>
     <string name="settings_system_battery_optimization_description">Pinapanatili ang patcher na tumatakbo kapag ang app ay minimize</string>
     <string name="settings_system_process_runtime">Patcher runtime</string>
     <string name="settings_system_jvm_runtime_enable">Gumamit ng embedded VM</string>
-    <string name="settings_system_jvm_runtime_description">Mga patch sa sariling Java VM ng Morphe, na maaaring gumamit ng mas maraming memory. I-off upang gamitin ang runtime ng Android</string>
+    <string name="settings_system_jvm_runtime_description">Mga patch sa sariling Java VM ng Mamu, na maaaring gumamit ng mas maraming memory. I-off upang gamitin ang runtime ng Android</string>
     <string name="settings_system_jvm_runtime_unavailable">Nangangailangan ng ARM o 64-bit x86 na device</string>
     <string name="settings_system_patcher_completion_sound">Tunog ng pagkumpleto</string>
     <string name="settings_system_patcher_completion_sound_description">Tumutugtog ng natatanging tono para sa tagumpay o kabiguan kapag natapos ang pag-patch</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">Mga Abiso</string>
-    <string name="settings_system_notifications_description">Paano ka pinagpapabatid ng Morphe</string>
+    <string name="settings_system_notifications_description">Paano ka pinagpapabatid ng Mamu</string>
     <string name="settings_system_notifications_success_sound">Tunog ng tagumpay</string>
     <string name="settings_system_notifications_error_sound">Tunog ng pagkabigo</string>
     <string name="settings_system_notifications_sound_default">Panimula</string>
@@ -1162,8 +1162,8 @@ Mga Detalye: %2$s"</string>
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">Susi sa pagpirma</string>
     <string name="settings_system_signing_key_description">Nagba-backup o nagre-restore ng susi na pumipirma sa mga patched app</string>
-    <string name="settings_system_signing_key_dialog_description">Ang bawat app na ina-patch ng Morphe ay nilalagdaan gamit ang susi na ito. Magtago ng kopya: kung wala nito, ang mga na-patch na app ay maaari lamang i-update pagkatapos i-uninstall ang mga ito</string>
-    <string name="settings_system_signing_key_missing">Gumagawa ang Morphe ng susi sa iyong unang pag-patch</string>
+    <string name="settings_system_signing_key_dialog_description">Ang bawat app na ina-patch ng Mamu ay nilalagdaan gamit ang susi na ito. Magtago ng kopya: kung wala nito, ang mga na-patch na app ay maaari lamang i-update pagkatapos i-uninstall ang mga ito</string>
+    <string name="settings_system_signing_key_missing">Gumagawa ang Mamu ng susi sa iyong unang pag-patch</string>
     <string name="settings_system_signing_key_created">Ginawa noong %s</string>
     <string name="settings_system_signing_key_fingerprint">Fingerprint ng SHA-256</string>
     <string name="settings_system_backup_appearance_description">Tema, mga kulay at wika</string>
@@ -1185,31 +1185,31 @@ Mga Detalye: %2$s"</string>
     <string name="settings_system_export_keystore_failed">Nabigo ang pag-export ng keystore</string>
     <string name="settings_system_show_password_field">Ipakita ang password</string>
     <string name="settings_system_hide_password_field">Itago ang password</string>
-    <string name="settings_system_morphe_settings">Mga setting ng Morphe</string>
-    <string name="settings_system_import_manager_settings_description">Nagba-backup at nagre-restore ng iyong mga setting ng Morphe</string>
-    <string name="settings_system_export_manager_settings_title">I-export ang mga setting ng Morphe</string>
+    <string name="settings_system_morphe_settings">Mga setting ng Mamu</string>
+    <string name="settings_system_import_manager_settings_description">Nagba-backup at nagre-restore ng iyong mga setting ng Mamu</string>
+    <string name="settings_system_export_manager_settings_title">I-export ang mga setting ng Mamu</string>
     <string name="settings_system_export_manager_settings_description">Ini-save ang mga setting na pinili mo sa isang file</string>
     <string name="settings_system_import_manager_settings_file_description">Ibalik ang mga setting mula sa isang backup file</string>
     <string name="settings_system_auto_backup">Awtomatikong backup</string>
     <string name="settings_system_auto_backup_switch">Mag-back up nang awtomatiko</string>
     <string name="settings_system_auto_backup_now">Mag-back up ngayon</string>
     <string name="settings_system_auto_backup_saved">Na-save ang backup</string>
-    <string name="settings_system_auto_backup_interval_description">Maghihintay ang Morphe nang hindi bababa sa ganitong katagal pagkatapos ng isang kopya bago gumawa ng susunod</string>
-    <string name="settings_system_auto_backup_description">Ini-save ang iyong mga setting ng Morphe sa isang folder na pipiliin mo</string>
+    <string name="settings_system_auto_backup_interval_description">Maghihintay ang Mamu nang hindi bababa sa ganitong katagal pagkatapos ng isang kopya bago gumawa ng susunod</string>
+    <string name="settings_system_auto_backup_description">Ini-save ang iyong mga setting ng Mamu sa isang folder na pipiliin mo</string>
     <string name="settings_system_auto_backup_last">Huling backup: %s</string>
     <string name="settings_system_auto_backup_folder">Folder</string>
-    <string name="settings_system_auto_backup_folder_name">Mga backup ng Morphe</string>
+    <string name="settings_system_auto_backup_folder_name">Mga backup ng Mamu</string>
     <string name="settings_system_auto_backup_folder_failed">Hindi magamit ang folder na ito: %s</string>
     <string name="settings_system_auto_backup_interval">Prikwensiya ng backup</string>
     <string name="settings_system_auto_backup_signing_key">Isama ang signing key</string>
     <string name="settings_system_auto_backup_signing_key_description">Sinasave ang key na pumipirma sa mga patched app sa tabi ng mga setting</string>
     <string name="settings_system_auto_backup_signing_key_warning_title">I-backup ang signing key?</string>
     <string name="settings_system_auto_backup_signing_key_warning_message">Kahit sino na makakuha ng file na ito ay maaaring pumirma ng mga update na mai-iinstall sa ibabaw ng iyong mga patched app. Panatilihing pribado ang folder at ibahagi lamang ito sa iyong sariling mga device</string>
-    <string name="settings_system_auto_backup_footer">Isang kopya ang nai-save kapag iniwan mo ang Morphe pagkatapos magbago ng anuman. Ang mga pinakabagong %s ay pinapanatili</string>
+    <string name="settings_system_auto_backup_footer">Isang kopya ang nai-save kapag iniwan mo ang Mamu pagkatapos magbago ng anuman. Ang mga pinakabagong %s ay pinapanatili</string>
     <string name="settings_system_auto_backup_failed">Hindi na-save ang huling backup. Pumili muli ng folder</string>
-    <string name="settings_system_import_manager_settings_fail">Nabigong ma-import ang mga setting ng Morphe: %s</string>
-    <string name="settings_system_import_manager_settings_success">Na-import ang mga setting ng Morphe</string>
-    <string name="settings_system_import_manager_settings_mode_title">I-import ang mga setting ng Morphe</string>
+    <string name="settings_system_import_manager_settings_fail">Nabigong ma-import ang mga setting ng Mamu: %s</string>
+    <string name="settings_system_import_manager_settings_success">Na-import ang mga setting ng Mamu</string>
+    <string name="settings_system_import_manager_settings_mode_title">I-import ang mga setting ng Mamu</string>
     <string name="settings_system_import_manager_settings_mode_description">Piliin kung paano iaaplay ang mga in-import na setting at source</string>
     <string name="settings_system_import_selections_mode_title">I-import ang mga pagpipilian ng patch</string>
     <string name="settings_system_import_selections_mode_description">Pumili ng kung paano ilalapat ang mga napiling import at opsyon sa patch.</string>
@@ -1217,8 +1217,8 @@ Mga Detalye: %2$s"</string>
     <string name="import_mode_replace_description">Tumpak na itugma ang backup. Ang mga item na wala sa backup ay tatanggalin.</string>
     <string name="import_mode_merge_title">Pagsamahin sa mga kasalukuyan</string>
     <string name="import_mode_merge_description">Idagdag ang mga nawawalang item mula sa backup. Ang mga kasalukuyang item ay mananatiling hindi nababago.</string>
-    <string name="settings_system_export_manager_settings_fail">Nabigong ma-export ang mga setting ng Morphe: %s</string>
-    <string name="settings_system_export_manager_settings_success">Na-export ang mga setting ng Morphe</string>
+    <string name="settings_system_export_manager_settings_fail">Nabigong ma-export ang mga setting ng Mamu: %s</string>
+    <string name="settings_system_export_manager_settings_success">Na-export ang mga setting ng Mamu</string>
     <string name="settings_system_export_debug_logs">I-export ang mga tala ng debug</string>
     <string name="settings_system_export_debug_logs_description">I-save ang mga tala ng sistema para sa troubleshooting</string>
     <string name="settings_system_export_debug_logs_export_read_failed">Nabigong mabasa ang mga tala (exit code %s)</string>
@@ -1236,7 +1236,7 @@ Mga Detalye: %2$s"</string>
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">Pamamahala ng imbakan</string>
     <string name="settings_system_storage_management_description">Nagpapakita ng paggamit ng disk at naglilinis ng mga cached file</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s libre</string>
     <string name="settings_system_storage_saved_apks">Na-save na mga APK</string>
     <string name="settings_system_storage_caches">Mga cache</string>
@@ -1259,7 +1259,7 @@ Mga Detalye: %2$s"</string>
     <string name="settings_system_storage_clear_anyway">Linisin pa rin</string>
     <string name="settings_system_storage_nothing_to_clear">Walang dapat i-clear</string>
     <string name="settings_system_storage_open_app_info_title">Buksan ang storage ng Android app</string>
-    <string name="settings_system_storage_open_app_info_description">Pamahalaan o i-clear ang lahat ng data ng Morphe sa pamamagitan ng mga setting ng system</string>
+    <string name="settings_system_storage_open_app_info_description">Pamahalaan o i-clear ang lahat ng data ng Mamu sa pamamagitan ng mga setting ng system</string>
     <string name="settings_system_save_original_apks_title">Panatilihin ang orihinal na mga APK</string>
     <string name="settings_system_save_original_apks_description">I-save ang pre-patch na APK upang magamit muli para sa pag-patch nang hindi na kailangang piliin muli ang file</string>
     <string name="settings_system_save_patched_apks_title">Panatilihin ang mga naka-patch na APK</string>
@@ -1313,13 +1313,13 @@ Mga Detalye: %2$s"</string>
     <string name="copy_selection_available_format">%1$s sa %2$s ang magagamit</string>
     <!-- Settings - System Tab - Custom file picker -->
     <string name="settings_system_custom_file_picker">Pasadyang pumili ng file</string>
-    <string name="settings_system_custom_file_picker_description">Gumagamit ng built-in file picker ng Morphe sa halip na ang system one</string>
+    <string name="settings_system_custom_file_picker_description">Gumagamit ng built-in file picker ng Mamu sa halip na ang system one</string>
     <!-- Settings - System Tab - APK download helper -->
     <string name="settings_system_apk_download_helper">Helper sa pag-download ng APK</string>
     <string name="settings_system_apk_download_helper_trusted_count">Pinagkakatiwalaan: %1$d sa %2$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">Maaaring i-download ng mga helper app ang mga orihinal na APK para sa iyo. Tanging ang mga pinagkakatiwalaan mo dito ang inaalok sa mga tagubilin sa pag-download.</string>
     <string name="settings_system_apk_download_helper_trust_title">Mapagkakatiwakan ka ba ang helper na ito?</string>
-    <string name="settings_system_apk_download_helper_warning">Ang APK ay nagmumula sa helper app, kaya magtiwala ka lamang sa mga app na kilala mo. Sinusuri pa rin ng Morphe ang package, bersyon, at lagda ng bawat file bago i-patch.</string>
+    <string name="settings_system_apk_download_helper_warning">Ang APK ay nagmumula sa helper app, kaya magtiwala ka lamang sa mga app na kilala mo. Sinusuri pa rin ng Mamu ang package, bersyon, at lagda ng bawat file bago i-patch.</string>
     <string name="settings_system_apk_download_helper_installed_by">In-install ng %s</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">Hindi kilala ang installer</string>
     <string name="settings_system_apk_download_helper_open_directly">Buksan agad ang helper</string>
@@ -1352,7 +1352,7 @@ Mga Detalye: %2$s"</string>
     <string name="settings_about_section_project">Projekto</string>
     <string name="settings_about_section_help">Tulong</string>
     <string name="credits_prior_development">Naunang pag-unlad</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">Tagapamahala</string>
     <string name="about_update_available">May available na update: %s</string>
     <string name="about_up_to_date">Napapanahon na</string>
@@ -1365,7 +1365,7 @@ Mga Detalye: %2$s"</string>
     <string name="contributors_all_time">Habang-buhay</string>
     <string name="contributors_6_months">6 na buwan</string>
     <string name="contributors_3_months">3 na buwan</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">Mga Supporter</string>
     <string name="supporters_description">Mga Backer sa Open Collective</string>
     <string name="supporters_become">Maging isang supporter</string>
@@ -1373,7 +1373,7 @@ Mga Detalye: %2$s"</string>
     <string name="people_more">At %s pa</string>
     <string name="people_unavailable">Hindi ma-load ang listahan</string>
     <string name="opensource_licenses">Mga open-source na lisensya</string>
-    <string name="opensource_licenses_description">Mga library kung saan binuo ang Morphe</string>
+    <string name="opensource_licenses_description">Mga library kung saan binuo ang Mamu</string>
     <string name="opensource_licenses_search">Maghanap ng mga library at lisensya</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">Isang pagpipilian</string>
@@ -1398,12 +1398,12 @@ Mga Detalye: %2$s"</string>
     <string name="settings_section_patcher">Patcher</string>
     <string name="settings_section_updates">Mga update</string>
     <string name="settings_section_patching">Nagpa-patch</string>
-    <string name="settings_section_appearance_summary">Paano tingnan ang Morphe</string>
+    <string name="settings_section_appearance_summary">Paano tingnan ang Mamu</string>
     <string name="settings_section_patch_options_summary">Kung ano ang ginagamit ng simple mode sa pag-patch ng mga app</string>
     <string name="settings_section_general">Pangkalahatan</string>
     <string name="settings_section_patcher_summary">Paano pinatch ng mga application sa device na ito</string>
     <string name="settings_section_help_info">Tulong &amp; impormasyon</string>
-    <string name="settings_section_about_summary">Dagdag tungkol sa Morphe at pagkuha ng tulong</string>
+    <string name="settings_section_about_summary">Dagdag tungkol sa Mamu at pagkuha ng tulong</string>
     <string name="settings_section_local_files">Mga file</string>
     <string name="settings_section_backup">Mag-backup</string>
     <string name="settings_section_import_export">I-import at i-export</string>
@@ -1566,7 +1566,7 @@ Mga Detalye: %2$s"</string>
     <string name="update_completed">Na-install ang update</string>
     <string name="install_update_manager_failed">Nabigong ma-install ang update</string>
     <string name="installing_manager_update">Ini-install ang update…</string>
-    <string name="installing_manager_update_hint">Magsasara ang Morphe upang matapos ang update</string>
+    <string name="installing_manager_update_hint">Magsasara ang Mamu upang matapos ang update</string>
     <string name="downloading_manager_update">Dina-download ang update…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">%1$s MB na-download</string>
@@ -1589,7 +1589,7 @@ Gusto mo pa bang ituloy?"</string>
     <string name="onboarding_signing_key_desc">Mag-backup ng key na nag-sign sa iyong patched apps. Kung hindi ito magagamit, ma-update lang sila pagkatapos nilang i-uninstall</string>
     <string name="onboarding_swipe_title">Mga kilos ng pag-swipe</string>
     <string name="onboarding_swipe_desc">Mag-swipe pakanan sa isang card ng app upang makita ang mga available na patch nito. Mag-swipe pakaliwa upang itago ang card mula sa home screen</string>
-    <string name="onboarding_settings_desc">I-customize ang Morphe: hitsura, mga advanced na opsyon, at mga tool ng sistema</string>
+    <string name="onboarding_settings_desc">I-customize ang Mamu: hitsura, mga advanced na opsyon, at mga tool ng sistema</string>
     <string name="onboarding_sources_patches_desc">I-tap upang makita ang lahat ng mga patch na available mula sa pinagmumulang ito</string>
     <string name="onboarding_sources_version_desc">I-tap ang bersyon upang makita ang kumpletong changelog para sa pinagmumulang ito</string>
     <string name="onboarding_sources_apps_desc">I-tap para makita ang mga app na pinipatch ng source na ito at piliin kung alin sa mga ito ay may inihahanda nang patches</string>
@@ -1601,9 +1601,28 @@ Gusto mo pa bang ituloy?"</string>
     <string name="onboarding_system_file_picker_desc">I-enable upang gamitin ang built-in na file browser sa halip na ang system picker kapag pumipili ng mga APK o keystore</string>
     <!-- Tour prompt dialog shown after first successful patch install -->
     <string name="tour_prompt_title">Mabilis na paglilibot sa feature</string>
-    <string name="tour_prompt_desc">Gusto mo bang mabilis na paglilibot sa mga pangunahing feature ng Morphe?</string>
+    <string name="tour_prompt_desc">Gusto mo bang mabilis na paglilibot sa mga pangunahing feature ng Mamu?</string>
     <!-- Label of a footer button beside "Skip". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="tour_prompt_confirm">Ipakita sa akin</string>
     <string name="onboarding_restart_title">Paglilibot sa feature</string>
     <string name="onboarding_restart_desc">Isang gabay na paglilibot sa mga pangunahing tampok</string>
+
+    <string name="home_app_filter_all_description">Lahat ng app sa home screen</string>
+    <string name="home_app_filter_patched_description">Mga app na na-patch o na-save mo gamit ang Mamu</string>
+    <string name="home_app_filter_not_patched_description">Mga app na hindi mo pa na-patch sa Mamu</string>
+    <string name="home_app_filter_installed_description">Mga app na kasalukuyang naka-install sa device na ito</string>
+    <string name="home_app_filter_uninstalled_description">Mga app na na-patch gamit ang Mamu na wala na sa device na ito</string>
+    <string name="home_app_filter_clones_description">Mga app na binuo gamit ang sariling package name, na naka-install kasama ng orihinal</string>
+    <string name="home_app_sort_name_asc_description">Alpabetiko, A hanggang Z</string>
+    <string name="home_app_sort_name_desc_description">Pabaliktad na alpabetiko, Z hanggang A</string>
+    <string name="home_app_sort_recently_patched_description">Una ang mga app na pinakabagong na-patch</string>
+    <string name="home_category_custom">Pasadya</string>
+    <string name="sources_filter_all_description">Lahat ng pinagmulan</string>
+    <string name="sources_filter_enabled_description">Ang mga patch sa pinagmulan ay kinuha mula sa</string>
+    <string name="sources_filter_disabled_description">Pinagmulang nakapag-off</string>
+    <string name="sources_filter_issues_description">Mga source na naka-block, nabigong mag-load, o nangangailangan ng mas bagong Mamu</string>
+    <string name="sources_sort_last_updated_description">Pinakabagong mga pag-update ng mapagkukunan muna</string>
+    <string name="sources_sort_enabled_first_description">Ipakita ang mga aktibong mapagkukunan bago ang mga hindi naka-enable</string>
+    <string name="home_apk_availability_installed_version">Naka-install sa device na ito: %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">Format ng Keystore</string>
 </resources>

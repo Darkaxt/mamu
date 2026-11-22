@@ -178,4 +178,8 @@
         <item quantity="one">%d overifierad länk</item>
         <item quantity="other">%d overifierade länkar</item>
     </plurals>
+    <plurals name="sources_search_patch_matches">
+        <item quantity="one">%s matchande tillägg</item>
+        <item quantity="other">%s matchande tillägg</item>
+    </plurals>
 </resources>

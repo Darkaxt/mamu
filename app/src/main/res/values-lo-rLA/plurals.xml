@@ -135,4 +135,7 @@
     <plurals name="app_links_count_unverified">
         <item quantity="other">ລິງກ໌ທີ່ບໍ່ໄດ້ຮັບການຢືນຢັນ %d</item>
     </plurals>
+    <plurals name="sources_search_patch_matches">
+        <item quantity="other">ພົບແພັດຊ໌ທີ່ກົງກັນ %s ລາຍການ</item>
+    </plurals>
 </resources>

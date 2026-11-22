@@ -14,5 +14,6 @@ package app.morphe.manager.patcher.patch
  */
 data class PatchSourceRef(
     val name: String,
-    val version: String?
+    val version: String?,
+    val uid: Int? = null
 )

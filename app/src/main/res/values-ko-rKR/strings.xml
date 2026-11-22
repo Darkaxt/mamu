@@ -44,7 +44,7 @@
     <string name="mpp_import_unreadable">이 파일을 읽을 수 없습니다</string>
     <string name="incoming_file_not_patch_source">이 파일은 패치 소스가 아닙니다</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">Morphe 업데이트 사용 가능</string>
+    <string name="home_update_available">Mamu 업데이트 사용 가능</string>
     <string name="home_update_available_subtitle">새 버전 설치 준비 완료</string>
     <string name="home_blocked_source_title">차단된 패치 소스가 감지됨</string>
     <string name="home_blocked_source_subtitle">검토 및 제거하려면 탭하세요</string>
@@ -204,8 +204,8 @@
     <string name="sources_management_metadata_unavailable_hint">원격 메타데이터 파일을 사용할 수 없습니다. 설치된 번들로 패치는 계속 가능하지만, 이 소스에 대한 자동 업데이트는 비활성화됩니다</string>
     <string name="sources_management_metadata_unavailable_hint_missing">패치 번들을 다운로드할 수 없습니다. 소스 URL이 올바르지 않거나 파일이 존재하지 않을 수 있습니다</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">패치 번들을 다운로드할 수 없습니다. 소스 URL이 잘못되었거나 파일이 존재하지 않을 수 있습니다. 변경하려면 탭하세요</string>
-    <string name="sources_management_outdated_manager_badge">Morphe 업데이트</string>
-    <string name="sources_management_outdated_manager_hint">이 소스는 패처 %1$s용으로 빌드되었지만, Morphe %2$s에는 패처 %3$s가 포함되어 있습니다. 이를 사용하려면 Morphe를 업데이트하세요</string>
+    <string name="sources_management_outdated_manager_badge">Mamu 업데이트</string>
+    <string name="sources_management_outdated_manager_hint">이 소스는 패처 %1$s용으로 빌드되었지만, Mamu %2$s에는 패처 %3$s가 포함되어 있습니다. 이를 사용하려면 Morphe를 업데이트하세요</string>
     <string name="sources_management_held_back_badge">충돌 발생</string>
     <string name="sources_management_held_back_hint">이 소스를 불러오는 동안 Morphe가 충돌하여 현재 건너뛰고 있습니다. 다시 시도하려면 소스를 업데이트하거나 다시 가져오세요</string>
     <string name="sources_management_signed_by">서명자</string>
@@ -237,7 +237,7 @@
     <string name="sources_dialog_community">커뮤니티 패치</string>
     <string name="sources_dialog_choose_apps">앱 선택</string>
     <string name="sources_dialog_choose_apps_description">소스를 불러온 후 유지할 앱을 선택하세요</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">서드파티 패치 소스</string>
     <string name="sources_dialog_community_notice_message">"커뮤니티 패치 소스는 각 제작자가 직접 만들고 관리합니다. Morphe는 서드파티 패치를 검토하거나 검증하지 않으며, 해당 패치의 콘텐츠나 기기에서 수행하는 작업에 대해 책임지지 않습니다"</string>
     <string name="sources_update_success">업데이트에 성공했습니다</string>
@@ -314,7 +314,7 @@
     <string name="home_download_instructions_download_button_toast_3">연습할수록 실력이 늘고, 당신도 잘하고 있어요 💪</string>
     <string name="home_download_instructions_download_button_toast_4">여기는 아니예요… 여기는 아니예요… 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">좋아요, 그 끈기는 인정합니다 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">이제 공식 Morphe 버튼 테스터가 되셨습니다 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">이제 공식 Mamu 버튼 테스터가 되셨습니다 🏅</string>
     <string name="home_download_instructions_step3">다운로드가 완료될 때까지 기다리세요&lt;br&gt;APK는 &lt;b&gt;설치하지 마세요&lt;/b&gt;</string>
     <string name="home_download_instructions_step3_mount">다운로드가 완료되면, &lt;b&gt;APK 파일을 설치하세요&lt;/b&gt;</string>
     <string name="home_download_instructions_step4">다운로드가 완료되면 Morphe로 돌아오세요</string>
@@ -446,12 +446,12 @@ APK를 가져올 위치를 선택하세요"</string>
     <string name="adaptive_icon_themed">테마</string>
     <string name="adaptive_icon_background_color">배경 색상</string>
     <string name="adaptive_icon_reset_transform">위치 및 크기 초기화</string>
-    <string name="adaptive_icon_no_transparency_warning">이 이미지에는 투명한 픽셀이 없기 때문에 테마 아이콘과 알림 아이콘에 Morphe 로고가 그대로 표시됩니다</string>
+    <string name="adaptive_icon_no_transparency_warning">이 이미지에는 투명한 픽셀이 없기 때문에 테마 아이콘과 알림 아이콘에 Mamu 로고가 그대로 표시됩니다</string>
     <string name="adaptive_icon_created_success">적응형 아이콘을 성공적으로 만들었습니다</string>
     <string name="adaptive_icon_creation_failed">적응형 아이콘을 만들 수 없습니다</string>
     <string name="adaptive_icon_guide">아이콘 생성 가이드</string>
     <string name="adaptive_icon_guide_png_title">투명한 배경의 PNG를 사용하세요</string>
-    <string name="adaptive_icon_guide_png_body">투명한 배경의 로고를 사용하는 것이 가장 좋으며, 아래에서 배경 색상을 선택할 수 있습니다. 투명도가 없는 이미지는 아이콘 전체를 채우게 되며, 이 경우 테마 아이콘과 알림 아이콘에도 Morphe 로고가 그대로 표시됩니다</string>
+    <string name="adaptive_icon_guide_png_body">투명한 배경의 로고를 사용하는 것이 가장 좋으며, 아래에서 배경 색상을 선택할 수 있습니다. 투명도가 없는 이미지는 아이콘 전체를 채우게 되며, 이 경우 테마 아이콘과 알림 아이콘에도 Mamu 로고가 그대로 표시됩니다</string>
     <string name="adaptive_icon_guide_safe_zones_title">안전한 영역</string>
     <string name="adaptive_icon_guide_safe_zones_body">윤곽선은 런처 아이콘 모양을 보여주고, 윤곽선 바깥쪽은 모두 잘려 나갑니다. 다른 런처는 다른 모양을 사용하므로 모든 모양에 표시되는 점선 원 안에 중요한 세부 정보를 유지하세요</string>
     <string name="adaptive_icon_guide_notification_title">알림 아이콘</string>
@@ -557,7 +557,7 @@ APK를 가져올 위치를 선택하세요"</string>
     <string name="home_app_info_version_move">설치된 버전 %1$s, 지원되는 최신 버전 %2$s</string>
     <string name="home_app_info_version_restore">%1$s 설치됨, %2$s 패치됨</string>
     <string name="home_app_info_app_deleted_warning">앱이 제거되었습니다</string>
-    <string name="home_app_info_app_deleted_description">이 앱은 Morphe 외부에서 제거되었습니다. 기능을 복원하려면 다시 패치하세요</string>
+    <string name="home_app_info_app_deleted_description">이 앱은 Mamu 외부에서 제거되었습니다. 기능을 복원하려면 다시 패치하세요</string>
     <string name="home_app_info_not_patched_description">이 앱의 패치되지 않은 버전이 설치되어 있습니다. Morphe는 여전히 이전 패치 기록을 보유하고 있습니다</string>
     <string name="home_app_info_mount_replaced_description">다른 버전이 마운트된 앱을 교체하여 패치가 더 이상 적용되지 않습니다. 복원하면 패치된 버전을 다시 적용할 수 있습니다</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play에서 마운트된 앱을 업데이트하여 패치가 더 이상 적용되지 않습니다. 복원을 탭하면 패치된 버전을 다시 적용할 수 있습니다. 패치 상태를 유지하려면 Google Play에서 해당 앱의 자동 업데이트를 비활성화하세요</string>
@@ -680,7 +680,7 @@ APK를 가져올 위치를 선택하세요"</string>
     <string name="patcher_option_paths_rejected_title">패치 옵션 파일을 사용할 수 없음</string>
     <string name="patcher_option_paths_rejected_description">하나 이상의 패치 옵션이 패치 대상 파일을 찾을 수 없거나, 해당 파일에 패치가 요구하는 내용이 없습니다. 해당 파일이 없는 경로를 패치 목록에서 제거하거나, 옵션 설명에 따라 파일을 수정한 후 다시 시도하세요</string>
     <string name="patcher_option_paths_clear">경로를 제거하고 계속 진행</string>
-    <string name="patcher_storage_permission_hint">힌트: 파일을 \'/Android/data/app.morphe.manager/files/\' 로 옮기세요. 추가 권한이 필요 없습니다</string>
+    <string name="patcher_storage_permission_hint">힌트: 파일을 \'/Android/data/app.morphe.extended/files/\' 로 옮기세요. 추가 권한이 필요 없습니다</string>
     <!-- Patcher Screen - Patcher Steps -->
     <string name="patcher_step_group_preparing">준비하는 중</string>
     <string name="patcher_step_load_patches">패치를 불러오는 중</string>
@@ -847,7 +847,7 @@ APK를 가져올 위치를 선택하세요"</string>
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">앱 언어</string>
     <string name="settings_appearance_app_language_current">현재 언어</string>
-    <string name="settings_appearance_translate">Morphe 번역 도움주기</string>
+    <string name="settings_appearance_translate">Mamu 번역 도움주기</string>
     <string name="settings_appearance_translations_info_title">일부 언어의 번역이 누락되거나 불완전할 수 있습니다</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">인터페이스 배율</string>
@@ -905,14 +905,14 @@ APK를 가져올 위치를 선택하세요"</string>
     <string name="settings_appearance_app_icon_change_dialog_confirm">앱 아이콘 변경</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">Pre-release 업데이트</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">새 Morphe 앱 버전을 미리 받아봅니다</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">새 Mamu 앱 버전을 미리 받아봅니다</string>
     <string name="settings_advanced_updates_prerelease_warning_title">Pre-release 업데이트 활성화</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
     <string name="settings_advanced_updates_prerelease_warning_message">"Morphe의 Pre-release 버전은 아직 개발 중이며 불안정할 수 있습니다
 
 패치에는 영향을 주지 않습니다: 패치 소스 목록에서 각 소스에 대한 Pre-release 패치를 활성화하세요"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">자동 업데이트</string>
     <string name="settings_auto_updates_description">Morphe가 실행될 때 업데이트를 처리하는 방식입니다. 당겨서 새로고침하면 항상 확인합니다</string>
     <string name="settings_auto_updates_download">자동으로 다운로드</string>
@@ -947,8 +947,8 @@ APK를 가져올 위치를 선택하세요"</string>
     <string name="notification_permission_dialog_title">알림 허용</string>
     <string name="notification_permission_dialog_description">Morphe는 백그라운드에서 업데이트가 있을 경우에 알림을 보내기 위해 알림 권한이 필요합니다</string>
     <string name="notification_post_patch_dialog_title">업데이트가 있을 때 알림을 받으시겠습니까?</string>
-    <string name="notification_channel_manager_updates">Morphe 업데이트</string>
-    <string name="notification_channel_manager_updates_description">새 Morphe 릴리스에 대한 알림</string>
+    <string name="notification_channel_manager_updates">Mamu 업데이트</string>
+    <string name="notification_channel_manager_updates_description">새 Mamu 릴리스에 대한 알림</string>
     <string name="notification_channel_patch_updates">패치 업데이트</string>
     <string name="notification_channel_patch_updates_description">새 패치 릴리스에 대한 알림</string>
     <string name="notification_channel_patcher_description">Morphe가 백그라운드에서 앱을 패치하는 동안에 표시되는 알림</string>
@@ -979,7 +979,7 @@ APK를 가져올 위치를 선택하세요"</string>
     <string name="settings_advanced_github_pat_unreachable">이 토큰을 확인하기 위해 GitHub에 연결할 수 없습니다</string>
     <string name="settings_advanced_github_pat_export_include_label">설정 내보내기에 포함</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">내보낼 Morphe 설정에 이 개인 액세스 토큰을 추가합니다</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">내보낼 Mamu 설정에 이 개인 액세스 토큰을 추가합니다</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">개인 액세스 토큰을 공유하지 마세요. 설정 내보내기에 포함되는 경우에는 토큰이 포함되어 있으므로 해당 파일을 비공개로 유지하세요</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1144,13 +1144,13 @@ morphe_header_custom_dark.png
     <string name="settings_system_battery_optimization_description">앱이 최소화되어도 패처가 계속 실행되도록 유지합니다</string>
     <string name="settings_system_process_runtime">패처 런타임</string>
     <string name="settings_system_jvm_runtime_enable">임베디드 VM 사용</string>
-    <string name="settings_system_jvm_runtime_description">Morphe 자체 Java VM에서 패치를 실행합니다. 이 방식은 메모리를 더 많이 사용할 수 있습니다. 이 옵션을 비활성화하면 Android의 기본 런타임을 사용합니다</string>
+    <string name="settings_system_jvm_runtime_description">Mamu 자체 Java VM에서 패치를 실행합니다. 이 방식은 메모리를 더 많이 사용할 수 있습니다. 이 옵션을 비활성화하면 Android의 기본 런타임을 사용합니다</string>
     <string name="settings_system_jvm_runtime_unavailable">ARM 또는 64비트 x86 기기가 필요합니다</string>
     <string name="settings_system_patcher_completion_sound">완료 알림음</string>
     <string name="settings_system_patcher_completion_sound_description">패치가 완료되면 성공 또는 실패 여부에 따라 서로 다른 알림음을 재생합니다</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">알림</string>
-    <string name="settings_system_notifications_description">Morphe 알림 관련 설정</string>
+    <string name="settings_system_notifications_description">Mamu 알림 관련 설정</string>
     <string name="settings_system_notifications_success_sound">성공 알림음</string>
     <string name="settings_system_notifications_error_sound">실패 알림음</string>
     <string name="settings_system_notifications_sound_default">기본값</string>
@@ -1185,9 +1185,9 @@ morphe_header_custom_dark.png
     <string name="settings_system_export_keystore_failed">키스토어를 내보낼 수 없습니다</string>
     <string name="settings_system_show_password_field">비밀번호 표시</string>
     <string name="settings_system_hide_password_field">비밀번호 숨기기</string>
-    <string name="settings_system_morphe_settings">Morphe 설정</string>
-    <string name="settings_system_import_manager_settings_description">Morphe 설정을 백업하고 복원합니다</string>
-    <string name="settings_system_export_manager_settings_title">Morphe 설정 내보내기</string>
+    <string name="settings_system_morphe_settings">Mamu 설정</string>
+    <string name="settings_system_import_manager_settings_description">Mamu 설정을 백업하고 복원합니다</string>
+    <string name="settings_system_export_manager_settings_title">Mamu 설정 내보내기</string>
     <string name="settings_system_export_manager_settings_description">선택한 설정을 파일로 저장합니다</string>
     <string name="settings_system_import_manager_settings_file_description">백업 파일에서 설정을 복원합니다</string>
     <string name="settings_system_auto_backup">자동 백업</string>
@@ -1195,10 +1195,10 @@ morphe_header_custom_dark.png
     <string name="settings_system_auto_backup_now">지금 백업</string>
     <string name="settings_system_auto_backup_saved">백업 저장됨</string>
     <string name="settings_system_auto_backup_interval_description">Morphe가 다음 백업을 수행하기 전까지 기다리는 최소 시간입니다</string>
-    <string name="settings_system_auto_backup_description">선택한 폴더에 Morphe 설정을 저장합니다</string>
+    <string name="settings_system_auto_backup_description">선택한 폴더에 Mamu 설정을 저장합니다</string>
     <string name="settings_system_auto_backup_last">마지막 백업: %s</string>
     <string name="settings_system_auto_backup_folder">폴더</string>
-    <string name="settings_system_auto_backup_folder_name">Morphe 백업</string>
+    <string name="settings_system_auto_backup_folder_name">Mamu 백업</string>
     <string name="settings_system_auto_backup_folder_failed">이 폴더를 사용할 수 없습니다: %s</string>
     <string name="settings_system_auto_backup_interval">백업 빈도</string>
     <string name="settings_system_auto_backup_signing_key">서명 키 포함</string>
@@ -1207,9 +1207,9 @@ morphe_header_custom_dark.png
     <string name="settings_system_auto_backup_signing_key_warning_message">이 파일을 얻는 사람은 누구나 패치된 앱 위에 설치되는 업데이트에 서명할 수 있습니다. 폴더를 비공개로 유지하고 본인의 기기와만 공유하십시오</string>
     <string name="settings_system_auto_backup_footer">변경 사항을 수정한 후 Morphe를 종료하면 복사본이 저장됩니다. 최신 %s개가 유지됩니다</string>
     <string name="settings_system_auto_backup_failed">마지막 백업을 저장하지 못했습니다. 폴더를 다시 선택하세요</string>
-    <string name="settings_system_import_manager_settings_fail">Morphe 설정을 가져올 수 없습니다: %s</string>
-    <string name="settings_system_import_manager_settings_success">Morphe 설정을 가져왔습니다</string>
-    <string name="settings_system_import_manager_settings_mode_title">Morphe 설정 가져오기</string>
+    <string name="settings_system_import_manager_settings_fail">Mamu 설정을 가져올 수 없습니다: %s</string>
+    <string name="settings_system_import_manager_settings_success">Mamu 설정을 가져왔습니다</string>
+    <string name="settings_system_import_manager_settings_mode_title">Mamu 설정 가져오기</string>
     <string name="settings_system_import_manager_settings_mode_description">가져온 설정 및 소스를 적용하는 방식을 선택하세요</string>
     <string name="settings_system_import_selections_mode_title">패치 선택 목록 가져오기</string>
     <string name="settings_system_import_selections_mode_description">가져온 선택 목록 및 패치 옵션을 적용하는 방법을 선택하세요</string>
@@ -1217,8 +1217,8 @@ morphe_header_custom_dark.png
     <string name="import_mode_replace_description">백업과 정확히 일치합니다. 백업에 없는 항목은 제거됩니다</string>
     <string name="import_mode_merge_title">기존 항목과 병합</string>
     <string name="import_mode_merge_description">백업에서 누락된 항목을 추가합니다. 기존 항목은 변경되지 않습니다</string>
-    <string name="settings_system_export_manager_settings_fail">Morphe 설정을 내보낼 수 없습니다: %s</string>
-    <string name="settings_system_export_manager_settings_success">Morphe 설정을 내보냈습니다</string>
+    <string name="settings_system_export_manager_settings_fail">Mamu 설정을 내보낼 수 없습니다: %s</string>
+    <string name="settings_system_export_manager_settings_success">Mamu 설정을 내보냈습니다</string>
     <string name="settings_system_export_debug_logs">디버그 로그 내보내기</string>
     <string name="settings_system_export_debug_logs_description">문제 해결을 위해 시스템 로그를 저장합니다</string>
     <string name="settings_system_export_debug_logs_export_read_failed">로그를 읽을 수 없습니다 (종료 코드 %s)</string>
@@ -1236,7 +1236,7 @@ morphe_header_custom_dark.png
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">저장소 관리</string>
     <string name="settings_system_storage_management_description">디스크 사용량을 표시하고 캐시된 파일을 삭제합니다</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s 여유 공간</string>
     <string name="settings_system_storage_saved_apks">저장된 APK</string>
     <string name="settings_system_storage_caches">캐시</string>
@@ -1259,7 +1259,7 @@ morphe_header_custom_dark.png
     <string name="settings_system_storage_clear_anyway">그래도 지우기</string>
     <string name="settings_system_storage_nothing_to_clear">삭제할 항목이 없습니다</string>
     <string name="settings_system_storage_open_app_info_title">Android 앱 저장소 열기</string>
-    <string name="settings_system_storage_open_app_info_description">시스템 설정을 통해 모든 Morphe 데이터를 관리하거나 지울 수 있습니다</string>
+    <string name="settings_system_storage_open_app_info_description">시스템 설정을 통해 모든 Mamu 데이터를 관리하거나 지울 수 있습니다</string>
     <string name="settings_system_save_original_apks_title">원본 APK 보관</string>
     <string name="settings_system_save_original_apks_description">다시 패치할 경우에 파일을 다시 선택하지 않고 사용할 수 있도록 패치 전 APK를 저장합니다</string>
     <string name="settings_system_save_patched_apks_title">패치된 APK 보관</string>
@@ -1352,7 +1352,7 @@ morphe_header_custom_dark.png
     <string name="settings_about_section_project">프로젝트</string>
     <string name="settings_about_section_help">도움말</string>
     <string name="credits_prior_development">이전 개발</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">매니저</string>
     <string name="about_update_available">업데이트 가능: %s</string>
     <string name="about_up_to_date">최신 버전</string>
@@ -1365,7 +1365,7 @@ morphe_header_custom_dark.png
     <string name="contributors_all_time">전체 기간</string>
     <string name="contributors_6_months">6개월</string>
     <string name="contributors_3_months">3개월</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">후원자</string>
     <string name="supporters_description">Open Collective 후원자</string>
     <string name="supporters_become">후원자가 되세요</string>
@@ -1373,7 +1373,7 @@ morphe_header_custom_dark.png
     <string name="people_more">그 외 %s명 더</string>
     <string name="people_unavailable">목록을 불러올 수 없습니다</string>
     <string name="opensource_licenses">오픈 소스 라이선스</string>
-    <string name="opensource_licenses_description">Morphe 기반 라이브러리</string>
+    <string name="opensource_licenses_description">Mamu 기반 라이브러리</string>
     <string name="opensource_licenses_search">라이브러리 및 라이선스 검색</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">알약 선택</string>
@@ -1398,12 +1398,12 @@ morphe_header_custom_dark.png
     <string name="settings_section_patcher">패처</string>
     <string name="settings_section_updates">업데이트</string>
     <string name="settings_section_patching">패치</string>
-    <string name="settings_section_appearance_summary">Morphe 앱 디자인 관련 설정</string>
+    <string name="settings_section_appearance_summary">Mamu 앱 디자인 관련 설정</string>
     <string name="settings_section_patch_options_summary">심플 모드가 앱을 패치하는 방식</string>
     <string name="settings_section_general">일반</string>
     <string name="settings_section_patcher_summary">앱 패치 방식 관련 설정</string>
     <string name="settings_section_help_info">도움말 및 정보</string>
-    <string name="settings_section_about_summary">Morphe 자세히 알아보기 및 도움 받기</string>
+    <string name="settings_section_about_summary">Mamu 자세히 알아보기 및 도움 받기</string>
     <string name="settings_section_local_files">파일</string>
     <string name="settings_section_backup">백업</string>
     <string name="settings_section_import_export">가져오기 및 내보내기</string>
@@ -1589,7 +1589,7 @@ morphe_header_custom_dark.png
     <string name="onboarding_signing_key_desc">패치한 앱에 서명하는 데 사용되는 키를 백업합니다. 이 키가 없으면 해당 앱을 업데이트하려면 기존 앱을 삭제한 후 다시 설치해야 합니다.</string>
     <string name="onboarding_swipe_title">스와이프 제스처</string>
     <string name="onboarding_swipe_desc">앱 카드를 오른쪽으로 스와이프하여 사용 가능한 패치를 확인할 수 있고, 왼쪽으로 스와이프하여 홈 화면에서 카드를 숨길 수 있습니다</string>
-    <string name="onboarding_settings_desc">레이아웃, 고급 옵션 및 시스템 도구와 같은 Morphe 설정을 관리할 수 있습니다</string>
+    <string name="onboarding_settings_desc">레이아웃, 고급 옵션 및 시스템 도구와 같은 Mamu 설정을 관리할 수 있습니다</string>
     <string name="onboarding_sources_patches_desc">패치 버튼을 탭하여 이 소스에서 사용할 수 있는 모든 패치를 볼 수 있습니다</string>
     <string name="onboarding_sources_version_desc">버전 버튼을 탭하여 이 소스의 전체 변경 사항을 볼 수 있습니다</string>
     <string name="onboarding_sources_apps_desc">이 소스에서 패치할 수 있는 앱 목록을 확인하고 제공하는 앱을 선택하려면 탭하세요</string>
@@ -1606,4 +1606,23 @@ morphe_header_custom_dark.png
     <string name="tour_prompt_confirm">안내해 드릴게요</string>
     <string name="onboarding_restart_title">기능 투어</string>
     <string name="onboarding_restart_desc">주요 기능 둘러보기</string>
+
+    <string name="home_app_filter_all_description">홈 화면에 모든 앱 표시</string>
+    <string name="home_app_filter_patched_description">Morphe로 패치하거나 저장한 앱만 표시</string>
+    <string name="home_app_filter_not_patched_description">아직 Morphe에서 패치하지 않은 앱만 표시</string>
+    <string name="home_app_filter_installed_description">현재 이 기기에 설치된 앱만 표시</string>
+    <string name="home_app_filter_uninstalled_description">Morphe로 패치되었지만 더 이상 이 기기에 없는 앱만 표시</string>
+    <string name="home_app_filter_clones_description">자체 패키지명으로 빌드되어 원본 앱과 함께 설치된 앱만 표시</string>
+    <string name="home_app_sort_name_asc_description">오름차순으로 정렬하여 표시</string>
+    <string name="home_app_sort_name_desc_description">내림차순으로 정렬하여 표시</string>
+    <string name="home_app_sort_recently_patched_description">가장 최근에 패치된 앱부터 먼저 표시</string>
+    <string name="home_category_custom">사용자 정의</string>
+    <string name="sources_filter_all_description">모든 소스</string>
+    <string name="sources_filter_enabled_description">소스 패치는 다음에서 가져옵니다</string>
+    <string name="sources_filter_disabled_description">소스 비활성화됨</string>
+    <string name="sources_filter_issues_description">차단되었거나 불러오기에 실패했거나, 더 최신 버전의 Morphe가 필요한 소스</string>
+    <string name="sources_sort_last_updated_description">최근 업데이트된 소스부터 먼저 표시</string>
+    <string name="sources_sort_enabled_first_description">비활성화된 소스보다 활성화된 소스를 먼저 표시</string>
+    <string name="home_apk_availability_installed_version">이 기기에 설치된 버전: %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">키스토어 형식</string>
 </resources>

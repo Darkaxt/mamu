@@ -21,6 +21,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
+private val PanelCorner = 14.dp
+private val PanelPadding = 16.dp
+private val LabelSpacing = 8.dp
+
 /**
  * A value the user reads character by character rather than as a sentence: a package name, a
  * version, anything that has to be compared against another value exactly.
@@ -44,7 +48,7 @@ fun MonospaceValuePanel(
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall)
+        verticalArrangement = Arrangement.spacedBy(LabelSpacing)
     ) {
         label?.let {
             Text(
@@ -56,7 +60,7 @@ fun MonospaceValuePanel(
 
         Surface(
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(Defaults.CornerMedium),
+            shape = RoundedCornerShape(PanelCorner),
             // Softened so the panel reads as a container for the value rather than as a banner
             color = tone.container.copy(alpha = 0.3f),
             tonalElevation = 1.dp,
@@ -71,7 +75,7 @@ fun MonospaceValuePanel(
                 textAlign = textAlign,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(Defaults.SpaceLarge)
+                    .padding(PanelPadding)
             )
         }
     }

@@ -10,15 +10,20 @@ import app.morphe.manager.domain.apk.InstalledApkInfo
 import app.morphe.manager.domain.manager.PreferencesManager
 import app.morphe.manager.domain.repository.PatchBundleRepository
 import app.morphe.manager.domain.repository.SourceMuteRepository
+import app.morphe.manager.domain.repository.PatchBundleRepository.Companion.DEFAULT_SOURCE_UID
+import app.morphe.manager.patcher.patch.panelHiddenFor
 import app.morphe.manager.patcher.patch.PatchBundleInfo
 import app.morphe.manager.util.AppCoroutineScope
 import app.morphe.manager.util.compareVersions
+import app.morphe.manager.util.versionSupportsAbis
 import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.FormFactor
 import app.morphe.patcher.patch.SupportedAbi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 
@@ -90,34 +95,38 @@ fun List<BundledAppTarget>.experimentalVersions(): Set<String> =
 fun List<BundledAppTarget>.offered(): List<BundledAppTarget> =
     filter { !it.target.isExperimental || it.experimentalEnabled }.ifEmpty { this }
 
-/** Whether this device meets the minimum SDK the version declares. */
-fun BundledAppTarget.installableOnDevice(): Boolean =
-    target.minSdk.let { it == null || Build.VERSION.SDK_INT >= it }
+/** Whether this device meets the explicit ABI and minimum SDK the version declares. */
+fun BundledAppTarget.installableOnDevice(abis: List<String> = Build.SUPPORTED_ABIS?.toList().orEmpty()): Boolean =
+    versionSupportsAbis(target.version, abis) && target.minSdk.let { it == null || Build.VERSION.SDK_INT >= it }
+
+/** A declared set with no installable target must not turn into an unconstrained search. */
+fun List<BundledAppTarget>.deviceIncompatible(abis: List<String> = Build.SUPPORTED_ABIS?.toList().orEmpty()): Boolean =
+    isNotEmpty() && none { it.installableOnDevice(abis) }
 
 /**
  * Versions the device can install, out of targets that arrive newest first. Dropping them all
- * would leave the UI with nothing to show, so in that case they are kept.
+ * would leave the UI with nothing to show, so SDK-only fallbacks are kept. Explicitly
+ * unsupported ABIs are never restored by that presentation fallback.
  */
-fun List<BundledAppTarget>.installable(): List<BundledAppTarget> =
-    filter { it.installableOnDevice() }.ifEmpty { this }
+fun List<BundledAppTarget>.installable(abis: List<String> = Build.SUPPORTED_ABIS?.toList().orEmpty()): List<BundledAppTarget> {
+    val architectureCompatible = filter { versionSupportsAbis(it.target.version, abis) }
+    return architectureCompatible.filter { it.installableOnDevice(abis) }.ifEmpty { architectureCompatible }
+}
 
 /**
  * The version to suggest out of these targets: the newest one the device can install, once the
  * versions the user does not want to see are out of the way.
  */
-fun List<BundledAppTarget>.recommended(): AppTarget? = recommendedEntry()?.target
+fun List<BundledAppTarget>.recommended(abis: List<String> = Build.SUPPORTED_ABIS?.toList().orEmpty()): AppTarget? =
+    recommendedEntry(abis)?.target
 
-/**
- * The version an install patched from [patchedFrom] is measured against: what those sources
- * support, since a rebuild goes back to them. Once none of them names a version anymore, every
- * source counts, as a rebuild would then be patched from the others.
- */
+/** Keep newest-version ordering across source groups, retaining the exact contributing identity. */
+fun List<BundledAppTarget>.recommendedEntry(abis: List<String> = Build.SUPPORTED_ABIS?.toList().orEmpty()): BundledAppTarget? =
+    offered().installable(abis).maxByOrNull { it.target }
+
+/** A tracked install is measured against the sources from which it was actually patched. */
 fun List<BundledAppTarget>.supportedFor(patchedFrom: Set<Int>): AppTarget? =
     filter { it.bundleUid in patchedFrom }.ifEmpty { this }.recommended()
-
-/** [recommended] together with the source suggesting it, for a pick that has to name one. */
-fun List<BundledAppTarget>.recommendedEntry(): BundledAppTarget? =
-    offered().installable().firstOrNull()
 
 /**
  * Where an install stands against the newest version the sources support: either behind it, with
@@ -158,6 +167,17 @@ fun versionStatus(
     )
 }
 
+/** Hidden sources stay cached, but must not recommend a version the visible patches cannot use. */
+internal fun visibleVersionTargets(
+    versions: Map<String, List<BundledAppTarget>>,
+    muted: Map<String, Set<Int>>,
+    global: Set<String>,
+    perApp: Set<String>
+): Map<String, List<BundledAppTarget>> = versions.mapValues { (packageName, targets) ->
+    val hidden = muted[packageName].orEmpty() + global.mapNotNull { it.toIntOrNull() } + panelHiddenFor(packageName, perApp)
+    targets.filterNot { it.bundleUid in hidden }
+}.filterValues { it.isNotEmpty() }
+
 /**
  * Which app versions the enabled patch sources can work with, and which one to suggest.
  *
@@ -179,26 +199,21 @@ class AppVersionCatalog(
      * all readers instead of being rebuilt by each of them, on whatever thread collects it.
      */
     val compatibleVersions: Flow<Map<String, List<BundledAppTarget>>> = combine(
-        patchBundleRepository.bundleInfoFlow,
-        patchBundleRepository.sources,
+        patchBundleRepository.bundleState.filterIsInstance<PatchBundleRepository.BundleState.Ready>(),
+        patchBundleRepository.blockedSources,
         prefs.bundleExperimentalVersionsEnabled.flow,
-        sourceMuteRepository.mutedSources
-    ) { bundleInfo, sources, experimentalEnabledUids, mutedSources ->
-        val enabledSources = sources.filter { it.enabled }
-        extract(
+        sourceMuteRepository.mutedSources,
+        combine(prefs.patchPanelGlobalHiddenSources.flow, prefs.patchPanelAppHiddenSources.flow) { global, local -> global to local }
+    ) { state, blocked, experimentalEnabledUids, mutedSources, panelHidden ->
+        val enabledSources = state.sources.values.filter { it.enabled && it.uid !in blocked }
+        val bundleInfo = state.info.filter { (uid, info) -> info.enabled && uid !in blocked }
+        visibleVersionTargets(extract(
             bundleInfo = bundleInfo,
             bundleNames = enabledSources.associate { it.uid to it.displayTitle },
             // The order the user arranged the sources in, which the source list keeps
             sourceOrder = enabledSources.withIndex().associate { (index, source) -> source.uid to index },
             experimentalEnabledUids = experimentalEnabledUids
-        ).mapValues { (packageName, targets) ->
-            // Or the picker suggests a download none of the sources left standing can patch
-            val muted = mutedSources[packageName].orEmpty()
-            targets.filterNot { it.bundleUid in muted }
-        }
-            // Unlike the source list this drops the last one: extract promises that a listed
-            // package has a version to offer, and one with none left is a state readers handle
-            .filterValues { it.isNotEmpty() }
+        ), mutedSources, panelHidden.first, panelHidden.second)
     }.shareIn(scope, SharingStarted.Eagerly, replay = 1)
 
     /** The single version to offer per package. */

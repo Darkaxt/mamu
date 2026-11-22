@@ -19,7 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -96,14 +95,14 @@ fun PulsingLogoIndicator(
 
 /**
  * [PulsingLogoIndicator] with a centered caption below the logo, describing the operation running
- * behind a full-screen overlay. [subtitle] names what it runs on and [counter] how far along it is.
+ * behind a full-screen overlay. [subtitle] names what it runs on and [badge] how far along it is.
  */
 @Composable
 fun PulsingLogoWithCaption(
     caption: String,
     modifier: Modifier = Modifier,
     subtitle: String? = null,
-    counter: String? = null,
+    badge: String? = null,
     size: Dp = 180.dp,
     spacing: Dp = 20.dp
 ) {
@@ -114,18 +113,11 @@ fun PulsingLogoWithCaption(
     ) {
         PulsingLogoIndicator(size = size, contentDescription = caption)
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            counter?.let {
-                CrossfadeText(
+            badge?.let {
+                CounterBadge(
                     text = it,
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    fontWeight = FontWeight.SemiBold,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = Defaults.SpaceExtraSmall),
-                    transitionSpec = Animations.counterTransitionSpec,
-                    label = "caption_counter"
+                    tone = SemanticTone.Primary,
+                    modifier = Modifier.padding(bottom = Defaults.SpaceSmall)
                 )
             }
             CrossfadeText(
@@ -133,19 +125,14 @@ fun PulsingLogoWithCaption(
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth(),
-                label = "caption"
+                modifier = Modifier.fillMaxWidth()
             )
             CrossfadeText(
-                text = subtitle,
+                text = subtitle.orEmpty(),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .then(if (subtitle != null) Modifier.padding(top = Defaults.SpaceExtraSmall) else Modifier),
-                transitionSpec = Animations.counterTransitionSpec,
-                label = "caption_subtitle"
+                modifier = Modifier.fillMaxWidth()
             )
         }
     }

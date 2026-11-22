@@ -35,6 +35,7 @@
     <!-- Foreground Services -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
     <!-- Live Updates: lets the ongoing patching notification appear as a status bar chip -->
     <uses-permission android:name="android.permission.POST_PROMOTED_NOTIFICATIONS" />
@@ -160,7 +161,7 @@
 
         <service
             android:name="androidx.work.impl.foreground.SystemForegroundService"
-            android:foregroundServiceType="specialUse"
+            android:foregroundServiceType="specialUse|dataSync"
             android:exported="false"
             tools:node="merge">
             <property
@@ -214,6 +215,8 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <meta-data android:name="firebase_messaging_auto_init_enabled" android:value="false" />
 
         <!-- Disable Firebase Analytics -->
         <meta-data

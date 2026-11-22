@@ -7,24 +7,26 @@ package app.morphe.manager.ui.screen.home
 
 import androidx.annotation.StringRes
 import app.morphe.manager.R
-import app.morphe.manager.domain.manager.SortModeSpec
 import app.morphe.manager.ui.model.HomeAppItem
 import app.morphe.manager.util.enumByNameOrNull
 
 enum class HomeAppFilterMode(
-    @param:StringRes override val labelRes: Int
-) : SortModeSpec {
-    ALL(R.string.home_app_filter_all),
-    PATCHED(R.string.patched),
-    NOT_PATCHED(R.string.home_app_filter_not_patched),
-    INSTALLED(R.string.installed),
-    UNINSTALLED(R.string.uninstalled),
-    CLONES(R.string.home_app_filter_clones);
+    @param:StringRes val labelRes: Int,
+    @param:StringRes val descriptionRes: Int
+) {
+    ALL(R.string.home_category_all_apps, R.string.home_app_filter_all_description),
+    UPDATES(R.string.update_available, R.string.library_updates_description),
+    PATCHED(R.string.patched, R.string.home_app_filter_patched_description),
+    NOT_PATCHED(R.string.home_not_patched_yet, R.string.home_app_filter_not_patched_description),
+    INSTALLED(R.string.installed, R.string.home_app_filter_installed_description),
+    UNINSTALLED(R.string.uninstalled, R.string.home_app_filter_uninstalled_description),
+    CLONES(R.string.home_app_filter_clones, R.string.home_app_filter_clones_description);
 
     val isActive: Boolean get() = this != ALL
 
     fun matches(item: HomeAppItem): Boolean = when (this) {
         ALL -> true
+        UPDATES -> item.isCurrentPatchedInstall && item.showsRebuildBadge
         PATCHED -> item.installedApp != null
         NOT_PATCHED -> item.installedApp == null
         INSTALLED -> item.isInstalledOnDevice && !item.isDeleted

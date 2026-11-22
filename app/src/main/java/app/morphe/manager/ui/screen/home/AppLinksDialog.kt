@@ -41,7 +41,7 @@ import org.koin.compose.koinInject
  * the user changes it without the manager's help.
  */
 @Composable
-fun DialogHostScope.AppLinksDialog(
+fun AppLinksDialog(
     appLabel: String,
     appInfo: PackageInfo?,
     accentColor: Color?,
@@ -248,7 +248,7 @@ fun AppLinksContent(status: AppLinksStatus, controls: AppLinksControls, accentCo
         // Apps declare service domains next to their own, so some left to the browser is a choice
         // the user makes rather than something to fix
         else -> Footnote(
-            text = stringResource(R.string.app_links_description),
+            text = stringResource(R.string.app_links_partially_selected),
             icon = MaterialSymbols.Rounded.Link
         )
     }

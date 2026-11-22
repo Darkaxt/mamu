@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">Android 11 səhvi</string>
     <string name="android_11_bug_dialog_description">Tətbiq quraşdırılması icazəsi istifadəçi təcrübəsinə mənfi təsir edəcək Android 11 sistemindəki səhvə mane olmaq üçün əvvəlcədən qəbul edilməlidir</string>
     <string name="deep_link_add_source_title">Mənbə əlavə et</string>
-    <string name="deep_link_add_source_message">Bu yamaq mənbəyin Morphe-yə əlavə etmək istəyirsiniz?</string>
+    <string name="deep_link_add_source_message">Bu yamaq mənbəyin Mamu-yə əlavə etmək istəyirsiniz?</string>
     <string name="deep_link_add_source_warning">Yalnız etibar etdiyiniz mənbələri əlavə edin</string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">Yalnız bu tətbiq əlavə olunub. Mənbənin tətbiq siyahısından digər tətbiqləri də əlavə edə bilərsiniz</string>
@@ -44,15 +44,15 @@
     <string name="mpp_import_unreadable">Bu fayl oxuna bilməz</string>
     <string name="incoming_file_not_patch_source">Bu fayl yamaq mənbəyi deyil</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">Əlçatan Morphe yenilənməsi</string>
+    <string name="home_update_available">Əlçatan Mamu yenilənməsi</string>
     <string name="home_update_available_subtitle">Yeni versiya quraşdırılmağa hazırdır</string>
     <string name="home_blocked_source_title">Əngəllənmiş yamaq mənbəyi aşkarlandı</string>
     <string name="home_blocked_source_subtitle">Gözdən keçirmək və silmək üçün toxun</string>
     <string name="home_metadata_errors_title">Bəzi yamaq mənbələri əlçatmazdır</string>
     <string name="home_metadata_errors_subtitle">Mənbələri gözdən keçirmək üçün toxun</string>
-    <string name="home_outdated_manager_title">Morphe köhnəlib</string>
+    <string name="home_outdated_manager_title">Mamu köhnəlib</string>
     <string name="home_outdated_manager_subtitle">Bəzi yamaq mənbələrinin daha yeni versiyaya ehtiyacı var</string>
-    <string name="home_held_back_title">Yamaq mənbəyi Morphe-ni xətaya saldı</string>
+    <string name="home_held_back_title">Yamaq mənbəyi Mamu-ni xətaya saldı</string>
     <string name="home_held_back_subtitle">Tətbiqin başladıla bilməsi üçün bu ötürüldü. Baxmaq üçün toxun</string>
     <string name="home_source_updates_title">Yamaq yenilənməsi var</string>
     <string name="home_source_updates_subtitle">Onları yükləmək üçün toxun</string>
@@ -204,10 +204,10 @@
     <string name="sources_management_metadata_unavailable_hint">Uzaq üst məlumatı faylı mövcud deyil. Quraşdırılan paketlə yamaqlanma hələ də işləyir, lakin bu mənbə üçün birbaşa yenilənmə qapadılıb</string>
     <string name="sources_management_metadata_unavailable_hint_missing">Yamaq paketin yükləmək olmadı. Mənbə URL-si səhv ola bilər və ya fayl mövcud deyil</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">Yamaq paketin yükləmək olmadı. Mənbə URL-si səhv ola bilər və ya fayl mövcud deyil. Dəyişdirmək üçün toxun</string>
-    <string name="sources_management_outdated_manager_badge">Morphe-ni Yenilə</string>
-    <string name="sources_management_outdated_manager_hint">Bu mənbə %1$s yamaqlayıcısı üçün qurulmuşdur, lakin Morphe %2$s versiyası %3$s yamaqlayıcısını ehtiva edir. İstifadə etmək üçün Morphe-ni yenilə</string>
+    <string name="sources_management_outdated_manager_badge">Mamu-ni Yenilə</string>
+    <string name="sources_management_outdated_manager_hint">Bu mənbə %1$s yamaqlayıcısı üçün qurulmuşdur, lakin Mamu %2$s versiyası %3$s yamaqlayıcısını ehtiva edir. İstifadə etmək üçün Mamu-ni yenilə</string>
     <string name="sources_management_held_back_badge">Çökdü</string>
-    <string name="sources_management_held_back_hint">Bu mənbə yüklənərkən Morphe-nin çökməsinə səbəb oldu, buna görə də ötürülür. Təkrar cəhd etmək üçün onu yenilə və ya təkrar idxal et</string>
+    <string name="sources_management_held_back_hint">Bu mənbə yüklənərkən Mamu-nin çökməsinə səbəb oldu, buna görə də ötürülür. Təkrar cəhd etmək üçün onu yenilə və ya təkrar idxal et</string>
     <string name="sources_management_signed_by">İmzalanan</string>
     <string name="sources_management_signing_key_changed_badge">Açar dəyişdirildi</string>
     <string name="sources_management_signing_key_changed_hint">Son buraxılış bu mənbənin əvvəlki açarı ilə imzalanmayıb, buna görə də quraşdırılmadı. Nəzərdən keçirmək üçün toxun</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">İcma yamaqları</string>
     <string name="sources_dialog_choose_apps">Tətbiqləri seç</string>
     <string name="sources_dialog_choose_apps_description">Mənbə yükləndikdən sonra hansı tətbiqləri saxlayacağınızı seçin</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">Üçüncü tərəf yamaq mənbələri</string>
-    <string name="sources_dialog_community_notice_message">"İcma yamaq mənbələri öz müəllifləri tərəfindən yaradılır və saxlanılır. Morphe üçüncü tərəf yamaqlarını nəzərdən keçirmir, yoxlamır və onların məzmununa və ya cihazınızda etdiklərinə görə məsuliyyət daşımır"</string>
+    <string name="sources_dialog_community_notice_message">"İcma yamaq mənbələri öz müəllifləri tərəfindən yaradılır və saxlanılır. Mamu üçüncü tərəf yamaqlarını nəzərdən keçirmir, yoxlamır və onların məzmununa və ya cihazınızda etdiklərinə görə məsuliyyət daşımır"</string>
     <string name="sources_update_success">Uğurlu yeniləmə</string>
     <string name="sources_update_unavailable">Yenilənmə əlçatan deyil</string>
     <string name="sources_download_fail">Mənbələri yükləmək olmadı: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">Köməkçi tətbiq quraşdırılıb, lakin hələ etibarlı deyil, buna görə də burada təklif olunmur</string>
     <string name="home_apk_helper_untrusted_action">Köməkçiləri nəzərdən keçir</string>
     <string name="home_apk_helper_title">Köməkçi tətbiq ilə yüklə</string>
-    <string name="home_apk_helper_description">Morphe orijinal APK-nı yükləmək və faylı geri vermək üçün aşağıdakı köməkçi tətbiqə sorğu göndərəcək</string>
+    <string name="home_apk_helper_description">Mamu orijinal APK-nı yükləmək və faylı geri vermək üçün aşağıdakı köməkçi tətbiqə sorğu göndərəcək</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">Köməkçini aç</string>
-    <string name="home_apk_helper_warning">Yalnız bu köməkçi tətbiqə etibar edirsinizsə davam edin. Morphe yamaqlamazdan əvvəl qəbul etdiyi hər şeyin paketini, versiyasını və imzasını yoxlayır</string>
-    <string name="home_apk_helper_warning_unverified">Yalnız bu köməkçi tətbiqə etibar edirsinizsə davam edin. Morphe bu APK-nın imzasını təsdiqləyə bilmir, buna görə də dəyişdirilmiş fayl aşkarlanmayacaq</string>
+    <string name="home_apk_helper_warning">Yalnız bu köməkçi tətbiqə etibar edirsinizsə davam edin. Mamu yamaqlamazdan əvvəl qəbul etdiyi hər şeyin paketini, versiyasını və imzasını yoxlayır</string>
+    <string name="home_apk_helper_warning_unverified">Yalnız bu köməkçi tətbiqə etibar edirsinizsə davam edin. Mamu bu APK-nın imzasını təsdiqləyə bilmir, buna görə də dəyişdirilmiş fayl aşkarlanmayacaq</string>
     <string name="home_apk_helper_no_result">Köməkçi tətbiq APK-nı qaytarmadı</string>
     <string name="home_apk_helper_no_access">Köməkçi tətbiq qaytardığı APK-ya giriş icazəsi vermədi</string>
     <string name="home_apk_helper_no_package">Köməkçi tətbiq hansı quraşdırılmış tətbiqi istifadə edəcəyini bildirmədi</string>
     <string name="home_apk_helper_wrong_package">Köməkçi tətbiq yamaqlanan tətbiqdən fərqli tətbiq qaytardı</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe quraşdırılmış tətbiqi istifadə edə bilmədi</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu quraşdırılmış tətbiqi istifadə edə bilmədi</string>
     <string name="home_apk_helper_installed_incompatible">Quraşdırılmış versiya yamaqlana bilməz</string>
     <string name="home_apk_use_saved_copy">Saxlanılan nüsxəni istifadə et</string>
     <string name="home_apk_use_installed_app">Quraşdırılan tətbiqi istifadə et</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">Quraşdırılmış tətbiqin imzasını təsdiqləmək olmadı, mümkündür ki, artıq yamaqlanmış ola bilər</string>
     <string name="home_unverified">Təsdiqlənməmiş</string>
     <string name="home_install_verification_pending">Quraşdırmanı yoxlayır...</string>
-    <string name="home_app_info_install_unverified">Morphe quraşdırılmış tətbiqin öz yamaqladığı qurulma olduğunu təsdiqləyə bilmir. Fəaliyyətlərini bərpa etmək üçün onu saxlanılan APK-dan yenidən yamaqla yaxud quraşdır</string>
+    <string name="home_app_info_install_unverified">Mamu quraşdırılmış tətbiqin öz yamaqladığı qurulma olduğunu təsdiqləyə bilmir. Fəaliyyətlərini bərpa etmək üçün onu saxlanılan APK-dan yenidən yamaqla yaxud quraşdır</string>
     <string name="home_app_info_no_saved_apk">Saxlanılan APK yoxdur. Yamaqlanma APK faylını təkrar seçmək istəyəcək</string>
     <string name="home_version_requires_android">Android %s+ tələb olunur</string>
     <string name="home_apk_no_compatible_versions_title">Bu cihazda dəstəklənmir</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">Veb səhifəni aşağı sürüşdür və yükləmə düyməsini bas</string>
     <string name="home_download_instructions_step2_variant">Veb səhifəni aşağı sürüşdür və ən yuxarıdakı &lt;b&gt;APK variantının&lt;/b&gt; yükləmə düyməsini bas</string>
     <string name="home_download_instructions_step2_search">Etibar etdiyiniz veb saytdan axtarış nəticəsini açın</string>
-    <string name="home_download_instructions_step2_search_note">Morphe bu veb saytlara zəmanət verə bilməz. APK faylı əvəzinə öz tətbiq mağazasını təklif edənləri ötür</string>
+    <string name="home_download_instructions_step2_search_note">Mamu bu veb saytlara zəmanət verə bilməz. APK faylı əvəzinə öz tətbiq mağazasını təklif edənləri ötür</string>
     <string name="home_download_instructions_step3_search">Həmin veb-saytda ən yenisini deyil, &lt;b&gt;%s&lt;/b&gt; versiyasının APK-sını yüklə</string>
     <string name="home_download_instructions_step3_search_any">Həmin veb-saytda tətbiqin APK-sını yüklə. &lt;b&gt;İstənilən versiya&lt;/b&gt; yamaqlana bilər</string>
     <string name="home_download_instructions_step2_github">&lt;b&gt;%s&lt;/b&gt; buraxılışının &lt;b&gt;Resursları&lt;/b&gt; bölməsində, &lt;b&gt;.apk&lt;/b&gt; ilə bitən faylı basın</string>
@@ -314,11 +314,11 @@
     <string name="home_download_instructions_download_button_toast_3">Təcrübə mükəmməlləşdirir və siz hədəfə yaxınlaşırsınız 💪</string>
     <string name="home_download_instructions_download_button_toast_4">Hələ burada deyil... hələ burada deyil... 🙈 </string>
     <string name="home_download_instructions_download_button_toast_5">Yaxşı, inadkarlığa hörmət edirəm 🫡 </string>
-    <string name="home_download_instructions_download_button_toast_6">Artıq rəsmi Morphe düyməsi sınaqçısısınız 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">Artıq rəsmi Mamu düyməsi sınaqçısısınız 🏅</string>
     <string name="home_download_instructions_step3">Endirmənin tamamlanmasını gözləyin və &lt;/b&gt;APK quraşdırmayın&lt;/b&gt;</string>
     <string name="home_download_instructions_step3_mount">Endirmənin tamamlanmasını gözləyin, sonra &lt;b&gt;APK quraşdırın&lt;/b&gt;</string>
-    <string name="home_download_instructions_step4">Yükləmə bitəndən sonra Morphe-yə qayıt</string>
-    <string name="home_download_instructions_step4_mount">Əsil APK-nı quraşdırandan sonra, Morphe-yə qayıt</string>
+    <string name="home_download_instructions_step4">Yükləmə bitəndən sonra Mamu-yə qayıt</string>
+    <string name="home_download_instructions_step4_mount">Əsil APK-nı quraşdırandan sonra, Mamu-yə qayıt</string>
     <string name="home_download_instructions_continue_to">%s ilə davam et</string>
     <string name="home_download_instructions_destination">yükləmə səhifəsi</string>
     <string name="home_download_instructions_copy_link">Linki köçür</string>
@@ -446,12 +446,12 @@ APK-nı haradan götürəcəyinizi seçin"</string>
     <string name="adaptive_icon_themed">Koloritə uyğun</string>
     <string name="adaptive_icon_background_color">Fon rəngi</string>
     <string name="adaptive_icon_reset_transform">Mövqeyi və miqyası standarta qaytar</string>
-    <string name="adaptive_icon_no_transparency_warning">Bu şəkilin şəffaf pikselləri yoxdur, buna görə də koloritə uyğun simvollar və bildiriş nişanları Morphe simvolunu saxlayır</string>
+    <string name="adaptive_icon_no_transparency_warning">Bu şəkilin şəffaf pikselləri yoxdur, buna görə də koloritə uyğun simvollar və bildiriş nişanları Mamu simvolunu saxlayır</string>
     <string name="adaptive_icon_created_success">Uyğun simvol uğurla yaradıldı</string>
     <string name="adaptive_icon_creation_failed">Uyğun simvol yaratmaq olmadı</string>
     <string name="adaptive_icon_guide">Simvol yaratma bələdçisi</string>
     <string name="adaptive_icon_guide_png_title">Şəffaf fonu olan PNG istifadə et</string>
-    <string name="adaptive_icon_guide_png_body">Ən yaxşı nəticə üçün şəffaf fonda simvol, fon rəngi aşağıda seçilir. Şəffaflığı olmayan şəkil isə bütün simvolu doldurur, bu halda koloritə uyğun simvollar və bildiriş simvolları Morphe simvolunu saxlayır.</string>
+    <string name="adaptive_icon_guide_png_body">Ən yaxşı nəticə üçün şəffaf fonda simvol, fon rəngi aşağıda seçilir. Şəffaflığı olmayan şəkil isə bütün simvolu doldurur, bu halda koloritə uyğun simvollar və bildiriş simvolları Mamu simvolunu saxlayır.</string>
     <string name="adaptive_icon_guide_safe_zones_title">Etibarlı sahələr</string>
     <string name="adaptive_icon_guide_safe_zones_body">Çərçivə başladıcınızın simvol formasını göstərir və ondan kənar hər şey kəsilib atılır. Digər başladıcılar fərqli formalar istifadə edir, buna görə də vacib detalları hər bir formanın göstərdiyi kəsik xətli dairənin daxilində saxla.</string>
     <string name="adaptive_icon_guide_notification_title">Bildiriş simvolu</string>
@@ -557,8 +557,8 @@ APK-nı haradan götürəcəyinizi seçin"</string>
     <string name="home_app_info_version_move">%1$s quraşdırılıb, ən yeni dəstəklənən %2$s</string>
     <string name="home_app_info_version_restore">%1$s quraşdırıldı, %2$s yamaqlandı</string>
     <string name="home_app_info_app_deleted_warning">Tətbiq quraşdırması silindi</string>
-    <string name="home_app_info_app_deleted_description">Bu tətbiq Morphe xarici silindi. Funksionallığı qaytarmaq üçün onu təkrar quraşdır</string>
-    <string name="home_app_info_not_patched_description">Bu tətbiqin yamaqlanmamış versiyası quraşdırılıb. Morphe-də hələ də əvvəlki yamaq qeydi qalır</string>
+    <string name="home_app_info_app_deleted_description">Bu tətbiq Mamu xarici silindi. Funksionallığı qaytarmaq üçün onu təkrar quraşdır</string>
+    <string name="home_app_info_not_patched_description">Bu tətbiqin yamaqlanmamış versiyası quraşdırılıb. Mamu-də hələ də əvvəlki yamaq qeydi qalır</string>
     <string name="home_app_info_mount_replaced_description">Başqa versiya quraşdırılmış tətbiqi əvəzlədi, buna görə də yamaq artıq tətbiq olunmur. Bərpa yamaqlanmış versiyanı geri qaytarır</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play quraşdırılmış tətbiqi yenilədi, buna görə də yamaq artıq tətbiq olunmur. Bərpa yamaqlanmış versiyanı geri qaytarır. Yamaqlanmış qalması üçün Google Play-də onun avtomatik yenilənməsini qapat</string>
     <string name="app_links_title">Dəstəklənən veb linklər</string>
@@ -589,7 +589,7 @@ APK-nı haradan götürəcəyinizi seçin"</string>
     <string name="root_pre_patch_installer_description">Cihazınızın root girişi var. Bu tətbiqin root montajı yoxsa standart quraşdırma məqsədilə yamaqlanmalı olub-olmadığını seçin</string>
     <string name="root_pre_patch_installer_mount_title">Root montajı rejimi</string>
     <string name="root_pre_patch_installer_mount_description">Root montajı üçün yamaqlayır, sonra APK-nı uyğun əsas tətbiqin üzərinə montaj edir. GmsCore tələb olunmur</string>
-    <string name="root_mount_module_unmount_warning">KernelSU-nun \"Modulları ilkin olaraq ayırmağı\" aktivdirsə, KernelSU &gt; Superuser &gt; montaj etdiyiniz tətbiq &gt; Profil &gt; Fərdi bölməsini açın və \"modulların ayrılmasını\" qapadın. Əks halda, Morphe onu montajlanmış kimi göstərsə belə, montajlanmış yamaqlı APK işləməyə bilər</string>
+    <string name="root_mount_module_unmount_warning">KernelSU-nun \"Modulları ilkin olaraq ayırmağı\" aktivdirsə, KernelSU &gt; Superuser &gt; montaj etdiyiniz tətbiq &gt; Profil &gt; Fərdi bölməsini açın və \"modulların ayrılmasını\" qapadın. Əks halda, Mamu onu montajlanmış kimi göstərsə belə, montajlanmış yamaqlı APK işləməyə bilər</string>
     <string name="root_pre_patch_installer_standard_title">Standart quraşdırma rejimi</string>
     <string name="root_pre_patch_installer_standard_description">GmsCore dəstəyi ilə adi APK kimi yamaqlayır. Quraşdırıcı tənzimləməniz yamaqlanmadan sonra istifadə olunur</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -652,7 +652,7 @@ APK-nı haradan götürəcəyinizi seçin"</string>
     <string name="patcher_conflict_subtitle">Mövcud versiyanı silməlisiniz</string>
     <string name="patcher_conflict_hint">Yamaqlanan tətbiq quraşdırılan versiyadan fərqli sertifikat istifadə edir. Quraşdırma ləğvi bütün tətbiq məlumatını siləcək</string>
     <string name="patcher_installed_conflict_title">Silinmə tələb olunur</string>
-    <string name="patcher_installed_conflict_body">"Morphe, yamaqlanan tətbiqləri orijinaldan fərqlənən öz sertifikatı ilə imzalayır. Android yamaqlanan tətbiqi quraşdıra bilməsi öncəsi mövcud versiyanı silməyi tələb edir.
+    <string name="patcher_installed_conflict_body">"Mamu, yamaqlanan tətbiqləri orijinaldan fərqlənən öz sertifikatı ilə imzalayır. Android yamaqlanan tətbiqi quraşdıra bilməsi öncəsi mövcud versiyanı silməyi tələb edir.
 
 Quraşdırma ləğvi bütün tətbiq məlumatını qalıcı siləcək"</string>
     <string name="patcher_install_error_title">Quraşdırma xətası</string>
@@ -662,8 +662,8 @@ Quraşdırma ləğvi bütün tətbiq məlumatını qalıcı siləcək"</string>
     <string name="patcher_patches_excluded_for_installer">Bu quraşdırma üsulu üçün əlçatan deyil və xaric edilib: %s</string>
     <string name="patcher_storage_permission_dialog_title">Saxlanc keçidinə keçmək olmur</string>
     <string name="patcher_incompatible_patcher_title">Yenilənmə tələb olundu</string>
-    <string name="patcher_incompatible_patcher_description">&lt;b&gt;%1$s&lt;/b&gt; mənbəsi &lt;b&gt;%2$s&lt;/b&gt; və ya daha yeni yamaqlayıcı tələb edir. Onu istifadə etmək üçün Morphe-ni yenilə</string>
-    <string name="patcher_storage_permission_description_api30">Bir və ya daha çox yamaq seçimi Morphe-nin oxuya bilmədiyi yolları işarə edir. Saxlanc girişin qəbul et və düyməyə toxun, sonra yamaqlanma birbaşa başlayacaq</string>
+    <string name="patcher_incompatible_patcher_description">&lt;b&gt;%1$s&lt;/b&gt; mənbəsi &lt;b&gt;%2$s&lt;/b&gt; və ya daha yeni yamaqlayıcı tələb edir. Onu istifadə etmək üçün Mamu-ni yenilə</string>
+    <string name="patcher_storage_permission_description_api30">Bir və ya daha çox yamaq seçimi Mamu-nin oxuya bilmədiyi yolları işarə edir. Saxlanc girişin qəbul et və düyməyə toxun, sonra yamaqlanma birbaşa başlayacaq</string>
     <string name="patcher_storage_permission_description_legacy">Bir və ya daha çox yamaq seçimi giriş olmayan yolları göstərir. Yamaq seçimlərindəki yolları yeniləyin və təkrar cəhd edin</string>
     <string name="patcher_storage_permission_grant">Saxlanc icazəsin qəbul et</string>
     <string name="patcher_storage_permission_denied_warning">Saxlanc icazəsi rədd edildi. Bu yolu istifadə etmək üçün icazəni qəbul et və ya faylları tətbiqin şəxsi qovluğuna köçür</string>
@@ -680,7 +680,7 @@ Quraşdırma ləğvi bütün tətbiq məlumatını qalıcı siləcək"</string>
     <string name="patcher_option_paths_rejected_title">Yamaq seçim faylları istifadə edilə bilməz</string>
     <string name="patcher_option_paths_rejected_description">Bir və ya daha çox yamaq seçimi tapılmayan və ya yamağın tələb etdiklərini ehtiva etməyən fayllara istinad edir. Yamaqlamaq üçün həmin yolları sil və ya faylları seçimin təlimatlarında göstərildiyi kimi düzəldib təkrar cəhd et</string>
     <string name="patcher_option_paths_clear">Fayl yollarını sil və davam et</string>
-    <string name="patcher_storage_permission_hint">İpucu: Faylları /Android/data/app.morphe.manager/files/ -a köçür - əlavə icazələrə ehtiyac yoxdur</string>
+    <string name="patcher_storage_permission_hint">İpucu: Faylları /Android/data/app.morphe.extended/files/ -a köçür - əlavə icazələrə ehtiyac yoxdur</string>
     <!-- Patcher Screen - Patcher Steps -->
     <string name="patcher_step_group_preparing">Hazırlanır</string>
     <string name="patcher_step_load_patches">Yamaqlar yüklənilir</string>
@@ -699,7 +699,7 @@ Quraşdırma ləğvi bütün tətbiq məlumatını qalıcı siləcək"</string>
     <string name="patcher_task_writing_apk">APK faylını qeyd edir</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">Fon yamaqlanma müdafiəsi</string>
-    <string name="battery_optimization_dialog_description">Bəzi cihazlar tətbiqi qısanda yamaqlayıcını dayandıra bilər. Etibarlı tamamlanan yamaqlanmaya əmin olmaq üçün Morphe-ni batareya məhdudiyyətləri olmadan işlətməyə icazə ver</string>
+    <string name="battery_optimization_dialog_description">Bəzi cihazlar tətbiqi qısanda yamaqlayıcını dayandıra bilər. Etibarlı tamamlanan yamaqlanmaya əmin olmaq üçün Mamu-ni batareya məhdudiyyətləri olmadan işlətməyə icazə ver</string>
     <string name="battery_optimization_not_now">İndi deyil</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">Yamaqlanma irəliləyişdədir...</string>
@@ -754,8 +754,8 @@ Quraşdırma ləğvi bütün tətbiq məlumatını qalıcı siləcək"</string>
     <string name="install_ignore_signature">Yenə də quraşdır</string>
     <string name="install_ignore_signature_description">Tətbiq məlumatlarını saxlayır, lakin yalnız root modulu Android-in imza təsdiqləməsini qapatdıqda işləyir</string>
     <string name="uninstall_app_fail">Tətbiqi silmək olmadı: %s</string>
-    <string name="uninstall_app_unverified">Yerində saxlanıldı: Morphe quraşdırılmış tətbiqin öz yamaqladığı qurulma olduğunu təsdiqləyə bilmədi</string>
-    <string name="launch_app_unverified">Morphe quraşdırılmış tətbiqin öz yamaqladığı qurulma olduğunu təsdiqləyə bilmədi</string>
+    <string name="uninstall_app_unverified">Yerində saxlanıldı: Mamu quraşdırılmış tətbiqin öz yamaqladığı qurulma olduğunu təsdiqləyə bilmədi</string>
+    <string name="launch_app_unverified">Mamu quraşdırılmış tətbiqin öz yamaqladığı qurulma olduğunu təsdiqləyə bilmədi</string>
     <string name="uninstall_timeout">Silinmə vaxtı bitdi</string>
     <string name="save_apk_success">APK Saxlanıldı</string>
     <string name="saved_app_export_failed">Yamaqlanan tətbiqi ixrac etmək olmadı</string>
@@ -847,7 +847,7 @@ Quraşdırma ləğvi bütün tətbiq məlumatını qalıcı siləcək"</string>
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">Tətbiq dili</string>
     <string name="settings_appearance_app_language_current">Hazırkı dil</string>
-    <string name="settings_appearance_translate">Morphe-ni tərcümə etməyə kömək edin</string>
+    <string name="settings_appearance_translate">Mamu-ni tərcümə etməyə kömək edin</string>
     <string name="settings_appearance_translations_info_title">Bəzi dillər üçün tərcümələr əskik və ya nöqsanlı ola bilər.</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">İnterfeys miqyası</string>
@@ -876,7 +876,7 @@ Quraşdırma ləğvi bütün tətbiq məlumatını qalıcı siləcək"</string>
     <string name="settings_appearance_app_card_colors_bundle_description">Bura hər tətbiqin və ya mənbənin öz rəngini istifadə et, uyğunlaşdırmaq üçün avtomatik kölgələndir</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">Tətbiq simvolu</string>
-    <string name="settings_appearance_app_icon_selector_description">Morphe-nin əsas ekranınızda və tətbiq bölməsində necə göründüyü</string>
+    <string name="settings_appearance_app_icon_selector_description">Mamu-nin əsas ekranınızda və tətbiq bölməsində necə göründüyü</string>
     <string name="settings_appearance_app_icon_default">İlkin</string>
     <string name="settings_appearance_app_icon_light_2">Səma</string>
     <string name="settings_appearance_app_icon_light_3">Qürub</string>
@@ -900,23 +900,23 @@ Quraşdırma ləğvi bütün tətbiq məlumatını qalıcı siləcək"</string>
     <string name="settings_appearance_app_icon_mark_black">Qara</string>
     <string name="settings_appearance_app_icon_change_dialog_title">Tətbiq simvolu dəyişdirilsin?</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">Morphe &lt;b&gt;%s&lt;/b&gt; -yə keçmək üçün yenidən başladılır</string>
+    <string name="settings_appearance_app_icon_change_restarts">Mamu &lt;b&gt;%s&lt;/b&gt; -yə keçmək üçün yenidən başladılır</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">Simvolu dəyişdir</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">İlkin buraxılış yeniləmələri</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">Yeni Morphe versiyalarına erkən keçid</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">Yeni Mamu versiyalarına erkən keçid</string>
     <string name="settings_advanced_updates_prerelease_warning_title">İlkin buraxılış yeniləmələrini aktivləşdirsin?</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"Morphe-nin ilkin buraxılış versiyaları hələ inkişaf mərhələsindədir və qeyri-sabit ola bilər.
+    <string name="settings_advanced_updates_prerelease_warning_message">"Mamu-nin ilkin buraxılış versiyaları hələ inkişaf mərhələsindədir və qeyri-sabit ola bilər.
 
 ​Yamaqlar təsirlənmir: yamaq mənbələri siyahısındakı hər bir mənbə üçün ilkin buraxılış yamaqlarını aktivləşdir"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">Avtomatik yeniləmələr</string>
-    <string name="settings_auto_updates_description">Morphe açıldıqda yeniləmələrlə bağlı nə edir. Yeniləmək üçün çəkdikdə həmişə yoxlayır</string>
+    <string name="settings_auto_updates_description">Mamu açıldıqda yeniləmələrlə bağlı nə edir. Yeniləmək üçün çəkdikdə həmişə yoxlayır</string>
     <string name="settings_auto_updates_download">Avtomatik yüklə</string>
-    <string name="settings_auto_updates_download_description">Morphe açıldıqda yeniləmələri yoxlayır və yamaq yeniləmələrini istənilən şəbəkədə yükləyir</string>
+    <string name="settings_auto_updates_download_description">Mamu açıldıqda yeniləmələri yoxlayır və yamaq yeniləmələrini istənilən şəbəkədə yükləyir</string>
     <string name="settings_auto_updates_wifi_only">Yalnız Wi-Fi üzərindən yüklə</string>
     <string name="settings_auto_updates_wifi_only_description">Mobil məlumatda yalnız mövcud olanları yoxlayır və göstərir</string>
     <string name="settings_auto_updates_check_only">Yalnız yoxla</string>
@@ -937,27 +937,27 @@ Quraşdırma ləğvi bütün tətbiq məlumatını qalıcı siləcək"</string>
     <string name="settings_advanced_external_batch_patch">Xarici tətikləyicilərə icazə ver</string>
     <string name="settings_advanced_external_batch_patch_description">Avtomatlaşdırma tətbiqlərinə toplu yamaqlamağa başlamağa icazə verir</string>
     <string name="external_batch_patch_title">Toplu yamaqlamaya başlanılsın?</string>
-    <string name="external_batch_patch_description">%s Morphe-nin tətbiqləri yamaqlamasını və quraşdırmasını istəyir</string>
+    <string name="external_batch_patch_description">%s Mamu-nin tətbiqləri yamaqlamasını və quraşdırmasını istəyir</string>
     <string name="external_batch_patch_trust_caller">Bu tətbiqə həmişə icazə ver</string>
     <string name="external_batch_patch_unknown_caller">Bilinməyən tətbiq</string>
     <!-- Notification content -->
     <string name="notification_bundle_update_title">Yeni yamaqlar var</string>
     <string name="notification_update_text">%s versiyası yüklənilməyə hazırdır</string>
-    <string name="notification_bundle_update_text_unversioned">Morphe-ni açmaq və yeniləmək üçün toxun</string>
+    <string name="notification_bundle_update_text_unversioned">Mamu-ni açmaq və yeniləmək üçün toxun</string>
     <string name="notification_permission_dialog_title">Bildirişləri qəbul et</string>
-    <string name="notification_permission_dialog_description">Morphe fonda yeniləmələr əlçatan olduqda sizə bildirmək üçün bildiriş icazəsi istəyir</string>
+    <string name="notification_permission_dialog_description">Mamu fonda yeniləmələr əlçatan olduqda sizə bildirmək üçün bildiriş icazəsi istəyir</string>
     <string name="notification_post_patch_dialog_title">Yeniləmələr əlçatandırsa bildiriş almaq istərdiniz?</string>
-    <string name="notification_channel_manager_updates">Morphe yenilənmələri</string>
-    <string name="notification_channel_manager_updates_description">Yeni Morphe buraxılışları haqqında bildirişlər</string>
+    <string name="notification_channel_manager_updates">Mamu yenilənmələri</string>
+    <string name="notification_channel_manager_updates_description">Yeni Mamu buraxılışları haqqında bildirişlər</string>
     <string name="notification_channel_patch_updates">Yamaq yeniləmələri</string>
     <string name="notification_channel_patch_updates_description">Yeni yamaq buraxılışları haqqında bildirişlər</string>
-    <string name="notification_channel_patcher_description">Morphe tətbiqi fonda yamaqlayarkən görünür</string>
+    <string name="notification_channel_patcher_description">Mamu tətbiqi fonda yamaqlayarkən görünür</string>
     <string name="notification_channel_patching_results">Yamaqlama nəticələri</string>
-    <string name="notification_channel_patching_results_description">Yamaqlama bitdikdə və ya Morphe fonda olarkən quraşdırma sizin üçün gözlədildikdə</string>
+    <string name="notification_channel_patching_results_description">Yamaqlama bitdikdə və ya Mamu fonda olarkən quraşdırma sizin üçün gözlədildikdə</string>
     <string name="notification_channel_mounted_apps">Quraşdırılmış tətbiqlər</string>
     <string name="notification_channel_mounted_apps_description">Başqa versiya quraşdırılmış tətbiqi əvəzlədikdə və onun yamağı artıq tətbiq olunmadıqda</string>
     <string name="notification_mount_replaced_title">%1$s artıq yamaqlanmayıb</string>
-    <string name="notification_mount_replaced_text">v%1$s yamaqlanmış v%2$s ilə əvəzləndi. Onu bərpa etmək üçün Morphe-ni aç</string>
+    <string name="notification_mount_replaced_text">v%1$s yamaqlanmış v%2$s ilə əvəzləndi. Onu bərpa etmək üçün Mamu-ni aç</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">Mütəxəssis rejimi</string>
     <string name="settings_advanced_expert_mode_description">Qabaqcıl yamaqlama tənzimləmələrini və yamaq seçimlərini kiliddən açır</string>
@@ -979,7 +979,7 @@ Quraşdırma ləğvi bütün tətbiq məlumatını qalıcı siləcək"</string>
     <string name="settings_advanced_github_pat_unreachable">Bu tokeni yoxlamaq üçün GitHub-a qoşulmaq olmadı</string>
     <string name="settings_advanced_github_pat_export_include_label">Tənzimləmələr ixracında yerləşdir</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">Bu PAT-ı ixrac edilən Morphe tənzimləmələrinə əlavə edir</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">Bu PAT-ı ixrac edilən Mamu tənzimləmələrinə əlavə edir</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">PAT-ınızı paylaşmayın. Bunu tənzimləmələr ixracına daxil etsəniz, o faylı gizli saxlayın, çünki onun token-i var</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1073,7 +1073,7 @@ morphe_header_custom_light.png morphe_header_custom_dark.png
     <string name="installer_status_not_supported">Bu fəaliyyət üçün dəstəklənən deyil</string>
     <string name="installer_status_shizuku_not_installed">Bu seçimi istifadə etmək üçün Shizuku və ya Sui quraşdır</string>
     <string name="installer_status_shizuku_not_running">Shizuku yaxud Sui-ni başlat və təkrar sına</string>
-    <string name="installer_status_shizuku_permission">Shizuku tətbiqindən Morphe üçün icazəni qəbul et</string>
+    <string name="installer_status_shizuku_permission">Shizuku tətbiqindən Mamu üçün icazəni qəbul et</string>
     <string name="installer_mount_warning_install">Yamaq rejimi root montajlama olaraq təyin edilib. Saxlanılan bu tətbiq montajlama istifadə edilərək quraşdırılmayıb</string>
     <string name="mount_version_mismatch_message">Əsas tətbiq versiyası (%2$s) yamaqlanan tətbiq versiyasına (%1$s) uyğun deyil. Uyuşan əsas versiyanı montajla, sonra təkrar sına</string>
     <string name="mount_stock_restore_failed_message">Android saxlanılan orijinal APK-nı qəbul etmədi. Uyğun əsas versiyanı quraşdır, sonra təkrar montaj etməyə çalış</string>
@@ -1114,7 +1114,7 @@ morphe_header_custom_light.png morphe_header_custom_dark.png
     <string name="settings_ignore_install_target_rules">Quraşdırma hədəfi tələblərinə məhəl qoyma</string>
     <string name="settings_ignore_install_target_rules_description">Quraşdırma hədəfinin tələb etdiyi yamaqları qapatmağa və istisna etdiklərini aktivləşdirməyə imkan verir. Yamaqlanmış tətbiq işləməyə bilər</string>
     <string name="settings_auto_uninstall_warning_title">Avtomatik silmə aktivləşdirilsin?</string>
-    <string name="settings_auto_uninstall_warning_message">Android Shizuku avtomatik quraşdırılması zamanı imza münaqişəsini bildirərsə, Morphe yamaqlanmış APK-nı quraşdırmadan əvvəl mövcud tətbiqi siləcək</string>
+    <string name="settings_auto_uninstall_warning_message">Android Shizuku avtomatik quraşdırılması zamanı imza münaqişəsini bildirərsə, Mamu yamaqlanmış APK-nı quraşdırmadan əvvəl mövcud tətbiqi siləcək</string>
     <string name="settings_auto_uninstall_warning_risk">Bu, tətbiq məlumatlarını silə bilər. Silinmədən sonra yamaqlanmış APK-nı quraşdırmaq mümkün olmasa, əvvəlki tətbiq artıq itirilmiş ola bilər</string>
     <string name="installer_shizuku_status_action">Shizuku vəziyyətini yoxla</string>
     <string name="installer_shizuku_status_title">Shizuku vəziyyəti</string>
@@ -1132,7 +1132,7 @@ morphe_header_custom_light.png morphe_header_custom_dark.png
     <string name="installer_shizuku_install_fail_with_details">"Shizuku quraşdırmaq olmadı: %1$s
 
 Təfərrüatlar: %2$s"</string>
-    <string name="installer_shizuku_error_permission">Shizuku icazəsi yoxdur. Morphe üçün icazəni qəbul et və təkrar cəhd et</string>
+    <string name="installer_shizuku_error_permission">Shizuku icazəsi yoxdur. Mamu üçün icazəni qəbul et və təkrar cəhd et</string>
     <string name="installer_shizuku_error_timeout">Shizuku quraşdırma nəticəsi qaytarmadı. Onun hələ də işlədiyinə əmin ol və təkrar cəhd et</string>
     <string name="installer_shizuku_error_downgrade">Android bunu blokladı, çünki quraşdırılmış tətbiqin versiyasını aşağı salacaqdı</string>
     <string name="installer_shizuku_error_signature">Android bunu blokladı, çünki quraşdırılmış tətbiqin imzası fərqlidir</string>
@@ -1143,13 +1143,13 @@ Təfərrüatlar: %2$s"</string>
     <string name="settings_system_battery_optimization_description">Tətbiq qısılanda yamaqlayıcını işlək saxlayır</string>
     <string name="settings_system_process_runtime">Yamaqlayıcı icra müddəti</string>
     <string name="settings_system_jvm_runtime_enable">Daxili VM İstifadə Et</string>
-    <string name="settings_system_jvm_runtime_description">Morphe-nin öz Java VM-ində yamaqlayır, bu da daha çox operativ yaddaş istifadə edə bilər. Android-in öz icra mühitini istifadə etmək üçün qapat</string>
+    <string name="settings_system_jvm_runtime_description">Mamu-nin öz Java VM-ində yamaqlayır, bu da daha çox operativ yaddaş istifadə edə bilər. Android-in öz icra mühitini istifadə etmək üçün qapat</string>
     <string name="settings_system_jvm_runtime_unavailable">ARM və ya 64 bitlik x86 cihazı tələb olunur</string>
     <string name="settings_system_patcher_completion_sound">Tamamlanma səsi</string>
     <string name="settings_system_patcher_completion_sound_description">Yamaqlama bitdikdə uğur və ya uğursuzluq üçün fərqli ton səsləndirir</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">Bildirişlər</string>
-    <string name="settings_system_notifications_description">Morphe sizi necə xəbərdar edir</string>
+    <string name="settings_system_notifications_description">Mamu sizi necə xəbərdar edir</string>
     <string name="settings_system_notifications_success_sound">Uğur səsi</string>
     <string name="settings_system_notifications_error_sound">Uğursuzluq səsi</string>
     <string name="settings_system_notifications_sound_default">İlkin</string>
@@ -1161,8 +1161,8 @@ Təfərrüatlar: %2$s"</string>
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">İmzalama açarı</string>
     <string name="settings_system_signing_key_description">Yamaqlanmış tətbiqləri imzalayan açarı nüsxələyir və ya bərpa edir</string>
-    <string name="settings_system_signing_key_dialog_description">Morphe yamaqları üzrə hər bir tətbiq bu açarla imzalanır. Bir nüsxəsini saxla: onsuz, yamaqlanmış tətbiqlər yalnız silindikdən sonra yenilənə bilər</string>
-    <string name="settings_system_signing_key_missing">Morphe ilk yamaqla birini yaradır</string>
+    <string name="settings_system_signing_key_dialog_description">Mamu yamaqları üzrə hər bir tətbiq bu açarla imzalanır. Bir nüsxəsini saxla: onsuz, yamaqlanmış tətbiqlər yalnız silindikdən sonra yenilənə bilər</string>
+    <string name="settings_system_signing_key_missing">Mamu ilk yamaqla birini yaradır</string>
     <string name="settings_system_signing_key_created">%s yaradıldı</string>
     <string name="settings_system_signing_key_fingerprint">SHA-256 barmaq izi</string>
     <string name="settings_system_backup_appearance_description">Kolorit, rənglər və dil</string>
@@ -1184,31 +1184,31 @@ Təfərrüatlar: %2$s"</string>
     <string name="settings_system_export_keystore_failed">Keystore-u ixrac etmək olmadı</string>
     <string name="settings_system_show_password_field">Parolu göstər</string>
     <string name="settings_system_hide_password_field">Parolu gizlət</string>
-    <string name="settings_system_morphe_settings">Morphe tənzimləmələri</string>
-    <string name="settings_system_import_manager_settings_description">Morphe tənzimləmələrinizi nüsxələyir və bərpa edir</string>
-    <string name="settings_system_export_manager_settings_title">Morphe tənzimləmələrin köçür</string>
+    <string name="settings_system_morphe_settings">Mamu tənzimləmələri</string>
+    <string name="settings_system_import_manager_settings_description">Mamu tənzimləmələrinizi nüsxələyir və bərpa edir</string>
+    <string name="settings_system_export_manager_settings_title">Mamu tənzimləmələrin köçür</string>
     <string name="settings_system_export_manager_settings_description">Seçdiyiniz tənzimləmələri faylda saxlayır</string>
     <string name="settings_system_import_manager_settings_file_description">Tənzimləmələri nüsxə faylından bərpa edir</string>
     <string name="settings_system_auto_backup">Avtomatik nüsxələmə</string>
     <string name="settings_system_auto_backup_switch">Avtomatik olaraq nüsxələ</string>
     <string name="settings_system_auto_backup_now">İndi nüsxələ</string>
     <string name="settings_system_auto_backup_saved">Nüsxələmə saxlanıldı</string>
-    <string name="settings_system_auto_backup_interval_description">Morphe növbəti nüsxəni yaratmazdan əvvəl ən azı bu qədər gözləyir</string>
-    <string name="settings_system_auto_backup_description">Morphe tənzimləmələrinizi seçdiyiniz qovluğda saxlayır</string>
+    <string name="settings_system_auto_backup_interval_description">Mamu növbəti nüsxəni yaratmazdan əvvəl ən azı bu qədər gözləyir</string>
+    <string name="settings_system_auto_backup_description">Mamu tənzimləmələrinizi seçdiyiniz qovluğda saxlayır</string>
     <string name="settings_system_auto_backup_last">Son nüsxələmə: %s</string>
     <string name="settings_system_auto_backup_folder">Qovluq</string>
-    <string name="settings_system_auto_backup_folder_name">Morphe nüsxələri</string>
+    <string name="settings_system_auto_backup_folder_name">Mamu nüsxələri</string>
     <string name="settings_system_auto_backup_folder_failed">Bu qovluğu istifadə etmək olmadı: %s</string>
     <string name="settings_system_auto_backup_interval">Nüsxələmə tezliyi</string>
     <string name="settings_system_auto_backup_signing_key">İmzalama açarını daxil et</string>
     <string name="settings_system_auto_backup_signing_key_description">Yamaqlanmış tətbiqləri imzalayan açarı tənzimləmələrin yanında saxlayır</string>
     <string name="settings_system_auto_backup_signing_key_warning_title">İmza açarını nüsxələsin?</string>
     <string name="settings_system_auto_backup_signing_key_warning_message">Bu faylı əldə edən istənilən biri yamaqlanmış tətbiqlərinizin üzərinə quraşdırılan yeniləmələri imzalaya bilər. Qovluğu gizli saxlayın və onu yalnız öz cihazlarınızla paylaşın</string>
-    <string name="settings_system_auto_backup_footer">Nəyisə dəyişdirdikdən sonra Morphe-dən çıxdığınız zaman nüsxə saxlanılır. Ən yeni %s ədədi saxlanılır</string>
+    <string name="settings_system_auto_backup_footer">Nəyisə dəyişdirdikdən sonra Mamu-dən çıxdığınız zaman nüsxə saxlanılır. Ən yeni %s ədədi saxlanılır</string>
     <string name="settings_system_auto_backup_failed">Sonuncu nüsxə saxlanıla bilmədi. Qovluğu təkrar seçin</string>
-    <string name="settings_system_import_manager_settings_fail">Morphe tənzimləmələrin idxal etmək olmadı: %s</string>
-    <string name="settings_system_import_manager_settings_success">Morphe tənzimləmələri idxal edildi</string>
-    <string name="settings_system_import_manager_settings_mode_title">Morphe tənzimləmələrin idxal et</string>
+    <string name="settings_system_import_manager_settings_fail">Mamu tənzimləmələrin idxal etmək olmadı: %s</string>
+    <string name="settings_system_import_manager_settings_success">Mamu tənzimləmələri idxal edildi</string>
+    <string name="settings_system_import_manager_settings_mode_title">Mamu tənzimləmələrin idxal et</string>
     <string name="settings_system_import_manager_settings_mode_description">İdxal olunmuş tənzimləmələrin və mənbələrin necə tətbiq olunacağını seç</string>
     <string name="settings_system_import_selections_mode_title">Yamaq seçimlərini idxal et</string>
     <string name="settings_system_import_selections_mode_description">İdxal olunmuş seçimlərin və yamaq üstünlüklərinin necə tətbiq olunacağını seç</string>
@@ -1216,8 +1216,8 @@ Təfərrüatlar: %2$s"</string>
     <string name="import_mode_replace_description">Nüsxələməni tam olaraq uyğunlaşdır. Nüsxələmədən çatışmayan elementlər silinəcək</string>
     <string name="import_mode_merge_title">Mövcud olanla birləşdir</string>
     <string name="import_mode_merge_description">Nüsxələmədən çatışmayan elementləri əlavə et. Mövcud elementlər dəyişməz saxlanılır</string>
-    <string name="settings_system_export_manager_settings_fail">Morphe tənzimləmələrin ixrac etmək olmadı: %s</string>
-    <string name="settings_system_export_manager_settings_success">Morphe tənzimləmələri ixrac olundu</string>
+    <string name="settings_system_export_manager_settings_fail">Mamu tənzimləmələrin ixrac etmək olmadı: %s</string>
+    <string name="settings_system_export_manager_settings_success">Mamu tənzimləmələri ixrac olundu</string>
     <string name="settings_system_export_debug_logs">Sazlanma jurnalların köçür</string>
     <string name="settings_system_export_debug_logs_description">Problemlərin düzəldilməsi üçün sistem jurnalların saxlayır</string>
     <string name="settings_system_export_debug_logs_export_read_failed">Jurnalları oxumaq olmadı (çıxış şifrəsi %s)</string>
@@ -1235,7 +1235,7 @@ Təfərrüatlar: %2$s"</string>
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">Saxlanc idarəçiliyi</string>
     <string name="settings_system_storage_management_description">Disk istifadəsini göstərir və keşlənmiş faylları təmizləyir</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s boş</string>
     <string name="settings_system_storage_saved_apks">Saxlanılan APK-lar</string>
     <string name="settings_system_storage_caches">Keşlər</string>
@@ -1258,7 +1258,7 @@ Təfərrüatlar: %2$s"</string>
     <string name="settings_system_storage_clear_anyway">Yenə də təmizlə</string>
     <string name="settings_system_storage_nothing_to_clear">Təmizlənəcək bir şey yoxdur</string>
     <string name="settings_system_storage_open_app_info_title">Android tətbiq saxlama yerini aç</string>
-    <string name="settings_system_storage_open_app_info_description">Bütün Morphe məlumatlarını sistem tənzimləmələri vasitəsilə idarə et və ya təmizlə</string>
+    <string name="settings_system_storage_open_app_info_description">Bütün Mamu məlumatlarını sistem tənzimləmələri vasitəsilə idarə et və ya təmizlə</string>
     <string name="settings_system_save_original_apks_title">Orijinal APK-ları saxla</string>
     <string name="settings_system_save_original_apks_description">Fayl təkrar seçilmədən yenidən yamaqlamaq üçün istifadə oluna bilsin deyə yamaq öncəsi APK-nı saxla</string>
     <string name="settings_system_save_patched_apks_title">Yamaqlanmış APK-ları saxla</string>
@@ -1312,13 +1312,13 @@ Təfərrüatlar: %2$s"</string>
     <string name="copy_selection_available_format">%2$s saydan %1$s var</string>
     <!-- Settings - System Tab - Custom file picker -->
     <string name="settings_system_custom_file_picker">Fərdi fayl seçici</string>
-    <string name="settings_system_custom_file_picker_description">Sistem əvəzinə Morphe-nin qurulu fayl seçicisini istifadə edir</string>
+    <string name="settings_system_custom_file_picker_description">Sistem əvəzinə Mamu-nin qurulu fayl seçicisini istifadə edir</string>
     <!-- Settings - System Tab - APK download helper -->
     <string name="settings_system_apk_download_helper">APK yükləmə köməkçisi</string>
     <string name="settings_system_apk_download_helper_trusted_count">Etibarlı: %2$d-dən %1$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">Köməkçi tətbiqlər sizin üçün orijinal APK-ları yükləyə bilər. Yükləmə təlimatlarında yalnız burada etibar etdiyin tətbiqlər təklif olunur</string>
     <string name="settings_system_apk_download_helper_trust_title">Bu köməkçiyə etibar edilsin?</string>
-    <string name="settings_system_apk_download_helper_warning">APK köməkçi tətbiqdən əldə edilir, buna görə də yalnız tanıdığınız tətbiqlərə etibar edin. Morphe yamaqlamadan əvvəl hər bir faylın paketini, versiyasını və imzasını yoxlayır</string>
+    <string name="settings_system_apk_download_helper_warning">APK köməkçi tətbiqdən əldə edilir, buna görə də yalnız tanıdığınız tətbiqlərə etibar edin. Mamu yamaqlamadan əvvəl hər bir faylın paketini, versiyasını və imzasını yoxlayır</string>
     <string name="settings_system_apk_download_helper_installed_by">%s tərəfindən quraşdırılıb</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">Bilinməyən quraşdırıcı</string>
     <string name="settings_system_apk_download_helper_open_directly">Köməkçini dərhal aç</string>
@@ -1351,7 +1351,7 @@ Təfərrüatlar: %2$s"</string>
     <string name="settings_about_section_project">Layihə</string>
     <string name="settings_about_section_help">Kömək</string>
     <string name="credits_prior_development">Əvvəlki inkişaf</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">İdarəedici</string>
     <string name="about_update_available">Yeniləmə var: %s</string>
     <string name="about_up_to_date">Yenilənib</string>
@@ -1364,7 +1364,7 @@ Təfərrüatlar: %2$s"</string>
     <string name="contributors_all_time">Bütün vaxt</string>
     <string name="contributors_6_months">6 ay</string>
     <string name="contributors_3_months">3 ay</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">Dəstəkçilər</string>
     <string name="supporters_description">Open Collective-də Dəstəkçilər</string>
     <string name="supporters_become">Dəstəkçi ol</string>
@@ -1372,7 +1372,7 @@ Təfərrüatlar: %2$s"</string>
     <string name="people_more">Və daha %s</string>
     <string name="people_unavailable">Siyahını yükləmək olmadı</string>
     <string name="opensource_licenses">Açıq mənbə lisenziyaları</string>
-    <string name="opensource_licenses_description">Morphe-nin əsaslandığı kitabxanalar</string>
+    <string name="opensource_licenses_description">Mamu-nin əsaslandığı kitabxanalar</string>
     <string name="opensource_licenses_search">Kitabxanaları və lisenziyaları axtar</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">Seçim</string>
@@ -1397,12 +1397,12 @@ Təfərrüatlar: %2$s"</string>
     <string name="settings_section_patcher">Yamaqlayıcı</string>
     <string name="settings_section_updates">Yenilənmələr</string>
     <string name="settings_section_patching">Yamaqlanma</string>
-    <string name="settings_section_appearance_summary">Morphe necə görünür</string>
+    <string name="settings_section_appearance_summary">Mamu necə görünür</string>
     <string name="settings_section_patch_options_summary">Sadə rejim tətbiqləri nə ilə yamaqlayır</string>
     <string name="settings_section_general">Ümumi</string>
     <string name="settings_section_patcher_summary">Bu cihazdakı tətbiqlər necə yamaqlanır</string>
     <string name="settings_section_help_info">Kömək &amp; məlumat</string>
-    <string name="settings_section_about_summary">Morphe haqqında daha çoxunu və köməyi əldə et</string>
+    <string name="settings_section_about_summary">Mamu haqqında daha çoxunu və köməyi əldə et</string>
     <string name="settings_section_local_files">Fayllar</string>
     <string name="settings_section_backup">Nüsxələmə</string>
     <string name="settings_section_import_export">İdxal və ixrac et</string>
@@ -1565,7 +1565,7 @@ Təfərrüatlar: %2$s"</string>
     <string name="update_completed">Yenilənmə quraşdırıldı</string>
     <string name="install_update_manager_failed">Yeniləməni quraşdırmaq olmadı</string>
     <string name="installing_manager_update">Yeniləmə quraşdırılır…</string>
-    <string name="installing_manager_update_hint">Morphe yeniləməni tamamlamaq üçün qapanacaq</string>
+    <string name="installing_manager_update_hint">Mamu yeniləməni tamamlamaq üçün qapanacaq</string>
     <string name="downloading_manager_update">Yenilənmə yüklənilir…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">%1$s MB yüklənildi</string>
@@ -1588,7 +1588,7 @@ Hələ də davam etmək istəyirsiniz?"</string>
     <string name="onboarding_signing_key_desc">Yamaqlanmış tətbiqlərinizi imzalayan açarın ehtiyat nüsxəsini çıxarın. Bu olmadan, onlar yalnız silindikdən sonra yenilənə bilər</string>
     <string name="onboarding_swipe_title">Sürüşdürmə jestləri</string>
     <string name="onboarding_swipe_desc">Mövcud yamaqlara baxmaq üçün tətbiq kartında sağa sürüşdür. Kartı əsas ekrandan gizlətmək üçün sola sürüşdür</string>
-    <string name="onboarding_settings_desc">Morphe-ni fərdiləşdir: görünüş, qabaqcıl seçimlər və sistem alətləri</string>
+    <string name="onboarding_settings_desc">Mamu-ni fərdiləşdir: görünüş, qabaqcıl seçimlər və sistem alətləri</string>
     <string name="onboarding_sources_patches_desc">Bu mənbədən əlçatan bütün yamaqlara baxmaq üçün toxun</string>
     <string name="onboarding_sources_version_desc">Bu mənbə üçün tam dəyişiklik jurnalına baxmaq məqsədilə versiyaya toxun</string>
     <string name="onboarding_sources_apps_desc">Bu mənbənin yamaqladığı tətbiqləri görmək və hansılara yamaq təklif etdiyini seçmək üçün toxunun</string>
@@ -1600,9 +1600,28 @@ Hələ də davam etmək istəyirsiniz?"</string>
     <string name="onboarding_system_file_picker_desc">APK və ya açar ehtiyatları seçəndə sistem seçicisi əvəzinə qurulu fayl tədqiqin istifadə etmək məqsədilə aktivləşdir</string>
     <!-- Tour prompt dialog shown after first successful patch install -->
     <string name="tour_prompt_title">Sürətli xüsusiyyət tanışlığı</string>
-    <string name="tour_prompt_desc">Morphe-nin əsas xüsusiyyətlərinə qısa baxış istəyirsiniz?</string>
+    <string name="tour_prompt_desc">Mamu-nin əsas xüsusiyyətlərinə qısa baxış istəyirsiniz?</string>
     <!-- Label of a footer button beside "Skip". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="tour_prompt_confirm">Mənə göstər</string>
     <string name="onboarding_restart_title">Xüsusiyyət tanışlığı</string>
     <string name="onboarding_restart_desc">Əsas xüsusiyyətlərin bələdçi turu</string>
+
+    <string name="home_app_filter_all_description">Əsas ekrandakı hər bir tətbiq</string>
+    <string name="home_app_filter_patched_description">Mamu ilə yamaqladığınız və ya saxladığınız tətbiqlər</string>
+    <string name="home_app_filter_not_patched_description">Mamu-də hələ yamaqlamadığınız tətbiqlər</string>
+    <string name="home_app_filter_installed_description">Hazırda bu cihazda quraşdırılmış tətbiqlər</string>
+    <string name="home_app_filter_uninstalled_description">Mamu ilə yamaqlanmış, artıq bu cihazda olmayan tətbiqlər</string>
+    <string name="home_app_filter_clones_description">Öz paket adı altında qurulmuş, orijinalı ilə birlikdə quraşdırılmış tətbiqlər</string>
+    <string name="home_app_sort_name_asc_description">Əlifbaya uyğun, A-dan Z-yə</string>
+    <string name="home_app_sort_name_desc_description">Əlifbanın əksinə uyğun, Z-dən A-ya</string>
+    <string name="home_app_sort_recently_patched_description">Əvvəlcə təzəlikcə yamaqlanmış tətbiqlər</string>
+    <string name="home_category_custom">Fərdi</string>
+    <string name="sources_filter_all_description">Hər mənbə</string>
+    <string name="sources_filter_enabled_description">Mənbələrin yamaqları buradan alınır</string>
+    <string name="sources_filter_disabled_description">Mənbələr qapadılıb</string>
+    <string name="sources_filter_issues_description">Bloklanmış, yüklənməyən və ya daha yeni Mamu tələb edən mənbələr</string>
+    <string name="sources_sort_last_updated_description">Əvvəlcə ən yeni mənbə yeniləmələri</string>
+    <string name="sources_sort_enabled_first_description">İşlək mənbələri qapalı mənbələrdən əvvəl göstər</string>
+    <string name="home_apk_availability_installed_version">Bu cihazda quraşdırılıb: %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">Keystore formatı</string>
 </resources>

@@ -7,19 +7,17 @@ package app.morphe.manager.domain.manager
 
 import android.os.Build
 import android.util.Log
+import app.morphe.manager.downloaders.ApkMirrorSearch
 import app.morphe.manager.domain.bundles.BundledAppTarget
-import app.morphe.manager.domain.bundles.PatchSourceHeaders
 import app.morphe.manager.network.api.ReleaseAPI
+import app.morphe.manager.domain.bundles.PatchSourceHeaders
 import app.morphe.manager.util.KnownApps
 import app.morphe.manager.util.LOG_TAG
 import app.morphe.manager.util.MORPHE_API_URL
 import app.morphe.patcher.patch.FormFactor
 import app.morphe.patcher.patch.SupportedAbi
 import io.ktor.http.encodeURLPath
-import kotlinx.coroutines.withTimeoutOrNull
 import java.net.URI
-import java.net.URLEncoder
-import kotlin.time.Duration.Companion.seconds
 
 /**
  * Works out where a specific version of an app can be downloaded from.
@@ -27,8 +25,8 @@ import kotlin.time.Duration.Companion.seconds
 class DownloadUrlResolver(private val releaseAPI: ReleaseAPI) {
 
     /**
-     * Resolves the download page for [packageName] at [version], falling back to a plain web
-     * search when the API cannot point anywhere useful.
+     * Resolves the download page for [packageName] at [version], falling back to native
+     * APKMirror search when the API cannot point anywhere useful.
      *
      * Every redirect along the way is followed: the API sometimes points at itself once more,
      * and the download sites redirect for reasons of their own, so only the end of the chain
@@ -39,17 +37,11 @@ class DownloadUrlResolver(private val releaseAPI: ReleaseAPI) {
      *   counts requests by them.
      * @param target The source version [version] comes from, see [apiSearchUrl].
      */
-    suspend fun resolve(
-        packageName: String,
-        version: String?,
-        patchSources: PatchSourceHeaders? = null,
-        target: BundledAppTarget? = null
-    ): String =
-        // The instructions wait on this, so a host that never answers has to end the wait itself
-        withTimeoutOrNull(RESOLVE_TIMEOUT) { follow(packageName, version, patchSources, target) } ?: run {
-            Log.w(LOG_TAG, "Timed out resolving the download page")
-            webSearchUrl(packageName, version)
-        }
+    suspend fun resolve(packageName: String, version: String?, patchSources: PatchSourceHeaders? = null,
+                        target: BundledAppTarget? = null): String {
+        val url = follow(packageName, version, patchSources, target)
+        return ApkMirrorSearch.translate(url, packageName, version)
+    }
 
     private suspend fun follow(
         packageName: String,
@@ -66,6 +58,8 @@ class DownloadUrlResolver(private val releaseAPI: ReleaseAPI) {
         }
 
         repeat(MAX_REDIRECTS) {
+            // Recognize the API's fallback before issuing any request to Google.
+            if (isGoogleSearch(resolved)) return webSearchUrl(packageName, version)
             // A URL that redirects nowhere is the end of the chain
             val next = releaseAPI.resolveRedirect(resolved, patchSources) ?: return finalUrl(resolved, packageName, version)
             Log.i(LOG_TAG, "Following redirect to: $next")
@@ -96,16 +90,14 @@ class DownloadUrlResolver(private val releaseAPI: ReleaseAPI) {
 
     /** Used when the API is unreachable, so the user still lands on something useful. */
     fun webSearchUrl(packageName: String, version: String?): String {
-        val architecture = if (packageName == KnownApps.YOUTUBE_MUSIC) {
-            " (${Build.SUPPORTED_ABIS.first()})"
-        } else {
-            "nodpi"
-        }
-        val versionPart = version?.let { "\"$it\"" } ?: ""
-        val query = "\"$packageName\" $versionPart $architecture $SEARCH_SITES"
-        Log.d(LOG_TAG, "Using search query: $query")
-        return "https://google.com/search?q=${URLEncoder.encode(query, "UTF-8")}&udm=14"
+        val constraints = setOf(if (packageName == KnownApps.YOUTUBE_MUSIC) Build.SUPPORTED_ABIS.first() else "nodpi")
+        return ApkMirrorSearch.nativeSearch(packageName, version, constraints)
     }
+
+    private fun isGoogleSearch(url: String): Boolean = runCatching {
+        val uri = URI(url)
+        uri.host in setOf("google.com", "www.google.com") && uri.path == "/search"
+    }.getOrDefault(false)
 
     /** Hands back [url], or a web search when it cannot lead to the version that was asked for. */
     private fun finalUrl(url: String, packageName: String, version: String?): String {
@@ -125,7 +117,7 @@ class DownloadUrlResolver(private val releaseAPI: ReleaseAPI) {
         // ending a redirect loop
         const val MAX_REDIRECTS = 5
 
-        /** The patcher's name for an ABI of [Build.SUPPORTED_ABIS], or null for one it has none for. */
+        /** Match the patcher's ABI keys to the actual device ABI. */
         fun supportedAbi(abi: String): SupportedAbi? = when (abi) {
             "arm64-v8a" -> SupportedAbi.ARM64_V8A
             "armeabi-v7a", "armeabi" -> SupportedAbi.ARMEABI_V7A
@@ -133,12 +125,5 @@ class DownloadUrlResolver(private val releaseAPI: ReleaseAPI) {
             "x86" -> SupportedAbi.X86
             else -> null
         }
-
-        val RESOLVE_TIMEOUT = 8.seconds
-
-        // Kept in step with the mirrors the API falls back to, so a search started here and one
-        // started by the API lead to the same set of sites
-        const val SEARCH_SITES =
-            "(site:apkmirror.com OR site:uptodown.com OR site:apkpure.com OR site:apkcube.com OR site:apkcombo.com)"
     }
 }

@@ -1,0 +1,98 @@
+{
+  "categories": [
+    {
+      "name": "Ads & promotions",
+      "aliases": [
+        "ads",
+        "ads block enhanced"
+      ],
+      "pattern": "\\b(ads?|admob|advertis\\w*|sponsor\\w*|promotions?)\\b"
+    },
+    {
+      "name": "Privacy & telemetry",
+      "aliases": [
+        "privacy",
+        "telemetry"
+      ],
+      "pattern": "\\b(analytics|telemetry|tracking|sentry|crashlytics|firebase analytics|privacy|appsflyer|mixpanel)\\b|\\b(clipboard|android id|imei|isim|bssid|mac address|sim serial|telephony ids|subscriber|mytracker|rustore metrics|adjust|device admins?|installed apps|accounts|mock location)\\b"
+    },
+    {
+      "name": "Identity & cloning",
+      "aliases": [],
+      "pattern": "\\b(clon\\w*|package name|app name|app icon|signature|certificate|shared user|install identity)\\b|\\b(launcher icon|install source|store install source|build serial)\\b"
+    },
+    {
+      "name": "Display & interface",
+      "aliases": [
+        "interface",
+        "resolution",
+        "graphics",
+        "custom app display enhanced",
+        "custom app output enhanced",
+        "universal overlay"
+      ],
+      "pattern": "\\b(display|resolution|graphics|renderer|screen|overlay|splash|theme|orientation|dark mode|refresh rate|animation|fullscreen|font|dpi|toast|navigation)\\b|\\b(gestures?|transitions?|animations?|autofill|notification\\w*|scrollbars?|snackbars?|keyboard|text selection|contrast|touch exploration|pointer|show touches|haptic\\w*|vibration|overscroll)\\b"
+    },
+    {
+      "name": "Permissions & storage",
+      "aliases": [
+        "permissions",
+        "permission guard"
+      ],
+      "pattern": "\\b(permission\\w*|storage|backup|external files|screenshot|screen capture|secure flag|flag_secure)\\b"
+    },
+    {
+      "name": "Compatibility & checks",
+      "aliases": [
+        "license",
+        "updates",
+        "legacy app compatibility",
+        "bypass forced updates",
+        "bypass emulator detection",
+        "pairip bypass enhanced"
+      ],
+      "pattern": "\\b(licen[cs]\\w*|pairip|integrity|root|emulator|detect\\w*|forced update|updates?|sdk|legacy|compatibility|debugg\\w*|frida|tamper)\\b|\\b(adb|demo user|guest user|instant app|linked user|managed profile|package suspended|safe mode|system user|test environment|user restricted|widevine|drm|keystore security|repl)\\b"
+    },
+    {
+      "name": "Network & services",
+      "aliases": [
+        "google services",
+        "embedded auth / stores",
+        "bypass forced online checks"
+      ],
+      "pattern": "\\b(network|internet|online|offline|proxy|ssl|tls|certificate pinning|google services|google play|gmscore|microg|webview|user agent|sign.in|auth\\w*|api key|dns|url|http\\w*)\\b|\\b(wi.?fi|vpn|sim|telephony|phone number|phone|sms|nfc|beam|data saver|location|gps|bssid|data state|data capable|cell info|5ghz|sync)\\b"
+    },
+    {
+      "name": "Audio & media",
+      "aliases": [
+        "audio"
+      ],
+      "pattern": "\\b(audio|sound|volume|music|media|video|codec|playback|player|bluetooth)\\b|\\b(vibrat\\w*|speakerphone|microphone|headset|dtmf|ringing|voice mail)\\b"
+    },
+    {
+      "name": "Resources & optimization",
+      "aliases": [
+        "strip"
+      ],
+      "pattern": "\\b(strip|resources?|languag\\w*|optimi\\w*|compress\\w*|junk|duplicate|debug info|native librar\\w*|architectur\\w*|png)\\b|\\b(webp|shrink|memory class|processors|battery|wakeups|charging|background work)\\b"
+    },
+    {
+      "name": "Features & access",
+      "aliases": [],
+      "pattern": "\\b(premium|pro unlock|unlock|subscription|purchases?|billing|features?|save data)\\b"
+    },
+    {
+      "name": "Manifest & app lifecycle",
+      "aliases": [
+        "manifest"
+      ],
+      "pattern": "\\b(activities|receivers|version code|background activity|jobscheduler|alarm|export|share targets)\\b"
+    },
+    {
+      "name": "Device & system",
+      "aliases": [],
+      "pattern": "\\b(device|board|hardware|build[. ]|time zone|system time|auto time|24.hour|quiet mode|airplane|sensor|write settings|stay on|stylus|usermode|ui.?mode|logcat|usage access)\\b"
+    }
+  ],
+  "fallback": "Other"
+}

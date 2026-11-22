@@ -10,9 +10,10 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.ui.Modifier
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
@@ -105,6 +106,26 @@ fun rememberWindowSize(): WindowSize {
 }
 
 /**
+ * Get recommended content padding based on window size
+ */
+val WindowSize.contentPadding: Dp
+    get() = when (widthSizeClass) {
+        WindowWidthSizeClass.Compact -> Defaults.ContentPadding
+        WindowWidthSizeClass.Medium -> Defaults.ContentPaddingMedium
+        WindowWidthSizeClass.Expanded -> Defaults.ContentPaddingExpanded
+    }
+
+/**
+ * Get recommended spacing between items based on window size
+ */
+val WindowSize.itemSpacing: Dp
+    get() = when (widthSizeClass) {
+        WindowWidthSizeClass.Compact -> 12.dp
+        WindowWidthSizeClass.Medium -> 16.dp
+        WindowWidthSizeClass.Expanded -> 20.dp
+    }
+
+/**
  * Keeps this within a centered content column of [maxWidth], filling a screen narrower than that,
  * so a page's or dialog's header, content and bars all line up.
  */
@@ -122,23 +143,3 @@ fun centeredGutter(width: Dp, gutter: Dp): Dp =
 /** Whether the window is wide enough for a dialog to set its panes side by side, see [ListDialog]. */
 @Composable
 fun hasRoomForPanes(): Boolean = rememberWindowSize().widthSizeClass == WindowWidthSizeClass.Expanded
-
-/**
- * Get recommended content padding based on window size
- */
-val WindowSize.contentPadding: Dp
-    get() = when (widthSizeClass) {
-        WindowWidthSizeClass.Compact -> Defaults.SpaceLarge
-        WindowWidthSizeClass.Medium -> Defaults.SpaceExtraLarge
-        WindowWidthSizeClass.Expanded -> Defaults.SpaceExtraExtraLarge
-    }
-
-/**
- * Get recommended spacing between items based on window size
- */
-val WindowSize.itemSpacing: Dp
-    get() = when (widthSizeClass) {
-        WindowWidthSizeClass.Compact -> 12.dp
-        WindowWidthSizeClass.Medium -> 16.dp
-        WindowWidthSizeClass.Expanded -> 20.dp
-    }

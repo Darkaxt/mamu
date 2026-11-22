@@ -14,7 +14,6 @@ import app.morphe.manager.ui.model.PostPatchPrompts
 import app.morphe.manager.ui.screen.settings.system.NotificationPermissionDialog
 import app.morphe.manager.ui.screen.shared.AppDialog
 import app.morphe.manager.ui.screen.shared.AppDialogButtonRow
-import app.morphe.manager.ui.screen.shared.DialogHost
 
 /**
  * Notification permission and onboarding tour dialogs raised by [PostPatchPrompts].
@@ -34,7 +33,7 @@ fun PostPatchPromptDialogs(
     val showNotification by prompts.notification.collectAsStateWithLifecycle()
     val showTour by prompts.tour.collectAsStateWithLifecycle()
 
-    DialogHost(visible = showNotification) {
+    if (showNotification) {
         NotificationPermissionDialog(
             title = stringResource(R.string.notification_post_patch_dialog_title),
             onDismissRequest = { prompts.onNotificationResult(granted = false) },
@@ -42,7 +41,7 @@ fun PostPatchPromptDialogs(
         )
     }
 
-    DialogHost(visible = showTour) {
+    if (showTour) {
         AppDialog(
             onDismissRequest = {
                 prompts.consumeTour()

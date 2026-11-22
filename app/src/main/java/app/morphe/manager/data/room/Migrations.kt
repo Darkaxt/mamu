@@ -181,36 +181,6 @@ val MIGRATION_17_18 = object : Migration(17, 18) {
 
 val MIGRATION_18_19 = object : Migration(18, 19) {
     override fun migrate(db: SupportSQLiteDatabase) {
-        // auto_update has gone unused since every remote source updates on its own. The table is
-        // rebuilt without it, as DROP COLUMN needs SQLite 3.35. Foreign keys are only switched on
-        // once the database opens, so dropping the old table leaves the rows that refer to it alone
-        db.execSQL(
-            """
-            CREATE TABLE patch_bundles_new (
-                uid INTEGER NOT NULL,
-                name TEXT NOT NULL,
-                display_name TEXT,
-                version TEXT,
-                source TEXT NOT NULL,
-                enabled INTEGER NOT NULL,
-                sort_order INTEGER NOT NULL,
-                created_at INTEGER,
-                updated_at INTEGER,
-                PRIMARY KEY(uid)
-            )
-            """.trimIndent()
-        )
-        db.execSQL(
-            """
-            INSERT INTO patch_bundles_new
-                (uid, name, display_name, version, source, enabled, sort_order, created_at, updated_at)
-            SELECT uid, name, display_name, version, source, enabled, sort_order, created_at, updated_at
-            FROM patch_bundles
-            """.trimIndent()
-        )
-        db.execSQL("DROP TABLE patch_bundles")
-        db.execSQL("ALTER TABLE patch_bundles_new RENAME TO patch_bundles")
-
         db.execSQL(
             """
             CREATE TABLE IF NOT EXISTS selection_sets (

@@ -14,6 +14,8 @@ import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -37,9 +39,8 @@ import app.morphe.manager.util.formatMegabytes
 import app.morphe.manager.util.isolateLtr
 import app.morphe.manager.util.releasePageUrl
 import app.morphe.manager.util.rememberSourceAccent
+import app.morphe.manager.util.simpleMessage
 import app.morphe.manager.util.withVersionPrefix
-import com.composables.icons.materialsymbols.MaterialSymbols
-import com.composables.icons.materialsymbols.rounded.*
 import kotlinx.coroutines.delay
 import org.koin.androidx.compose.koinViewModel
 import java.text.NumberFormat
@@ -61,6 +62,8 @@ private val AbandonedInstallGrace = 1500.milliseconds
  * entry so switching between them does not restart the crossfade.
  */
 private enum class UpdateDialogContent {
+    Checking,
+    CheckFailed,
     DetailsLoading,
     DetailsFailed,
     Details,
@@ -71,9 +74,11 @@ private enum class UpdateDialogContent {
 }
 
 /** Resolves the body to show, the changelog or a stage of the update. */
-private fun updateDialogContentOf(updateViewModel: UpdateViewModel): UpdateDialogContent =
+private fun updateDialogContentOf(updateViewModel: UpdateViewModel, manualCheck: Boolean): UpdateDialogContent =
     when (updateViewModel.state) {
         UpdateViewModel.State.CAN_DOWNLOAD, UpdateViewModel.State.CAN_INSTALL -> when {
+            manualCheck && updateViewModel.isCheckingForUpdate -> UpdateDialogContent.Checking
+            manualCheck && updateViewModel.updateCheckError != null -> UpdateDialogContent.CheckFailed
             updateViewModel.changelogError != null -> UpdateDialogContent.DetailsFailed
             updateViewModel.changelogEntries == null -> UpdateDialogContent.DetailsLoading
             else -> UpdateDialogContent.Details
@@ -97,16 +102,20 @@ private fun updateDialogContentOf(updateViewModel: UpdateViewModel): UpdateDialo
  *   release is not ready yet and offering to check again.
  */
 @Composable
-fun DialogHostScope.ManagerChangelogDialog(
+fun ManagerChangelogDialog(
     onDismiss: () -> Unit,
     updateViewModel: UpdateViewModel = koinViewModel(
         viewModelStoreOwner = LocalActivity.current as ComponentActivity
     ),
-    expectsUpdate: Boolean = false
+    expectsUpdate: Boolean = false,
+    checkForUpdatesOnOpen: Boolean = false
 ) {
+    var manualCheck by remember { mutableStateOf(checkForUpdatesOnOpen) }
     val state = updateViewModel.state
-    val content = updateDialogContentOf(updateViewModel)
+    val content = updateDialogContentOf(updateViewModel, manualCheck)
     val hasUpdate = updateViewModel.releaseInfo != null
+    val manualUpToDate = manualCheck && state == UpdateViewModel.State.CAN_DOWNLOAD &&
+        !updateViewModel.isCheckingForUpdate && updateViewModel.updateCheckError == null && !hasUpdate
     // A banner can outlive the release it points at, and a check can fail outright, so name the
     // situation rather than wait on data that is not coming
     val isUpdateUnavailable = expectsUpdate && !hasUpdate && !updateViewModel.isCheckingForUpdate
@@ -129,39 +138,22 @@ fun DialogHostScope.ManagerChangelogDialog(
     }
 
     LaunchedEffect(Unit) {
-        updateViewModel.loadChangelog()
+        if (checkForUpdatesOnOpen) updateViewModel.retryUpdateCheck(forceRefresh = true)
+        else updateViewModel.loadChangelog()
     }
     // Drop the older releases when the dialog closes so it reopens on the releases it starts with
     DisposableEffect(Unit) {
         onDispose { updateViewModel.resetOlderManagerEntries() }
     }
 
-    ListDialog(
+    AppDialog(
         onDismissRequest = onDismiss,
+        scrollable = false,
         // The timeline gives up its leading edge to the rail, so the list takes the wider layout.
         // The header holds the top, and progress and results sit centered in the room below it
-        header = {
-            // Headed by Morphe itself, as a source's changelog is by the source. The version is the
-            // one on its way where there is one, so a download names what it fetches
-            ListDialogHeader(
-                icon = { modifier ->
-                    Surface(modifier = modifier, shape = CircleShape, color = Color.White) {
-                        MorpheLauncherLogo(modifier = Modifier.fillMaxSize())
-                    }
-                },
-                // With no update on the way, this is just the changelog
-                title = if (state == UpdateViewModel.State.CAN_DOWNLOAD && !hasUpdate && !expectsUpdate) {
-                    stringResource(R.string.changelog)
-                } else {
-                    stringResource(state.title)
-                },
-                subtitle = listOf(
-                    stringResource(R.string.app_name),
-                    (updateViewModel.releaseInfo?.version ?: BuildConfig.VERSION_NAME).withVersionPrefix().isolateLtr()
-                ).joinToString(" · "),
-                accentColor = morpheAccent
-            )
-        },
+        padding = DialogPadding.Compact,
+        contentArrangement = Arrangement.Top,
+        fillContentHeight = true,
         footer = {
             AnimatedContent(
                 targetState = state,
@@ -169,7 +161,19 @@ fun DialogHostScope.ManagerChangelogDialog(
                 modifier = Modifier.fillMaxWidth(),
                 label = "updateFooter"
             ) { footerState ->
-                UpdateDialogFooter(
+                if (manualUpToDate || content in setOf(UpdateDialogContent.Checking, UpdateDialogContent.CheckFailed)) {
+                    AppDialogActions(actions = buildList {
+                        if (content != UpdateDialogContent.Checking) {
+                            if (!manualUpToDate) add(DialogAction(stringResource(R.string.changelog), onClick = {
+                                    manualCheck = false
+                                    updateViewModel.loadChangelog()
+                                }, icon = Icons.Outlined.History))
+                            add(DialogAction(stringResource(if (content == UpdateDialogContent.CheckFailed) R.string.retry else R.string.manager_check_again),
+                                onClick = { updateViewModel.retryUpdateCheck(forceRefresh = true) }, icon = Icons.Outlined.Refresh))
+                        }
+                        add(DialogAction(stringResource(R.string.close), onClick = onDismiss, emphasis = DialogActionEmphasis.Outlined))
+                    })
+                } else UpdateDialogFooter(
                     state = footerState,
                     updateViewModel = updateViewModel,
                     expectsUpdate = expectsUpdate,
@@ -180,6 +184,39 @@ fun DialogHostScope.ManagerChangelogDialog(
             }
         }
     ) {
+        // Headed by Morphe itself, as a source's changelog is by the source. The version is the
+        // one on its way where there is one, so a download names what it fetches
+        ListDialogHeader(
+            icon = { modifier ->
+                Surface(modifier = modifier, shape = CircleShape, color = Color.White) {
+                    MorpheLauncherLogo(modifier = Modifier.fillMaxSize())
+                }
+            },
+            // With no update on the way, this is just the changelog
+            title = if (content == UpdateDialogContent.Checking) {
+                stringResource(R.string.manager_checking_updates)
+            } else if (manualUpToDate) {
+                stringResource(R.string.manager_up_to_date)
+            } else if (content == UpdateDialogContent.CheckFailed) {
+                stringResource(R.string.manager_check_failed)
+            } else if (state == UpdateViewModel.State.CAN_DOWNLOAD && !hasUpdate && !expectsUpdate) {
+                stringResource(R.string.changelog)
+            } else {
+                stringResource(state.title)
+            },
+            subtitle = listOf(
+                stringResource(R.string.app_name),
+                (updateViewModel.releaseInfo?.version ?: BuildConfig.VERSION_NAME).withVersionPrefix().isolateLtr()
+            ).joinToString(" · "),
+            accentColor = morpheAccent
+        )
+
+        if (manualUpToDate) {
+            Notice(text = stringResource(R.string.manager_up_to_date_description, BuildConfig.VERSION_NAME),
+                icon = Icons.Outlined.CheckCircle, tone = SemanticTone.Primary)
+            Spacer(Modifier.height(Defaults.ItemSpacing))
+        }
+
         AnimatedContent(
             targetState = content,
             transitionSpec = Animations.fadeCrossfade(),
@@ -189,9 +226,20 @@ fun DialogHostScope.ManagerChangelogDialog(
             label = "updateContent"
         ) { content ->
             when (content) {
+                UpdateDialogContent.Checking -> CenteredStatus {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                        CircularProgressIndicator()
+                        Text(stringResource(R.string.manager_checking_updates))
+                    }
+                }
+                UpdateDialogContent.CheckFailed -> CenteredStatus {
+                    Notice(text = stringResource(R.string.failed_to_check_updates,
+                        updateViewModel.updateCheckError?.simpleMessage().orEmpty()),
+                        icon = Icons.Outlined.ErrorOutline, tone = SemanticTone.Warning)
+                }
                 UpdateDialogContent.DetailsLoading -> ChangelogListLoading(
                     withSummary = hasUpdate || expectsUpdate,
-                    modifier = Modifier.padding(LocalDialogBarInsets.current)
+                    modifier = Modifier.padding(top = Defaults.ItemSpacing)
                 )
 
                 UpdateDialogContent.DetailsFailed -> updateViewModel.changelogError?.let { ChangelogError(it) }
@@ -203,6 +251,8 @@ fun DialogHostScope.ManagerChangelogDialog(
                         entries = entries,
                         older = older,
                         badges = mapOf(BuildConfig.VERSION_NAME to ChangelogBadge.INSTALLED),
+                        // The gap under the header is the list's own, so releases scroll up to its edge
+                        contentPadding = PaddingValues(top = Defaults.ItemSpacing),
                         header = when {
                             // Everything the user is about to install, summed up above the releases themselves
                             newReleases.isNotEmpty() -> {
@@ -219,7 +269,7 @@ fun DialogHostScope.ManagerChangelogDialog(
                             isUpdateUnavailable -> {
                                 {
                                     Notice(
-                                        icon = MaterialSymbols.Rounded.Hourglass_empty,
+                                        icon = Icons.Outlined.HourglassEmpty,
                                         text = stringResource(R.string.manager_update_not_ready),
                                         tone = SemanticTone.Warning
                                     )
@@ -256,7 +306,7 @@ fun DialogHostScope.ManagerChangelogDialog(
     }
 
     // Internet check dialog
-    DialogHost(visible = updateViewModel.showInternetCheckDialog) {
+    if (updateViewModel.showInternetCheckDialog) {
         MeteredDownloadDialog(
             title = stringResource(R.string.download_update_confirmation),
             onConfirm = {
@@ -288,7 +338,7 @@ private fun UpdateDialogFooter(
                         DialogAction(
                             text = stringResource(R.string.retry),
                             onClick = { updateViewModel.loadChangelog() },
-                            icon = MaterialSymbols.Rounded.Refresh
+                            icon = Icons.Outlined.Refresh
                         )
                     )
                 }
@@ -306,7 +356,7 @@ private fun UpdateDialogFooter(
                 DialogAction(
                     text = stringResource(R.string.download),
                     onClick = { updateViewModel.downloadUpdate() },
-                    icon = MaterialSymbols.Rounded.Download,
+                    icon = Icons.Outlined.Download,
                     // Nothing to download until the check resolves an actual release
                     enabled = releaseInfo != null
                 )
@@ -319,7 +369,7 @@ private fun UpdateDialogFooter(
                     DialogAction(
                         text = stringResource(R.string.retry),
                         onClick = { updateViewModel.retryUpdateCheck() },
-                        icon = MaterialSymbols.Rounded.Refresh
+                        icon = Icons.Outlined.Refresh
                     )
                 )
             }
@@ -337,7 +387,7 @@ private fun UpdateDialogFooter(
             DialogAction(
                 text = stringResource(R.string.install),
                 onClick = { updateViewModel.installUpdate() },
-                icon = MaterialSymbols.Rounded.Install_mobile
+                icon = Icons.Outlined.InstallMobile
             )
         )
 
@@ -353,7 +403,7 @@ private fun UpdateDialogFooter(
             DialogAction(
                 text = stringResource(R.string.install),
                 onClick = { updateViewModel.installUpdate() },
-                icon = MaterialSymbols.Rounded.Install_mobile
+                icon = Icons.Outlined.InstallMobile
             ),
             DialogAction(
                 text = stringResource(android.R.string.cancel),
@@ -478,7 +528,7 @@ private fun InstallFailureContent(message: String) {
     if (message.isEmpty()) return
 
     Notice(
-        icon = MaterialSymbols.Rounded.Error,
+        icon = Icons.Outlined.ErrorOutline,
         text = message,
         tone = SemanticTone.Error
     )
@@ -499,9 +549,9 @@ private fun UpdateCompletedContent(version: String?) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = Defaults.SpaceExtraExtraLarge),
+            .padding(vertical = Defaults.ContentPaddingExpanded),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(Defaults.SpaceExtraLarge)
+        verticalArrangement = Arrangement.spacedBy(Defaults.ContentPaddingMedium)
     ) {
         Surface(
             shape = CircleShape,
@@ -512,7 +562,7 @@ private fun UpdateCompletedContent(version: String?) {
         ) {
             Box(contentAlignment = Alignment.Center) {
                 ThemedIcon(
-                    icon = MaterialSymbols.Rounded.Check_circle,
+                    icon = Icons.Outlined.CheckCircle,
                     tint = SemanticTone.Success.content,
                     size = SuccessIconSize
                 )

@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">Android 11 বাগ</string>
     <string name="android_11_bug_dialog_description">Android 11 চিষ্টেমৰ এটা বাগ এৰাই চলিবলৈ, যিয়ে ব্যৱহাৰকাৰীৰ অভিজ্ঞতাৰ ওপৰত নেতিবাচক প্ৰভাৱ পেলায়, এপ ইনষ্টলেচন অনুমতি আগতীয়াকৈ প্ৰদান কৰিব লাগিব</string>
     <string name="deep_link_add_source_title">উৎস যোগ কৰক</string>
-    <string name="deep_link_add_source_message">আপুনি এই পেচ উৎসটো Morphe-ত যোগ কৰিব বিচাৰে নেকি?</string>
+    <string name="deep_link_add_source_message">আপুনি এই পেচ উৎসটো Mamu-ত যোগ কৰিব বিচাৰে নেকি?</string>
     <string name="deep_link_add_source_warning">আপুনি বিশ্বাস কৰা উৎসসমূহহে যোগ কৰক</string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">কেৱল এই এপটো যোগ কৰা হৈছে। আপুনি উৎসৰ এপ তালিকাৰ পৰা অন্যান্য এপ যোগ কৰিব পাৰে</string>
@@ -44,15 +44,15 @@
     <string name="mpp_import_unreadable">এই ফাইলটো পঢ়িব পৰা নাই</string>
     <string name="incoming_file_not_patch_source">এই ফাইলটো এটা পেচ উৎস নহয়</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">Morphe আপডেট উপলব্ধ</string>
+    <string name="home_update_available">Mamu আপডেট উপলব্ধ</string>
     <string name="home_update_available_subtitle">ইনষ্টল কৰিবলৈ নতুন সংস্কৰণ সাজু</string>
     <string name="home_blocked_source_title">বাৰিত পেচৰ উৎস ধৰা পৰিছে</string>
     <string name="home_blocked_source_subtitle">পৰীক্ষা আৰু আঁতৰ কৰিবলৈ ট্যাপ কৰক</string>
     <string name="home_metadata_errors_title">কিছুমান পেচৰ উৎস উপলব্ধ নহয়</string>
     <string name="home_metadata_errors_subtitle">উৎসসমূহ পৰীক্ষা কৰিবলৈ ট্যাপ কৰক</string>
-    <string name="home_outdated_manager_title">Morphe পুৰণি হৈছে</string>
+    <string name="home_outdated_manager_title">Mamu পুৰণি হৈছে</string>
     <string name="home_outdated_manager_subtitle">কিছুমান পেচৰ উৎসৰ বাবে নতুন সংস্কৰণৰ প্ৰয়োজন</string>
-    <string name="home_held_back_title">এটা পেচ উৎসৰ বাবে Morphe ক্ৰাশ কৰিছে</string>
+    <string name="home_held_back_title">এটা পেচ উৎসৰ বাবে Mamu ক্ৰাশ কৰিছে</string>
     <string name="home_held_back_subtitle">এপটো আৰম্ভ কৰিবলৈ ইয়াক বাদ দিয়া হৈছে। পৰীক্ষা কৰিবলৈ টেপ কৰক</string>
     <string name="home_source_updates_title">পেচ আপডেট উপলব্ধ</string>
     <string name="home_source_updates_subtitle">বোৰ ডাউনলোড কৰিবলৈ টেপ কৰক</string>
@@ -204,10 +204,10 @@
     <string name="sources_management_metadata_unavailable_hint">ৰিমোট মেটাডেটা ফাইলটো উপলব্ধ নহয়। সংস্থাপন কৰা বান্ডেলৰ সৈতে পেচিং কৰাটো আজিও কাম কৰিব, কিন্তু এই উৎসটোৰ বাবে অটো-আপডেট নিষ্ক্ৰীয় কৰা হৈছে</string>
     <string name="sources_management_metadata_unavailable_hint_missing">পেচ বান্ডেলটো ডাউনলোড কৰিব পৰা নগ\'ল। উৎস URL টো ভুল হ\'ব পাৰে বা ফাইলটো বিদ্যমান নাই</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">পাচ বান্ডিলটো ডাউনলোড কৰিব পৰা নগ’ল। উৎস URL টো ভুল হ’ব পাৰে বা ফাইলটো বিদ্যমান নাই। ইয়াৰ পৰিবৰ্তন কৰিবলৈ টেপ কৰক</string>
-    <string name="sources_management_outdated_manager_badge">Morphe আপডেট কৰক</string>
-    <string name="sources_management_outdated_manager_hint">এই উৎসটো পেচৰ %1$s ৰ বাবে নিৰ্মিত, কিন্তু Morphe %2$s ত পেচৰ %3$s অন্তৰ্ভুক্ত আছে। ইয়াক ব্যৱহাৰ কৰিবলৈ Morphe আপডেট কৰক</string>
+    <string name="sources_management_outdated_manager_badge">Mamu আপডেট কৰক</string>
+    <string name="sources_management_outdated_manager_hint">এই উৎসটো পেচৰ %1$s ৰ বাবে নিৰ্মিত, কিন্তু Mamu %2$s ত পেচৰ %3$s অন্তৰ্ভুক্ত আছে। ইয়াক ব্যৱহাৰ কৰিবলৈ Mamu আপডেট কৰক</string>
     <string name="sources_management_held_back_badge">ক্ৰাশ কৰিছে</string>
-    <string name="sources_management_held_back_hint">এই উৎসটো লোড কৰাৰ সময়ত Morphe ক্ৰাশ কৰিছে, সেয়েহে ইয়াক বাদ দিয়া হৈছে। পুনৰ চেষ্টা কৰিবলৈ ইয়াক আপডেট বা ৰি-ইমপৰ্ট কৰক</string>
+    <string name="sources_management_held_back_hint">এই উৎসটো লোড কৰাৰ সময়ত Mamu ক্ৰাশ কৰিছে, সেয়েহে ইয়াক বাদ দিয়া হৈছে। পুনৰ চেষ্টা কৰিবলৈ ইয়াক আপডেট বা ৰি-ইমপৰ্ট কৰক</string>
     <string name="sources_management_signed_by">স্বাক্ষৰ কৰা</string>
     <string name="sources_management_signing_key_changed_badge">কি সলনি কৰা হৈছে</string>
     <string name="sources_management_signing_key_changed_hint">শেহতীয়া ৰিলিজটো এই উৎসই আগতে ব্যৱহাৰ কৰা কি ৰ দ্বাৰা স্বাক্ষৰ কৰা হোৱা নাই, সেয়েহে ইয়াক সংস্থাপন কৰা হোৱা নাই। পৰীক্ষা কৰিবলৈ টিপ কৰক</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">কমিউনিটি পেচবোৰ</string>
     <string name="sources_dialog_choose_apps">এপবোৰ বাছনি কৰক</string>
     <string name="sources_dialog_choose_apps_description">উৎসটো লোড হোৱাৰ পিছত ইয়াৰ কোনবোৰ এপ্‌ ৰাখিব বিচাৰে সেয়া বাচি লওক</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">তৃতীয়-পক্ষৰ পেচ উৎসসমূহ</string>
-    <string name="sources_dialog_community_notice_message">"সম্প্ৰদায়ৰ পেচ উৎসসমূহ সেইবোৰৰ নিজৰ লেখকসকলে তৈয়াৰ আৰু পৰিচালনা কৰে। Morphe-এ তৃতীয় পক্ষৰ পেচসমূহ পৰীক্ষা বা সত্যাপন নকৰে, আৰু সেইবোৰৰ বিষয়বস্তু বা আপোনাৰ ডিভাইচত সেইবোৰে কৰা কামৰ বাবে দায়ী নহয়"</string>
+    <string name="sources_dialog_community_notice_message">"সম্প্ৰদায়ৰ পেচ উৎসসমূহ সেইবোৰৰ নিজৰ লেখকসকলে তৈয়াৰ আৰু পৰিচালনা কৰে। Mamu-এ তৃতীয় পক্ষৰ পেচসমূহ পৰীক্ষা বা সত্যাপন নকৰে, আৰু সেইবোৰৰ বিষয়বস্তু বা আপোনাৰ ডিভাইচত সেইবোৰে কৰা কামৰ বাবে দায়ী নহয়"</string>
     <string name="sources_update_success">আপডেট সফল হৈছে</string>
     <string name="sources_update_unavailable">কোনো আপডেট উপলব্ধ নহয়</string>
     <string name="sources_download_fail">উত্‍সসমূহ ডাউনলোড কৰাত ব্যৰ্থ হৈছে: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">এটা হেল্পাৰ এপ ইনষ্টল কৰা হৈছে কিন্তু এতিয়াও বিশ্বাস কৰা হোৱা নাই, সেয়েহে ইয়াত ইয়াৰ সুবিধা দিয়া হোৱা নাই</string>
     <string name="home_apk_helper_untrusted_action">হেল্পাৰসমূহ পৰীক্ষা কৰক</string>
     <string name="home_apk_helper_title">এটা হেল্পাৰ এপৰ সহায়ত ডাউনলোড কৰক</string>
-    <string name="home_apk_helper_description">Morphe-এ তলত দিয়া হেল্পাৰ এপটোৰ পৰা মূল APK ফাইলটো ডাউনলোড কৰিবলৈ আৰু ফাইলটো ঘূৰাই দিবলৈ অনুৰোধ কৰিব</string>
+    <string name="home_apk_helper_description">Mamu-এ তলত দিয়া হেল্পাৰ এপটোৰ পৰা মূল APK ফাইলটো ডাউনলোড কৰিবলৈ আৰু ফাইলটো ঘূৰাই দিবলৈ অনুৰোধ কৰিব</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">হেল্পাৰ খোলক</string>
-    <string name="home_apk_helper_warning">যদিহে আপুনি এই হেল্পাৰ এপটোৰ ওপৰত বিশ্বাস কৰে তেন্তেহে আগবাঢ়ক। পেচিং কৰাৰ আগতে Morphe-এ ইয়াৰ পৰা লাভ কৰা যিকোনো বস্তুৰ পেকেজ, সংস্কৰণ আৰু স্বাক্ষৰ পৰীক্ষা কৰে</string>
-    <string name="home_apk_helper_warning_unverified">যদি আপুনি এই সহায়ক এপটো বিশ্বাস কৰে তেন্তেহে আগবাঢ়ক। Morphe-এ এই APK-ৰ স্বাক্ষৰটো পৰীক্ষা কৰিব নোৱাৰে, সেয়েহে কোনো সংশোধন কৰা ফাইল ধৰা পৰিব নাযায়</string>
+    <string name="home_apk_helper_warning">যদিহে আপুনি এই হেল্পাৰ এপটোৰ ওপৰত বিশ্বাস কৰে তেন্তেহে আগবাঢ়ক। পেচিং কৰাৰ আগতে Mamu-এ ইয়াৰ পৰা লাভ কৰা যিকোনো বস্তুৰ পেকেজ, সংস্কৰণ আৰু স্বাক্ষৰ পৰীক্ষা কৰে</string>
+    <string name="home_apk_helper_warning_unverified">যদি আপুনি এই সহায়ক এপটো বিশ্বাস কৰে তেন্তেহে আগবাঢ়ক। Mamu-এ এই APK-ৰ স্বাক্ষৰটো পৰীক্ষা কৰিব নোৱাৰে, সেয়েহে কোনো সংশোধন কৰা ফাইল ধৰা পৰিব নাযায়</string>
     <string name="home_apk_helper_no_result">সহায়ক এপটোৱে কোনো APK প্ৰদান কৰা নাই</string>
     <string name="home_apk_helper_no_access">সহায়ক এপটোৱে ইয়াৰ দ্বাৰা প্ৰদান কৰা APK-টোৰ প্ৰৱেশ অনুমতি দিয়া নাই</string>
     <string name="home_apk_helper_no_package">সহায়ক এপটোৱে কোনটো সংস্থাপন কৰা এপ ব্যৱহাৰ কৰিব লাগে সেইটো কোৱা নাই</string>
     <string name="home_apk_helper_wrong_package">সহায়ক এপটোৱে পেচ কৰা এপটোতকৈ বেলেগ এপ প্ৰদান কৰিছে</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe-এ সংস্থাপিত এপটো ব্যৱহাৰ কৰিব নোৱাৰিলে</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu-এ সংস্থাপিত এপটো ব্যৱহাৰ কৰিব নোৱাৰিলে</string>
     <string name="home_apk_helper_installed_incompatible">সংস্থাপিত সংস্কৰণটো পেচ কৰিব নোৱাৰি</string>
     <string name="home_apk_use_saved_copy">সংৰক্ষিত কপিটো ব্যৱহাৰ কৰক</string>
     <string name="home_apk_use_installed_app">ইনষ্টল কৰা এপটো ব্যৱহাৰ কৰক</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">ইনষ্টল কৰা এপটোৰ স্বাক্ষৰ যাচাই কৰিব পৰা নগ’ল, গতিকে ই ইতিমধ্যে পেচ কৰা হৈ থাকিব পাৰে</string>
     <string name="home_unverified">যাচাই কৰা হোৱা নাই</string>
     <string name="home_install_verification_pending">স্থাপন পৰীক্ষা কৰা হৈছে…</string>
-    <string name="home_app_info_install_unverified">ইনষ্টল কৰা এপটোই ই প্যাচ কৰা বিল্ডটো নেকি Morphe নিশ্চিত কৰিব নোৱাৰে। ইয়াৰ কাৰ্যসমূহ পুনৰুদ্ধাৰ কৰিবলৈ ইয়াক পুনৰ প্যাচ কৰক বা সংৰক্ষিত APK ৰ পৰা পুনৰ ইনষ্টল কৰক</string>
+    <string name="home_app_info_install_unverified">ইনষ্টল কৰা এপটোই ই প্যাচ কৰা বিল্ডটো নেকি Mamu নিশ্চিত কৰিব নোৱাৰে। ইয়াৰ কাৰ্যসমূহ পুনৰুদ্ধাৰ কৰিবলৈ ইয়াক পুনৰ প্যাচ কৰক বা সংৰক্ষিত APK ৰ পৰা পুনৰ ইনষ্টল কৰক</string>
     <string name="home_app_info_no_saved_apk">কোনো APK সংৰক্ষিত হোৱা নাই। পেচিং কৰিবলৈ পুনৰ APK ফাইলটো বাছি ল’ব লাগিব</string>
     <string name="home_version_requires_android">Android %s+ প্ৰয়োজন</string>
     <string name="home_apk_no_compatible_versions_title">এই ডিভাইচটোত সমৰ্থন কৰা হোৱা নাই</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">ৱেবপেজটো তললৈ স্ক্ৰল কৰক আৰু ইয়াৰ ডাউনলোড বুটামটোত চাপক</string>
     <string name="home_download_instructions_step2_variant">ৱেবপেজটো তললৈ স্ক্ৰল কৰক আৰু ওপৰৰ &lt;b&gt;APK variant&lt;/b&gt;ৰ ডাউনলোড বুটামটোত চাপক</string>
     <string name="home_download_instructions_step2_search">আপুনি বিশ্বাস কৰা এখন ৱেবছাইটৰ পৰা এটা সন্ধান ফল খোলক</string>
-    <string name="home_download_instructions_step2_search_note">Morphe-এ এই ৱেবছাইটবোৰৰ বাবে নিশ্চয়তা দিব নোৱাৰে। যিবোৰ ৱেবছাইটত APK ফাইলৰ পৰিবৰ্তে নিজাকৈ এপ ষ্টৰ আগবঢ়োৱা হয়, সেইবোৰ বাদ দিয়ক</string>
+    <string name="home_download_instructions_step2_search_note">Mamu-এ এই ৱেবছাইটবোৰৰ বাবে নিশ্চয়তা দিব নোৱাৰে। যিবোৰ ৱেবছাইটত APK ফাইলৰ পৰিবৰ্তে নিজাকৈ এপ ষ্টৰ আগবঢ়োৱা হয়, সেইবোৰ বাদ দিয়ক</string>
     <string name="home_download_instructions_step3_search">সেই ৱেবছাইটত, আটাইতকৈ নতুনটো নহয়, বৰঞ্চ &lt;b&gt;%s&lt;/b&gt; সংস্কৰণৰ APK টো ডাউনলোড কৰক</string>
     <string name="home_download_instructions_step3_search_any">সেই ৱেবছাইটত, এপটোৰ APK টো ডাউনলোড কৰক। &lt;b&gt;যিকোনো সংস্কৰণ&lt;/b&gt; পেচ কৰিব পৰা যায়</string>
     <string name="home_download_instructions_step2_github">ৰিলিজ &lt;b&gt;%s&lt;/b&gt; ৰ &lt;b&gt;Assets&lt;/b&gt; ৰ অধীনত, &lt;b&gt;.apk&lt;/b&gt; ত শেষ হোৱা ফাইলটোত ক্লিক কৰক</string>
@@ -314,11 +314,11 @@
     <string name="home_download_instructions_download_button_toast_3">অনুশীলনে মানুহক নিখুঁত কৰে আৰু আপুনি তাৰ ফালে আগবাঢ়িছে 💪</string>
     <string name="home_download_instructions_download_button_toast_4">এতিয়াও ইয়াতে নাই... এতিয়াও ইয়াতে নাই... 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">ঠিক আছে, মই আপোনাৰ নিষ্ঠাক সন্মান জনাইছোঁ 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">আপুনি এতিয়া এজন অফিচিয়েল Morphe বুটন টেষ্টাৰ 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">আপুনি এতিয়া এজন অফিচিয়েল Mamu বুটন টেষ্টাৰ 🏅</string>
     <string name="home_download_instructions_step3">ডাউনলোড সম্পূৰ্ণ হোৱালৈ অপেক্ষা কৰক, আৰু APKটো &lt;b&gt;ইনষ্টল নকৰিব&lt;/b&gt;</string>
     <string name="home_download_instructions_step3_mount">ডাউনলোড সম্পূৰ্ণ হোৱালৈ অপেক্ষা কৰক, তাৰ পিছত &lt;b&gt;APKটো ইনষ্টল কৰক&lt;/b&gt;</string>
-    <string name="home_download_instructions_step4">ডাউনলোড শেষ হোৱাৰ পিছত, Morphe-লৈ উভতি আহক</string>
-    <string name="home_download_instructions_step4_mount">আসল APK-টো সংস্থাপন কৰাৰ পিছত, Morphe-লৈ উভতি আহক</string>
+    <string name="home_download_instructions_step4">ডাউনলোড শেষ হোৱাৰ পিছত, Mamu-লৈ উভতি আহক</string>
+    <string name="home_download_instructions_step4_mount">আসল APK-টো সংস্থাপন কৰাৰ পিছত, Mamu-লৈ উভতি আহক</string>
     <string name="home_download_instructions_continue_to">%s লৈ যোৱা</string>
     <string name="home_download_instructions_destination">ডাউনলোড পৃষ্ঠাটি</string>
     <string name="home_download_instructions_copy_link">লিংক কপি কৰক</string>
@@ -446,12 +446,12 @@
     <string name="adaptive_icon_themed">থিমযুক্ত</string>
     <string name="adaptive_icon_background_color">পৃষ্ঠভূমিৰ ৰং</string>
     <string name="adaptive_icon_reset_transform">স্থান আৰু স্কেল ৰিছেট কৰক</string>
-    <string name="adaptive_icon_no_transparency_warning">এই ছবিখনত কোনো স্বচ্ছ পিক্সেল নাই, গতিকে থিমযুক্ত আৰু জাননী আইকনবোৰে Morphe লোগোটি ৰাখিব</string>
+    <string name="adaptive_icon_no_transparency_warning">এই ছবিখনত কোনো স্বচ্ছ পিক্সেল নাই, গতিকে থিমযুক্ত আৰু জাননী আইকনবোৰে Mamu লোগোটি ৰাখিব</string>
     <string name="adaptive_icon_created_success">এডাপ্টিভ আইকন সফলভাৱে সৃষ্টি কৰা হৈছে</string>
     <string name="adaptive_icon_creation_failed">এডাপ্টিভ আইকন সৃষ্টি কৰাত ব্যৰ্থ</string>
     <string name="adaptive_icon_guide">আইকন সৃষ্টিৰ নিৰ্দেশিকা</string>
     <string name="adaptive_icon_guide_png_title">পাৰদাৰ্শী পটভূমি থকা এটা PNG ব্যৱহাৰ কৰক</string>
-    <string name="adaptive_icon_guide_png_body">স্বচ্ছ পটভূমিৰ ওপৰত থকা লোগো এটাৰ ফলত সৰ্বোত্তম কাম কৰে, য\'ত পটভূমিৰ ৰংটো তলত বাছি লোৱা হয়। স্বচ্ছতা নথকা ছবি এখনৰ পৰিবৰ্তে গোটেই আইকনটো ভৰাই তোলে আৰু তেতিয়া থিমযুক্ত আৰু জাননী আইকনবোৰে Morphe লোগোটি ৰাখে।</string>
+    <string name="adaptive_icon_guide_png_body">স্বচ্ছ পটভূমিৰ ওপৰত থকা লোগো এটাৰ ফলত সৰ্বোত্তম কাম কৰে, য\'ত পটভূমিৰ ৰংটো তলত বাছি লোৱা হয়। স্বচ্ছতা নথকা ছবি এখনৰ পৰিবৰ্তে গোটেই আইকনটো ভৰাই তোলে আৰু তেতিয়া থিমযুক্ত আৰু জাননী আইকনবোৰে Mamu লোগোটি ৰাখে।</string>
     <string name="adaptive_icon_guide_safe_zones_title">সুৰক্ষিত জোনসমূহ</string>
     <string name="adaptive_icon_guide_safe_zones_body">আউটলাইনটোৱে আপোনাৰ লঞ্চাৰৰ আইকনৰ আকৃতিটো দেখুৱায়, আৰু ইয়াৰ বাহিৰৰ সকলোবোৰ কাটি নিয়া হয়। অন্যান্য লঞ্চাৰে অন্য আকৃতি ব্যৱহাৰ কৰে, গতিকে গুৰুত্বপূৰ্ণ সবিশেষবোৰ ড্যাশড বৃত্তটোৰ ভিতৰত ৰাখক, যিটো প্ৰতিটো আকৃতিয়েই দেখুৱায়।</string>
     <string name="adaptive_icon_guide_notification_title">নটিফিকেচন আইকন</string>
@@ -557,8 +557,8 @@
     <string name="home_app_info_version_move">ইনষ্টল কৰা হৈছে %1$s, নতুনকৈ সমৰ্থিত %2$s</string>
     <string name="home_app_info_version_restore">ইনষ্টল কৰা হৈছে %1$s, পেচ কৰা হৈছে %2$s</string>
     <string name="home_app_info_app_deleted_warning">এপটো আনইনষ্টল কৰা হৈছে</string>
-    <string name="home_app_info_app_deleted_description">এই এপটো Morphe-ৰ বাহিৰত আনইনষ্টল কৰা হৈছে। কাৰ্যক্ষমতা পুনৰুদ্ধাৰ কৰিবলৈ ইয়াক পুনৰ পেচ কৰক</string>
-    <string name="home_app_info_not_patched_description">এই এপৰ এটা আনপেচড সংস্কৰণ স্থাপন কৰা হৈছে। Morphe ৰত ইয়াৰ পূৰ্বৰ পেচ ৰেকৰ্ডটো এতিয়াও আছে</string>
+    <string name="home_app_info_app_deleted_description">এই এপটো Mamu-ৰ বাহিৰত আনইনষ্টল কৰা হৈছে। কাৰ্যক্ষমতা পুনৰুদ্ধাৰ কৰিবলৈ ইয়াক পুনৰ পেচ কৰক</string>
+    <string name="home_app_info_not_patched_description">এই এপৰ এটা আনপেচড সংস্কৰণ স্থাপন কৰা হৈছে। Mamu ৰত ইয়াৰ পূৰ্বৰ পেচ ৰেকৰ্ডটো এতিয়াও আছে</string>
     <string name="home_app_info_mount_replaced_description">আন এটা সংস্কৰণে মাউণ্ট কৰা এপটো প্ৰতিস্থাপন কৰিছে, সেয়েহে পেচটো আৰু প্ৰযোজ্য নহয়। পুনৰুদ্ধাৰ কৰিলে পেচ কৰা সংস্কৰণটো ঘূৰাই আনে</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play-এ মাউণ্ট কৰা এপটো আপডেট কৰিছে, সেয়েহে পেচটো আৰু প্ৰযোজ্য নহয়। পুনৰুদ্ধাৰ কৰিলে পেচ কৰা সংস্কৰণটো ঘূৰাই আনে। ইয়াক পেচ কৰি ৰাখিবলৈ Google Play-ত ইয়াৰ অটো-আপডেট বন্ধ কৰক</string>
     <string name="app_links_title">সমৰ্থিত ৱেব লিংকসমূহ</string>
@@ -589,7 +589,7 @@
     <string name="root_pre_patch_installer_description">আপোনাৰ ডিভাইচটোত root access আছে। এই এপটো root mount বা standard install-ৰ বাবে patch কৰিব লাগে নেকি সেয়া বাছনি কৰক</string>
     <string name="root_pre_patch_installer_mount_title">Root mount মোড</string>
     <string name="root_pre_patch_installer_mount_description">Root mount-ৰ বাবে patch কৰে, তাৰ পিছত মিল থকা stock app-টোৰ ওপৰত APK-টো mount কৰে। কোনো GmsCore-ৰ প্ৰয়োজন নাই</string>
-    <string name="root_mount_module_unmount_warning">যদি KernelSU-ত \"Unmount modules by default\" অন কৰা থাকে, তেন্তে KernelSU &gt; Superuser &gt; আপুনি মাউণ্ট কৰা এপটো &gt; Profile &gt; Custom খোলক আৰু \"Unmount modules\" অফ কৰক। অন্যথা, মাউণ্ট কৰা patched APK-টো কাৰ্যকৰী নহ\'বও পাৰে, যদিও Morphe-এ ইয়াক মাউণ্ট কৰা বুলি দেখুৱাইছে</string>
+    <string name="root_mount_module_unmount_warning">যদি KernelSU-ত \"Unmount modules by default\" অন কৰা থাকে, তেন্তে KernelSU &gt; Superuser &gt; আপুনি মাউণ্ট কৰা এপটো &gt; Profile &gt; Custom খোলক আৰু \"Unmount modules\" অফ কৰক। অন্যথা, মাউণ্ট কৰা patched APK-টো কাৰ্যকৰী নহ\'বও পাৰে, যদিও Mamu-এ ইয়াক মাউণ্ট কৰা বুলি দেখুৱাইছে</string>
     <string name="root_pre_patch_installer_standard_title">Standard install মোড</string>
     <string name="root_pre_patch_installer_standard_description">GmsCore সমৰ্থনৰ সৈতে এটা স্বাভাৱিক APK হিচাপে patch কৰে। Patch কৰাৰ পিছত আপোনাৰ installer সেটিংস ব্যৱহাৰ কৰা হয়</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -652,7 +652,7 @@
     <string name="patcher_conflict_subtitle">আপুনি বিদ্যমান সংস্কৰণটো আনইনষ্টল কৰিব লাগিব</string>
     <string name="patcher_conflict_hint">পেচ কৰা এপটোৱে সংস্থাপন কৰা সংস্কৰণতকৈ বেলেগ চাৰ্টিফিকেট ব্যৱহাৰ কৰে। আন-ইনষ্টল কৰিলে এপটোৰ সকলো ডাটা মচি যাব</string>
     <string name="patcher_installed_conflict_title">আন-ইনষ্টল কৰাটো প্ৰয়োজনীয়</string>
-    <string name="patcher_installed_conflict_body">"Morphe-এ ইয়াৰ নিজৰ চাৰ্টিফিকেটৰ দ্বাৰা পেচড এপবোৰ চাইন কৰে, যিটো মূলটোতকৈ পৃথক। পেচড এপটো ইনষ্টল কৰাৰ আগতে Android-এ বিদ্যমান সংস্কৰণটো আঁতৰ কৰাৰ প্ৰয়োজনীয়তা জনায়।
+    <string name="patcher_installed_conflict_body">"Mamu-এ ইয়াৰ নিজৰ চাৰ্টিফিকেটৰ দ্বাৰা পেচড এপবোৰ চাইন কৰে, যিটো মূলটোতকৈ পৃথক। পেচড এপটো ইনষ্টল কৰাৰ আগতে Android-এ বিদ্যমান সংস্কৰণটো আঁতৰ কৰাৰ প্ৰয়োজনীয়তা জনায়।
 
 আন-ইনষ্টল কৰিলে সকলো এপ ডাটা স্থায়ীভাৱে মচি পেলাব"</string>
     <string name="patcher_install_error_title">সংস্থাপন ত্ৰুটি</string>
@@ -662,8 +662,8 @@
     <string name="patcher_patches_excluded_for_installer">এই ইনষ্টল পদ্ধতিৰ বাবে উপলব্ধ নহয় আৰু বাদ দিয়া হৈছে: %s</string>
     <string name="patcher_storage_permission_dialog_title">ষ্টৰেজ পাথ এক্সেছ কৰিব পৰা নাই</string>
     <string name="patcher_incompatible_patcher_title">আপডেটৰ প্ৰয়োজন</string>
-    <string name="patcher_incompatible_patcher_description">উৎস &lt;b&gt;%1$s&lt;/b&gt; ৰ বাবে পেচাৰ &lt;b&gt;%2$s&lt;/b&gt; বা তাতকৈ নতুন সংস্কৰণৰ প্ৰয়োজন। ইয়াক ব্যৱহাৰ কৰিবলৈ Morphe আপডেট কৰক</string>
-    <string name="patcher_storage_permission_description_api30">এক বা ততোধিক পেচ বিকল্পই তেনে পথৰ কথা উল্লেখ কৰিছে যিবোৰ Morphe-এ পঢ়িব নোৱাৰে। ষ্টৰেজ এক্সেছ অনুমতি দিয়ক আৰু বুটামত টেপ কৰক, তাৰ পিছত পেচিং স্বয়ংক্ৰিয়ভাৱে আৰম্ভ হ\'ব</string>
+    <string name="patcher_incompatible_patcher_description">উৎস &lt;b&gt;%1$s&lt;/b&gt; ৰ বাবে পেচাৰ &lt;b&gt;%2$s&lt;/b&gt; বা তাতকৈ নতুন সংস্কৰণৰ প্ৰয়োজন। ইয়াক ব্যৱহাৰ কৰিবলৈ Mamu আপডেট কৰক</string>
+    <string name="patcher_storage_permission_description_api30">এক বা ততোধিক পেচ বিকল্পই তেনে পথৰ কথা উল্লেখ কৰিছে যিবোৰ Mamu-এ পঢ়িব নোৱাৰে। ষ্টৰেজ এক্সেছ অনুমতি দিয়ক আৰু বুটামত টেপ কৰক, তাৰ পিছত পেচিং স্বয়ংক্ৰিয়ভাৱে আৰম্ভ হ\'ব</string>
     <string name="patcher_storage_permission_description_legacy">এক বা ততোধিক পেচ অপচন এনে পাথৰ দিশত নিৰ্দেশ কৰে যিবোৰ এক্সেছ কৰিব পৰা নাই। পেচ অপচনত পাথসমূহ আপডেট কৰক আৰু পুনৰ চেষ্টা কৰক</string>
     <string name="patcher_storage_permission_grant">ষ্টৰেজ অনুমতি প্ৰদান কৰক</string>
     <string name="patcher_storage_permission_denied_warning">ষ্টৰেজ অনুমতি অস্বীকাৰ কৰা হৈছে। এই পাথটো ব্যৱহাৰ কৰিবলৈ অনুমতি প্ৰদান কৰক, অথবা ফাইলবোৰ এপৰ ব্যক্তিগত ডাইৰেক্টৰীলৈ স্থানান্তৰ কৰক</string>
@@ -699,7 +699,7 @@
     <string name="patcher_task_writing_apk">APK ফাইল লিখা হৈছে</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">বেকগ্ৰাউণ্ড পেচিং প্ৰটেকচন</string>
-    <string name="battery_optimization_dialog_description">কিছুমান ডিভাইচত এপটো মিনিমাইজ কৰিলে পেচাৰটো বন্ধ হৈ যাব পাৰে। পেচিং নিৰ্ভৰযোগ্যভাৱে সম্পূৰ্ণ হোৱাটো নিশ্চিত কৰিবলৈ Morphe-ক বেটাৰীৰ বাধা অবিহনে চলাবলৈ অনুমতি দিয়ক</string>
+    <string name="battery_optimization_dialog_description">কিছুমান ডিভাইচত এপটো মিনিমাইজ কৰিলে পেচাৰটো বন্ধ হৈ যাব পাৰে। পেচিং নিৰ্ভৰযোগ্যভাৱে সম্পূৰ্ণ হোৱাটো নিশ্চিত কৰিবলৈ Mamu-ক বেটাৰীৰ বাধা অবিহনে চলাবলৈ অনুমতি দিয়ক</string>
     <string name="battery_optimization_not_now">এতিয়া নহয়</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">প্যাচিং চলি আছে…</string>
@@ -754,8 +754,8 @@
     <string name="install_ignore_signature">যিকোনো ধৰণেই ইনষ্টল কৰক</string>
     <string name="install_ignore_signature_description">এপ ডেটা সংৰক্ষিত থাকে, কিন্তু ই কেৱল তেতিয়াহে কাম কৰে যদি এটা ৰুট মডিউলে Android ৰ স্বাক্ষৰ ভেৰিফিকেচন বন্ধ কৰে</string>
     <string name="uninstall_app_fail">এপটো আনইনষ্টল কৰাত ব্যৰ্থ হৈছে: %s</string>
-    <string name="uninstall_app_unverified">স্থানত ৰখা হৈছে: সংস্থাপন কৰা এপটো ই প্যাচ কৰা বিল্ডটো নেহয় বুলি Morphe ৰ দ্বাৰা নিশ্চিত কৰিব পৰা নগ\'ল</string>
-    <string name="launch_app_unverified">সংস্থাপন কৰা এপটো ই প্যাচ কৰা বিল্ডটো নেহয় বুলি Morphe ৰ দ্বাৰা নিশ্চিত কৰিব পৰা নগ\'ল</string>
+    <string name="uninstall_app_unverified">স্থানত ৰখা হৈছে: সংস্থাপন কৰা এপটো ই প্যাচ কৰা বিল্ডটো নেহয় বুলি Mamu ৰ দ্বাৰা নিশ্চিত কৰিব পৰা নগ\'ল</string>
+    <string name="launch_app_unverified">সংস্থাপন কৰা এপটো ই প্যাচ কৰা বিল্ডটো নেহয় বুলি Mamu ৰ দ্বাৰা নিশ্চিত কৰিব পৰা নগ\'ল</string>
     <string name="uninstall_timeout">আনইনষ্টল টাইম আউট হৈছে</string>
     <string name="save_apk_success">APK সংৰক্ষিত হৈছে</string>
     <string name="saved_app_export_failed">পেচড এপ ৰপ্তন কৰাত ব্যৰ্থ হৈছে</string>
@@ -847,7 +847,7 @@
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">এপৰ ভাষা</string>
     <string name="settings_appearance_app_language_current">বৰ্তমানৰ ভাষা</string>
-    <string name="settings_appearance_translate">Morphe অনুবাদ কৰাত সহায় কৰক</string>
+    <string name="settings_appearance_translate">Mamu অনুবাদ কৰাত সহায় কৰক</string>
     <string name="settings_appearance_translations_info_title">কিছু ভাষাৰ অনুবাদ অনুপস্থিত বা অসম্পূৰ্ণ হ\'ব পাৰে</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">ইণ্টাৰফেচ স্কেল</string>
@@ -876,7 +876,7 @@
     <string name="settings_appearance_app_card_colors_bundle_description">ইয়াত প্ৰতিটো এপ বা উৎসৰ নিজৰ ৰং ব্যৱহাৰ কৰক, যিটো স্বয়ংক্ৰিয়ভাৱে খাপ খোৱাকৈ ছেড কৰা হয়</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">এপ আইকন</string>
-    <string name="settings_appearance_app_icon_selector_description">আপোনাৰ হোম স্ক্ৰীন আৰু এপ ড্ৰয়ৰত Morphe-ৰ দেখাত কেনে হ\'ব</string>
+    <string name="settings_appearance_app_icon_selector_description">আপোনাৰ হোম স্ক্ৰীন আৰু এপ ড্ৰয়ৰত Mamu-ৰ দেখাত কেনে হ\'ব</string>
     <string name="settings_appearance_app_icon_default">ডিফাল্ট</string>
     <string name="settings_appearance_app_icon_light_2">আকাশী</string>
     <string name="settings_appearance_app_icon_light_3">সূৰ্য অস্ত</string>
@@ -900,23 +900,23 @@
     <string name="settings_appearance_app_icon_mark_black">ক\'লা</string>
     <string name="settings_appearance_app_icon_change_dialog_title">এপ আইকন সলনি কৰিব নেকি?</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">&lt;b&gt;%s&lt;/b&gt; ত পৰিৱৰ্তন কৰিবলৈ Morphe পুনৰ আৰম্ভ হ\'ব</string>
+    <string name="settings_appearance_app_icon_change_restarts">&lt;b&gt;%s&lt;/b&gt; ত পৰিৱৰ্তন কৰিবলৈ Mamu পুনৰ আৰম্ভ হ\'ব</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">আইকন সলনি কৰক</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">প্ৰি-ৰিলিজ আপডেটবোৰ</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">নতুন Morphe সংস্কৰণবোৰৰ আগতীয়াকৈ প্ৰৱেশ</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">নতুন Mamu সংস্কৰণবোৰৰ আগতীয়াকৈ প্ৰৱেশ</string>
     <string name="settings_advanced_updates_prerelease_warning_title">প্ৰি-ৰিলিজ আপডেটবোৰ সক্ৰিয় কৰিবনে?</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"Morphe-ৰ প্ৰি-ৰিলিজ সংস্কৰণবোৰ এতিয়াও উন্নয়নৰ অধীনত আছে আৰু ইয়াৰ ফলত ই অস্থিতিশীল হ'ব পাৰে।
+    <string name="settings_advanced_updates_prerelease_warning_message">"Mamu-ৰ প্ৰি-ৰিলিজ সংস্কৰণবোৰ এতিয়াও উন্নয়নৰ অধীনত আছে আৰু ইয়াৰ ফলত ই অস্থিতিশীল হ'ব পাৰে।
 
 পেচবোৰত ইয়াৰ কোনো প্ৰভাৱ নপৰে: পেচ উৎসৰ তালিকাৰ প্ৰতিটো উৎসৰ বাবে প্ৰি-ৰিলিজ পেচবোৰ সক্ৰিয় কৰক"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">স্বয়ংক্ৰিয় আপডেট</string>
-    <string name="settings_auto_updates_description">Morphe খোলাৰ সময়ত আপডেটৰ বিষয়ে কি কৰে। Pull to refresh-এ সদায় পৰীক্ষা কৰে</string>
+    <string name="settings_auto_updates_description">Mamu খোলাৰ সময়ত আপডেটৰ বিষয়ে কি কৰে। Pull to refresh-এ সদায় পৰীক্ষা কৰে</string>
     <string name="settings_auto_updates_download">স্বয়ংক্ৰিয়ভাৱে ডাউনলোড কৰক</string>
-    <string name="settings_auto_updates_download_description">Morphe খোলাৰ সময়ত আপডেটৰ বাবে পৰীক্ষা কৰে আৰু যিকোনো নেটৱৰ্কত পেচ আপডেটসমূহ ডাউনলোড কৰে</string>
+    <string name="settings_auto_updates_download_description">Mamu খোলাৰ সময়ত আপডেটৰ বাবে পৰীক্ষা কৰে আৰু যিকোনো নেটৱৰ্কত পেচ আপডেটসমূহ ডাউনলোড কৰে</string>
     <string name="settings_auto_updates_wifi_only">কেৱল Wi-Fi ত ডাউনলোড কৰক</string>
     <string name="settings_auto_updates_wifi_only_description">মবাইল ডাটাৰ ক্ষেত্ৰত, কেৱল উপলব্ধ আপডেটসমূহ পৰীক্ষা আৰু প্ৰদৰ্শন কৰিব</string>
     <string name="settings_auto_updates_check_only">কেৱল পৰীক্ষা কৰক</string>
@@ -937,27 +937,27 @@
     <string name="settings_advanced_external_batch_patch">বাহ্যিক ট্ৰিগাৰসমূহ অনুমতি দিয়ক</string>
     <string name="settings_advanced_external_batch_patch_description">অটোমেচন এপবোৰক বেচ পেচিং আৰম্ভ কৰিবলৈ অনুমতি দিয়ে</string>
     <string name="external_batch_patch_title">ব্যাচ পেচিং আৰম্ভ কৰিবনে?</string>
-    <string name="external_batch_patch_description">%s-এ Morphe-ক এপসমূহ পেচ আৰু ইনষ্টল কৰিবলৈ বিচাৰে</string>
+    <string name="external_batch_patch_description">%s-এ Mamu-ক এপসমূহ পেচ আৰু ইনষ্টল কৰিবলৈ বিচাৰে</string>
     <string name="external_batch_patch_trust_caller">এই এপটো সদায় অনুমতি দিয়ক</string>
     <string name="external_batch_patch_unknown_caller">এটা অজ্ঞাত এপ</string>
     <!-- Notification content -->
     <string name="notification_bundle_update_title">নতুন পেচ উপলব্ধ</string>
     <string name="notification_update_text">সংস্কৰণ %s ডাউনলোড কৰিবলৈ সাজু</string>
-    <string name="notification_bundle_update_text_unversioned">Morphe খোলা আৰু আপডেট কৰিবলৈ টেপ কৰক</string>
+    <string name="notification_bundle_update_text_unversioned">Mamu খোলা আৰু আপডেট কৰিবলৈ টেপ কৰক</string>
     <string name="notification_permission_dialog_title">জাননী অনুমতি দিয়ক</string>
-    <string name="notification_permission_dialog_description">বেকগ্ৰাউণ্ডত আপডেট উপলব্ধ হোৱাৰ যেতিয়া আপোনাক সজাগ কৰিবলৈ Morphe-ৰ জাননী অনুমতিৰ প্ৰয়োজন</string>
+    <string name="notification_permission_dialog_description">বেকগ্ৰাউণ্ডত আপডেট উপলব্ধ হোৱাৰ যেতিয়া আপোনাক সজাগ কৰিবলৈ Mamu-ৰ জাননী অনুমতিৰ প্ৰয়োজন</string>
     <string name="notification_post_patch_dialog_title">আপডেট উপলব্ধ হ\'লে আপুনি জাননী পাব বিচাৰিব নেকি?</string>
-    <string name="notification_channel_manager_updates">Morphe আপডেটসমূহ</string>
-    <string name="notification_channel_manager_updates_description">নতুন Morphe ৰিলিজৰ বিষয়ে নটিফিকেচন</string>
+    <string name="notification_channel_manager_updates">Mamu আপডেটসমূহ</string>
+    <string name="notification_channel_manager_updates_description">নতুন Mamu ৰিলিজৰ বিষয়ে নটিফিকেচন</string>
     <string name="notification_channel_patch_updates">পেচ আপডেটসমূহ</string>
     <string name="notification_channel_patch_updates_description">নতুন পেচ ৰিলিজৰ বিষয়ে নটিফিকেচন</string>
-    <string name="notification_channel_patcher_description">Morphe-এ বেকগ্ৰাউণ্ডত এটা এপ পেচিং কৰি থকাৰ সময়ত দেখুওৱা হয়</string>
+    <string name="notification_channel_patcher_description">Mamu-এ বেকগ্ৰাউণ্ডত এটা এপ পেচিং কৰি থকাৰ সময়ত দেখুওৱা হয়</string>
     <string name="notification_channel_patching_results">পেচিংৰ ফলাফল</string>
-    <string name="notification_channel_patching_results_description">যেতিয়া পেচিং শেষ হয় বা Morphe বেকগ্ৰাউণ্ডত থকাৰ সময়ত কোনো সংস্থাপন আপোনাৰ বাবে অপেক্ষা কৰে</string>
+    <string name="notification_channel_patching_results_description">যেতিয়া পেচিং শেষ হয় বা Mamu বেকগ্ৰাউণ্ডত থকাৰ সময়ত কোনো সংস্থাপন আপোনাৰ বাবে অপেক্ষা কৰে</string>
     <string name="notification_channel_mounted_apps">মাউণ্ট কৰা এপসমূহ</string>
     <string name="notification_channel_mounted_apps_description">যেতিয়া আন এটা সংস্কৰণে মাউণ্ট কৰা এপটো প্রতিস্থাপন কৰে আৰু ইয়াৰ পেচটো আৰু প্ৰযোজ্য নহয়</string>
     <string name="notification_mount_replaced_title">%1$s আৰু পেচ কৰা হোৱা নাই</string>
-    <string name="notification_mount_replaced_text">v%1$s-এ পেচ কৰা v%2$s-ক প্ৰতিস্থাপন কৰিছে। ইয়াক পুনৰুদ্ধাৰ কৰিবলৈ Morphe খোলক</string>
+    <string name="notification_mount_replaced_text">v%1$s-এ পেচ কৰা v%2$s-ক প্ৰতিস্থাপন কৰিছে। ইয়াক পুনৰুদ্ধাৰ কৰিবলৈ Mamu খোলক</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">এক্সপাৰ্ট মোড</string>
     <string name="settings_advanced_expert_mode_description">উন্নত পেচিং ছেটিংছ আৰু পেচ বিকল্পসমূহ আনলক কৰে</string>
@@ -979,7 +979,7 @@
     <string name="settings_advanced_github_pat_unreachable">এই টোকেনটো পৰীক্ষা কৰিবলৈ GitHub-ৰ সৈতে যোগাযোগ কৰিব পৰা নগ\'ল</string>
     <string name="settings_advanced_github_pat_export_include_label">ছেটিংছ ৰপ্তনত অন্তৰ্ভুক্ত কৰক</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">এই PAT-টো ৰপ্তন কৰা Morphe ছেটিংছত যোগ কৰক</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">এই PAT-টো ৰপ্তন কৰা Mamu ছেটিংছত যোগ কৰক</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">আপোনাৰ PAT শ্বেয়াৰ নকৰিব। যদি আপুনি ইয়াক ছেটিংছ ৰপ্তনত অন্তৰ্ভুক্ত কৰে, তেন্তে সেই ফাইলটো ব্যক্তিগত কৰি ৰাখক কাৰণ ইয়াত টোকেনটো থাকে</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1074,7 +1074,7 @@ morphe_header_custom_dark.png
     <string name="installer_status_not_supported">এই কাৰ্যৰ বাবে সমৰ্থিত নহয়</string>
     <string name="installer_status_shizuku_not_installed">এই বিকল্পটো ব্যৱহাৰ কৰিবলৈ Shizuku বা Sui ইনষ্টল কৰক</string>
     <string name="installer_status_shizuku_not_running">Shizuku বা Sui আৰম্ভ কৰক আৰু পুনৰ চেষ্টা কৰক</string>
-    <string name="installer_status_shizuku_permission">Shizuku এপৰ পৰা Morphe ক অনুমতি প্ৰদান কৰক</string>
+    <string name="installer_status_shizuku_permission">Shizuku এপৰ পৰা Mamu ক অনুমতি প্ৰদান কৰক</string>
     <string name="installer_mount_warning_install">পেচ মোড root mount-লৈ ছেট কৰা হৈছে। এই সংৰক্ষিত এপটো mount ব্যৱহাৰ কৰি ইনষ্টল কৰা হোৱা নাছিল</string>
     <string name="mount_version_mismatch_message">ষ্টক এপ সংস্কৰণ (%2$s) পেচড এপ সংস্কৰণৰ (%1$s) সৈতে মিলা নাই। মিল থকা ষ্টক সংস্কৰণটো মাউণ্ট কৰক, তাৰ পিছত পুনৰ চেষ্টা কৰক</string>
     <string name="mount_stock_restore_failed_message">Android-এ সংৰক্ষিত মূল APKটো প্ৰত্যাখ্যান কৰিছে। মিল থকা ষ্টক সংস্কৰণটো সংস্থাপন কৰক, তাৰ পিছত পুনৰ Mount কৰিবলৈ চেষ্টা কৰক</string>
@@ -1115,7 +1115,7 @@ morphe_header_custom_dark.png
     <string name="settings_ignore_install_target_rules">ইনষ্টল টৰ্গেটৰ প্ৰয়োজনীয়তাসমূহ অৱজ্ঞা কৰক</string>
     <string name="settings_ignore_install_target_rules_description">ইনষ্টল টাৰ্গেটৰ প্ৰয়োজনীয় পেচবোৰ বন্ধ কৰিবলৈ আৰু ইয়াৰ দ্বাৰা বৰ্জন কৰা পেচবোৰ অন কৰিবলৈ অনুমতি দিয়ে। পেচ কৰা এপটোৱে কাম নকৰিবও পাৰে</string>
     <string name="settings_auto_uninstall_warning_title">অটো-আনইনষ্টল সক্ৰিয় কৰিবনে?</string>
-    <string name="settings_auto_uninstall_warning_message">যদি Shizuku অটো-ইনষ্টলৰ সময়ত Android-এ স্বাক্ষৰ সংঘাতৰ কথা প্ৰতিবেদন কৰে, তেন্তে Morphe-এ পেচড APK ইনষ্টল কৰাৰ আগতে বিদ্যমান এপটো আনইনষ্টল কৰি দিব</string>
+    <string name="settings_auto_uninstall_warning_message">যদি Shizuku অটো-ইনষ্টলৰ সময়ত Android-এ স্বাক্ষৰ সংঘাতৰ কথা প্ৰতিবেদন কৰে, তেন্তে Mamu-এ পেচড APK ইনষ্টল কৰাৰ আগতে বিদ্যমান এপটো আনইনষ্টল কৰি দিব</string>
     <string name="settings_auto_uninstall_warning_risk">ইয়াৰ ফলত এপৰ ডাটা আঁতৰ হ\'ব পাৰে। আনইনষ্টল কৰাৰ পিছত যদি পেচড APK ইনষ্টল কৰাত বিফল হয়, তেন্তে পূৰ্বৰ এপটো ইতিমধ্যে নাইকিয়া হ\'ব পাৰে</string>
     <string name="installer_shizuku_status_action">Shizuku স্থিতি পৰীক্ষা কৰক</string>
     <string name="installer_shizuku_status_title">Shizuku স্থিতি</string>
@@ -1133,7 +1133,7 @@ morphe_header_custom_dark.png
     <string name="installer_shizuku_install_fail_with_details">"Shizuku সংস্থাপন বিফল হৈছে: %1$s
 
 বিৱৰণ: %2$s"</string>
-    <string name="installer_shizuku_error_permission">Shizuku অনুমতি অনুপস্থিত। Morphe-ক অনুমতি প্ৰদান কৰক আৰু পুনৰ চেষ্টা কৰক</string>
+    <string name="installer_shizuku_error_permission">Shizuku অনুমতি অনুপস্থিত। Mamu-ক অনুমতি প্ৰদান কৰক আৰু পুনৰ চেষ্টা কৰক</string>
     <string name="installer_shizuku_error_timeout">Shizuku-এ সংস্থাপনৰ ফলাফল প্ৰদান কৰা নাই। ই চলি আছে নে নাই নিশ্চিত কৰক আৰু পুনৰ চেষ্টা কৰক</string>
     <string name="installer_shizuku_error_downgrade">Android-এ ইয়াক বাধা দিছে কাৰণ ই সংস্থাপন কৰা এপটোৰ সংস্কৰণ নিম্নগামী কৰিব</string>
     <string name="installer_shizuku_error_signature">Android-এ ইয়াক বাধা দিছে কাৰণ সংস্থাপন কৰা এপটোৰ এটা ভিন্ন স্বাক্ষৰ আছে</string>
@@ -1144,13 +1144,13 @@ morphe_header_custom_dark.png
     <string name="settings_system_battery_optimization_description">এপটো মিনিমাইজ কৰাৰ পিছত পেচাৰটো চলি থাকে</string>
     <string name="settings_system_process_runtime">প্যাচাৰ ৰাণটাইম</string>
     <string name="settings_system_jvm_runtime_enable">এমবেডেড VM ব্যৱহাৰ কৰক</string>
-    <string name="settings_system_jvm_runtime_description">Morphe ৰ নিজৰ Java VM-ত পেচ কৰক, যিয়ে অধিক মেমৰী ব্যৱহাৰ কৰিব পাৰে। Android ৰ ৰাণটাইম ব্যৱহাৰ কৰিবলৈ ইয়াক বন্ধ কৰক</string>
+    <string name="settings_system_jvm_runtime_description">Mamu ৰ নিজৰ Java VM-ত পেচ কৰক, যিয়ে অধিক মেমৰী ব্যৱহাৰ কৰিব পাৰে। Android ৰ ৰাণটাইম ব্যৱহাৰ কৰিবলৈ ইয়াক বন্ধ কৰক</string>
     <string name="settings_system_jvm_runtime_unavailable">এটা ARM বা 64-bit x86 ডিভাইচৰ প্ৰয়োজন</string>
     <string name="settings_system_patcher_completion_sound">সম্পূৰ্ণ হোৱাৰ শব্দ</string>
     <string name="settings_system_patcher_completion_sound_description">প্যাচিং শেষ হোৱাৰ পিছত সফলতা বা বিফলতাৰ বাবে এক পৃথক শব্দ বাজি উঠে</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">জাননীসমূহ</string>
-    <string name="settings_system_notifications_description">Morphe-এ আপোনাক কেনেকৈ অৱগত কৰি ৰাখে</string>
+    <string name="settings_system_notifications_description">Mamu-এ আপোনাক কেনেকৈ অৱগত কৰি ৰাখে</string>
     <string name="settings_system_notifications_success_sound">সফলতাৰ শব্দ</string>
     <string name="settings_system_notifications_error_sound">বিফলতাৰ শব্দ</string>
     <string name="settings_system_notifications_sound_default">ডিফল্ট</string>
@@ -1162,8 +1162,8 @@ morphe_header_custom_dark.png
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">ছাইনিং কী</string>
     <string name="settings_system_signing_key_description">পাচ কৰা এপ্সসমূহক চাইন কৰা কীটো বেকআপ লয় বা ৰিস্টোৰ কৰে</string>
-    <string name="settings_system_signing_key_dialog_description">Morphe-ৰ দ্বাৰা পেচ কৰা প্ৰতিটো এপ এই কী-টোৰে ছাইন কৰা হয়। ইয়াৰ এটা কপি সংৰক্ষণ কৰি ৰাখক: ইয়াৰ অবিহনে, পেচ কৰা এপবোৰ আন-ইনষ্টল কৰাৰ পিছতহে আপডেট কৰিব পৰা যাব</string>
-    <string name="settings_system_signing_key_missing">আপুনি প্ৰথমবাৰ পেচ কৰাৰ সময়ত Morphe-এ এটা কী সৃষ্টি কৰিব</string>
+    <string name="settings_system_signing_key_dialog_description">Mamu-ৰ দ্বাৰা পেচ কৰা প্ৰতিটো এপ এই কী-টোৰে ছাইন কৰা হয়। ইয়াৰ এটা কপি সংৰক্ষণ কৰি ৰাখক: ইয়াৰ অবিহনে, পেচ কৰা এপবোৰ আন-ইনষ্টল কৰাৰ পিছতহে আপডেট কৰিব পৰা যাব</string>
+    <string name="settings_system_signing_key_missing">আপুনি প্ৰথমবাৰ পেচ কৰাৰ সময়ত Mamu-এ এটা কী সৃষ্টি কৰিব</string>
     <string name="settings_system_signing_key_created">সৃষ্টি কৰা হৈছে %s</string>
     <string name="settings_system_signing_key_fingerprint">SHA-256 ফিংগাৰপ্ৰিণ্ট</string>
     <string name="settings_system_backup_appearance_description">থিম, ৰং আৰু ভাষা</string>
@@ -1185,20 +1185,20 @@ morphe_header_custom_dark.png
     <string name="settings_system_export_keystore_failed">কিস্টোৰ ৰপ্তন কৰাত ব্যৰ্থ হৈছে</string>
     <string name="settings_system_show_password_field">পাছৱৰ্ড দেখুৱাওক</string>
     <string name="settings_system_hide_password_field">পাছৱৰ্ড লুকুৱাওক</string>
-    <string name="settings_system_morphe_settings">Morphe ছেটিংছ</string>
-    <string name="settings_system_import_manager_settings_description">আপোনাৰ Morphe ছেটিংছ বেকআপ আৰু ৰিস্টোৰ কৰে</string>
-    <string name="settings_system_export_manager_settings_title">Morphe ছেটিংছ ৰপ্তন কৰক</string>
+    <string name="settings_system_morphe_settings">Mamu ছেটিংছ</string>
+    <string name="settings_system_import_manager_settings_description">আপোনাৰ Mamu ছেটিংছ বেকআপ আৰু ৰিস্টোৰ কৰে</string>
+    <string name="settings_system_export_manager_settings_title">Mamu ছেটিংছ ৰপ্তন কৰক</string>
     <string name="settings_system_export_manager_settings_description">আপুনি বাছনি কৰা ছেটিংছবোৰ এটা ফাইললৈ সংৰক্ষণ কৰে</string>
     <string name="settings_system_import_manager_settings_file_description">বেকআপ ফাইলৰ পৰা ছেটিংছবোৰ পুনৰুদ্ধাৰ কৰে</string>
     <string name="settings_system_auto_backup">স্বয়ংক্ৰিয় বেকআপ</string>
     <string name="settings_system_auto_backup_switch">স্বয়ংক্ৰিয়ভাৱে বেকআপ কৰক</string>
     <string name="settings_system_auto_backup_now">এতিয়াই বেকআপ কৰক</string>
     <string name="settings_system_auto_backup_saved">বেকআপ সংৰক্ষিত হৈছে</string>
-    <string name="settings_system_auto_backup_interval_description">এটা কপি কৰাৰ পিছত পৰৱৰ্তীটো কৰাৰ আগতে Morphe-এ অন্ততঃ ইমান সময় অপেক্ষা কৰে</string>
-    <string name="settings_system_auto_backup_description">আপোনাৰ Morphe ছেটিংছবোৰ আপুনি বাছনি কৰা এটা ফোল্ডৰলৈ সংৰক্ষণ কৰে</string>
+    <string name="settings_system_auto_backup_interval_description">এটা কপি কৰাৰ পিছত পৰৱৰ্তীটো কৰাৰ আগতে Mamu-এ অন্ততঃ ইমান সময় অপেক্ষা কৰে</string>
+    <string name="settings_system_auto_backup_description">আপোনাৰ Mamu ছেটিংছবোৰ আপুনি বাছনি কৰা এটা ফোল্ডৰলৈ সংৰক্ষণ কৰে</string>
     <string name="settings_system_auto_backup_last">ৰাজ্যিক বেকআপ: %s</string>
     <string name="settings_system_auto_backup_folder">ফোল্ডৰ</string>
-    <string name="settings_system_auto_backup_folder_name">Morphe বেকআপসমূহ</string>
+    <string name="settings_system_auto_backup_folder_name">Mamu বেকআপসমূহ</string>
     <string name="settings_system_auto_backup_folder_failed">এই ফোল্ডাৰটো ব্যৱহাৰ কৰিব নোৱাৰিল: %s</string>
     <string name="settings_system_auto_backup_interval">বেকআপৰ পৌৰ্তিকতা</string>
     <string name="settings_system_auto_backup_signing_key">চাইনত কৰা কী অন্তৰ্ভুক্ত কৰক</string>
@@ -1207,9 +1207,9 @@ morphe_header_custom_dark.png
     <string name="settings_system_auto_backup_signing_key_warning_message">যিয়ে এই ফাইলটো পায় তেওঁ আপোনাৰ পেচড এপবোৰৰ ওপৰত ইন্সটল হোৱা আপডেটবোৰ ছাইন কৰিব পাৰিব। ফোল্ডাৰটো গোপন ৰাখক আৰু কেৱল আপোনাৰ নিজৰ ডিভাইচবোৰৰ সৈতে শ্বেয়াৰ কৰক</string>
     <string name="settings_system_auto_backup_footer">আপুনি কিবা সলাই Morpheৰ পৰা ওলাই আহিলে এটা কপি সংৰক্ষণ কৰা হয়। শেহতীয়া %s ৰখা হয়</string>
     <string name="settings_system_auto_backup_failed">শেষ বেকআপটো সংৰক্ষণ কৰিব পৰা নগ\'ল। ফোল্ডাৰটো পুনৰ বাছনি কৰক</string>
-    <string name="settings_system_import_manager_settings_fail">Morphe ছেটিংছ ইম্পৰ্ট কৰাত ব্যৰ্থ হৈছে: %s</string>
-    <string name="settings_system_import_manager_settings_success">Morphe ছেটিংছ ইম্পৰ্ট কৰা হৈছে</string>
-    <string name="settings_system_import_manager_settings_mode_title">Morphe ছেটিংছ ইমপৰ্ট কৰক</string>
+    <string name="settings_system_import_manager_settings_fail">Mamu ছেটিংছ ইম্পৰ্ট কৰাত ব্যৰ্থ হৈছে: %s</string>
+    <string name="settings_system_import_manager_settings_success">Mamu ছেটিংছ ইম্পৰ্ট কৰা হৈছে</string>
+    <string name="settings_system_import_manager_settings_mode_title">Mamu ছেটিংছ ইমপৰ্ট কৰক</string>
     <string name="settings_system_import_manager_settings_mode_description">ইমপৰ্ট কৰা ছেটিংছ আৰু উৎসসমূহ কেনেকৈ প্ৰয়োগ কৰিব লাগে তাৰ বাবে বাছনি কৰক</string>
     <string name="settings_system_import_selections_mode_title">পেচ নিৰ্বাচনসমূহ ইমপৰ্ট কৰক</string>
     <string name="settings_system_import_selections_mode_description">ইমপৰ্ট কৰা সিলেকচন আৰু পেচ বিকল্পসমূহ কেনেকৈ প্ৰয়োগ কৰিব লাগে তাৰ বাবে বাছনি কৰক</string>
@@ -1217,8 +1217,8 @@ morphe_header_custom_dark.png
     <string name="import_mode_replace_description">বেকআপৰ সৈতে হুবহু মিলাক। বেকআপত নথকা আইটেমসমূহ আঁতৰাই দিয়া হ\'ব</string>
     <string name="import_mode_merge_title">বিদ্যমানৰ সৈতে মিলাই লওক</string>
     <string name="import_mode_merge_description">বেকআপৰ পৰা অনুপস্থিত আইটেমবোৰ যোগ কৰক। বিদ্যমান আইটেমবোৰ অপৰিবৰ্তিত ৰখা হয়</string>
-    <string name="settings_system_export_manager_settings_fail">Morphe ছেটিংছ ৰপ্তন কৰাত ব্যৰ্থ হৈছে: %s</string>
-    <string name="settings_system_export_manager_settings_success">Morphe ছেটিংছ ৰপ্তন কৰা হৈছে</string>
+    <string name="settings_system_export_manager_settings_fail">Mamu ছেটিংছ ৰপ্তন কৰাত ব্যৰ্থ হৈছে: %s</string>
+    <string name="settings_system_export_manager_settings_success">Mamu ছেটিংছ ৰপ্তন কৰা হৈছে</string>
     <string name="settings_system_export_debug_logs">ডিবাগ লগসমূহ এক্সপৰ্ট কৰক</string>
     <string name="settings_system_export_debug_logs_description">ট্ৰাবলচুটিংৰ বাবে চিষ্টেম লগসমূহ সংৰক্ষণ কৰে</string>
     <string name="settings_system_export_debug_logs_export_read_failed">লগবোৰ পঢ়িবলৈ ব্যৰ্থ হৈছে (এক্সিট কোড %s)</string>
@@ -1236,7 +1236,7 @@ morphe_header_custom_dark.png
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">সংৰক্ষণ ব্যৱস্থাপনা</string>
     <string name="settings_system_storage_management_description">ডিছকৰ ব্যৱহাৰ দেখুৱায় আৰু কেচ কৰা ফাইলসমূহ মচি পেলায়</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s খালী</string>
     <string name="settings_system_storage_saved_apks">সংৰক্ষিত APK সমূহ</string>
     <string name="settings_system_storage_caches">কেছ</string>
@@ -1259,7 +1259,7 @@ morphe_header_custom_dark.png
     <string name="settings_system_storage_clear_anyway">যিকোনো উপায়ে মচি পেলাও</string>
     <string name="settings_system_storage_nothing_to_clear">পৰিষ্কাৰ কৰিবলৈ একো নাই</string>
     <string name="settings_system_storage_open_app_info_title">Android এপ ষ্টোৰেজ খোলক</string>
-    <string name="settings_system_storage_open_app_info_description">চিষ্টেম ছেটিংছৰ জৰিয়তে সকলো Morphe ডাটা পৰিচালনা বা মুছক</string>
+    <string name="settings_system_storage_open_app_info_description">চিষ্টেম ছেটিংছৰ জৰিয়তে সকলো Mamu ডাটা পৰিচালনা বা মুছক</string>
     <string name="settings_system_save_original_apks_title">মূল APKসমূহ সংৰক্ষিত কৰক</string>
     <string name="settings_system_save_original_apks_description">প্ৰি-পেচ APK সংৰক্ষিত কৰক যাতে ফাইলটো পুনৰ নিৰ্বাচন নকৰাকৈ ইয়াক ৰিপেচিংৰ বাবে পুনৰ ব্যৱহাৰ কৰিব পাৰি</string>
     <string name="settings_system_save_patched_apks_title">পেচড APK সমূহ সংৰক্ষণ কৰক</string>
@@ -1313,13 +1313,13 @@ morphe_header_custom_dark.png
     <string name="copy_selection_available_format">%2$s ৰ ভিতৰত %1$s উপলব্ধ</string>
     <!-- Settings - System Tab - Custom file picker -->
     <string name="settings_system_custom_file_picker">কষ্টম ফাইল পিকাৰ</string>
-    <string name="settings_system_custom_file_picker_description">চিষ্টেমৰ পৰিৱৰ্তে Morphe ৰ বিল্ট-ইন ফাইল পিকাৰ ব্যৱহাৰ কৰে</string>
+    <string name="settings_system_custom_file_picker_description">চিষ্টেমৰ পৰিৱৰ্তে Mamu ৰ বিল্ট-ইন ফাইল পিকাৰ ব্যৱহাৰ কৰে</string>
     <!-- Settings - System Tab - APK download helper -->
     <string name="settings_system_apk_download_helper">APK ডাউনলোড সহায়ক</string>
     <string name="settings_system_apk_download_helper_trusted_count">বিশ্বস্ত: %2$d ৰ ভিতৰত %1$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">হেল্পাৰ এপ্‌সমূহে আপোনাৰ বাবে মূল APK সমূহ ডাউনলোড কৰিব পাৰে। ইয়াত আপুনি বিশ্বাস কৰা এপ্‌সমূহহে ডাউনলোড নিৰ্দেশনাসমূহত প্ৰদান কৰা হয়</string>
     <string name="settings_system_apk_download_helper_trust_title">এই হেল্পাৰটো বিশ্বাস কৰিবনে?</string>
-    <string name="settings_system_apk_download_helper_warning">APKটো হেল্পাৰ এপ্‌ৰ পৰা আহে, সেয়েহে আপুনি জানোৱা এপ্‌সমূহকে বিশ্বাস কৰক। পেচিং কৰাৰ আগতে Morphe-এ প্ৰতিটো ফাইলৰ পেকেজ, সংস্কৰণ আৰু স্বাক্ষৰ পৰীক্ষা কৰে</string>
+    <string name="settings_system_apk_download_helper_warning">APKটো হেল্পাৰ এপ্‌ৰ পৰা আহে, সেয়েহে আপুনি জানোৱা এপ্‌সমূহকে বিশ্বাস কৰক। পেচিং কৰাৰ আগতে Mamu-এ প্ৰতিটো ফাইলৰ পেকেজ, সংস্কৰণ আৰু স্বাক্ষৰ পৰীক্ষা কৰে</string>
     <string name="settings_system_apk_download_helper_installed_by">%s দ্বাৰা সংস্থাপন কৰা হৈছে</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">ইনষ্টলাৰ অজ্ঞাত</string>
     <string name="settings_system_apk_download_helper_open_directly">হেল্পাৰটো লগে লগে খোলক</string>
@@ -1352,7 +1352,7 @@ morphe_header_custom_dark.png
     <string name="settings_about_section_project">প্ৰজেক্ট</string>
     <string name="settings_about_section_help">সহায়</string>
     <string name="credits_prior_development">পূৰ্বৰ উন্নয়ন</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">পৰিচালক</string>
     <string name="about_update_available">আপডেট উপলব্ধ: %s</string>
     <string name="about_up_to_date">আপ-টু-ডেট</string>
@@ -1365,7 +1365,7 @@ morphe_header_custom_dark.png
     <string name="contributors_all_time">সৰ্বকালিন</string>
     <string name="contributors_6_months">৬ মাহ</string>
     <string name="contributors_3_months">৩ মাহ</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">সমৰ্থক</string>
     <string name="supporters_description">Open Collective ৰ সমৰ্থক</string>
     <string name="supporters_become">এজন সমৰ্থক হওক</string>
@@ -1373,7 +1373,7 @@ morphe_header_custom_dark.png
     <string name="people_more">আৰু %s জন</string>
     <string name="people_unavailable">তালিকটো লোড কৰিব পৰা নগ\'ল</string>
     <string name="opensource_licenses">মুক্ত উৎসৰ লাইচেন্সসমূহ</string>
-    <string name="opensource_licenses_description">Morphe নিৰ্মাণ কৰিবলৈ ব্যৱহাৰ কৰা লাইব্ৰেৰীসমূহ</string>
+    <string name="opensource_licenses_description">Mamu নিৰ্মাণ কৰিবলৈ ব্যৱহাৰ কৰা লাইব্ৰেৰীসমূহ</string>
     <string name="opensource_licenses_search">লাইব্ৰেৰী আৰু লাইচেন্সসমূহ বিচাৰক</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">এটা পছন্দ</string>
@@ -1398,12 +1398,12 @@ morphe_header_custom_dark.png
     <string name="settings_section_patcher">পেচাৰ</string>
     <string name="settings_section_updates">আপডেটসমূহ</string>
     <string name="settings_section_patching">পাচিং</string>
-    <string name="settings_section_appearance_summary">Morphe ৰ ৰূপ কেনেকুৱা</string>
+    <string name="settings_section_appearance_summary">Mamu ৰ ৰূপ কেনেকুৱা</string>
     <string name="settings_section_patch_options_summary">চিম্পল মোডৰ দ্বাৰা এপবোৰ কিহেৰে পেচ কৰা হয়</string>
     <string name="settings_section_general">সাধাৰণ</string>
     <string name="settings_section_patcher_summary">এই ডিভাইচত এপসমূহ কেনেকৈ পেচ কৰা হয়</string>
     <string name="settings_section_help_info">সহায় &amp; তথ্য</string>
-    <string name="settings_section_about_summary">Morphe ৰ বিষয়ে অধিক আৰু সহায় লাভ কৰক</string>
+    <string name="settings_section_about_summary">Mamu ৰ বিষয়ে অধিক আৰু সহায় লাভ কৰক</string>
     <string name="settings_section_local_files">ফাইলসমূহ</string>
     <string name="settings_section_backup">বেকআপ</string>
     <string name="settings_section_import_export">আমদানি আৰু ৰপ্তানি</string>
@@ -1566,7 +1566,7 @@ morphe_header_custom_dark.png
     <string name="update_completed">আপডেট ইনষ্টল হৈছে</string>
     <string name="install_update_manager_failed">আপডেট ইনষ্টল কৰাত ব্যৰ্থ হৈছে</string>
     <string name="installing_manager_update">আপডেট ইনষ্টল হৈ আছে…</string>
-    <string name="installing_manager_update_hint">আপডেট সমাপ্ত কৰিবলৈ Morphe বন্ধ হৈ যাব</string>
+    <string name="installing_manager_update_hint">আপডেট সমাপ্ত কৰিবলৈ Mamu বন্ধ হৈ যাব</string>
     <string name="downloading_manager_update">আপডেট ডাউনলোড হৈ আছে…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">%1$s MB ডাউনলোড কৰা হৈছে</string>
@@ -1589,7 +1589,7 @@ morphe_header_custom_dark.png
     <string name="onboarding_signing_key_desc">আপোনাৰ প্যাচ কৰা এপবোৰত স্বাক্ষৰ কৰা কী-টো বেকআপ লওক। ইয়াৰ অবিহনে, সেইবোৰক আন-ইনষ্টল কৰাৰ পিছতহে আপডেট কৰিব পৰা যাব</string>
     <string name="onboarding_swipe_title">সোৱাইপ জেচচাৰ</string>
     <string name="onboarding_swipe_desc">এটা এপ কাৰ্ডৰ ওপৰত সোঁফালে সোৱাইপ কৰি ইয়াৰ উপলব্ধ পেচবোৰ চাওক। হোম স্ক্ৰীনৰ পৰা কাৰ্ডটো লুকুৱাবলৈ বাওঁফালে সোৱাইপ কৰক</string>
-    <string name="onboarding_settings_desc">Morphe কাস্টমাইজ কৰক: ৰূপ, উন্নত বিকল্প আৰু চিষ্টেম টুলসমূহ</string>
+    <string name="onboarding_settings_desc">Mamu কাস্টমাইজ কৰক: ৰূপ, উন্নত বিকল্প আৰু চিষ্টেম টুলসমূহ</string>
     <string name="onboarding_sources_patches_desc">এই উৎসৰ পৰা উপলব্ধ সকলো পেচ দেখতেকৈ টেপ কৰক</string>
     <string name="onboarding_sources_version_desc">এই উৎসৰ সম্পূৰ্ণ চেঞ্জলগ দেখতেকৈ সংস্কৰণটোত টেপ কৰক</string>
     <string name="onboarding_sources_apps_desc">এই উৎসটোৱে কোনবোৰ এপ প্যাচ কৰে সেয়া চাবলৈ ট্যাপ কৰক আৰু ইয়াৰ কোনবোৰৰ বাবে প্যাচ উপলব্ধ আছে সেয়া বাছি লওক</string>
@@ -1601,9 +1601,28 @@ morphe_header_custom_dark.png
     <string name="onboarding_system_file_picker_desc">APK বা keystores বাছনি কৰোঁতে চিষ্টেম পিকাৰৰ পৰিৱৰ্তে বিল্ট-ইন ফাইল ব্ৰাউজাৰ ব্যৱহাৰ কৰিবলৈ সক্ৰিয় কৰক</string>
     <!-- Tour prompt dialog shown after first successful patch install -->
     <string name="tour_prompt_title">ফিচাৰৰ এক দ্ৰুত ভ্ৰমণ</string>
-    <string name="tour_prompt_desc">Morphe-ৰ মূল ফিচাৰবোৰৰ এক দ্ৰুত ভ্ৰমণ বিচাৰে নেকি?</string>
+    <string name="tour_prompt_desc">Mamu-ৰ মূল ফিচাৰবোৰৰ এক দ্ৰুত ভ্ৰমণ বিচাৰে নেকি?</string>
     <!-- Label of a footer button beside "Skip". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="tour_prompt_confirm">মোক দেখুৱাওক</string>
     <string name="onboarding_restart_title">ফিচাৰ ভ্ৰমণ</string>
     <string name="onboarding_restart_desc">মুখ্য বৈশিষ্ট্যসমূহৰ এটা পৰিচালিত ট্যুৰ</string>
+
+    <string name="home_app_filter_all_description">হোম স্ক্ৰীনৰ প্ৰতিটো এপ</string>
+    <string name="home_app_filter_patched_description">আপুনি Mamu-ৰ সৈতে পেচ কৰা বা সংৰক্ষণ কৰা এপসমূহ</string>
+    <string name="home_app_filter_not_patched_description">আপুনি Mamu-ত এতিয়াও পেচ নকৰা এপসমূহ</string>
+    <string name="home_app_filter_installed_description">বৰ্তমান এই ডিভাইচত সংস্থাপিত এপসমূহ</string>
+    <string name="home_app_filter_uninstalled_description">Mamu ৰ দ্বাৰা প্যাচ কৰা এপসমূহ যিবোৰ এই ডিভাইচত আৰু নাই</string>
+    <string name="home_app_filter_clones_description">নিজাকৈ এটা পেকেজ নামৰ অধীনত নিৰ্মিত এপসমূহ, যিবোৰ মূল এপটোৰ সৈতে সংস্থাপন কৰা হৈছে</string>
+    <string name="home_app_sort_name_asc_description">বৰ্ণানুসৰি, A ৰ পৰা Z লৈ</string>
+    <string name="home_app_sort_name_desc_description">উল্টো বৰ্ণানুসৰি, Z ৰ পৰা A লৈ</string>
+    <string name="home_app_sort_recently_patched_description">সৰ্বশেষত প্ৰচিং কৰা এপবোৰ আগতে</string>
+    <string name="home_category_custom">কষ্টম</string>
+    <string name="sources_filter_all_description">প্ৰতিটো উৎস</string>
+    <string name="sources_filter_enabled_description">উৎসৰ পেচচবোৰ ইয়াৰ পৰা লোৱা হয়</string>
+    <string name="sources_filter_disabled_description">উৎসবোৰ বন্ধ কৰা হৈছে</string>
+    <string name="sources_filter_issues_description">যিবোৰ উৎস ব্লক কৰা হৈছে, লোড কৰিব পৰা নাই বা নতুন Mamu ৰ প্ৰয়োজন</string>
+    <string name="sources_sort_last_updated_description">নৱীনতম উৎস আপডেটসমূহ প্ৰথমে</string>
+    <string name="sources_sort_enabled_first_description">অসক্ৰিয় উৎসসমূহৰ আগতে সক্ৰিয় উৎসসমূহ দেখুৱাওক</string>
+    <string name="home_apk_availability_installed_version">এই ডিভাইচত ইনষ্টল কৰা হৈছে: %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">কিস্টোৰ ফৰ্মেট</string>
 </resources>

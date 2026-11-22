@@ -5,10 +5,12 @@
 
 package app.morphe.manager.ui.screen.shared
 
+import androidx.compose.foundation.layout.PaddingValues
+
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -36,8 +38,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import app.morphe.manager.R
 
-/** Shape of an [InfoPanel], which its rows are pressed and focused on too, so either fits its corners. */
-private val InfoPanelShape = RoundedCornerShape(Defaults.CornerMedium)
+private val InfoPanelShape = RoundedCornerShape(Defaults.CompactCornerRadius)
 
 /**
  * Panel of [InfoRow]s inside a card, parted by inset [SettingsDivider]s. Its fill stays neutral so a
@@ -50,7 +51,7 @@ fun InfoPanel(
 ) {
     Surface(
         modifier = modifier.fillMaxWidth(),
-        shape = InfoPanelShape,
+        shape = RoundedCornerShape(Defaults.CompactCornerRadius),
         color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f),
         border = CardBorder.of(appAccentBorder(LocalAccent.current))
     ) {
@@ -107,7 +108,7 @@ fun InfoRow(
     modifier: Modifier = Modifier,
     onClick: (() -> Unit)? = null,
     enabled: Boolean = true,
-    contentPadding: PaddingValues = InfoRowPadding,
+    contentPadding: PaddingValues = PaddingValues(horizontal = Defaults.ItemSpacing, vertical = Defaults.ContentPaddingSmall),
     copyText: String? = null,
     trailing: (@Composable () -> Unit)? = null
 ) {
@@ -143,7 +144,7 @@ fun InfoRow(
             )
             .then(if (enabled) Modifier else Modifier.alpha(Defaults.DISABLED_ALPHA))
             .padding(contentPadding),
-        horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceMedium),
+        horizontalArrangement = Arrangement.spacedBy(14.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(

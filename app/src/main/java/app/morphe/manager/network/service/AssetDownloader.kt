@@ -8,6 +8,7 @@ package app.morphe.manager.network.service
 import android.util.Log
 import app.morphe.manager.domain.manager.PreferencesManager
 import app.morphe.manager.network.api.ReleaseAPI
+import app.morphe.manager.network.api.isExtendedManagerRelease
 import app.morphe.manager.network.api.isRawGitHubUrl
 import app.morphe.manager.util.LOG_TAG
 import io.ktor.client.request.header
@@ -48,6 +49,12 @@ class AssetDownloader(
         onProgress: ((bytesRead: Long, contentLength: Long?) -> Unit)? = null
     ) {
         try {
+            if (isExtendedManagerRelease(downloadUrl)) {
+                // Public releases download anonymously; a configured PAT still goes through the API
+                val signedUrl = api.resolvePrivateManagerDownload(downloadUrl) ?: downloadUrl
+                direct(signedUrl, saveLocation, onProgress)
+                return
+            }
             try {
                 direct(downloadUrl, saveLocation, onProgress)
             } catch (e: Exception) {

@@ -181,3 +181,7 @@ fun getRelativeTimeString(timestamp: Long): String {
         DateUtils.FORMAT_ABBREV_RELATIVE
     ).toString()
 }
+
+/** Space readings grouped in the existing storage settings panel. */
+fun Context.formatUsedFree(used: Long, free: Long): String =
+    if (free <= 0L) formatBytes(used) else "${formatBytes(used)} / ${formatBytes(free)}"

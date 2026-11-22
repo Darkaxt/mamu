@@ -64,6 +64,7 @@ fun syncFcmTopics(
     useManagerPrereleases: Boolean,
     usePatchesPrereleases: Boolean = false,
 ) {
+    if (!USE_UPSTREAM_FCM) return
     val messaging = FirebaseMessaging.getInstance()
 
     if (!notificationsEnabled) {

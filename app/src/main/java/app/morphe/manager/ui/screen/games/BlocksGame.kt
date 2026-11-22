@@ -28,6 +28,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import app.morphe.manager.R
 import app.morphe.manager.ui.screen.shared.Defaults
 import kotlinx.coroutines.delay
@@ -274,7 +275,7 @@ fun BlocksGame(state: BlocksGameState) {
 private fun BlocksCanvas(state: BlocksGameState, modifier: Modifier) {
     Box(
         modifier = modifier
-            .clip(RoundedCornerShape(Defaults.CornerMedium))
+            .clip(RoundedCornerShape(Defaults.CompactCornerRadius))
             .background(BlocksBg)
             .pointerInput(Unit) {
                 // Rotation is the gesture that has to land instantly, so it stays a plain
@@ -393,9 +394,9 @@ private fun BlocksCanvas(state: BlocksGameState, modifier: Modifier) {
                     color = Color.White,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
-                        .clip(RoundedCornerShape(Defaults.CornerSmall))
+                        .clip(RoundedCornerShape(8.dp))
                         .background(Color.Black.copy(alpha = 0.45f))
-                        .padding(horizontal = Defaults.SpaceLarge, vertical = Defaults.SpaceSmall)
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
                 )
             }
         }

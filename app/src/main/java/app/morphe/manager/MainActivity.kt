@@ -10,6 +10,8 @@
 
 package app.morphe.manager
 
+import app.morphe.manager.ui.screen.shared.UserMessages
+
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -22,7 +24,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -30,7 +31,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
+import androidx.compose.ui.window.DialogWindowProvider
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
@@ -38,59 +44,46 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.toRoute
 import app.morphe.manager.domain.batch.BatchTarget
 import app.morphe.manager.domain.manager.HomeAppButtonPreferences
 import app.morphe.manager.domain.manager.PreferencesManager
 import app.morphe.manager.domain.repository.PatchBundleRepository
 import app.morphe.manager.notification.UpdateNotifications
-import app.morphe.manager.ui.model.SourceScope
 import app.morphe.manager.ui.model.navigation.*
 import app.morphe.manager.ui.screen.BatchPatcherScreen
 import app.morphe.manager.ui.screen.HomeScreen
 import app.morphe.manager.ui.screen.PatcherScreen
+import app.morphe.manager.ui.screen.SettingsScreen
 import app.morphe.manager.ui.screen.games.MiniGamesPage
 import app.morphe.manager.ui.screen.home.*
-import app.morphe.manager.ui.screen.settings.SettingsNavigation
-import app.morphe.manager.ui.screen.settings.SettingsSubpage
-import app.morphe.manager.ui.screen.settings.SettingsSubpageScreen
-import app.morphe.manager.ui.screen.settings.system.LicensesPage
-import app.morphe.manager.ui.screen.settings.system.PatchSelectionsPage
 import app.morphe.manager.ui.screen.shared.AnimatedBackground
 import app.morphe.manager.ui.screen.shared.Animations
-import app.morphe.manager.ui.screen.shared.LocalBackdropHaze
 import app.morphe.manager.ui.screen.shared.BackgroundType
-import app.morphe.manager.ui.screen.shared.DialogHost
-import app.morphe.manager.ui.screen.shared.MainPage
-import app.morphe.manager.ui.screen.shared.MessageHost
-import app.morphe.manager.ui.screen.shared.ModalLayer
 import app.morphe.manager.ui.screen.shared.RandomBackground
-import app.morphe.manager.ui.screen.shared.UserMessages
 import app.morphe.manager.ui.screen.shared.rememberRandomBackground
-import app.morphe.manager.ui.screen.shared.sharedAxisZEnter
-import app.morphe.manager.ui.screen.shared.sharedAxisZExit
-import app.morphe.manager.ui.screen.sources.BundleChangelogHost
-import app.morphe.manager.ui.screen.sources.BundleChangelogRequest
 import app.morphe.manager.ui.theme.*
 import app.morphe.manager.ui.viewmodel.HomeViewModel
 import app.morphe.manager.ui.viewmodel.MainViewModel
 import app.morphe.manager.ui.viewmodel.PatcherViewModel
 import app.morphe.manager.util.*
-import dev.chrisbanes.haze.hazeSource
-import dev.chrisbanes.haze.rememberHazeState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeoutOrNull
 import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.koinInject
 import org.koin.core.context.GlobalContext
 import org.koin.core.parameter.parametersOf
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 import org.koin.androidx.viewmodel.ext.android.getViewModel as getActivityViewModel
 
-class MainActivity : ComponentActivity() {
+private enum class OnboardingPhase { HOME, SHEET, SETTINGS, DONE }
+
+class MainActivity : androidx.activity.ComponentActivity() {
 
     /** Language the activity was attached in, to tell when it has to be recreated. */
     private var attachedLanguage = AppLocale.SYSTEM
@@ -184,12 +177,7 @@ class MainActivity : ComponentActivity() {
                 appCardColorMode = appCardColorMode,
                 appCardColorValues = appCardColorValues
             ) {
-                MessageHost(modifier = Modifier.fillMaxSize()) {
-                    // Dialogs raised over whichever screen is open, such as an update's changelog
-                    ModalLayer {
-                        MorpheManager(vm)
-                    }
-                }
+                MorpheManager(vm)
             }
         }
     }
@@ -215,7 +203,7 @@ class MainActivity : ComponentActivity() {
 
     /**
      * Handles add-source deep links from an explicit-package `intent://` fired by the website.
-     * Format: https://morphe.software/add-source?<github|gitlab>=owner/repo(&name=…)(&app=package&appName=…)
+     * Format: https://morphe.software/add-source?<github|gitlab>=owner/repo(&name=…)
      * Only GitHub and GitLab URLs are accepted.
      */
     private fun handleDeepLinkIntent(intent: Intent?, vm: MainViewModel) {
@@ -286,7 +274,7 @@ class MainActivity : ComponentActivity() {
             return
         }
 
-        // A file shared via the share sheet: a patch source or an APK-family file
+        // Handle APK-family file shared via system share sheet (.apk/.apks/.xapk/.apkm)
         if (intent?.action == Intent.ACTION_SEND) {
             val uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
@@ -294,15 +282,18 @@ class MainActivity : ComponentActivity() {
                 @Suppress("DEPRECATION")
                 intent.getParcelableExtra(Intent.EXTRA_STREAM)
             }
-            uri?.let { vm.pendingIncomingFile = MainViewModel.IncomingFile(it, shared = true) }
+            if (uri != null) {
+                vm.pendingExternalApkUri = uri
+            }
             return
         }
 
         val data = intent?.data ?: return
 
-        // A file opened with the app, which can only be a patch source
+        // Handle .mpp file open from file manager
         if (intent.action == Intent.ACTION_VIEW && data.scheme in listOf("file", "content")) {
-            vm.pendingIncomingFile = MainViewModel.IncomingFile(data, shared = false)
+            vm.pendingMppUri = data
+            // Not .mpp - don't process further regardless
             return
         }
 
@@ -311,17 +302,21 @@ class MainActivity : ComponentActivity() {
                 data.path?.startsWith(ADD_SOURCE_PATH) == true
         if (!isAddSource) return
 
-        fun param(key: String) = data.getQueryParameter(key)?.takeIf { it.isNotBlank() }
+        val name = data.getQueryParameter("name")?.takeIf { it.isNotBlank() }
 
-        // The website names the host by the same key the manager builds these links with
-        val url = CodeHost.entries.firstNotNullOfOrNull { host ->
-            param(host.key)?.let { "https://${host.host}/$it" }
-        } ?: return
-        vm.pendingDeepLinkSource = MainViewModel.DeepLinkSource(
-            url = url,
-            name = param("name"),
-            scope = SourceScope.fromLink(app = param("app"), appName = param("appName"))
-        )
+        val githubRepo = data.getQueryParameter("github")?.takeIf { it.isNotBlank() }
+        if (githubRepo != null) {
+            val url = "https://github.com/$githubRepo"
+            vm.pendingDeepLinkSource = MainViewModel.DeepLinkSource(url = url, name = name)
+            return
+        }
+
+        val gitlabRepo = data.getQueryParameter("gitlab")?.takeIf { it.isNotBlank() }
+        if (gitlabRepo != null) {
+            val url = "https://gitlab.com/$gitlabRepo"
+            vm.pendingDeepLinkSource = MainViewModel.DeepLinkSource(url = url, name = name)
+            return
+        }
     }
 
     companion object {
@@ -383,19 +378,19 @@ private fun MorpheManager(vm: MainViewModel) {
 
     // Handle deep link source
     LaunchedEffect(vm.pendingDeepLinkSource) {
-        vm.pendingDeepLinkSource?.let { source ->
+        vm.pendingDeepLinkSource?.let { bundle ->
             navController.popBackStack(HomeScreen, false)
-            homeViewModel.handleDeepLinkAddSource(source)
+            homeViewModel.handleDeepLinkAddSource(bundle.url, bundle.name)
             vm.pendingDeepLinkSource = null
         }
     }
 
-    // File opened with or shared to the app
-    LaunchedEffect(vm.pendingIncomingFile) {
-        vm.pendingIncomingFile?.let { file ->
+    // Handle .mpp file opened from file manager
+    LaunchedEffect(vm.pendingMppUri) {
+        vm.pendingMppUri?.let { uri ->
             navController.popBackStack(HomeScreen, false)
-            vm.pendingIncomingFile = null
-            homeViewModel.openIncomingFile(file.uri, file.shared)
+            homeViewModel.openIncomingFile(uri, shared = false)
+            vm.pendingMppUri = null
         }
     }
 
@@ -422,13 +417,14 @@ private fun MorpheManager(vm: MainViewModel) {
 
     // The manager has no changelog view of its own for a release it has not installed, so the
     // update dialog is the answer to "what's new": it lists exactly the entries being offered
-    DialogHost(visible = vm.pendingManagerChangelog) {
+    if (vm.pendingManagerChangelog) {
         ManagerChangelogDialog(
             onDismiss = { vm.pendingManagerChangelog = false },
             expectsUpdate = true
         )
     }
 
+    val context = LocalContext.current
     LaunchedEffect(vm.pendingAppInfoPackage) {
         vm.pendingAppInfoPackage?.let { packageName ->
             vm.pendingAppInfoPackage = null
@@ -442,7 +438,7 @@ private fun MorpheManager(vm: MainViewModel) {
     val nothingToRepatchText = stringResource(R.string.batch_patch_nothing_outdated)
     LaunchedEffect(vm.nothingToRepatch) {
         if (vm.nothingToRepatch) {
-            messages.show(nothingToRepatchText)
+            context.toast(nothingToRepatchText)
             vm.consumeNothingToRepatch()
         }
     }
@@ -453,12 +449,14 @@ private fun MorpheManager(vm: MainViewModel) {
             navController.popBackStack(HomeScreen, false)
             navController.navigateComplex(
                 BatchPatcher,
-                BatchPatcher.ViewModelParams(targets = request.targets)
+                BatchPatcher.ViewModelParams(
+                    targets = request.targets
+                )
             )
         }
     }
 
-    DialogHost(target = vm.batchPatchConfirmation) { request ->
+    vm.batchPatchConfirmation?.let { request ->
         ExternalBatchPatchDialog(
             callerPackage = request.callerPackage,
             packageCount = request.targets.size,
@@ -467,87 +465,155 @@ private fun MorpheManager(vm: MainViewModel) {
         )
     }
 
-    // Onboarding tour, run over the main screen from its first step
-    var showOnboarding by remember { mutableStateOf(false) }
-    val onboardingState = remember { OnboardingState() }
-
-    val onboardingSteps = remember(onboardingState) {
-        // Only the first step plays the swipe on the card, so every other one stops it
-        fun endSwipeHint() {
-            onboardingState.swipeActive = false
-            homeViewModel.apps.markSwipeGestureHintShown()
+    // Handle .apk file shared via share sheet
+    LaunchedEffect(vm.pendingExternalApkUri) {
+        vm.pendingExternalApkUri?.let { uri ->
+            navController.popBackStack(HomeScreen, false)
+            vm.pendingExternalApkUri = null
+            homeViewModel.openIncomingFile(uri, shared = true)
         }
-        // Each turns to its page and row, so stepping back from another page lands on it too
-        fun targetStep(titleRes: Int, descRes: Int, page: MainPage, target: TourTarget) = StepDef(
-            titleRes, descRes,
-            getBounds = { onboardingState.targetBounds[target] },
-            onShow = {
-                endSwipeHint()
-                onboardingState.page = page
-                onboardingState.target = target
-            }
-        )
+    }
+
+    // Shared state between HomeScreen and PatcherScreen for mount install mode.
+    // Set by HomeViewModel.resolvePrePatchInstallerChoice()
+    val usingMountInstallState = remember { mutableStateOf(false) }
+
+    // Unified onboarding
+    val wantsOnboardingTour = remember { mutableStateOf(false) }
+    var onboardingPhase by remember { mutableStateOf(OnboardingPhase.HOME) }
+    var phaseInitialStep by remember { mutableIntStateOf(0) }
+    val showOnboarding = wantsOnboardingTour.value && onboardingPhase != OnboardingPhase.DONE
+    var showOnboardingOverlay by remember { mutableStateOf(true) }
+    val homeOnboardingState = remember { OnboardingState() }
+    val globalOnboardingState = remember { GlobalOnboardingState() }
+
+    val homeSteps = remember(homeOnboardingState) {
         listOf(
             StepDef(
                 R.string.onboarding_swipe_title, R.string.onboarding_swipe_desc,
-                getBounds = { onboardingState.firstAppCardBounds },
+                getBounds = { homeOnboardingState.firstAppCardBounds },
                 onShow = {
-                    onboardingState.page = MainPage.APPS
-                    onboardingState.swipeActive = true
+                    homeOnboardingState.swipeActive = true
                     homeViewModel.apps.triggerSwipeGestureHint()
                 }
             ),
-            targetStep(R.string.home_other_apps_action, R.string.onboarding_other_apps_desc, MainPage.APPS, TourTarget.OTHER_APPS),
             StepDef(
-                R.string.sources_management_title, R.string.onboarding_sources_desc,
-                getBounds = { onboardingState.navigationBounds[MainPage.SOURCES] },
+                R.string.home_other_apps_action, R.string.onboarding_other_apps_desc,
+                getBounds = { homeOnboardingState.patchAnyAppBounds },
                 onShow = {
-                    onboardingState.page = MainPage.APPS
-                    endSwipeHint()
+                    homeOnboardingState.swipeActive = false
+                    homeViewModel.apps.markSwipeGestureHintShown()
                 }
             ),
-            targetStep(R.string.sources_dialog_add_source, R.string.onboarding_add_source_desc, MainPage.SOURCES, TourTarget.ADD_SOURCE),
-            targetStep(R.string.patches, R.string.onboarding_sources_patches_desc, MainPage.SOURCES, TourTarget.SOURCE_PATCHES),
-            targetStep(R.string.version, R.string.onboarding_sources_version_desc, MainPage.SOURCES, TourTarget.SOURCE_VERSION),
-            targetStep(R.string.sources_apps, R.string.onboarding_sources_apps_desc, MainPage.SOURCES, TourTarget.SOURCE_APPS),
-            targetStep(
-                R.string.sources_management_prerelease_toggle, R.string.onboarding_sources_prerelease_desc,
-                MainPage.SOURCES, TourTarget.SOURCE_PRERELEASE
-            ),
             StepDef(
-                R.string.settings, R.string.onboarding_settings_desc,
-                getBounds = { onboardingState.navigationBounds[MainPage.SETTINGS] }
-            ),
-            // In the order the settings page lists them, so the tour only ever moves down it
-            targetStep(R.string.appearance, R.string.onboarding_appearance_tab_desc, MainPage.SETTINGS, TourTarget.APPEARANCE),
-            targetStep(R.string.settings_advanced_expert_mode, R.string.onboarding_expert_mode_desc, MainPage.SETTINGS, TourTarget.EXPERT_MODE),
-            targetStep(R.string.installer, R.string.onboarding_system_installer_desc, MainPage.SETTINGS, TourTarget.INSTALLER),
-            targetStep(R.string.settings_system_custom_file_picker, R.string.onboarding_system_file_picker_desc, MainPage.SETTINGS, TourTarget.FILE_PICKER),
-            targetStep(R.string.settings_system_signing_key, R.string.onboarding_signing_key_desc, MainPage.SETTINGS, TourTarget.SIGNING_KEY)
+                R.string.sources_management_title, R.string.onboarding_sources_desc,
+                getBounds = { homeOnboardingState.sourcesButtonBounds },
+                onShow = {
+                    homeOnboardingState.swipeActive = false
+                    homeViewModel.apps.markSwipeGestureHintShown()
+                }
+            )
         )
     }
 
-    // Every entry point starts the tour from its first step on the apps page
+    val settingsSteps = remember(homeOnboardingState, globalOnboardingState) {
+        listOf(
+            StepDef(
+                R.string.settings, R.string.onboarding_settings_desc,
+                getBounds = { homeOnboardingState.settingsButtonBounds },
+                onShow = { navController.popBackStack(HomeScreen, false) }
+            ),
+            StepDef(
+                R.string.appearance, R.string.onboarding_appearance_tab_desc,
+                getBounds = { globalOnboardingState.appearanceTabBounds },
+                onShow = {
+                    scope.launch {
+                        navController.navigate(Settings) { launchSingleTop = true }
+                        // Wait for SettingsScreen to compose and register callbacks (skipped if already there)
+                        withTimeoutOrNull(2.seconds) {
+                            while (globalOnboardingState.onNavigateToAppearanceTab == null) {
+                                delay(16.milliseconds)
+                            }
+                        }
+                        globalOnboardingState.onNavigateToAppearanceTab?.invoke()
+                    }
+                }
+            ),
+            StepDef(
+                R.string.settings_appearance_theme, R.string.onboarding_appearance_theme_desc,
+                getBounds = { globalOnboardingState.themeSelectorBounds },
+                onShow = {
+                    globalOnboardingState.onNavigateToAppearanceTab?.invoke()
+                    globalOnboardingState.onScrollToThemeSelector?.invoke()
+                }
+            ),
+            StepDef(
+                R.string.settings_advanced_expert_mode, R.string.onboarding_expert_mode_desc,
+                getBounds = { globalOnboardingState.expertModeBounds },
+                onShow = { globalOnboardingState.onScrollToExpertMode?.invoke() }
+            ),
+            StepDef(
+                R.string.settings_system_process_runtime, R.string.settings_system_jvm_runtime_description,
+                getBounds = { globalOnboardingState.processRuntimeBounds },
+                onShow = { globalOnboardingState.onScrollToProcessRuntime?.invoke() }
+            ),
+            StepDef(
+                R.string.onboarding_system_tab_title, R.string.onboarding_system_tab_desc,
+                getBounds = { globalOnboardingState.systemTabBounds },
+                onShow = { globalOnboardingState.onNavigateToSystemTab?.invoke() }
+            ),
+            StepDef(
+                R.string.installer, R.string.onboarding_system_installer_desc,
+                getBounds = { globalOnboardingState.installerSectionBounds },
+                onShow = { globalOnboardingState.onScrollToInstaller?.invoke() }
+            ),
+            StepDef(
+                R.string.settings_system_custom_file_picker, R.string.onboarding_system_file_picker_desc,
+                getBounds = { globalOnboardingState.filePickerBounds },
+                onShow = { globalOnboardingState.onScrollToFilePicker?.invoke() }
+            )
+        )
+    }
+
+    val sheetSteps = remember(globalOnboardingState) {
+        listOf(
+            StepDef(
+                titleRes = R.string.patches,
+                descRes = R.string.onboarding_sources_patches_desc,
+                getBounds = { globalOnboardingState.sourcesPatchesBounds },
+                onShow = { globalOnboardingState.onScrollToFirstSource?.invoke() }
+            ),
+            StepDef(
+                titleRes = R.string.changelog,
+                descRes = R.string.onboarding_sources_version_desc,
+                getBounds = { globalOnboardingState.sourcesVersionBounds }
+            ),
+            StepDef(
+                titleRes = R.string.sources_management_prerelease_toggle,
+                descRes = R.string.onboarding_sources_prerelease_desc,
+                getBounds = { globalOnboardingState.sourcesPrereleaseBounds },
+                onShow = { globalOnboardingState.onScrollToPrerelease?.invoke() }
+            )
+        )
+    }
+
+    val totalOnboardingSteps = homeSteps.size + sheetSteps.size + settingsSteps.size
+
+    // Every entry point starts the tour from its first step on the home screen
     val startOnboardingTour: () -> Unit = {
         // The tour points at app cards, which a saved filter could leave out of the list
         homeAppButtonPrefs.setFilterMode(null)
-        showOnboarding = true
-    }
-    // Finishing and skipping both end the tour back on the apps
-    val finishOnboardingTour: () -> Unit = {
-        onboardingState.swipeActive = false
-        homeViewModel.apps.markSwipeGestureHintShown()
-        onboardingState.page = MainPage.APPS
-        onboardingState.target = null
-        showOnboarding = false
-        scope.launch { prefs.firstLaunch.update(false) }
+        onboardingPhase = OnboardingPhase.HOME
+        phaseInitialStep = 0
+        showOnboardingOverlay = true
+        wantsOnboardingTour.value = true
     }
     val declineOnboardingTour: () -> Unit = {
         scope.launch { prefs.firstLaunch.update(false) }
     }
 
     // Box with background at the highest level
-    Box(
+    app.morphe.manager.ui.screen.shared.MessageHost(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
@@ -561,25 +627,18 @@ private fun MorpheManager(vm: MainViewModel) {
             patchingCompleted = { patchingCompleted.value }
         )
 
-        // What the tour's card blurs, recorded only while the tour runs
-        val tourHaze = rememberHazeState()
-
         // All content on top of background
         NavHost(
             navController = navController,
             startDestination = HomeScreen,
-            modifier = if (showOnboarding) Modifier.hazeSource(tourHaze) else Modifier,
-            // Every screen opens deeper than the main one along Material's shared Z axis, rather than
-            // sideways, which the main screen's own pages already move. Back runs it in reverse, and
-            // under the predictive gesture the screen leaving shrinks away instead
-            enterTransition = { sharedAxisZEnter(forward = true) },
-            exitTransition = { sharedAxisZExit(forward = true) },
-            popEnterTransition = { sharedAxisZEnter(forward = false) },
-            popExitTransition = { sharedAxisZExit(forward = false) },
-            predictivePopEnterTransition = { sharedAxisZEnter(forward = false) },
-            predictivePopExitTransition = { Animations.predictiveBackExit }
+            enterTransition = { Animations.screenEnter },
+            exitTransition = { Animations.screenExit },
+            popEnterTransition = { Animations.screenEnter },
+            popExitTransition = { Animations.screenExit },
+            predictivePopEnterTransition = { Animations.screenEnter },
+            predictivePopExitTransition = { Animations.pushExit }
         ) {
-            screen<HomeScreen> { entry ->
+            composable<HomeScreen> { entry ->
                 val bundleUpdateProgress by homeViewModel.bundleUpdateProgress.collectAsStateWithLifecycle(null)
                 val appInfoTriggerPackage by entry.savedStateHandle.getStateFlow<String?>("app_info_trigger_package", null)
                     .collectAsStateWithLifecycle()
@@ -595,10 +654,9 @@ private fun MorpheManager(vm: MainViewModel) {
                 }
 
                 HomeScreen(
-                    settingsNavigation = remember(navController, showOnboarding) {
-                        navController.settingsNavigation(startTour = startOnboardingTour.takeUnless { showOnboarding })
-                    },
-                    onboardingState = onboardingState.takeIf { showOnboarding },
+                    onSettingsClick = { navController.navigate(Settings) },
+                    onboardingState = if (showOnboarding && onboardingPhase == OnboardingPhase.HOME) homeOnboardingState else null,
+                    globalOnboardingState = if (showOnboarding) globalOnboardingState else null,
                     onStartQuickPatch = { params ->
                         entry.lifecycleScope.launch {
                             navController.navigateComplex(Patcher, params)
@@ -606,10 +664,16 @@ private fun MorpheManager(vm: MainViewModel) {
                     },
                     onStartBatchPatch = { targets ->
                         entry.lifecycleScope.launch {
-                            navController.navigateComplex(BatchPatcher, BatchPatcher.ViewModelParams(targets))
+                            navController.navigateComplex(
+                                BatchPatcher,
+                                BatchPatcher.ViewModelParams(
+                                    targets = targets
+                                )
+                            )
                         }
                     },
                     homeViewModel = homeViewModel,
+                    usingMountInstallState = usingMountInstallState,
                     bundleUpdateProgress = bundleUpdateProgress,
                     appInfoTriggerPackage = appInfoTriggerPackage,
                     onAppInfoTriggerHandled = {
@@ -618,8 +682,8 @@ private fun MorpheManager(vm: MainViewModel) {
                 )
             }
 
-            screen<BatchPatcher> { entry ->
-                val params = entry.getComplexArg<BatchPatcher.ViewModelParams>() ?: return@screen
+            composable<BatchPatcher> { entry ->
+                val params = entry.getComplexArg<BatchPatcher.ViewModelParams>() ?: return@composable
                 BatchPatcherScreen(
                     targets = params.targets,
                     onBackClick = {
@@ -634,8 +698,8 @@ private fun MorpheManager(vm: MainViewModel) {
                 )
             }
 
-            screen<Patcher> { entry ->
-                val params = entry.getComplexArg<Patcher.ViewModelParams>() ?: return@screen
+            composable<Patcher> { it ->
+                val params = it.getComplexArg<Patcher.ViewModelParams>() ?: return@composable
                 val patcherViewModel: PatcherViewModel = koinViewModel { parametersOf(params) }
                 val leavePatcher: () -> Unit = {
                     patcherViewModel.stopCompletionSound()
@@ -646,74 +710,182 @@ private fun MorpheManager(vm: MainViewModel) {
                 PatcherScreen(
                     onBackClick = leavePatcher,
                     patcherViewModel = patcherViewModel,
+                    usingMountInstall = usingMountInstallState.value,
                     onBackgroundSpeedChange = { patcherBackgroundSpeed.floatValue = it },
                     onPatchingCompleted = { patchingCompleted.value = true },
                     onStartTour = startOnboardingTour,
                     onDeclineTour = declineOnboardingTour,
                     onChangePatches = {
+                        val review = patcherViewModel.takeInputForReview()
                         leavePatcher()
-                        homeViewModel.patchFlow.reopenPatchSelection(params)
+                        homeViewModel.patchFlow.reopenPatchSelection(review)
                     }
                 )
             }
 
-            screen<SettingsDetail> { entry ->
-                SettingsSubpageScreen(
-                    subpage = SettingsSubpage.valueOf(entry.toRoute<SettingsDetail>().subpage),
+            composable<Settings>(
+                enterTransition = { Animations.pushEnter },
+                popExitTransition = { Animations.pushExit }
+            ) {
+                SettingsScreen(
                     homeViewModel = homeViewModel,
-                    navigation = remember(navController) {
-                        // The tour runs over the main screen, so it starts once back there
-                        navController.settingsNavigation(startTour = {
-                            navController.popBackStack(HomeScreen, false)
+                    globalOnboardingState = if (showOnboarding) globalOnboardingState else null,
+                    onStartTour = if (!showOnboarding) {
+                        {
                             startOnboardingTour()
-                        })
-                    },
-                    // Back to the main screen however it was asked for, so a second tap never leaves it
-                    onBack = { navController.popBackStack(HomeScreen, false) }
+                            navController.popBackStack(HomeScreen, false)
+                        }
+                    } else null,
+                    onOpenMiniGames = { navController.navigate(MiniGames) { launchSingleTop = true } }
                 )
             }
 
-            screen<PatchSelections> {
-                PatchSelectionsPage(onBack = { navController.popBackStack(HomeScreen, false) })
-            }
-
-            screen<Licenses> {
-                LicensesPage(onBack = { navController.popBackStack() })
-            }
-
-            screen<MiniGames> {
+            composable<MiniGames>(
+                enterTransition = { Animations.pushEnter },
+                popExitTransition = { Animations.pushExit }
+            ) {
                 MiniGamesPage(onBack = { navController.popBackStack() })
             }
         }
 
         if (showOnboarding) {
-            CompositionLocalProvider(LocalBackdropHaze provides tourHaze) {
-                OnboardingShowcase(steps = onboardingSteps, onComplete = finishOnboardingTour)
+            val currentSteps = when (onboardingPhase) {
+                OnboardingPhase.HOME -> homeSteps
+                OnboardingPhase.SHEET -> sheetSteps
+                OnboardingPhase.SETTINGS -> settingsSteps
+                else -> null
+            }
+            if (currentSteps != null && showOnboardingOverlay) {
+                val phaseOffset = when (onboardingPhase) {
+                    OnboardingPhase.HOME -> 0
+                    OnboardingPhase.SHEET -> homeSteps.size
+                    OnboardingPhase.SETTINGS -> homeSteps.size + sheetSteps.size
+                    else -> 0
+                }
+                val onComplete: () -> Unit = {
+                    when (onboardingPhase) {
+                        OnboardingPhase.HOME -> {
+                            phaseInitialStep = 0
+                            homeOnboardingState.swipeActive = false
+                            homeViewModel.apps.markSwipeGestureHintShown()
+                            homeViewModel.showBundleManagementSheet = true
+                            globalOnboardingState.sheetOnboardingActive = true
+                            scope.launch {
+                                withTimeoutOrNull(3.seconds) {
+                                    while (globalOnboardingState.sourcesPatchesBounds == null) {
+                                        delay(16.milliseconds)
+                                    }
+                                }
+                                onboardingPhase = OnboardingPhase.SHEET
+                            }
+                        }
+                        OnboardingPhase.SHEET -> {
+                            phaseInitialStep = 0
+                            globalOnboardingState.sheetOnboardingActive = false
+                            homeViewModel.showBundleManagementSheet = false
+                            onboardingPhase = OnboardingPhase.SETTINGS
+                        }
+                        OnboardingPhase.SETTINGS -> {
+                            onboardingPhase = OnboardingPhase.DONE
+                            scope.launch {
+                                prefs.firstLaunch.update(false)
+                                navController.popBackStack(HomeScreen, false)
+                            }
+                        }
+                        else -> {}
+                    }
+                }
+                val phaseBack: (() -> Unit)? = when (onboardingPhase) {
+                    OnboardingPhase.SHEET -> {
+                        {
+                            scope.launch {
+                                showOnboardingOverlay = false
+                                globalOnboardingState.sheetOnboardingActive = false
+                                homeViewModel.showBundleManagementSheet = false
+                                delay(300.milliseconds)
+                                phaseInitialStep = homeSteps.size - 1
+                                onboardingPhase = OnboardingPhase.HOME
+                                showOnboardingOverlay = true
+                            }
+                        }
+                    }
+                    OnboardingPhase.SETTINGS -> {
+                        {
+                            scope.launch {
+                                showOnboardingOverlay = false
+                                navController.popBackStack(HomeScreen, false)
+                                delay(300.milliseconds)
+                                globalOnboardingState.sourcesPatchesBounds = null
+                                homeViewModel.showBundleManagementSheet = true
+                                globalOnboardingState.sheetOnboardingActive = true
+                                withTimeoutOrNull(3.seconds) {
+                                    while (globalOnboardingState.sourcesPatchesBounds == null) {
+                                        delay(16.milliseconds)
+                                    }
+                                }
+                                phaseInitialStep = sheetSteps.size - 1
+                                onboardingPhase = OnboardingPhase.SHEET
+                                showOnboardingOverlay = true
+                            }
+                        }
+                    }
+                    else -> null
+                }
+                val onSkip: () -> Unit = {
+                    homeOnboardingState.swipeActive = false
+                    homeViewModel.apps.markSwipeGestureHintShown()
+                    globalOnboardingState.sheetOnboardingActive = false
+                    homeViewModel.showBundleManagementSheet = false
+                    onboardingPhase = OnboardingPhase.DONE
+                    scope.launch {
+                        prefs.firstLaunch.update(false)
+                        navController.popBackStack(HomeScreen, false)
+                    }
+                }
+
+                if (onboardingPhase == OnboardingPhase.SHEET) {
+                    // Render in a Dialog window so the overlay appears above the sheet's popup window
+                    Dialog(
+                        onDismissRequest = {},
+                        properties = DialogProperties(
+                            usePlatformDefaultWidth = false,
+                            dismissOnBackPress = false,
+                            dismissOnClickOutside = false,
+                            decorFitsSystemWindows = false
+                        )
+                    ) {
+                        val dialogWindow = (LocalView.current.parent as? DialogWindowProvider)?.window
+                        SideEffect {
+                            dialogWindow?.setDimAmount(0f)
+                            dialogWindow?.setBackgroundDrawableResource(android.R.color.transparent)
+                        }
+                        OnboardingShowcase(
+                            steps = currentSteps,
+                            stepOffset = phaseOffset,
+                            totalStepsOverride = totalOnboardingSteps,
+                            initialStep = phaseInitialStep,
+                            onComplete = onComplete,
+                            onSkip = onSkip,
+                            onPhaseBack = phaseBack
+                        )
+                    }
+                } else {
+                    key(onboardingPhase) {
+                        OnboardingShowcase(
+                            steps = currentSteps,
+                            stepOffset = phaseOffset,
+                            totalStepsOverride = totalOnboardingSteps,
+                            initialStep = phaseInitialStep,
+                            onComplete = onComplete,
+                            onSkip = onSkip,
+                            onPhaseBack = phaseBack
+                        )
+                    }
+                }
             }
         }
     }
 }
-
-/**
- * The destination of route [T], laid out with the dialogs raised on it over it, so they move with
- * the screen as navigation does, see [ModalLayer].
- */
-private inline fun <reified T : Any> NavGraphBuilder.screen(
-    noinline content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit
-) {
-    composable<T> { entry ->
-        ModalLayer { content(entry) }
-    }
-}
-
-/** Where the settings lead out to, as routes of this navigation, see [SettingsNavigation]. */
-private fun NavController.settingsNavigation(startTour: (() -> Unit)?) = SettingsNavigation(
-    openSubpage = { subpage -> navigate(SettingsDetail(subpage.name)) { launchSingleTop = true } },
-    openPatchSelections = { navigate(PatchSelections) { launchSingleTop = true } },
-    openLicenses = { navigate(Licenses) { launchSingleTop = true } },
-    openMiniGames = { navigate(MiniGames) { launchSingleTop = true } },
-    startTour = startTour
-)
 
 // Androidx Navigation does not support storing complex types in route objects, so we have
 // to store them inside the saved state handle of the back stack entry instead

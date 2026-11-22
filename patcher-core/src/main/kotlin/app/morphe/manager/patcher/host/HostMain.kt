@@ -25,7 +25,6 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
 import java.io.PrintStream
-import java.lang.management.ManagementFactory
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.FutureTask
 import kotlin.concurrent.thread
@@ -47,21 +46,7 @@ fun main(args: Array<String>) {
     // embedded JVM, a build for Linux, to its own vendor
     System.setProperty("java.vendor", "The Android Project")
     val (commandsFile, eventsFile) = args
-    val collectors = ManagementFactory.getGarbageCollectorMXBeans().toTypedArray()
-    val gcClock = GcClock {
-        var total = 0L
-        for (collector in collectors) total += collector.collectionTime
-        total
-    }
-    serveRun(commandsFile, eventsFile, gcClock) { loadPatchesFromJar(setOf(it)) }
-}
-
-/**
- * The time the VM spent collecting garbage so far, in milliseconds. A primitive rather than a
- * lambda returning Long, which would box: it is read when the heap has no room left for that.
- */
-fun interface GcClock {
-    fun collectedMillis(): Long
+    serveRun(commandsFile, eventsFile) { loadPatchesFromJar(setOf(it)) }
 }
 
 /**
@@ -71,13 +56,11 @@ fun interface GcClock {
  *
  * @param commandsFile What the app writes [HostCommand]s to, one per line.
  * @param eventsFile What the app reads [HostEvent]s from.
- * @param gcClock The time the VM spent collecting garbage so far, or null if it does not tell.
  * @param loadPatches Reads the patches of a bundle, which is the one step that depends on the VM.
  */
 fun serveRun(
     commandsFile: String,
     eventsFile: String,
-    gcClock: GcClock?,
     loadPatches: (File) -> Collection<Patch>
 ): Nothing {
     val code = try {
@@ -95,7 +78,7 @@ fun serveRun(
                         preloaded = command.bundles.associateWith { PreloadedBundle(File(it), loadPatches) }
 
                     is HostCommand.Run -> {
-                        run(command, preloaded, gcClock, loadPatches, events)
+                        run(command, preloaded, loadPatches, events)
                         break
                     }
                 }
@@ -114,13 +97,11 @@ fun serveRun(
 private fun run(
     command: HostCommand.Run,
     preloaded: Map<String, PreloadedBundle>,
-    gcClock: GcClock?,
     loadPatches: (File) -> Collection<Patch>,
     events: HostEvents
 ) {
     events.logger.info(vmDescription())
     events.watchForStalls()
-    gcClock?.let(events::watchForGcOverhead)
 
     val failure = runCatching {
         val request = Json.decodeFromString(PatchRequest.serializer(), File(command.requestFile).readText())
@@ -251,64 +232,13 @@ private class HostEvents(private val stream: OutputStream) : AutoCloseable {
         }
     }
 
-    /**
-     * Ends the run as out of memory once collecting garbage took most of the time for a while. A
-     * heap that barely holds what the run keeps alive is collected over and over for little each
-     * time, and the run crawls on long past the point where the user gives up on it. Not every
-     * collector gives up on its own, the serial one of a 32-bit JVM never does.
-     *
-     * By then the heap has no room for even the message, so the watch allocates nothing once it
-     * runs: it samples into arrays made up front and sends a verdict encoded before it is needed.
-     */
-    fun watchForGcOverhead(gcClock: GcClock) {
-        val verdict = ('\n' + HostEvent.encode(HostEvent.Finished(GC_OVERHEAD_FAILURE)) + '\n').toByteArray()
-        val samples = (GC_OVERHEAD_WINDOW / GC_OVERHEAD_POLL).toInt()
-        // When each sample was taken, in nanoseconds, and the time spent collecting by then, in milliseconds
-        val takenAt = LongArray(samples)
-        val collectedAt = LongArray(samples)
-
-        thread(isDaemon = true, name = "GcOverheadWatch") {
-            var taken = 0
-            while (true) {
-                try {
-                    Thread.sleep(GC_OVERHEAD_POLL.inWholeMilliseconds)
-                } catch (_: InterruptedException) {
-                    return@thread
-                }
-
-                val now = System.nanoTime()
-                val collected = gcClock.collectedMillis()
-                // Holds the sample a whole window back, once there is one
-                val slot = taken++ % samples
-                if (taken > samples) {
-                    val windowMillis = (now - takenAt[slot]) / NANOS_PER_MILLI
-                    if ((collected - collectedAt[slot]) * 100 >= windowMillis * GC_OVERHEAD_PERCENT) {
-                        sendAndHalt(verdict)
-                    }
-                }
-                takenAt[slot] = now
-                collectedAt[slot] = collected
-            }
-        }
-    }
-
-    /**
-     * Sends an event encoded ahead and ends the process, without the shutdown that exit runs. The
-     * event starts on a line of its own, as a send the full heap cut short may have left half of one.
-     */
-    private fun sendAndHalt(encoded: ByteArray) {
-        synchronized(this) {
-            stream.write(encoded)
-            stream.flush()
-        }
-        Runtime.getRuntime().halt(0)
-    }
-
     val logger = object : Logger() {
         override fun log(level: LogLevel, message: String) = send(HostEvent.Log(level, message))
     }
 
     val listener = object : PatchingListener {
+        override suspend fun patchesRejected(rejection: app.morphe.manager.patcher.patch.PatchRejection) =
+            send(HostEvent.PatchesRejected(rejection))
         override suspend fun stepCompleted() = send(HostEvent.StepCompleted)
 
         override suspend fun splitPreparation(event: SplitPreparationEvent) =
@@ -316,6 +246,8 @@ private class HostEvents(private val stream: OutputStream) : AutoCloseable {
 
         override suspend fun patchesStarted() = send(HostEvent.PatchesStarted)
 
+        override suspend fun patchOutcome(bundleUid: Int, patchKey: String, failure: String?) =
+            send(HostEvent.PatchOutcome(bundleUid, patchKey, failure))
         override fun patchExecuting(name: String) = send(HostEvent.PatchExecuting(name))
 
         override suspend fun patchSucceeded(name: String) = send(HostEvent.PatchSucceeded(name))
@@ -344,17 +276,6 @@ private class HostEvents(private val stream: OutputStream) : AutoCloseable {
         val STALL_POLL = 5.seconds
         const val STALL_DUMPS = 5
 
-        // A run that patched TikTok on a 960MB heap spent about 70% of the time collecting
-        val GC_OVERHEAD_WINDOW = 120.seconds
-        val GC_OVERHEAD_POLL = 10.seconds
-        const val GC_OVERHEAD_PERCENT = 60
-        const val NANOS_PER_MILLI = 1_000_000L
-
-        val GC_OVERHEAD_FAILURE = HostEvent.Failure(
-            "${OutOfMemoryError::class.java.name}: Collecting garbage took over $GC_OVERHEAD_PERCENT% " +
-                    "of the last ${GC_OVERHEAD_WINDOW.inWholeSeconds}s",
-            outOfMemory = true
-        )
     }
 }
 

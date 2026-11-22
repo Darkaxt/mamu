@@ -17,10 +17,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
-import app.morphe.manager.ui.screen.shared.isInDialog
-import app.morphe.manager.ui.screen.shared.opaqueModalOpen
+import app.morphe.manager.ui.screen.shared.FullscreenDialogs
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -35,6 +33,12 @@ private const val TILT_TARGET_THRESHOLD = 0.02f
 internal const val BACKGROUND_STEP_INTERVAL_MS = 16f
 
 /**
+ * True for a background drawn inside a full-screen dialog as its own backdrop, such as the preview
+ * of the background picker. Nothing covers that one, so it keeps animating while the dialog is up.
+ */
+val LocalBackdropInDialog = staticCompositionLocalOf { false }
+
+/**
  * Runs [frameLoop] for as long as the host stays resumed and nothing opaque covers it, cancelling
  * the moment either stops holding. A background left ticking behind the lock screen, another
  * activity or a full-screen dialog keeps the frame clock awake and repaints the canvas for nobody.
@@ -44,8 +48,7 @@ internal const val BACKGROUND_STEP_INTERVAL_MS = 16f
 @Composable
 fun AnimationFrameEffect(frameLoop: suspend CoroutineScope.() -> Unit) {
     val lifecycleOwner = LocalLifecycleOwner.current
-    // A dialog's own backdrop, such as the background picker's preview, is what the dialog shows
-    val covered = opaqueModalOpen() && !isInDialog()
+    val covered = FullscreenDialogs.anyOpen && !LocalBackdropInDialog.current
 
     LaunchedEffect(lifecycleOwner, covered) {
         if (covered) return@LaunchedEffect
@@ -176,6 +179,7 @@ fun rememberParallaxState(
     enableParallax: Boolean,
     sensitivity: Float = 0.3f
 ): ParallaxState {
+    val context = LocalContext.current
     val smoothTiltX = remember { Animatable(0f) }
     val smoothTiltY = remember { Animatable(0f) }
     val tiltTarget = remember { MutableStateFlow(Offset.Zero) }
@@ -214,56 +218,53 @@ fun rememberParallaxState(
         }
     }
 
-    // Registered only while resumed: the background outlives a stopped activity, and a listener
-    // left running would keep the accelerometer awake for an app nobody is looking at
-    val lifecycleOwner = LocalLifecycleOwner.current
-    val context = LocalContext.current
-    LaunchedEffect(enableParallax, lifecycleOwner) {
-        if (!enableParallax) return@LaunchedEffect
+    DisposableEffect(enableParallax) {
+        if (!enableParallax) {
+            // Early exit if parallax is disabled
+            return@DisposableEffect onDispose { }
+        }
 
         val sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        // No accelerometer available
-        val accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) ?: return@LaunchedEffect
+        val accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+            ?: // No accelerometer available
+            return@DisposableEffect onDispose { }
 
-        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-            // Calibration belongs to one registration, so the baseline resets with the listener itself
-            var baselineX = 0f
-            var baselineY = 0f
-            var isCalibrated = false
+        // Calibration belongs to one registration, so the baseline resets with the listener itself
+        var baselineX = 0f
+        var baselineY = 0f
+        var isCalibrated = false
 
-            val listener = object : SensorEventListener {
-                override fun onSensorChanged(event: SensorEvent) {
-                    if (!isCalibrated) {
-                        baselineX = event.values[0]
-                        baselineY = event.values[1]
-                        isCalibrated = true
-                    }
-
-                    val rawTiltX = event.values[0] - baselineX
-                    val rawTiltY = -(event.values[1] - baselineY)
-                    val target = Offset(rawTiltX * sensitivity, rawTiltY * sensitivity)
-
-                    // Sensor noise alone would retarget the springs forever, keeping the frame clock
-                    // awake even with the device flat on a table
-                    if ((target - tiltTarget.value).getDistance() > TILT_TARGET_THRESHOLD) {
-                        tiltTarget.value = target
-                    }
+        val listener = object : SensorEventListener {
+            override fun onSensorChanged(event: SensorEvent) {
+                if (!isCalibrated) {
+                    baselineX = event.values[0]
+                    baselineY = event.values[1]
+                    isCalibrated = true
                 }
 
-                override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
+                val rawTiltX = event.values[0] - baselineX
+                val rawTiltY = -(event.values[1] - baselineY)
+                val target = Offset(rawTiltX * sensitivity, rawTiltY * sensitivity)
+
+                // Sensor noise alone would retarget the springs forever, keeping the frame clock
+                // awake even with the device flat on a table
+                if ((target - tiltTarget.value).getDistance() > TILT_TARGET_THRESHOLD) {
+                    tiltTarget.value = target
+                }
             }
 
-            // The spring does the smoothing, so a faster stream only produces targets it never reaches
-            sensorManager.registerListener(
-                listener,
-                accelerometer,
-                SensorManager.SENSOR_DELAY_UI
-            )
-            try {
-                awaitCancellation()
-            } finally {
-                sensorManager.unregisterListener(listener)
-            }
+            override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
+        }
+
+        // The spring does the smoothing, so a faster stream only produces targets it never reaches
+        sensorManager.registerListener(
+            listener,
+            accelerometer,
+            SensorManager.SENSOR_DELAY_UI
+        )
+
+        onDispose {
+            sensorManager.unregisterListener(listener)
         }
     }
 

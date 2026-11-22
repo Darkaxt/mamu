@@ -67,8 +67,8 @@ internal fun MultiSelectBar(
             onSelectAll = onSelectAll,
             onDeselectAll = onDeselectAll,
             onCancel = onCancel,
-            onReorder = selection.onReorder,
-            actions = selection.actions
+
+            actions = selection.actions + listOfNotNull(selection.onReorder?.let { SelectionAction(MaterialSymbols.Rounded.Drag_handle, stringResource(R.string.reorder_list), it) })
         )
     }
 }

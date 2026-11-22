@@ -5,23 +5,26 @@
 
 package app.morphe.manager.ui.viewmodel
 
+import org.koin.core.component.inject
+
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.*
 import android.net.Uri
 import android.os.Build
 import android.provider.OpenableColumns
+import android.widget.Toast
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.morphe.manager.R
 import app.morphe.manager.data.platform.Filesystem
+import app.morphe.manager.data.platform.NetworkInfo
 import app.morphe.manager.data.room.apps.installed.InstallType
 import app.morphe.manager.data.room.apps.installed.InstalledApp
 import app.morphe.manager.domain.apk.*
 import app.morphe.manager.domain.batch.BatchPatchCoordinator
 import app.morphe.manager.domain.batch.BatchRunState
-import app.morphe.manager.domain.batch.SavedBatchQueue
 import app.morphe.manager.domain.bundles.*
 import app.morphe.manager.domain.installer.InstallerManager
 import app.morphe.manager.domain.installer.RootInstaller
@@ -30,11 +33,8 @@ import app.morphe.manager.domain.manager.*
 import app.morphe.manager.domain.repository.*
 import app.morphe.manager.domain.repository.PatchBundleRepository.LocalFileCheck
 import app.morphe.manager.patcher.patch.*
-import app.morphe.manager.patcher.runtime.PatcherProcesses
 import app.morphe.manager.ui.model.*
-import app.morphe.manager.ui.screen.shared.UserMessages
 import app.morphe.manager.util.*
-import app.morphe.patcher.patch.AppTarget
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import java.io.FileNotFoundException
@@ -43,52 +43,45 @@ import java.util.Locale
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
 /** How long an added source is waited on before its app list is no longer opened for it. */
-private val NEW_SOURCE_LOAD_TIMEOUT = 10.minutes
 
 /** Bundle update status for snackbar display. */
 enum class BundleUpdateStatus {
     Updating, // Update in progress
     Success,  // Update completed successfully
+    Warning,  // Patches may be outdated (on metered network, updates disabled)
     Offline,  // Could not run without internet
     Error     // Error occurred
 }
 
 /**
- * The home screen: its app list, the sources and their updates, and the patch flow its apps are
- * patched through, see [PatchFlow].
+ * Manages all dialogs, user interactions, APK processing, and bundle management.
  */
 class HomeViewModel(
     private val app: Application,
-    private val messages: UserMessages,
     val patchBundleRepository: PatchBundleRepository,
     private val installedAppRepository: InstalledAppRepository,
-    originalApkRepository: OriginalApkRepository,
-    patchSelectionRepository: PatchSelectionRepository,
+    private val originalApkRepository: OriginalApkRepository,
+    private val patchSelectionRepository: PatchSelectionRepository,
     private val sourceMuteRepository: SourceMuteRepository,
-    optionsRepository: PatchOptionsRepository,
+    private val optionsRepository: PatchOptionsRepository,
     private val managerUpdateRepository: ManagerUpdateRepository,
+    private val networkInfo: NetworkInfo,
     val prefs: PreferencesManager,
     private val pm: PM,
-    private val rootInstaller: RootInstaller,
+    val rootInstaller: RootInstaller,
     private val installerManager: InstallerManager,
-    filesystem: Filesystem,
-    homeAppButtonPrefs: HomeAppButtonPreferences,
-    appDataResolver: AppDataResolver,
+    private val filesystem: Filesystem,
+    private val homeAppButtonPrefs: HomeAppButtonPreferences,
+    private val appDataResolver: AppDataResolver,
     private val batchPatchCoordinator: BatchPatchCoordinator,
-    downloadUrlResolver: DownloadUrlResolver,
+    private val downloadUrlResolver: DownloadUrlResolver,
     versionCatalog: AppVersionCatalog,
     private val localApkSources: LocalApkSources,
-    /** Picker behind the copy-from-another-bundle action of the expert-mode dialog. */
-    expertModePanel: SelectionPanelController
-) : ViewModel(), KoinComponent {
-    // Past the parameters viewModelOf takes
-    private val patcherProcesses: PatcherProcesses by inject()
-    private val patchOptionsPrefs: PatchOptionsPreferencesManager by inject()
-
+    private val playStoreIcons: app.morphe.manager.network.PlayStoreIcons,
+    private val knownPatchFailures: KnownPatchFailures
+) : ViewModel(), org.koin.core.component.KoinComponent {
     /** The app list on the home screen. */
     val apps = HomeApps(
         scope = viewModelScope,
@@ -104,13 +97,22 @@ class HomeViewModel(
         appDataResolver = appDataResolver,
         versionCatalog = versionCatalog,
         localApkSources = localApkSources,
-        rootInstaller = rootInstaller
+        playStoreIcons = playStoreIcons
     )
+
+    private val patchOptionsPrefs: PatchOptionsPreferencesManager by inject()
+
+    val patchFlow = PatchFlow(viewModelScope, app, patchBundleRepository, installedAppRepository,
+        originalApkRepository, patchSelectionRepository, sourceMuteRepository, optionsRepository, patchOptionsPrefs,
+        networkInfo, prefs, pm, rootInstaller, installerManager, filesystem, appDataResolver,
+        batchPatchCoordinator, downloadUrlResolver, versionCatalog, localApkSources,
+        knownPatchFailures, ::dismissInstalledAppInfo, { !installedAppsLoading })
 
     val availablePatches = patchBundleRepository.bundleInfoFlow.map { it.values.sumOf { bundle -> bundle.patches.size } }
     val bundleUpdateProgress = patchBundleRepository.bundleUpdateProgress
     private val contentResolver: ContentResolver = app.contentResolver
 
+    /** Becomes true once the bundle repository has finished its initial DB load. */
     /** Android 11 kills the app process after granting the "install apps" permission. */
     val android11BugActive get() = Build.VERSION.SDK_INT == Build.VERSION_CODES.R && !pm.canInstallPackages()
 
@@ -119,6 +121,8 @@ class HomeViewModel(
 
     // Dialog visibility states
     var showAndroid11Dialog by mutableStateOf(false)
+    var showBundleManagementSheet by mutableStateOf(false)
+    var showAddSourceDialog by mutableStateOf(false)
     var bundleToRename by mutableStateOf<PatchBundleSource?>(null)
     var showRenameBundleDialog by mutableStateOf(false)
 
@@ -133,66 +137,100 @@ class HomeViewModel(
         sourceAppsQueue = sourceAppsQueue.drop(1)
     }
 
-    // Deep link: pending source to add via confirmation dialog
-    var deepLinkPendingSource by mutableStateOf<MainViewModel.DeepLinkSource?>(null)
+    // Installed App Info dialog state
+    var showInstalledAppInfoDialog: String? by mutableStateOf(null)
+        private set
+    var installedAppDialogToken by mutableIntStateOf(0)
         private set
 
-    /**
-     * A .mpp file opened from a file manager, with its manifest and what importing it would do,
-     * both null while they are read.
-     */
-    data class PendingMpp(val uri: Uri, val fileName: String?, val manifest: MppManifest?, val check: LocalFileCheck?)
+    fun openInstalledAppInfo(packageName: String) {
+        showInstalledAppInfoDialog = packageName
+        installedAppDialogToken++
+    }
+
+    fun dismissInstalledAppInfo() {
+        showInstalledAppInfoDialog = null
+    }
+
+    // Deep link: pending bundle to add via confirmation dialog
+    var deepLinkPendingBundle by mutableStateOf<DeepLinkBundle?>(null)
+        private set
+
+    data class DeepLinkBundle(val url: String, val name: String?)
 
     // .mpp file opened from file manager: pending confirmation dialog
-    var pendingMpp by mutableStateOf<PendingMpp?>(null)
+    var pendingMppUri by mutableStateOf<Uri?>(null)
+    var pendingMppFileName by mutableStateOf<String?>(null)
+    var pendingMppManifest by mutableStateOf<MppManifest?>(null)
+    var pendingMppCheck by mutableStateOf<LocalFileCheck?>(null)
         private set
+    private var pendingMppGeneration = 0
 
-    /**
-     * Opens a file another app handed over. Messengers rename what they pass on, so a patch source is
-     * told by its contents; anything else shared goes on as an APK, and anything else opened is refused.
-     */
+    private var incomingFileJob: Job? = null
+
+    /** Content admission also recognizes bundles renamed by a sharing app. */
     fun openIncomingFile(uri: Uri, shared: Boolean) {
-        viewModelScope.launch {
+        incomingFileJob?.cancel()
+        incomingFileJob = viewModelScope.launch {
             when {
                 withContext(Dispatchers.IO) { uri.isPatchBundle(contentResolver) } -> setPendingMpp(uri)
-                shared -> handleExternalApkUri(uri)
-                else -> messages.show(R.string.incoming_file_not_patch_source)
+                shared -> patchFlow.handleExternalApkUri(uri)
+                else -> app.toast(app.getString(R.string.incoming_file_not_patch_source))
             }
         }
     }
 
-    private fun setPendingMpp(uri: Uri) {
+    fun setPendingMpp(uri: Uri) {
         dismissOpenDialogs()
-        val pending = PendingMpp(uri, uri.displayName(contentResolver), manifest = null, check = null)
-        pendingMpp = pending
+        pendingMppUri = uri
+        pendingMppFileName = uri.displayName(contentResolver)
+        pendingMppManifest = null
+        pendingMppCheck = null
+        val generation = ++pendingMppGeneration
         viewModelScope.launch {
-            val (manifest, check) = inspectLocalFile(uri)
-            // A file opened in the meantime, or a dismissed prompt, is not described by this one
-            if (pendingMpp == pending) pendingMpp = pending.copy(manifest = manifest, check = check)
+            val manifest = withContext(Dispatchers.IO) { uri.readMppManifest(contentResolver) }
+            val check = withContext(Dispatchers.IO) {
+                runCatching {
+                    patchBundleRepository.checkLocal(manifest?.name) {
+                        contentResolver.openInputStream(uri) ?: throw FileNotFoundException("Unable to open $uri")
+                    }
+                }.getOrElse { LocalFileCheck.NotBundle }
+            }
+            if (pendingMppGeneration == generation && pendingMppUri == uri) {
+                pendingMppManifest = manifest
+                pendingMppCheck = check
+            }
         }
     }
 
-    /** Imports the opened file the way the add source panel would, updating the source it is a version of. */
-    fun confirmMppImport(options: NewSourceOptions) {
-        val pending = pendingMpp ?: return
-        pendingMpp = null
-        importOf(pending.uri, pending.check)?.let { importLocalSources(listOf(it), options) }
+    fun confirmMppImport(chooseApps: Boolean) {
+        val uri = pendingMppUri ?: return
+        val replacing = when (val check = pendingMppCheck) {
+            is LocalFileCheck.New -> null
+            is LocalFileCheck.Update -> check.uid
+            else -> return
+        }
+        dismissMppImport()
+        importLocalSources(listOf(uri to replacing), chooseApps)
     }
 
     fun dismissMppImport() {
-        pendingMpp = null
+        pendingMppGeneration++
+        pendingMppCheck = null
+        pendingMppUri = null
+        pendingMppFileName = null
+        pendingMppManifest = null
     }
 
     /**
-     * A file picked in the add source panel, with the bundle name its manifest declares and what
+     * A file picked in the add source dialog, with the bundle name its manifest declares and what
      * importing it would do, both null while they are read.
      */
     data class PickedBundle(val uri: Uri, val name: String, val bundleName: String?, val check: LocalFileCheck?) {
-        /** Whether importing it adds a source or updates one, see [importOf]. */
         val adds: Boolean get() = check is LocalFileCheck.New || check is LocalFileCheck.Update
     }
 
-    /** Files picked in the add source panel, kept here so they outlive the picker's round trip. */
+    /** Files picked in the add source dialog, kept here so they outlive the picker's round trip. */
     private var pickedBundles by mutableStateOf<List<PickedBundle>>(emptyList())
 
     /**
@@ -213,46 +251,30 @@ class HomeViewModel(
             }
         }
 
-    /** Adds files to the add source panel and reads what importing each would do. */
+    /** Adds files to the add source dialog and reads what importing each would do. */
     fun pickBundles(uris: List<Uri>) {
         val fresh = uris.distinct().filter { uri -> pickedBundles.none { it.uri == uri } }.map { uri ->
-            val name = uri.displayName(contentResolver) ?: uri.toString()
-            val isBundle = name.endsWith(".$MPP_EXTENSION", ignoreCase = true)
+            val name = uri.displayName(contentResolver) ?: uri.lastPathSegment ?: uri.toString()
+            val isBundle = name.endsWith(".mpp", ignoreCase = true)
             PickedBundle(uri, name, bundleName = null, check = if (isBundle) null else LocalFileCheck.NotBundle)
         }
         pickedBundles = pickedBundles + fresh
         fresh.filter { it.check == null }.forEach { picked ->
             viewModelScope.launch {
-                val (manifest, check) = inspectLocalFile(picked.uri)
+                val bundleName = withContext(Dispatchers.IO) { picked.uri.readMppManifest(contentResolver)?.name }
+                val check = runCatching {
+                    patchBundleRepository.checkLocal(bundleName) {
+                        // Closed by checkLocal, which reads it through use
+                        @SuppressLint("Recycle")
+                        val stream = contentResolver.openInputStream(picked.uri)
+                        stream ?: throw FileNotFoundException("Unable to open ${picked.uri}")
+                    }
+                }.getOrElse { LocalFileCheck.NotBundle }
                 pickedBundles = pickedBundles.map {
-                    if (it.uri == picked.uri) it.copy(bundleName = manifest?.name, check = check) else it
+                    if (it.uri == picked.uri) it.copy(bundleName = bundleName, check = check) else it
                 }
             }
         }
-    }
-
-    /** The manifest of [uri] and what importing it would do, a file that cannot be read being no bundle. */
-    private suspend fun inspectLocalFile(uri: Uri): Pair<MppManifest?, LocalFileCheck> {
-        val manifest = withContext(Dispatchers.IO) { uri.readMppManifest(contentResolver) }
-        val check = runCatching {
-            patchBundleRepository.checkLocal(manifest?.name) { openLocalFile(uri) }
-        }.getOrElse { LocalFileCheck.NotBundle }
-        return manifest to check
-    }
-
-    /** Opens [uri] for reading, closed by whoever reads it. */
-    @SuppressLint("Recycle")
-    private fun openLocalFile(uri: Uri): InputStream =
-        contentResolver.openInputStream(uri) ?: throw FileNotFoundException("Unable to open $uri")
-
-    /**
-     * The import [check] calls for, as [importLocalSources] takes it: a new bundle as a source of its
-     * own, another version of a local source into it. Null for a file that adds nothing.
-     */
-    private fun importOf(uri: Uri, check: LocalFileCheck?): Pair<Uri, Int?>? = when (check) {
-        is LocalFileCheck.New -> uri to null
-        is LocalFileCheck.Update -> uri to check.uid
-        else -> null
     }
 
     fun unpickBundle(uri: Uri) {
@@ -264,82 +286,59 @@ class HomeViewModel(
     }
 
     /**
-     * Adds a remote source for each of [urls] and imports the picked files, a new bundle as a source
-     * of its own and another version of a local source into it, as its update action would. Files
-     * already added are left out. Each new source starts with [options], see [onSourcesAdded].
+     * Imports the picked files: a new bundle as a source of its own, and another version of a local
+     * source into it, as its update action would. Files already added are left out.
      */
-    fun addSources(urls: List<String>, options: NewSourceOptions) = viewModelScope.launch {
-        val imports = pickedBundleImports.mapNotNull { importOf(it.uri, it.check) }
-        pickedBundles = emptyList()
-        val added = withContext(NonCancellable) {
-            val remote = if (urls.isEmpty()) emptyList() else {
-                patchBundleRepository.createRemotes(urls, usePrerelease = options.usePrerelease)
+    fun importPickedBundles(chooseApps: Boolean) {
+        val imports = pickedBundleImports.mapNotNull { picked ->
+            when (val check = picked.check) {
+                is LocalFileCheck.New -> picked.uri to null
+                is LocalFileCheck.Update -> picked.uri to check.uid
+                else -> null
             }
-            remote + importLocalFiles(imports)
         }
-        onSourcesAdded(added, options)
+        pickedBundles = emptyList()
+        importLocalSources(imports, chooseApps)
+    }
+
+    /** Shared add-source submission, used by the adopted source trust panel. */
+    fun addSources(urls: List<String>, options: app.morphe.manager.ui.model.NewSourceOptions) {
+        importPickedBundles(options.chooseApps)
+        viewModelScope.launch {
+            val added = withContext(NonCancellable) {
+                patchBundleRepository.createRemotes(urls, autoUpdate = true, usePrerelease = options.usePrerelease)
+            }
+            onSourcesAdded(added, options.chooseApps)
+        }
     }
 
     /** Local source waiting for a replacement file, so the picker result knows what it updates. */
     var localBundleUpdateUid by mutableStateOf<Int?>(null)
 
-    // Bundle update snackbar state
+    // APK selection flow dialogs
     var showBundleUpdateSnackbar by mutableStateOf(false)
     var snackbarStatus by mutableStateOf(BundleUpdateStatus.Updating)
 
-    /** Pull-to-refresh state. */
-    private val _isRefreshing = MutableStateFlow(false)
-    val isRefreshing: StateFlow<Boolean> = _isRefreshing.asStateFlow()
+    // Latches when an update cycle was skipped due to metered network; cleared on the next
+    // successful/no-change update. Independent of the transient BundleUpdateSnackbar so the
+    // user still sees a persistent alert after the transient snackbar fades
+    var updatesSkippedDueToMetered by mutableStateOf(false)
 
-    // Loading state for installed apps
+    // Simple mode bundle selection dialog: shown when 2+ bundles have patches for the same app
     var installedAppsLoading by mutableStateOf(true)
 
     // Bundle data - reactive StateFlows derived directly from bundleInfoFlow
-    private val compatibleVersionsFlow: StateFlow<Map<String, List<BundledAppTarget>>> =
-        versionCatalog.compatibleVersions
-            .stateIn(viewModelScope, SharingStarted.Eagerly, emptyMap())
-
-    val recommendedVersionsFlow: StateFlow<Map<String, AppTarget>> =
-        versionCatalog.recommendedVersions
-            .stateIn(viewModelScope, SharingStarted.Eagerly, emptyMap())
-
-    // Convenience accessor - reads the current value synchronously for non-reactive call sites
-    val compatibleVersions: Map<String, List<BundledAppTarget>> get() = compatibleVersionsFlow.value
-
-    /** Sets up a patching run for one app, and the dialogs it goes through. */
-    val patchFlow = PatchFlow(
-        scope = viewModelScope,
-        app = app,
-        messages = messages,
-        patchBundleRepository = patchBundleRepository,
-        originalApkRepository = originalApkRepository,
-        patchSelectionRepository = patchSelectionRepository,
-        sourceMuteRepository = sourceMuteRepository,
-        optionsRepository = optionsRepository,
-        patchOptionsPrefs = patchOptionsPrefs,
-        prefs = prefs,
-        pm = pm,
-        rootInstaller = rootInstaller,
-        installerManager = installerManager,
-        filesystem = filesystem,
-        appDataResolver = appDataResolver,
-        batchPatchCoordinator = batchPatchCoordinator,
-        downloadUrlResolver = downloadUrlResolver,
-        localApkSources = localApkSources,
-        compatibleVersions = compatibleVersionsFlow,
-        recommendedVersions = recommendedVersionsFlow,
-        expertModePanel = expertModePanel,
-        patcherProcesses = patcherProcesses
-    )
 
     init {
         observeManagerUpdate()
-        // As the sources are checked on launch, see PatchBundleRepository.updateCheck
         viewModelScope.launch {
             if (prefs.autoUpdates.get().checksOnLaunch) checkForManagerUpdates()
         }
         observeLoadingState()
         observeSnackbarState()
+        viewModelScope.launch {
+            patchBundleRepository.pendingUpdates.collect { updatesSkippedDueToMetered = it.isNotEmpty() }
+        }
     }
 
     /**
@@ -360,17 +359,10 @@ class HomeViewModel(
                 // Treat that transient state as "still loading" so we never flash the empty-state
                 // UI before the real bundle configuration is known.
                 val sourcesInitialized = sources.isNotEmpty() || patchCount > 0
-                // An update that ended without patches, offline on a first launch for one, brings
-                // nothing more to wait for
-                val updateEnded = progress?.result in setOf(
-                    PatchBundleRepository.BundleUpdateResult.NoInternet,
-                    PatchBundleRepository.BundleUpdateResult.Error,
-                    PatchBundleRepository.BundleUpdateResult.UpdatesAvailable
-                )
                 // If no sources are enabled (and we know the DB has been read), there is nothing
                 // to load - this is a valid terminal state, not a loading state.
                 val hasLoadedData = sourcesInitialized &&
-                        (!hasEnabledSources || installedApps.isNotEmpty() || patchCount > 0 || updateEnded)
+                        (!hasEnabledSources || installedApps.isNotEmpty() || patchCount > 0)
                 isBundleUpdateInProgress || !hasLoadedData
             }
                 .distinctUntilChanged()
@@ -385,26 +377,28 @@ class HomeViewModel(
      */
     private fun observeSnackbarState() {
         viewModelScope.launch {
-            combine(patchBundleRepository.bundleUpdateProgress, _isRefreshing, ::Pair).collect { (progress, refreshing) ->
-                // A pull spins its own indicator while the check runs, so the alert only tells how it ended,
-                // and a quiet check shows nothing until something is downloading.
-                // Updates left to download stay on their own alert, which outlasts this one
-                val checkingQuietly = progress?.quiet == true &&
-                        progress.phase == PatchBundleRepository.BundleUpdatePhase.Checking
-                val status = when (progress?.result) {
-                    null, PatchBundleRepository.BundleUpdateResult.UpdatesAvailable -> null
-                    PatchBundleRepository.BundleUpdateResult.None ->
-                        BundleUpdateStatus.Updating.takeUnless { refreshing || checkingQuietly }
+            patchBundleRepository.bundleUpdateProgress.collect { progress ->
+                if (progress == null) {
+                    showBundleUpdateSnackbar = false
+                    return@collect
+                }
+                showBundleUpdateSnackbar = progress.result != PatchBundleRepository.BundleUpdateResult.UpdatesAvailable
+                snackbarStatus = when (progress.result) {
                     PatchBundleRepository.BundleUpdateResult.Success,
                     PatchBundleRepository.BundleUpdateResult.NoUpdates -> BundleUpdateStatus.Success
                     PatchBundleRepository.BundleUpdateResult.NoInternet -> BundleUpdateStatus.Offline
                     PatchBundleRepository.BundleUpdateResult.Error -> BundleUpdateStatus.Error
+                    PatchBundleRepository.BundleUpdateResult.None -> BundleUpdateStatus.Updating
+                    PatchBundleRepository.BundleUpdateResult.UpdatesAvailable -> BundleUpdateStatus.Warning
                 }
-                showBundleUpdateSnackbar = status != null
-                status?.let { snackbarStatus = it }
+
             }
         }
     }
+
+    /** Pull-to-refresh state. */
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing.asStateFlow()
 
     /**
      * Triggers a manual refresh: updates bundles and checks for manager updates.
@@ -412,21 +406,24 @@ class HomeViewModel(
      */
     fun refresh() {
         if (_isRefreshing.value) return
-        // Reported by its own banner, so offline its timeout does not hold the indicator up
+        _isRefreshing.value = true
         triggerUpdateCheck()
         viewModelScope.launch {
-            _isRefreshing.value = true
             try {
-                // Awaited, so the indicator spins for as long as the check runs and stands in for
-                // its result when nothing was new
-                patchBundleRepository.updateCheckAndAwait(reportUpToDate = false)
-                delay(500.milliseconds)
+                patchBundleRepository.updateCheckAndAwait()
             } finally {
                 _isRefreshing.value = false
             }
             apps.reload()
         }
     }
+
+    /**
+     * Returns `true` when the user has disabled metered updates AND is currently on
+     * a metered (mobile data) connection - meaning patches may not be up to date.
+     */
+    fun isOnMeteredWithUpdatesDisabled(): Boolean =
+        !prefs.autoUpdates.getBlocking().downloadsOnMobileData && networkInfo.isMetered()
 
     /** True while a batch queue is patching, so callers can explain why a start was ignored. */
     val batchPatchRunning: Boolean get() = batchPatchCoordinator.isRunning
@@ -436,14 +433,13 @@ class HomeViewModel(
      * it keeps patching, and home is then the only way back to it.
      */
     val batchRun: StateFlow<BatchRunState?> = batchPatchCoordinator.state
-
-    /** The queue waiting to be started, which apps are added to from here. */
-    val savedBatchQueue: StateFlow<SavedBatchQueue?> = batchPatchCoordinator.savedQueue
+    val savedBatchQueue = batchPatchCoordinator.savedQueue
 
     /**
-     * Mirrors the resolved update into [updatedManagerVersion] so the banner also appears when
-     * a background check finds the release. A failed check is ignored rather than hiding a
-     * banner the user is already looking at.
+     * Guard entry-point for all patching flows.
+     * Shows MeteredPatchingDialog when on metered network with updates disabled,
+     * so the user can choose to update patches first or patch anyway.
+     * Otherwise, launches [action] immediately.
      */
     private fun observeManagerUpdate() = viewModelScope.launch {
         managerUpdateRepository.availableUpdate.collect { update ->
@@ -456,106 +452,114 @@ class HomeViewModel(
      * downloadable, so the banner can never point at an asset that is still uploading.
      */
     suspend fun checkForManagerUpdates() {
-        messages.reportingFailure(R.string.failed_to_check_updates, "Failed to check for updates") {
+        uiSafe(app, R.string.failed_to_check_updates, "Failed to check for updates") {
             managerUpdateRepository.refresh()
         }
-    }
-
-    /** Downloads the patch updates a check left to the user, as the user asked for them. */
-    fun downloadPendingUpdates() {
-        viewModelScope.launch { patchBundleRepository.updateCheckAndAwait(allowUnsafeNetwork = true) }
     }
 
     /**
      * Launches [checkForManagerUpdates] on [viewModelScope] so it survives composition changes.
      * Safe to call from UI without a coroutine scope.
      */
+    fun downloadPendingUpdates() {
+        viewModelScope.launch { patchBundleRepository.updateCheckAndAwait(allowUnsafeNetwork = true) }
+    }
+
     fun triggerUpdateCheck() {
         viewModelScope.launch {
             checkForManagerUpdates()
         }
     }
 
-    /**
-     * Imports each file through [importLocalFiles]. Each new source starts with [options], see
-     * [onSourcesAdded].
-     */
-    private fun importLocalSources(imports: List<Pair<Uri, Int?>>, options: NewSourceOptions) = viewModelScope.launch {
-        val added = withContext(NonCancellable) { importLocalFiles(imports) }
-        onSourcesAdded(added, options)
+    @SuppressLint("ShowToast")
+    private suspend fun <T> withPersistentImportToast(block: suspend () -> T): T = coroutineScope {
+        val progressToast = withContext(Dispatchers.Main) {
+            Toast.makeText(
+                app,
+                app.getString(R.string.importing_ellipsis),
+                Toast.LENGTH_SHORT
+            )
+        }
+        withContext(Dispatchers.Main) { progressToast.show() }
+
+        val toastRepeater = launch(Dispatchers.Main) {
+            try {
+                while (isActive) {
+                    delay(1_750.milliseconds)
+                    progressToast.show()
+                }
+            } catch (_: CancellationException) {
+                // Ignore cancellation
+            }
+        }
+
+        try {
+            val result = block()
+            withContext(Dispatchers.Main) {
+                app.toast(app.getString(R.string.imported_successfully))
+            }
+            result
+        } finally {
+            toastRepeater.cancel()
+            withContext(Dispatchers.Main) { progressToast.cancel() }
+        }
     }
 
     /**
      * Imports each file, as a new local source or into the one its uid names, one after another
-     * under one import message.
-     *
-     * @return The uids of the new sources, without the ones updated in place.
+     * under one import toast. With [chooseApps] the app list of each new source opens once its
+     * patches have loaded.
      */
-    private suspend fun importLocalFiles(imports: List<Pair<Uri, Int?>>): List<Int> {
-        if (imports.isEmpty()) return emptyList()
-        val importing = messages.showUntilDismissed(R.string.importing_ellipsis)
-        val imported = try {
-            imports.map { (uri, replacingUid) -> replacingUid to importLocalFile(uri, replacingUid) }
-        } finally {
-            importing.dismiss()
-        }
-        // A file that failed has already said why
-        if (imported.any { (_, uid) -> uid != null }) messages.show(R.string.imported_successfully)
-        // Two files carrying the same bundle land on the same source
-        return imported.mapNotNull { (replacingUid, uid) -> uid.takeIf { replacingUid == null } }.distinct()
-    }
-
-    /**
-     * Adds a remote source for each of [urls], downloaded together as one update. Each added source
-     * starts with [options], see [onSourcesAdded], and brings as much as [scope] asks for.
-     */
-    fun createRemoteSources(
-        urls: List<String>,
-        options: NewSourceOptions,
-        scope: SourceScope
-    ) = viewModelScope.launch {
+    private fun importLocalSources(imports: List<Pair<Uri, Int?>>, chooseApps: Boolean) = viewModelScope.launch {
         val added = withContext(NonCancellable) {
-            patchBundleRepository.createRemotes(urls, keptApps = scope.keptApps, usePrerelease = options.usePrerelease)
+            withPersistentImportToast {
+                imports.mapNotNull { (uri, replacingUid) ->
+                    importLocalFile(uri, replacingUid).takeIf { replacingUid == null }
+                }
+            }
         }
-        onSourcesAdded(added, options, scope)
+        // Two files carrying the same bundle land on the same source
+        onSourcesAdded(added.distinct(), chooseApps)
     }
 
     /**
-     * With [NewSourceOptions.chooseApps] queues the app list of each of [uids] that has apps to list
-     * as its patches load, then hints at the swipe gestures of the source cards.
+     * Adds a remote source for each of [urls], downloaded together as one update. With
+     * [chooseApps] the app list of each added source opens once its patches have loaded.
+     */
+    fun createRemoteSources(urls: List<String>, chooseApps: Boolean = false) = viewModelScope.launch {
+        val added = withContext(NonCancellable) {
+            patchBundleRepository.createRemotes(urls, autoUpdate = true)
+        }
+        onSourcesAdded(added, chooseApps)
+    }
+
+    /**
+     * Queues the app list of each of [uids] that has apps to list as its patches load, then hints
+     * at the swipe gestures of the source cards.
      *
      * A source only appears among the loaded ones once its patches are in, which is also what the
      * list is built from. The sources load together, so they are taken as each one arrives rather
      * than in turn, and one that never loads holds back none of the others.
-     *
-     * A source added for less than the whole of it has left out its other apps as it loaded, see
-     * [PatchBundleRepository.createRemotes]. They were never offered, so none of them is new to the
-     * user, and a source that turns out not to have what [scope] asks for is added as any other.
      */
-    private suspend fun onSourcesAdded(uids: List<Int>, options: NewSourceOptions, scope: SourceScope = SourceScope.Whole) {
+    private suspend fun onSourcesAdded(uids: List<Int>, chooseApps: Boolean) {
         if (uids.isEmpty()) return
 
-        val pending = uids.toMutableList()
-        val loaded = mutableMapOf<Int, PatchBundleInfo>()
-        withTimeoutOrNull(NEW_SOURCE_LOAD_TIMEOUT) {
-            patchBundleRepository.allBundlesInfoFlow.first { info ->
+        if (chooseApps) {
+            val pending = uids.toMutableSet()
+            combine(patchBundleRepository.allBundlesInfoFlow,
+                patchBundleRepository.sources, patchBundleRepository.metadataFetchErrors) { info, sources, errors ->
+                Triple(info, sources.associateBy { it.uid }, errors)
+            }.first { (info, sources, errors) ->
                 pending.removeAll { uid ->
-                    val bundle = info[uid] ?: return@removeAll false
-                    loaded[uid] = bundle
-                    // Universal patches put no app on the home screen, so there would be nothing to list
-                    if (options.chooseApps && bundle.listedApps().isNotEmpty()) sourceAppsQueue += uid
-                    true
+                    val loaded = info[uid]
+                    if (loaded != null) {
+                        if (loaded.listedApps().isNotEmpty()) sourceAppsQueue += uid
+                        true
+                    } else sources[uid] == null || sources[uid]?.state is PatchBundleSource.State.Failed || uid in errors
                 }
                 pending.isEmpty()
             }
         }
-        if (scope != SourceScope.Whole) withContext(NonCancellable) {
-            loaded.forEach { (uid, bundle) ->
-                if (scope.isMetBy(bundle)) sourceMuteRepository.markNewAppsSeen(uid)
-                else sourceMuteRepository.resetForBundle(uid)
-            }
-        }
-        delay(1.5.seconds)
         apps.triggerSwipeGestureHint()
     }
 
@@ -563,30 +567,28 @@ class HomeViewModel(
      * Points an existing local source at a newly picked file. Adding the updated file instead
      * would create a second source and strand the patch selection on the old one.
      */
-    fun updateLocalSource(uid: Int, patchBundle: Uri) = importLocalSources(listOf(patchBundle to uid), NewSourceOptions())
+    fun updateLocalSource(uid: Int, patchBundle: Uri) = importLocalSources(listOf(patchBundle to uid), chooseApps = false)
 
     /** @return The uid of the source [patchBundle] landed under, or null when it could not be read. */
+    @SuppressLint("Recycle")
     private suspend fun importLocalFile(patchBundle: Uri, replacingUid: Int?): Int? {
         val permissionFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION
         var persistedPermission = false
-        // A cloud provider may fetch the whole file to answer this
-        val size = withContext(Dispatchers.IO) {
-            runCatching {
-                contentResolver.openFileDescriptor(patchBundle, "r")
-                    ?.use { it.statSize.takeIf { sz -> sz > 0 } }
-                    ?: contentResolver.query(
-                        patchBundle,
-                        arrayOf(OpenableColumns.SIZE),
-                        null,
-                        null,
-                        null
-                    )
-                        ?.use { cursor ->
-                            val index = cursor.getColumnIndex(OpenableColumns.SIZE)
-                            if (index != -1 && cursor.moveToFirst()) cursor.getLong(index) else null
-                        }
-            }.getOrNull()
-        }?.takeIf { it > 0L }
+        val size = runCatching {
+            contentResolver.openFileDescriptor(patchBundle, "r")
+                ?.use { it.statSize.takeIf { sz -> sz > 0 } }
+                ?: contentResolver.query(
+                    patchBundle,
+                    arrayOf(OpenableColumns.SIZE),
+                    null,
+                    null,
+                    null
+                )
+                    ?.use { cursor ->
+                        val index = cursor.getColumnIndex(OpenableColumns.SIZE)
+                        if (index != -1 && cursor.moveToFirst()) cursor.getLong(index) else null
+                    }
+        }.getOrNull()?.takeIf { it > 0L }
         try {
             contentResolver.takePersistableUriPermission(patchBundle, permissionFlags)
             persistedPermission = true
@@ -594,7 +596,10 @@ class HomeViewModel(
             // Provider may not support persistable permissions; fall back to transient grant
         }
 
-        val openStream: suspend () -> InputStream = { openLocalFile(patchBundle) }
+        val openStream: suspend () -> InputStream = {
+            contentResolver.openInputStream(patchBundle)
+                ?: throw FileNotFoundException("Unable to open $patchBundle")
+        }
         return try {
             if (replacingUid != null) {
                 patchBundleRepository.replaceLocal(replacingUid, size, openStream)
@@ -616,35 +621,24 @@ class HomeViewModel(
     }
 
     /**
-     * Called when the app is opened via a deep link containing a source URL.
+     * Called when the app is opened via a deep link containing a bundle URL.
      * Shows a confirmation dialog instead of adding silently.
      */
-    fun handleDeepLinkAddSource(source: MainViewModel.DeepLinkSource) {
+    fun handleDeepLinkAddSource(url: String, name: String?) {
         dismissOpenDialogs()
-        deepLinkPendingSource = source
+        deepLinkPendingBundle = DeepLinkBundle(url = url, name = name)
     }
 
-    /**
-     * User confirmed adding the source from the deep link confirmation dialog.
-     *
-     * A link for one app from a source that is already here only asks for that app, so it is
-     * brought back to the source rather than the source being refused as a duplicate.
-     */
-    fun confirmDeepLinkSource(options: NewSourceOptions) {
-        val source = deepLinkPendingSource ?: return
-        deepLinkPendingSource = null
-        val scope = source.scope
-        val existingUid = patchBundleRepository.existingSourceUid(source.url)
-        if (scope is SourceScope.App && existingUid != null) {
-            viewModelScope.launch { sourceMuteRepository.unmuteApps(existingUid, listOf(scope.packageName)) }
-        } else {
-            createRemoteSources(listOf(source.url), options, scope)
-        }
+    /** User confirmed adding the bundle from the deep link confirmation dialog. */
+    fun confirmDeepLinkBundle(chooseApps: Boolean) {
+        val bundle = deepLinkPendingBundle ?: return
+        deepLinkPendingBundle = null
+        createRemoteSources(listOf(bundle.url), chooseApps)
     }
 
     /** User dismissed the deep link confirmation dialog. */
-    fun dismissDeepLinkSource() {
-        deepLinkPendingSource = null
+    fun dismissDeepLinkBundle() {
+        deepLinkPendingBundle = null
     }
 
     /**
@@ -652,11 +646,26 @@ class HomeViewModel(
      * one, and so the flow the user resumes afterward is rebuilt from the new set of sources.
      */
     private fun dismissOpenDialogs() {
-        patchFlow.cancel()
+        patchFlow.cleanupExpertModeData()
+        patchFlow.dismissSimpleBundleSelectDialog()
+        patchFlow.dismissSplitApkWarning()
+        patchFlow.dismissUnsupportedVersionDialog()
+        patchFlow.dismissExperimentalVersionDialog()
+        patchFlow.dismissWrongPackageDialog()
+        patchFlow.dismissInvalidSignatureDialog()
+        patchFlow.dismissPrePatchInstallerDialog()
+        patchFlow.dismissMeteredPatchingDialog()
+        patchFlow.dismissLowDiskSpaceDialog()
+        dismissInstalledAppInfo()
+        patchFlow.showNoCompatibleVersionsDialog = null
         showAndroid11Dialog = false
+        showBundleManagementSheet = false
         showRenameBundleDialog = false
         bundleToRename = null
+        showAddSourceDialog = false
         sourceAppsQueue = emptyList()
+        pickedBundles = emptyList()
+        patchFlow.cleanupPendingData()
     }
 
     /**
@@ -666,8 +675,12 @@ class HomeViewModel(
     val bundleAppMetadataFlow: StateFlow<Map<String, BundleAppMetadata>> =
         patchBundleRepository.appMetadata
 
-    /** What the sources call each app, see [PatchBundleRepository.appDisplayNames]. */
-    val appDisplayNamesFlow: StateFlow<Map<String, String>> = patchBundleRepository.appDisplayNames
+    /**
+     * [bundleAppMetadataFlow] widened to every bundle, for the tracked records whose own source is
+     * no longer enabled and which have nothing else left describing them.
+     */
+    val allBundleAppMetadataFlow: StateFlow<Map<String, BundleAppMetadata>> =
+        patchBundleRepository.allAppMetadata
 
     /**
      * Snapshot of all bundle info (including disabled) as a [StateFlow] for synchronous reads.
@@ -727,14 +740,12 @@ class HomeViewModel(
         allBundlesInfoState.value[uid]?.name
 
     /**
-     * The package [item] opens as on the device, patched or not, or null when it is not there or
-     * has nothing to open. Lets the user see what the app already does before patching it.
+     * Returns the set of experimental version strings for a package from all currently enabled
+     * bundles, narrowed to the versions the user is actually offered. Used by the UI to show
+     * "Experimental" badges on specific versions.
      */
-    fun launchablePackage(item: HomeAppItem): String? =
-        (item.installedApp?.currentPackageName ?: item.packageName)
-            .takeIf { item.isInstalledOnDevice && pm.canLaunch(it) }
-
-    fun openApp(packageName: String) = pm.launch(packageName)
+    fun getExperimentalVersionsForPackage(packageName: String): Set<String> =
+        patchFlow.compatibleVersions[packageName].orEmpty().offered().experimentalVersions()
 
     suspend fun persistReinstalledApp(
         app: InstalledApp,
@@ -793,14 +804,14 @@ class HomeViewModel(
                 }.onFailure { error ->
                     skipped++
                     if (error !is UninstallCancelledException) {
-                        messages.show(R.string.uninstall_app_fail, error.simpleMessage())
+                        app.toast(app.getString(R.string.uninstall_app_fail, error.simpleMessage()))
                     }
                 }
             }
 
-            if (unverified > 0) messages.show(R.string.uninstall_app_unverified)
+            if (unverified > 0) app.toast(app.getString(R.string.uninstall_app_unverified))
             app.batchActionSummary(R.plurals.batch_uninstall_summary, completed, skipped)
-                ?.let { messages.show(it) }
+                ?.let { app.toast(it) }
         }
     }
 
@@ -810,6 +821,7 @@ class HomeViewModel(
     fun handleAppClick(
         packageName: String,
         availablePatches: Int,
+        bundleUpdateInProgress: Boolean,
         android11BugActive: Boolean,
         installedApp: InstalledApp?
     ) {
@@ -819,8 +831,8 @@ class HomeViewModel(
         }
 
         // Check if patches are being fetched
-        if (availablePatches <= 0) {
-            messages.show(R.string.home_sources_are_loading)
+        if (availablePatches <= 0 || bundleUpdateInProgress) {
+            app.toast(app.getString(R.string.home_sources_are_loading))
             return
         }
 
@@ -834,25 +846,14 @@ class HomeViewModel(
     }
 
     /**
-     * Called when an APK is shared to Morphe via the system share sheet.
-     * Shows a message and returns early if expert mode is disabled.
-     * Otherwise, waits until [installedAppsLoading] is false before handing it to the patch flow.
+     * Show patch dialog.
+     *
+     * Resolve any necessary patch-source choice, then reuse a matching retained original
+     * or start its download. Manual APK/version selection remains on the progress surface.
+     *
+     * @param repatchedPackageName The tracked install to rebuild. Null starts an install of its
+     *   own, which is how an app that is already patched gets a second, cloned copy.
      */
-    private suspend fun handleExternalApkUri(uri: Uri) {
-        if (!prefs.useExpertMode.get()) {
-            messages.show(R.string.home_external_apk_expert_mode_required)
-            return
-        }
-        // Wait for patches to be ready, capped in case the sources never answer
-        withTimeoutOrNull(30.seconds) {
-            snapshotFlow { installedAppsLoading }.first { !it }
-        }
-        patchFlow.handleApkSelection(uri)
-    }
+    override fun onCleared() { patchFlow.close(); apps.close() }
 
-    override fun onCleared() {
-        apps.close()
-        // The system can destroy the ViewModel while a temporary APK is still held for a run
-        patchFlow.close()
-    }
 }

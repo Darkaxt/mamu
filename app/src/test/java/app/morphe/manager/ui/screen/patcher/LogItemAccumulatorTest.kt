@@ -97,7 +97,7 @@ class LogItemAccumulatorTest {
         val initialSummary = assertIs<LogItem.SuccessSummary>(accumulator.items[0])
         assertEquals("8s", initialSummary.elapsedSec)
         assertEquals(null, initialSummary.processHeapAverageMb)
-        assertEquals(null, initialSummary.ioPeakKbPerSec)
+        assertEquals(null, initialSummary.ioPeakRate)
 
         // Heap and I/O metrics arrive after the success line
         accumulator.append(LogLevel.INFO, "Heap after patching: average=120MB max=195MB")
@@ -106,7 +106,7 @@ class LogItemAccumulatorTest {
         val updatedSummary = assertIs<LogItem.SuccessSummary>(accumulator.items[0])
         assertEquals("120MB", updatedSummary.processHeapAverageMb)
         assertEquals("195MB", updatedSummary.processHeapMaxMb)
-        assertEquals(4096, updatedSummary.ioPeakKbPerSec)
+        assertEquals(formatRate(4096), updatedSummary.ioPeakRate)
     }
 
     @Test

@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">Kosa la Android 11</string>
     <string name="android_11_bug_dialog_description">Ruhusa ya usakinishaji wa programu lazima itolewe mapema ili kuepuka hitilafu katika mfumo wa Android 11 ambayo itaathiri vibaya uzoefu wa mtumiaji</string>
     <string name="deep_link_add_source_title">Ongeza chanzo</string>
-    <string name="deep_link_add_source_message">Je, unataka kuongeza chanzo hiki cha patch kwenye Morphe?</string>
+    <string name="deep_link_add_source_message">Je, unataka kuongeza chanzo hiki cha patch kwenye Mamu?</string>
     <string name="deep_link_add_source_warning">Ongeza vyanzo unavyoviamini tu</string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">Ni hii programu pekee iliyoongezwa. Unaweza kuongeza programu nyingine kutoka kwenye orodha ya programu ya chanzo</string>
@@ -44,15 +44,15 @@
     <string name="mpp_import_unreadable">Faili hili haliwezi kusomwa</string>
     <string name="incoming_file_not_patch_source">Faili hili si chanzo cha patch</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">Sasisho la Morphe linapatikana</string>
+    <string name="home_update_available">Sasisho la Mamu linapatikana</string>
     <string name="home_update_available_subtitle">Toleo jipya liko tayari kusakinishwa</string>
     <string name="home_blocked_source_title">Chanzo cha patch kilichozuiwa kimegunduliwa</string>
     <string name="home_blocked_source_subtitle">Gusa ili kupitia na kuondoa</string>
     <string name="home_metadata_errors_title">Baadhi ya vyanzo vya patch havipatikani</string>
     <string name="home_metadata_errors_subtitle">Gusa ili kupitia vyanzo</string>
-    <string name="home_outdated_manager_title">Morphe imepitwa na wakati</string>
+    <string name="home_outdated_manager_title">Mamu imepitwa na wakati</string>
     <string name="home_outdated_manager_subtitle">Baadhi ya vyanzo vya patch vinahitaji toleo jipya</string>
-    <string name="home_held_back_title">Chanzo cha patch kimesababisha Morphe kufeli</string>
+    <string name="home_held_back_title">Chanzo cha patch kimesababisha Mamu kufeli</string>
     <string name="home_held_back_subtitle">Ilirukwa ili programu iweze kuanza. Gusa ili kupitia</string>
     <string name="home_source_updates_title">Sasisho za patch zinapatikana</string>
     <string name="home_source_updates_subtitle">Gusa ili kuzipakua</string>
@@ -204,10 +204,10 @@
     <string name="sources_management_metadata_unavailable_hint">Faili ya metadata ya mbali haipatikani. Kufanya patching kwa bundle iliyosakinishwa bado inafanya kazi, lakini sasisho la kiotomatiki limezimwa kwa chanzo hiki</string>
     <string name="sources_management_metadata_unavailable_hint_missing">Bundle ya patch haikuweza kupakuliwa. URL ya chanzo inaweza kuwa si sahihi au faili haipo</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">Kifurushi cha patch hakikuweza kupakuliwa. URL ya chanzo inaweza kuwa si sahihi au faili haipo. Gusa ili kuibadilisha</string>
-    <string name="sources_management_outdated_manager_badge">Sasisha Morphe</string>
-    <string name="sources_management_outdated_manager_hint">Chanzo hiki kimeundwa kwa ajili ya patcher %1$s, lakini Morphe %2$s inajumuisha patcher %3$s. Sasisha Morphe ili kuitumia</string>
+    <string name="sources_management_outdated_manager_badge">Sasisha Mamu</string>
+    <string name="sources_management_outdated_manager_hint">Chanzo hiki kimeundwa kwa ajili ya patcher %1$s, lakini Mamu %2$s inajumuisha patcher %3$s. Sasisha Mamu ili kuitumia</string>
     <string name="sources_management_held_back_badge">Kimefeli</string>
-    <string name="sources_management_held_back_hint">Chanzo hiki kimesababisha Morphe kufeli wakati wa kupakia, hivyo kinarukwa. Sasisha au kiingize tena ili kujaribu tena</string>
+    <string name="sources_management_held_back_hint">Chanzo hiki kimesababisha Mamu kufeli wakati wa kupakia, hivyo kinarukwa. Sasisha au kiingize tena ili kujaribu tena</string>
     <string name="sources_management_signed_by">Imesainiwa na</string>
     <string name="sources_management_signing_key_changed_badge">Ufunguo umebadilika</string>
     <string name="sources_management_signing_key_changed_hint">Toleo la hivi karibuni halijasainiwa na ufunguo ambao chanzo hiki kilitumia hapo awali, hivyo halikuwekwa. Gusa ili kukikagua</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">Patch za jumuiya</string>
     <string name="sources_dialog_choose_apps">Chagua programu</string>
     <string name="sources_dialog_choose_apps_description">Chagua programu zipi za kubakiza mara tu chanzo kitakapopakia</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">Vyanzo vya patch vya upande wa tatu</string>
-    <string name="sources_dialog_community_notice_message">"Vyanzo vya viraka vya jumuiya vimetengenezwa na kudumishwa na waandishi wao wenyewe. Morphe haikagui wala kuhakiki viraka vya upande wa tatu, na haiwajibiki kwa maudhui yao au kile wanachofanya kwenye kifaa chako"</string>
+    <string name="sources_dialog_community_notice_message">"Vyanzo vya viraka vya jumuiya vimetengenezwa na kudumishwa na waandishi wao wenyewe. Mamu haikagui wala kuhakiki viraka vya upande wa tatu, na haiwajibiki kwa maudhui yao au kile wanachofanya kwenye kifaa chako"</string>
     <string name="sources_update_success">Sasisho limefanikiwa</string>
     <string name="sources_update_unavailable">Hakuna sasisho lililopatikana</string>
     <string name="sources_download_fail">Imeshindwa kupakua vyanzo: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">Programu msaidizi imesakinishwa lakini bado haijaaminika, kwa hivyo haijatolewa hapa</string>
     <string name="home_apk_helper_untrusted_action">Kagua wasaidizi</string>
     <string name="home_apk_helper_title">Pakua kwa kutumia programu msaidizi</string>
-    <string name="home_apk_helper_description">Morphe itaomba programu msaidizi hapa chini kupakua APK asilia na kurudisha faili hiyo</string>
+    <string name="home_apk_helper_description">Mamu itaomba programu msaidizi hapa chini kupakua APK asilia na kurudisha faili hiyo</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">Fungua msaidizi</string>
-    <string name="home_apk_helper_warning">Endelea tu ikiwa unaiamini programu msaidizi hii. Morphe hukagua kifurushi, toleo na saini ya chochote inachopokea kabla ya kufanya marekebisho</string>
-    <string name="home_apk_helper_warning_unverified">Endelea tu ikiwa unaiamini programu msaidizi hii. Morphe haiwezi kuhakiki saini ya APK hii, hivyo faili iliyorekebishwa haitagundulika</string>
+    <string name="home_apk_helper_warning">Endelea tu ikiwa unaiamini programu msaidizi hii. Mamu hukagua kifurushi, toleo na saini ya chochote inachopokea kabla ya kufanya marekebisho</string>
+    <string name="home_apk_helper_warning_unverified">Endelea tu ikiwa unaiamini programu msaidizi hii. Mamu haiwezi kuhakiki saini ya APK hii, hivyo faili iliyorekebishwa haitagundulika</string>
     <string name="home_apk_helper_no_result">Programu msaidizi haikurudisha APK</string>
     <string name="home_apk_helper_no_access">Programu msaidizi haikutoa ruhusa ya kufikia APK iliyorudishwa</string>
     <string name="home_apk_helper_no_package">Programu ya msaidizi haikuonyesha ni programu gani iliyosakinishwa itumike</string>
     <string name="home_apk_helper_wrong_package">Programu ya msaidizi ilirudisha programu tofauti na ile inayofanyiwa marekebisho</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe haikuweza kutumia programu iliyosakinishwa</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu haikuweza kutumia programu iliyosakinishwa</string>
     <string name="home_apk_helper_installed_incompatible">Toleo lililosakinishwa haliwezi kufanyiwa marekebisho</string>
     <string name="home_apk_use_saved_copy">Tumia nakala iliyohifadhiwa</string>
     <string name="home_apk_use_installed_app">Tumia programu iliyosakinishwa</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">Hakuwezi kuthibitishwa saini ya programu iliyosakinishwa, kwa hivyo inaweza kuwa tayari imerekebishwa</string>
     <string name="home_unverified">Hajathibitishwa</string>
     <string name="home_install_verification_pending">Inakagua usakinishaji…</string>
-    <string name="home_app_info_install_unverified">Morphe haiwezi kuthibitisha kwamba programu iliyosakinishwa ni build iliyopatchedwa. Patch tena au isakinishe upya kutoka kwa APK iliyohifadhiwa ili kurudisha utendaji wake</string>
+    <string name="home_app_info_install_unverified">Mamu haiwezi kuthibitisha kwamba programu iliyosakinishwa ni build iliyopatchedwa. Patch tena au isakinishe upya kutoka kwa APK iliyohifadhiwa ili kurudisha utendaji wake</string>
     <string name="home_app_info_no_saved_apk">Hakuna APK iliyohifadhiwa. Kurekebisha kutahitaji kuchagua faili ya APK tena</string>
     <string name="home_version_requires_android">Inahitaji Android %s+</string>
     <string name="home_apk_no_compatible_versions_title">Haiungwi mkono kwenye kifaa hiki</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">Shusha ukurasa wa wavuti na ubonyeze kitufe chake cha kupakua</string>
     <string name="home_download_instructions_step2_variant">Shusha ukurasa wa wavuti na ubonyeze kitufe cha kupakua cha &lt;b&gt;toleo la APK&lt;/b&gt; la juu</string>
     <string name="home_download_instructions_step2_search">Fungua matokeo ya utafutaji kutoka tovuti unayoiamini</string>
-    <string name="home_download_instructions_step2_search_note">Morphe haiwezi kuhakikisha usalama wa tovuti hizi. Ruka zile zinazotoa duka lao la programu badala ya faili ya APK</string>
+    <string name="home_download_instructions_step2_search_note">Mamu haiwezi kuhakikisha usalama wa tovuti hizi. Ruka zile zinazotoa duka lao la programu badala ya faili ya APK</string>
     <string name="home_download_instructions_step3_search">Kwenye tovuti hiyo, pakua APK ya toleo &lt;b&gt;%s&lt;/b&gt;, siyo ya hivi karibuni zaidi</string>
     <string name="home_download_instructions_step3_search_any">Kwenye tovuti hiyo, pakua APK ya programu. &lt;b&gt;Toleo lolote&lt;/b&gt; linaweza kufanyiwa patch</string>
     <string name="home_download_instructions_step2_github">Chini ya &lt;b&gt;Assets&lt;/b&gt; ya toleo &lt;b&gt;%s&lt;/b&gt;, bonyeza faili inayomalizia na &lt;b&gt;.apk&lt;/b&gt;</string>
@@ -314,11 +314,11 @@
     <string name="home_download_instructions_download_button_toast_3">Mazoezi huleta ukamilifu na unaelekea huko 💪</string>
     <string name="home_download_instructions_download_button_toast_4">Bado haijafika… bado haijafika… 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">Sawa, naheshimu juhudi zako 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">Sasa wewe ni mkaguzi rasmi wa kitufe cha Morphe 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">Sasa wewe ni mkaguzi rasmi wa kitufe cha Mamu 🏅</string>
     <string name="home_download_instructions_step3">Subiri pakua ikamilike, na &lt;b&gt;usisake&lt;/b&gt; APK</string>
     <string name="home_download_instructions_step3_mount">Subiri pakua ikamilike, kisha &lt;b&gt;saka APK&lt;/b&gt;</string>
-    <string name="home_download_instructions_step4">Baada ya kupakua kukamilika, rudi kwenye Morphe</string>
-    <string name="home_download_instructions_step4_mount">Baada ya kusakinisha APK ya asili, rudi kwenye Morphe</string>
+    <string name="home_download_instructions_step4">Baada ya kupakua kukamilika, rudi kwenye Mamu</string>
+    <string name="home_download_instructions_step4_mount">Baada ya kusakinisha APK ya asili, rudi kwenye Mamu</string>
     <string name="home_download_instructions_continue_to">Endelea kwenda %s</string>
     <string name="home_download_instructions_destination">ukurasa wa kupakulia</string>
     <string name="home_download_instructions_copy_link">Nakili kiungo</string>
@@ -446,12 +446,12 @@ Kwa matokeo bora, programu hii inapendekeza kutumia &lt;b&gt;full APK&lt;/b&gt;"
     <string name="adaptive_icon_themed">Yenye mandhari</string>
     <string name="adaptive_icon_background_color">Rangi ya mandhari</string>
     <string name="adaptive_icon_reset_transform">Rudisha nafasi na ukubwa</string>
-    <string name="adaptive_icon_no_transparency_warning">Picha hii haina pikseli zinazopitisha mwanga, hivyo aikoni zenye mandhari na za taarifa zinaendelea kutumia nembo ya Morphe</string>
+    <string name="adaptive_icon_no_transparency_warning">Picha hii haina pikseli zinazopitisha mwanga, hivyo aikoni zenye mandhari na za taarifa zinaendelea kutumia nembo ya Mamu</string>
     <string name="adaptive_icon_created_success">Aikoni inayobadilika imeundwa kwa mafanikio</string>
     <string name="adaptive_icon_creation_failed">Imeshindwa kuunda aikoni inayobadilika</string>
     <string name="adaptive_icon_guide">Mwongozo wa utengenezaji wa aikoni</string>
     <string name="adaptive_icon_guide_png_title">Tumia PNG yenye mandhari ya wazi</string>
-    <string name="adaptive_icon_guide_png_body">Nembo kwenye mandhari yenye uwazi hufanya kazi vizuri zaidi, huku rangi ya mandhari ikichaguliwa hapa chini. Picha isiyo na uwazi hujaza ikoni nzima badala yake, na ikoni za mandhari na za taarifa huendelea kutumia nembo ya Morphe.</string>
+    <string name="adaptive_icon_guide_png_body">Nembo kwenye mandhari yenye uwazi hufanya kazi vizuri zaidi, huku rangi ya mandhari ikichaguliwa hapa chini. Picha isiyo na uwazi hujaza ikoni nzima badala yake, na ikoni za mandhari na za taarifa huendelea kutumia nembo ya Mamu.</string>
     <string name="adaptive_icon_guide_safe_zones_title">Kanda salama</string>
     <string name="adaptive_icon_guide_safe_zones_body">Mstari wa nje unaonyesha umbo la ikoni ya kizinduzi chako, na kila kitu kilicho nje yake hukatwa. Vizinduzi vingine hutumia maumbo mengine, hivyo weka maelezo muhimu ndani ya duara lenye mistari iliyokatika, ambalo kila umbo huonyesha.</string>
     <string name="adaptive_icon_guide_notification_title">Aikoni ya taarifa</string>
@@ -557,8 +557,8 @@ Kwa matokeo bora, programu hii inapendekeza kutumia &lt;b&gt;full APK&lt;/b&gt;"
     <string name="home_app_info_version_move">Imewekwa %1$s, ya hivi karibuni inayoungwa mkono %2$s</string>
     <string name="home_app_info_version_restore">Imesakinishwa %1$s, imepachikwa %2$s</string>
     <string name="home_app_info_app_deleted_warning">Programu imeondolewa</string>
-    <string name="home_app_info_app_deleted_description">Programu hii imeondolewa nje ya Morphe. Ipatche tena ili kurudisha utendaji</string>
-    <string name="home_app_info_not_patched_description">Toleo lisilofanyiwa patch la programu hii limesakinishwa. Morphe bado ina rekodi yake ya patch ya awali</string>
+    <string name="home_app_info_app_deleted_description">Programu hii imeondolewa nje ya Mamu. Ipatche tena ili kurudisha utendaji</string>
+    <string name="home_app_info_not_patched_description">Toleo lisilofanyiwa patch la programu hii limesakinishwa. Mamu bado ina rekodi yake ya patch ya awali</string>
     <string name="home_app_info_mount_replaced_description">Toleo lingine limebadilisha programu iliyowekwa, hivyo patch haitumiki tena. Rudisha huweka toleo lililopatchwa nyuma</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play imesasisha programu iliyowekwa, hivyo patch haitumiki tena. Rudisha huweka toleo lililopatchwa nyuma. Zima sasisho la kiotomatiki kwa programu hii katika Google Play ili iendelee kuwa na patch</string>
     <string name="app_links_title">Viungo vya wavuti vinavyoungwa mkono</string>
@@ -589,7 +589,7 @@ Kwa matokeo bora, programu hii inapendekeza kutumia &lt;b&gt;full APK&lt;/b&gt;"
     <string name="root_pre_patch_installer_description">Kifaa chako kina ufikiaji wa root. Chagua kama programu hii inapaswa kufanyiwa patch kwa root mount au installation ya kawaida</string>
     <string name="root_pre_patch_installer_mount_title">Modi ya Root mount</string>
     <string name="root_pre_patch_installer_mount_description">Hufanya patch kwa root mount, kisha hu-mount APK juu ya programu inayolingana ya asili. GmsCore haihitajiki</string>
-    <string name="root_mount_module_unmount_warning">Ikiwa KernelSU ina \"Unmount modules by default\" imewashwa, fungua KernelSU &gt; Superuser &gt; programu uliyokuwa umeimount &gt; Profile &gt; Custom na uzime \"Unmount modules\". Vinginevyo, APK ya patched iliyomountwa inaweza isifanye kazi, hata kama Morphe inaonyesha kuwa imemountwa</string>
+    <string name="root_mount_module_unmount_warning">Ikiwa KernelSU ina \"Unmount modules by default\" imewashwa, fungua KernelSU &gt; Superuser &gt; programu uliyokuwa umeimount &gt; Profile &gt; Custom na uzime \"Unmount modules\". Vinginevyo, APK ya patched iliyomountwa inaweza isifanye kazi, hata kama Mamu inaonyesha kuwa imemountwa</string>
     <string name="root_pre_patch_installer_standard_title">Modi ya installation ya kawaida</string>
     <string name="root_pre_patch_installer_standard_description">Hufanya patch kama APK ya kawaida yenye msaada wa GmsCore. Mpangilio wako wa installer hutumiwa baada ya patching</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -652,7 +652,7 @@ Kwa matokeo bora, programu hii inapendekeza kutumia &lt;b&gt;full APK&lt;/b&gt;"
     <string name="patcher_conflict_subtitle">Unapaswa kuondoa toleo lililopo</string>
     <string name="patcher_conflict_hint">Programu iliyorekebishwa inatumia cheti tofauti na toleo lililosakinishwa. Kufuta kutaondoa data zote za programu</string>
     <string name="patcher_installed_conflict_title">Kufuta kunahitajika</string>
-    <string name="patcher_installed_conflict_body">"Morphe husaini programu zilizorekebishwa kwa cheti chake mwenyewe, ambacho ni tofauti na cha asili. Android inahitaji kuondoa toleo lililopo kabla ya programu iliyorekebishwa kuweza kusakinishwa.
+    <string name="patcher_installed_conflict_body">"Mamu husaini programu zilizorekebishwa kwa cheti chake mwenyewe, ambacho ni tofauti na cha asili. Android inahitaji kuondoa toleo lililopo kabla ya programu iliyorekebishwa kuweza kusakinishwa.
 
 Kuondoa programu kutaondoa data zote za programu kabisa"</string>
     <string name="patcher_install_error_title">Kosa la usakinishaji</string>
@@ -662,8 +662,8 @@ Kuondoa programu kutaondoa data zote za programu kabisa"</string>
     <string name="patcher_patches_excluded_for_installer">Haikupatikana kwa njia hii ya usakinishaji na imetengwa: %s</string>
     <string name="patcher_storage_permission_dialog_title">Huwezi kufikia njia ya hifadhi</string>
     <string name="patcher_incompatible_patcher_title">Sasisho linahitajika</string>
-    <string name="patcher_incompatible_patcher_description">Chanzo &lt;b&gt;%1$s&lt;/b&gt; kinahitaji patcher &lt;b&gt;%2$s&lt;/b&gt; au mpya zaidi. Sasisha Morphe ili kukitumia</string>
-    <string name="patcher_storage_permission_description_api30">Chaguo moja au zaidi za patch zinaelekeza kwenye njia ambazo Morphe haiwezi kusoma. Ruhusu ufikiaji wa hifadhi na uguse kitufe, kisha patching itaanza kiotomatiki</string>
+    <string name="patcher_incompatible_patcher_description">Chanzo &lt;b&gt;%1$s&lt;/b&gt; kinahitaji patcher &lt;b&gt;%2$s&lt;/b&gt; au mpya zaidi. Sasisha Mamu ili kukitumia</string>
+    <string name="patcher_storage_permission_description_api30">Chaguo moja au zaidi za patch zinaelekeza kwenye njia ambazo Mamu haiwezi kusoma. Ruhusu ufikiaji wa hifadhi na uguse kitufe, kisha patching itaanza kiotomatiki</string>
     <string name="patcher_storage_permission_description_legacy">Chaguo moja au zaidi za patch zinaelekea kwenye njia ambazo haziwezi kufikiwa. Sasisha njia katika chaguo za patch na ujaribu tena</string>
     <string name="patcher_storage_permission_grant">Ruhusu ruhusa ya hifadhi</string>
     <string name="patcher_storage_permission_denied_warning">Ruhusa ya hifadhi imekataliwa. Ruhusu ruhusa ili kutumia njia hii, au hamisha faili kwenye folda ya faragha ya programu</string>
@@ -699,7 +699,7 @@ Kuondoa programu kutaondoa data zote za programu kabisa"</string>
     <string name="patcher_task_writing_apk">Kuandika faili la APK</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">Ulinzi wa urekebishaji wa nyuma</string>
-    <string name="battery_optimization_dialog_description">Baadhi ya vifaa vinaweza kusitisha kirekebishaji programu wakati programu inapopunguzwa. Ruhusu Morphe iendelee kufanya kazi bila vizuizi vya betri ili kuhakikisha urekebishaji unakamilika kwa uhakika</string>
+    <string name="battery_optimization_dialog_description">Baadhi ya vifaa vinaweza kusitisha kirekebishaji programu wakati programu inapopunguzwa. Ruhusu Mamu iendelee kufanya kazi bila vizuizi vya betri ili kuhakikisha urekebishaji unakamilika kwa uhakika</string>
     <string name="battery_optimization_not_now">Sio sasa</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">Mchakato wa kurekebisha unaendelea…</string>
@@ -754,8 +754,8 @@ Kuondoa programu kutaondoa data zote za programu kabisa"</string>
     <string name="install_ignore_signature">Sakinisha hata hivyo</string>
     <string name="install_ignore_signature_description">Inahifadhi data ya programu, lakini inafanya kazi tu ikiwa moduli ya root itazima uhakiki wa saini ya Android</string>
     <string name="uninstall_app_fail">Imeshindwa kuondoa programu: %s</string>
-    <string name="uninstall_app_unverified">Imeachwa kama ilivyo: Morphe haikuweza kuthibitisha kuwa programu iliyosakinishwa ni toleo ambalo lilirekebisha</string>
-    <string name="launch_app_unverified">Morphe imeshindwa kuthibitisha kwamba programu iliyosakinishwa ni toleo lililorekebishwa</string>
+    <string name="uninstall_app_unverified">Imeachwa kama ilivyo: Mamu haikuweza kuthibitisha kuwa programu iliyosakinishwa ni toleo ambalo lilirekebisha</string>
+    <string name="launch_app_unverified">Mamu imeshindwa kuthibitisha kwamba programu iliyosakinishwa ni toleo lililorekebishwa</string>
     <string name="uninstall_timeout">Muda wa kuondoa umeisha</string>
     <string name="save_apk_success">APK Imehifadhiwa</string>
     <string name="saved_app_export_failed">Imeshindwa kusafirisha programu iliyorekebishwa</string>
@@ -847,7 +847,7 @@ Kuondoa programu kutaondoa data zote za programu kabisa"</string>
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">Lugha ya programu</string>
     <string name="settings_appearance_app_language_current">Lugha ya sasa</string>
-    <string name="settings_appearance_translate">Saidia kutafsiri Morphe</string>
+    <string name="settings_appearance_translate">Saidia kutafsiri Mamu</string>
     <string name="settings_appearance_translations_info_title">Tafsiri za baadhi ya lugha zinaweza kukosekana au kutokamilika</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">Kiwango cha kiolesura</string>
@@ -876,7 +876,7 @@ Kuondoa programu kutaondoa data zote za programu kabisa"</string>
     <string name="settings_appearance_app_card_colors_bundle_description">Tumia rangi ya programu au chanzo hapa, ikififishwa kiotomatiki ili kuendana</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">Aikoni ya programu</string>
-    <string name="settings_appearance_app_icon_selector_description">Jinsi Morphe inavyoonekana kwenye skrini yako ya nyumbani na kwenye droo ya programu</string>
+    <string name="settings_appearance_app_icon_selector_description">Jinsi Mamu inavyoonekana kwenye skrini yako ya nyumbani na kwenye droo ya programu</string>
     <string name="settings_appearance_app_icon_default">Kawaida</string>
     <string name="settings_appearance_app_icon_light_2">Anga</string>
     <string name="settings_appearance_app_icon_light_3">Machweo</string>
@@ -900,23 +900,23 @@ Kuondoa programu kutaondoa data zote za programu kabisa"</string>
     <string name="settings_appearance_app_icon_mark_black">Nyeusi</string>
     <string name="settings_appearance_app_icon_change_dialog_title">Badilisha aikoni ya programu?</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">Morphe inaanza upya ili kubadilisha kwenda &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="settings_appearance_app_icon_change_restarts">Mamu inaanza upya ili kubadilisha kwenda &lt;b&gt;%s&lt;/b&gt;</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">Badilisha aikoni</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">Sasisho za kabla ya toleo rasmi</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">Ufikiaji wa mapema wa matoleo mapya ya Morphe</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">Ufikiaji wa mapema wa matoleo mapya ya Mamu</string>
     <string name="settings_advanced_updates_prerelease_warning_title">Washa sasisho za kabla ya toleo rasmi?</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"Matoleo ya awali ya Morphe bado yanaendelezwa na yanaweza kutokuwa thabiti.
+    <string name="settings_advanced_updates_prerelease_warning_message">"Matoleo ya awali ya Mamu bado yanaendelezwa na yanaweza kutokuwa thabiti.
 
 Patch haziaathiriwi: wezesha patch za matoleo ya awali kwa kila chanzo katika orodha ya vyanzo vya patch"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">Sasisho za kiotomatiki</string>
-    <string name="settings_auto_updates_description">Kile Morphe kinachofanya kuhusu sasisho inapofunguliwa. Kuvuta ili kuburudisha huchunguza kila wakati</string>
+    <string name="settings_auto_updates_description">Kile Mamu kinachofanya kuhusu sasisho inapofunguliwa. Kuvuta ili kuburudisha huchunguza kila wakati</string>
     <string name="settings_auto_updates_download">Pakua kiotomatiki</string>
-    <string name="settings_auto_updates_download_description">Huchunguza sasisho wakati Morphe inapofunguliwa na kupakua sasisho za patch kwenye mtandao wowote</string>
+    <string name="settings_auto_updates_download_description">Huchunguza sasisho wakati Mamu inapofunguliwa na kupakua sasisho za patch kwenye mtandao wowote</string>
     <string name="settings_auto_updates_wifi_only">Pakua kwenye Wi-Fi pekee</string>
     <string name="settings_auto_updates_wifi_only_description">Kwenye data ya simu, huchunguza na kuonyesha tu kile kinachopatikana</string>
     <string name="settings_auto_updates_check_only">Angalia tu</string>
@@ -937,27 +937,27 @@ Patch haziaathiriwi: wezesha patch za matoleo ya awali kwa kila chanzo katika or
     <string name="settings_advanced_external_batch_patch">Ruhusu vichocheo vya nje</string>
     <string name="settings_advanced_external_batch_patch_description">Huruhusu programu za otomatiki kuanzisha batch patching</string>
     <string name="external_batch_patch_title">Anza patching ya jumla?</string>
-    <string name="external_batch_patch_description">%s anataka Morphe ipatch na isakinisha app</string>
+    <string name="external_batch_patch_description">%s anataka Mamu ipatch na isakinisha app</string>
     <string name="external_batch_patch_trust_caller">Ruhusu programu hii kila wakati</string>
     <string name="external_batch_patch_unknown_caller">Programu isiyojulikana</string>
     <!-- Notification content -->
     <string name="notification_bundle_update_title">Viraka vipya vinapatikana</string>
     <string name="notification_update_text">Toleo %s lipo tayari kupakuliwa</string>
-    <string name="notification_bundle_update_text_unversioned">Gusa ili kufungua Morphe na kusasisha</string>
+    <string name="notification_bundle_update_text_unversioned">Gusa ili kufungua Mamu na kusasisha</string>
     <string name="notification_permission_dialog_title">Ruhusu arifa</string>
-    <string name="notification_permission_dialog_description">Morphe inahitaji ruhusa ya taarifa ili kukujulisha wakati sasisho zinapopatikana nyuma ya mfumo</string>
+    <string name="notification_permission_dialog_description">Mamu inahitaji ruhusa ya taarifa ili kukujulisha wakati sasisho zinapopatikana nyuma ya mfumo</string>
     <string name="notification_post_patch_dialog_title">Je, ungependa kutajulishwa sasisho zinapopatikana?</string>
-    <string name="notification_channel_manager_updates">Sasisho za Morphe</string>
-    <string name="notification_channel_manager_updates_description">Arifa kuhusu matoleo mapya ya Morphe</string>
+    <string name="notification_channel_manager_updates">Sasisho za Mamu</string>
+    <string name="notification_channel_manager_updates_description">Arifa kuhusu matoleo mapya ya Mamu</string>
     <string name="notification_channel_patch_updates">Sasisho za patch</string>
     <string name="notification_channel_patch_updates_description">Arifa kuhusu matoleo mapya ya patch</string>
-    <string name="notification_channel_patcher_description">Inaonyeshwa wakati Morphe inafanyia programu marekebisho nyuma ya pazia</string>
+    <string name="notification_channel_patcher_description">Inaonyeshwa wakati Mamu inafanyia programu marekebisho nyuma ya pazia</string>
     <string name="notification_channel_patching_results">Matokeo ya patching</string>
-    <string name="notification_channel_patching_results_description">Wakati patching inapokwisha au usakinishaji unapokusubiri wakati Morphe iko chinichini</string>
+    <string name="notification_channel_patching_results_description">Wakati patching inapokwisha au usakinishaji unapokusubiri wakati Mamu iko chinichini</string>
     <string name="notification_channel_mounted_apps">Programu zilizowekwa</string>
     <string name="notification_channel_mounted_apps_description">Wakati toleo lingine linapobadilisha programu iliyowekwa na patch yake haitumiki tena</string>
     <string name="notification_mount_replaced_title">%1$s haina patch tena</string>
-    <string name="notification_mount_replaced_text">v%1$s imechukua nafasi ya v%2$s iliyorekebishwa. Fungua Morphe ili kuirejesha</string>
+    <string name="notification_mount_replaced_text">v%1$s imechukua nafasi ya v%2$s iliyorekebishwa. Fungua Mamu ili kuirejesha</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">Hali ya utaalamu</string>
     <string name="settings_advanced_expert_mode_description">Hufungua mipangilio ya juu ya patching na chaguzi za patch</string>
@@ -979,7 +979,7 @@ Patch haziaathiriwi: wezesha patch za matoleo ya awali kwa kila chanzo katika or
     <string name="settings_advanced_github_pat_unreachable">Hakuweza kuwasiliana na GitHub ili kuhakiki tokeni hii</string>
     <string name="settings_advanced_github_pat_export_include_label">Jumuisha katika usafirishaji wa mipangilio</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">Huongeza PAT hii kwenye mipangilio ya Morphe iliyosafirishwa</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">Huongeza PAT hii kwenye mipangilio ya Mamu iliyosafirishwa</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">Usishiriki PAT yako. Ikiwa utaijumuisha katika usafirishaji wa mipangilio, weka faili hiyo kuwa ya siri kwa sababu ina token</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1074,7 +1074,7 @@ Vipimo vya picha lazima viwe kama vifuatavyo:
     <string name="installer_status_not_supported">Haiungwi mkono kwa kitendo hiki</string>
     <string name="installer_status_shizuku_not_installed">Sakinisha Shizuku au Sui ili kutumia chaguo hili</string>
     <string name="installer_status_shizuku_not_running">Anzisha Shizuku au Sui na ujaribu tena</string>
-    <string name="installer_status_shizuku_permission">Toa ruhusa kwa Morphe kutoka kwenye programu ya Shizuku</string>
+    <string name="installer_status_shizuku_permission">Toa ruhusa kwa Mamu kutoka kwenye programu ya Shizuku</string>
     <string name="installer_mount_warning_install">Hali ya patch imewekwa kwenye root mount. Programu hii iliyohifadhiwa haikusanikishwa kwa kutumia mount</string>
     <string name="mount_version_mismatch_message">Toleo la programu ya awali (%2$s) halilingani na toleo la programu iliyorekebishwa (%1$s). Weka toleo la awali linalolingana, kisha jaribu tena</string>
     <string name="mount_stock_restore_failed_message">Android imekataa APK asili iliyohifadhiwa. Sakinisha toleo sahihi la stock, kisha jaribu Mount tena</string>
@@ -1115,7 +1115,7 @@ Vipimo vya picha lazima viwe kama vifuatavyo:
     <string name="settings_ignore_install_target_rules">Puuza mahitaji ya lengo la usanikishaji</string>
     <string name="settings_ignore_install_target_rules_description">Inaruhusu kuzima viraka ambavyo lengo la usakinishaji linahitaji na kuwasha vile vinavyokataliwa. Programu iliyopachikwa inaweza isifanye kazi</string>
     <string name="settings_auto_uninstall_warning_title">Washa uondoaji wa kiotomatiki?</string>
-    <string name="settings_auto_uninstall_warning_message">Ikiwa Android itaripoti mgongano wa saini wakati wa usakinishaji wa kiotomatiki wa Shizuku, Morphe itaondoa programu iliyopo kabla ya kusakinisha APK iliyorekebishwa</string>
+    <string name="settings_auto_uninstall_warning_message">Ikiwa Android itaripoti mgongano wa saini wakati wa usakinishaji wa kiotomatiki wa Shizuku, Mamu itaondoa programu iliyopo kabla ya kusakinisha APK iliyorekebishwa</string>
     <string name="settings_auto_uninstall_warning_risk">Hii inaweza kufuta data ya programu. Ikiwa APK iliyorekebishwa itashindwa kusakinishwa baada ya kuondoa, programu ya awali inaweza kuwa imeshaondolewa</string>
     <string name="installer_shizuku_status_action">Angalia hali ya Shizuku</string>
     <string name="installer_shizuku_status_title">Hali ya Shizuku</string>
@@ -1133,7 +1133,7 @@ Vipimo vya picha lazima viwe kama vifuatavyo:
     <string name="installer_shizuku_install_fail_with_details">"Ufungaji wa Shizuku umefeli: %1$s
 
 Maelezo: %2$s"</string>
-    <string name="installer_shizuku_error_permission">Ruhusa ya Shizuku haipatikani. Toa ruhusa kwa Morphe na ujaribu tena</string>
+    <string name="installer_shizuku_error_permission">Ruhusa ya Shizuku haipatikani. Toa ruhusa kwa Mamu na ujaribu tena</string>
     <string name="installer_shizuku_error_timeout">Shizuku haikurudisha matokeo ya usakinishaji. Hakikisha bado inafanya kazi na ujaribu tena</string>
     <string name="installer_shizuku_error_downgrade">Android imezuia hili kwa sababu itashusha toleo la programu iliyosakinishwa</string>
     <string name="installer_shizuku_error_signature">Android imezuia hili kwa sababu programu iliyosakinishwa ina saini tofauti</string>
@@ -1144,13 +1144,13 @@ Maelezo: %2$s"</string>
     <string name="settings_system_battery_optimization_description">Huweka patcher ikiendelea kufanya kazi wakati programu imepunguzwa</string>
     <string name="settings_system_process_runtime">Runtime ya Patcher</string>
     <string name="settings_system_jvm_runtime_enable">Tumia VM iliyojumuishwa</string>
-    <string name="settings_system_jvm_runtime_description">Viraka vinaendeshwa kwenye Java VM ya Morphe yenyewe, ambayo inaweza kutumia kumbukumbu zaidi. Zima ili kutumia runtime ya Android</string>
+    <string name="settings_system_jvm_runtime_description">Viraka vinaendeshwa kwenye Java VM ya Mamu yenyewe, ambayo inaweza kutumia kumbukumbu zaidi. Zima ili kutumia runtime ya Android</string>
     <string name="settings_system_jvm_runtime_unavailable">Inahitaji kifaa cha ARM au 64-bit x86</string>
     <string name="settings_system_patcher_completion_sound">Sauti ya ukamilishaji</string>
     <string name="settings_system_patcher_completion_sound_description">Hupiga sauti tofauti ya mafanikio au kushindwa wakati mchakato wa patch unapokamilika</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">Arifa</string>
-    <string name="settings_system_notifications_description">Jinsi Morphe inavyokupa taarifa</string>
+    <string name="settings_system_notifications_description">Jinsi Mamu inavyokupa taarifa</string>
     <string name="settings_system_notifications_success_sound">Sauti ya mafanikio</string>
     <string name="settings_system_notifications_error_sound">Sauti ya kushindwa</string>
     <string name="settings_system_notifications_sound_default">Chaguo-msingi</string>
@@ -1162,8 +1162,8 @@ Maelezo: %2$s"</string>
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">Ufunguo wa saini</string>
     <string name="settings_system_signing_key_description">Huhifadhi nakala au kurejesha ufunguo unaotia saini programu zilizopatchwa</string>
-    <string name="settings_system_signing_key_dialog_description">Kila programu ambayo Morphe inafanyia patch imesainiwa kwa ufunguo huu. Weka nakala: bila huo, programu zilizofanyiwa patch zinaweza kusasishwa tu baada ya kuziondoa</string>
-    <string name="settings_system_signing_key_missing">Morphe hutengeneza moja pamoja na patch yako ya kwanza</string>
+    <string name="settings_system_signing_key_dialog_description">Kila programu ambayo Mamu inafanyia patch imesainiwa kwa ufunguo huu. Weka nakala: bila huo, programu zilizofanyiwa patch zinaweza kusasishwa tu baada ya kuziondoa</string>
+    <string name="settings_system_signing_key_missing">Mamu hutengeneza moja pamoja na patch yako ya kwanza</string>
     <string name="settings_system_signing_key_created">Imeundwa %s</string>
     <string name="settings_system_signing_key_fingerprint">Alama ya kidole ya SHA-256</string>
     <string name="settings_system_backup_appearance_description">Mandhari, rangi na lugha</string>
@@ -1185,31 +1185,31 @@ Maelezo: %2$s"</string>
     <string name="settings_system_export_keystore_failed">Imeshindwa kusafirisha keystore</string>
     <string name="settings_system_show_password_field">Onyesha nywila</string>
     <string name="settings_system_hide_password_field">Ficha nywila</string>
-    <string name="settings_system_morphe_settings">Mipangilio ya Morphe</string>
-    <string name="settings_system_import_manager_settings_description">Huhifadhi na kurejesha mipangilio yako ya Morphe</string>
-    <string name="settings_system_export_manager_settings_title">Export mipangilio ya Morphe</string>
+    <string name="settings_system_morphe_settings">Mipangilio ya Mamu</string>
+    <string name="settings_system_import_manager_settings_description">Huhifadhi na kurejesha mipangilio yako ya Mamu</string>
+    <string name="settings_system_export_manager_settings_title">Export mipangilio ya Mamu</string>
     <string name="settings_system_export_manager_settings_description">Hifadhi mipangilio uliyochagua kwenye faili</string>
     <string name="settings_system_import_manager_settings_file_description">Rejesha mipangilio kutoka kwenye faili ya nakala</string>
     <string name="settings_system_auto_backup">Nakala ya automatic</string>
     <string name="settings_system_auto_backup_switch">Hifadhi nakala automatically</string>
     <string name="settings_system_auto_backup_now">Hifadhi nakala sasa</string>
     <string name="settings_system_auto_backup_saved">Nakala imehifadhiwa</string>
-    <string name="settings_system_auto_backup_interval_description">Morphe husubiri angalau muda huu baada ya nakala moja kabla ya kutengeneza nyingine</string>
-    <string name="settings_system_auto_backup_description">Hifadhi mipangilio yako ya Morphe kwenye folda utakayochagua</string>
+    <string name="settings_system_auto_backup_interval_description">Mamu husubiri angalau muda huu baada ya nakala moja kabla ya kutengeneza nyingine</string>
+    <string name="settings_system_auto_backup_description">Hifadhi mipangilio yako ya Mamu kwenye folda utakayochagua</string>
     <string name="settings_system_auto_backup_last">Nakala ya mwisho: %s</string>
     <string name="settings_system_auto_backup_folder">Folda</string>
-    <string name="settings_system_auto_backup_folder_name">Nakala za Morphe</string>
+    <string name="settings_system_auto_backup_folder_name">Nakala za Mamu</string>
     <string name="settings_system_auto_backup_folder_failed">Hakuwezi kutumika folda hii: %s</string>
     <string name="settings_system_auto_backup_interval">Mzunguko wa nakala</string>
     <string name="settings_system_auto_backup_signing_key">Jumuisha ufunguo wa saini</string>
     <string name="settings_system_auto_backup_signing_key_description">Huhifadhi ufunguo unaotia saini programu zilizorekebishwa kando ya mipangilio</string>
     <string name="settings_system_auto_backup_signing_key_warning_title">Nakala ya ufunguo wa saini?</string>
     <string name="settings_system_auto_backup_signing_key_warning_message">Yeyote anayepata faili hii anaweza kutia saini sasisho zinazowekwa juu ya programu zako zilizorekebishwa. Weka folda hii kuwa ya siri na ushiriki tu na vifaa vyako mwenyewe</string>
-    <string name="settings_system_auto_backup_footer">Nakala huhifadhiwa unapoondoka Morphe baada ya kubadilisha kitu. %s za hivi karibuni huhifadhiwa</string>
+    <string name="settings_system_auto_backup_footer">Nakala huhifadhiwa unapoondoka Mamu baada ya kubadilisha kitu. %s za hivi karibuni huhifadhiwa</string>
     <string name="settings_system_auto_backup_failed">Nakala ya mwisho haikuweza kuhifadhiwa. Chagua folda tena</string>
-    <string name="settings_system_import_manager_settings_fail">Imeshindwa kuagiza mipangilio ya Morphe: %s</string>
-    <string name="settings_system_import_manager_settings_success">Mipangilio ya Morphe imeagizwa</string>
-    <string name="settings_system_import_manager_settings_mode_title">Ingiza mipangilio ya Morphe</string>
+    <string name="settings_system_import_manager_settings_fail">Imeshindwa kuagiza mipangilio ya Mamu: %s</string>
+    <string name="settings_system_import_manager_settings_success">Mipangilio ya Mamu imeagizwa</string>
+    <string name="settings_system_import_manager_settings_mode_title">Ingiza mipangilio ya Mamu</string>
     <string name="settings_system_import_manager_settings_mode_description">Chagua jinsi mipangilio na vyanzo vilivyoingizwa vinavyopaswa kutumika</string>
     <string name="settings_system_import_selections_mode_title">Ingiza uteuzi wa patch</string>
     <string name="settings_system_import_selections_mode_description">Chagua jinsi uteuzi na chaguo za patch zilizoingizwa zinavyopaswa kutumika</string>
@@ -1217,8 +1217,8 @@ Maelezo: %2$s"</string>
     <string name="import_mode_replace_description">Linganisha na backup kwa usahihi. Vitu vilivyokosekana kwenye backup vitaondolewa</string>
     <string name="import_mode_merge_title">Unganisha na vilivyopo</string>
     <string name="import_mode_merge_description">Ongeza vipengele vilivyokosekana kutoka kwenye nakala ya akiba. Vipengele vilivyopo vinabaki bila kubadilishwa</string>
-    <string name="settings_system_export_manager_settings_fail">Imeshindwa kusafirisha mipangilio ya Morphe: %s</string>
-    <string name="settings_system_export_manager_settings_success">Mipangilio ya Morphe imesafirishwa</string>
+    <string name="settings_system_export_manager_settings_fail">Imeshindwa kusafirisha mipangilio ya Mamu: %s</string>
+    <string name="settings_system_export_manager_settings_success">Mipangilio ya Mamu imesafirishwa</string>
     <string name="settings_system_export_debug_logs">Export logi za debug</string>
     <string name="settings_system_export_debug_logs_description">Huhifadhi kumbukumbu za mfumo kwa ajili ya utatuzi wa matatizo</string>
     <string name="settings_system_export_debug_logs_export_read_failed">Imeshindwa kusoma logi (msimbo wa kutoka %s)</string>
@@ -1236,7 +1236,7 @@ Maelezo: %2$s"</string>
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">Usimamizi wa hifadhi</string>
     <string name="settings_system_storage_management_description">Huonyesha matumizi ya diski na kufuta faili za cache</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s imebaki</string>
     <string name="settings_system_storage_saved_apks">APK zilizohifadhiwa</string>
     <string name="settings_system_storage_caches">Kache</string>
@@ -1259,7 +1259,7 @@ Maelezo: %2$s"</string>
     <string name="settings_system_storage_clear_anyway">Futa hata hivyo</string>
     <string name="settings_system_storage_nothing_to_clear">Hakuna cha kufuta</string>
     <string name="settings_system_storage_open_app_info_title">Fungua hifadhi ya programu ya Android</string>
-    <string name="settings_system_storage_open_app_info_description">Simamia au futa data zote za Morphe kupitia mipangilio ya mfumo</string>
+    <string name="settings_system_storage_open_app_info_description">Simamia au futa data zote za Mamu kupitia mipangilio ya mfumo</string>
     <string name="settings_system_save_original_apks_title">Hifadhi APK asilia</string>
     <string name="settings_system_save_original_apks_description">Hifadhi APK ya kabla ya patch ili iweze kutumiwa tena kwa repatching bila kuchagua faili tena</string>
     <string name="settings_system_save_patched_apks_title">Weka APK zilizopatchwa</string>
@@ -1313,13 +1313,13 @@ Maelezo: %2$s"</string>
     <string name="copy_selection_available_format">%1$s kati ya %2$s zinapatikana</string>
     <!-- Settings - System Tab - Custom file picker -->
     <string name="settings_system_custom_file_picker">Kichagua faili maalum</string>
-    <string name="settings_system_custom_file_picker_description">Hutumia kichagua faili cha ndani ya Morphe badala cha kile cha mfumo</string>
+    <string name="settings_system_custom_file_picker_description">Hutumia kichagua faili cha ndani ya Mamu badala cha kile cha mfumo</string>
     <!-- Settings - System Tab - APK download helper -->
     <string name="settings_system_apk_download_helper">Msaidizi wa kupakua APK</string>
     <string name="settings_system_apk_download_helper_trusted_count">Inaaminika: %1$d kati ya %2$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">Programu saidizi zinaweza kupakua APK asilia kwa ajili yako. Ni zile tu unazoamini hapa zinazotolewa katika maelekezo ya kupakua</string>
     <string name="settings_system_apk_download_helper_trust_title">Mtumie msaidizi huyu uaminifu?</string>
-    <string name="settings_system_apk_download_helper_warning">APK inatoka kwenye programu saidizi, hivyo amini programu unazozijua tu. Morphe bado inakagua kifurushi, toleo na saini ya kila faili kabla ya kufanyia marekebisho</string>
+    <string name="settings_system_apk_download_helper_warning">APK inatoka kwenye programu saidizi, hivyo amini programu unazozijua tu. Mamu bado inakagua kifurushi, toleo na saini ya kila faili kabla ya kufanyia marekebisho</string>
     <string name="settings_system_apk_download_helper_installed_by">Imesakinishwa na %s</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">Kisakini hakijulikani</string>
     <string name="settings_system_apk_download_helper_open_directly">Fungua msaidizi mara moja</string>
@@ -1352,7 +1352,7 @@ Maelezo: %2$s"</string>
     <string name="settings_about_section_project">Mradi</string>
     <string name="settings_about_section_help">Msaada</string>
     <string name="credits_prior_development">Uendelezaji wa awali</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">Meneja</string>
     <string name="about_update_available">Sasisho linapatikana: %s</string>
     <string name="about_up_to_date">Imesasishwa</string>
@@ -1365,7 +1365,7 @@ Maelezo: %2$s"</string>
     <string name="contributors_all_time">Muda wote</string>
     <string name="contributors_6_months">Miezi 6</string>
     <string name="contributors_3_months">Miezi 3</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">Wafadhili</string>
     <string name="supporters_description">Wafadhili kwenye Open Collective</string>
     <string name="supporters_become">Kuwa mfadhili</string>
@@ -1373,7 +1373,7 @@ Maelezo: %2$s"</string>
     <string name="people_more">Na %s zaidi</string>
     <string name="people_unavailable">Hakuweza kupakiwa orodha</string>
     <string name="opensource_licenses">Leseni za chanzo cha wazi</string>
-    <string name="opensource_licenses_description">Maktaba ambazo Morphe imejengwa nazo</string>
+    <string name="opensource_licenses_description">Maktaba ambazo Mamu imejengwa nazo</string>
     <string name="opensource_licenses_search">Tafuta maktaba na leseni</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">Chaguo</string>
@@ -1398,12 +1398,12 @@ Maelezo: %2$s"</string>
     <string name="settings_section_patcher">Patcher</string>
     <string name="settings_section_updates">Sasisho</string>
     <string name="settings_section_patching">Kurekebisha</string>
-    <string name="settings_section_appearance_summary">Jinsi Morphe inavyoonekana</string>
+    <string name="settings_section_appearance_summary">Jinsi Mamu inavyoonekana</string>
     <string name="settings_section_patch_options_summary">Hali rahisi hupakia programu kwa</string>
     <string name="settings_section_general">Jumla</string>
     <string name="settings_section_patcher_summary">Jinsi programu zinavyorekebishwa kwenye kifaa hiki</string>
     <string name="settings_section_help_info">Msaada &amp; info</string>
-    <string name="settings_section_about_summary">Zaidi kuhusu Morphe na kupata msaada</string>
+    <string name="settings_section_about_summary">Zaidi kuhusu Mamu na kupata msaada</string>
     <string name="settings_section_local_files">Faili</string>
     <string name="settings_section_backup">Nakala ya akiba</string>
     <string name="settings_section_import_export">Import na export</string>
@@ -1566,7 +1566,7 @@ Maelezo: %2$s"</string>
     <string name="update_completed">Sasisho limesakinishwa</string>
     <string name="install_update_manager_failed">Imeshindwa kusakinisha sasisho</string>
     <string name="installing_manager_update">Inasakinisha sasisho…</string>
-    <string name="installing_manager_update_hint">Morphe itafungwa ili kukamilisha sasisho</string>
+    <string name="installing_manager_update_hint">Mamu itafungwa ili kukamilisha sasisho</string>
     <string name="downloading_manager_update">Inapakua sasisho…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">%1$s MB zimepakuliwa</string>
@@ -1589,7 +1589,7 @@ Je, bado unataka kuendelea?"</string>
     <string name="onboarding_signing_key_desc">Hifadhi nakala ya ufunguo unaotia saini programu zako zilizofanyiwa patch. Bila huo, zinaweza kusasishwa tu baada ya kuziondoa</string>
     <string name="onboarding_swipe_title">Ishara za kutelezesha</string>
     <string name="onboarding_swipe_desc">Telezesha kulia kwenye kadi ya programu ili kuona patch zinazopatikana. Telezesha kushoto ili kuficha kadi kutoka kwenye skrini ya nyumbani</string>
-    <string name="onboarding_settings_desc">Badilisha Morphe: mwonekano, chaguo za juu, na zana za mfumo</string>
+    <string name="onboarding_settings_desc">Badilisha Mamu: mwonekano, chaguo za juu, na zana za mfumo</string>
     <string name="onboarding_sources_patches_desc">Gusa ili kuona patches zote zinazopatikana kutoka kwa chanzo hiki</string>
     <string name="onboarding_sources_version_desc">Gusa toleo ili kuona mabadiliko yote kwa chanzo hiki</string>
     <string name="onboarding_sources_apps_desc">Gusa ili kuona programu ambazo chanzo hiki kinafanya patch na chagua ni zipi kati yao kinazotoa patch</string>
@@ -1601,9 +1601,28 @@ Je, bado unataka kuendelea?"</string>
     <string name="onboarding_system_file_picker_desc">Washa ili kutumia kivinjari cha faili kilichojengwa ndani badala ya kichaguzi cha mfumo wakati wa kuchagua APK au keystores</string>
     <!-- Tour prompt dialog shown after first successful patch install -->
     <string name="tour_prompt_title">Mwongozo wa haraka wa vipengele</string>
-    <string name="tour_prompt_desc">Je, ungependa mwongozo wa haraka wa vipengele muhimu vya Morphe?</string>
+    <string name="tour_prompt_desc">Je, ungependa mwongozo wa haraka wa vipengele muhimu vya Mamu?</string>
     <!-- Label of a footer button beside "Skip". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="tour_prompt_confirm">Nionyeshe</string>
     <string name="onboarding_restart_title">Mwongozo wa vipengele</string>
     <string name="onboarding_restart_desc">Mwongozo wa vipengele muhimu</string>
+
+    <string name="home_app_filter_all_description">Kila programu kwenye skrini ya nyumbani</string>
+    <string name="home_app_filter_patched_description">Programu ulizozifanyia marekebisho au kuzihifadhi kwa Mamu</string>
+    <string name="home_app_filter_not_patched_description">Programu ambazo bado hujazirekebisha katika Mamu</string>
+    <string name="home_app_filter_installed_description">Programu zilizosakinishwa sasa kwenye kifaa hiki</string>
+    <string name="home_app_filter_uninstalled_description">Programu zilizorekebishwa na Mamu ambazo hazipo tena kwenye kifaa hiki</string>
+    <string name="home_app_filter_clones_description">Programu zilizoundwa chini ya jina la kifurushi chao wenyewe, zilizosakinishwa kando ya asilia</string>
+    <string name="home_app_sort_name_asc_description">Kialfabeta, A hadi Z</string>
+    <string name="home_app_sort_name_desc_description">Kinyume cha alfabeti, Z hadi A</string>
+    <string name="home_app_sort_recently_patched_description">Programu zilizopatch hivi karibuni kwanza</string>
+    <string name="home_category_custom">Custom</string>
+    <string name="sources_filter_all_description">Kila chanzo</string>
+    <string name="sources_filter_enabled_description">Patch za vyanzo zinatoka</string>
+    <string name="sources_filter_disabled_description">Vyanzo vimezimwa</string>
+    <string name="sources_filter_issues_description">Vyanzo vilivyozuiwa, vilivyoshindwa kupakiwa au vinavyohitaji Mamu mpya</string>
+    <string name="sources_sort_last_updated_description">Sasisho mpya za vyanzo kwanza</string>
+    <string name="sources_sort_enabled_first_description">Onyesha vyanzo vinavyofanya kazi kabla ya vyanzo vilivyozimwa</string>
+    <string name="home_apk_availability_installed_version">Imesakinishwa kwenye kifaa hiki: %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">Mfumo wa keystore</string>
 </resources>

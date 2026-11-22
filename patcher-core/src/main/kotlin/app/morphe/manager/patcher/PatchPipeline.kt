@@ -37,7 +37,11 @@ class PatchPipeline(
     private val listener: PatchingListener,
     private val loadPatches: suspend (PatchRequest.Bundle) -> Collection<Patch>
 ) {
+    private val identities = java.util.IdentityHashMap<Patch, Pair<Int, String>>()
+
     suspend fun run() {
+        // A host owns one run. Set this before loading any patch code, for both ART and JVM.
+        System.setProperty("java.io.tmpdir", request.temporaryDir)
         ResourceMonitor.startPolling(logger)
         try {
             logger.info("$LOG_HEAP_LIMIT_PREFIX ${heapLimitMebibytes()}MB")
@@ -48,13 +52,19 @@ class PatchPipeline(
     }
 
     private suspend fun selectedPatches(): List<Patch> {
-        val selected = request.bundles.flatMap { bundle ->
+        val selected = request.bundles.sortedWith(compareByDescending<PatchRequest.Bundle> {
+            it.publishedAt ?: Long.MIN_VALUE
+        }.thenBy { it.uid }).flatMap { bundle ->
             val patches = loadPatches(bundle).keyedFor(request.packageName)
+            require(patches.keys.containsAll(bundle.patches)) { "Source patch identities changed; reopen the selection" }
             patches.applyPatchOptions(
                 bundle.options.mapValues { (_, options) -> options.mapValues { (_, value) -> optionValueFromJson(value) } },
                 logger
             )
-            patches.filterKeys { it in bundle.patches }.values
+            patches.filterKeys { it in bundle.patches }.toSortedMap().onEach { (key, patch) ->
+                require(!identities.containsKey(patch)) { "Patch object shared by independent source identities" }
+                identities[patch] = bundle.uid to key
+            }.values
         }
         listener.stepCompleted() // Loading patches
         return selected
@@ -64,7 +74,7 @@ class PatchPipeline(
         val preparation = prepareInput()
         try {
             val input = if (preparation.merged) {
-                if (preparation.obbFiles.isEmpty()) {
+                val kept = if (preparation.obbFiles.isEmpty()) {
                     // Moved rather than patched where it was merged, so it outlives the cleanup below
                     // and the app can keep it for repatching
                     withContext(Dispatchers.IO) {
@@ -79,7 +89,10 @@ class PatchPipeline(
                     // archive for repatching instead and the merged APK is left to the cleanup
                     logger.info("Not keeping the merged APK, as the archive has OBB files")
                     preparation.file
-                }.also { listener.stepCompleted() }
+                }
+                // Its own statement: chained onto the if-else above, it ran for the OBB branch only
+                listener.stepCompleted()
+                kept
             } else {
                 preparation.file
             }
@@ -98,7 +111,31 @@ class PatchPipeline(
                 input = input,
                 obbFiles = preparation.obbFiles,
                 keepArchitectures = keepArchitectures,
-                listener = listener
+                listener = listener,
+                onRejected = { patch, failure ->
+                    app.morphe.manager.patcher.patch.attributablePatchFailure(failure)?.let { reason ->
+                        fun needs(root: Patch, visited: MutableSet<Patch>): Boolean =
+                            root === patch || (visited.add(root) && root.dependencies.any { needs(it, visited) })
+                        val affected = patches.filter { needs(it, mutableSetOf()) }.mapTo(linkedSetOf()) {
+                            val (uid, key) = identities.getValue(it)
+                            app.morphe.manager.patcher.patch.PatchKey(uid, key)
+                        }
+                        if (affected.isNotEmpty()) {
+                            // A dependency failure belongs to each selected parent that requires it.
+                            affected.forEach { listener.patchOutcome(it.sourceUid, it.key, reason) }
+                            listener.patchesRejected(app.morphe.manager.patcher.patch.PatchRejection(
+                                affected, reason, patch.toString(), failure.stackTraceToString()))
+                        }
+                    }
+                },
+                onPatchOutcome = { patch, failure ->
+                    identities[patch]?.let { (uid, key) ->
+                        if (failure == null) listener.patchOutcome(uid, key, null)
+                        else app.morphe.manager.patcher.patch.attributablePatchFailure(failure)?.let {
+                            listener.patchOutcome(uid, key, it)
+                        }
+                    }
+                }
             ).use { it.run(File(request.outputFile), patches) }
         } finally {
             preparation.cleanup()

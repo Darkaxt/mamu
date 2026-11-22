@@ -17,6 +17,14 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class OriginalApkStagingTest {
+    @Test
+    fun `older patch sessions cannot evict a prefetched update but a missing original is replaceable`() {
+        assertFalse(canReplaceOriginal("3.10", "3.9", true))
+        assertTrue(canReplaceOriginal("3.9", "3.10", true))
+        assertTrue(canReplaceOriginal("3.10", "3.10", true))
+        assertTrue(canReplaceOriginal("3.10", "3.9", false))
+        assertTrue(canReplaceOriginal(null, "3.9", false))
+    }
     private val dir = Files.createTempDirectory("morphe-original-apk").toFile()
     private val target = dir.resolve("com.example_1.0_original.apk")
 

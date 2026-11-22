@@ -5,13 +5,19 @@
 
 package app.morphe.manager.ui.screen.home
 
+import android.content.Context
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.relocation.BringIntoViewRequester
-import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import app.morphe.manager.R
+import app.morphe.manager.ui.viewmodel.homeAppPriority
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
@@ -20,8 +26,7 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.zIndex
 import app.morphe.manager.domain.manager.HomeAppCategoryViewMode
 import app.morphe.manager.ui.model.HomeAppItem
-import app.morphe.manager.ui.screen.shared.DragHandle
-import app.morphe.manager.ui.screen.shared.UserMessages
+import app.morphe.manager.util.toast
 import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.ReorderableLazyListState
 
@@ -111,8 +116,9 @@ internal fun LazyListScope.groupedAppCards(
     appActions: HomeAppActions,
     categoryReorderableState: ReorderableLazyListState,
     haptic: HapticFeedback,
-    messages: UserMessages,
-    categoryActionsUnavailableMessage: String,
+    context: Context,
+    categoryActionsUnavailableToast: String,
+    tileColumns: Int = 1,
 ) {
     val selectedPackages = state.selectedPackages
     groups.forEach { group ->
@@ -126,7 +132,7 @@ internal fun LazyListScope.groupedAppCards(
                 isFooterBusy -> null
                 group.editable -> { -> state.activeCategoryId = group.id }
                 group.sourceUid != null -> { -> state.activeSourceUid = group.sourceUid }
-                else -> { -> messages.show(categoryActionsUnavailableMessage) }
+                else -> { -> context.toast(categoryActionsUnavailableToast) }
             }
             val headerContent: @Composable ((@Composable () -> Unit)?) -> Unit = { dragHandle ->
                 HomeCategoryHeader(
@@ -154,7 +160,7 @@ internal fun LazyListScope.groupedAppCards(
             if (canReorderHeader && state.isCategoryReorderMode) {
                 ReorderableItem(categoryReorderableState, key = headerKey) { _ ->
                     headerContent {
-                        DragHandle(
+                        CategoryHeaderDragHandle(
                             modifier = Modifier.draggableHandle(
                                 onDragStarted = {
                                     haptic.performHapticFeedback(HapticFeedbackType.LongPress)
@@ -169,18 +175,21 @@ internal fun LazyListScope.groupedAppCards(
         }
 
         if (!group.collapsed) {
-            val groupKey = group.selectionKey()
             items(
-                items = group.items,
-                key = { item -> "category_${group.id ?: "uncategorized"}_${item.id}" },
+                items = homeTileRows(group.items, tileColumns, false),
+                key = { row -> "category_${group.id ?: "uncategorized"}_${row.items.first().id}" },
                 contentType = { APP_CARD_CONTENT_TYPE }
-            ) { item ->
-                val requester = remember { BringIntoViewRequester() }
+            ) { row ->
+                androidx.compose.foundation.layout.Box(Modifier.animateItem()) {
+                HomeTileRowLayout(row.items, tileColumns) { _, item ->
+                val groupKey = group.selectionKey()
+                val isSelected = selectedPackages.contains(item.id) &&
+                        (state.selectedGroupKey == null || state.selectedGroupKey == groupKey)
                 DynamicAppCard(
                     item = item,
                     onAppClick = {
                         if (state.isMultiSelectMode) {
-                            state.toggleInGroup(item.id, groupKey, requester)
+                            state.toggleInGroup(item.id, groupKey)
                         } else {
                             appActions.onAppClick(item)
                         }
@@ -189,18 +198,19 @@ internal fun LazyListScope.groupedAppCards(
                     onShowPatches = { appActions.onShowPatches(item) },
                     showGestureHint = item.id == firstFilteredPackage && showGestureHint,
                     onGestureHintShown = appActions.onGestureHintShown,
-                    onUpdate = { appActions.onUpdateApp(item) },
-                    isSelected = selectedPackages.contains(item.id),
+                    isSelected = isSelected,
                     isMultiSelectMode = state.isMultiSelectMode,
                     onLongPress = {
                         // Skip so the category bar doesn't overlap with app multi-select
                         if (!state.isCategoryBarVisible) {
                             state.isMultiSelectMode = true
-                            state.toggleInGroup(item.id, groupKey, requester)
+                            state.toggleInGroup(item.id, groupKey)
                         }
                     },
-                    modifier = Modifier.animateItem().bringIntoViewRequester(requester)
+                    modifier = Modifier
                 )
+                }
+                }
             }
         }
     }
@@ -217,14 +227,25 @@ internal fun LazyListScope.flatAppCards(
     onboardingState: OnboardingState?,
     moveAnnouncementFormat: String,
     onMoveAnnouncement: (String) -> Unit,
+    sectioned: Boolean = false,
+    tileColumns: Int = 1,
 ) {
     val selectedPackages = state.selectedPackages
-    itemsIndexed(
-        items = items,
-        key = { _, item -> item.id },
-        contentType = { _, _ -> APP_CARD_CONTENT_TYPE }
-    ) { index, item ->
-        val requester = remember { BringIntoViewRequester() }
+    items(
+        items = homeTileRows(items, tileColumns, sectioned),
+        key = { row -> row.items.first().id },
+        contentType = { APP_CARD_CONTENT_TYPE }
+    ) { row ->
+        Column(Modifier.animateItem(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            row.priority?.let { priority ->
+                Text(stringResource(when (priority) {
+                    0 -> R.string.update_available
+                    1 -> R.string.patched
+                    else -> R.string.library_catalogue_rest
+                }), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        HomeTileRowLayout(row.items, tileColumns) { column, item ->
+        val index = row.startIndex + column
         // Moves the card one step and reports where it landed, so a screen reader user hears
         // the result of an action they cannot see
         fun moveBy(offset: Int, announcePosition: Int) {
@@ -247,7 +268,7 @@ internal fun LazyListScope.flatAppCards(
             onAppClick = {
                 if (state.isMultiSelectMode) {
                     // In multi-select mode taps toggle selection
-                    state.toggleSelection(item.id, requester)
+                    selectedPackages.toggle(item.id)
                 } else {
                     appActions.onAppClick(item)
                 }
@@ -257,13 +278,12 @@ internal fun LazyListScope.flatAppCards(
             // Hint plays only on the first card
             showGestureHint = index == 0 && showGestureHint,
             onGestureHintShown = appActions.onGestureHintShown,
-            onUpdate = { appActions.onUpdateApp(item) },
             isSelected = selectedPackages.contains(item.id),
             isMultiSelectMode = state.isMultiSelectMode,
             onLongPress = {
                 // Long-press enters multi-select and toggles this card
                 state.isMultiSelectMode = true
-                state.toggleSelection(item.id, requester)
+                selectedPackages.toggle(item.id)
             },
             onMoveUp = if (directReorderAllowed && index > 0) {
                 { moveBy(offset = -1, announcePosition = 0) }
@@ -272,8 +292,6 @@ internal fun LazyListScope.flatAppCards(
                 { moveBy(offset = 1, announcePosition = 2) }
             } else null,
             modifier = Modifier
-                .animateItem()
-                .bringIntoViewRequester(requester)
                 .then(
                     if (index == 0 && onboardingState != null)
                         Modifier.onGloballyPositioned { coords ->
@@ -282,5 +300,7 @@ internal fun LazyListScope.flatAppCards(
                     else Modifier
                 )
         )
+        }
+        }
     }
 }

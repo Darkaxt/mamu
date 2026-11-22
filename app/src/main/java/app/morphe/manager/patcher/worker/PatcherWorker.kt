@@ -43,6 +43,9 @@ import app.morphe.manager.patcher.runtime.PatcherKilledException
 import app.morphe.manager.patcher.runtime.PatcherProcesses
 import app.morphe.manager.patcher.runtime.Runtime
 import app.morphe.manager.patcher.runtime.PatcherVm
+import app.morphe.manager.patcher.runtime.AppliedPatchRecipe
+import app.morphe.manager.patcher.runtime.writeAppliedPatchRecipe
+import app.morphe.manager.patcher.runtime.clearAppliedPatchRecipe
 import app.morphe.manager.patcher.split.SplitApkPreparer
 import app.morphe.manager.service.ForegroundWork
 import app.morphe.manager.ui.model.SelectedApp
@@ -78,6 +81,7 @@ class PatcherWorker(
     private val installerManager: InstallerManager,
     private val patchBundleRepository: PatchBundleRepository,
     private val patcherProcesses: PatcherProcesses,
+    private val knownPatchFailures: app.morphe.manager.patcher.patch.KnownPatchFailures,
     private val foregroundWork: ForegroundWork
 ) : Worker<PatcherWorker.Args>(context, parameters) {
     private fun runtime(vm: PatcherVm) =
@@ -96,7 +100,7 @@ class PatcherWorker(
          * Patching was abandoned and started over from the first step, on ART,
          * so anything reported by the previous attempt has to be discarded rather than counted twice.
          */
-        val onPatchingRestarted: suspend () -> Unit,
+        val onPatchingRestarted: suspend (Int) -> Unit,
         val setInputFile: suspend (File, Boolean, Boolean) -> Unit,
         val onProgress: ProgressEventHandler,
         /** How far the patcher got with the work it does besides executing patches. */
@@ -110,9 +114,13 @@ class PatcherWorker(
         /** Place of this app in the queue and the queue total, null for a single run. */
         val queuePosition: Pair<Int, Int>? = null,
         /** Whether the build is mounted over the stock app rather than installed. */
-        val useMount: Boolean = false
+        val useMount: Boolean = false,
+        val onRecipeApplied: suspend (AppliedPatchRecipe) -> Unit = {}
     ) {
+        internal val inputUse = app.morphe.manager.patcher.PatchInputUse()
         val packageName get() = input.packageName
+        @Volatile var appliedRecipe: AppliedPatchRecipe? = null
+            internal set
     }
 
     /** Queue position shown in the ongoing notification, set once the args are claimed. */
@@ -176,6 +184,12 @@ class PatcherWorker(
     }
 
     override suspend fun doWork(): Result {
+        val args = workerRepository.claimInput(this)
+        if (!args.inputUse.begin()) return Result.failure()
+        return try { doWorkWithInput(args) } finally { args.inputUse.finish() }
+    }
+
+    private suspend fun doWorkWithInput(args: Args): Result {
         if (runAttemptCount > 0) {
             Log.d(LOG_TAG, "Android requested retrying but retrying is disabled.".logFmt())
             return Result.failure()
@@ -201,12 +215,10 @@ class PatcherWorker(
                     Log.d(LOG_TAG, "Acquired wakelock.")
                 }
 
-        lateinit var args: Args
         var patchingSucceeded = false
         // Shown over the work the run is part of, which gets the notification back once it is done
         val hold = foregroundWork.hold(progress).also { ongoing = it }
         val result = try {
-            args = workerRepository.claimInput(this)
             queueLabel = args.queuePosition?.let { (position, total) ->
                 applicationContext.getString(
                     R.string.batch_patch_progress_counter,
@@ -222,17 +234,16 @@ class PatcherWorker(
             hold.close()
         }
 
-        // A mount can still restore the stock app from it, the install flow deletes it after mounting
-        if (patchingSucceeded && !args.useMount) {
-            (args.input as? SelectedApp.Local)?.takeIf { it.temporary }?.file?.delete()
-        }
-
         return result
     }
 
     private suspend fun runPatcher(args: Args): Result {
 
-        val totalPatches = args.selectedPatches.values.sumOf { it.size }
+        var totalPatches = args.selectedPatches.values.sumOf { it.size }
+        var failureContext: app.morphe.manager.patcher.patch.PatchFailureContext? = null
+        val executionOutcomes = java.util.Collections.synchronizedList(mutableListOf<app.morphe.manager.patcher.patch.PatchExecutionOutcome>())
+        val rejectedOutcomes = java.util.Collections.synchronizedList(mutableListOf<app.morphe.manager.patcher.patch.PatchExecutionOutcome>())
+        var stagedOriginal: File? = null
         var completedPatches = 0
         // Cached so onPatchCompleted can update the title without a string lookup race
         val applyingPatchesLabel = applicationContext.getString(R.string.applying_patches)
@@ -277,14 +288,16 @@ class PatcherWorker(
         // climbing past the total once a restarted attempt reports the same patches again.
         // It goes back to the indeterminate form because the next attempt starts at loading
         // patches, not at applying them
-        val onRestart: suspend () -> Unit = {
+        val onRestart: suspend (Int) -> Unit = { remaining ->
+            executionOutcomes.clear()
+            totalPatches = remaining
             completedPatches = 0
             patchingPhaseCompleted = false
             updatePatcherNotification(stepName = null, patchProgress = null)
-            args.onPatchingRestarted()
+            args.onPatchingRestarted(remaining)
         }
 
-        val patchedApk = fs.tempDir.resolve("patched.apk")
+        val patchedApk = File(File(args.output).parentFile, File(args.output).nameWithoutExtension + "-patching.apk")
         var succeeded = false
         var autoInstallPending = false
         val completionSoundEnabled = prefs.patcherCompletionSound.get()
@@ -294,6 +307,7 @@ class PatcherWorker(
         var unmounted = false
 
         return try {
+            clearAppliedPatchRecipe(File(args.output))
             if (args.input is SelectedApp.Installed &&
                 installedAppRepository.get(args.packageName)?.installType == InstallType.MOUNT
             ) {
@@ -377,24 +391,20 @@ class PatcherWorker(
 
             val options = args.options.restrictTo(args.selectedPatches)
 
-            // After merging a split archive (in either runtime), save the resulting mono-APK
-            // directly to originalApksDir so it is used for repatching instead of the archive.
-            // The runtime is done with the file by then, so it is moved rather than copied.
-            // A mount keeps the archive instead: the stock app it restores has to carry the
-            // original signatures, which no longer verify on the merged APK. An archive with OBB
-            // files is kept too, as the runtime does not hand over a merged APK that lacks them
+            failureContext = knownPatchFailures.prepare(args.input, args.selectedPatches.filterValues { it.isNotEmpty() }.keys, forRun = true)
+            val onExecutionOutcome: (Int, String, String?) -> Unit = { uid, key, failure ->
+                if (key in args.selectedPatches[uid].orEmpty()) {
+                    val evidence=app.morphe.manager.patcher.patch.PatchExecutionOutcome(uid,key,failure)
+                    if(failure==null) executionOutcomes.add(evidence) else rejectedOutcomes.add(evidence)
+                }
+            }
+            // Promotion to retained originals happens only after successful signing.
             val onMergedApkReady: suspend (File) -> Unit = { mergedFile ->
-                val version = pm.getPackageInfo(mergedFile)?.versionName
-                    ?.takeUnless { it.isBlank() }
-                    ?: args.input.version
-                    ?: "unknown"
-                val savedFile = originalApkRepository.saveOriginalApk(
-                    packageName = args.packageName,
-                    version = version,
-                    sourceFile = mergedFile,
-                    moveSource = true
-                )
-                args.setInputFile(savedFile ?: mergedFile, true, true)
+                val staged = File(File(args.output).parentFile, File(args.output).nameWithoutExtension + "-original.apk")
+                withContext(Dispatchers.IO) {
+                    Files.move(mergedFile.toPath(), staged.toPath(), StandardCopyOption.REPLACE_EXISTING)
+                }
+                stagedOriginal = staged
             }
 
             suspend fun Runtime.patchInput() = execute(
@@ -409,20 +419,13 @@ class PatcherWorker(
                 ::updateProgress,
                 args.onTaskProgress,
                 stripNativeLibs,
-                onMergedApkReady.takeUnless { args.useMount }
+                onMergedApkReady.takeUnless { args.useMount }, onExecutionOutcome,
+                onRestart=onRestart, onArtFallback={ args.logger.logRuntime(PatcherVm.ART) },
+                expectedVersions=args.patchSources.mapNotNull { source -> source.uid?.let { it to source.version } }.toMap()
             )
 
-            val elapsed = try {
-                runtime(vm).patchInput()
-            } catch (e: JvmUnavailableException) {
-                // Nothing was patched yet, and ART can still take the run
-                // The cause tells a JVM that crashed on start from one the device had no room for
-                args.logger.warn("${e.message} (${e.cause?.javaClass?.simpleName}), patching on ART instead")
-                Log.w(LOG_TAG, "Patcher JVM unavailable".logFmt(), e)
-                onRestart()
-                args.logger.logRuntime(PatcherVm.ART)
-                runtime(PatcherVm.ART).patchInput()
-            }
+            val patched = runtime(vm).patchInput()
+            val elapsed = patched.elapsed
 
             updatePatcherNotification(stepName = signingApkLabel, patchProgress = null)
             val signTime = measureTime {
@@ -432,6 +435,10 @@ class PatcherWorker(
                 }
             }
             args.logger.info("Signed apk in ${signTime.toLogString()}")
+            // Success and every later install/export must use this exact final recipe.
+            writeAppliedPatchRecipe(File(args.output),patched.recipe)
+            args.appliedRecipe=patched.recipe
+            args.onRecipeApplied(patched.recipe)
             updateProgress(state = State.COMPLETED) // Signing
 
             args.logger.info(
@@ -440,12 +447,15 @@ class PatcherWorker(
                         "$LOG_WORKER_FIELD_ELAPSED=${elapsed.inWholeMilliseconds}ms"
             )
 
+            stagedOriginal?.let { args.setInputFile(it, false, true) }
             Log.i(LOG_TAG, "Patching succeeded".logFmt())
             val outputPackageName = pm.getPackageInfo(File(args.output))?.packageName ?: args.packageName
             autoInstallPending = installerManager.autoInstallAllowed(outputPackageName, mount = args.useMount)
             succeeded = true
             Result.success()
         } catch (e: PatcherKilledException) {
+            executionOutcomes.clear()
+            rejectedOutcomes.clear()
             Log.e(LOG_TAG, "Patcher process ended: ${e.reason}".logFmt(), e)
             args.logger.error("Patcher process ended: ${e.reason}")
             val message = if (e.crashed) {
@@ -461,6 +471,8 @@ class PatcherWorker(
                 workDataOf(FAILURE_MESSAGE_KEY to message)
             )
         } catch (e: HeapExhaustedException) {
+            executionOutcomes.clear()
+            rejectedOutcomes.clear()
             Log.e(
                 LOG_TAG,
                 "Patcher exhausted its ${e.heapLimitMb}MB heap. ${e.originalStackTrace}".logFmt()
@@ -486,6 +498,8 @@ class PatcherWorker(
             )
         } catch (e: Exception) {
             if (isStopped || e is CancellationException) {
+                executionOutcomes.clear()
+                rejectedOutcomes.clear()
                 Log.i(LOG_TAG, "Patching was cancelled".logFmt())
                 throw e
             }
@@ -495,6 +509,14 @@ class PatcherWorker(
                 workDataOf(FAILURE_MESSAGE_KEY to e.stackTraceToString().truncateForWorkData())
             )
         } finally {
+            if (!succeeded) stagedOriginal?.delete()
+            failureContext?.let { context ->
+                withContext(NonCancellable + Dispatchers.IO) {
+                    runCatching { knownPatchFailures.apply(context, app.morphe.manager.patcher.patch.completedPatchOutcomes(
+                        rejectedOutcomes.toList()+executionOutcomes.toList(), succeeded)) }
+                        .onFailure { Log.w(LOG_TAG, "Could not persist patch failure evidence", it) }
+                }
+            }
             // Unmounted only to read the stock APK, so a run that produced nothing puts the patched one back
             if (unmounted && !succeeded) withContext(NonCancellable) {
                 runCatching { rootInstaller.mount(args.packageName) }

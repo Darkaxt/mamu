@@ -18,12 +18,10 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -83,7 +81,7 @@ fun AppIconSettingsItem() {
         leadingContent = { AppIconPreview(icon = currentIcon.value, size = Defaults.IconSize) }
     )
 
-    DialogHost(visible = showPicker.value) {
+    if (showPicker.value) {
         // The icon being built, only applied once confirmed
         var pending by remember { mutableStateOf(currentIcon.value) }
 
@@ -106,14 +104,9 @@ fun AppIconSettingsItem() {
     }
 
     // Confirmation dialog
-    DialogHost(target = showConfirmDialog.value) { selectedIcon ->
-        ConfirmDialog(
-            title = stringResource(R.string.settings_appearance_app_icon_change_dialog_title),
-            message = htmlAnnotatedString(
-                stringResource(R.string.settings_appearance_app_icon_change_restarts, appIconName(selectedIcon))
-            ),
-            primaryText = stringResource(R.string.settings_appearance_app_icon_change_dialog_confirm),
-            isPrimaryDestructive = false,
+    showConfirmDialog.value?.let { selectedIcon ->
+        AppIconChangeDialog(
+            icon = selectedIcon,
             onConfirm = {
                 scope.launch {
                     iconManager.setIcon(selectedIcon)
@@ -188,7 +181,7 @@ private fun IconBuilder(
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(Defaults.SpaceLarge)
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         LayeredIconPreview(
             background = pending.background,
@@ -208,14 +201,18 @@ private fun IconBuilder(
             }
         )
 
-        CrossfadeText(
-            text = appIconName(pending),
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.SemiBold,
-            color = MaterialTheme.colorScheme.onSurface,
+        AnimatedContent(
+            targetState = appIconName(pending),
             transitionSpec = Animations.fadeCrossfade(200),
             label = "icon_name"
-        )
+        ) { name ->
+            Text(
+                text = name,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+        }
 
         PickerLabel(stringResource(R.string.settings_appearance_app_icon_background))
         BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
@@ -262,7 +259,7 @@ private fun IconBuilder(
         }
 
         PickerLabel(stringResource(R.string.settings_appearance_app_icon_mark))
-        OptionGroup(items = IconMark.entries) { mark, shape, interactionSource, itemModifier ->
+        OptionGrid(items = IconMark.entries, columns = 3) { mark, itemModifier ->
             // A logo that does not read on the background has no icon, and stays off, still showing
             // what it would look like there
             val icon = AppIcon.of(pending.background, mark)
@@ -273,9 +270,7 @@ private fun IconBuilder(
                 isSelected = pending.mark == mark,
                 enabled = icon != null,
                 onClick = { icon?.let(onPick) },
-                modifier = itemModifier,
-                shape = shape,
-                interactionSource = interactionSource
+                modifier = itemModifier
             )
         }
     }
@@ -359,9 +354,7 @@ private fun AppIconCard(
     isSelected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    shape: CornerBasedShape = SelectionTileShape,
-    interactionSource: MutableInteractionSource? = null
+    enabled: Boolean = true
 ) {
     val windowSize = rememberWindowSize()
     val iconSize = when (windowSize.widthSizeClass) {
@@ -378,16 +371,14 @@ private fun AppIconCard(
         onClick = onClick,
         enabled = enabled,
         stateDescription = stringResource(
-            if (isSelected) R.string.state_selected else R.string.state_not_selected
+            if (isSelected) R.string.selected else R.string.not_selected
         ),
-        modifier = modifier.heightIn(min = cardHeight),
-        shape = shape,
-        interactionSource = interactionSource
+        modifier = modifier.heightIn(min = cardHeight)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(Defaults.SpaceMedium),
+                .padding(Defaults.ItemSpacing),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -395,7 +386,7 @@ private fun AppIconCard(
                 LayeredIconPreview(background = background, mark = mark, size = iconSize)
             }
 
-            Spacer(modifier = Modifier.height(Defaults.SpaceExtraSmall))
+            Spacer(modifier = Modifier.height(6.dp))
 
             // Icon name
             Text(
@@ -414,4 +405,31 @@ private fun AppIconCard(
             )
         }
     }
+}
+
+/**
+ * Confirmation dialog for icon change.
+ */
+@Composable
+private fun AppIconChangeDialog(
+    icon: AppIcon,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    AppDialog(
+        onDismissRequest = onDismiss,
+        title = stringResource(R.string.settings_appearance_app_icon_change_dialog_title),
+        description = htmlAnnotatedString(stringResource(
+            R.string.settings_appearance_app_icon_change_dialog_message,
+            appIconName(icon)
+        )),
+        footer = {
+            AppDialogButtonRow(
+                primaryText = stringResource(R.string.settings_appearance_app_icon_change_dialog_confirm),
+                onPrimaryClick = onConfirm,
+                secondaryText = stringResource(android.R.string.cancel),
+                onSecondaryClick = onDismiss
+            )
+        }
+    )
 }

@@ -94,6 +94,11 @@ object PatchSelectionUtils {
     fun PatchSelection.withBundle(bundleUid: Int, patches: Set<String>): PatchSelection =
         if (patches.isEmpty()) this - bundleUid else this + (bundleUid to patches)
 
+    /** Replace only a section's names, retaining every other selection in the source. */
+    fun PatchSelection.withBundleScope(bundleUid: Int, patches: Set<String>, scope: Set<String>?): PatchSelection =
+        withBundle(bundleUid, if (scope == null) patches else
+            (this[bundleUid].orEmpty() - scope) + patches.intersect(scope))
+
     /**
      * Toggle a patch in a selection map.
      * If the patch is selected, it will be deselected and vice versa.

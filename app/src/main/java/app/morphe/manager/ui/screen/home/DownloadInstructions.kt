@@ -5,15 +5,24 @@
 
 package app.morphe.manager.ui.screen.home
 
+import android.widget.Toast
 import android.os.Build
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.OpenInNew
+import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.outlined.ContentCopy
+import androidx.compose.material.icons.outlined.Download
+import androidx.compose.material.icons.outlined.SaveAlt
+import androidx.compose.material.icons.outlined.Warning
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -24,24 +33,21 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.LinkAnnotation
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextLinkStyles
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import app.morphe.manager.R
 import app.morphe.manager.domain.manager.ApkDownloadSource
 import app.morphe.manager.ui.screen.shared.*
 import app.morphe.manager.ui.theme.isDarkTheme
 import app.morphe.manager.util.*
-import app.morphe.patcher.patch.ApkFileType
+import java.net.URI
 import com.composables.icons.materialsymbols.MaterialSymbols
 import com.composables.icons.materialsymbols.rounded.*
 import com.composables.icons.materialsymbols.roundedfilled.*
@@ -57,9 +63,22 @@ private enum class SiteButton { ApkMirror, Uptodown, GitHubAssets, ApkCube }
 
 private val UptodownBrandColor = Color(0xFF4CB050)
 
-/** APKCube's call-to-action blue, a shade brighter on its dark theme. */
-private val ApkCubeButtonColorLight = Color(0xFF0066DB)
-private val ApkCubeButtonColorDark = Color(0xFF1368E9)
+/** APKCube's "Download on APKCube" badge, in its variant for light pages and for dark ones. */
+private class ApkCubeBadgeColors(val container: Color, val caption: Color, val wordmark: Color, val border: Color?)
+
+private val ApkCubeBadgeForLightPages = ApkCubeBadgeColors(
+    container = Color(0xFF191F28),
+    caption = Color(0xFF9CA2A9),
+    wordmark = Color(0xFFF8FAFD),
+    border = null
+)
+
+private val ApkCubeBadgeForDarkPages = ApkCubeBadgeColors(
+    container = Color(0xFFF8FAFD),
+    caption = Color(0xFF535861),
+    wordmark = Color(0xFF192029),
+    border = Color(0xFFDDE1E7)
+)
 
 /**
  * One numbered instruction line.
@@ -202,15 +221,12 @@ private fun ApkDownloadSource.instructionSteps(
  * @param downloadUrl Best link known so far. Null or still unresolved keeps the wording generic.
  * @param requestedVersion Version the APK has to be. Null when any version can be patched.
  * @param downloadColor App accent color, which APKMirror tints its download button with.
- * @param apkFileType File type the bundle asks for, which APKMirror and APKCube put on their buttons.
- * @param onOpenApkDownloadHelper Downloads through a trusted helper app, null while none is.
- * @param onTrustApkDownloadHelpers Opens where a helper installed but not trusted yet is let in,
- * null while there is none or nowhere to open that from.
+ * @param isApkBundle Whether the bundle requires a split archive, which APKMirror labels differently.
  * @param onContinue Moves on to picking the downloaded file once the link is handed off, given how
  * to hand it off. That returns false when the link could not be passed on.
  */
 @Composable
-internal fun DialogHostScope.DownloadInstructionsDialog(
+internal fun DownloadInstructionsDialog(
     appName: String,
     packageName: String?,
     downloadUrl: String?,
@@ -218,10 +234,12 @@ internal fun DialogHostScope.DownloadInstructionsDialog(
     usingMountInstall: Boolean,
     stockAppInstalled: Boolean,
     downloadColor: Color,
-    apkFileType: ApkFileType?,
+    isApkBundle: Boolean,
     onDismiss: () -> Unit,
     onOpenApkDownloadHelper: (() -> Unit)? = null,
-    onTrustApkDownloadHelpers: (() -> Unit)? = null,
+    onApkReceived: ((android.net.Uri) -> Unit)? = null,
+    onChooseApk: (() -> Unit)? = null,
+    requestedBuildCodes: Set<Int>? = null,
     onContinue: (handOff: (String) -> Boolean) -> Unit
 ) {
     val uriHandler = LocalUriHandler.current
@@ -231,55 +249,53 @@ internal fun DialogHostScope.DownloadInstructionsDialog(
     // comes back through the same picker an opened one leads to
     val copyLink = { onContinue { url -> copyToClipboard(url); true } }
 
-    // Read off the link the caller holds rather than kept here, so a dialog the screen brings back
-    // shows the steps already found instead of finding them all over again
-    val source = remember(downloadUrl) { ApkDownloadSource.from(downloadUrl) }
+    // Google Play is tried natively first. The download sites stay native only with a Byparr
+    // server; without one they fall back to these instructions, as upstream offers them
+    var manual by remember(packageName, requestedVersion) { mutableStateOf(false) }
+    if (onApkReceived != null && !manual) {
+        NativeOriginalApkDialog(appName, packageName, downloadUrl, requestedVersion,
+            onDismiss, openLink, onApkReceived, onManual = { manual = true }, onChooseApk = onChooseApk,
+            buildCodes = requestedBuildCodes)
+        return
+    }
+    // Never falls back to unresolved once the destination is known, so the instructions stay
+    // put while the dialog animates out and the pending download data is already cleared
+    var source by remember { mutableStateOf<ApkDownloadSource>(ApkDownloadSource.Unresolved) }
+    LaunchedEffect(downloadUrl) {
+        ApkDownloadSource.from(downloadUrl)
+            .takeIf { it != ApkDownloadSource.Unresolved }
+            ?.let { source = it }
+    }
 
     // Nothing can be said about the download until the redirect lands, and the link on hand
     // until then is the unfollowed one, which is exactly what must not be opened
     val resolving = source == ApkDownloadSource.Unresolved
 
     // Latched for the same reason as the instructions above: dismissing the dialog withdraws the
-    // helper actions at once, and a dialog that drops one mid-exit reads as a glitch
-    val offersHelper = latchedOnce(onOpenApkDownloadHelper != null)
-    val offersTrust = latchedOnce(onTrustApkDownloadHelpers != null)
+    // helper action at once, and a footer that drops a button mid-exit reads as a glitch
+    var offersHelper by remember { mutableStateOf(false) }
+    LaunchedEffect(onOpenApkDownloadHelper != null) {
+        if (onOpenApkDownloadHelper != null) offersHelper = true
+    }
 
     val continueText = stringResource(
         R.string.home_download_instructions_continue_to,
         source.destinationLabel()
     )
 
-    // What the steps fetch, since the dialog before this one named it and is gone by now. The
-    // version copies on a press, for a site searched by hand
-    val copyVersion = rememberCopyToClipboard(stringResource(R.string.home_version_copied))
-    val description = remember(appName, requestedVersion, copyVersion) {
-        buildAnnotatedString {
-            append(appName)
-            if (requestedVersion != null) {
-                append(" · ")
-                withLink(
-                    LinkAnnotation.Clickable(
-                        tag = "version",
-                        styles = TextLinkStyles(SpanStyle(textDecoration = TextDecoration.Underline)),
-                        linkInteractionListener = { copyVersion(requestedVersion) }
-                    )
-                ) { append(requestedVersion.withVersionPrefix()) }
-            }
-        }
-    }
-
     AppDialog(
         onDismissRequest = onDismiss,
         accentColor = rememberAppColor(packageName),
         title = stringResource(R.string.home_download_instructions_title),
-        description = description,
+        // What the steps fetch, since the dialog before this one named it and is gone by now
+        description = listOfNotNull(appName, requestedVersion?.withVersionPrefix()).joinToString(" · "),
         footer = {
             AppDialogActions(
                 actions = listOfNotNull(
                     DialogAction(
                         text = continueText,
                         onClick = openLink,
-                        icon = MaterialSymbols.Rounded.Open_in_new.autoMirrored,
+                        icon = Icons.AutoMirrored.Outlined.OpenInNew,
                         enabled = !resolving
                     ),
                     if (offersHelper) {
@@ -288,13 +304,13 @@ internal fun DialogHostScope.DownloadInstructionsDialog(
                             // Nothing to open once the action is withdrawn, which is only the case
                             // while the dialog is on its way out
                             onClick = { onOpenApkDownloadHelper?.invoke() },
-                            icon = MaterialSymbols.Rounded.Download
+                            icon = Icons.Outlined.Download
                         )
                     } else null,
                     DialogAction(
                         text = stringResource(R.string.home_download_instructions_copy_link),
                         onClick = copyLink,
-                        icon = MaterialSymbols.Rounded.Content_copy,
+                        icon = Icons.Outlined.ContentCopy,
                         // The unfollowed link is no more fit to copy than to open
                         enabled = !resolving
                     )
@@ -302,54 +318,53 @@ internal fun DialogHostScope.DownloadInstructionsDialog(
             )
         }
     ) {
-        Column(verticalArrangement = Arrangement.spacedBy(Defaults.SpaceMedium)) {
-            // Waiting shows as waiting rather than as instructions that rewrite themselves once
-            // the destination turns out to be a different website
-            Crossfade(
-                targetState = source,
-                // Neither the wait nor the site specific steps are the same height, so the dialog
-                // grows into whatever it ends up holding
-                modifier = Modifier.animateContentSize(),
-                animationSpec = tween(Defaults.ANIMATION_DURATION_SHORT),
-                label = "downloadInstructions"
-            ) { currentSource ->
-                if (currentSource == ApkDownloadSource.Unresolved) {
-                    PulsingLogoWithCaption(
-                        caption = stringResource(R.string.home_download_instructions_finding),
-                        size = 96.dp,
-                        spacing = 12.dp
-                    )
-                    return@Crossfade
-                }
-
-                val mountInstallRequired = usingMountInstall && !stockAppInstalled
-                val steps = currentSource.instructionSteps(
-                    requestedVersion = requestedVersion,
-                    mountInstallRequired = mountInstallRequired
+        // Waiting shows as waiting rather than as instructions that rewrite themselves once
+        // the destination turns out to be a different website
+        Crossfade(
+            targetState = source,
+            // Neither the wait nor the site specific steps are the same height, so the dialog
+            // grows into whatever it ends up holding
+            modifier = Modifier.animateContentSize(),
+            animationSpec = tween(Defaults.ANIMATION_DURATION_SHORT),
+            label = "downloadInstructions"
+        ) { currentSource ->
+            if (currentSource == ApkDownloadSource.Unresolved) {
+                PulsingLogoWithCaption(
+                    caption = stringResource(R.string.home_download_instructions_finding),
+                    size = 96.dp,
+                    spacing = 12.dp
                 )
+                return@Crossfade
+            }
 
-                // On a card of their own, as the version lists before them are, numbered down a rail
-                SurfaceCard(
-                    cornerRadius = Defaults.CornerLarge,
-                    showBorder = true,
-                    color = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp)
+            val mountInstallRequired = usingMountInstall && !stockAppInstalled
+            val steps = currentSource.instructionSteps(
+                requestedVersion = requestedVersion,
+                mountInstallRequired = mountInstallRequired
+            )
+
+            // On a card of their own, as the version lists before them are, numbered down a rail
+            SurfaceCard(
+                cornerRadius = Defaults.SettingsCornerRadius,
+                showBorder = true,
+                color = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp)
+            ) {
+                Column(
+                    modifier = Modifier.padding(
+                        horizontal = Defaults.ContentPadding,
+                        vertical = Defaults.ItemSpacing
+                    )
                 ) {
-                    Column(
-                        modifier = Modifier.padding(
-                            horizontal = Defaults.SpaceLarge,
-                            vertical = Defaults.SpaceMedium
-                        )
-                    ) {
-                        steps.forEachIndexed { index, step ->
-                            InstructionStep(
-                                number = index + 1,
-                                isLast = index == steps.lastIndex
-                            ) {
-                                Text(
-                                    text = step.text,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = dialogTextColor()
-                                )
+                    steps.forEachIndexed { index, step ->
+                        InstructionStep(
+                            number = index + 1,
+                            isLast = index == steps.lastIndex
+                        ) {
+                            Text(
+                                text = step.text,
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = dialogTextColor()
+                            )
 
                                 step.button?.let { button ->
                                     Box(
@@ -359,7 +374,7 @@ internal fun DialogHostScope.DownloadInstructionsDialog(
                                         SiteDownloadButton(
                                             button = button,
                                             downloadColor = downloadColor,
-                                            apkFileType = apkFileType
+                                            isApkBundle = isApkBundle
                                         )
                                     }
                                 }
@@ -371,22 +386,9 @@ internal fun DialogHostScope.DownloadInstructionsDialog(
                                     )
                                 }
                             }
-                        }
+
                     }
                 }
-            }
-
-            // A helper the user has installed but not trusted is not offered above, so this says why
-            if (offersTrust) {
-                Notice(
-                    text = stringResource(R.string.home_apk_helper_untrusted),
-                    tone = SemanticTone.Primary,
-                    icon = MaterialSymbols.Rounded.Download,
-                    action = NoticeAction(
-                        text = stringResource(R.string.home_apk_helper_untrusted_action),
-                        onClick = { onTrustApkDownloadHelpers?.invoke() }
-                    )
-                )
             }
         }
     }
@@ -401,10 +403,10 @@ internal fun DialogHostScope.DownloadInstructionsDialog(
 private fun SiteDownloadButton(
     button: SiteButton,
     downloadColor: Color,
-    apkFileType: ApkFileType?
+    isApkBundle: Boolean
 ) {
-    val messages = koinInject<UserMessages>()
-    val nudges = listOf(
+    val context = LocalContext.current
+    val toasts = listOf(
         stringResource(R.string.home_download_instructions_download_button_toast),
         stringResource(R.string.home_download_instructions_download_button_toast_2),
         stringResource(R.string.home_download_instructions_download_button_toast_3),
@@ -415,13 +417,15 @@ private fun SiteDownloadButton(
     var clickCount by remember { mutableIntStateOf(0) }
     val onClick = {
         clickCount++
-        messages.show(nudges.getOrElse(clickCount - 1) { nudges.last() }, long = true)
+        context.toast(
+            string = toasts.getOrElse(clickCount - 1) { toasts.last() },
+            duration = Toast.LENGTH_LONG
+        )
     }
 
     when (button) {
         // APKMirror tints its download button with the app's own accent color
         SiteButton.ApkMirror -> {
-            val isApkBundle = apkFileType?.isApk == false
             val buttonColor = downloadColor.ensureContrast(MaterialTheme.colorScheme.background)
             val contentColor = buttonColor.contrastingContent()
 
@@ -431,15 +435,15 @@ private fun SiteDownloadButton(
                 color = buttonColor
             ) {
                 Column(
-                    modifier = Modifier.padding(horizontal = Defaults.SpaceMedium, vertical = 10.dp),
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
                     verticalArrangement = Arrangement.spacedBy(2.dp)
                 ) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
-                            imageVector = MaterialSymbols.RoundedFilled.Download,
+                            imageVector = Icons.Filled.Download,
                             contentDescription = null,
                             tint = contentColor,
                             modifier = Modifier.size(Defaults.IconSizeSmall)
@@ -463,6 +467,8 @@ private fun SiteDownloadButton(
                 }
             }
         }
+
+        SiteButton.ApkCube -> ApkCubeBadge(onClick = onClick)
 
         // Uptodown uses its own brand color for every app, so the accent color plays no part here
         SiteButton.Uptodown -> Surface(
@@ -489,42 +495,10 @@ private fun SiteDownloadButton(
                     )
                 }
                 Icon(
-                    imageVector = MaterialSymbols.Rounded.Download,
+                    imageVector = Icons.Outlined.SaveAlt,
                     contentDescription = null,
                     tint = Color.White,
                     modifier = Modifier.size(Defaults.IconSizeSmall)
-                )
-            }
-        }
-
-        // APKCube keeps its own blue for every app and follows the page theme, as its site does
-        SiteButton.ApkCube -> Surface(
-            onClick = onClick,
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(ApkCubeButtonCornerRadius),
-            color = if (isDarkTheme()) ApkCubeButtonColorDark else ApkCubeButtonColorLight,
-            shadowElevation = 2.dp
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(ApkCubeButtonHeight)
-                    .padding(horizontal = 32.dp),
-                horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall, Alignment.CenterHorizontally),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Icon(
-                    imageVector = MaterialSymbols.Rounded.Download,
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier.size(ApkCubeButtonIconSize)
-                )
-                Text(
-                    // APKCube packs every split app into an APKS, whatever archive the bundle asks for
-                    text = if (apkFileType?.isApk == false) "Download APKS" else "Download APK",
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold,
-                    color = Color.White
                 )
             }
         }
@@ -639,6 +613,58 @@ private fun GitHubAssetRow(
     }
 }
 
+/**
+ * APKCube's own "Download on APKCube" badge, dark on a light page and light on a dark one, as
+ * APKCube itself publishes it.
+ */
+@Composable
+private fun ApkCubeBadge(onClick: () -> Unit) {
+    val colors = if (isDarkTheme()) ApkCubeBadgeForDarkPages else ApkCubeBadgeForLightPages
+
+    Surface(
+        onClick = onClick,
+        shape = RoundedCornerShape(ApkCubeBadgeCornerRadius),
+        color = colors.container,
+        border = colors.border?.let { BorderStroke(1.dp, it) }
+    ) {
+        Row(
+            modifier = Modifier.padding(start = 12.dp, end = 20.dp, top = 11.dp, bottom = 11.dp),
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(R.drawable.ic_apkcube_badge_logo),
+                contentDescription = null,
+                modifier = Modifier.size(ApkCubeBadgeLogoSize)
+            )
+            Column {
+                Text(
+                    text = "DOWNLOAD ON",
+                    color = colors.caption,
+                    fontSize = 9.sp,
+                    lineHeight = 11.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    letterSpacing = 1.3.sp
+                )
+                Text(
+                    text = "APKCube",
+                    color = colors.wordmark,
+                    fontSize = 19.sp,
+                    lineHeight = 22.sp,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = (-0.2).sp
+                )
+            }
+        }
+    }
+}
+
+/** Rounding of APKCube's badge, 9 of its 54 units of height. */
+private val ApkCubeBadgeCornerRadius = 10.dp
+
+/** Side of the logo tile at the start of APKCube's badge. */
+private val ApkCubeBadgeLogoSize = 32.dp
+
 /** Side of the disc a step's number sits on. */
 private val StepNumberSize = 26.dp
 
@@ -647,15 +673,6 @@ private val UptodownButtonCornerRadius = 8.dp
 
 /** Rounding of the boxes GitHub draws around a release's files. */
 private val GitHubCornerRadius = 6.dp
-
-/** Rounding of APKCube's download button, 0.6 of its 10px base radius. */
-private val ApkCubeButtonCornerRadius = 6.dp
-
-/** Height of the large download button on APKCube's download page. */
-private val ApkCubeButtonHeight = 48.dp
-
-/** Side of the download icon on APKCube's large button. */
-private val ApkCubeButtonIconSize = 18.dp
 
 /**
  * One step of the instructions: its [number] on a disc in the color of the app being patched, and a
@@ -672,7 +689,7 @@ private fun InstructionStep(
 
     Row(
         modifier = Modifier.height(IntrinsicSize.Min),
-        horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceMedium)
+        horizontalArrangement = Arrangement.spacedBy(Defaults.ItemSpacing)
     ) {
         Column(
             modifier = Modifier.fillMaxHeight(),
@@ -697,20 +714,9 @@ private fun InstructionStep(
             modifier = Modifier
                 .weight(1f)
                 // Past the last step there is no rail to leave room for
-                .padding(top = Defaults.SpaceExtraSmall, bottom = if (isLast) 0.dp else Defaults.SpaceLarge),
-            verticalArrangement = Arrangement.spacedBy(Defaults.SpaceSmall),
+                .padding(top = 3.dp, bottom = if (isLast) 0.dp else Defaults.ContentPadding),
+            verticalArrangement = Arrangement.spacedBy(Defaults.ContentPaddingSmall),
             content = content
         )
     }
 }
-
-/** True from the first time [present] is, as a dialog holds what it offered while it animates out. */
-@Composable
-private fun latchedOnce(present: Boolean): Boolean {
-    // Read only as the caller recomposes for [present] anyway, so a plain field is enough
-    val latch = remember { Latch() }
-    if (present) latch.on = true
-    return latch.on
-}
-
-private class Latch(var on: Boolean = false)

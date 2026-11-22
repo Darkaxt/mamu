@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">Erro de Android 11</string>
     <string name="android_11_bug_dialog_description">O permiso de instalación da aplicación debe concederse con antelación para evitar un erro no sistema Android 11 que afectará negativamente á experiencia do usuario</string>
     <string name="deep_link_add_source_title">Engadir fonte</string>
-    <string name="deep_link_add_source_message">Desexa engadir esta fonte de parches a Morphe?</string>
+    <string name="deep_link_add_source_message">Desexa engadir esta fonte de parches a Mamu?</string>
     <string name="deep_link_add_source_warning">Engado tan só aquelas fontes nas que confíes </string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">Só engadouse esta aplicación. Podes engadir outras aplicacións da lista de aplicacións da fonte</string>
@@ -44,15 +44,15 @@
     <string name="mpp_import_unreadable">Non se pode ler este ficheiro</string>
     <string name="incoming_file_not_patch_source">Este ficheiro non é unha fonte de parche</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">Actualización de Morphe dispoñible</string>
+    <string name="home_update_available">Actualización de Mamu dispoñible</string>
     <string name="home_update_available_subtitle">Nova versión lista para instalar</string>
     <string name="home_blocked_source_title">Detectada unha fonte de parche bloqueada</string>
     <string name="home_blocked_source_subtitle">Toca para revisar e eliminar</string>
     <string name="home_metadata_errors_title">Algunhas fontes de parches non están dispoñibles</string>
     <string name="home_metadata_errors_subtitle">Toca para revisar as fontes</string>
-    <string name="home_outdated_manager_title">Morphe está desactualizado</string>
+    <string name="home_outdated_manager_title">Mamu está desactualizado</string>
     <string name="home_outdated_manager_subtitle">Algunhas fontes de parcheos necesitan unha versión máis nova</string>
-    <string name="home_held_back_title">Unha fonte de parches provocou un fallo en Morphe</string>
+    <string name="home_held_back_title">Unha fonte de parches provocou un fallo en Mamu</string>
     <string name="home_held_back_subtitle">Ignorouse para que a aplicación puidese iniciar. Toca para revisar</string>
     <string name="home_source_updates_title">Actualizacións de parche dispoñibles</string>
     <string name="home_source_updates_subtitle">Toca para descargalas</string>
@@ -204,10 +204,10 @@
     <string name="sources_management_metadata_unavailable_hint">O arquivo de metadatos remoto está dispoñible. O parcheado cos datos instalados segue funcionando, pero a actualización automática está desactivada para esta fonte</string>
     <string name="sources_management_metadata_unavailable_hint_missing">O paquete de parches non se puido descargar. A URL de orixe pode ser incorrecta ou o ficheiro non existe</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">O paquete de parches non se puido descargar. A URL de orixe pode ser incorrecta ou o ficheiro non existe. Toca para cambiala</string>
-    <string name="sources_management_outdated_manager_badge">Actualizar Morphe</string>
-    <string name="sources_management_outdated_manager_hint">Esta fonte está construída para o patcher %1$s, pero Morphe %2$s inclúe o patcher %3$s. Actualiza Morphe para usala</string>
+    <string name="sources_management_outdated_manager_badge">Actualizar Mamu</string>
+    <string name="sources_management_outdated_manager_hint">Esta fonte está construída para o patcher %1$s, pero Mamu %2$s inclúe o patcher %3$s. Actualiza Mamu para usala</string>
     <string name="sources_management_held_back_badge">Fallou</string>
-    <string name="sources_management_held_back_hint">Esta fonte provocou un fallo en Morphe durante a carga, polo que se omite. Actualízaa ou impórtaa de novo para tentar outra vez</string>
+    <string name="sources_management_held_back_hint">Esta fonte provocou un fallo en Mamu durante a carga, polo que se omite. Actualízaa ou impórtaa de novo para tentar outra vez</string>
     <string name="sources_management_signed_by">Asinado por</string>
     <string name="sources_management_signing_key_changed_badge">Clave cambiada</string>
     <string name="sources_management_signing_key_changed_hint">A última versión non está asinadoa pola clave que esta fonte usaba anteriormente, polo que non foi instalada. Toca para revisala</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">Parches da comunidade</string>
     <string name="sources_dialog_choose_apps">Escolle as aplicacións</string>
     <string name="sources_dialog_choose_apps_description">Elixe cal das súas aplicacións manter unha vez que a fonte se cargue</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">Fontes de parches de terceiros</string>
-    <string name="sources_dialog_community_notice_message">"As fontes de parches da comunidade son creadas e mantidas polos seus propios autores. Morphe non revisa nin verifica os parches de terceiros, e non é responsable do seu contido nin do que fan no seu dispositivo"</string>
+    <string name="sources_dialog_community_notice_message">"As fontes de parches da comunidade son creadas e mantidas polos seus propios autores. Mamu non revisa nin verifica os parches de terceiros, e non é responsable do seu contido nin do que fan no seu dispositivo"</string>
     <string name="sources_update_success">Actualización correcta</string>
     <string name="sources_update_unavailable">Non hai actualizacións dispoñíbles</string>
     <string name="sources_download_fail">Non se puido descargar as fontes: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">Hai unha aplicación axudante instalada pero aínda non é de confianza, polo que non se ofrece aquí</string>
     <string name="home_apk_helper_untrusted_action">Revisar axudantes</string>
     <string name="home_apk_helper_title">Descarga cunha aplicación de axuda</string>
-    <string name="home_apk_helper_description">Morphe pedirá á aplicación axudante detallada abaixo que descargue o APK orixinal e devolva o ficheiro</string>
+    <string name="home_apk_helper_description">Mamu pedirá á aplicación axudante detallada abaixo que descargue o APK orixinal e devolva o ficheiro</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">Abrir axudante</string>
-    <string name="home_apk_helper_warning">Continúe só se confía nesta aplicación axudante. Morphe comproba o paquete, a versión e a sinaxe de calquera cousa que reciba antes do parcheo</string>
-    <string name="home_apk_helper_warning_unverified">Continúe só se confia nesta aplicación axudante. Morphe non pode verificar a sinaxe deste APK, polo que non se detectaría un ficheiro modificado</string>
+    <string name="home_apk_helper_warning">Continúe só se confía nesta aplicación axudante. Mamu comproba o paquete, a versión e a sinaxe de calquera cousa que reciba antes do parcheo</string>
+    <string name="home_apk_helper_warning_unverified">Continúe só se confia nesta aplicación axudante. Mamu non pode verificar a sinaxe deste APK, polo que non se detectaría un ficheiro modificado</string>
     <string name="home_apk_helper_no_result">A aplicación axudante non devolveu un APK</string>
     <string name="home_apk_helper_no_access">A aplicación axudante non concedeu acceso ao APK que devolveu</string>
     <string name="home_apk_helper_no_package">A aplicación axudante non indicou que aplicación instalada usar</string>
     <string name="home_apk_helper_wrong_package">A aplicación axudante devolveu unha aplicación diferente á que se está a parchear</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe non puido usar a aplicación instalada</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu non puido usar a aplicación instalada</string>
     <string name="home_apk_helper_installed_incompatible">A versión instalada non pode ser parcheada</string>
     <string name="home_apk_use_saved_copy">Empregar copia gardada</string>
     <string name="home_apk_use_installed_app">Empregar aplicación instalada</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">Non foi posible verificar a sinaxe da aplicación instalada, polo que podería estar xa parcheada</string>
     <string name="home_unverified">Non verificado</string>
     <string name="home_install_verification_pending">Comprobando a instalación…</string>
-    <string name="home_app_info_install_unverified">Morphe non pode confirmar que a aplicación instalada é a versión que parcheou. Volva parcheala ou instálea desde o APK gardado para restaurar as súas accións</string>
+    <string name="home_app_info_install_unverified">Mamu non pode confirmar que a aplicación instalada é a versión que parcheou. Volva parcheala ou instálea desde o APK gardado para restaurar as súas accións</string>
     <string name="home_app_info_no_saved_apk">Sen APK gardado. O parche precisa seleccionar o arquivo APK de novo</string>
     <string name="home_version_requires_android">Require Android %s+</string>
     <string name="home_apk_no_compatible_versions_title">Non compatible con este dispositivo</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">Desprácese cara abaixo no sitio web e pulse o seu botón de descarga</string>
     <string name="home_download_instructions_step2_variant">Desprácese cara abaixo no sitio web e pulse o botón de descarga da primeira &lt;b&gt;variante de APK&lt;/b&gt;</string>
     <string name="home_download_instructions_step2_search">Abre un resultado de busca dun sitio web no que confíes</string>
-    <string name="home_download_instructions_step2_search_note">Morphe non pode avalar estes sitios web. Salta aqueles que ofrecen a súa propia tenda de aplicacións en lugar dun ficheiro APK</string>
+    <string name="home_download_instructions_step2_search_note">Mamu non pode avalar estes sitios web. Salta aqueles que ofrecen a súa propia tenda de aplicacións en lugar dun ficheiro APK</string>
     <string name="home_download_instructions_step3_search">Nese sitio web, descarga o APK da versión &lt;b&gt;%s&lt;/b&gt;, non o máis recente</string>
     <string name="home_download_instructions_step3_search_any">Nese sitio web, descarga o APK da aplicación. &lt;b&gt;Calquera versión&lt;/b&gt; pode ser parcheada</string>
     <string name="home_download_instructions_step2_github">En &lt;b&gt;Assets&lt;/b&gt; da versión &lt;b&gt;%s&lt;/b&gt;, preme o arquivo que remata en &lt;b&gt;.apk&lt;/b&gt;</string>
@@ -314,11 +314,11 @@
     <string name="home_download_instructions_download_button_toast_3">A práctica fai o mestre e xa o estás conseguindo 💪</string>
     <string name="home_download_instructions_download_button_toast_4">Aínda non está aquí… aínda non está aquí… 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">Vale, respecto a dedicación 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">Agora es un probador oficial de botóns de Morphe 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">Agora es un probador oficial de botóns de Mamu 🏅</string>
     <string name="home_download_instructions_step3">Agarda a que a descarga se complete, e &lt;b&gt; non instales a APK &lt;/b&gt;</string>
     <string name="home_download_instructions_step3_mount">Agarda a que a descarga se complete, despois &lt;b&gt; instalará a APK &lt;/b&gt;</string>
-    <string name="home_download_instructions_step4">Cando remate a descarga, regrese a Morphe</string>
-    <string name="home_download_instructions_step4_mount">Tras instalar o APK orixinal, regrese a Morphe</string>
+    <string name="home_download_instructions_step4">Cando remate a descarga, regrese a Mamu</string>
+    <string name="home_download_instructions_step4_mount">Tras instalar o APK orixinal, regrese a Mamu</string>
     <string name="home_download_instructions_continue_to">Continuar a %s</string>
     <string name="home_download_instructions_destination">a páxina de descarga</string>
     <string name="home_download_instructions_copy_link">Copiar enlace</string>
@@ -447,12 +447,12 @@ Elixe outro APK</string>
     <string name="adaptive_icon_themed">Tematizado</string>
     <string name="adaptive_icon_background_color">Cor do fondo</string>
     <string name="adaptive_icon_reset_transform">Restablecer posición e escala</string>
-    <string name="adaptive_icon_no_transparency_warning">Esta imaxe non ten píxels transparentes, polo que os iconos tematizados e de notificación manteñen o logo de Morphe</string>
+    <string name="adaptive_icon_no_transparency_warning">Esta imaxe non ten píxels transparentes, polo que os iconos tematizados e de notificación manteñen o logo de Mamu</string>
     <string name="adaptive_icon_created_success">Icona adaptable creada con éxito</string>
     <string name="adaptive_icon_creation_failed">Non se puido crear a icona adaptable</string>
     <string name="adaptive_icon_guide">Guía de creación de iconas</string>
     <string name="adaptive_icon_guide_png_title">Use un PNG cun fondo transparente</string>
-    <string name="adaptive_icon_guide_png_body">Un logo cun fondo transparente é o que mellor funciona, escollendo a cor do fondo abaixo. Unha imaxe sen transparencia enche todo o icono en seu lugar, e os iconos tematizados e de notificación manteñen entón o logo de Morphe.</string>
+    <string name="adaptive_icon_guide_png_body">Un logo cun fondo transparente é o que mellor funciona, escollendo a cor do fondo abaixo. Unha imaxe sen transparencia enche todo o icono en seu lugar, e os iconos tematizados e de notificación manteñen entón o logo de Mamu.</string>
     <string name="adaptive_icon_guide_safe_zones_title">Zonas seguras</string>
     <string name="adaptive_icon_guide_safe_zones_body">O contorno mostra a forma da icona do seu lanzador, e todo o que está fóra córtase. Outros lanzadores usan outras formas, polo que manteña os detalles importantes dentro do círculo punteado, que todas as formas amosan.</string>
     <string name="adaptive_icon_guide_notification_title">Icona de notificación</string>
@@ -558,8 +558,8 @@ Elixe outro APK</string>
     <string name="home_app_info_version_move">Instalado %1$s, o máis novo compatible %2$s</string>
     <string name="home_app_info_version_restore">Instalado %1$s, parcheado %2$s</string>
     <string name="home_app_info_app_deleted_warning">A aplicación foi desinstalada</string>
-    <string name="home_app_info_app_deleted_description">Esta aplicación foi desinstalada fóra de Morphe. Volva a parchear para restaurar a súa funcionalidade</string>
-    <string name="home_app_info_not_patched_description">Hai instalada unha versión non parcheada desta aplicación. Morphe aínda conserva o seu rexistro de parche anterior</string>
+    <string name="home_app_info_app_deleted_description">Esta aplicación foi desinstalada fóra de Mamu. Volva a parchear para restaurar a súa funcionalidade</string>
+    <string name="home_app_info_not_patched_description">Hai instalada unha versión non parcheada desta aplicación. Mamu aínda conserva o seu rexistro de parche anterior</string>
     <string name="home_app_info_mount_replaced_description">Outra versión substituíu a aplicación montada, polo que o parche xa non se aplica. Restaurar devolve a versión parcheada</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play actualizou a aplicación montada, polo que o parche xa non se aplica. Restaurar devolve a versión parcheada. Desactiva a actualización automática en Google Play para mantela parcheada</string>
     <string name="app_links_title">Enlaces web compatibles</string>
@@ -590,7 +590,7 @@ Elixe outro APK</string>
     <string name="root_pre_patch_installer_description">O teu dispositivo ten acceso root. Elixe se esta aplicación debe ser parcheada para montaxe root ou instalación estándar</string>
     <string name="root_pre_patch_installer_mount_title">Modo de montaxe root</string>
     <string name="root_pre_patch_installer_mount_description">Parchea para montaxe root e logo monta o APK sobre a aplicación orixinal correspondente. Non se necesita GmsCore</string>
-    <string name="root_mount_module_unmount_warning">Se KernelSU ten activada a opción \"Desmontar módulos por defecto\", abre KernelSU &gt; Superusuario &gt; a aplicación que montaste &gt; Perfil &gt; Personalizado e desactiva \"Desmontar módulos\". De contrario, é posible que o APK parcheado e montado non surta efecto, aínda que Morphe o mostre como montado</string>
+    <string name="root_mount_module_unmount_warning">Se KernelSU ten activada a opción \"Desmontar módulos por defecto\", abre KernelSU &gt; Superusuario &gt; a aplicación que montaste &gt; Perfil &gt; Personalizado e desactiva \"Desmontar módulos\". De contrario, é posible que o APK parcheado e montado non surta efecto, aínda que Mamu o mostre como montado</string>
     <string name="root_pre_patch_installer_standard_title">Modo de instalación estándar</string>
     <string name="root_pre_patch_installer_standard_description">Parchea como un APK normal con soporte para GmsCore. O teu axuste do instalador úsase despois do parcheo</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -653,7 +653,7 @@ Elixe outro APK</string>
     <string name="patcher_conflict_subtitle">Ten que desinstalar a versión existente</string>
     <string name="patcher_conflict_hint">A aplicación parcheada utiliza un certificado diferente ao da versión instalada. A desinstalación borrará todos os datos da aplicación</string>
     <string name="patcher_installed_conflict_title">Desinstalación necesaria</string>
-    <string name="patcher_installed_conflict_body">"Morphe asina as aplicacións parcheadas co seu propio certificado, que difere do orixinal. Android require eliminar a versión existente antes de que se poida instalar a aplicación parcheada.
+    <string name="patcher_installed_conflict_body">"Mamu asina as aplicacións parcheadas co seu propio certificado, que difere do orixinal. Android require eliminar a versión existente antes de que se poida instalar a aplicación parcheada.
 
 A desinstalación borrará permanentemente todos os datos da aplicación"</string>
     <string name="patcher_install_error_title">Erro de instalación</string>
@@ -663,8 +663,8 @@ A desinstalación borrará permanentemente todos os datos da aplicación"</strin
     <string name="patcher_patches_excluded_for_installer">Non dispoñible para este método de instalación e excluído: %s</string>
     <string name="patcher_storage_permission_dialog_title">Non se pode acceder á ruta de almacenamento</string>
     <string name="patcher_incompatible_patcher_title">Actualización necesaria</string>
-    <string name="patcher_incompatible_patcher_description">A fonte &lt;b&gt;%1$s&lt;/b&gt; require o parcheador &lt;b&gt;%2$s&lt;/b&gt; ou un máis recente. Actualiza Morphe para usalo</string>
-    <string name="patcher_storage_permission_description_api30">Unha ou máis opcións de parche apuntan a rutas que Morphe non pode ler. Concede o acceso ao almacenamento e preme o botón para que a aplicación de parches comece automaticamente</string>
+    <string name="patcher_incompatible_patcher_description">A fonte &lt;b&gt;%1$s&lt;/b&gt; require o parcheador &lt;b&gt;%2$s&lt;/b&gt; ou un máis recente. Actualiza Mamu para usalo</string>
+    <string name="patcher_storage_permission_description_api30">Unha ou máis opcións de parche apuntan a rutas que Mamu non pode ler. Concede o acceso ao almacenamento e preme o botón para que a aplicación de parches comece automaticamente</string>
     <string name="patcher_storage_permission_description_legacy">Unha ou máis opcións de parche apuntan a rutas ás que non se pode acceder. Actualice as rutas nas opcións de parche e tente de novo</string>
     <string name="patcher_storage_permission_grant">Conceder permiso de almacenamento</string>
     <string name="patcher_storage_permission_denied_warning">Denegouse o permiso de almacenamento. Concede o permiso para usar este camiño ou move os ficheiros ao directorio privado da aplicación</string>
@@ -700,7 +700,7 @@ A desinstalación borrará permanentemente todos os datos da aplicación"</strin
     <string name="patcher_task_writing_apk">Escribindo o ficheiro APK</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">Protección do parcheo en segundo plano</string>
-    <string name="battery_optimization_dialog_description">Alguns dispositivos poden deter o parcheador cando a aplicación está minimizada. Permita que Morphe se execute sen restricións de batería para garantir que o parcheo se complete de forma fiable</string>
+    <string name="battery_optimization_dialog_description">Alguns dispositivos poden deter o parcheador cando a aplicación está minimizada. Permita que Mamu se execute sen restricións de batería para garantir que o parcheo se complete de forma fiable</string>
     <string name="battery_optimization_not_now">Agora non</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">Parcheado en progreso...</string>
@@ -755,8 +755,8 @@ A desinstalación borrará permanentemente todos os datos da aplicación"</strin
     <string name="install_ignore_signature">Instalar de todos modos</string>
     <string name="install_ignore_signature_description">Mantén os datos da aplicación, pero só funciona se un módulo root desactiva a verificación da asinatura de Android</string>
     <string name="uninstall_app_fail">Erro ao desinstalar a aplicación: %s</string>
-    <string name="uninstall_app_unverified">Mantido no seu lugar: Morphe non puido verificar que a aplicación instalada é a versión que parcheou</string>
-    <string name="launch_app_unverified">Morphe non puido verificar que a aplicación instalada é a versión que parcheou</string>
+    <string name="uninstall_app_unverified">Mantido no seu lugar: Mamu non puido verificar que a aplicación instalada é a versión que parcheou</string>
+    <string name="launch_app_unverified">Mamu non puido verificar que a aplicación instalada é a versión que parcheou</string>
     <string name="uninstall_timeout">A desinstalación expirou</string>
     <string name="save_apk_success">APK gardado</string>
     <string name="saved_app_export_failed">Erro ao exportar a aplicación parcheada</string>
@@ -848,7 +848,7 @@ A desinstalación borrará permanentemente todos os datos da aplicación"</strin
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">Lingua da aplicación</string>
     <string name="settings_appearance_app_language_current">Lingua actual</string>
-    <string name="settings_appearance_translate">Axuda a traducir Morphe</string>
+    <string name="settings_appearance_translate">Axuda a traducir Mamu</string>
     <string name="settings_appearance_translations_info_title">As traducións de algunhas linguas poden faltar ou estar incompletas</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">Escala da interface</string>
@@ -877,7 +877,7 @@ A desinstalación borrará permanentemente todos os datos da aplicación"</strin
     <string name="settings_appearance_app_card_colors_bundle_description">Usa aquí a cor propia de cada aplicación ou fonte, matizada automaticamente para que encaixe</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">Icona da aplicación</string>
-    <string name="settings_appearance_app_icon_selector_description">Como se ve Morphe na túa pantalla de inicio e no menú de aplicacións</string>
+    <string name="settings_appearance_app_icon_selector_description">Como se ve Mamu na túa pantalla de inicio e no menú de aplicacións</string>
     <string name="settings_appearance_app_icon_default">Predefinido</string>
     <string name="settings_appearance_app_icon_light_2">Céu</string>
     <string name="settings_appearance_app_icon_light_3">Poente</string>
@@ -901,23 +901,23 @@ A desinstalación borrará permanentemente todos os datos da aplicación"</strin
     <string name="settings_appearance_app_icon_mark_black">Preto</string>
     <string name="settings_appearance_app_icon_change_dialog_title">Cambiar a icona da aplicación?</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">Morphe reiníciase para cambiar a &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="settings_appearance_app_icon_change_restarts">Mamu reiníciase para cambiar a &lt;b&gt;%s&lt;/b&gt;</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">Cambiar icona</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">Actualizacións pre-lanzamento</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">Acceso anticipado a novas versións de Morphe</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">Acceso anticipado a novas versións de Mamu</string>
     <string name="settings_advanced_updates_prerelease_warning_title">Activar as actualizacións preliminares?</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"As versións pre-lanzamento de Morphe aínda están en desenvolvemento e poden ser inestables.
+    <string name="settings_advanced_updates_prerelease_warning_message">"As versións pre-lanzamento de Mamu aínda están en desenvolvemento e poden ser inestables.
 
 Os parches non se ven afectados: activa os parches pre-lanzamento para cada fonte na lista de fontes de parches"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">Actualizacións automáticas</string>
-    <string name="settings_auto_updates_description">O que fai Morphe coas actualizacións cando se abre. Un deslize para actualizar sempre comproba</string>
+    <string name="settings_auto_updates_description">O que fai Mamu coas actualizacións cando se abre. Un deslize para actualizar sempre comproba</string>
     <string name="settings_auto_updates_download">Descargar automaticamente</string>
-    <string name="settings_auto_updates_download_description">Comproba se hai actualizacións cando se abre Morphe e descarga actualizacións de parche en calquera rede</string>
+    <string name="settings_auto_updates_download_description">Comproba se hai actualizacións cando se abre Mamu e descarga actualizacións de parche en calquera rede</string>
     <string name="settings_auto_updates_wifi_only">Descargar só por Wi-Fi</string>
     <string name="settings_auto_updates_wifi_only_description">Cos datos móbeis, só comproba e mostra o que hai dispoñible</string>
     <string name="settings_auto_updates_check_only">Só comprobar</string>
@@ -938,27 +938,27 @@ Os parches non se ven afectados: activa os parches pre-lanzamento para cada font
     <string name="settings_advanced_external_batch_patch">Permitir activadores externos</string>
     <string name="settings_advanced_external_batch_patch_description">Permite que as aplicacións de automatización inicien o parcheo por lotes</string>
     <string name="external_batch_patch_title">Iniciar parcheo por lotes?</string>
-    <string name="external_batch_patch_description">%s quere que Morphe aplique parches e instale aplicacións</string>
+    <string name="external_batch_patch_description">%s quere que Mamu aplique parches e instale aplicacións</string>
     <string name="external_batch_patch_trust_caller">Permitir sempre esta aplicación</string>
     <string name="external_batch_patch_unknown_caller">Unha aplicación descoñecida</string>
     <!-- Notification content -->
     <string name="notification_bundle_update_title">Hai novos parches dispoñibles</string>
     <string name="notification_update_text">A versión %s xa está dispoñible para descargar</string>
-    <string name="notification_bundle_update_text_unversioned">Toca para abrir Morphe e actualizar</string>
+    <string name="notification_bundle_update_text_unversioned">Toca para abrir Mamu e actualizar</string>
     <string name="notification_permission_dialog_title">Permitir notificacións</string>
-    <string name="notification_permission_dialog_description">Morphe precisa do permiso de notificacións para avisarte cando haxa actualizacións dispoñibles en segundo plano</string>
+    <string name="notification_permission_dialog_description">Mamu precisa do permiso de notificacións para avisarte cando haxa actualizacións dispoñibles en segundo plano</string>
     <string name="notification_post_patch_dialog_title">Gustaríalle que se lle notificase cando haia actualizacións dispoñibles?</string>
-    <string name="notification_channel_manager_updates">Actualizacións de Morphe</string>
-    <string name="notification_channel_manager_updates_description">Notificacións sobre novas versións de Morphe</string>
+    <string name="notification_channel_manager_updates">Actualizacións de Mamu</string>
+    <string name="notification_channel_manager_updates_description">Notificacións sobre novas versións de Mamu</string>
     <string name="notification_channel_patch_updates">Actualizacións de parches</string>
     <string name="notification_channel_patch_updates_description">Notificacións sobre novas versións de parches</string>
-    <string name="notification_channel_patcher_description">Amósase mentres Morphe está parcheando unha aplicación en segundo plano</string>
+    <string name="notification_channel_patcher_description">Amósase mentres Mamu está parcheando unha aplicación en segundo plano</string>
     <string name="notification_channel_patching_results">Resultados do parcheado</string>
-    <string name="notification_channel_patching_results_description">Cando remata o parcheado ou unha instalación agarda por ti mentres Morphe está en segundo plano</string>
+    <string name="notification_channel_patching_results_description">Cando remata o parcheado ou unha instalación agarda por ti mentres Mamu está en segundo plano</string>
     <string name="notification_channel_mounted_apps">Aplicacións montadas</string>
     <string name="notification_channel_mounted_apps_description">Cando outra versión substitúe unha aplicación montada e o seu parche xa non se aplica</string>
     <string name="notification_mount_replaced_title">%1$s xa non está parcheado</string>
-    <string name="notification_mount_replaced_text">A v%1$s substituíu a v%2$s parcheada. Abre Morphe para restaurala</string>
+    <string name="notification_mount_replaced_text">A v%1$s substituíu a v%2$s parcheada. Abre Mamu para restaurala</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">Modo Experto</string>
     <string name="settings_advanced_expert_mode_description">Desbloquea a configuración avanzada de parcheo e as opcións de parcheo</string>
@@ -980,7 +980,7 @@ Os parches non se ven afectados: activa os parches pre-lanzamento para cada font
     <string name="settings_advanced_github_pat_unreachable">Non foi posible contactar con GitHub para comprobar este token</string>
     <string name="settings_advanced_github_pat_export_include_label">Incluir na exportación de axustes</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">Engadir este PAT ás configuracións exportadas de Morphe</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">Engadir este PAT ás configuracións exportadas de Mamu</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">Non comparta o seu PAT. Se o inclúe nunha exportación de axustes, manteña ese ficheiro privado porque contén o token</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1075,7 +1075,7 @@ As dimensións da imaxe deben ser as seguintes:
     <string name="installer_status_not_supported">Non compatible para esta acción</string>
     <string name="installer_status_shizuku_not_installed">Instala Shizuku ou Sui para usar esta opción</string>
     <string name="installer_status_shizuku_not_running">Inicia Shizuku ou Sui e tenta de novo</string>
-    <string name="installer_status_shizuku_permission">Concede permiso a Morphe desde a aplicación Shizuku</string>
+    <string name="installer_status_shizuku_permission">Concede permiso a Mamu desde a aplicación Shizuku</string>
     <string name="installer_mount_warning_install">O modo de parcheo está configurado en montaxe root. Esta aplicación gardada non se instalou mediante montaxe</string>
     <string name="mount_version_mismatch_message">A versión da aplicación orixinal (%2$s) non coincide coa versión da aplicación parcheada (%1$s). Monta a versión orixinal correspondente e tenta de novo</string>
     <string name="mount_stock_restore_failed_message">Android rexeitou o APK orixinal gardado. Instala a versión de fábrica correspondente e intenta montar de novo</string>
@@ -1116,7 +1116,7 @@ As dimensións da imaxe deben ser as seguintes:
     <string name="settings_ignore_install_target_rules">Ignorar os requisitos do obxectivo de instalación</string>
     <string name="settings_ignore_install_target_rules_description">Permite desactivar os parches que o obxectivo de instalación require e activar os que descarta. É posible que a aplicación parcheada non funcione</string>
     <string name="settings_auto_uninstall_warning_title">Activar a desinstalación automática?</string>
-    <string name="settings_auto_uninstall_warning_message">Se Android informa dun conflito de firma durante a auto-instalación de Shizuku, Morphe desinstalará a aplicación existente antes de instalar o APK parcheado</string>
+    <string name="settings_auto_uninstall_warning_message">Se Android informa dun conflito de firma durante a auto-instalación de Shizuku, Mamu desinstalará a aplicación existente antes de instalar o APK parcheado</string>
     <string name="settings_auto_uninstall_warning_risk">Isto pode eliminar os datos da aplicación. Se o APK parcheado falla ao instalarse despois de desinstalar, é posible que a aplicación anterior xa non estea</string>
     <string name="installer_shizuku_status_action">Comprobar o estado de Shizuku</string>
     <string name="installer_shizuku_status_title">Estado de Shizuku</string>
@@ -1134,7 +1134,7 @@ As dimensións da imaxe deben ser as seguintes:
     <string name="installer_shizuku_install_fail_with_details">"Fallo na instalación de Shizuku: %1$s
 
 Detalles: %2$s"</string>
-    <string name="installer_shizuku_error_permission">Falta o permiso de Shizuku. Outorga o permiso a Morphe e tenta de novo</string>
+    <string name="installer_shizuku_error_permission">Falta o permiso de Shizuku. Outorga o permiso a Mamu e tenta de novo</string>
     <string name="installer_shizuku_error_timeout">Shizuku non devolveu un resultado de instalación. Asegúrate de que aínda está en execución e tenta de novo</string>
     <string name="installer_shizuku_error_downgrade">Android bloqueou isto porque degradaría a aplicación instalada</string>
     <string name="installer_shizuku_error_signature">Android bloqueou isto porque a aplicación instalada ten unha sinatura diferente</string>
@@ -1145,13 +1145,13 @@ Detalles: %2$s"</string>
     <string name="settings_system_battery_optimization_description">Mantén o patcher en execución cando a aplicación está minimizada</string>
     <string name="settings_system_process_runtime">Runtime do patcher</string>
     <string name="settings_system_jvm_runtime_enable">Usar VM integrada</string>
-    <string name="settings_system_jvm_runtime_description">Parches na propia VM de Java de Morphe, que pode usar máis memoria. Desactívaa para usar o runtime de Android</string>
+    <string name="settings_system_jvm_runtime_description">Parches na propia VM de Java de Mamu, que pode usar máis memoria. Desactívaa para usar o runtime de Android</string>
     <string name="settings_system_jvm_runtime_unavailable">Requírese un dispositivo ARM ou x86 de 64 bits</string>
     <string name="settings_system_patcher_completion_sound">Son de finalización</string>
     <string name="settings_system_patcher_completion_sound_description">Reprodúce un ton distinto para o éxito ou o fallo cando remata o parcheo</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">Notificacións</string>
-    <string name="settings_system_notifications_description">Como Morphe mantense informado</string>
+    <string name="settings_system_notifications_description">Como Mamu mantense informado</string>
     <string name="settings_system_notifications_success_sound">Son de éxito</string>
     <string name="settings_system_notifications_error_sound">Son de erro</string>
     <string name="settings_system_notifications_sound_default">Predefinido</string>
@@ -1163,8 +1163,8 @@ Detalles: %2$s"</string>
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">Clave de asinatura</string>
     <string name="settings_system_signing_key_description">Fai unha copia de seguridade ou restaura a clave que asina as aplicacións parcheadas</string>
-    <string name="settings_system_signing_key_dialog_description">Cada aplicación que Morphe parchea está asinada con esta clave. Garda unha copia: sen ela, as aplicacións parcheadas só poden actualizarse tras desinstalálas</string>
-    <string name="settings_system_signing_key_missing">Morphe crea unha co teu primeiro parche</string>
+    <string name="settings_system_signing_key_dialog_description">Cada aplicación que Mamu parchea está asinada con esta clave. Garda unha copia: sen ela, as aplicacións parcheadas só poden actualizarse tras desinstalálas</string>
+    <string name="settings_system_signing_key_missing">Mamu crea unha co teu primeiro parche</string>
     <string name="settings_system_signing_key_created">Creado o %s</string>
     <string name="settings_system_signing_key_fingerprint">Impressión dixital SHA-256</string>
     <string name="settings_system_backup_appearance_description">Tema, cores e idioma</string>
@@ -1186,31 +1186,31 @@ Detalles: %2$s"</string>
     <string name="settings_system_export_keystore_failed">Fallo ao exportar o almacén de claves</string>
     <string name="settings_system_show_password_field">Amosar contrasinal</string>
     <string name="settings_system_hide_password_field">Ocultar contrasinal</string>
-    <string name="settings_system_morphe_settings">Axustes de Morphe</string>
-    <string name="settings_system_import_manager_settings_description">Fai unha copia de seguridade e restaura os teus axustes de Morphe</string>
-    <string name="settings_system_export_manager_settings_title">Exportar axustes de Morphe</string>
+    <string name="settings_system_morphe_settings">Axustes de Mamu</string>
+    <string name="settings_system_import_manager_settings_description">Fai unha copia de seguridade e restaura os teus axustes de Mamu</string>
+    <string name="settings_system_export_manager_settings_title">Exportar axustes de Mamu</string>
     <string name="settings_system_export_manager_settings_description">Garda a configuración que escollades nun ficheiro</string>
     <string name="settings_system_import_manager_settings_file_description">Restaura a configuración desde un ficheiro de copia de seguridade</string>
     <string name="settings_system_auto_backup">Copia de seguridade automática</string>
     <string name="settings_system_auto_backup_switch">Facer copia de seguridade automaticamente</string>
     <string name="settings_system_auto_backup_now">Facer copia de seguridade agora</string>
     <string name="settings_system_auto_backup_saved">Copia de seguridade gardada</string>
-    <string name="settings_system_auto_backup_interval_description">Morphe agarda polo menos este tempo despois dunha copia antes de facer a seguinte</string>
-    <string name="settings_system_auto_backup_description">Garda a túa configuración de Morphe nunha carpeta que escollases</string>
+    <string name="settings_system_auto_backup_interval_description">Mamu agarda polo menos este tempo despois dunha copia antes de facer a seguinte</string>
+    <string name="settings_system_auto_backup_description">Garda a túa configuración de Mamu nunha carpeta que escollases</string>
     <string name="settings_system_auto_backup_last">Última copia de seguridade: %s</string>
     <string name="settings_system_auto_backup_folder">Cartafol</string>
-    <string name="settings_system_auto_backup_folder_name">Copias de seguridade de Morphe</string>
+    <string name="settings_system_auto_backup_folder_name">Copias de seguridade de Mamu</string>
     <string name="settings_system_auto_backup_folder_failed">Non foi posible usar esta carpeta: %s</string>
     <string name="settings_system_auto_backup_interval">Frecuencia de copia de seguridade</string>
     <string name="settings_system_auto_backup_signing_key">Incluir clave de sinaxe</string>
     <string name="settings_system_auto_backup_signing_key_description">Garda a clave que asina as aplicacións modificadas xunto cos axustes</string>
     <string name="settings_system_auto_backup_signing_key_warning_title">Facer unha copia de seguridade da clave de sinaxe?</string>
     <string name="settings_system_auto_backup_signing_key_warning_message">Calquera que obteña este ficheiro pode asinar actualizacións que se instalen sobre as súas aplicacións modificadas. Mantendo a carpeta privada e compartaa nurmamente cos seus propios dispositivos</string>
-    <string name="settings_system_auto_backup_footer">Gardase unha copia cando saes de Morphe despois de cambiar algo. Mántense os %s máis recentes</string>
+    <string name="settings_system_auto_backup_footer">Gardase unha copia cando saes de Mamu despois de cambiar algo. Mántense os %s máis recentes</string>
     <string name="settings_system_auto_backup_failed">Non se puido gardar a última copia de seguridade. Seleccione a carpeta de novo</string>
-    <string name="settings_system_import_manager_settings_fail">Fallou a importación das configuracións de Morphe: %s</string>
-    <string name="settings_system_import_manager_settings_success">Importáronse as configuracións de Morphe</string>
-    <string name="settings_system_import_manager_settings_mode_title">Importar configuracións de Morphe</string>
+    <string name="settings_system_import_manager_settings_fail">Fallou a importación das configuracións de Mamu: %s</string>
+    <string name="settings_system_import_manager_settings_success">Importáronse as configuracións de Mamu</string>
+    <string name="settings_system_import_manager_settings_mode_title">Importar configuracións de Mamu</string>
     <string name="settings_system_import_manager_settings_mode_description">Elixe como se deben aplicar as configuracións e as fontes importadas</string>
     <string name="settings_system_import_selections_mode_title">Importar seleccións de parche</string>
     <string name="settings_system_import_selections_mode_description">Elixe como se deben aplicar as seleccións importadas e as opcións de parche</string>
@@ -1218,8 +1218,8 @@ Detalles: %2$s"</string>
     <string name="import_mode_replace_description">Coincidir exactamente coa copia de seguridade. Os elementos que falten na copia de seguridade serán eliminados</string>
     <string name="import_mode_merge_title">Fusionar co existente</string>
     <string name="import_mode_merge_description">Engadir os elementos que faltan na copia de seguridade. Os elementos existentes mantéñense sen cambios</string>
-    <string name="settings_system_export_manager_settings_fail">Fallo ao exportar a configuración de Morphe: %s</string>
-    <string name="settings_system_export_manager_settings_success">Configuración de Morphe exportada</string>
+    <string name="settings_system_export_manager_settings_fail">Fallo ao exportar a configuración de Mamu: %s</string>
+    <string name="settings_system_export_manager_settings_success">Configuración de Mamu exportada</string>
     <string name="settings_system_export_debug_logs">Exportar rexistros de depuración</string>
     <string name="settings_system_export_debug_logs_description">Garda os rexistros do sistema para a resolución de problemas</string>
     <string name="settings_system_export_debug_logs_export_read_failed">Erro ao ler os rexistros (código de saída %s)</string>
@@ -1237,7 +1237,7 @@ Detalles: %2$s"</string>
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">Xestión do almacenamento</string>
     <string name="settings_system_storage_management_description">Mostra o uso do disco e limpa os ficheiros almacenados en caché</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s libre</string>
     <string name="settings_system_storage_saved_apks">APKs gardados</string>
     <string name="settings_system_storage_caches">Caches</string>
@@ -1260,7 +1260,7 @@ Detalles: %2$s"</string>
     <string name="settings_system_storage_clear_anyway">Borrar de todas formas</string>
     <string name="settings_system_storage_nothing_to_clear">Non hai nada que limpar</string>
     <string name="settings_system_storage_open_app_info_title">Abrir o almacenamento da aplicación Android</string>
-    <string name="settings_system_storage_open_app_info_description">Xerir ou limpar todos os datos de Morphe a través dos axustes do sistema</string>
+    <string name="settings_system_storage_open_app_info_description">Xerir ou limpar todos os datos de Mamu a través dos axustes do sistema</string>
     <string name="settings_system_save_original_apks_title">Manter os APKs orixinais</string>
     <string name="settings_system_save_original_apks_description">Gardar o APK pre-parcheado para que poida reutilizarse no parcheado sen ter que seleccionar o ficheiro de novo</string>
     <string name="settings_system_save_patched_apks_title">Manter os APKs parcheados</string>
@@ -1314,13 +1314,13 @@ Detalles: %2$s"</string>
     <string name="copy_selection_available_format">%1$s de %2$s dispoñibles</string>
     <!-- Settings - System Tab - Custom file picker -->
     <string name="settings_system_custom_file_picker">Selector de ficheiros personalizado</string>
-    <string name="settings_system_custom_file_picker_description">Usa o selector de ficheiros integrado de Morphe en lugar do do sistema</string>
+    <string name="settings_system_custom_file_picker_description">Usa o selector de ficheiros integrado de Mamu en lugar do do sistema</string>
     <!-- Settings - System Tab - APK download helper -->
     <string name="settings_system_apk_download_helper">Axudante de descarga de APK</string>
     <string name="settings_system_apk_download_helper_trusted_count">Fiables: %1$d de %2$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">As aplicacións axudantes poden descargar os APK orixinais por ti. Só as que confías aquí se ofrecen nas instrucións de descarga</string>
     <string name="settings_system_apk_download_helper_trust_title">Confiar neste axudante?</string>
-    <string name="settings_system_apk_download_helper_warning">O APK vén da aplicación axudante, así que confía só nas aplicacións que coñeces. Morphe segue comprobando o paquete, a versión e a sinatura de cada ficheiro antes do parcheo</string>
+    <string name="settings_system_apk_download_helper_warning">O APK vén da aplicación axudante, así que confía só nas aplicacións que coñeces. Mamu segue comprobando o paquete, a versión e a sinatura de cada ficheiro antes do parcheo</string>
     <string name="settings_system_apk_download_helper_installed_by">Instalado por %s</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">Instalador descoñecido</string>
     <string name="settings_system_apk_download_helper_open_directly">Abrir o axudante inmediatamente</string>
@@ -1353,7 +1353,7 @@ Detalles: %2$s"</string>
     <string name="settings_about_section_project">Proxecto</string>
     <string name="settings_about_section_help">Axuda</string>
     <string name="credits_prior_development">Desenvolvemento previo</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">Xestor ብ</string>
     <string name="about_update_available">Actualización dispoñible: %s</string>
     <string name="about_up_to_date">Ao día</string>
@@ -1366,7 +1366,7 @@ Detalles: %2$s"</string>
     <string name="contributors_all_time">Todo o tempo</string>
     <string name="contributors_6_months">6 meses</string>
     <string name="contributors_3_months">3 meses</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">Apoiadores</string>
     <string name="supporters_description">Apoiadores en Open Collective</string>
     <string name="supporters_become">Converteute nun apoiador</string>
@@ -1374,7 +1374,7 @@ Detalles: %2$s"</string>
     <string name="people_more">E %s máis</string>
     <string name="people_unavailable">Non foi posible cargar a lista</string>
     <string name="opensource_licenses">Licenzas de código aberto</string>
-    <string name="opensource_licenses_description">As bibliotecas nas que se basea Morphe</string>
+    <string name="opensource_licenses_description">As bibliotecas nas que se basea Mamu</string>
     <string name="opensource_licenses_search">Buscar bibliotecas e licenzas</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">Unha elección</string>
@@ -1399,12 +1399,12 @@ Detalles: %2$s"</string>
     <string name="settings_section_patcher">Patcher</string>
     <string name="settings_section_updates">Actualizacións</string>
     <string name="settings_section_patching">Parcheando</string>
-    <string name="settings_section_appearance_summary">Aspecto de Morphe</string>
+    <string name="settings_section_appearance_summary">Aspecto de Mamu</string>
     <string name="settings_section_patch_options_summary">Con que parchea as aplicacións o modo simple</string>
     <string name="settings_section_general">Xeneral</string>
     <string name="settings_section_patcher_summary">Como se aplican os parches nas aplicacións neste dispositivo</string>
     <string name="settings_section_help_info">Axuda &amp; info</string>
-    <string name="settings_section_about_summary">Máis sobre Morphe e como obter axuda</string>
+    <string name="settings_section_about_summary">Máis sobre Mamu e como obter axuda</string>
     <string name="settings_section_local_files">Ficheiros</string>
     <string name="settings_section_backup">Copia de seguridade</string>
     <string name="settings_section_import_export">Importar e exportar</string>
@@ -1567,7 +1567,7 @@ Detalles: %2$s"</string>
     <string name="update_completed">Actualización instalada</string>
     <string name="install_update_manager_failed">Erro ao instalar a actualización</string>
     <string name="installing_manager_update">Instalando actualización…</string>
-    <string name="installing_manager_update_hint">Morphe pecharase para finalizar a actualización</string>
+    <string name="installing_manager_update_hint">Mamu pecharase para finalizar a actualización</string>
     <string name="downloading_manager_update">Descargando actualización…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">%1$s MB descargados</string>
@@ -1590,7 +1590,7 @@ Queres continuar?"</string>
     <string name="onboarding_signing_key_desc">Fai unha copia de seguridade da clave que asina as túas aplicacións parcheadas. Sen ela, só poden actualizarse despois de desinstalalas</string>
     <string name="onboarding_swipe_title">Xestos de deslize</string>
     <string name="onboarding_swipe_desc">Desliza cara á dereita nunha tarxeta de aplicación para ver os seus parches dispoñibles. Desliza cara á esquerda para ocultar a tarxeta da pantalla de inicio</string>
-    <string name="onboarding_settings_desc">Personaliza Morphe: aparencia, opcións avanzadas e ferramentas do sistema</string>
+    <string name="onboarding_settings_desc">Personaliza Mamu: aparencia, opcións avanzadas e ferramentas do sistema</string>
     <string name="onboarding_sources_patches_desc">Toca para ver todos os parches dispoñibles desta fonte</string>
     <string name="onboarding_sources_version_desc">Toca a versión para ver o rexistro completo de cambios desta fonte</string>
     <string name="onboarding_sources_apps_desc">Toca para ver as aplicacións que este orixe parchea e escolle para cal delas ofrece patches</string>
@@ -1602,9 +1602,28 @@ Queres continuar?"</string>
     <string name="onboarding_system_file_picker_desc">Activa para usar o explorador de ficheiros integrado en lugar do selector do sistema ao elixir APKs ou almacenes de claves</string>
     <!-- Tour prompt dialog shown after first successful patch install -->
     <string name="tour_prompt_title">Tour rápido polas funcións</string>
-    <string name="tour_prompt_desc">Queres un tour rápido polas funcións principais de Morphe?</string>
+    <string name="tour_prompt_desc">Queres un tour rápido polas funcións principais de Mamu?</string>
     <!-- Label of a footer button beside "Skip". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="tour_prompt_confirm">Amósame</string>
     <string name="onboarding_restart_title">Tour polas funcións</string>
     <string name="onboarding_restart_desc">Unha visita guiada polas funcións principais</string>
+
+    <string name="home_app_filter_all_description">Todas as aplicacións na pantalla de inicio</string>
+    <string name="home_app_filter_patched_description">Aplicacións que parcheaste ou gardaste con Mamu</string>
+    <string name="home_app_filter_not_patched_description">Aplicacións que aínda non parcheaste en Mamu</string>
+    <string name="home_app_filter_installed_description">Aplicacións instaladas actualmente neste dispositivo</string>
+    <string name="home_app_filter_uninstalled_description">Aplicacións parcheadas con Mamu que xa non están neste dispositivo</string>
+    <string name="home_app_filter_clones_description">Apps construídas baixo un nome de paquete propio, instaladas xunto coa orixinal</string>
+    <string name="home_app_sort_name_asc_description">Alfabética, de A a Z</string>
+    <string name="home_app_sort_name_desc_description">Alfabética inversa, de Z a A</string>
+    <string name="home_app_sort_recently_patched_description">As aplicacións parcheadas máis recentemente primeiro</string>
+    <string name="home_category_custom">Personalizado</string>
+    <string name="sources_filter_all_description">Cada fonte</string>
+    <string name="sources_filter_enabled_description">As fontes de onde se toman os parches</string>
+    <string name="sources_filter_disabled_description">Fontes desactivadas</string>
+    <string name="sources_filter_issues_description">Fontes que están bloqueadas, fallaron ao cargar ou necesitan un Mamu máis recente</string>
+    <string name="sources_sort_last_updated_description">Actualizacións de fonte máis recentes primeiro</string>
+    <string name="sources_sort_enabled_first_description">Mostrar fontes activas antes que as fontes deshabilitadas</string>
+    <string name="home_apk_availability_installed_version">Instalado neste dispositivo: %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">Formato do almacén de claves</string>
 </resources>

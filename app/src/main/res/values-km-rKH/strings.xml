@@ -42,7 +42,7 @@
     <!-- Actions of the panel for several selected sources at once -->
     <!-- Home Screen - Sources Dialogs -->
     <!-- %s is the name of the local source that another version of the same bundle replaces -->
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <!-- Shown on Android 17 when the Nearby devices permission, which covers the local network, is refused while a source is hosted there -->
     <!-- "%1$s" is where the setting is, such as "Settings > Expert mode", built from the names on those screens. -->
     <!-- Home Screen - Dialog 1: APK Availability -->
@@ -112,9 +112,9 @@
     <!-- %s is the name of the icon picked -->
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <!-- Settings - Advanced Tab - Updates Section -->
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <!-- Notification content -->
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <!-- Settings - Advanced Tab - GitHub PAT Settings -->
@@ -132,7 +132,7 @@
     <!-- Settings - System Tab - Import and Export Section -->
     <!-- Settings - System Tab - Files & Storage Section -->
     <!-- Settings - System Tab - Storage Management screen -->
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <!-- Settings - System Tab - Storage Management - Patched APKs Management -->
     <!-- Settings - System Tab - Storage Management - Original APKs Management -->
     <!-- Settings - System Tab - Storage Management - Patch Selection Management -->
@@ -141,9 +141,9 @@
     <!-- Settings - System Tab - APK download helper -->
     <!-- File Picker -->
     <!-- Settings - System Tab - About Section -->
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <!-- Periods the contributors are listed for, picked from a menu in the header -->
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <!-- Row under a list of people, leading to the rest of them. %s is how many more there are -->
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <!-- Shared strings -->

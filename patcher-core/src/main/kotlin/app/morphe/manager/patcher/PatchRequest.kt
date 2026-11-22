@@ -40,6 +40,8 @@ data class PatchRequest(
         val uid: Int,
         val patchesFile: String,
         val patches: Set<String>,
-        val options: Map<String, Map<String, JsonElement>>
+        val options: Map<String, Map<String, JsonElement>>,
+        /** Publication evidence for this installed pack, never a file/import/refresh time. */
+        val publishedAt: Long? = null
     )
 }

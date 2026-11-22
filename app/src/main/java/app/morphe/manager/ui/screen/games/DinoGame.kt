@@ -26,6 +26,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import app.morphe.manager.R
 import app.morphe.manager.ui.screen.shared.Defaults
 import kotlinx.coroutines.isActive
@@ -210,7 +211,7 @@ fun DinoGame(state: DinoGameState) {
 private fun DinoCanvas(state: DinoGameState, modifier: Modifier) {
     Box(
         modifier = modifier
-            .clip(RoundedCornerShape(Defaults.CornerMedium))
+            .clip(RoundedCornerShape(Defaults.CompactCornerRadius))
             .background(DinoBg)
             .pointerInput(Unit) { detectTapGestures(onPress = { state.tap() }) }
     ) {
@@ -325,9 +326,9 @@ private fun DinoCanvas(state: DinoGameState, modifier: Modifier) {
                     color = DinoBg.copy(alpha = 0.9f),
                     textAlign = TextAlign.Center,
                     modifier = Modifier
-                        .clip(RoundedCornerShape(Defaults.CornerSmall))
+                        .clip(RoundedCornerShape(8.dp))
                         .background(DinoBody.copy(alpha = 0.22f))
-                        .padding(horizontal = Defaults.SpaceLarge, vertical = Defaults.SpaceSmall)
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
                 )
             }
         }

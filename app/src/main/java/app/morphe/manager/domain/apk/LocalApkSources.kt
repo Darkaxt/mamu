@@ -180,16 +180,14 @@ class LocalApkSources(
         if (file == null) {
             null
         } else {
-            // Resolved rather than taken from the record, because the file is the truth
-            val resolved = appDataResolver.resolveAppData(
-                packageName = packageName,
-                preferredSource = AppDataSource.ORIGINAL_APK
-            )
-            SavedApkInfo(
+            // Read the actual retained original, never fallback metadata from an installed app.
+            val info = pm.getPackageInfo(file)
+            val version = info?.versionName?.takeUnless { it.isBlank() }
+            if (info == null || info.packageName != packageName || version == null) null else SavedApkInfo(
                 fileName = file.name,
                 filePath = file.absolutePath,
-                version = resolved.version ?: originalApk.version,
-                versionCode = resolved.packageInfo?.let { pm.getVersionCode(it) }
+                version = version,
+                versionCode = pm.getVersionCode(info)
             )
         }
     } catch (e: Exception) {

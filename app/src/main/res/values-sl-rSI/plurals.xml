@@ -264,4 +264,10 @@
         <item quantity="few">%d nepreverjene povezave</item>
         <item quantity="other">%d nepreverjenih povezav</item>
     </plurals>
+    <plurals name="sources_search_patch_matches">
+        <item quantity="one">%s ustrezen popravek</item>
+        <item quantity="two">%s ustrezna popravka</item>
+        <item quantity="few">%s ustrezni popravki</item>
+        <item quantity="other">%s ustreznih popravkov</item>
+    </plurals>
 </resources>

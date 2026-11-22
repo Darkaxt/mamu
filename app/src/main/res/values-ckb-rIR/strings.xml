@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">کەلێنی ئەندرۆید ١١ </string>
     <string name="android_11_bug_dialog_description">پێویستە پێشوەختە مۆڵەتی دامەزراندنی ئەپەکە بدرێت بۆ ئەوەی هەڵەیەک لە سیستەمی ئەندرۆید ١١ ڕوونەدات کە کاریگەری نەرێنی لەسەر ئەزموونی بەکارهێنەر دەبێت</string>
     <string name="deep_link_add_source_title">زیادکردنی سەرچاوە</string>
-    <string name="deep_link_add_source_message">دەتەوێت ئەم سەرچاوەی پاچە زیاد بکەیت بۆ Morphe؟</string>
+    <string name="deep_link_add_source_message">دەتەوێت ئەم سەرچاوەی پاچە زیاد بکەیت بۆ Mamu؟</string>
     <string name="deep_link_add_source_warning">تەنها ئەو سەرچاوانە زیاد بکە کە متمانەت پێیانە</string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">تەنیا ئەم ئەپە زیادکراوە. دەتوانیت ئەپی تریش زیادبکەیت لە لیستی ئەپەکانی سەرچاوە</string>
@@ -44,13 +44,13 @@
     <string name="mpp_import_unreadable">ئەم فایلە ناتوانرێت بخوێندرێت</string>
     <string name="incoming_file_not_patch_source">ئەم فایلە سەرچاوەی پاتچ نییە</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">Morphe نوێکردنەوە بەردەستە</string>
+    <string name="home_update_available">Mamu نوێکردنەوە بەردەستە</string>
     <string name="home_update_available_subtitle">وەشانی نوێ ئامادەیە بۆ دابەزاندن</string>
     <string name="home_blocked_source_title">سەرچاوەی پاتچ بلۆککراو دۆزراوەتەوە</string>
     <string name="home_blocked_source_subtitle">دایبگرە بۆ پێداچوونەوە و سڕینەوە</string>
     <string name="home_metadata_errors_title">هەندێک سەرچاوەی پاتچ دەردەست نین</string>
     <string name="home_metadata_errors_subtitle">دایبگرە بۆ پێداچوونەوەی سەرچاوەکان</string>
-    <string name="home_outdated_manager_title">Morphe کاتی نەماوە</string>
+    <string name="home_outdated_manager_title">Mamu کاتی نەماوە</string>
     <string name="home_outdated_manager_subtitle">هەندێک سەرچاوەی پاتچ پێویستان بە ڤێرژنی نوێیە</string>
     <string name="home_held_back_title">سەرچاوەیەکی پاتچ morphe تێکدا</string>
     <string name="home_held_back_subtitle">فەرامۆشکرا تا ئەپەکە بتوانێت دەستپێبکات. پەنجە بنێ بۆ پێداچوونەوە</string>
@@ -204,8 +204,8 @@
     <string name="sources_management_metadata_unavailable_hint">فایلی مێتاداتای دوور بەردەست نیە. پینەکردن لەگەڵ گورزەی دامەزراو هێشتا کاردەکات، بەڵام نوێکردنەوەی خۆکار بۆ ئەم سەرچاوەیە ناچالاک کراوە</string>
     <string name="sources_management_metadata_unavailable_hint_missing">نەتوانرا گورزەی پینەکردن دابەزێنرێت. سەرچاوەی بەستەر لەوانەیە هەڵە بێت یان فایلەکە بوونی نەبێت</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">نەتوانرا گورزەی پینەکردن دابەزێنرێت. سەرچاوەی بەستەر لەوانەیە هەڵە بێت یان فایلەکە بوونی نەبێت. کلیک بکە بۆ گۆڕینی</string>
-    <string name="sources_management_outdated_manager_badge">نوێکردنەوەی Morphe</string>
-    <string name="sources_management_outdated_manager_hint">ئەم سەرچاوەیە بۆ پاتچەری %1$s دروستکراوە، بەڵام Morphe %2$s پاتچەری %3$s لەخۆ دەگرێت. Morphe نوێ بکەرەوە بۆ بەکارهێنانی</string>
+    <string name="sources_management_outdated_manager_badge">نوێکردنەوەی Mamu</string>
+    <string name="sources_management_outdated_manager_hint">ئەم سەرچاوەیە بۆ پاتچەری %1$s دروستکراوە، بەڵام Mamu %2$s پاتچەری %3$s لەخۆ دەگرێت. Mamu نوێ بکەرەوە بۆ بەکارهێنانی</string>
     <string name="sources_management_held_back_badge">تێکچووە</string>
     <string name="sources_management_held_back_hint">ئەم سەرچاوەیە Morpheی تێکداوە لە کاتی بارکردندا، بۆیە پشتگوێ دەخرێت. بۆ هەوڵدانی دووبارە، نوێی بکەرەوە یان دووبارە هاوردەی بکەرەوە</string>
     <string name="sources_management_signed_by">واژۆکراوە لەلایەن</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">پاتچەکانی کۆمەڵگەی بەکارهێنەران</string>
     <string name="sources_dialog_choose_apps">ئەپەکان هەڵبژێرە</string>
     <string name="sources_dialog_choose_apps_description">دیاری بکە کام لە بەرنامەکانی بپارێزیت دوای ئەوەی سەرچاوەکە بار بوو</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">سەرچاوەکانی پاتچی لایەنی سێیەم</string>
-    <string name="sources_dialog_community_notice_message">"سەرچاوەکانی پاتچی کۆمەڵگەیی لەلایەن نووسەرەکانیانەوە دروست و پشتیوانی دەکرێن. Morphe پێداچوونەوە یان پشتڕاستکردنەوەی پاتچەکانی لایەنی سێیەم ناکات، و بەرپرس نییە لە ناوەڕۆکیان یان ئەوەی لە ئامێرەکەتدا ئەنجامی دەدەن"</string>
+    <string name="sources_dialog_community_notice_message">"سەرچاوەکانی پاتچی کۆمەڵگەیی لەلایەن نووسەرەکانیانەوە دروست و پشتیوانی دەکرێن. Mamu پێداچوونەوە یان پشتڕاستکردنەوەی پاتچەکانی لایەنی سێیەم ناکات، و بەرپرس نییە لە ناوەڕۆکیان یان ئەوەی لە ئامێرەکەتدا ئەنجامی دەدەن"</string>
     <string name="sources_update_success">نوێکردنەوە سەرکەوتوو بوو</string>
     <string name="sources_update_unavailable">نوێکردنەوە بەردەست نیە</string>
     <string name="sources_download_fail">شکستس هێنا لە داگرتنی سەرچاوە: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">ئەپێکی یاریدەدەر دامەزراوە بەڵام هێشتا متمانەی پێ نەکراوە، بۆیە لێرە پێشنیار ناکرێت</string>
     <string name="home_apk_helper_untrusted_action">پێداچوونەوە بە یاریدەدەرەکان</string>
     <string name="home_apk_helper_title">داگرتن بە ئەپی یاریدەدەر</string>
-    <string name="home_apk_helper_description">Morphe داوای ئەپی یاریدەدەرەکەی خوارەوە دەکات بۆ داگرتنی APK ئەسڵییەکە و گەڕاندنەوەی فایلەکە</string>
+    <string name="home_apk_helper_description">Mamu داوای ئەپی یاریدەدەرەکەی خوارەوە دەکات بۆ داگرتنی APK ئەسڵییەکە و گەڕاندنەوەی فایلەکە</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">کردنەوەی یاریدەدەر</string>
-    <string name="home_apk_helper_warning">تەنها بەردەوام بە ئەگەر متمانەت بەم ئەپڵیکەیشنی یارمەتیدەرە هەبێت. Morphe پشکنینی پاکێج، وەشان و واژۆی هەر شتێک دەکات کە وەری دەگرێت پێش ئەوەی دەستکاری بکات</string>
-    <string name="home_apk_helper_warning_unverified">تەنها بەردەوام بە ئەگەر متمانەت بەم ئەپڵیکەیشنی یارمەتیدەرە هەبێت. Morphe ناتوانێت واژۆی ئەم APK-ە پشتڕاست بکاتەوە، بۆیە فایلێکی دەستکاریکراو ئاشکرا نابێت</string>
+    <string name="home_apk_helper_warning">تەنها بەردەوام بە ئەگەر متمانەت بەم ئەپڵیکەیشنی یارمەتیدەرە هەبێت. Mamu پشکنینی پاکێج، وەشان و واژۆی هەر شتێک دەکات کە وەری دەگرێت پێش ئەوەی دەستکاری بکات</string>
+    <string name="home_apk_helper_warning_unverified">تەنها بەردەوام بە ئەگەر متمانەت بەم ئەپڵیکەیشنی یارمەتیدەرە هەبێت. Mamu ناتوانێت واژۆی ئەم APK-ە پشتڕاست بکاتەوە، بۆیە فایلێکی دەستکاریکراو ئاشکرا نابێت</string>
     <string name="home_apk_helper_no_result">ئەپڵیکەیشنی یارمەتیدەر هیچ APK-یەکی نەگەڕاندەوە</string>
     <string name="home_apk_helper_no_access">ئەپڵیکەیشنی یارمەتیدەر مۆڵەتی دەستگەیشتنی بە APK-ەی نەدا کە گەڕاندبووەوە</string>
     <string name="home_apk_helper_no_package">ئەپی یاریدەدەر نەیوت کە کام ئەپی دامەزراو بەکاربهێنرێت</string>
     <string name="home_apk_helper_wrong_package">ئەپی یاریدەدەر ئەپێکی جیاواز دەگەڕاندەوە لەوەی کە پاتچ دەکرێت</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe نەیتوانی ئەپی دامەزراوەکە بەکاربهێنێت</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu نەیتوانی ئەپی دامەزراوەکە بەکاربهێنێت</string>
     <string name="home_apk_helper_installed_incompatible">وەشانە دامەزراوەکە ناتوانرێت پاتچی بۆ بکرێت</string>
     <string name="home_apk_use_saved_copy">بەکارهێنانی کۆپی پاشەکەوتکراو</string>
     <string name="home_apk_use_installed_app">بەکارهێنانی ئەپڵیکەیشنی دابەزێندراو</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">نەتوانرا واژۆکەی ئەپی دامەزراو پشتڕاست بکرێتەوە، بۆیە ڕەنگە پێشتر پاتچی کرابێت</string>
     <string name="home_unverified">پشتڕاستنەکراو</string>
     <string name="home_install_verification_pending">پشکنینی دامەزراندن...</string>
-    <string name="home_app_info_install_unverified">Morphe ناتوانێت پشتڕاستی بکاتەوە کە ئەپڵیکەیشنی دامەزراوە هەمان ئەو وەشانەیە کە پاتچی کردووە. بۆ گەڕاندنەوەی کردارەکانی، دووبارە پاتچی بکەرەوە یان لە APK-ی پاشەکەوتکراوەوە دووبارە دامەزرێنەرەوە</string>
+    <string name="home_app_info_install_unverified">Mamu ناتوانێت پشتڕاستی بکاتەوە کە ئەپڵیکەیشنی دامەزراوە هەمان ئەو وەشانەیە کە پاتچی کردووە. بۆ گەڕاندنەوەی کردارەکانی، دووبارە پاتچی بکەرەوە یان لە APK-ی پاشەکەوتکراوەوە دووبارە دامەزرێنەرەوە</string>
     <string name="home_app_info_no_saved_apk">APK پاشەکەوت نەکراوە. پینەکردن پێویستی بە دیاریکردنی فایلی APK دووبارە هەیە</string>
     <string name="home_version_requires_android">پێویستی بە ئەندرۆید %s+ هەیە</string>
     <string name="home_apk_no_compatible_versions_title">پشتگیری نەکراوە لەسەر ئەم ئامێرە</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">لە ماڵپەڕەکە بچۆ خوارەوە و فشار بخەرە سەر دوگمەی داگرتنی</string>
     <string name="home_download_instructions_step2_variant">لە ماڵپەڕەکە بچۆ خوارەوە و فشار بخەرە سەر دوگمەی داگرتنی یەکەم &lt;b&gt;جۆری APK&lt;/b&gt;</string>
     <string name="home_download_instructions_step2_search">ئەنجامی گەڕانێک لە ماڵپەڕێکەوە بکەرەوە کە متمانت پێی هەیە</string>
-    <string name="home_download_instructions_step2_search_note">Morphe ناتوانێت گەرەنتی ئەم ماڵپەڕانە بکات. ئەو ماڵپەڕانە بپەڕێنە کە لەجیاتی فایلی APK، دوکانی ئەپڵیکەیشنی خۆیان پێشنیار دەکەن</string>
+    <string name="home_download_instructions_step2_search_note">Mamu ناتوانێت گەرەنتی ئەم ماڵپەڕانە بکات. ئەو ماڵپەڕانە بپەڕێنە کە لەجیاتی فایلی APK، دوکانی ئەپڵیکەیشنی خۆیان پێشنیار دەکەن</string>
     <string name="home_download_instructions_step3_search">لەو ماڵپەڕەدا، APK-ی وەشان &lt;b&gt;%s&lt;/b&gt; دابەزێنە، نەک نوێترین وەشان</string>
     <string name="home_download_instructions_step3_search_any">لەو ماڵپەڕەدا، APK-ی ئەپەکە دابەزێنە. &lt;b&gt;هەر وەشانێک&lt;/b&gt; دەکرێت پاتچ بکرێت</string>
     <string name="home_download_instructions_step2_github">لە ژێر &lt;b&gt;Assets&lt;/b&gt;ی بڵاوکراوەی &lt;b&gt;%s&lt;/b&gt;، کلیک لەو فایلە بکە کە بە &lt;b&gt;.apk&lt;/b&gt; کۆتایی دێت</string>
@@ -314,12 +314,12 @@
     <string name="home_download_instructions_download_button_toast_3">پراکتیکت زۆر دەکات و تۆ خەریکی گەیشتنیت بۆ ئەنجامەکە 💪</string>
     <string name="home_download_instructions_download_button_toast_4">هێشتا لێرە نییە... هێشتا لێرە نییە... 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">باشە، ڕێز لەم دڵسۆزییە دەگرم 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">ئێستا تۆ تاقیکەرێکی فەرمی دوگمەکانی Morphe بوویت 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">ئێستا تۆ تاقیکەرێکی فەرمی دوگمەکانی Mamu بوویت 🏅</string>
     <string name="home_download_instructions_step3">چاوەڕێی تەواوبوونی داگرتنەکە بکە، وە &lt;b&gt;  تکایە &lt;/b&gt; APK&lt;b&gt; دامەبەزێنە</string>
     <string name="home_download_instructions_step3_mount">چاوەڕێی تەواوبوونی داگرتنەکە بکە، پاشان
 &lt;b&gt;  APK دابەزێنە &lt;/b&gt;</string>
-    <string name="home_download_instructions_step4">دوای تەواوبوونی داگرتنەکە بگەڕێوە بۆ Morphe</string>
-    <string name="home_download_instructions_step4_mount">دوای دامەزراندنی APK ی بنەڕەتی، بگەڕێوە بۆ Morphe</string>
+    <string name="home_download_instructions_step4">دوای تەواوبوونی داگرتنەکە بگەڕێوە بۆ Mamu</string>
+    <string name="home_download_instructions_step4_mount">دوای دامەزراندنی APK ی بنەڕەتی، بگەڕێوە بۆ Mamu</string>
     <string name="home_download_instructions_continue_to">بڕۆ بۆ %s</string>
     <string name="home_download_instructions_destination">لاپەڕەی دابەزاندن</string>
     <string name="home_download_instructions_copy_link">کۆپی کردنی لینک</string>
@@ -447,12 +447,12 @@
     <string name="adaptive_icon_themed">تێمەکراو</string>
     <string name="adaptive_icon_background_color">ڕەنگی پاشخان</string>
     <string name="adaptive_icon_reset_transform">ڕێکخستنەوەی شوێن و پێوانە</string>
-    <string name="adaptive_icon_no_transparency_warning">ئەم وێنەیە هیچ پیکسێلێکی شەفافی تێدا نییە، بۆیە ئایکۆنی تێمەکراو و ئاگادارکەرەوەکە لۆگۆی Morphe دەپارێزن</string>
+    <string name="adaptive_icon_no_transparency_warning">ئەم وێنەیە هیچ پیکسێلێکی شەفافی تێدا نییە، بۆیە ئایکۆنی تێمەکراو و ئاگادارکەرەوەکە لۆگۆی Mamu دەپارێزن</string>
     <string name="adaptive_icon_created_success">وێنۆچکەی گونجاندن بە سەرکەوتوویی دروستکرا</string>
     <string name="adaptive_icon_creation_failed">شکستی هێنا لە دروستکردنی وێنۆچکەی گونجاندن</string>
     <string name="adaptive_icon_guide">ڕێبەری دروستکردنی وێنۆکە</string>
     <string name="adaptive_icon_guide_png_title">وێنەیەکی PNG بەکاربهێنە کە پاشبنەماکەی شەفاف بێت</string>
-    <string name="adaptive_icon_guide_png_body">لۆگۆیەک لەسەر باکگراوەندێکی شەفاف باشترینە، کە ڕەنگی باکگراوەندەکە لە خوارەوە هەڵبژێردرێت. وێنەیەک بێ شەفافیت لەجیاتی ئەوە هەموو ئایکۆنەکە پڕدەکات، و ئایکۆنی تێمەکراو و ئاگادارکەرەوەکە لۆگۆی Morphe دەپارێزن.</string>
+    <string name="adaptive_icon_guide_png_body">لۆگۆیەک لەسەر باکگراوەندێکی شەفاف باشترینە، کە ڕەنگی باکگراوەندەکە لە خوارەوە هەڵبژێردرێت. وێنەیەک بێ شەفافیت لەجیاتی ئەوە هەموو ئایکۆنەکە پڕدەکات، و ئایکۆنی تێمەکراو و ئاگادارکەرەوەکە لۆگۆی Mamu دەپارێزن.</string>
     <string name="adaptive_icon_guide_safe_zones_title">زۆنە سەلامەتەکان</string>
     <string name="adaptive_icon_guide_safe_zones_body">هێڵەکە شێوەی ئایکۆنی لانچەری تۆ نیشان دەدات، و هەموو شتێک لە دەرەوەیدا دەبڕێتەوە. لانچەرەکانی تر شێوەی تریان بەکاردەهێنن، بۆیە وردەکارییە گرنگەکان لە ناو بازنەی پڕپڕەکەدا بهێڵەوە، کە هەموو شێوەیەک نیشانی دەدات.</string>
     <string name="adaptive_icon_guide_notification_title">وێنۆکەی ئاگانامە</string>
@@ -558,8 +558,8 @@
     <string name="home_app_info_version_move">دامەزراوە %1$s، نوێترین پشتگیریکراو %2$s</string>
     <string name="home_app_info_version_restore">%1$s دامەزراوە، %2$s پاتچکراوە</string>
     <string name="home_app_info_app_deleted_warning">App was uninstalled</string>
-    <string name="home_app_info_app_deleted_description">ئەم کاربەرنامەیە لە دەرەوەی Morphe سڕاوەتەوە. دووبارە بیچەوە بۆ گەڕاندنەوەی ئەرکەکان</string>
-    <string name="home_app_info_not_patched_description">وەشانێکی پاتچ نەکراوی ئەم بەرنامەیە دامەزراوە. Morphe هێشتا تۆماری پاتچی پێشووی هەیە</string>
+    <string name="home_app_info_app_deleted_description">ئەم کاربەرنامەیە لە دەرەوەی Mamu سڕاوەتەوە. دووبارە بیچەوە بۆ گەڕاندنەوەی ئەرکەکان</string>
+    <string name="home_app_info_not_patched_description">وەشانێکی پاتچ نەکراوی ئەم بەرنامەیە دامەزراوە. Mamu هێشتا تۆماری پاتچی پێشووی هەیە</string>
     <string name="home_app_info_mount_replaced_description">وەشانێکی تر جێگەی بەرنامەی بەستراوی گرتووە، بۆیە پاتچەکە چیتر کار ناکات. گەڕاندنەوە وەشانە پاتچکراوەکە دەگەڕێنێتەوە</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play بەرنامە بەستراوەکەی نوێ کردەوە، بۆیە پاتچەکە چیتر کار ناکات. گەڕاندنەوە وەشانە پاتچکراوەکە دەگەڕێنێتەوە. نوێکردنەوەی خۆکاری بۆی لە Google Play لەکار بخە بۆ ئەوەی پاتچکراو بمێنێتەوە</string>
     <string name="app_links_title">لینکەکانی وێبی پشتگیرکراو</string>
@@ -590,7 +590,7 @@
     <string name="root_pre_patch_installer_description">ئامێرەکەت دەسەڵاتی ڕۆتی هەیە. هەڵبژێرە کە ئایا ئەم ئەپە پێویستە پاتچ بکرێت بۆ root mount یان دامەزراندنی ئاسایی</string>
     <string name="root_pre_patch_installer_mount_title">شێوازی بەستنی ڕۆت</string>
     <string name="root_pre_patch_installer_mount_description">پاتچ بۆ بەستنی ڕۆت، پاشان APK دەبەستێت بەسەر ئەپڵیکەیشنی ستۆکی هاوشێوەدا. پێویستی بە GmsCore نییە</string>
-    <string name="root_mount_module_unmount_warning">ئەگەر KernelSU بژاردەی \"Unmount modules by default\"ی چالاک بووبێت، بڕۆ بۆ KernelSU &gt; Superuser &gt; ئەو ئەپڵیکەیشنەی کە بەستووتە &gt; Profile &gt; Custom و بژاردەی \"Unmount modules\" بکە بە ناچالاک. ئەگەر وای نەکەیت، ڕەنگە APKی پاتچکراو و بەستراو کاری نەکات، تەنانەت ئەگەر Morphe پیشانی بدات کە بەستراوە</string>
+    <string name="root_mount_module_unmount_warning">ئەگەر KernelSU بژاردەی \"Unmount modules by default\"ی چالاک بووبێت، بڕۆ بۆ KernelSU &gt; Superuser &gt; ئەو ئەپڵیکەیشنەی کە بەستووتە &gt; Profile &gt; Custom و بژاردەی \"Unmount modules\" بکە بە ناچالاک. ئەگەر وای نەکەیت، ڕەنگە APKی پاتچکراو و بەستراو کاری نەکات، تەنانەت ئەگەر Mamu پیشانی بدات کە بەستراوە</string>
     <string name="root_pre_patch_installer_standard_title">شێوازی دامەزراندنی پێوانەیی</string>
     <string name="root_pre_patch_installer_standard_description">وەک APKیەکی ئاسایی پاتچ دەکرێت لەگەڵ پشتگیری GmsCore. ڕێکخستنی دامەزراندنی تۆ بەکاردێت دوای پاتچکردن</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -653,7 +653,7 @@
     <string name="patcher_conflict_subtitle">پێویستە وەشانی بەردەست لاببەیت</string>
     <string name="patcher_conflict_hint">ئەپە پینەکراوەکە بڕوانامەیەکی جیاواز لە وەشانی دامەزراو بەکاردێنێت. لابردنی داتای ئەپ هەموو داتای ئەپ دەسڕێتەوە</string>
     <string name="patcher_installed_conflict_title">سڕینەوەی دامەزراندن پێویستە</string>
-    <string name="patcher_installed_conflict_body">"Morphe ئەپە پینەکراوەکان بە بڕوانامەی تایبەت بە خۆی واژۆ دەکات، کە جیاوازە لە بنەڕەتی. ئەندرۆید پێویستی بە دامەزراندنی وەشانی ئێستا هەیە پێش ئەوەی کاربەرنامە پینەکراوەکە دابمەزرێنێت.
+    <string name="patcher_installed_conflict_body">"Mamu ئەپە پینەکراوەکان بە بڕوانامەی تایبەت بە خۆی واژۆ دەکات، کە جیاوازە لە بنەڕەتی. ئەندرۆید پێویستی بە دامەزراندنی وەشانی ئێستا هەیە پێش ئەوەی کاربەرنامە پینەکراوەکە دابمەزرێنێت.
 
 هەڵوەشاندنەوەی داتای ئەپ بە هەمیشەیی دەسڕێتەوە"</string>
     <string name="patcher_install_error_title">هەڵەی دامەزراندن</string>
@@ -663,8 +663,8 @@
     <string name="patcher_patches_excluded_for_installer">بۆ ئەم ڕێگەی دامەزراندنە بەردەست نییە و بەدەرکراوە: %s</string>
     <string name="patcher_storage_permission_dialog_title">ناتوانیت بچیتە ناو ڕێڕەوی هەمارگە</string>
     <string name="patcher_incompatible_patcher_title">نوێکردنەوە پێویستە</string>
-    <string name="patcher_incompatible_patcher_description">سەرچاوەی &lt;b&gt;%1$s&lt;/b&gt; پێویستی بە پاتچەری &lt;b&gt;%2$s&lt;/b&gt; یان نوێتر هەیە. Morphe نوێ بکەرەوە بۆ بەکارهێنانی</string>
-    <string name="patcher_storage_permission_description_api30">یەکێک یان زیاتر لە هەڵبژاردنەکانی پینەکردن ئاماژە بۆ ئەو ڕێچکانە دەکات کە Morphe ناتوانێت بیخوێنێتەوە. پێدانی دەستگەیشتنی هەمارگە و کرتە لە دوگمەکە، پاشان پینەکردن بە شێوەیەکی خۆکەرانە دەست پێدەکات</string>
+    <string name="patcher_incompatible_patcher_description">سەرچاوەی &lt;b&gt;%1$s&lt;/b&gt; پێویستی بە پاتچەری &lt;b&gt;%2$s&lt;/b&gt; یان نوێتر هەیە. Mamu نوێ بکەرەوە بۆ بەکارهێنانی</string>
+    <string name="patcher_storage_permission_description_api30">یەکێک یان زیاتر لە هەڵبژاردنەکانی پینەکردن ئاماژە بۆ ئەو ڕێچکانە دەکات کە Mamu ناتوانێت بیخوێنێتەوە. پێدانی دەستگەیشتنی هەمارگە و کرتە لە دوگمەکە، پاشان پینەکردن بە شێوەیەکی خۆکەرانە دەست پێدەکات</string>
     <string name="patcher_storage_permission_description_legacy">یەکێک یان زیاتر لە هەڵبژاردنەکانی پینەکردن ئاماژە بە ڕێڕەوەکان دەکەن کە ناتوانن بگەنە ژورەوە. نوێکردنەوەی ڕێڕەوەکان لە بەربژارەکانی پینەکردن و دووبارە هەوڵدەوە</string>
     <string name="patcher_storage_permission_grant">پێدانی مۆڵەتی کۆگا</string>
     <string name="patcher_storage_permission_denied_warning">مۆڵەتی کۆگا ڕەتکرایەوە. پێدانی مۆڵەت بۆ بەکارهێنانی ئەم ڕێگایە، یان گواستنەوەی فایلەکان بۆ ڕێبەری تایبەتی ئەپەکە</string>
@@ -700,7 +700,7 @@
     <string name="patcher_task_writing_apk">نووسینی فایلی APK</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">پاراستن لە پینەکردنی پاشخان</string>
-    <string name="battery_optimization_dialog_description">هەندێک ئامێر لەوانەیە پینەکەرەکە بوەستێنن کاتێک ئەپەکە بچووک دەکرێتەوە. ڕێگە بە Morphe بدە بە کارکردن بەبێ سنووردارکردنی پاتری بۆ دڵنیابوون لە تەواوبوونی پینەکردن بە شێوەیەکی باوەڕپێکراو</string>
+    <string name="battery_optimization_dialog_description">هەندێک ئامێر لەوانەیە پینەکەرەکە بوەستێنن کاتێک ئەپەکە بچووک دەکرێتەوە. ڕێگە بە Mamu بدە بە کارکردن بەبێ سنووردارکردنی پاتری بۆ دڵنیابوون لە تەواوبوونی پینەکردن بە شێوەیەکی باوەڕپێکراو</string>
     <string name="battery_optimization_not_now">ئێستا نا</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">پینەکردن بەردەوامە…</string>
@@ -755,8 +755,8 @@
     <string name="install_ignore_signature">بە هەر حاڵ دامەزرێنە</string>
     <string name="install_ignore_signature_description">داتاکانی ئەپڵیکەیشنەکە دەپارێزێت، بەڵام تەنها ئەگەر مۆدیولێکی root ڕێگری لە پشتڕاستکردنەوەی واژۆی Android بکات ئەوا کاردەکات</string>
     <string name="uninstall_app_fail">سڕینەوەی ئەپەکە سەرکەوتوو نەبوو: %s</string>
-    <string name="uninstall_app_unverified">لە شوێنەکەیدا مابێت: Morphe نەیتوانی پشتڕاست بکاتەوە کە ئەپی دامەزراو هەمان ئەو وەشانەیە کە پاتچی کردووە</string>
-    <string name="launch_app_unverified">Morphe نەیتوانی پشتڕاست بکاتەوە کە ئەپی دامەزراو هەمان ئەو وەشانەیە کە پاتچی کردووە</string>
+    <string name="uninstall_app_unverified">لە شوێنەکەیدا مابێت: Mamu نەیتوانی پشتڕاست بکاتەوە کە ئەپی دامەزراو هەمان ئەو وەشانەیە کە پاتچی کردووە</string>
+    <string name="launch_app_unverified">Mamu نەیتوانی پشتڕاست بکاتەوە کە ئەپی دامەزراو هەمان ئەو وەشانەیە کە پاتچی کردووە</string>
     <string name="uninstall_timeout">کاتی سڕینەوە بەسەرچوو</string>
     <string name="save_apk_success">APK هەڵگیرا</string>
     <string name="saved_app_export_failed">هەناردەکردنی ئەپی پینەکراو سەرکەوتوو نەبوو</string>
@@ -848,7 +848,7 @@
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">زمانی ئەپ</string>
     <string name="settings_appearance_app_language_current">زمانی ئێستا</string>
-    <string name="settings_appearance_translate">یارمەتی Morphe بدە لە وەرگێڕان</string>
+    <string name="settings_appearance_translate">یارمەتی Mamu بدە لە وەرگێڕان</string>
     <string name="settings_appearance_translations_info_title">وەرگێڕانەکان بۆ هەندێک زمانەکان لەوانەیە وون یان ناتەواو بن</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">قەبارەی ڕووکاری بەکارهێنەر</string>
@@ -877,7 +877,7 @@
     <string name="settings_appearance_app_card_colors_bundle_description">ڕەنگی هەر ئەپێک یان سەرچاوەیەک لێرە بەکاربهێنە، کە بە شێوەیەکی ئۆتۆماتیکی ڕەنگی دەگۆڕێت بۆ گونجان</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">وێنۆچکەی ئەپ</string>
-    <string name="settings_appearance_app_icon_selector_description">شێوەی دەرکەوتنی Morphe لە شاشەی سەرەکی و لە ناو لیستی ئەپەکاندا</string>
+    <string name="settings_appearance_app_icon_selector_description">شێوەی دەرکەوتنی Mamu لە شاشەی سەرەکی و لە ناو لیستی ئەپەکاندا</string>
     <string name="settings_appearance_app_icon_default">بنەڕەت</string>
     <string name="settings_appearance_app_icon_light_2">ئاسمان</string>
     <string name="settings_appearance_app_icon_light_3">خۆرئاوابوون</string>
@@ -901,23 +901,23 @@
     <string name="settings_appearance_app_icon_mark_black">ڕەش</string>
     <string name="settings_appearance_app_icon_change_dialog_title">وێنۆچکەی ئەپەکە بگۆڕیت؟</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">Morphe دووبارە دەست پێدەکاتەوە بۆ گۆڕین بۆ &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="settings_appearance_app_icon_change_restarts">Mamu دووبارە دەست پێدەکاتەوە بۆ گۆڕین بۆ &lt;b&gt;%s&lt;/b&gt;</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">گۆڕینی وێنۆچکە</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">نوێکارییەکانی پێش بڵاوکردنەوە</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">دەستڕاگەیشتنی پێشوەختە بە وەشانە نوێیەکانی Morphe</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">دەستڕاگەیشتنی پێشوەختە بە وەشانە نوێیەکانی Mamu</string>
     <string name="settings_advanced_updates_prerelease_warning_title">چالاککردنی نوێکارییەکانی پێش بڵاوکردنەوە؟</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"وەشانەکانی پێش بڵاوکردنەوەی Morphe هێشتا لە قۆناغی گەشەپێداندان و لەوانەیە جێگیر نەبن.
+    <string name="settings_advanced_updates_prerelease_warning_message">"وەشانەکانی پێش بڵاوکردنەوەی Mamu هێشتا لە قۆناغی گەشەپێداندان و لەوانەیە جێگیر نەبن.
 
 پاتچەکان کاریگەرییان لێناکەوێت: پاتچی پێش بڵاوکردنەوە بۆ هەر سەرچاوەیەک لە لیستی سەرچاوەکانی پاتچدا چالاک بکە"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">نوێکردنەوەی ئۆتۆماتیکی</string>
-    <string name="settings_auto_updates_description">ئەوەی Morphe دەیکات سەبارەت بە نوێکردنەوەکان کاتێک دەیکرێتەوە. ڕاکێشان بۆ نوێکردنەوە هەمیشە پشکنین دەکات</string>
+    <string name="settings_auto_updates_description">ئەوەی Mamu دەیکات سەبارەت بە نوێکردنەوەکان کاتێک دەیکرێتەوە. ڕاکێشان بۆ نوێکردنەوە هەمیشە پشکنین دەکات</string>
     <string name="settings_auto_updates_download">بە شێوەی ئۆتۆماتیکی داگرتن</string>
-    <string name="settings_auto_updates_download_description">کاتێک Morphe دەکرێتەوە بەدوای نوێکارییەکاندا دەگەڕێت و نوێکارییەکانی پاتچ لەسەر هەر تۆڕێک بێت دایگرت دەکات</string>
+    <string name="settings_auto_updates_download_description">کاتێک Mamu دەکرێتەوە بەدوای نوێکارییەکاندا دەگەڕێت و نوێکارییەکانی پاتچ لەسەر هەر تۆڕێک بێت دایگرت دەکات</string>
     <string name="settings_auto_updates_wifi_only">تەنها لەسەر Wi-Fi دایگرتن</string>
     <string name="settings_auto_updates_wifi_only_description">لەسەر داتای مۆبایل، تەنها دەگەڕێت و ئەوە نیشان دەدات کە بەردەستە</string>
     <string name="settings_auto_updates_check_only">تەنها پشکنین</string>
@@ -938,27 +938,27 @@
     <string name="settings_advanced_external_batch_patch">ڕێگە بدە بە هەستێنەرە دەرەکییەکان</string>
     <string name="settings_advanced_external_batch_patch_description">ڕێگە بدە بە ئەپەکانی ئۆتۆماتیکرانی دەستپێکردنی پاتچکردنی کۆمەڵەیی</string>
     <string name="external_batch_patch_title">دەستپێکردنی پاتچکردنی کۆمەڵەیی؟</string>
-    <string name="external_batch_patch_description">%s دەیەوێت Morphe ئەپەکان پاتچ بکات و دامەزرێنێت</string>
+    <string name="external_batch_patch_description">%s دەیەوێت Mamu ئەپەکان پاتچ بکات و دامەزرێنێت</string>
     <string name="external_batch_patch_trust_caller">هەمیشە ڕێگە بەم ئەپە بدە</string>
     <string name="external_batch_patch_unknown_caller">ئەپێکی نەناسراو</string>
     <!-- Notification content -->
     <string name="notification_bundle_update_title">پینەی نوێ بەردەستە</string>
     <string name="notification_update_text">وەشانی %s ئامادەیە بۆ دابەزاندن</string>
-    <string name="notification_bundle_update_text_unversioned">کلیک بکە بۆ کردنەوەی Morphe و نوێکردنەوە</string>
+    <string name="notification_bundle_update_text_unversioned">کلیک بکە بۆ کردنەوەی Mamu و نوێکردنەوە</string>
     <string name="notification_permission_dialog_title">ڕێگە بدە بە ئاگادارکردنەوەکان</string>
-    <string name="notification_permission_dialog_description">Morphe پێویستی بە مۆڵەتی ئاگادارکردنەوەیە بۆ ئەوەی ئاگادارت بکاتەوە کاتێک نوێکردنەوەکان لە پاشبنەمادا بەردەستن</string>
+    <string name="notification_permission_dialog_description">Mamu پێویستی بە مۆڵەتی ئاگادارکردنەوەیە بۆ ئەوەی ئاگادارت بکاتەوە کاتێک نوێکردنەوەکان لە پاشبنەمادا بەردەستن</string>
     <string name="notification_post_patch_dialog_title">ئایا دەتەوێت ئاگادارت بکرێتەوە کاتێک نوێکارییەکان بەردەست بن؟</string>
-    <string name="notification_channel_manager_updates">نوێکردنەوەکانی Morphe</string>
-    <string name="notification_channel_manager_updates_description">ئاگادارکردنەوەکان دەربارەی بڵاوکردنەوەی وەشانە نوێیەکانی Morphe</string>
+    <string name="notification_channel_manager_updates">نوێکردنەوەکانی Mamu</string>
+    <string name="notification_channel_manager_updates_description">ئاگادارکردنەوەکان دەربارەی بڵاوکردنەوەی وەشانە نوێیەکانی Mamu</string>
     <string name="notification_channel_patch_updates">نوێکردنەوەکانی پاتچ</string>
     <string name="notification_channel_patch_updates_description">ئاگادارکردنەوەکان دەربارەی بڵاوکردنەوەی پاتچە نوێیەکان</string>
-    <string name="notification_channel_patcher_description">نیشان دەدرێت کاتێک Morphe لە پاشبنەمادا ئەپێک پاتچ دەکات</string>
+    <string name="notification_channel_patcher_description">نیشان دەدرێت کاتێک Mamu لە پاشبنەمادا ئەپێک پاتچ دەکات</string>
     <string name="notification_channel_patching_results">ئەنجامەکانی پینەکردن</string>
-    <string name="notification_channel_patching_results_description">کاتێک پینەکردن کۆتایی دێت یان دامەزراندنێکی نوێ چاوەڕێی تۆیە لە کاتێکدا Morphe لە پشت پەردەیە</string>
+    <string name="notification_channel_patching_results_description">کاتێک پینەکردن کۆتایی دێت یان دامەزراندنێکی نوێ چاوەڕێی تۆیە لە کاتێکدا Mamu لە پشت پەردەیە</string>
     <string name="notification_channel_mounted_apps">بەرنامە بەستراوەکان</string>
     <string name="notification_channel_mounted_apps_description">کاتێک وەشانێکی تر جێگەی بەرنامەیەکی بەستراو دەگرێت و پاتچکردنەکەی چیتر کار ناکات</string>
     <string name="notification_mount_replaced_title">%1$s چیتر پاتچ نەکراوە</string>
-    <string name="notification_mount_replaced_text">v%1$s جێگەی v%2$s ی پاتچکراوی گرتەوە. Morphe بکەرەوە بۆ گەڕاندنەوەی</string>
+    <string name="notification_mount_replaced_text">v%1$s جێگەی v%2$s ی پاتچکراوی گرتەوە. Mamu بکەرەوە بۆ گەڕاندنەوەی</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">مۆدی شارەزا</string>
     <string name="settings_advanced_expert_mode_description">کردنەوەی ڕێکخستنە پێشکەوتووەکانی پاتچکردن و بژاردەکانی پاتچ</string>
@@ -980,7 +980,7 @@
     <string name="settings_advanced_github_pat_unreachable">نەتوانرا پەیوەندی بە GitHub بکرێت بۆ پشکنینی ئەم تۆکنە</string>
     <string name="settings_advanced_github_pat_export_include_label">لە هەناردەکردنی ڕێکخستنەکاندا بیخە</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">ئەم PATـە زیاد دەکات بۆ ڕێکخستنەکانی هەناردراوی Morphe</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">ئەم PATـە زیاد دەکات بۆ ڕێکخستنەکانی هەناردراوی Mamu</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">PAT-ەکەت بە هیچ شێوەیەک بڵاو مەکە. ئەگەر لە هەناردەکردنی ڕێکخستنەکاندا بیخەیت، ئەو فایلە بە نهێنی بهێڵەرەوە چونکە تۆکەنەکەی تێدایە</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1075,7 +1075,7 @@ morphe_header_custom_dark.png
     <string name="installer_status_not_supported">پشتگیری ناکات بۆ ئەم کردارە</string>
     <string name="installer_status_shizuku_not_installed">بۆ بەکارهێنانی ئەم بژاردەیە Shizuku یان Sui دامەزرێنە</string>
     <string name="installer_status_shizuku_not_running">Shizuku یان Sui دەستپێبکە و دووبارە هەوڵ بدەرەوە</string>
-    <string name="installer_status_shizuku_permission">ڕێپێدان بە Morphe لە ئەپڵیکەیشنی Shizuku</string>
+    <string name="installer_status_shizuku_permission">ڕێپێدان بە Mamu لە ئەپڵیکەیشنی Shizuku</string>
     <string name="installer_mount_warning_install">شێوازی پاتچکردن لەسەر root mount ڕێکخراوە. ئەم ئەپڵیکەیشنە پاشکەوتکراوە بە بەکارهێنانی mount دابەمەزرێنراوە</string>
     <string name="mount_version_mismatch_message">وەشانى ئەپی ڕەسەن (%2$s) لەگەڵ وەشانى ئەپی دەستکاریکراو (%1$s) ناگونجێت. وەشانی ڕەسەنی گونجاو mount بکە، پاشان دووبارە هەوڵ بدەرەوە</string>
     <string name="mount_stock_restore_failed_message">ئەندرۆید APK-ی ڕەسەنی پاشەکەوتکراوی ڕەتکردەوە. وەشانی ڕەسەنی گونجاو دامەزرێنە، پاشان دووبارە هەوڵی بەستن بدەرەوە</string>
@@ -1116,7 +1116,7 @@ morphe_header_custom_dark.png
     <string name="settings_ignore_install_target_rules">پشتگوێخستنی پێداویستییەکانی ئامانجی دامەزراندن</string>
     <string name="settings_ignore_install_target_rules_description">ڕێگە دەدات ئەو پاتچانەی کە ئامرازی دامەزراندن داوای دەکەن بکوژێنرێنەوە و ئەوانەی ڕەدی دەکەنەوە چالاک بکرێن. ڕەنگە بەرنامە پاتچکراوەکە کارنەکات</string>
     <string name="settings_auto_uninstall_warning_title">چالاککردنی سڕینەوەی خۆکار؟</string>
-    <string name="settings_auto_uninstall_warning_message">ئەگەر Android لە کاتی دامەزراندنی خۆکاری Shizuku دا ململانێی واژۆ ڕاپۆرت بکات، Morphe بەرنامەی ئێستا دەسڕێتەوە پێش ئەوەی APKی پاتچکراو دامەزرێنێت</string>
+    <string name="settings_auto_uninstall_warning_message">ئەگەر Android لە کاتی دامەزراندنی خۆکاری Shizuku دا ململانێی واژۆ ڕاپۆرت بکات، Mamu بەرنامەی ئێستا دەسڕێتەوە پێش ئەوەی APKی پاتچکراو دامەزرێنێت</string>
     <string name="settings_auto_uninstall_warning_risk">ئەمە ڕەنگە داتای بەرنامەکە بسڕێتەوە. ئەگەر APKی پاتچکراو دوای سڕینەوە دامەزراندنی سەرکەوتوو نەبوو، ڕەنگە بەرنامەی پێشووەش سڕابێتەوە</string>
     <string name="installer_shizuku_status_action">پشکنینی دۆخی Shizuku</string>
     <string name="installer_shizuku_status_title">دۆخی Shizuku</string>
@@ -1134,7 +1134,7 @@ morphe_header_custom_dark.png
     <string name="installer_shizuku_install_fail_with_details">"دامەزراندنی Shizuku سەرکەوتوو نەبوو: %1$s
 
 وردەکاری: %2$s"</string>
-    <string name="installer_shizuku_error_permission">مۆڵەتی Shizuku نەبووە. مۆڵەتی Morphe بدە و دووبارە هەوڵ بدەرەوە</string>
+    <string name="installer_shizuku_error_permission">مۆڵەتی Shizuku نەبووە. مۆڵەتی Mamu بدە و دووبارە هەوڵ بدەرەوە</string>
     <string name="installer_shizuku_error_timeout">Shizuku ئەنجامی دامەزراندنی نەگێڕاوەتەوە. دڵنیابە کە هێشتا کار دەکات و دووبارە هەوڵ بدەرەوە</string>
     <string name="installer_shizuku_error_downgrade">Android ئەمەی بلۆک کرد چونکە دەبێتە هۆی دابەزاندنی وەشانى ئەپڵیکەیشنی دامەزراوەکە</string>
     <string name="installer_shizuku_error_signature">Android ئەمەی بلۆک کرد چونکە ئەپڵیکەیشنی دامەزراوەکە واژۆیەکی جیاوازی هەیە</string>
@@ -1145,13 +1145,13 @@ morphe_header_custom_dark.png
     <string name="settings_system_battery_optimization_description">بەردەوامی کارکردنی پاتچر کاتێک ئەپەکە لەسەر شاشەکە بچووک دەبێتەوە</string>
     <string name="settings_system_process_runtime">کاتی کارکردنی پاتچەر</string>
     <string name="settings_system_jvm_runtime_enable">بەکارهێنانی VM چەسپاو</string>
-    <string name="settings_system_jvm_runtime_description">پاتچەکان لە Java VM ی تایبەتی Morphe دانە، کە دەتوانێت یادگەی زیاتر بەکاربهێنێت. بۆ بەکارهێنانی runtime ی Android دایبکوژێنەرەوە</string>
+    <string name="settings_system_jvm_runtime_description">پاتچەکان لە Java VM ی تایبەتی Mamu دانە، کە دەتوانێت یادگەی زیاتر بەکاربهێنێت. بۆ بەکارهێنانی runtime ی Android دایبکوژێنەرەوە</string>
     <string name="settings_system_jvm_runtime_unavailable">پێویستی بە ئامێرێکی ARM یان x86ی 64-بیتی هەیە</string>
     <string name="settings_system_patcher_completion_sound">دەنگی تەواوبوون</string>
     <string name="settings_system_patcher_completion_sound_description">تۆنێکی جیاواز لێ دەدات بۆ سەرکەوتنی یان شکستی پرۆسەکە کاتێک پاتچکردن تەواو دەبێت</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">ڕاگەیاندنەکان</string>
-    <string name="settings_system_notifications_description">چۆن Morphe تۆ ئاگادار دەکاتەوە</string>
+    <string name="settings_system_notifications_description">چۆن Mamu تۆ ئاگادار دەکاتەوە</string>
     <string name="settings_system_notifications_success_sound">دەنگی سەرکەوتن</string>
     <string name="settings_system_notifications_error_sound">دەنگی شکست</string>
     <string name="settings_system_notifications_sound_default">بنەڕەت</string>
@@ -1163,8 +1163,8 @@ morphe_header_custom_dark.png
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">کلیلی واژۆ</string>
     <string name="settings_system_signing_key_description">پاشەکەوتکردن یان گەڕاندنەوەی ئەو کلیلەی کە واژۆی ئەپە پاتچکراوەکان دەکات</string>
-    <string name="settings_system_signing_key_dialog_description">هەموو ئەو بەرنامانەی کە Morphe پاتچی بۆ دەکات بەم کلیلە واژۆ کراون. کۆپییەکی لای خۆت بهێڵە: بەبێ ئەوە، بەرنامە پاتچکراوەکان تەنها دوای سڕینەوەیان دەتوانرێت نوێ بکرێنەوە</string>
-    <string name="settings_system_signing_key_missing">Morphe یەکێکی دروست دەکات لە کاتی یەکەم پاتچی تۆدا</string>
+    <string name="settings_system_signing_key_dialog_description">هەموو ئەو بەرنامانەی کە Mamu پاتچی بۆ دەکات بەم کلیلە واژۆ کراون. کۆپییەکی لای خۆت بهێڵە: بەبێ ئەوە، بەرنامە پاتچکراوەکان تەنها دوای سڕینەوەیان دەتوانرێت نوێ بکرێنەوە</string>
+    <string name="settings_system_signing_key_missing">Mamu یەکێکی دروست دەکات لە کاتی یەکەم پاتچی تۆدا</string>
     <string name="settings_system_signing_key_created">دروستکراوە %s</string>
     <string name="settings_system_signing_key_fingerprint">پەنجەمۆری SHA-256</string>
     <string name="settings_system_backup_appearance_description">تێما، ڕەنگەکان و زمان</string>
@@ -1186,31 +1186,31 @@ morphe_header_custom_dark.png
     <string name="settings_system_export_keystore_failed">هەناردەکردنی keystore سەرکەوتوو نەبوو</string>
     <string name="settings_system_show_password_field">پیشاندانی وشەی نهێنی</string>
     <string name="settings_system_hide_password_field">شاردنەوەی وشەی نهێنی</string>
-    <string name="settings_system_morphe_settings">ڕێکخستنەکانی Morphe</string>
-    <string name="settings_system_import_manager_settings_description">کۆپی و گەڕانەوەی ڕێکخستنەکانی Morphe</string>
-    <string name="settings_system_export_manager_settings_title">هەناردەکردنی ڕێکخستنەکانی Morphe</string>
+    <string name="settings_system_morphe_settings">ڕێکخستنەکانی Mamu</string>
+    <string name="settings_system_import_manager_settings_description">کۆپی و گەڕانەوەی ڕێکخستنەکانی Mamu</string>
+    <string name="settings_system_export_manager_settings_title">هەناردەکردنی ڕێکخستنەکانی Mamu</string>
     <string name="settings_system_export_manager_settings_description">ڕێکخستنەکانی هەڵبژاردووت پاشکەوت دەکات بۆ فایلێک</string>
     <string name="settings_system_import_manager_settings_file_description">ڕێکخستنەکان لە فایلێکی پشتیوانیکردنەوە وەردەگرێتەوە</string>
     <string name="settings_system_auto_backup">پشتیوانیکردنەوەی ئۆتۆماتیکی</string>
     <string name="settings_system_auto_backup_switch">بە شێوەی ئۆتۆماتیکی پشتیوانیکردنەوە بکە</string>
     <string name="settings_system_auto_backup_now">ئێستا پشتیوانیکردنەوە بکە</string>
     <string name="settings_system_auto_backup_saved">پشتیوانیکردنەوەکە پاشکەوت کرا</string>
-    <string name="settings_system_auto_backup_interval_description">Morphe لانی کەم ئەمەشقە دەوەستێت دوای کۆپییەک پێش ئەوەی دواجارێکی تری بکات</string>
-    <string name="settings_system_auto_backup_description">ڕێکخستنەکانی Morphe پاشکەوت دەکات بۆ فۆڵدەرێک کە تۆ هەڵیبژێریت</string>
+    <string name="settings_system_auto_backup_interval_description">Mamu لانی کەم ئەمەشقە دەوەستێت دوای کۆپییەک پێش ئەوەی دواجارێکی تری بکات</string>
+    <string name="settings_system_auto_backup_description">ڕێکخستنەکانی Mamu پاشکەوت دەکات بۆ فۆڵدەرێک کە تۆ هەڵیبژێریت</string>
     <string name="settings_system_auto_backup_last">دوایین پشتیوانیکردنەوە: %s</string>
     <string name="settings_system_auto_backup_folder">فۆڵدەر</string>
-    <string name="settings_system_auto_backup_folder_name">پاشکەوتەکانی Morphe</string>
+    <string name="settings_system_auto_backup_folder_name">پاشکەوتەکانی Mamu</string>
     <string name="settings_system_auto_backup_folder_failed">نەتوانرا ئەم فۆڵدەرە بەکاربهێنرێت: %s</string>
     <string name="settings_system_auto_backup_interval">فریکوێنسی بەکاپگرتن</string>
     <string name="settings_system_auto_backup_signing_key">کلیلى واژۆکردن لەخۆبگرێت</string>
     <string name="settings_system_auto_backup_signing_key_description">ئەو کلیلە دەپاشکەوتێنێت کە ئەپەکانی دەستکاریکراو واژۆ دەکات لە تەنیشت ڕێکخستنەکان</string>
     <string name="settings_system_auto_backup_signing_key_warning_title">کلیلى واژۆکردن بەکاپبگیرێت؟</string>
     <string name="settings_system_auto_backup_signing_key_warning_message">هەر کەسێک ئەم فایلە دەست بکەوێت دەتوانێت نوێکارییەکان واژۆ بکات کە لەسەر ئەپەکانی دەستکاریکراوت دایبگیرێت. فۆڵدەرەکە بە نهێنی بهێڵە و تەنها لەگەڵ ئامێرەکانی خۆتدا ب pjesh</string>
-    <string name="settings_system_auto_backup_footer">کۆپییەک پاشکەوت دەکرێت کاتێک دوای گۆڕینی شتێک Morphe جێدەهێڵیت. نوێترین %s دەپارێزرێن</string>
+    <string name="settings_system_auto_backup_footer">کۆپییەک پاشکەوت دەکرێت کاتێک دوای گۆڕینی شتێک Mamu جێدەهێڵیت. نوێترین %s دەپارێزرێن</string>
     <string name="settings_system_auto_backup_failed">دوایین بەکاپگرتن نەتوانیرا شاندەکرێت. فۆڵدەرەکە دووبارە هەڵبژێرە</string>
-    <string name="settings_system_import_manager_settings_fail">هاوردەکردنی ڕێکخستنەکانی Morphe سەرکەوتوو نەبوو: %s</string>
-    <string name="settings_system_import_manager_settings_success">ڕێکخستنەکانی Morphe هاوردە کران</string>
-    <string name="settings_system_import_manager_settings_mode_title">هاوردەکردنی ڕێکخستنەکانی Morphe</string>
+    <string name="settings_system_import_manager_settings_fail">هاوردەکردنی ڕێکخستنەکانی Mamu سەرکەوتوو نەبوو: %s</string>
+    <string name="settings_system_import_manager_settings_success">ڕێکخستنەکانی Mamu هاوردە کران</string>
+    <string name="settings_system_import_manager_settings_mode_title">هاوردەکردنی ڕێکخستنەکانی Mamu</string>
     <string name="settings_system_import_manager_settings_mode_description">دیاری بکە کە چۆن ڕێکخستن و سەرچاوەکانی هاوردەکراو جێبەجێ بکرێن</string>
     <string name="settings_system_import_selections_mode_title">هاوردەکردنی هەڵبژاردەکانی پاتچ</string>
     <string name="settings_system_import_selections_mode_description">دیاری بکە چۆن هەڵبژاردراوە و بژاردەکانی پاتچی ئیمپۆرتکراو جێبەجێ بکرێن</string>
@@ -1218,8 +1218,8 @@ morphe_header_custom_dark.png
     <string name="import_mode_replace_description">بە تەواوی هاوتای بەکاپبەکرێتەکە بکە. ئەو بابەتانەی لە بەکاپبەکرێتەکەدا نین لادەبرێن</string>
     <string name="import_mode_merge_title">لەگەڵ هەبووەکان تێکەڵ بکە</string>
     <string name="import_mode_merge_description">بابەتە ونبووەکان لە بەکاپبەکرێتەکەوە زیاد بکە. ئەو بابەتانەی هەبن بەبێ گۆڕان بەردەوام دەمێنن</string>
-    <string name="settings_system_export_manager_settings_fail">هەناردەکردنی ڕێکخستنەکانی Morphe سەرکەوتوو نەبوو: %s</string>
-    <string name="settings_system_export_manager_settings_success">ڕێکخستنەکانی Morphe هەناردە کران</string>
+    <string name="settings_system_export_manager_settings_fail">هەناردەکردنی ڕێکخستنەکانی Mamu سەرکەوتوو نەبوو: %s</string>
+    <string name="settings_system_export_manager_settings_success">ڕێکخستنەکانی Mamu هەناردە کران</string>
     <string name="settings_system_export_debug_logs">هەناردەکردنی لۆگی دیباگ</string>
     <string name="settings_system_export_debug_logs_description">پاشەکەوتکردنی تۆمارەکانی سیستم بۆ دۆزینەوەی کێشەکان</string>
     <string name="settings_system_export_debug_logs_export_read_failed">خوێندنەوەی لۆگات سەرکەوتوو نەبوو (کۆدی دەرچوون %s)</string>
@@ -1237,7 +1237,7 @@ morphe_header_custom_dark.png
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">بەڕێوەبردنی کۆگاکان</string>
     <string name="settings_system_storage_management_description">پیشاندانی بەکارهێنانی دیسک و پاککردنەوەی فایلە کاشکراوەکان</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s بەتاڵە</string>
     <string name="settings_system_storage_saved_apks">APK-ەکانی پاشەکەوتکراو</string>
     <string name="settings_system_storage_caches">کاشەکان</string>
@@ -1260,7 +1260,7 @@ morphe_header_custom_dark.png
     <string name="settings_system_storage_clear_anyway">بە هەر شێوەیەک سڕینەوە</string>
     <string name="settings_system_storage_nothing_to_clear">هیچ شتێک نییە بۆ سڕینەوە</string>
     <string name="settings_system_storage_open_app_info_title">کردنەوەی کۆگای ئەپەکانی ئەندرۆید</string>
-    <string name="settings_system_storage_open_app_info_description">بەڕێوەبردن یان سڕینەوەی هەموو داتاکانی Morphe لە ڕێگەی ڕێکخستنەکانی سیستمەوە</string>
+    <string name="settings_system_storage_open_app_info_description">بەڕێوەبردن یان سڕینەوەی هەموو داتاکانی Mamu لە ڕێگەی ڕێکخستنەکانی سیستمەوە</string>
     <string name="settings_system_save_original_apks_title">پاشەکەوتکردنی APK ڕەسەنەکان</string>
     <string name="settings_system_save_original_apks_description">پاراستنی APKی پێش پاتچکردن بۆ ئەوەی بتوانرێت دووبارە بەکاربێتەوە بۆ پاتچکردنەوە بێ ئەوەی دووبارە فایلەکە هەڵبژێردرێت</string>
     <string name="settings_system_save_patched_apks_title">پاشەکەوتکردنی APK پاتچکراوەکان</string>
@@ -1314,13 +1314,13 @@ morphe_header_custom_dark.png
     <string name="copy_selection_available_format">%1$s لە %2$s بەردەستە</string>
     <!-- Settings - System Tab - Custom file picker -->
     <string name="settings_system_custom_file_picker">هەڵبژێرەری فایلی تایبەت</string>
-    <string name="settings_system_custom_file_picker_description">بەکارهێنانی گەڕۆکی فایلی ناوخۆیی Morphe لە جیاتی گەڕۆکی فایلی سیستەمەکە</string>
+    <string name="settings_system_custom_file_picker_description">بەکارهێنانی گەڕۆکی فایلی ناوخۆیی Mamu لە جیاتی گەڕۆکی فایلی سیستەمەکە</string>
     <!-- Settings - System Tab - APK download helper -->
     <string name="settings_system_apk_download_helper">یارمەتدەری داگرتنی APK</string>
     <string name="settings_system_apk_download_helper_trusted_count">جێگەی متمانەیە: %1$d لە %2$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">بەرنامەکانی یاریدەدەر دەتوانن APK ڕەسەنەکانت بۆ دابەزێنن. تەنها ئەو بەرنامانەی لێرەدا متمانەت پێیان هەیە لە ڕێنماییەکانی دابەزاندندا پێشنیار دەکرێن</string>
     <string name="settings_system_apk_download_helper_trust_title">متمانەت بەم یاریدەدەرە هەیە؟</string>
-    <string name="settings_system_apk_download_helper_warning">APK-ەکە لە بەرنامەی یاریدەدەرەوە دێت، بۆیە تەنها متمانەت بەو بەرنامانە هەبێت کە دەیناسیت. Morphe هێشتا پشکنینی پاکێج، وەشان و واژۆی هەر فایلێک دەکات پێش ئەوەی دەستکاری بکرێت</string>
+    <string name="settings_system_apk_download_helper_warning">APK-ەکە لە بەرنامەی یاریدەدەرەوە دێت، بۆیە تەنها متمانەت بەو بەرنامانە هەبێت کە دەیناسیت. Mamu هێشتا پشکنینی پاکێج، وەشان و واژۆی هەر فایلێک دەکات پێش ئەوەی دەستکاری بکرێت</string>
     <string name="settings_system_apk_download_helper_installed_by">دامەزراوە لەلایەن %s</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">دامەزرێنەر نەناسراوە</string>
     <string name="settings_system_apk_download_helper_open_directly">یارمەتیدەرەکە ڕاستەوخۆ بکەرەوە</string>
@@ -1353,7 +1353,7 @@ morphe_header_custom_dark.png
     <string name="settings_about_section_project">پڕۆژەکە</string>
     <string name="settings_about_section_help">یارمەتی</string>
     <string name="credits_prior_development">گەشەپێدانی پێشوو</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">بەڕێوەبەر</string>
     <string name="about_update_available">نوێکردنەوەی بەردەستە: %s</string>
     <string name="about_up_to_date">نوێکراوە</string>
@@ -1366,7 +1366,7 @@ morphe_header_custom_dark.png
     <string name="contributors_all_time">هەموو کاتەکان</string>
     <string name="contributors_6_months">٦ مانگ</string>
     <string name="contributors_3_months">٣ مانگ</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">پشتیوەران</string>
     <string name="supporters_description">پشتیوەران لە Open Collective</string>
     <string name="supporters_become">ببە بە پشتگیر</string>
@@ -1374,7 +1374,7 @@ morphe_header_custom_dark.png
     <string name="people_more">و %s کەسی تر</string>
     <string name="people_unavailable">نەتوانرا لیستەکە باربکرێت</string>
     <string name="opensource_licenses">مۆڵەتنامەکانی سەرچاوەی کراوە</string>
-    <string name="opensource_licenses_description">ئەو کتێبخانانەی Morphe لەسەری دروست کراوە</string>
+    <string name="opensource_licenses_description">ئەو کتێبخانانەی Mamu لەسەری دروست کراوە</string>
     <string name="opensource_licenses_search">گەڕان لە کتێبخانەکان و مۆڵەتەکاندا</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">بژاردەیەک</string>
@@ -1399,12 +1399,12 @@ morphe_header_custom_dark.png
     <string name="settings_section_patcher">پاتچەر</string>
     <string name="settings_section_updates">نوێکردنەوەکان</string>
     <string name="settings_section_patching">پاتچکردن</string>
-    <string name="settings_section_appearance_summary">شێوەی دەرکەوتنی Morphe</string>
+    <string name="settings_section_appearance_summary">شێوەی دەرکەوتنی Mamu</string>
     <string name="settings_section_patch_options_summary">مۆدی سادە بەرنامەکان بە چی پاتچ دەکات</string>
     <string name="settings_section_general">گشتی</string>
     <string name="settings_section_patcher_summary">چۆنیەتی پاتچکردنی ئەپەکان لەسەر ئەم ئامێرە</string>
     <string name="settings_section_help_info">یارمەتی &amp; زانیاری</string>
-    <string name="settings_section_about_summary">زانیاری زیاتر دەربارەی Morphe و وەرگرتنی یارمەتی</string>
+    <string name="settings_section_about_summary">زانیاری زیاتر دەربارەی Mamu و وەرگرتنی یارمەتی</string>
     <string name="settings_section_local_files">فایلەکان</string>
     <string name="settings_section_backup">پاشکەوتکردن</string>
     <string name="settings_section_import_export">هاوردەکردن و هەناردەکردن</string>
@@ -1567,7 +1567,7 @@ morphe_header_custom_dark.png
     <string name="update_completed">نوێکردنەوەکە دامەزرا</string>
     <string name="install_update_manager_failed">دامەزراندنی نوێکردنەوەکە سەرکەوتوو نەبوو</string>
     <string name="installing_manager_update">دامەزراندنی نوێکردنەوە…</string>
-    <string name="installing_manager_update_hint">Morphe دادەخرێت بۆ تەواوکردنی نوێکردنەوەکە</string>
+    <string name="installing_manager_update_hint">Mamu دادەخرێت بۆ تەواوکردنی نوێکردنەوەکە</string>
     <string name="downloading_manager_update">داگرتنی نوێکردنەوە…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">%1$s MB دابەزێندرا</string>
@@ -1590,7 +1590,7 @@ morphe_header_custom_dark.png
     <string name="onboarding_signing_key_desc">کۆپییەکی پشتیوان بۆ ئەو کلیلە بگرە کە ئەپە پاتچکراوەکانت واژۆ دەکات. بێ ئەوە، تەنها دەتوانرێت نوێ بکرێنەوە دوای ئەوەی لایببرێن</string>
     <string name="onboarding_swipe_title">ئاماژەکانی سوایپ</string>
     <string name="onboarding_swipe_desc">کارتی ئەپێک بەرەو ڕاست سوایپ بکە بۆ بینینی ئەو پاتچانەی بەردەستن. بەرەو چەپ سوایپ بکە بۆ شاردنەوەی کارتەکە لە شاشەی سەرەکی</string>
-    <string name="onboarding_settings_desc">Morphe بە دڵی خۆت ڕێک بخە: شێوەی دەرەوە، بژاردە پێشکەوتووەکان و ئامرازەکانی سیستەم</string>
+    <string name="onboarding_settings_desc">Mamu بە دڵی خۆت ڕێک بخە: شێوەی دەرەوە، بژاردە پێشکەوتووەکان و ئامرازەکانی سیستەم</string>
     <string name="onboarding_sources_patches_desc">کلیک بکە بۆ بینینی هەموو ئەو پاتچانەی لەم سەرچاوەیە بەردەستن</string>
     <string name="onboarding_sources_version_desc">کلیک لە وەشانەکە بکە بۆ بینینی لیستی تەواوی گۆڕانکارییەکان بۆ ئەم سەرچاوەیە</string>
     <string name="onboarding_sources_apps_desc">کلیک بکە بۆ بینینی ئەو ئەپانەی کە ئەم سەرچاوەیە پاتچی دەکات و هەڵبژێرە کامێکیان پاتچی بۆ پێشکەش دەکات</string>
@@ -1602,9 +1602,28 @@ morphe_header_custom_dark.png
     <string name="onboarding_system_file_picker_desc">چالاک بکە بۆ بەکارهێنانی گەڕۆکی فایلەکانی ناو ئەپەکە لە جیاتی هەڵبژاردەری سیستەم لە کاتی هەڵبژاردنی APK یان keystore-کان</string>
     <!-- Tour prompt dialog shown after first successful patch install -->
     <string name="tour_prompt_title">گەشتێکی خێرا لەسەر تایبەتمەندییەکان</string>
-    <string name="tour_prompt_desc">دەتەوێت گەشتێکی خێرا بە تایبەتمەندییە سەرەکییەکانی Morphe بکەیت؟</string>
+    <string name="tour_prompt_desc">دەتەوێت گەشتێکی خێرا بە تایبەتمەندییە سەرەکییەکانی Mamu بکەیت؟</string>
     <!-- Label of a footer button beside "Skip". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="tour_prompt_confirm">نیشانم بدە</string>
     <string name="onboarding_restart_title">گەشتی تایبەتمەندییەکان</string>
     <string name="onboarding_restart_desc">گەشتێکی ڕێنمایی بۆ تایبەتمەندییە سەرەکییەکان</string>
+
+    <string name="home_app_filter_all_description">هەر ئەپیک لە هۆمسکرین</string>
+    <string name="home_app_filter_patched_description">ئەو ئەپانەی کە پاتچ یان خەزنت کردووە لەگەڵ Mamu</string>
+    <string name="home_app_filter_not_patched_description">ئەو ئەپانەی هێشتا پاتچ نەکردووە لە morphe</string>
+    <string name="home_app_filter_installed_description">ئەو ئەپانەی لە ئێستادا دابەزێنراون لەم ئامێرەدا</string>
+    <string name="home_app_filter_uninstalled_description">ئەو ئەپانەی پاتچکراون بە morphe کە لەناو موبایلەکەتدا نەماون</string>
+    <string name="home_app_filter_clones_description">ئەو ئەپانەی کە لە ژێر ناوی پاکێجێکی تایبەت بە خۆیان دروستکراون، شانبەشانی ئەسڵی دابەزێندراون</string>
+    <string name="home_app_sort_name_asc_description">پیتەبەپیت، لە A بۆ Z</string>
+    <string name="home_app_sort_name_desc_description">پیتەبەپیت بەپێچەوانە، لە Z بۆ A</string>
+    <string name="home_app_sort_recently_patched_description">سەرەتا ئەو ئەپڵیکەیشنانەی کە لە دواجاردا پاتچیان بۆ کراوە</string>
+    <string name="home_category_custom">باو</string>
+    <string name="sources_filter_all_description">هەموو سەرچاوەکان</string>
+    <string name="sources_filter_enabled_description">سەرچاوەکانی کە پاتچەکانی لێوەردەگیرێن</string>
+    <string name="sources_filter_disabled_description">سەرچاوە کوژاوەکان</string>
+    <string name="sources_filter_issues_description">ئەو سەرچاوانەی بلۆک کراون، کەبەستە لە بارکردن یان پێویستیان بە وەشانی نوێتری Mamu هەیە</string>
+    <string name="sources_sort_last_updated_description">نوێترین نوێکارییەکانی سەرچاوە سەرەتا بن</string>
+    <string name="sources_sort_enabled_first_description">پیشاندانی سەرچاوە چالاکەکان پێش سەرچاوە ناچالاکەکان</string>
+    <string name="home_apk_availability_installed_version">لەسەر ئەم ئامێرە دامەزراوە: %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">فۆرماتی keystore</string>
 </resources>

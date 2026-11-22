@@ -35,6 +35,13 @@ data class SelectionSnapshot(
     val options: Options
 )
 
+/** Applying a named set never edits a hidden source; an omitted visible source is deliberately empty. */
+fun applyVisibleSelectionSet(current: SelectionSnapshot, saved: SelectionSnapshot, visible: Set<Int>) =
+    SelectionSnapshot(
+        current.patches.filterKeys { it !in visible } + visible.associateWith { saved.patches[it].orEmpty() },
+        current.options.filterKeys { it !in visible } + saved.options.filterKeys { it in visible }
+    )
+
 /**
  * A set as it is stored, its option values still serialized, for a backup to carry. Keyed by
  * source uid, which the backup maps onto the sources of the device it is restored on.

@@ -31,7 +31,7 @@
     <string name="android_11_bug_dialog_title">Error de l\'Android 11</string>
     <string name="android_11_bug_dialog_description">El permís d\'instal·lació de l\'aplicació s\'ha d\'atorgar amb anterioritat per evitar un error en el sistema Android 11 que afectarà negativament l\'experiència de l\'usuari</string>
     <string name="deep_link_add_source_title">Afegeix la font</string>
-    <string name="deep_link_add_source_message">Vols afegir aquesta font de patxes a Morphe?</string>
+    <string name="deep_link_add_source_message">Vols afegir aquesta font de patxes a Mamu?</string>
     <string name="deep_link_add_source_warning">Només afegeix fonts de confiança</string>
     <!-- Shown under the app a link was opened for -->
     <string name="deep_link_add_source_only_app">Només s\'ha afegit aquesta aplicació. Pots afegir altres aplicacions de la llista d\'aplicacions de la font</string>
@@ -44,15 +44,15 @@
     <string name="mpp_import_unreadable">Aquest fitxer no es pot llegir</string>
     <string name="incoming_file_not_patch_source">Aquest fitxer no és una font de patch</string>
     <!-- Home Screen - Update Notifications -->
-    <string name="home_update_available">Actualització de Morphe disponible</string>
+    <string name="home_update_available">Actualització de Mamu disponible</string>
     <string name="home_update_available_subtitle">Nova versió disponible per instal·lar</string>
     <string name="home_blocked_source_title">S\'ha detectat una font de pegats bloquejada</string>
     <string name="home_blocked_source_subtitle">Toca per revisar i eliminar</string>
     <string name="home_metadata_errors_title">Algunes fonts de pegats no estan disponibles</string>
     <string name="home_metadata_errors_subtitle">Toca per revisar les fonts</string>
-    <string name="home_outdated_manager_title">Morphe està desactualitzat</string>
+    <string name="home_outdated_manager_title">Mamu està desactualitzat</string>
     <string name="home_outdated_manager_subtitle">Algunes fonts de paquets necessiten una versió més recent</string>
-    <string name="home_held_back_title">Una font de pedaços ha provocat el tancament inesperat de Morphe</string>
+    <string name="home_held_back_title">Una font de pedaços ha provocat el tancament inesperat de Mamu</string>
     <string name="home_held_back_subtitle">S\'ha ometut perquè l\'aplicació pogués iniciar-se. Toca per revisar-ho</string>
     <string name="home_source_updates_title">Actualitzacions de patchs disponibles</string>
     <string name="home_source_updates_subtitle">Toca per descarregar-les</string>
@@ -204,10 +204,10 @@
     <string name="sources_management_metadata_unavailable_hint">El fitxer de metadades remot no està disponible. El pegat amb el paquet instal·lat segueix funcionant, però l\'actualització automàtica està desactivada per a aquesta font</string>
     <string name="sources_management_metadata_unavailable_hint_missing">No s\'ha pogut descarregar el paquet del pegat. La URL de la font pot ser incorrecta o el fitxer no existeix</string>
     <string name="sources_management_metadata_unavailable_hint_missing_editable">No s\'ha pogut descarregar el paquet de patxes. És possible que l\'URL d\'origen sigui incorrecte o que el fitxer no existeixi. Toca per canviar-lo</string>
-    <string name="sources_management_outdated_manager_badge">Actualitza Morphe</string>
-    <string name="sources_management_outdated_manager_hint">Aquesta font s\'ha creat per al patcher %1$s, però Morphe %2$s inclou el patcher %3$s. Actualitza Morphe per utilitzar-la</string>
+    <string name="sources_management_outdated_manager_badge">Actualitza Mamu</string>
+    <string name="sources_management_outdated_manager_hint">Aquesta font s\'ha creat per al patcher %1$s, però Mamu %2$s inclou el patcher %3$s. Actualitza Mamu per utilitzar-la</string>
     <string name="sources_management_held_back_badge">Tancament inesperat</string>
-    <string name="sources_management_held_back_hint">Aquesta font ha provocat el tancament inesperat de Morphe durant la càrrega, per tant, s\'està ometent. Actualitza-la o torna a importar-la per intentar-ho de nou</string>
+    <string name="sources_management_held_back_hint">Aquesta font ha provocat el tancament inesperat de Mamu durant la càrrega, per tant, s\'està ometent. Actualitza-la o torna a importar-la per intentar-ho de nou</string>
     <string name="sources_management_signed_by">Signat per</string>
     <string name="sources_management_signing_key_changed_badge">Clau canviada</string>
     <string name="sources_management_signing_key_changed_hint">L\'última versió no està signada per la clau que aquesta font utilitzava anteriorment, per la qual cosa no s\'ha instal·lat. Toca per revisar-la</string>
@@ -237,9 +237,9 @@
     <string name="sources_dialog_community">Pegats de la comunitat</string>
     <string name="sources_dialog_choose_apps">Tria aplicacions</string>
     <string name="sources_dialog_choose_apps_description">Trieu quines de les seves aplicacions voleu mantenir un cop s\'hagi carregat la font</string>
-    <!-- Shown before leaving Morphe for the community patches website. The sources listed there are not reviewed by Morphe -->
+    <!-- Shown before leaving Mamu for the community patches website. The sources listed there are not reviewed by Mamu -->
     <string name="sources_dialog_community_notice_title">Orígens de pegats de tercers</string>
-    <string name="sources_dialog_community_notice_message">"Les fonts de patxes de la comunitat són creades i mantingudes pels seus propis autors. Morphe no revisa ni verifica els patxes de tercers, i no es fa responsable del seu contingut ni del que facin al teu dispositiu"</string>
+    <string name="sources_dialog_community_notice_message">"Les fonts de patxes de la comunitat són creades i mantingudes pels seus propis autors. Mamu no revisa ni verifica els patxes de tercers, i no es fa responsable del seu contingut ni del que facin al teu dispositiu"</string>
     <string name="sources_update_success">Actualització correcta</string>
     <string name="sources_update_unavailable">No hi ha cap actualització disponible</string>
     <string name="sources_download_fail">Error en descarregar les fonts: %s</string>
@@ -272,16 +272,16 @@
     <string name="home_apk_helper_untrusted">S\'ha instal·lat una aplicació d\'ajuda però encara no és fiable, per això no s\'ofereix aquí</string>
     <string name="home_apk_helper_untrusted_action">Revisa els ajudants</string>
     <string name="home_apk_helper_title">Descarrega amb una aplicació d\'ajuda</string>
-    <string name="home_apk_helper_description">Morphe demanarà a l\'aplicació d\'ajuda següent que descarregui l\'APK original i torni el fitxer</string>
+    <string name="home_apk_helper_description">Mamu demanarà a l\'aplicació d\'ajuda següent que descarregui l\'APK original i torni el fitxer</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="home_apk_helper_continue">Obre l\'ajudant</string>
-    <string name="home_apk_helper_warning">Continua només si confies en aquesta aplicació d\'ajuda. Morphe comprova el paquet, la versió i la signatura de tot el que rep abans de fer el pegat</string>
-    <string name="home_apk_helper_warning_unverified">Continua només si confies en aquesta aplicació d\'ajuda. Morphe no pot verificar la signatura d\'aquest APK, per la qual cosa un fitxer modificat no seria detectat</string>
+    <string name="home_apk_helper_warning">Continua només si confies en aquesta aplicació d\'ajuda. Mamu comprova el paquet, la versió i la signatura de tot el que rep abans de fer el pegat</string>
+    <string name="home_apk_helper_warning_unverified">Continua només si confies en aquesta aplicació d\'ajuda. Mamu no pot verificar la signatura d\'aquest APK, per la qual cosa un fitxer modificat no seria detectat</string>
     <string name="home_apk_helper_no_result">L\'aplicació d\'ajuda no ha tornat cap APK</string>
     <string name="home_apk_helper_no_access">L\'aplicació d\'ajuda no ha concedit l\'accés a l\'APK que ha tornat</string>
     <string name="home_apk_helper_no_package">L\'aplicació ajudant no ha indicat quina aplicació instal·lada s\'ha d\'utilitzar</string>
     <string name="home_apk_helper_wrong_package">L\'aplicació ajudant ha retornat una aplicació diferent de la que s\'està patxant</string>
-    <string name="home_apk_helper_installed_unavailable">Morphe no ha pogut utilitzar l\'aplicació instal·lada</string>
+    <string name="home_apk_helper_installed_unavailable">Mamu no ha pogut utilitzar l\'aplicació instal·lada</string>
     <string name="home_apk_helper_installed_incompatible">La versió instal·lada no es pot patxar</string>
     <string name="home_apk_use_saved_copy">Utilitza la còpia desada</string>
     <string name="home_apk_use_installed_app">Utilitza l\'aplicació instal·lada</string>
@@ -289,7 +289,7 @@
     <string name="home_apk_use_installed_unverified">No s\'ha pogut verificar la signatura de l\'aplicació instal·lada, per la qual cosa és possible que ja estigui patxada</string>
     <string name="home_unverified">No verificada</string>
     <string name="home_install_verification_pending">Comprovant la instal·lació…</string>
-    <string name="home_app_info_install_unverified">Morphe no pot confirmar que l\'aplicació instal·lada sigui la versió que ha patxat. Torneu a aplicar el pegat o reinstal·leu-la des de l\'APK desat per restaurar les seves accions</string>
+    <string name="home_app_info_install_unverified">Mamu no pot confirmar que l\'aplicació instal·lada sigui la versió que ha patxat. Torneu a aplicar el pegat o reinstal·leu-la des de l\'APK desat per restaurar les seves accions</string>
     <string name="home_app_info_no_saved_apk">No hi ha cap APK desat. Per aplicar el patch, cal tornar a seleccionar el fitxer APK</string>
     <string name="home_version_requires_android">Requireix Android %s+</string>
     <string name="home_apk_no_compatible_versions_title">No és compatible amb aquest dispositiu</string>
@@ -303,7 +303,7 @@
     <string name="home_download_instructions_step2_generic">Desplaceu-vos per la pàgina web i premeu el botó de descàrrega</string>
     <string name="home_download_instructions_step2_variant">Desplaceu-vos per la pàgina web i premeu el botó de descàrrega de la primera &lt;b&gt;variant d\'APK&lt;/b&gt;</string>
     <string name="home_download_instructions_step2_search">Obriu un resultat de cerca d\'un lloc web en què confieu</string>
-    <string name="home_download_instructions_step2_search_note">Morphe no pot avalar aquests llocs web. Ignoreu aquells que ofereixin la seva pròpia botiga d\'aplicacions en lloc d\'un fitxer APK</string>
+    <string name="home_download_instructions_step2_search_note">Mamu no pot avalar aquests llocs web. Ignoreu aquells que ofereixin la seva pròpia botiga d\'aplicacions en lloc d\'un fitxer APK</string>
     <string name="home_download_instructions_step3_search">En aquest lloc web, descarrega l\'APK de la versió &lt;b&gt;%s&lt;/b&gt;, no la més recent</string>
     <string name="home_download_instructions_step3_search_any">En aquest lloc web, descarrega l\'APK de l\'aplicació. &lt;b&gt;Qualsevol versió&lt;/b&gt; es pot patxar</string>
     <string name="home_download_instructions_step2_github">A &lt;b&gt;Assets&lt;/b&gt; de la versió &lt;b&gt;%s&lt;/b&gt;, prem el fitxer que acaba en &lt;b&gt;.apk&lt;/b&gt;</string>
@@ -314,11 +314,11 @@
     <string name="home_download_instructions_download_button_toast_3">La pràctica fa el mestre i hi estàs arribant 💪</string>
     <string name="home_download_instructions_download_button_toast_4">Encara no és aquí… encara no és aquí… 🙈</string>
     <string name="home_download_instructions_download_button_toast_5">D\'acord, respecto la dedicació 🫡</string>
-    <string name="home_download_instructions_download_button_toast_6">Ara ets un provador oficial de botons de Morphe 🏅</string>
+    <string name="home_download_instructions_download_button_toast_6">Ara ets un provador oficial de botons de Mamu 🏅</string>
     <string name="home_download_instructions_step3">Espereu que la descàrrega s\'acabi, i &lt;b&gt;no instal·leu&lt;/b&gt; l\'APK</string>
     <string name="home_download_instructions_step3_mount">Espereu que la descàrrega s\'acabi, i llavors&lt;b&gt;instal·leu l\'APK&lt;/b&gt;</string>
-    <string name="home_download_instructions_step4">Després de finalitzar la descàrrega, torneu a Morphe</string>
-    <string name="home_download_instructions_step4_mount">Després d\'instal·lar l\'APK original, torneu a Morphe</string>
+    <string name="home_download_instructions_step4">Després de finalitzar la descàrrega, torneu a Mamu</string>
+    <string name="home_download_instructions_step4_mount">Després d\'instal·lar l\'APK original, torneu a Mamu</string>
     <string name="home_download_instructions_continue_to">Continua a %s</string>
     <string name="home_download_instructions_destination">la pàgina de descàrrega</string>
     <string name="home_download_instructions_copy_link">Copia l\'enllaç</string>
@@ -446,12 +446,12 @@ Per obtenir els millors resultats, aquesta aplicació recomana patxar un &lt;b&g
     <string name="adaptive_icon_themed">Tematitzat</string>
     <string name="adaptive_icon_background_color">Color de fons</string>
     <string name="adaptive_icon_reset_transform">Restaurar posició i escala</string>
-    <string name="adaptive_icon_no_transparency_warning">Aquesta imatge no té píxels transparents, per la qual cosa les icones tematitzades i de notificacions mantenen el logotip de Morphe</string>
+    <string name="adaptive_icon_no_transparency_warning">Aquesta imatge no té píxels transparents, per la qual cosa les icones tematitzades i de notificacions mantenen el logotip de Mamu</string>
     <string name="adaptive_icon_created_success">Icona adaptativa creada correctament</string>
     <string name="adaptive_icon_creation_failed">Error en crear la icona adaptativa</string>
     <string name="adaptive_icon_guide">Guia de creació d\'icones</string>
     <string name="adaptive_icon_guide_png_title">Utilitza un PNG amb un fons transparent</string>
-    <string name="adaptive_icon_guide_png_body">Un logotip sobre un fons transparent és el que millor funciona, amb el color de fons seleccionat a sota. Una imatge sense transparència omple tota la icona i, per tant, les icones tematitzades i de notificacions mantenen el logotip de Morphe.</string>
+    <string name="adaptive_icon_guide_png_body">Un logotip sobre un fons transparent és el que millor funciona, amb el color de fons seleccionat a sota. Una imatge sense transparència omple tota la icona i, per tant, les icones tematitzades i de notificacions mantenen el logotip de Mamu.</string>
     <string name="adaptive_icon_guide_safe_zones_title">Zones segures</string>
     <string name="adaptive_icon_guide_safe_zones_body">El contorn mostra la forma de la icona del vostre llançador, i tot el que queda a l\'exterior s\'elimina. Altres llançadors utilitzen altres formes, així que manteniu els detalls importants dins del cercle discontinu, que és el que mostra qualsevol forma.</string>
     <string name="adaptive_icon_guide_notification_title">Icona de notificació</string>
@@ -557,8 +557,8 @@ Per obtenir els millors resultats, aquesta aplicació recomana patxar un &lt;b&g
     <string name="home_app_info_version_move">Instal·lada %1$s, més recent suportada %2$s</string>
     <string name="home_app_info_version_restore">Instal·lat %1$s, patxat %2$s</string>
     <string name="home_app_info_app_deleted_warning">L\'aplicació s\'ha desinstal·lat</string>
-    <string name="home_app_info_app_deleted_description">Aquesta aplicació s\'ha desinstal·lat fora de Morphe. Torna a aplicar el patch per restaurar la funcionalitat</string>
-    <string name="home_app_info_not_patched_description">S\'ha instal·lat una versió d\'aquesta aplicació sense patxar. Morphe encara té el seu registre de patx anterior</string>
+    <string name="home_app_info_app_deleted_description">Aquesta aplicació s\'ha desinstal·lat fora de Mamu. Torna a aplicar el patch per restaurar la funcionalitat</string>
+    <string name="home_app_info_not_patched_description">S\'ha instal·lat una versió d\'aquesta aplicació sense patxar. Mamu encara té el seu registre de patx anterior</string>
     <string name="home_app_info_mount_replaced_description">Una altra versió ha substituït l\'aplicació muntada, per la qual cosa el patch ja no s\'aplica. Restaurar torna a posar la versió patxada</string>
     <string name="home_app_info_mount_replaced_by_play_store_description">Google Play ha actualitzat l\'aplicació muntada, per la qual cosa el patch ja no s\'aplica. Restaurar torna a posar la versió patxada. Desactiva l\'actualització automàtica a Google Play per mantenir-la patxada</string>
     <string name="app_links_title">Enllaços web compatibles</string>
@@ -589,7 +589,7 @@ Per obtenir els millors resultats, aquesta aplicació recomana patxar un &lt;b&g
     <string name="root_pre_patch_installer_description">El vostre dispositiu té accés root. Trieu si aquesta aplicació s\'ha de patchar per a muntatge root o instal·lació estàndard</string>
     <string name="root_pre_patch_installer_mount_title">Mode de muntatge root</string>
     <string name="root_pre_patch_installer_mount_description">Patcha per a muntatge root i després munta l\'APK sobre l\'aplicació de stock corresponent. No cal GmsCore</string>
-    <string name="root_mount_module_unmount_warning">Si KernelSU té activada l\'opció \"Desmuntar mòduls per defecte\", obriu KernelSU &gt; Superusuari &gt; l\'aplicació que heu muntat &gt; Perfil &gt; Personalitzat i desactiveu \"Desmuntar mòduls\". En cas contrari, l\'APK patxat i muntat podria no tenir efecte, encara que Morphe indiqui que està muntat</string>
+    <string name="root_mount_module_unmount_warning">Si KernelSU té activada l\'opció \"Desmuntar mòduls per defecte\", obriu KernelSU &gt; Superusuari &gt; l\'aplicació que heu muntat &gt; Perfil &gt; Personalitzat i desactiveu \"Desmuntar mòduls\". En cas contrari, l\'APK patxat i muntat podria no tenir efecte, encara que Mamu indiqui que està muntat</string>
     <string name="root_pre_patch_installer_standard_title">Mode d\'instal·lació estàndard</string>
     <string name="root_pre_patch_installer_standard_description">Patcha com un APK normal amb suport de GmsCore. S\'utilitza la configuració de l\'instal·lador després del patch</string>
     <!-- "%1$s" is where the setting is, such as "Settings > Installation > Patch mode", built from the names on those screens. "%2$s" is the option it is set to, such as "Ask every time". -->
@@ -652,7 +652,7 @@ Per obtenir els millors resultats, aquesta aplicació recomana patxar un &lt;b&g
     <string name="patcher_conflict_subtitle">Has de desinstal·lar la versió existent</string>
     <string name="patcher_conflict_hint">L\'aplicació patxada utilitza un certificat diferent de la versió instal·lada. Desinstal·lar-la esborrarà totes les dades de l\'aplicació</string>
     <string name="patcher_installed_conflict_title">Cal desinstal·lar</string>
-    <string name="patcher_installed_conflict_body">"Morphe signa les aplicacions patxades amb el seu propi certificat, que és diferent de l'original. Android requereix eliminar la versió existent abans que es pugui instal·lar l'aplicació patxada.
+    <string name="patcher_installed_conflict_body">"Mamu signa les aplicacions patxades amb el seu propi certificat, que és diferent de l'original. Android requereix eliminar la versió existent abans que es pugui instal·lar l'aplicació patxada.
 
 Desinstal·lar-la esborrarà permanentment totes les dades de l'aplicació"</string>
     <string name="patcher_install_error_title">Error d\'instal·lació</string>
@@ -662,8 +662,8 @@ Desinstal·lar-la esborrarà permanentment totes les dades de l'aplicació"</str
     <string name="patcher_patches_excluded_for_installer">No disponible per a aquest mètode d\'instal·lació i exclòs: %s</string>
     <string name="patcher_storage_permission_dialog_title">No es pot accedir a la ruta d\'emmagatzematge</string>
     <string name="patcher_incompatible_patcher_title">Actualització requerida</string>
-    <string name="patcher_incompatible_patcher_description">La font &lt;b&gt;%1$s&lt;/b&gt; requereix el patcher &lt;b&gt;%2$s&lt;/b&gt; o una versió més recent. Actualitza Morphe per utilitzar-lo</string>
-    <string name="patcher_storage_permission_description_api30">Una o més opcions de patch apunten a rutes que Morphe no pot llegir. Concedeix l\'accés a l\'emmagatzematge i toca el botó i el patxatge començarà automàticament</string>
+    <string name="patcher_incompatible_patcher_description">La font &lt;b&gt;%1$s&lt;/b&gt; requereix el patcher &lt;b&gt;%2$s&lt;/b&gt; o una versió més recent. Actualitza Mamu per utilitzar-lo</string>
+    <string name="patcher_storage_permission_description_api30">Una o més opcions de patch apunten a rutes que Mamu no pot llegir. Concedeix l\'accés a l\'emmagatzematge i toca el botó i el patxatge començarà automàticament</string>
     <string name="patcher_storage_permission_description_legacy">Una o més opcions de patch apunten a rutes a les quals no es pot accedir. Actualitzeu les rutes a les opcions de patch i torneu-ho a intentar</string>
     <string name="patcher_storage_permission_grant">Concedir permís d\'emmagatzematge</string>
     <string name="patcher_storage_permission_denied_warning">S\'ha denegat el permís d\'emmagatzematge. Concediu el permís per utilitzar aquesta ruta, o moure els fitxers al directori privat de l\'aplicació</string>
@@ -699,7 +699,7 @@ Desinstal·lar-la esborrarà permanentment totes les dades de l'aplicació"</str
     <string name="patcher_task_writing_apk">Escrivint el fitxer APK</string>
     <!-- Battery optimization pre-flight dialog -->
     <string name="battery_optimization_dialog_title">Protecció del patxatge en segon pla</string>
-    <string name="battery_optimization_dialog_description">Alguns dispositius poden aturar el patxador quan l\'aplicació està minimitzada. Permeteu que Morphe s\'executi sense restriccions de bateria per assegurar que el patxatge es completi correctament</string>
+    <string name="battery_optimization_dialog_description">Alguns dispositius poden aturar el patxador quan l\'aplicació està minimitzada. Permeteu que Mamu s\'executi sense restriccions de bateria per assegurar que el patxatge es completi correctament</string>
     <string name="battery_optimization_not_now">Ara no</string>
     <!-- Patcher Screen - Patcher Worker -->
     <string name="patcher_notification_title">Aplicació de pedaços en curs…</string>
@@ -754,8 +754,8 @@ Desinstal·lar-la esborrarà permanentment totes les dades de l'aplicació"</str
     <string name="install_ignore_signature">Instal·lar de totes maneres</string>
     <string name="install_ignore_signature_description">Conserva les dades de l\'aplicació, però només funciona si un mòdul root desactiva la verificació de signatura d\'Android</string>
     <string name="uninstall_app_fail">Ha fallat la desinstal·lació de l\'aplicació: %s</string>
-    <string name="uninstall_app_unverified">Deixat en el seu lloc: Morphe no ha pogut verificar que l\'aplicació instal·lada sigui la versió que ha patxat</string>
-    <string name="launch_app_unverified">Morphe no ha pogut verificar que l\'aplicació instal·lada sigui la versió que ha patxat</string>
+    <string name="uninstall_app_unverified">Deixat en el seu lloc: Mamu no ha pogut verificar que l\'aplicació instal·lada sigui la versió que ha patxat</string>
+    <string name="launch_app_unverified">Mamu no ha pogut verificar que l\'aplicació instal·lada sigui la versió que ha patxat</string>
     <string name="uninstall_timeout">S\'ha esgotat el temps de desinstal·lació</string>
     <string name="save_apk_success">APK desat</string>
     <string name="saved_app_export_failed">Error en exportar l\'aplicació amb el patch</string>
@@ -847,7 +847,7 @@ Desinstal·lar-la esborrarà permanentment totes les dades de l'aplicació"</str
     <!-- Settings - Appearance Tab - Language Selector -->
     <string name="settings_appearance_app_language">Idioma de l\'aplicació</string>
     <string name="settings_appearance_app_language_current">Idioma actual</string>
-    <string name="settings_appearance_translate">Ajuda a traduir Morphe</string>
+    <string name="settings_appearance_translate">Ajuda a traduir Mamu</string>
     <string name="settings_appearance_translations_info_title">És possible que faltin traduccions o que aquestes estiguin incompletes per a alguns idiomes</string>
     <!-- Settings - Appearance Tab - Interface Scale -->
     <string name="settings_appearance_ui_scale">Escala de la interfície</string>
@@ -876,7 +876,7 @@ Desinstal·lar-la esborrarà permanentment totes les dades de l'aplicació"</str
     <string name="settings_appearance_app_card_colors_bundle_description">Utilitza aquí el color propi de cada aplicació o font, amb un ombratge automàtic per adaptar-lo</string>
     <!-- Settings - Appearance Tab - App Icon Selector -->
     <string name="settings_appearance_app_icon_selector_title">Icona de l\'aplicació</string>
-    <string name="settings_appearance_app_icon_selector_description">Com es veu Morphe a la pantalla d\'inici i al calaix d\'aplicacions</string>
+    <string name="settings_appearance_app_icon_selector_description">Com es veu Mamu a la pantalla d\'inici i al calaix d\'aplicacions</string>
     <string name="settings_appearance_app_icon_default">Per defecte</string>
     <string name="settings_appearance_app_icon_light_2">Cel</string>
     <string name="settings_appearance_app_icon_light_3">Posta de sol</string>
@@ -900,23 +900,23 @@ Desinstal·lar-la esborrarà permanentment totes les dades de l'aplicació"</str
     <string name="settings_appearance_app_icon_mark_black">Negre</string>
     <string name="settings_appearance_app_icon_change_dialog_title">Voleu canviar la icona de l\'aplicació?</string>
     <!-- %s is the name of the icon picked -->
-    <string name="settings_appearance_app_icon_change_restarts">Morphe es reinicia per canviar a &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="settings_appearance_app_icon_change_restarts">Mamu es reinicia per canviar a &lt;b&gt;%s&lt;/b&gt;</string>
     <!-- Label of a footer button beside "Cancel". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="settings_appearance_app_icon_change_dialog_confirm">Canvia la icona</string>
     <!-- Settings - Advanced Tab - Updates Section -->
     <string name="settings_advanced_updates_manager_prereleases">Actualitzacions de pre-llançament</string>
-    <!-- "Morphe" here is the app itself, not the patches. Do not translate this as pre-release patches -->
-    <string name="settings_advanced_updates_manager_prereleases_description">Accés anticipat a les noves versions de Morphe</string>
+    <!-- "Mamu" here is the app itself, not the patches. Do not translate this as pre-release patches -->
+    <string name="settings_advanced_updates_manager_prereleases_description">Accés anticipat a les noves versions de Mamu</string>
     <string name="settings_advanced_updates_prerelease_warning_title">Activar actualitzacions de pre-llançament?</string>
     <!-- Shown before pre-release updates are turned on for the app itself. Patches have their own toggle in each patch source -->
-    <string name="settings_advanced_updates_prerelease_warning_message">"Les versions de pre-llançament de Morphe encara estan en desenvolupament i poden ser inestables.
+    <string name="settings_advanced_updates_prerelease_warning_message">"Les versions de pre-llançament de Mamu encara estan en desenvolupament i poden ser inestables.
 
 Els pegats no s'en veuen afectats: activa els pegats de pre-llançament per a cada origen a la llista d'orígens de pegats"</string>
-    <!-- How far Morphe keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
+    <!-- How far Mamu keeps itself and its patch sources up to date when it opens. A pull to refresh always checks -->
     <string name="settings_auto_updates">Actualitzacions automàtiques</string>
-    <string name="settings_auto_updates_description">El que Morphe fa amb les actualitzacions quan s\'obre. Un desllisement per actualitzar sempre comprova</string>
+    <string name="settings_auto_updates_description">El que Mamu fa amb les actualitzacions quan s\'obre. Un desllisement per actualitzar sempre comprova</string>
     <string name="settings_auto_updates_download">Descarrega automàticament</string>
-    <string name="settings_auto_updates_download_description">Comprova si hi ha actualitzacions quan Morphe s\'obre i descarrega actualitzacions de patchs en qualsevol xarxa</string>
+    <string name="settings_auto_updates_download_description">Comprova si hi ha actualitzacions quan Mamu s\'obre i descarrega actualitzacions de patchs en qualsevol xarxa</string>
     <string name="settings_auto_updates_wifi_only">Descarrega només per Wi-Fi</string>
     <string name="settings_auto_updates_wifi_only_description">Amb dades mòbils, només comprova i mostra què hi ha disponible</string>
     <string name="settings_auto_updates_check_only">Només comprovar</string>
@@ -937,27 +937,27 @@ Els pegats no s'en veuen afectats: activa els pegats de pre-llançament per a ca
     <string name="settings_advanced_external_batch_patch">Permet detonadors externs</string>
     <string name="settings_advanced_external_batch_patch_description">Permet que les aplicacions d\'automatització iniciïn el patxat per lots</string>
     <string name="external_batch_patch_title">Inicia el patxatge per lots?</string>
-    <string name="external_batch_patch_description">%s vol que Morphe patchi i instal·li aplicacions</string>
+    <string name="external_batch_patch_description">%s vol que Mamu patchi i instal·li aplicacions</string>
     <string name="external_batch_patch_trust_caller">Permet sempre aquesta aplicació</string>
     <string name="external_batch_patch_unknown_caller">Una aplicació desconeguda</string>
     <!-- Notification content -->
     <string name="notification_bundle_update_title">Hi ha nous pegats disponibles</string>
     <string name="notification_update_text">La versió %s ja està disponible per a la descàrrega</string>
-    <string name="notification_bundle_update_text_unversioned">Toca per obrir Morphe i actualitzar</string>
+    <string name="notification_bundle_update_text_unversioned">Toca per obrir Mamu i actualitzar</string>
     <string name="notification_permission_dialog_title">Permetre notificacions</string>
-    <string name="notification_permission_dialog_description">Morphe necessita permís de notificacions per alertar-te quan hi hagi actualitzacions disponibles en segon pla</string>
+    <string name="notification_permission_dialog_description">Mamu necessita permís de notificacions per alertar-te quan hi hagi actualitzacions disponibles en segon pla</string>
     <string name="notification_post_patch_dialog_title">Voldreu que se us notifiqui quan hi hagi actualitzacions disponibles?</string>
-    <string name="notification_channel_manager_updates">Actualitzacions de Morphe</string>
-    <string name="notification_channel_manager_updates_description">Notificacions sobre noves versions de Morphe</string>
+    <string name="notification_channel_manager_updates">Actualitzacions de Mamu</string>
+    <string name="notification_channel_manager_updates_description">Notificacions sobre noves versions de Mamu</string>
     <string name="notification_channel_patch_updates">Actualitzacions de pegats</string>
     <string name="notification_channel_patch_updates_description">Notificacions sobre noves versions de pegats</string>
-    <string name="notification_channel_patcher_description">Es mostra mentre Morphe està patxant una aplicació en segon pla</string>
+    <string name="notification_channel_patcher_description">Es mostra mentre Mamu està patxant una aplicació en segon pla</string>
     <string name="notification_channel_patching_results">Resultats del patxat</string>
-    <string name="notification_channel_patching_results_description">Quan el patxat finalitza o una instal·lació espera mentre Morphe està en segon pla</string>
+    <string name="notification_channel_patching_results_description">Quan el patxat finalitza o una instal·lació espera mentre Mamu està en segon pla</string>
     <string name="notification_channel_mounted_apps">Aplicacions muntades</string>
     <string name="notification_channel_mounted_apps_description">Quan una altra versió substitueix una aplicació muntada i el seu patch ja no s\'aplica</string>
     <string name="notification_mount_replaced_title">%1$s ja no està patxat</string>
-    <string name="notification_mount_replaced_text">La v%1$s ha substituït la v%2$s patxada. Obre Morphe per restaurar-la</string>
+    <string name="notification_mount_replaced_text">La v%1$s ha substituït la v%2$s patxada. Obre Mamu per restaurar-la</string>
     <!-- Settings - Advanced Tab - Expert settings Section -->
     <string name="settings_advanced_expert_mode">Mode expert</string>
     <string name="settings_advanced_expert_mode_description">Desbloqueja la configuració avançada de patxat i les opcions de patxes</string>
@@ -979,7 +979,7 @@ Els pegats no s'en veuen afectats: activa els pegats de pre-llançament per a ca
     <string name="settings_advanced_github_pat_unreachable">No s\'ha pogut connectar amb GitHub per comprovar aquest token</string>
     <string name="settings_advanced_github_pat_export_include_label">Inclou a l\'exportació de la configuració</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
-    <string name="settings_advanced_github_pat_export_include_supporting">Afegeix aquest PAT a la configuració exportada de Morphe</string>
+    <string name="settings_advanced_github_pat_export_include_supporting">Afegeix aquest PAT a la configuració exportada de Mamu</string>
     <!-- "PAT" is a GitHub Personal Access Token, keep it in English because GitHub has no localized UI -->
     <string name="settings_advanced_github_pat_export_warning">No comparteix el seu PAT. Si l\'inclou en una exportació de la configuració, mantingui aquest fitxer privat perquè conté el token</string>
     <!-- Settings - Advanced Tab - Patch Options Section -->
@@ -1074,7 +1074,7 @@ Les dimensions de la imatge han de ser les següents:
     <string name="installer_status_not_supported">No és compatible amb aquesta acció</string>
     <string name="installer_status_shizuku_not_installed">Instal·la Shizuku o Sui per utilitzar aquesta opció</string>
     <string name="installer_status_shizuku_not_running">Inicia Shizuku o Sui i torna-ho a intentar</string>
-    <string name="installer_status_shizuku_permission">Concedeix permís a Morphe des de l\'aplicació Shizuku</string>
+    <string name="installer_status_shizuku_permission">Concedeix permís a Mamu des de l\'aplicació Shizuku</string>
     <string name="installer_mount_warning_install">El mode de patxat està configurat com a muntatge root. Aquesta aplicació desada no s\'ha instal·lat mitjançant muntatge</string>
     <string name="mount_version_mismatch_message">La versió de l\'aplicació original (%2$s) no coincideix amb la versió de l\'aplicació modificada (%1$s). Munta la versió original corresponent i torna-ho a intentar</string>
     <string name="mount_stock_restore_failed_message">Android ha rebutjat l\'APK original desat. Instal·la la versió stock corresponent i torna a provar el muntatge</string>
@@ -1115,7 +1115,7 @@ Les dimensions de la imatge han de ser les següents:
     <string name="settings_ignore_install_target_rules">Ignorar els requisits del destí de la instal·lació</string>
     <string name="settings_ignore_install_target_rules_description">Permet desactivar els patxes que el destí d\'instal·lació requereix i activar els que exclou. És possible que l\'aplicació patxada no funcioni</string>
     <string name="settings_auto_uninstall_warning_title">Activa la desinstal·lació automàtica?</string>
-    <string name="settings_auto_uninstall_warning_message">Si Android informa d\'un conflicte de signatura durant la instal·lació automàtica de Shizuku, Morphe desinstal·larà l\'aplicació existent abans d\'instal·lar l\'APK modificat</string>
+    <string name="settings_auto_uninstall_warning_message">Si Android informa d\'un conflicte de signatura durant la instal·lació automàtica de Shizuku, Mamu desinstal·larà l\'aplicació existent abans d\'instal·lar l\'APK modificat</string>
     <string name="settings_auto_uninstall_warning_risk">Això pot eliminar les dades de l\'aplicació. Si l\'APK patxat falla en instal·lar-se després de desinstal·lar, és possible que l\'aplicació anterior ja hagi desaparegut</string>
     <string name="installer_shizuku_status_action">Comprova l\'estat de Shizuku</string>
     <string name="installer_shizuku_status_title">Estat de Shizuku</string>
@@ -1133,7 +1133,7 @@ Les dimensions de la imatge han de ser les següents:
     <string name="installer_shizuku_install_fail_with_details">"S'ha produït un error en la instal·lació de Shizuku: %1$s
 
 Detalls: %2$s"</string>
-    <string name="installer_shizuku_error_permission">Manca el permís de Shizuku. Concedeix el permís a Morphe i torna-ho a intentar</string>
+    <string name="installer_shizuku_error_permission">Manca el permís de Shizuku. Concedeix el permís a Mamu i torna-ho a intentar</string>
     <string name="installer_shizuku_error_timeout">Shizuku no ha retornat cap resultat de la instal·lació. Assegura\'t que encara s\'està executant i torna-ho a intentar</string>
     <string name="installer_shizuku_error_downgrade">Android ha bloquejat això perquè degradaria l\'aplicació instal·lada</string>
     <string name="installer_shizuku_error_signature">Android ha bloquejat això perquè l\'aplicació instal·lada té una signatura diferent</string>
@@ -1144,13 +1144,13 @@ Detalls: %2$s"</string>
     <string name="settings_system_battery_optimization_description">Manté el patcher en execució quan l\'aplicació està minimitzada</string>
     <string name="settings_system_process_runtime">Entorn d\'execució del patxador</string>
     <string name="settings_system_jvm_runtime_enable">Utilitza la VM integrada</string>
-    <string name="settings_system_jvm_runtime_description">Patxa amb la màquina virtual Java pròpia de Morphe, que pot utilitzar més memòria. Desactiva-ho per utilitzar l\'entorn d\'execució d\'Android</string>
+    <string name="settings_system_jvm_runtime_description">Patxa amb la màquina virtual Java pròpia de Mamu, que pot utilitzar més memòria. Desactiva-ho per utilitzar l\'entorn d\'execució d\'Android</string>
     <string name="settings_system_jvm_runtime_unavailable">Necessita un dispositiu ARM o x86 de 64 bits</string>
     <string name="settings_system_patcher_completion_sound">So de finalització</string>
     <string name="settings_system_patcher_completion_sound_description">Reprodueix un ton distintiu d\'èxit o de fallada quan s\'acaba el patxatge</string>
     <!-- Settings - System Tab - Notifications Section -->
     <string name="settings_system_notifications">Notificacions</string>
-    <string name="settings_system_notifications_description">Com Morphe et manté informat</string>
+    <string name="settings_system_notifications_description">Com Mamu et manté informat</string>
     <string name="settings_system_notifications_success_sound">So d\'èxit</string>
     <string name="settings_system_notifications_error_sound">So de fallada</string>
     <string name="settings_system_notifications_sound_default">Per defecte</string>
@@ -1162,8 +1162,8 @@ Detalls: %2$s"</string>
     <!-- Settings - System Tab - Import and Export Section -->
     <string name="settings_system_signing_key">Clau de signatura</string>
     <string name="settings_system_signing_key_description">Fa una còpia de seguretat o restaura la clau que signa les aplicacions patxades</string>
-    <string name="settings_system_signing_key_dialog_description">Cada aplicació que Morphe patxa està signada amb aquesta clau. Conserveu-ne una còpia: sense ella, les aplicacions patxades només es poden actualitzar després de desinstal·lar-les</string>
-    <string name="settings_system_signing_key_missing">Morphe en crearà una amb el vostre primer pegat</string>
+    <string name="settings_system_signing_key_dialog_description">Cada aplicació que Mamu patxa està signada amb aquesta clau. Conserveu-ne una còpia: sense ella, les aplicacions patxades només es poden actualitzar després de desinstal·lar-les</string>
+    <string name="settings_system_signing_key_missing">Mamu en crearà una amb el vostre primer pegat</string>
     <string name="settings_system_signing_key_created">Creat %s</string>
     <string name="settings_system_signing_key_fingerprint">Emprenta SHA-256</string>
     <string name="settings_system_backup_appearance_description">Tema, colors i idioma</string>
@@ -1185,31 +1185,31 @@ Detalls: %2$s"</string>
     <string name="settings_system_export_keystore_failed">S\'ha produït un error en exportar el magatzem de claus</string>
     <string name="settings_system_show_password_field">Mostra la contrasenya</string>
     <string name="settings_system_hide_password_field">Oculta la contrasenya</string>
-    <string name="settings_system_morphe_settings">Configuració de Morphe</string>
-    <string name="settings_system_import_manager_settings_description">Fa una còpia de seguretat i restaura la configuració de Morphe</string>
-    <string name="settings_system_export_manager_settings_title">Exporta la configuració de Morphe</string>
+    <string name="settings_system_morphe_settings">Configuració de Mamu</string>
+    <string name="settings_system_import_manager_settings_description">Fa una còpia de seguretat i restaura la configuració de Mamu</string>
+    <string name="settings_system_export_manager_settings_title">Exporta la configuració de Mamu</string>
     <string name="settings_system_export_manager_settings_description">Desa la configuració que triïs en un arxiu</string>
     <string name="settings_system_import_manager_settings_file_description">Restaura la configuració d\'un arxiu de còpia de seguretat</string>
     <string name="settings_system_auto_backup">Còpia de seguretat automàtica</string>
     <string name="settings_system_auto_backup_switch">Fes còpies de seguretat automàticament</string>
     <string name="settings_system_auto_backup_now">Fes una còpia de seguretat ara</string>
     <string name="settings_system_auto_backup_saved">Còpia de seguretat guardada</string>
-    <string name="settings_system_auto_backup_interval_description">Morphe espera almenys aquest temps després d\'una còpia abans de fer la següent</string>
-    <string name="settings_system_auto_backup_description">Desa la configuració de Morphe en una carpeta que triïs</string>
+    <string name="settings_system_auto_backup_interval_description">Mamu espera almenys aquest temps després d\'una còpia abans de fer la següent</string>
+    <string name="settings_system_auto_backup_description">Desa la configuració de Mamu en una carpeta que triïs</string>
     <string name="settings_system_auto_backup_last">Última còpia de seguretat: %s</string>
     <string name="settings_system_auto_backup_folder">Carpeta</string>
-    <string name="settings_system_auto_backup_folder_name">Còpies de seguretat de Morphe</string>
+    <string name="settings_system_auto_backup_folder_name">Còpies de seguretat de Mamu</string>
     <string name="settings_system_auto_backup_folder_failed">No s\'ha pogut utilitzar aquesta carpeta: %s</string>
     <string name="settings_system_auto_backup_interval">Freqüència de còpia de seguretat</string>
     <string name="settings_system_auto_backup_signing_key">Inclou la clau de signatura</string>
     <string name="settings_system_auto_backup_signing_key_description">Desa la clau que signa les aplicacions modificades al costat de la configuració</string>
     <string name="settings_system_auto_backup_signing_key_warning_title">Fer una còpia de seguretat de la clau de signatura?</string>
     <string name="settings_system_auto_backup_signing_key_warning_message">Qualsevol persona que tingui aquest fitxer pot signar actualitzacions que s\'instal·lin sobre les vostres aplicacions modificades. Mantingueu la carpeta privada i compartiu-la només amb els vostres propis dispositius</string>
-    <string name="settings_system_auto_backup_footer">Es guarda una còpia quan surts de Morphe després de canviar alguna cosa. Es conserven els %s més recents</string>
+    <string name="settings_system_auto_backup_footer">Es guarda una còpia quan surts de Mamu després de canviar alguna cosa. Es conserven els %s més recents</string>
     <string name="settings_system_auto_backup_failed">No s\'ha pogut desar l\'última còpia de seguretat. Torneu a triar la carpeta</string>
-    <string name="settings_system_import_manager_settings_fail">Error en importar la configuració de Morphe: %s</string>
-    <string name="settings_system_import_manager_settings_success">Configuració de Morphe importada</string>
-    <string name="settings_system_import_manager_settings_mode_title">Importa la configuració de Morphe</string>
+    <string name="settings_system_import_manager_settings_fail">Error en importar la configuració de Mamu: %s</string>
+    <string name="settings_system_import_manager_settings_success">Configuració de Mamu importada</string>
+    <string name="settings_system_import_manager_settings_mode_title">Importa la configuració de Mamu</string>
     <string name="settings_system_import_manager_settings_mode_description">Tria com s\'han d\'aplicar la configuració i les fonts importades</string>
     <string name="settings_system_import_selections_mode_title">Importa les seleccions de patxes</string>
     <string name="settings_system_import_selections_mode_description">Tria com s\'han d\'aplicar les seleccions importades i les opcions de patch</string>
@@ -1217,8 +1217,8 @@ Detalls: %2$s"</string>
     <string name="import_mode_replace_description">Coincideix exactament amb la còpia de seguretat. Els elements que faltin a la còpia de seguretat s\'eliminaran</string>
     <string name="import_mode_merge_title">Fusionar amb l\'existent</string>
     <string name="import_mode_merge_description">Afegeix els elements que faltin de la còpia de seguretat. Els elements existents es mantenen sense canvis</string>
-    <string name="settings_system_export_manager_settings_fail">Error en exportar la configuració de Morphe: %s</string>
-    <string name="settings_system_export_manager_settings_success">Configuració de Morphe exportada</string>
+    <string name="settings_system_export_manager_settings_fail">Error en exportar la configuració de Mamu: %s</string>
+    <string name="settings_system_export_manager_settings_success">Configuració de Mamu exportada</string>
     <string name="settings_system_export_debug_logs">Exportar registres de depuració</string>
     <string name="settings_system_export_debug_logs_description">Desa els registres del sistema per a la resolució de problemes</string>
     <string name="settings_system_export_debug_logs_export_read_failed">Error en llegir els registres (codi de sortida %s)</string>
@@ -1236,7 +1236,7 @@ Detalls: %2$s"</string>
     <!-- Settings - System Tab - Storage Management screen -->
     <string name="settings_system_storage_management_title">Gestió de l\'emmagatzematge</string>
     <string name="settings_system_storage_management_description">Mostra l\'ús del disc i neteja els fitxers de la memòria cau</string>
-    <!-- Shown under how much Morphe takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
+    <!-- Shown under how much Mamu takes up. "%1$s" is the space still available on the device, already formatted with its unit. "Free" as in unused, not as in free of charge. -->
     <string name="settings_system_storage_free">%1$s lliure</string>
     <string name="settings_system_storage_saved_apks">APKs desades</string>
     <string name="settings_system_storage_caches">Memòries cau</string>
@@ -1259,7 +1259,7 @@ Detalls: %2$s"</string>
     <string name="settings_system_storage_clear_anyway">Esborra igualment</string>
     <string name="settings_system_storage_nothing_to_clear">No hi ha res a esborrar</string>
     <string name="settings_system_storage_open_app_info_title">Obre l\'emmagatzematge de l\'aplicació Android</string>
-    <string name="settings_system_storage_open_app_info_description">Gestiona o esborra totes les dades de Morphe a través dels ajustos del sistema</string>
+    <string name="settings_system_storage_open_app_info_description">Gestiona o esborra totes les dades de Mamu a través dels ajustos del sistema</string>
     <string name="settings_system_save_original_apks_title">Conservar els APK originals</string>
     <string name="settings_system_save_original_apks_description">Desa l\'APK pre-patch perquè es pugui reutilitzar per a un nou patch sense haver de seleccionar el fitxer novament</string>
     <string name="settings_system_save_patched_apks_title">Conservar els APK patxats</string>
@@ -1313,13 +1313,13 @@ Detalls: %2$s"</string>
     <string name="copy_selection_available_format">%1$s de %2$s disponibles</string>
     <!-- Settings - System Tab - Custom file picker -->
     <string name="settings_system_custom_file_picker">Selector de fitxers personalitzat</string>
-    <string name="settings_system_custom_file_picker_description">Utilitza el selector de fitxers integrat de Morphe en lloc del del sistema</string>
+    <string name="settings_system_custom_file_picker_description">Utilitza el selector de fitxers integrat de Mamu en lloc del del sistema</string>
     <!-- Settings - System Tab - APK download helper -->
     <string name="settings_system_apk_download_helper">Ajudant de descàrrega d\'APK</string>
     <string name="settings_system_apk_download_helper_trusted_count">De confiança: %1$d de %2$d</string>
     <string name="settings_system_apk_download_helper_dialog_description">Les aplicacions d\'ajuda poden descarregar APK originals per a tu. En les instruccions de descàrrega només s\'ofereixen aquelles en què confies aquí</string>
     <string name="settings_system_apk_download_helper_trust_title">Confies en aquest ajudant?</string>
-    <string name="settings_system_apk_download_helper_warning">L\'APK prové de l\'aplicació d\'ajuda, així que només confia en aplicacions que coneixis. Morphe continua comprovant el paquet, la versió i la signatura de cada fitxer abans del retallat</string>
+    <string name="settings_system_apk_download_helper_warning">L\'APK prové de l\'aplicació d\'ajuda, així que només confia en aplicacions que coneixis. Mamu continua comprovant el paquet, la versió i la signatura de cada fitxer abans del retallat</string>
     <string name="settings_system_apk_download_helper_installed_by">Instal·lat per %s</string>
     <string name="settings_system_apk_download_helper_installed_by_unknown">Instal·lador desconegut</string>
     <string name="settings_system_apk_download_helper_open_directly">Obrir l\'ajudant immediatament</string>
@@ -1352,7 +1352,7 @@ Detalls: %2$s"</string>
     <string name="settings_about_section_project">Projecte</string>
     <string name="settings_about_section_help">Ajuda</string>
     <string name="credits_prior_development">Desenvolupament previ</string>
-    <!-- Names which part of Morphe the About dialog is about, under the name "Morphe". The patched apps say "Patches" in the same place -->
+    <!-- Names which part of Mamu the About dialog is about, under the name "Mamu". The patched apps say "Patches" in the same place -->
     <string name="about_component">Gestor তোর</string>
     <string name="about_update_available">Actualització disponible: %s</string>
     <string name="about_up_to_date">Actualitzat</string>
@@ -1365,7 +1365,7 @@ Detalls: %2$s"</string>
     <string name="contributors_all_time">Tots els temps</string>
     <string name="contributors_6_months">6 mesos</string>
     <string name="contributors_3_months">3 mesos</string>
-    <!-- People who donate to Morphe -->
+    <!-- People who donate to Mamu -->
     <string name="supporters">Supports</string>
     <string name="supporters_description">Patrocinadors a Open Collective</string>
     <string name="supporters_become">Convertiu-vos en un suport</string>
@@ -1373,7 +1373,7 @@ Detalls: %2$s"</string>
     <string name="people_more">I %s més</string>
     <string name="people_unavailable">No s\'ha pogut carregar la llista</string>
     <string name="opensource_licenses">Llicències de codi obert</string>
-    <string name="opensource_licenses_description">Les llibreries sobre les quals es construeix Morphe</string>
+    <string name="opensource_licenses_description">Les llibreries sobre les quals es construeix Mamu</string>
     <string name="opensource_licenses_search">Cerca biblioteques i llicències</string>
     <!-- Easter egg offered after seven taps on the version in the About dialog -->
     <string name="easter_egg_pill_title">Una elecció</string>
@@ -1398,12 +1398,12 @@ Detalls: %2$s"</string>
     <string name="settings_section_patcher">Patxador</string>
     <string name="settings_section_updates">Actualitzacions</string>
     <string name="settings_section_patching">Patxat</string>
-    <string name="settings_section_appearance_summary">Com es veu Morphe</string>
+    <string name="settings_section_appearance_summary">Com es veu Mamu</string>
     <string name="settings_section_patch_options_summary">Amb què el mode simple patxa les aplicacions</string>
     <string name="settings_section_general">General</string>
     <string name="settings_section_patcher_summary">Com es patxen les aplicacions en aquest dispositiu</string>
     <string name="settings_section_help_info">Ajuda &amp; info</string>
-    <string name="settings_section_about_summary">Més sobre Morphe i com obtenir ajuda</string>
+    <string name="settings_section_about_summary">Més sobre Mamu i com obtenir ajuda</string>
     <string name="settings_section_local_files">Fitxers</string>
     <string name="settings_section_backup">Còpia de seguretat</string>
     <string name="settings_section_import_export">Importar i exportar</string>
@@ -1566,7 +1566,7 @@ Detalls: %2$s"</string>
     <string name="update_completed">Actualització instal·lada</string>
     <string name="install_update_manager_failed">Error en instal·lar l\'actualització</string>
     <string name="installing_manager_update">Instal·lant l\'actualització…</string>
-    <string name="installing_manager_update_hint">Morphe es tancarà per finalitzar l\'actualització</string>
+    <string name="installing_manager_update_hint">Mamu es tancarà per finalitzar l\'actualització</string>
     <string name="downloading_manager_update">Descarregant l\'actualització…</string>
     <!-- Shown while downloading when the server does not report the total size. "%1$s" is the megabytes so far. -->
     <string name="manager_update_progress_downloaded">%1$s MB descarregats</string>
@@ -1589,7 +1589,7 @@ Voleu continuar?"</string>
     <string name="onboarding_signing_key_desc">Fes una còpia de seguretat de la clau que signa les teves aplicacions patxades. Sense ella, només es poden actualitzar després de desinstal·lar-les</string>
     <string name="onboarding_swipe_title">Gestos de lliscar</string>
     <string name="onboarding_swipe_desc">Desllisa a la dreta en una targeta d\'aplicació per veure els seus paquets de correcció disponibles. Desllisa a l\'esquerra per ocultar la targeta de la pantalla d\'inici</string>
-    <string name="onboarding_settings_desc">Personalitza Morphe: aparença, opcions avançades i eines del sistema</string>
+    <string name="onboarding_settings_desc">Personalitza Mamu: aparença, opcions avançades i eines del sistema</string>
     <string name="onboarding_sources_patches_desc">Toca per veure tots els patxes disponibles d\'aquesta font</string>
     <string name="onboarding_sources_version_desc">Toca la versió per veure el registre de canvis complet d\'aquesta font</string>
     <string name="onboarding_sources_apps_desc">Toca per veure les aplicacions que aquesta font patxa i tria per a quines d\'elles ofereix patxos</string>
@@ -1601,9 +1601,28 @@ Voleu continuar?"</string>
     <string name="onboarding_system_file_picker_desc">Activeu-ho per utilitzar el navegador de fitxers integrat en lloc del selector del sistema en seleccionar APKs o magatzems de claus</string>
     <!-- Tour prompt dialog shown after first successful patch install -->
     <string name="tour_prompt_title">Tour ràpid de funcions</string>
-    <string name="tour_prompt_desc">Voleu un tour ràpid per les funcions clau de Morphe?</string>
+    <string name="tour_prompt_desc">Voleu un tour ràpid per les funcions clau de Mamu?</string>
     <!-- Label of a footer button beside "Skip". Keep it short, a longer one moves the buttons onto two rows -->
     <string name="tour_prompt_confirm">Mostra\'m l\'app</string>
     <string name="onboarding_restart_title">Tour de funcions</string>
     <string name="onboarding_restart_desc">Un tour guiat per les funcions clau</string>
+
+    <string name="home_app_filter_all_description">Totes les aplicacions de la pantalla d\'inici</string>
+    <string name="home_app_filter_patched_description">Aplicacions que has patxat o desat amb Mamu</string>
+    <string name="home_app_filter_not_patched_description">Aplicacions que encara no has patxat a Mamu</string>
+    <string name="home_app_filter_installed_description">Aplicacions actualment instal·lades en aquest dispositiu</string>
+    <string name="home_app_filter_uninstalled_description">Aplicacions patchades amb Mamu que ja no estan en aquest dispositiu</string>
+    <string name="home_app_filter_clones_description">Aplicacions creades sota un nom de paquet propi, instal·lades al costat de l\'original</string>
+    <string name="home_app_sort_name_asc_description">Alfabètic, de la A a la Z</string>
+    <string name="home_app_sort_name_desc_description">Ordre alfabètic invers, de la Z a la A</string>
+    <string name="home_app_sort_recently_patched_description">Les aplicacions corregides més recentment apareixen primer</string>
+    <string name="home_category_custom">Personalitzat</string>
+    <string name="sources_filter_all_description">Totes les fonts</string>
+    <string name="sources_filter_enabled_description">Les patches de les fonts es prenen de</string>
+    <string name="sources_filter_disabled_description">Fonts desactivades</string>
+    <string name="sources_filter_issues_description">Fonts que estan bloquejades, que han fallat en carregar-se o que requereixen una versió més recent de Mamu</string>
+    <string name="sources_sort_last_updated_description">Actualitzacions de fonts més recents primer</string>
+    <string name="sources_sort_enabled_first_description">Mostra les fonts actives abans que les deshabilitades</string>
+    <string name="home_apk_availability_installed_version">Instal·lada en aquest dispositiu: %s</string>
+    <string name="settings_system_import_keystore_dialog_format_field">Format del magatzem de claus</string>
 </resources>

@@ -250,8 +250,9 @@ class PatchRunProgress(
      * The log survives: it is the only record of why the run started over. Whether the input is
      * a split archive is a property of the input rather than of the attempt, so that is kept too.
      */
-    fun onRestart() {
+    fun onRestart(remainingPatches: Int = totalPatches) {
         scope.launch(Dispatchers.Main) {
+            totalPatches = remainingPatches
             completedPatches = 0
             failedPatch = null
             currentStepIndex = 0

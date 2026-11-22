@@ -30,6 +30,8 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.encodeToStream
 import java.io.IOException
@@ -51,12 +53,13 @@ class AutoBackup(
     private val exporter: SettingsExporter,
     private val keystoreManager: KeystoreManager
 ) {
+    private val backupMutex = Mutex()
     /**
      * Starts backing up into [folder], just picked by the user, and makes the first copy at once,
      * which shows the folder works. Holds on to the grant of a folder from the system picker and
      * releases the one held before. False when the first copy could not be written.
      */
-    suspend fun enable(folder: Uri): Boolean {
+    suspend fun enable(folder: Uri): Boolean = backupMutex.withLock {
         if (folder.scheme == ContentResolver.SCHEME_CONTENT) {
             app.contentResolver.takePersistableUriPermission(folder, FOLDER_ACCESS)
         }
@@ -67,7 +70,7 @@ class AutoBackup(
             prefs.autoBackupFailed.value = false
         }
         // Forced, as the copies made so far are in the old folder
-        return backUpNow()
+        backUpLocked(force = true)
     }
 
     /**
@@ -76,8 +79,8 @@ class AutoBackup(
      */
     suspend fun backUpNow(): Boolean = withContext(NonCancellable) { backUp(force = true) }
 
-    /** Stops backing up and releases the folder. The copies already made stay in it. */
-    suspend fun disable() {
+    /** Stops backing up and lets go of the folder. The copies already made stay in it. */
+    suspend fun disable() = backupMutex.withLock {
         // First, so a copy being written cannot record itself after the rest is cleared
         AutoBackupWorker.cancel(app)
         releaseGrant(prefs.autoBackupFolder.get())
@@ -90,7 +93,7 @@ class AutoBackup(
     }
 
     suspend fun setInterval(interval: ScheduleInterval) {
-        prefs.autoBackupInterval.update(interval)
+        backupMutex.withLock { prefs.autoBackupInterval.update(interval) }
         scheduleNext(replace = true)
     }
 
@@ -98,7 +101,7 @@ class AutoBackup(
      * Whether the signing key goes along. Turned on, it is written right away rather than with
      * the next change.
      */
-    suspend fun setIncludesSigningKey(include: Boolean) {
+    suspend fun setIncludesSigningKey(include: Boolean) = backupMutex.withLock {
         prefs.autoBackupSigningKey.update(include)
         if (include && isEnabled()) AutoBackupWorker.schedule(app, delayMillis = 0, replace = true)
     }
@@ -108,8 +111,8 @@ class AutoBackup(
      * user leaves the app. A copy already planned stays as it is unless [replace] moves it, as its
      * time only changes along with the interval.
      */
-    suspend fun scheduleNext(replace: Boolean = false) {
-        if (!isEnabled()) return
+    suspend fun scheduleNext(replace: Boolean = false) = backupMutex.withLock {
+        if (!isEnabled()) return@withLock
         val interval = prefs.autoBackupInterval.get().minutes.minutes
         val dueAt = prefs.lastAutoBackupAt.get() + interval.inWholeMilliseconds
         AutoBackupWorker.schedule(app, (dueAt - System.currentTimeMillis()).coerceAtLeast(0), replace)
@@ -120,7 +123,9 @@ class AutoBackup(
      * along with the signing key where the user wants it. False when the folder could not be
      * written to, which the settings show.
      */
-    suspend fun backUp(force: Boolean): Boolean = withContext(Dispatchers.IO) {
+    suspend fun backUp(force: Boolean): Boolean = backupMutex.withLock { backUpLocked(force) }
+
+    private suspend fun backUpLocked(force: Boolean): Boolean = withContext(Dispatchers.IO) {
         val folderUri = prefs.autoBackupFolder.get().ifEmpty { return@withContext true }
         val succeeded = try {
             val folder = app.pickedFolder(folderUri.toUri())?.takeIf { it.canWrite() }
@@ -144,7 +149,14 @@ class AutoBackup(
         val digest = export.digest()
         if (!force && digest == prefs.lastAutoBackupDigest.get()) return
 
-        folder.writeNew(JSON_MIMETYPE, FilenameUtils.timestamped(SETTINGS_FILE_NAME)) { output ->
+        val timestamped = FilenameUtils.timestamped(SETTINGS_FILE_NAME).removeSuffix(".json")
+        var sequence = 0
+        var name: String
+        do {
+            name = "$timestamped-${sequence.toString().padStart(6, '0')}.json"
+            sequence++
+        } while (folder.findFile(name) != null)
+        folder.writeNew(JSON_MIMETYPE, name) { output ->
             settingsJson.encodeToStream(export, output)
         }
         prefs.edit {
@@ -180,7 +192,16 @@ class AutoBackup(
 
     /** Writes a new file [name] into this folder, and removes it again should the write fail halfway. */
     private inline fun DocumentFile.writeNew(mimeType: String, name: String, write: (OutputStream) -> Unit) {
-        val file = getOrCreateFile(mimeType, name) ?: throw IOException("Could not create $name")
+        // A failed new copy may be removed; an existing verified copy must never be opened or
+        // deleted by that failure path. File-backed folders support exclusive creation.
+        if (findFile(name) != null) throw IOException("Backup already exists: $name")
+        val file = if (uri.scheme == ContentResolver.SCHEME_FILE) {
+            val target = uri.path?.let { java.io.File(it, name) } ?: throw IOException("Invalid backup folder")
+            if (!target.createNewFile()) throw IOException("Backup already exists: $name")
+            DocumentFile.fromFile(target)
+        } else {
+            createFile(mimeType, name) ?: throw IOException("Could not create $name")
+        }
         try {
             app.contentResolver.openOutputStream(file.uri, "wt")!!.use(write)
         } catch (e: Exception) {

@@ -15,7 +15,6 @@ import app.morphe.manager.domain.batch.BatchPatchCoordinator
 import app.morphe.manager.domain.batch.BatchPlanResolver
 import app.morphe.manager.domain.batch.BatchTarget
 import app.morphe.manager.domain.manager.PreferencesManager
-import app.morphe.manager.ui.model.SourceScope
 import kotlinx.coroutines.launch
 
 class MainViewModel(
@@ -51,10 +50,19 @@ class MainViewModel(
     var pendingDeepLinkSource: DeepLinkSource? by mutableStateOf(null)
 
     /**
-     * A file opened with Morphe or shared to it, set by [app.morphe.manager.MainActivity.handleDeepLinkIntent]
-     * and handed to [app.morphe.manager.ui.viewmodel.HomeViewModel.openIncomingFile], which tells what it is.
+     * Set by [app.morphe.manager.MainActivity.handleDeepLinkIntent] when the app is opened
+     * by tapping a .mpp file in a file manager. HomeScreen observes this via LaunchedEffect,
+     * shows a confirmation dialog, then resets the flag to null.
      */
-    var pendingIncomingFile: IncomingFile? by mutableStateOf(null)
+    var pendingMppUri: Uri? by mutableStateOf(null)
+
+    /**
+     * Set by [app.morphe.manager.MainActivity.handleDeepLinkIntent] when an APK-family file
+     * is shared to Morphe via the system share sheet.
+     * HomeScreen observes this via LaunchedEffect, triggers
+     * [app.morphe.manager.ui.viewmodel.HomeViewModel.handleExternalApkUri], then resets to null.
+     */
+    var pendingExternalApkUri: Uri? by mutableStateOf(null)
 
     /** Batch patch request received from another app, waiting to be gated. */
     var pendingBatchPatch: BatchPatchRequest? by mutableStateOf(null)
@@ -156,18 +164,7 @@ class MainViewModel(
         approvedBatchPatch = null
     }
 
-    /**
-     * A file another app handed over. [shared] when it came through the share sheet, which also
-     * takes APK-family files, rather than opened with Morphe.
-     */
-    data class IncomingFile(val uri: Uri, val shared: Boolean)
-
-    /** A source a link asks to add, as much of it as [scope] says. */
-    data class DeepLinkSource(
-        val url: String,
-        val name: String?,
-        val scope: SourceScope = SourceScope.Whole
-    )
+    data class DeepLinkSource(val url: String, val name: String?)
 
     /**
      * A batch patch run requested through [app.morphe.manager.MainActivity.ACTION_BATCH_PATCH].

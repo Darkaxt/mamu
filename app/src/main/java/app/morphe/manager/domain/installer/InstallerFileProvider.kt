@@ -93,6 +93,14 @@ class InstallerFileProvider : ContentProvider() {
 
         fun authority(context: Context): String = "${context.packageName}.installerfileprovider"
 
+        /** Only Extended's native transfer staging URI, after the normal importer has copied it. */
+        fun discardNativeOriginal(context: Context, uri: Uri) {
+            if (uri.scheme != "content" || uri.authority != authority(context) || uri.pathSegments.size != 1) return
+            if (!Regex("native-original-(?:[0-9]+|play-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\\.(apk|apkm|xapk)")
+                    .matches(uri.lastPathSegment.orEmpty())) return
+            buildFile(context, uri).delete()
+        }
+
         fun buildUri(context: Context, fileName: String): Uri =
             Uri.Builder()
                 .scheme("content")
@@ -104,9 +112,10 @@ class InstallerFileProvider : ContentProvider() {
          * Copies [file] into the share directory as [name] (overwriting if size differs) and
          * returns a content URI for it. The name is what a receiving app shows for the file.
          */
-        fun getUriForFile(context: Context, file: File, name: String = file.name): Uri {
+        fun getUriForFile(context: Context, file: File, displayName: String = file.name): Uri {
+            require(displayName == File(displayName).name && ".." !in displayName) { "Invalid shared filename" }
             val shareDir = File(context.cacheDir, SHARE_DIR).also { it.mkdirs() }
-            val dest = File(shareDir, name)
+            val dest = File(shareDir, displayName)
             // Always copy if size or mtime differs. We stamp dest with the source's mtime
             // after each copy, so dest.lastModified() == file.lastModified() on the next
             // call only if the source hasn't changed — skipping the copy is then safe.

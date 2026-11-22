@@ -15,6 +15,7 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
 
 /**
  * Name and description as patch cards set them, for any card that should read as one of them, such
@@ -34,12 +35,12 @@ fun CardHeadingText(
 
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(Defaults.SpaceExtraSmall)
+        verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         // The name keeps the whole width, and the badges follow it, dropping to a line of their
         // own only where they do not fit beside it
         FlowRow(
-            horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceExtraSmall),
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
             itemVerticalAlignment = Alignment.CenterVertically
         ) {
             Text(
@@ -73,7 +74,7 @@ private fun NameLineBadges(lineHeight: TextUnit, badges: @Composable RowScope.()
     Layout(
         content = {
             Row(
-                horizontalArrangement = Arrangement.spacedBy(Defaults.SpaceExtraSmall),
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 content = badges
             )

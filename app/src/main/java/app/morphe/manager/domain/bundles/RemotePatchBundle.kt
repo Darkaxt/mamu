@@ -33,11 +33,27 @@ import java.io.IOException
 import java.net.URLEncoder
 import java.util.concurrent.ConcurrentHashMap
 import java.util.zip.ZipInputStream
+import org.json.JSONObject
 
 data class PatchBundleDownloadResult(
     val versionSignature: String,
     val assetCreatedAtMillis: Long?
 )
+
+internal fun installedPatchPublicationDay(record: String?, installedVersion: String?): String? = runCatching {
+    if (record == null || installedVersion == null) return null
+    val data = JSONObject(record)
+    if (data.getString("version") != installedVersion) return null
+    java.time.LocalDate.parse(data.getString("day")).toString()
+}.getOrNull()
+
+internal fun installedPatchPublicationTime(record: String?, installedVersion: String?): Long? {
+    val day = installedPatchPublicationDay(record, installedVersion) ?: return null
+    val date = java.time.LocalDate.parse(day)
+    val exact = runCatching { JSONObject(record!!).getLong("publishedAt") }.getOrNull()
+    return exact?.takeIf { java.time.Instant.ofEpochMilli(it).atZone(java.time.ZoneOffset.UTC).toLocalDate() == date }
+        ?: date.atStartOfDay(java.time.ZoneOffset.UTC).toInstant().toEpochMilli()
+}
 
 typealias PatchBundleDownloadProgress = (bytesRead: Long, bytesTotal: Long?) -> Unit
 
@@ -59,9 +75,34 @@ sealed class RemotePatchBundle(
     error: Throwable?,
     directory: File,
     val endpoint: String,
+    val autoUpdate: Boolean,
     enabled: Boolean,
     protected val services: RemoteBundleServices,
 ) : PatchBundleSource(name, uid, displayName, createdAt, updatedAt, error, directory, enabled) {
+    /** Explicit remote evidence, distinct from legacy createdAt which may be an import clock. */
+    val installedPublicationDay: String? get() = runCatching {
+        if (this is GitHubPullRequestBundle) return null // CI artifact creation is not a published release.
+        if (!hasInstalled()) return null
+        installedPatchPublicationDay(directory.resolve("publication.json").readText(Charsets.UTF_8), installedVersionSignatureInternal)
+    }.getOrNull()
+
+    val installedPublicationTime: Long? get() = runCatching {
+        if (this is GitHubPullRequestBundle || !hasInstalled()) return null
+        installedPatchPublicationTime(directory.resolve("publication.json").readText(Charsets.UTF_8), installedVersionSignatureInternal)
+    }.getOrNull()
+
+    private fun rememberInstalledPublication(info: ReleaseAsset) {
+        val target = directory.resolve("publication.json")
+        val staging = directory.resolve("publication.json.part")
+        try {
+            val day = info.createdAt.toLocalDate().toString()
+            staging.writeText(JSONObject().put("version", info.version).put("day", day)
+                .put("publishedAt", info.createdAt.toInstant(java.time.ZoneOffset.UTC).toEpochMilli()).toString(), Charsets.UTF_8)
+            if (!staging.renameTo(target)) throw IOException("Could not retain patch publication metadata")
+        } catch (error: Exception) {
+            android.util.Log.w("Morphe PatchPublication", "Patch publication date unavailable for source $uid", error)
+        } finally { staging.delete() }
+    }
     protected val http = services.http
     protected val api = services.api
     private val refusedReleaseFile = directory.resolve("refused-release")
@@ -69,14 +110,24 @@ sealed class RemotePatchBundle(
     override val patchSourceEntry: String get() = patchSourceEntryForEndpoint(endpoint)
 
     protected abstract suspend fun getLatestInfo(): ReleaseAsset
-    abstract override fun copy(
+    abstract fun copy(
+        error: Throwable? = this.error,
+        name: String = this.name,
+        displayName: String? = this.displayName,
+        createdAt: Long? = this.createdAt,
+        updatedAt: Long? = this.updatedAt,
+        autoUpdate: Boolean = this.autoUpdate,
+        enabled: Boolean = this.enabled
+    ): RemotePatchBundle
+
+    override fun copy(
         error: Throwable?,
         name: String,
         displayName: String?,
         createdAt: Long?,
         updatedAt: Long?,
         enabled: Boolean
-    ): RemotePatchBundle
+    ): RemotePatchBundle = copy(error, name, displayName, createdAt, updatedAt, this.autoUpdate, enabled)
 
     protected open suspend fun download(info: ReleaseAsset, onProgress: PatchBundleDownloadProgress? = null) =
         withContext(Dispatchers.IO) {
@@ -87,6 +138,7 @@ sealed class RemotePatchBundle(
                     onProgress = onProgress
                 )
             }
+            rememberInstalledPublication(info)
 
             PatchBundleDownloadResult(
                 versionSignature = info.version,
@@ -111,11 +163,16 @@ sealed class RemotePatchBundle(
     suspend fun update(onProgress: PatchBundleDownloadProgress? = null): PatchBundleDownloadResult? =
         withContext(Dispatchers.IO) {
             val info = latestInfo()
+            val remoteCreatedAt = info.createdAtMillis
 
             if (hasInstalled()
                 && info.version == installedVersionSignatureInternal
-                && info.createdAtMillis == createdAt
-            ) return@withContext null
+                && (remoteCreatedAt == null || remoteCreatedAt == createdAt)
+            ) {
+                // Backfill legacy installs from the same verified remote release, without a download.
+                rememberInstalledPublication(info)
+                return@withContext null
+            }
 
             downloadUnlessRefused(info, onProgress)
         }
@@ -329,10 +386,11 @@ class JsonPatchBundle(
     error: Throwable?,
     directory: File,
     endpoint: String,
+    autoUpdate: Boolean,
     enabled: Boolean,
     services: RemoteBundleServices,
     val usePrerelease: Boolean = false,
-) : RemotePatchBundle(name, uid, displayName, createdAt, updatedAt, installedVersionSignature, error, directory, endpoint, enabled, services) {
+) : RemotePatchBundle(name, uid, displayName, createdAt, updatedAt, installedVersionSignature, error, directory, endpoint, autoUpdate, enabled, services) {
 
     /**
      * The branch the endpoint URL currently points to.
@@ -454,15 +512,16 @@ class JsonPatchBundle(
         displayName: String?,
         createdAt: Long?,
         updatedAt: Long?,
+        autoUpdate: Boolean,
         enabled: Boolean
     ) = JsonPatchBundle(
         name, uid, displayName, createdAt, updatedAt,
-        installedVersionSignature, error, directory, endpoint, enabled, services, usePrerelease,
+        installedVersionSignature, error, directory, endpoint, autoUpdate, enabled, services, usePrerelease,
     )
 
     fun copy(usePrerelease: Boolean) = JsonPatchBundle(
         name, uid, displayName, createdAt, updatedAt,
-        installedVersionSignature, error, directory, endpoint, enabled, services, usePrerelease,
+        installedVersionSignature, error, directory, endpoint, autoUpdate, enabled, services, usePrerelease,
     )
 
     companion object {
@@ -485,11 +544,11 @@ class APIPatchBundle(
     error: Throwable?,
     directory: File,
     endpoint: String,
+    autoUpdate: Boolean,
     enabled: Boolean,
     services: RemoteBundleServices,
     val usePrerelease: Boolean = false,
-) : RemotePatchBundle(name, uid, displayName, createdAt, updatedAt, installedVersionSignature, error, directory, endpoint, enabled, services) {
-    // Releases declare their key, but the API fallback and older releases do not
+) : RemotePatchBundle(name, uid, displayName, createdAt, updatedAt, installedVersionSignature, error, directory, endpoint, autoUpdate, enabled, services) {
     override suspend fun getLatestInfo() = api.getPatchesUpdate(usePrerelease).getOrThrow()
         .let { it.copy(publicKey = it.publicKey ?: SOURCE_SIGNING_KEY) }
 
@@ -521,15 +580,16 @@ class APIPatchBundle(
         displayName: String?,
         createdAt: Long?,
         updatedAt: Long?,
+        autoUpdate: Boolean,
         enabled: Boolean
     ) = APIPatchBundle(
         name, uid, displayName, createdAt, updatedAt,
-        installedVersionSignature, error, directory, endpoint, enabled, services, usePrerelease,
+        installedVersionSignature, error, directory, endpoint, autoUpdate, enabled, services, usePrerelease,
     )
 
     fun copy(usePrerelease: Boolean) = APIPatchBundle(
         name, uid, displayName, createdAt, updatedAt,
-        installedVersionSignature, error, directory, endpoint, enabled, services, usePrerelease,
+        installedVersionSignature, error, directory, endpoint, autoUpdate, enabled, services, usePrerelease,
     )
 }
 
@@ -543,9 +603,10 @@ class GitHubPullRequestBundle(
     error: Throwable?,
     directory: File,
     endpoint: String,
+    autoUpdate: Boolean,
     enabled: Boolean,
     services: RemoteBundleServices
-) : RemotePatchBundle(name, uid, displayName, createdAt, updatedAt, installedVersionSignature, error, directory, endpoint, enabled, services) {
+) : RemotePatchBundle(name, uid, displayName, createdAt, updatedAt, installedVersionSignature, error, directory, endpoint, autoUpdate, enabled, services) {
 
     override suspend fun getLatestInfo() = withContext(Dispatchers.IO) {
         val (owner, repo, prNumber) = endpoint.split("/").let { parts ->
@@ -646,6 +707,7 @@ class GitHubPullRequestBundle(
         displayName: String?,
         createdAt: Long?,
         updatedAt: Long?,
+        autoUpdate: Boolean,
         enabled: Boolean
     ) = GitHubPullRequestBundle(
         name,
@@ -657,6 +719,7 @@ class GitHubPullRequestBundle(
         error,
         directory,
         endpoint,
+        autoUpdate,
         enabled,
         services
     )

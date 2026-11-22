@@ -84,7 +84,6 @@ class PreferencesManager(
     val showRepatchNotice = booleanPreference("show_repatch_notice", true)
 
     /** Whether the apps list ends on a card leading to the community patches for more apps. */
-    val showMoreAppsCard = booleanPreference("show_more_apps_card", true)
     val customAccentColor = stringPreference("custom_accent_color", "")
     val customThemeColor = stringPreference("custom_theme_color", "")
     val appCardColorMode = enumPreference("app_card_color_mode", AppCardColorMode.DEFAULT)
@@ -107,6 +106,13 @@ class PreferencesManager(
     /** UIDs of bundles for which experimental app versions are preferred as the recommended target. */
     val bundleExperimentalVersionsEnabled = stringSetPreference("bundle_experimental_versions_enabled", emptySet())
 
+    /** Explicit source deletions remain excluded from automatic community discovery. */
+    /** Patch-panel visibility does not disable cached bundles or their update checks. */
+    val patchPanelAppHiddenSources = stringSetPreference("patch_panel_app_hidden_sources", emptySet())
+    val patchPanelGlobalHiddenSources = stringSetPreference("patch_panel_global_hidden_sources", emptySet())
+    val patchPanelUnsupportedAcknowledgements = stringSetPreference("patch_panel_unsupported_acknowledgements", emptySet())
+
+    val communityCatalogueExclusions = stringSetPreference("community_catalogue_exclusions", emptySet())
     /** Packages whose experimental version warning was confirmed, which is asked once per app. */
     val experimentalVersionsConfirmed = stringSetPreference("experimental_versions_confirmed", emptySet())
 
@@ -115,6 +121,8 @@ class PreferencesManager(
 
     /**  How often the background update check should run. */
     val updateCheckInterval = enumPreference("update_check_interval", ScheduleInterval.DAILY)
+
+    val openApkDownloadHelperDirectly = booleanPreference("open_apk_download_helper_directly", false)
 
     /** Whether other apps may start a batch patch run through an intent. */
     val externalBatchPatchEnabled = booleanPreference("external_batch_patch_enabled", false)
@@ -204,10 +212,9 @@ class PreferencesManager(
     val ignoredAppLinksPackages = stringSetPreference("ignored_app_links_packages", emptySet())
 
     /** Packages of the third-party APK download helpers the user trusts to be offered. */
-    val trustedApkDownloadHelpers = stringSetPreference("trusted_apk_download_helpers", emptySet())
+    val nativeByparrEndpoint = stringPreference("native_byparr_endpoint", "")
 
-    /** Whether asking for an APK starts the helper flow at once, over the download instructions. */
-    val openApkDownloadHelperDirectly = booleanPreference("open_apk_download_helper_directly", false)
+    val trustedApkDownloadHelpers = stringSetPreference("trusted_apk_download_helpers", emptySet())
 
     /** Whether a batch queue asks the trusted helper for APKs that are missing or behind on its own. */
     val autoDownloadApkHelpersInBatch = booleanPreference("auto_download_apk_helpers_in_batch", false)
@@ -391,6 +398,7 @@ class PreferencesManager(
         val externalBatchPatchEnabled: Boolean? = null,
         val externalBatchPatchAllowlist: Set<String>? = null,
         val customBundles: List<BundleSnapshot>? = null,
+        val communityCatalogueExclusions: Set<String>? = null,
         val filePickerSortMode: String? = null,
         val filePickerShowHiddenFiles: Boolean? = null,
         val useCustomFilePicker: Boolean? = null,
@@ -398,6 +406,7 @@ class PreferencesManager(
         /** Legacy all-or-nothing helper switch, read only from older exports. */
         val useApkDownloadHelper: Boolean? = null,
         val trustedApkDownloadHelpers: Set<String>? = null,
+        val nativeByparrEndpoint: String? = null,
         val openApkDownloadHelperDirectly: Boolean? = null,
         val autoDownloadApkHelpersInBatch: Boolean? = null,
         val sourceBundleSortMode: String? = null,
@@ -465,12 +474,14 @@ class PreferencesManager(
                 externalBatchPatchEnabled = externalBatchPatchEnabled.takeIf { patching },
                 externalBatchPatchAllowlist = externalBatchPatchAllowlist.takeIf { patching },
                 customBundles = customBundles.takeIf { sources },
+                communityCatalogueExclusions = communityCatalogueExclusions.takeIf { sources },
                 filePickerSortMode = filePickerSortMode.takeIf { patching },
                 filePickerShowHiddenFiles = filePickerShowHiddenFiles.takeIf { patching },
                 useCustomFilePicker = useCustomFilePicker.takeIf { patching },
                 customFilePickerUserConfigured = customFilePickerUserConfigured.takeIf { patching },
                 useApkDownloadHelper = useApkDownloadHelper.takeIf { patching },
                 trustedApkDownloadHelpers = trustedApkDownloadHelpers.takeIf { patching },
+                nativeByparrEndpoint = nativeByparrEndpoint.takeIf { patching },
                 openApkDownloadHelperDirectly = openApkDownloadHelperDirectly.takeIf { patching },
                 autoDownloadApkHelpersInBatch = autoDownloadApkHelpersInBatch.takeIf { patching },
                 sourceBundleSortMode = sourceBundleSortMode.takeIf { sources },
@@ -485,6 +496,7 @@ class PreferencesManager(
     }
 
     suspend fun exportSettings() = SettingsSnapshot(
+        communityCatalogueExclusions = communityCatalogueExclusions.get(),
         dynamicColor = themeStyle.get() == ThemeStyle.MATERIAL_YOU,
         pureBlackTheme = pureBlackTheme.get(),
         colorAccents = colorAccents.get(),
@@ -531,6 +543,7 @@ class PreferencesManager(
         useCustomFilePicker = useCustomFilePicker.get(),
         customFilePickerUserConfigured = customFilePickerUserConfigured.get(),
         trustedApkDownloadHelpers = trustedApkDownloadHelpers.get(),
+        nativeByparrEndpoint = nativeByparrEndpoint.get(),
         openApkDownloadHelperDirectly = openApkDownloadHelperDirectly.get(),
         autoDownloadApkHelpersInBatch = autoDownloadApkHelpersInBatch.get(),
         sourceBundleSortMode = sourceBundleSortMode.get(),
@@ -542,6 +555,7 @@ class PreferencesManager(
     )
 
     suspend fun importSettings(snapshot: SettingsSnapshot) = edit {
+        snapshot.communityCatalogueExclusions?.let { communityCatalogueExclusions.value = it }
         snapshot.pureBlackTheme?.let { pureBlackTheme.value = it }
         snapshot.colorAccents?.let { colorAccents.value = it }
         snapshot.outlines?.let { outlines.value = it }
@@ -611,6 +625,7 @@ class PreferencesManager(
         snapshot.filePickerShowHiddenFiles?.let { filePickerShowHiddenFiles.value = it }
         snapshot.useCustomFilePicker?.let { useCustomFilePicker.value = it }
         snapshot.customFilePickerUserConfigured?.let { customFilePickerUserConfigured.value = it }
+        snapshot.nativeByparrEndpoint?.let { nativeByparrEndpoint.value = it }
         snapshot.trustedApkDownloadHelpers?.let { trustedApkDownloadHelpers.value = it }
             ?: run {
                 if (snapshot.useApkDownloadHelper == true) {
