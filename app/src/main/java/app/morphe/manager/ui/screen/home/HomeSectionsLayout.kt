@@ -82,8 +82,6 @@ data class HomeAppListUi(
     val visible: List<HomeAppItem>,
     val hidden: List<HomeAppItem>,
     val installedAppsLoading: Boolean,
-    /** What still loads behind cards already on screen, as a string resource, or null. */
-    val backgroundLoading: Int? = null,
     val showGestureHint: Boolean,
     val sortMode: HomeAppSortMode,
     val filterMode: HomeAppFilterMode,
@@ -94,7 +92,10 @@ data class HomeAppListUi(
     val library: HomeLibraryProjection? = null,
     val librarySelection: HomeLibrarySelection = HomeLibrarySelection(),
     val storeListings: Map<String, PlayStoreListing> = emptyMap(),
-    val playVersions: Map<String, app.morphe.manager.ui.viewmodel.HomePlayVersion> = emptyMap()
+    val playVersions: Map<String, app.morphe.manager.ui.viewmodel.HomePlayVersion> = emptyMap(),
+    // Last, so positional callers keep their meaning
+    /** What still loads behind cards already on screen, as a string resource, or null. */
+    val backgroundLoading: Int? = null,
 )
 
 /** Callbacks fired from an app card. */
