@@ -82,6 +82,8 @@ data class HomeAppListUi(
     val visible: List<HomeAppItem>,
     val hidden: List<HomeAppItem>,
     val installedAppsLoading: Boolean,
+    /** What still loads behind cards already on screen, as a string resource, or null. */
+    val backgroundLoading: Int? = null,
     val showGestureHint: Boolean,
     val sortMode: HomeAppSortMode,
     val filterMode: HomeAppFilterMode,
@@ -214,6 +216,7 @@ fun SectionsLayout(
                 onBatch = notifications.batchQueue.takeIf {
                     it.preparedCount > 0 || it.run?.isActive == true || it.run?.hasOutcome == true
                 }?.onShow)
+            HomeBackgroundLoadingBar(apps.backgroundLoading, Modifier.padding(horizontal = windowSize.contentPadding))
             CompositionLocalProvider(LocalStoreListings provides apps.storeListings,
                 LocalHomePlayVersions provides apps.playVersions) {
                 Box(Modifier.weight(1f).fillMaxWidth().onGloballyPositioned {
@@ -1227,5 +1230,22 @@ private fun LazyListScope.filterEmptyState(
             contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.animateItem()
         )
+    }
+}
+
+/** A thin bar while sources load or installs are checked behind the cards already shown. */
+@Composable
+private fun HomeBackgroundLoadingBar(@androidx.annotation.StringRes label: Int?, modifier: Modifier = Modifier) {
+    // Keeps the last label while the bar fades out
+    var shown by remember { mutableStateOf(label) }
+    if (label != null) shown = label
+    AnimatedVisibility(visible = label != null, modifier = modifier) {
+        Column(Modifier.fillMaxWidth().padding(vertical = 4.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            androidx.compose.material3.LinearProgressIndicator(Modifier.fillMaxWidth())
+            shown?.let {
+                Text(stringResource(it), style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        }
     }
 }

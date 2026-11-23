@@ -117,6 +117,14 @@ fun HomeScreen(
     val showCategoryViewSwitcher = homeAppState?.showCategoryViewSwitcher == true
     val homeAppSourceGroups = homeAppState?.sourceGroups ?: emptyList()
     val bundlePipelineLoading = homeAppState == null
+    val bundleState by homeViewModel.patchBundleRepository.bundleState.collectAsStateWithLifecycle()
+    val sourcesLoading = when (val state = bundleState) {
+        is app.morphe.manager.domain.repository.PatchBundleRepository.BundleState.Loading -> true
+        is app.morphe.manager.domain.repository.PatchBundleRepository.BundleState.Ready ->
+            availablePatches <= 0 && state.sources.values.any { it.enabled }
+    }
+    val installsChecking = homeAppItems.any { it.installedApp != null && it.isInstallStatePending } ||
+            hiddenAppItems.any { it.installedApp != null && it.isInstallStatePending }
     val showOtherAppsButton by homeViewModel.apps.showOtherAppsButton.collectAsStateWithLifecycle()
     val showSearchButton by homeViewModel.apps.showSearchButton.collectAsStateWithLifecycle()
     val batchRun by homeViewModel.batchRun.collectAsStateWithLifecycle()
@@ -310,6 +318,11 @@ fun HomeScreen(
                     visible = homeAppItems,
                     hidden = hiddenAppItems,
                     installedAppsLoading = bundlePipelineLoading || homeViewModel.installedAppsLoading,
+                    backgroundLoading = when {
+                        sourcesLoading -> R.string.home_loading_sources
+                        installsChecking -> R.string.home_checking_installs
+                        else -> null
+                    },
                     showGestureHint = showGestureHint,
                     sortMode = homeAppSortMode,
                     filterMode = HomeAppFilterMode.fromPreference(homeAppFilterModePref),

@@ -676,10 +676,11 @@ fun InstalledAppInfoDialog(
                 ActionsSection(
                     // Left out where a banner above already carries it
                     primary = ActionItem(
-                        text = stringResource(R.string.patch),
+                        text = stringResource(if (availablePatches > 0) R.string.patch else R.string.home_loading_sources),
                         icon = Icons.Outlined.AutoFixHigh,
                         onClick = ::handlePatchClick,
-                        enabled = availablePatches > 0
+                        enabled = availablePatches > 0,
+                        isLoading = availablePatches <= 0
                     ).takeIf { !showsRebuildBanner && !viewModel.isAppDeleted },
                     tiles = installedAppTiles(
                         viewModel = viewModel,
