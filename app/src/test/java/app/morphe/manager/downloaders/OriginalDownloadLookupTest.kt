@@ -289,8 +289,10 @@ class OriginalDownloadLookupTest {
                 val error = assertThrows(IOException::class.java) {
                     OriginalDownloadLookup(target).fetch(server.client, server.endpoint, mirror, listOf("arm64-v8a")) {}
                 }
-                assertTrue(error.message!!.contains("APKPure lookup returned HTTP $status"))
-                assertEquals(listOf(mirror, StoreSearch.query(target, DownloadSource.APK_PURE)), server.seen.toList())
+                assertTrue(error.message!!.contains("APKPure: APKPure lookup returned HTTP $status"))
+                // A refused site hands on to the next one, and none is asked twice
+                assertEquals(listOf(mirror) + listOf(DownloadSource.APK_PURE, DownloadSource.APK_COMBO, DownloadSource.UPTODOWN)
+                    .map { StoreSearch.query(target, it) }, server.seen.toList())
                 assertTrue(server.seen.none { it.contains("google.com") })
             }
         }
