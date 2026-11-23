@@ -113,8 +113,9 @@ class HomeAppSortingTest {
         val cache = CachedHome(cards.map(::CachedCard), cards.map(::CachedCard), emptyList())
         val prefs = HomePrefs(emptySet(), emptyList(), emptyMap(), HomeAppSortMode.RECOMMENDED)
         val restored = cache.toCards(records, prefs)
-        // Last-run install flags are presentation cache, not current patched-install evidence.
-        assertEquals(listOf("Alpha", "Bravo", "YouTube", "Zulu"), restored.visible.map { it.id })
+        // Last-run install flags still backed by a record keep their group until the check lands,
+        // so the list opens on updates and patched apps
+        assertEquals(listOf("Bravo", "Zulu", "Alpha", "YouTube"), restored.visible.map { it.id })
         assertEquals(emptyList(), restored.hidden)
         val hiddenNow = cache.toCards(records, prefs.copy(hiddenPackages = cards.map { it.id }.toSet()))
         assertEquals(emptyList(), hiddenNow.visible)
