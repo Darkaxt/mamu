@@ -670,13 +670,18 @@ class PatchFlow(
         // parallel. The device is asked about in both modes, because the version list marks the
         // installed version even where the installed APK itself is not offered as a source
         val expertMode = isExpertMode()
+        val wantedVersion = (pendingSelectedDownloadVersion ?: pendingRecommendedVersion)?.version
         coroutineScope {
             val savedJob = if (pendingSavedApkInfo == null) {
                 async(Dispatchers.IO) { localApkSources.saved(packageName) }
             } else null
             val installedJob = async(Dispatchers.IO) { localApkSources.installed(packageName) }
             savedJob?.await()?.let { pendingSavedApkInfo = it }
-            applyInstalledAppSource(installedJob.await(), offersApk = expertMode)
+            val installed = installedJob.await()
+            // Simple mode offers the installed app too when it is the very version a download
+            // would fetch: reading it from the device beats any download site
+            applyInstalledAppSource(installed, offersApk = expertMode ||
+                    installed.apk?.let { wantedVersion == null || it.version == wantedVersion } == true)
         }
 
         val requestedVersion = (pendingSelectedDownloadVersion ?: pendingRecommendedVersion)?.version
@@ -685,6 +690,11 @@ class PatchFlow(
         if ((pendingCompatibleVersions.isEmpty() || targets.isNotEmpty()) &&
             canReuseOriginal(pendingSavedApkInfo, requestedVersion, targets)) {
             handleSavedApkSelection()
+        } else if (pendingInstalledApkInfo?.let {
+                !it.patchStateUnknown && (requestedVersion == null || it.version == requestedVersion)
+            } == true) {
+            // The device already has it: offer that before going to the download sites
+            showApkAvailabilityDialog = true
         } else {
             beginNativeApkDownload()
         }

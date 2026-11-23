@@ -11,6 +11,9 @@ import app.morphe.manager.patcher.logger.LogLevel
 class NoMatchingApk(val source: DownloadSource, version: String?) : IOException(
     "${source.label} has no matching release${version?.let { " for $it" }.orEmpty()}.")
 
+/** The lookup reached a page it already checked; another site would not change that. */
+class LookupCycle(message: String) : IOException(message)
+
 /** Native shop discovery. Google links are recognized only to translate incoming intent. */
 internal object StoreSearch {
     private fun parameters(uri: URI) = uri.rawQuery.orEmpty().split('&').mapNotNull {
@@ -130,28 +133,55 @@ class OriginalDownloadLookup(private val target: OriginalDownloadTarget) {
         report(progress)
         return { queue -> if (isCurrent(progress)) report(progress.copy(queue = queue.message, queueStatus = queue)) }
     }
+    /**
+     * Whether a site's failure should hand the lookup to the next site. A site that has no such
+     * release, cannot be read or asks for a browser check says nothing about the others, so they are
+     * tried. Cancellation, Byparr itself failing or being unreachable, and a page cycle stop it.
+     */
+    private fun advances(failure: IOException, client: ByparrClient) =
+        !client.isCancelled && (failure is NoMatchingApk || failure.javaClass == IOException::class.java)
+
+    private fun noteFailure(failure: IOException, source: DownloadSource, failures: MutableMap<DownloadSource, String>,
+                            report: (Progress) -> Unit) {
+        if (failure is NoMatchingApk) {
+            failures[source] = "no ${target.version ?: "matching"} release"
+            step(source, "Requested version not found", report, LogLevel.WARN)
+        } else {
+            failures[source] = failure.message ?: "failed"
+            step(source, "Could not be checked, trying the next site", report, LogLevel.WARN, detail = failure.message)
+        }
+    }
+
+    private fun exhausted(failures: Map<DownloadSource, String>): IOException =
+        if (failures.values.all { it.startsWith("no ") })
+            IOException("No matching ${target.version} release was found in ${attempted.joinToString { it.label }}. Choose another APK/version or Open in Browser.")
+        else IOException("No download site provided ${target.version ?: "this app"}. " +
+            failures.entries.joinToString(" ") { (source, why) -> "${source.label}: $why" } +
+            " Choose another APK/version or Open in Browser.")
+
     fun fetch(client: ByparrClient, endpoint: String, url: String, abis: List<String>, report: (Progress) -> Unit): Result {
         val start = ApkMirrorSearch.translate(url, target.packageName, target.version)
         var next = if (StoreSearch.google(start) && StoreSearch.hasIntent(start, target)) StoreSearch.mirror(target, abis) else start
         var source = DownloadPolicy(false).source(next) ?: throw IOException("Open a supported download-site link.")
+        val failures = linkedMapOf<DownloadSource, String>()
         try {
         while (true) {
             attempted.add(source)
             try {
-                if (!fetched.add(next)) throw IOException("${source.label} returned a page cycle. Use Retry or Open in Browser.")
+                if (!fetched.add(next)) throw LookupCycle("${source.label} returned a page cycle. Use Retry or Open in Browser.")
                 val feedback = step(source, if (ApkMirrorSearch.terms(next) != null)
                     "Resolving package…" else "Requesting download link…", report)
                 val page = client.fetch(endpoint, next, target.version, abis, target.packageName,
                     onStep = { step(source, it, report) },
                     onResolvedPage = { resolvedPages[source] = it }, onQueueStatus = feedback)
                 if (page.content.url != next && !fetched.add(page.content.url))
-                    throw IOException("${source.label} redirected to an already checked page. Use Retry or Open in Browser.")
+                    throw LookupCycle("${source.label} redirected to an already checked page. Use Retry or Open in Browser.")
                 return Result.Page(page)
-            } catch (missing: NoMatchingApk) {
-                step(missing.source, "Requested version not found", report, LogLevel.WARN)
+            } catch (failure: IOException) {
+                if (!advances(failure, client)) throw failure
+                noteFailure(failure, (failure as? NoMatchingApk)?.source ?: source, failures, report)
                 while (true) {
-                    source = DownloadSource.entries.firstOrNull { it !in attempted }
-                        ?: throw IOException("No matching ${target.version} release was found in ${attempted.joinToString { it.label }}. Choose another APK/version or Open in Browser.")
+                    source = DownloadSource.entries.firstOrNull { it !in attempted } ?: throw exhausted(failures)
                     attempted.add(source)
                     val feedback = step(source, "Resolving package…", report)
                     try {
@@ -165,9 +195,9 @@ class OriginalDownloadLookup(private val target: OriginalDownloadTarget) {
                             next = choices.single().url
                         }
                         break
-                    } catch (nextMissing: NoMatchingApk) {
-                        // Only a confirmed empty result advances. HTTP/challenge/uncertain outcomes propagate.
-                        step(nextMissing.source, "Requested version not found", report, LogLevel.WARN)
+                    } catch (nextFailure: IOException) {
+                        if (!advances(nextFailure, client)) throw nextFailure
+                        noteFailure(nextFailure, source, failures, report)
                     }
                 }
             }

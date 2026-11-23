@@ -249,6 +249,7 @@ class ByparrClient(private val debugFixtures: Boolean) {
     @Volatile private var connection: HttpURLConnection? = null
     @Volatile private var queueMonitor: QueueMonitor? = null
     val receivingQueueFeedback get() = !cancelled.get() && queueMonitor?.running == true
+    val isCancelled: Boolean get() = cancelled.get()
     fun cancel() { cancelled.set(true); queueMonitor?.stop(); connection?.disconnect() }
     private fun connect(url: String): HttpURLConnection {
         if (cancelled.get()) throw IOException("Page request cancelled.")
@@ -310,7 +311,7 @@ class ByparrClient(private val debugFixtures: Boolean) {
                              val agent: String, val cookies: List<RemoteCookie>)
     private fun request(endpoint: String, target: String, uptodown: Boolean, scriptedId: String?,
                         onQueueStatus: ((QueueStatus) -> Unit)?): Reply {
-        val api = ByparrEndpoint.normalize(endpoint, debugFixtures) ?: throw IOException("Enter a valid HTTPS Byparr endpoint.")
+        val api = ByparrEndpoint.normalize(endpoint, debugFixtures) ?: throw ByparrUnavailable("Enter a valid HTTPS Byparr endpoint.")
         val conn = connect(api)
         val requestId = UUID.randomUUID().toString()
         val monitor = onQueueStatus?.let { QueueMonitor(api, requestId, it) }
@@ -345,7 +346,7 @@ class ByparrClient(private val debugFixtures: Boolean) {
                             "Browser queue full; no request was queued or submitted"
                     } == true
                 }.getOrDefault(false)
-                throw IOException(if (queueFull)
+                throw ByparrUnavailable(if (queueFull)
                     "Byparr's browser queue is full (HTTP 503). No page request was submitted. Use Retry to try again."
                     else "Byparr API failed (HTTP $code).")
             }
@@ -406,3 +407,6 @@ class ByparrClient(private val debugFixtures: Boolean) {
         throw IOException("The download site returned a redirect cycle.")
     }
 }
+
+/** Byparr itself failed, so no download site can be reached through it either. */
+class ByparrUnavailable(message: String) : IOException(message)

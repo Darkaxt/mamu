@@ -89,7 +89,7 @@ class OriginalDownloadLookupTest {
         }
     }
 
-    @Test fun allSitesAreCheckedOnceAndUnknownOrFailedRepliesNeverAdvance() {
+    @Test fun allSitesAreCheckedOnceAndUnreadableSitesHandOnToTheNext() {
         Fixture { url -> when {
             url == mirror -> 200 to emptyMirror
             url == StoreSearch.query(target, DownloadSource.APK_PURE) -> 404 to ""
@@ -106,11 +106,32 @@ class OriginalDownloadLookupTest {
         for ((status, html) in listOf(408 to "<title>Timeout</title>", 200 to "<title>Just a moment...</title><div id='challenge-stage'></div>",
             200 to "<title>Unexpected markup</title>")) {
             Fixture { status to html }.use { server ->
-                assertThrows(IOException::class.java) {
+                val failure = assertThrows(IOException::class.java) {
                     OriginalDownloadLookup(target).fetch(server.client, server.endpoint, mirror, listOf("arm64-v8a")) {}
                 }
-                assertEquals(listOf(mirror), server.seen.toList())
+                // Every site is asked once, and the error says what each one answered
+                assertEquals(listOf(mirror) + listOf(DownloadSource.APK_PURE, DownloadSource.APK_COMBO, DownloadSource.UPTODOWN)
+                    .map { StoreSearch.query(target, it) }, server.seen.toList())
+                assertTrue(failure.message!!.contains("APKPure:") && failure.message!!.contains("Uptodown:"))
             }
+        }
+    }
+
+    @Test fun anUnreadableApkPureLookupStillReachesApkComboAndUptodown() {
+        // A Play-only game: APKMirror has no such release and APKPure answers with a page it cannot read
+        Fixture { url -> when {
+            url == mirror -> 200 to emptyMirror
+            url == StoreSearch.query(target, DownloadSource.APK_PURE) -> 200 to "<title>Search</title>"
+            url == StoreSearch.query(target, DownloadSource.APK_COMBO) -> 200 to "<form action='/search'><input name='q' value='com.miniclip.plagueinc'></form>"
+            else -> 200 to "<h1 id='search-query-text'>com.miniclip.plagueinc</h1><div id='content-list'></div>"
+        } }.use { server ->
+            val progress = CopyOnWriteArrayList<OriginalDownloadLookup.Progress>()
+            assertThrows(IOException::class.java) {
+                OriginalDownloadLookup(target).fetch(server.client, server.endpoint, mirror, listOf("arm64-v8a"), progress::add)
+            }
+            assertTrue(StoreSearch.query(target, DownloadSource.APK_COMBO) in server.seen)
+            assertTrue(StoreSearch.query(target, DownloadSource.UPTODOWN) in server.seen)
+            assertTrue(progress.any { it.source == DownloadSource.APK_PURE && it.level == app.morphe.manager.patcher.logger.LogLevel.WARN && it.detail != null })
         }
     }
 
