@@ -18,8 +18,8 @@ val MorpheBrandBlue = Color(0xFF1F3F8F)
 /** Mamu's gold ochre, where the brand gradient ends. */
 val MorpheBrandTeal = Color(0xFFC8963E)
 
-/** Mamu's desert sand, the middle of the brand gradient. Lapis stays in the logo only. */
-val MamuSand = Color(0xFFD9BF8C)
+/** Mamu's desert sand, the middle of the brand gradient: deep enough for the white card text. Lapis stays in the logo only. */
+val MamuSand = Color(0xFFA8834E)
 
 /** Mamu's bronze, the sand accent deep enough to carry white text. */
 val MamuBronze = Color(0xFF8A6420)
