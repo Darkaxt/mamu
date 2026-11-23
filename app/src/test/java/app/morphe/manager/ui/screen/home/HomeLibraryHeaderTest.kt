@@ -37,6 +37,7 @@ import org.robolectric.annotation.GraphicsMode
 import java.io.File
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 @RunWith(RobolectricTestRunner::class)
@@ -104,18 +105,17 @@ class HomeLibraryHeaderTest {
         capture("library-phone")
     }
 
-    @Test fun `prepared queue remains accessible from compact notices without starting work`() {
-        var prepared by mutableIntStateOf(2)
+    // The queue waits under Batch patching in the overflow (HomeNotificationsTest covers that)
+    @Test fun `prepared queue that is not running raises no notice`() {
         var opened = false
         rule.setContent { MaterialTheme { Surface {
             HomeLibraryNotices(notices().copy(
                 repatchAvailable = RepatchAlertState(0, false) {},
-                batchQueue = BatchQueueAlertState(null, prepared) { opened = true }), wide = true)
+                batchQueue = BatchQueueAlertState(null, 2) { opened = true }), wide = true)
         } } }
-        rule.onNodeWithTag("library.notifications").assertExists()
-        rule.onNodeWithText("2 apps in prepared queue").assertIsDisplayed().performClick()
-        rule.runOnIdle { assertTrue(opened); prepared = 0 }
         rule.onNodeWithTag("library.notifications").assertDoesNotExist()
+        rule.onNodeWithText("2 apps in prepared queue").assertDoesNotExist()
+        rule.runOnIdle { assertFalse(opened) }
     }
 
     @Test @Config(qualifiers = "w840dp-h1000dp-xhdpi")
