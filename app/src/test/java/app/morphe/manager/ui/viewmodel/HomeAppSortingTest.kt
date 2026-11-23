@@ -148,12 +148,24 @@ class HomeAppSortingTest {
     fun `a tracked record alone never admits excluded install states into either leading group`() {
         val base = item("Alpha historical").let { it.copy(installedApp = record(it, 1),
             hasUpdate = true, versionStatus = AppVersionStatus("1.0", "2.0", true)) }
-        val excluded = listOf(base.copy(isDeleted = true), base.copy(isInstallStatePending = true),
+        val excluded = listOf(base.copy(isDeleted = true),
             base.copy(isInstallStateUnknown = true), base.copy(isInstallStateNotPatched = true),
             base.copy(isInstalledOnDevice = false))
         val patched = item("Zulu patched").let { it.copy(installedApp = record(it, 2)) }
         for (item in excluded) {
             assertEquals(listOf(patched, item), listOf(item, patched).ordered(HomeAppSortMode.RECOMMENDED))
         }
+    }
+
+    @Test
+    fun `an install still being checked keeps its group so a cold start opens on updates and patched apps`() {
+        val pending = { name: String, at: Long -> item(name).let { it.copy(installedApp = record(it, at),
+            isInstallStatePending = true) } }
+        val cards = listOf(item("Alpha"), pending("Patched", 1), pending("Update", 2).copy(hasUpdate = true),
+            pending("Behind", 3).copy(versionStatus = AppVersionStatus("1.0", "2.0", true)))
+        assertEquals(listOf("Behind", "Update", "Patched", "Alpha"),
+            cards.ordered(HomeAppSortMode.RECOMMENDED).map { it.displayName })
+        // The badge itself still waits for the check
+        assertEquals(false, cards[2].showsUpdateBadge)
     }
 }

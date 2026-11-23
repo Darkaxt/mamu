@@ -73,6 +73,17 @@ data class HomeAppItem(
      * ordering includes both badges so newer supported APK versions are surfaced too.
      */
     val showsRebuildBadge: Boolean get() = showsUpdateBadge || showsVersionBadge
+
+    /**
+     * The Home group by what is already known. An install whose check is still running keeps the
+     * state it was last seen in, so a cold start opens on updates and patched apps instead of
+     * listing them with the rest until every install has been checked.
+     */
+    internal val groupsAsPatchedInstall: Boolean get() = installedApp != null && isInstalledOnDevice &&
+            !isDeleted && !isInstallStateNotPatched && !isInstallStateUnknown
+
+    internal val groupsAsRebuild: Boolean get() = groupsAsPatchedInstall &&
+            (hasUpdate || versionStatus?.isBehind == true)
 }
 
 /**

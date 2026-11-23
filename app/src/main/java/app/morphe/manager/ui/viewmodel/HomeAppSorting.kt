@@ -10,8 +10,8 @@ import app.morphe.manager.ui.model.HomeAppItem
 
 /** Shared by fresh and cached cards, without priority for any patch source. */
 internal fun homeAppPriority(item: HomeAppItem): Int = when {
-    item.isCurrentPatchedInstall && item.showsRebuildBadge -> 0
-    item.isCurrentPatchedInstall -> 1
+    item.groupsAsRebuild -> 0
+    item.groupsAsPatchedInstall -> 1
     else -> 2
 }
 
