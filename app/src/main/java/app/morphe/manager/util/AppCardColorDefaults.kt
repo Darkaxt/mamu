@@ -7,7 +7,8 @@ package app.morphe.manager.util
 
 import androidx.compose.ui.graphics.Color
 import app.morphe.manager.R
-import app.morphe.manager.ui.theme.MorpheBrandBlue
+import app.morphe.manager.ui.theme.MamuBronze
+import app.morphe.manager.ui.theme.MamuSand
 import app.morphe.manager.ui.theme.MorpheBrandTeal
 import kotlinx.serialization.Serializable
 
@@ -87,15 +88,15 @@ object AppCardColorDefaults {
     )
 
     /** Download button color of an app whose bundle declares no color. */
-    val defaultDownloadColor = Color(0xFF0E3F6E)
+    val defaultDownloadColor = MamuBronze
 
     /** Card gradient of an app whose bundle declares no color. */
     val defaultGradientColors: List<Color> = brandGradient(defaultDownloadColor)
 
-    val defaultSolidColor: Color = MorpheBrandBlue
+    val defaultSolidColor: Color = MamuBronze
 
-    /** Card gradient that starts from an app's own [color] and ends in the Morphe brand colors. */
-    fun brandGradient(color: Color): List<Color> = listOf(color, MorpheBrandBlue, MorpheBrandTeal)
+    /** Card gradient that starts from an app's own [color] and ends in Mamu's sand and gold. */
+    fun brandGradient(color: Color): List<Color> = listOf(color, MamuSand, MorpheBrandTeal)
 
     fun isBundleColor(hex: String): Boolean =
         hex.trim().equals(BUNDLE_COLOR_TOKEN, ignoreCase = true)

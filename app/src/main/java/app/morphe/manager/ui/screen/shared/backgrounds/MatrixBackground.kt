@@ -23,7 +23,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.createBitmap
-import app.morphe.manager.ui.theme.MorpheBrandBlue
+import app.morphe.manager.ui.theme.MamuBronze
 import app.morphe.manager.ui.theme.MorpheBrandTeal
 import app.morphe.manager.ui.theme.isDarkTheme
 import kotlin.math.ceil
@@ -363,7 +363,7 @@ private class ColumnTints(columnCount: Int, isDarkTheme: Boolean) {
         for (index in 0 until columnCount) {
             val position = if (columnCount == 1) 0f else index.toFloat() / (columnCount - 1)
             // The brand gradient, read left to right across the screen the way the wordmark reads
-            val brand = MorpheBrandBlue.blendTowards(MorpheBrandTeal, position)
+            val brand = MamuBronze.blendTowards(MorpheBrandTeal, position)
             // The brand blue is too light to read as code on a light background
             val trailColor = if (isDarkTheme) brand else brand.blendTowards(Color.Black, 0.3f)
 
