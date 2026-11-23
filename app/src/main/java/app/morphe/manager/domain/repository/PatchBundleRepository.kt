@@ -280,6 +280,12 @@ class PatchBundleRepository(
     private var activeUpdateUids: Set<Int> = emptySet()
     @Volatile
     private var cancelledUpdateUids: Set<Int> = emptySet()
+    // Of the running update's sources, the ones it has started on and the ones it is done with,
+    // so a request for a source it has not reached yet can join it instead of waiting for it
+    private var startedUpdateUids: Set<Int> = emptySet()
+    private var finishedUpdateUids: Set<Int> = emptySet()
+    // Sources that joined the running update with a forced redownload, see joinRunningUpdate
+    private var joinedForcedUids: Set<Int> = emptySet()
     private val pendingUpdateRequests = mutableListOf<UpdateRequest>()
     private val localImportMutex = Mutex()
     private val localImportStateMutex = Mutex()
@@ -324,11 +330,24 @@ class PatchBundleRepository(
         return if (active.isNotEmpty()) active.size else defaultTotal
     }
 
+    /**
+     * Shows a source as updating while the running update still has it to do, or a queued one
+     * waits for it. A source the running update is done with is free again at once rather than
+     * when the last of the others finishes. Called with [updateStateMutex] held.
+     */
+    private fun publishBusyUids() {
+        _activeUpdateUidsFlow.value = (activeUpdateUids - finishedUpdateUids) +
+                pendingUpdateRequests.flatMap { it.target.uids }
+    }
+
     private suspend fun markActiveUpdateUids(uids: Set<Int>) {
         updateStateMutex.withLock {
             activeUpdateUids = uids
             cancelledUpdateUids = emptySet()
-            _activeUpdateUidsFlow.value = uids
+            startedUpdateUids = emptySet()
+            finishedUpdateUids = emptySet()
+            joinedForcedUids = emptySet()
+            publishBusyUids()
         }
     }
 
@@ -336,7 +355,47 @@ class PatchBundleRepository(
         updateStateMutex.withLock {
             activeUpdateUids = emptySet()
             cancelledUpdateUids = emptySet()
-            _activeUpdateUidsFlow.value = emptySet()
+            startedUpdateUids = emptySet()
+            finishedUpdateUids = emptySet()
+            joinedForcedUids = emptySet()
+            publishBusyUids()
+        }
+    }
+
+    /**
+     * Hands the running update the sources of [request] it has not started on yet: it reads each
+     * source as it is when it gets to it, so a switched branch or a forced redownload is done
+     * there instead of after every other source. Returns the request for what is left, or null
+     * when nothing is.
+     */
+    private suspend fun joinRunningUpdate(request: UpdateRequest): UpdateRequest? {
+        val target = request.target
+        if (target.autoUpdatable || target.custom != null || target.uids.isEmpty()) return request
+        return updateStateMutex.withLock {
+            val joined = target.uids.filterTo(mutableSetOf()) {
+                it in activeUpdateUids && it !in startedUpdateUids && it !in cancelledUpdateUids
+            }
+            if (joined.isEmpty()) return@withLock request
+            if (request.force) joinedForcedUids = joinedForcedUids + joined
+            else joinedForcedUids = joinedForcedUids + (joined intersect request.forcedUids)
+            val left = target.uids - joined
+            if (left.isEmpty()) null
+            else request.copy(target = target.copy(uids = left), forcedUids = request.forcedUids intersect left)
+        }
+    }
+
+    /**
+     * Stops the running update from finishing [uids] from what it started reading before they
+     * changed, so its result does not overwrite the change. Sources it has not reached are left to
+     * [joinRunningUpdate].
+     */
+    private suspend fun abandonStartedUpdates(uids: Set<Int>) {
+        updateStateMutex.withLock {
+            val started = uids.filterTo(mutableSetOf()) { it in startedUpdateUids && it !in finishedUpdateUids }
+            if (started.isEmpty()) return
+            activeUpdateUids = activeUpdateUids - started
+            cancelledUpdateUids = cancelledUpdateUids + started
+            publishBusyUids()
         }
     }
 
@@ -347,6 +406,7 @@ class PatchBundleRepository(
             if (affected.isEmpty()) return@withLock 0 to activeUpdateUids.size
             activeUpdateUids = activeUpdateUids - affected
             cancelledUpdateUids = cancelledUpdateUids + affected
+            publishBusyUids()
             affected.size to activeUpdateUids.size
         }
     }
@@ -855,6 +915,9 @@ class PatchBundleRepository(
         val uids: Set<Int> = emptySet(),
         val custom: ((RemotePatchBundle) -> Boolean)? = null,
     ) {
+        /** Names its sources and nothing else. */
+        val isSourcesOnly: Boolean get() = !autoUpdatable && custom == null && uids.isNotEmpty()
+
         fun covers(other: UpdateTarget) =
             custom == null && other.custom == null &&
                     (autoUpdatable || !other.autoUpdatable) &&
@@ -880,6 +943,8 @@ class PatchBundleRepository(
         val reportUpToDate: Boolean = true,
         // The check opening Morphe runs, which the auto updates setting holds to less
         val onLaunch: Boolean = false,
+        // Redownloaded even without a newer version, without forcing the rest of the target
+        val forcedUids: Set<Int> = emptySet(),
     ) {
         /**
          * True when running this request already does everything [other] asks for. A request
@@ -887,7 +952,7 @@ class PatchBundleRepository(
          * always runs even when its bundles are already being updated.
          */
         fun covers(other: UpdateRequest) =
-            !other.force &&
+            !other.force && other.forcedUids.isEmpty() &&
                     !other.showToast &&
                     (allowUnsafeNetwork || !other.allowUnsafeNetwork) &&
                     (reportUpToDate || !other.reportUpToDate) &&
@@ -902,8 +967,13 @@ class PatchBundleRepository(
     }
 
     private fun mergeUpdateRequests(requests: List<UpdateRequest>): UpdateRequest {
+        // A forced redownload of a few sources stays theirs, rather than forcing every source a
+        // check queued alongside it asked about
+        val forcedSources = requests.filter { it.force && it.target.isSourcesOnly }
         return UpdateRequest(
-            force = requests.any { it.force },
+            force = requests.any { it.force && !it.target.isSourcesOnly },
+            forcedUids = requests.flatMapTo(mutableSetOf()) { it.forcedUids } +
+                    forcedSources.flatMap { it.target.uids },
             showToast = requests.any { it.showToast },
             allowUnsafeNetwork = requests.all { it.allowUnsafeNetwork },
             reportUpToDate = requests.any { it.reportUpToDate },
@@ -915,6 +985,7 @@ class PatchBundleRepository(
     private suspend fun enqueueUpdateRequest(request: UpdateRequest) {
         updateStateMutex.withLock {
             pendingUpdateRequests += request
+            publishBusyUids()
         }
     }
 
@@ -923,6 +994,7 @@ class PatchBundleRepository(
             if (pendingUpdateRequests.isEmpty()) return@withLock null
             val drained = pendingUpdateRequests.toList()
             pendingUpdateRequests.clear()
+            publishBusyUids()
             mergeUpdateRequests(drained)
         }
     }
@@ -1093,10 +1165,10 @@ class PatchBundleRepository(
         // The experimental switch is offered only on the prerelease branch, so leaving it turns
         // the mode off rather than keeping it on out of reach, see offersExperimentalVersions
         if (!usePrerelease) setUseExperimentalVersions(uids, false)
-
-        dispatchAction("Set prerelease (${uids.joinToString(",")}=$usePrerelease)") { state ->
+        val switched = mutableSetOf<Int>()
+        // Awaited so the redownload, and a running update reaching these sources, reads the switch
+        dispatchAction("Set prerelease (${uids.joinToString(",")}=$usePrerelease)", await = true) { state ->
             val ready = state as? BundleState.Ready ?: return@dispatchAction state
-            val switched = mutableSetOf<Int>()
             val sources = ready.sources.mutate { mut ->
                 uids.forEach { uid ->
                     val updated = when (val src = mut[uid]) {
@@ -1110,10 +1182,12 @@ class PatchBundleRepository(
                     if (updated.enabled) switched += uid
                 }
             }
-            if (switched.isNotEmpty()) {
-                startRemoteUpdateJob(UpdateRequest(target = UpdateTarget(uids = switched), force = true))
-            }
             ready.copy(sources = sources)
+        }
+        // A download from the branch just left must not land after the switch
+        abandonStartedUpdates(uids)
+        if (switched.isNotEmpty()) {
+            startRemoteUpdateJob(UpdateRequest(target = UpdateTarget(uids = switched), force = true))
         }
 
         // The default source's channel decides which patches topic notifications come from
@@ -1949,7 +2023,7 @@ class PatchBundleRepository(
             }
         }
         if (queued) {
-            enqueueUpdateRequest(request)
+            joinRunningUpdate(request)?.let { enqueueUpdateRequest(it) }
         }
     }
 
@@ -2031,9 +2105,16 @@ class PatchBundleRepository(
             val checkedUpdates = ConcurrentHashMap.newKeySet<Int>()
             val updated: Map<RemotePatchBundle, PatchBundleDownloadResult> = try {
                 coroutineScope {
-                    targets.map { bundle ->
+                    targets.map { queuedBundle ->
                         async(downloadDispatcher) {
-                            if (isRemoteUpdateCancelled(bundle.uid)) return@async null
+                            val forceThis = updateStateMutex.withLock {
+                                if (isRemoteUpdateCancelled(queuedBundle.uid)) return@async null
+                                startedUpdateUids = startedUpdateUids + queuedBundle.uid
+                                force || queuedBundle.uid in request.forcedUids || queuedBundle.uid in joinedForcedUids
+                            }
+                            // Read as it is now: a branch switched while this waited applies here
+                            val bundle = (store.state.value as? BundleState.Ready)?.sources
+                                ?.get(queuedBundle.uid) as? RemotePatchBundle ?: queuedBundle
 
                             Log.d(LOG_TAG, "Updating patch bundle: ${bundle.name}")
 
@@ -2059,7 +2140,7 @@ class PatchBundleRepository(
                                         )
                                     }
                                 }
-                                val r = if (force) bundle.downloadLatest(onProgress) else bundle.update(onProgress)
+                                val r = if (forceThis) bundle.downloadLatest(onProgress) else bundle.update(onProgress)
                                 // Clear any previous metadata error on success
                                 metadataFetchErrorsFlow.update { it - bundle.uid }
                                 checkedUpdates += bundle.uid
@@ -2079,6 +2160,10 @@ class PatchBundleRepository(
                                 null
                             }
 
+                            updateStateMutex.withLock {
+                                finishedUpdateUids = finishedUpdateUids + bundle.uid
+                                publishBusyUids()
+                            }
                             val nextTotal = currentUpdateTotal(targets.size)
                             val newCompleted = completedCount.incrementAndGet().coerceAtMost(nextTotal)
                             activeNamesMap.remove(bundle.uid)
@@ -2139,6 +2224,8 @@ class PatchBundleRepository(
             dispatchAction("Apply updated bundles") {
                 updated.forEach { (src, downloadResult) ->
                     if (dao.getProps(src.uid) == null) return@forEach
+                    // Changed while it downloaded; the update queued for the change applies it
+                    if (isRemoteUpdateCancelled(src.uid)) return@forEach
                     val rawName = runCatching {
                         PatchBundle(src.patchesJarFile.absolutePath).manifestAttributes?.name
                     }.getOrNull()?.trim().takeUnless { it.isNullOrBlank() } ?: src.name
