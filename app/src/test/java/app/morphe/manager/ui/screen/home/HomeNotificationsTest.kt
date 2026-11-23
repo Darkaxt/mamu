@@ -198,7 +198,14 @@ class HomeNotificationsTest {
     }
 
     @Test fun runningBatchCanBeDismissedAndReopenedFromOverflow() = assertBatchDismissal(true)
-    @Test fun preparedBatchCanBeDismissedAndReopenedFromOverflow() = assertBatchDismissal(false)
+    @Test fun preparedBatchWaitsInOverflowWithoutACard() {
+        var opened = 0
+        rule.setContent { actualHome(emptyNotices().copy(batchQueue = BatchQueueAlertState(null, 2) { opened++ })) }
+        rule.onNodeWithTag("library.notifications").assertDoesNotExist()
+        rule.onNodeWithTag("library.more").performClick()
+        rule.onNodeWithText(app.getString(R.string.batch_patch_title)).assertIsDisplayed().performClick()
+        rule.runOnIdle { assertEquals(1, opened) }
+    }
 
     @Test fun sourceFailuresStayInDiagnosticsWithoutGenericHomeBanner() {
         val repository = koin.get<PatchBundleRepository>()

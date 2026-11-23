@@ -81,7 +81,8 @@ class PreferencesManager(
     val showGreetingPhrases = booleanPreference("show_greeting_phrases", true)
 
     /** The per-app badges carry the same news, so the banner is worth turning off. */
-    val showRepatchNotice = booleanPreference("show_repatch_notice", true)
+    /** Off by default: the badge on each card says it, and long-press selects apps to patch together. */
+    val showRepatchNotice = booleanPreference("show_repatch_notice_v2", false)
 
     /** Whether the apps list ends on a card leading to the community patches for more apps. */
     val customAccentColor = stringPreference("custom_accent_color", "")

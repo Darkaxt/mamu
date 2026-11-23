@@ -106,7 +106,6 @@ internal fun HomeLibraryNotices(
         notifications.meteredSkipped.visible ||
         (notifications.repatchAvailable.visible && notifications.repatchAvailable.count > 0) ||
         notifications.batchQueue.run?.isActive == true || notifications.batchQueue.run?.hasOutcome == true ||
-        notifications.batchQueue.preparedCount > 0 ||
         notifications.bundleUpdate.visible)) return
     val scroll = rememberScrollState()
     LaunchedEffect(notifications.bundleUpdate.visible, notifications.bundleUpdate.status) {
@@ -208,17 +207,8 @@ fun NotificationsOverlay(
             val batchRunning = batchRun?.isActive == true
             val batchFinished = batchRun?.hasOutcome == true
 
-            AlertSnackbar(
-                visible = !batchRunning && !batchFinished && notifications.batchQueue.preparedCount > 0,
-                tone = SemanticTone.Primary,
-                icon = Icons.Outlined.AutoFixHigh,
-                title = stringResource(R.string.batch_patch_title),
-                subtitle = pluralStringResource(R.plurals.batch_prepared_queue_count,
-                    notifications.batchQueue.preparedCount, notifications.batchQueue.preparedCount.toString()),
-                onShowDetails = notifications.batchQueue.onShow,
-                modifier = Modifier.fillMaxWidth()
-            )
-
+            // A queue that is not running yet has no card: it waits under Batch patching in the
+            // Home overflow, and apps are picked for a batch by long-pressing them
             // The Home overflow keeps access to the batch independently of these dismissible cards.
             AlertSnackbar(
                 visible = batchRunning,

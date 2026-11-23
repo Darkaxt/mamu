@@ -747,12 +747,16 @@ internal fun MainAppsSection(
             if (interaction is DragInteraction.Start) userScrolledList = true
         }
     }
-    val listOrderKeys = remember(homeAppItems) { homeAppItems.map { it.id } }
-    LaunchedEffect(listOrderKeys, userScrolledList) {
-        if (userScrolledList || state.isReorderMode) return@LaunchedEffect
-        if (listState.firstVisibleItemIndex != 0 || listState.firstVisibleItemScrollOffset != 0) {
-            listState.scrollToItem(0)
-        }
+    // Requested in the pass that brings the new order. An effect ran before the list was laid
+    // out again, so it still read the top, did nothing, and the list then followed its old
+    // first card down into the rest of the apps
+    val listOrder = remember(filteredItems, displayedAppGroups) {
+        filteredItems.map { it.id } to displayedAppGroups
+    }
+    val listedOrder = remember { arrayOfNulls<Any>(1) }
+    if (listedOrder[0] != listOrder) {
+        listedOrder[0] = listOrder
+        if (!userScrolledList && !state.isReorderMode) listState.requestScrollToItem(0)
     }
 
     // Focus by app identity after either flat/grouped tiles swap to the drag list

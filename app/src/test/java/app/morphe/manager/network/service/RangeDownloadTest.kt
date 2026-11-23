@@ -8,6 +8,7 @@ package app.morphe.manager.network.service
 import com.sun.net.httpserver.HttpServer
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.request.header
 import io.ktor.client.request.url
 import kotlinx.coroutines.Dispatchers
@@ -37,7 +38,13 @@ class RangeDownloadTest {
     private val tempDir: File = Files.createTempDirectory("range-download-test").toFile()
     private val target = tempDir.resolve("patches.jar.tmp")
     private val server = HttpServer.create(InetSocketAddress("127.0.0.1", 0), 0)
-    private val client = HttpClient(OkHttp)
+    // Bounded like the app's own client, so a stuck download fails the test instead of the build
+    private val client = HttpClient(OkHttp) {
+        install(HttpTimeout) {
+            socketTimeoutMillis = 30_000
+            requestTimeoutMillis = 60_000
+        }
+    }
 
     @AfterTest
     fun tearDown() {

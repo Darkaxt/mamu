@@ -346,16 +346,25 @@ class HttpService(
 
                                         // Bytes past the end belong to the next chunk, which fetches
                                         // them itself
-                                        withTimeoutOrNull(CHUNK_ATTEMPT) {
-                                            while (position <= end && !channel.isClosedForRead) {
-                                                val wanted = minOf(buf.size.toLong(), end - position + 1).toInt()
-                                                val read = channel.readAvailable(buf, 0, wanted)
-                                                if (read <= 0) continue
-                                                fileChannel.write(ByteBuffer.wrap(buf, 0, read), position)
-                                                position += read
-                                                totalRead.addAndGet(read.toLong())
-                                                reportProgress()
+                                        try {
+                                            withTimeoutOrNull(CHUNK_ATTEMPT) {
+                                                while (position <= end && !channel.isClosedForRead) {
+                                                    val wanted = minOf(buf.size.toLong(), end - position + 1).toInt()
+                                                    val read = channel.readAvailable(buf, 0, wanted)
+                                                    if (read < 0) break
+                                                    if (read == 0) continue
+                                                    fileChannel.write(ByteBuffer.wrap(buf, 0, read), position)
+                                                    position += read
+                                                    totalRead.addAndGet(read.toLong())
+                                                    reportProgress()
+                                                }
                                             }
+                                        } finally {
+                                            // A body left with bytes in it, past the chunk or after a
+                                            // slow attempt, is dropped here rather than left for the
+                                            // engine to wind down, which could leave the call waiting
+                                            // on a body nobody reads any more
+                                            if (!channel.isClosedForRead) channel.cancel(null)
                                         }
                                     }
 
