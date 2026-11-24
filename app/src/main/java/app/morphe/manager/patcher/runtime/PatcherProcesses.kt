@@ -185,6 +185,7 @@ class PatcherProcesses(
         val installed = installation.install()
         return JvmLaunch(
             command = installed.command,
+            environment = installed.environment,
             options = jvmOptions(installed, scratch) + tuning,
             mainClass = HOST_MAIN_CLASS,
             heapLimitMb = heapLimitMb
