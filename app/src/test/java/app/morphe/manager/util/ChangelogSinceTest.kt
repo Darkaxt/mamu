@@ -98,4 +98,12 @@ class ChangelogSinceTest {
             ChangelogParser.entriesSince(channel, "1.45.0-dev.1").versions()
         )
     }
+
+    @Test
+    fun `a changelog read before the downloaded release does not reach it`() {
+        val beforeRelease = listOf(entry("1.6.0", "2026-11-23"), entry("1.5.0", "2026-11-23"))
+        assertFalse(ChangelogParser.reaches(ChangelogParser.entriesSince(beforeRelease, "1.5.0"), "1.6.1"))
+        assertTrue(ChangelogParser.reaches(listOf(entry("1.6.1", "2026-11-25")) + beforeRelease, "v1.6.1"))
+        assertTrue(ChangelogParser.reaches(emptyList(), null))
+    }
 }

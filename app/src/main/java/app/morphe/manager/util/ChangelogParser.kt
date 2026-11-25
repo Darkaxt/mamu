@@ -267,6 +267,13 @@ object ChangelogParser {
     }
 
     /**
+     * True when [entries] already list [version] or a later release. A changelog read just after a
+     * release can still be the one from before it, which says nothing about that release.
+     */
+    fun reaches(entries: List<ChangelogEntry>, version: String?): Boolean =
+        version == null || entries.any { compareVersions(it.version, version) >= 0 }
+
+    /**
      * True when [entries], a dev changelog read up to its last stable release, stops above
      * [version], so the releases between them are missing from it.
      */

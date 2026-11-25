@@ -2231,6 +2231,9 @@ class PatchBundleRepository(
                     }.getOrNull()?.trim().takeUnless { it.isNullOrBlank() } ?: src.name
                     val name = if (src.uid == DEFAULT_SOURCE_UID) rawName else ensureUniqueName(rawName, src.uid)
                     val now = System.currentTimeMillis()
+                    // What was read before this release does not describe it, so the update badges
+                    // judged right after it read the source's changelog afresh
+                    src.clearChangelogCache()
 
                     updateDb(src.uid) {
                         it.copy(

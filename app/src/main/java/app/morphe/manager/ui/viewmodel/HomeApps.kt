@@ -944,12 +944,11 @@ class HomeApps(
                 patchBundleRepository.sources,
                 patchBundleRepository.bundleUpdateProgress
             ) { installedApps, sources, progress ->
-                // Only trigger after a completed update (Success/NoUpdates) or on initial load
-                // (progress == null). Never trigger mid-update (None) to avoid checking against
-                // incomplete bundle data.
+                // Trigger on initial load (progress == null) and once an update has ended, however it
+                // ended: one that failed for some sources still applied the others. Never mid-update
+                // (None), to avoid checking against incomplete bundle data.
                 val updateCompleted = progress == null ||
-                        progress.result == PatchBundleRepository.BundleUpdateResult.Success ||
-                        progress.result == PatchBundleRepository.BundleUpdateResult.NoUpdates
+                        progress.result != PatchBundleRepository.BundleUpdateResult.None
                 Triple(installedApps, sources, updateCompleted)
             }
                 .filter { (installedApps, sources, updateCompleted) ->
@@ -1033,6 +1032,8 @@ class HomeApps(
                 // changes the dialog does not show, nor misses ones it does
                 val entries = runCatching { source.fetchChangelogSince(storedVersion) }.getOrNull()
                     ?: return@firstNotNullOfOrNull unscoped
+                // A changelog that has not caught up with the downloaded release cannot rule it out
+                if (!ChangelogParser.reaches(entries, currentVersion)) return@firstNotNullOfOrNull unscoped
 
                 val subject = ChangelogSubject(
                     appNames = appNames,
