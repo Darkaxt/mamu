@@ -66,6 +66,7 @@ import app.morphe.manager.ui.screen.shared.RandomBackground
 import app.morphe.manager.ui.screen.shared.rememberRandomBackground
 import app.morphe.manager.ui.theme.*
 import app.morphe.manager.ui.viewmodel.HomeViewModel
+import app.morphe.manager.ui.viewmodel.InstallViewModel
 import app.morphe.manager.ui.viewmodel.MainViewModel
 import app.morphe.manager.ui.viewmodel.PatcherViewModel
 import app.morphe.manager.util.*
@@ -106,6 +107,7 @@ class MainActivity : androidx.activity.ComponentActivity() {
         attachedLanguage = AppLocale.selected.value
         val overrides = Configuration().apply {
             AppLocale.applyTo(this)
+            AppLocale.restoreLayoutDirection(newBase.resources.configuration, this)
             applyUiScale(newBase.resources.configuration.densityDpi, scale)
         }
 
@@ -203,8 +205,8 @@ class MainActivity : androidx.activity.ComponentActivity() {
 
     /**
      * Handles add-source deep links from an explicit-package `intent://` fired by the website.
-     * Format: https://morphe.software/add-source?<github|gitlab>=owner/repo(&name=…)
-     * Only GitHub and GitLab URLs are accepted.
+     * Format: https://morphe.software/add-source?<host>=owner/repo(&name=…),
+     * where the host is the [CodeHost.key] of the repository's host. Other hosts are not accepted.
      */
     private fun handleDeepLinkIntent(intent: Intent?, vm: MainViewModel) {
         reportShortcutUsage(intent)
@@ -690,11 +692,13 @@ private fun MorpheManager(vm: MainViewModel) {
                         patchingCompleted.value = false
                         navController.popBackStack()
                     },
+                    homeApps = homeViewModel.apps,
                     onStartTour = startOnboardingTour,
                     onDeclineTour = declineOnboardingTour,
                     onAppStateChanged = homeViewModel.apps::notifyAppStateChanged,
                     onBackgroundSpeedChange = { patcherBackgroundSpeed.floatValue = it },
-                    onPatchingCompleted = { patchingCompleted.value = true }
+                    onPatchingCompleted = { patchingCompleted.value = true },
+                    onOpenGames = navController::openMiniGames
                 )
             }
 
@@ -719,7 +723,8 @@ private fun MorpheManager(vm: MainViewModel) {
                         val review = patcherViewModel.takeInputForReview()
                         leavePatcher()
                         homeViewModel.patchFlow.reopenPatchSelection(review)
-                    }
+                    },
+                    onOpenGames = navController::openMiniGames
                 )
             }
 
@@ -886,6 +891,9 @@ private fun MorpheManager(vm: MainViewModel) {
         }
     }
 }
+
+/** Stacked on whatever is open, so a patcher left for a game carries on and is there on the way back. */
+private fun NavController.openMiniGames() = navigate(MiniGames) { launchSingleTop = true }
 
 // Androidx Navigation does not support storing complex types in route objects, so we have
 // to store them inside the saved state handle of the back stack entry instead

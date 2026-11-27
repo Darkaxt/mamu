@@ -506,7 +506,7 @@ fun AppPatchSourcesDialog(
                                 if (reached.isEmpty()) {
                                     context.toast(lastSourceMessage)
                                 }
-                                reached.forEach { sourceMuteRepository.mute(it, uid) }
+                                sourceMuteRepository.muteApps(uid, reached)
                             } else {
                                 packages.forEach { sourceMuteRepository.unmute(it, uid) }
                             }

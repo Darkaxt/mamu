@@ -30,6 +30,8 @@ val viewModelModule = module {
     viewModelOf(::InstalledAppInfoViewModel)
     viewModelOf(::PatchOptionsViewModel)
     viewModelOf(::StorageManagementViewModel)
+    viewModelOf(::SourceAppsViewModel)
+    viewModelOf(::AppLinksViewModel)
     // One of its own for each screen that edits a selection, as it holds that screen's panel
     factoryOf(::SelectionPanelController)
 }

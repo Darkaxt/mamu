@@ -293,7 +293,8 @@ fun PatchingSuccess(
     onLogsClick: () -> Unit,
     onSaveClick: () -> Unit,
     isSaving: Boolean,
-    skippedPatches: List<app.morphe.manager.patcher.patch.PatchOmission> = emptyList()
+    skippedPatches: List<app.morphe.manager.patcher.patch.PatchOmission> = emptyList(),
+    onGamesClick: (() -> Unit)? = null
 ) {
     val status = installStatus(installState, installedPackageName, usingMountInstall)
 
@@ -345,7 +346,8 @@ fun PatchingSuccess(
                 onLogsClick = onLogsClick,
                 onHomeClick = onHomeClick,
                 onSaveClick = onSaveClick,
-                isSaving = isSaving
+                isSaving = isSaving,
+                onGamesClick = onGamesClick
             )
         }
     )
@@ -362,7 +364,8 @@ fun PatchingFailed(
     failedPatch: String?,
     onHomeClick: () -> Unit,
     onErrorClick: () -> Unit,
-    onChangePatchesClick: (() -> Unit)? = null
+    onChangePatchesClick: (() -> Unit)? = null,
+    onGamesClick: (() -> Unit)? = null
 ) {
     ResultScreen(
         status = PatchingFailedStatus,
@@ -404,7 +407,8 @@ fun PatchingFailed(
             PatcherBottomActionBar(
                 horizontalPadding = horizontalPadding,
                 showCancelButton = false,
-                onHomeClick = onHomeClick
+                onHomeClick = onHomeClick,
+                onGamesClick = onGamesClick
             )
         }
     )

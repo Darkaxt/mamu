@@ -401,6 +401,12 @@ private fun SourcesPageContent(
         context.startActivity(Intent.createChooser(intent, null))
     }
 
+    val patchesExporter = rememberFileExporter(
+        mimeType = MPP_MIMETYPE,
+        successMessage = R.string.sources_management_export_patches_success,
+        failureMessage = R.string.sources_management_export_patches_failed
+    )
+
     // Registered inside the page so it outranks the main screen's own back handling
     SearchFieldBackHandler(search)
     val searchLabel = stringResource(R.string.sources_search)
@@ -606,6 +612,9 @@ private fun SourcesPageContent(
                                         },
                                         onShare = (bundle as? RemotePatchBundle)?.addSourceLink?.let { link ->
                                             { shareText(link) }
+                                        },
+                                        onExport = bundle.installedPatchesFile?.let { file ->
+                                            { patchesExporter.export(file, bundle.exportFileName) }
                                         },
                                         onPrereleasesToggle = if (bundle.hasPrereleaseChannel) {
                                             { usePrerelease -> setPrerelease(listOf(bundle), usePrerelease) }
@@ -850,8 +859,8 @@ private data class SourceCardInfo(
 )
 
 /**
- * What a source card's controls do. A null toggle, [onShare] or [onChangeLink] leaves its control
- * out.
+ * What a source card's controls do. A null toggle, [onShare], [onExport] or [onChangeLink] leaves
+ * its control out.
  */
 private class SourceCardActions(
     val onPatchesClick: () -> Unit,
@@ -863,6 +872,7 @@ private class SourceCardActions(
     val onOpenInBrowser: () -> Unit,
     val onReportIssue: () -> Unit,
     val onShare: (() -> Unit)?,
+    val onExport: (() -> Unit)?,
     val onPrereleasesToggle: ((Boolean) -> Unit)?,
     val onExperimentalVersionsToggle: ((Boolean) -> Unit)?,
     val onDisable: () -> Unit,
@@ -917,6 +927,7 @@ private fun BundleManagementCard(
     val openInBrowser = stringResource(R.string.sources_management_open_in_browser)
     val reportIssue = stringResource(R.string.sources_management_report_issue)
     val share = stringResource(R.string.share)
+    val exportPatches = stringResource(R.string.sources_management_export_patches)
     val copy = stringResource(R.string.copy)
     val copyToClipboard = rememberCopyToClipboard()
     // The badge leads to the list holding what it counts, the apps when the search names any
@@ -929,7 +940,8 @@ private fun BundleManagementCard(
 
     val isBlocked = info.blockedInfo != null
     val isEnabled = bundle.enabled && !isBlocked
-    val isUnavailable = info.metadataFetchError != null || bundle.state is PatchBundleSource.State.Missing
+    val isMissing = bundle.state is PatchBundleSource.State.Missing
+    val isUnavailable = info.metadataFetchError != null || isMissing
     val signingKeyChanged = info.metadataFetchError is PatchBundleSignerChangedException
 
     val problem = sourceProblem(bundle, isBlocked, signingKeyChanged, isUnavailable)
@@ -1095,11 +1107,11 @@ private fun BundleManagementCard(
                                     text = stringResource(
                                         when {
                                             actions.onChangeLink != null -> R.string.sources_management_metadata_unavailable_hint_missing_editable
-                                            bundle.state is PatchBundleSource.State.Missing -> R.string.sources_management_metadata_unavailable_hint_missing
+                                            isMissing -> R.string.sources_management_metadata_unavailable_hint_missing
                                             else -> R.string.sources_management_metadata_unavailable_hint
                                         }
                                     ),
-                                    icon = SourceProblem.Unavailable.icon,
+                                    icon = if (isMissing) SourceProblem.Missing.icon else SourceProblem.Unavailable.icon,
                                     onClick = actions.onChangeLink
                                 )
 
@@ -1214,7 +1226,7 @@ private fun BundleManagementCard(
                             }
 
                             // Repository actions, as wide as the four pill action bar below. Connected,
-                            // since every one of them leads out to the repository
+                            // since every one of them leads out to the repository or keeps what it published
                             if (bundle is RemotePatchBundle) {
                                 ActionPillRow(
                                     modifier = Modifier.padding(vertical = Defaults.SpaceExtraSmall),
@@ -1235,6 +1247,18 @@ private fun BundleManagementCard(
                                             icon = MaterialSymbols.Rounded.Share,
                                             contentDescription = share + " " + bundle.displayTitle,
                                             tooltip = share,
+                                            shape = ConnectedShapes.Pill.middle
+                                        )
+                                    }
+
+                                    if (actions.onExport != null) {
+                                        ActionPillButton(
+                                            onClick = actions.onExport,
+                                            icon = MaterialSymbols.Rounded.Save,
+                                            contentDescription = exportPatches + " " + bundle.displayTitle,
+                                            tooltip = exportPatches,
+                                            // An update swaps the file out from under the copy
+                                            enabled = !info.isUpdating,
                                             shape = ConnectedShapes.Pill.middle
                                         )
                                     }
@@ -1536,6 +1560,11 @@ private enum class SourceProblem(@StringRes val label: Int, val tone: SemanticTo
         SemanticTone.Warning,
         MaterialSymbols.Rounded.Gpp_bad
     ),
+    Missing(
+        R.string.sources_management_bundle_missing_badge,
+        SemanticTone.Warning,
+        MaterialSymbols.Rounded.Link_off
+    ),
     Unavailable(
         R.string.sources_management_metadata_unavailable,
         SemanticTone.Warning,
@@ -1558,6 +1587,7 @@ private fun sourceProblem(
     blocked -> SourceProblem.Blocked
     bundle.isHeldBack -> SourceProblem.HeldBack
     signingKeyChanged -> SourceProblem.SigningKeyChanged
+    bundle.state is PatchBundleSource.State.Missing -> SourceProblem.Missing
     unavailable -> SourceProblem.Unavailable
     bundle.requiresManagerUpdate -> SourceProblem.OutdatedManager
     else -> null

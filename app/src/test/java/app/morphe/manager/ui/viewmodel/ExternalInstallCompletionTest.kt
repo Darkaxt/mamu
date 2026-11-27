@@ -75,7 +75,7 @@ class ExternalInstallCompletionTest {
             set(vm, "externalInstallStartTime", 2000L)
             if (external) {
                 set(vm, "pendingExternalInstall", InstallerManager.InstallPlan.External(
-                    InstallerManager.InstallTarget.PATCHER, Intent(), expected,
+                    Intent(), expected,
                     Uri.parse("content://fixture/shared.apk"), pkg, "InstallerX Resigned", null,
                     InstallerManager.Token.Component(ComponentName("fixture.installer", "fixture.Installer"))))
             } else {

@@ -29,13 +29,9 @@ import app.morphe.manager.ui.model.PatchProgressSource
 import app.morphe.manager.ui.model.State
 import app.morphe.manager.ui.screen.shared.*
 import app.morphe.manager.ui.viewmodel.HomeAndPatcherMessages
+import app.morphe.manager.util.isSlowPatchingDevice
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.seconds
-
-private val ProgressRingWavelength = 40.dp
-
-/** The ring runs for minutes here, so its wave stays low enough not to tire the eye. */
-private const val PROGRESS_RING_AMPLITUDE = 0.6f
 
 /**
  * Simple mode patching screen.
@@ -51,7 +47,8 @@ fun SimplePatchingInProgress(
     packageName: String? = null,
     showLongStepWarning: Boolean = false,
     queueHeader: (@Composable () -> Unit)? = null,
-    onCancelClick: () -> Unit
+    onCancelClick: () -> Unit,
+    onGamesClick: (() -> Unit)? = null
 ) {
     val windowSize = rememberWindowSize()
     val (completed, total) = patchesProgress
@@ -95,7 +92,8 @@ fun SimplePatchingInProgress(
                 showLongStepWarning = showLongStepWarning,
                 patchProgress = patchProgress,
                 queueHeader = queueHeader,
-                onCancelClick = onCancelClick
+                onCancelClick = onCancelClick,
+                onGamesClick = onGamesClick
             )
         }
 
@@ -103,7 +101,8 @@ fun SimplePatchingInProgress(
         if (!isLandscape()) {
             PatcherBottomActionBar(
                 showHomeButton = false,
-                onCancelClick = onCancelClick
+                onCancelClick = onCancelClick,
+                onGamesClick = onGamesClick
             )
         }
     }
@@ -123,7 +122,8 @@ private fun AdaptiveProgressContent(
     showLongStepWarning: Boolean,
     patchProgress: PatchProgressSource,
     queueHeader: (@Composable () -> Unit)? = null,
-    onCancelClick: () -> Unit
+    onCancelClick: () -> Unit,
+    onGamesClick: (() -> Unit)?
 ) {
     val contentPadding = windowSize.contentPadding
     val itemSpacing = windowSize.itemSpacing
@@ -165,7 +165,8 @@ private fun AdaptiveProgressContent(
                 PatcherBottomActionBar(
                     horizontalPadding = 0.dp,
                     showHomeButton = false,
-                    onCancelClick = onCancelClick
+                    onCancelClick = onCancelClick,
+                    onGamesClick = onGamesClick
                 )
             }
 
@@ -270,11 +271,11 @@ private fun ProgressDetailsSection(
 }
 
 /**
- * Animated message with fade transitions.
+ * Animated message with fade transitions, which a slow device goes without.
  */
 @Composable
 private fun AnimatedMessage(messageResId: Int) {
-    val reduceMotion = rememberAccessibilityEnabled()
+    val reduceMotion = rememberAccessibilityEnabled() || isSlowPatchingDevice
     val message = stringResource(messageResId)
     if (reduceMotion) {
         Text(
@@ -306,7 +307,7 @@ private fun AnimatedMessage(messageResId: Int) {
 }
 
 /**
- * Wavy circular progress indicator with percentage and patch count.
+ * Progress ring with percentage and patch count.
  */
 @Composable
 private fun CircularProgressWithStats(
@@ -316,19 +317,17 @@ private fun CircularProgressWithStats(
     accentColor: Color?,
     modifier: Modifier = Modifier
 ) {
-    // The eased progress moves every frame, so only the whole percent is read while composing
+    // Only the whole percent is read while composing, which changes less often than the progress
     val percent by remember(progress) { derivedStateOf { (progress() * 100).toInt() } }
 
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
     ) {
-        WavyProgressRing(
+        PatchingProgressRing(
             progress = progress,
-            wavelength = ProgressRingWavelength,
             accentColor = accentColor,
             modifier = Modifier.fillMaxSize(),
-            amplitude = PROGRESS_RING_AMPLITUDE,
             trackColor = MaterialTheme.colorScheme.surfaceVariant
         )
 
@@ -380,7 +379,7 @@ fun CurrentStepIndicator(
             patchProgress.steps.firstOrNull { it.state == State.RUNNING }
         }
     }
-    val reduceMotion = rememberAccessibilityEnabled()
+    val reduceMotion = rememberAccessibilityEnabled() || isSlowPatchingDevice
     val stepName = currentStep?.name
     // In the app's color, as the ring above it is
     val stepColor = LocalAccent.current ?: MaterialTheme.colorScheme.primary

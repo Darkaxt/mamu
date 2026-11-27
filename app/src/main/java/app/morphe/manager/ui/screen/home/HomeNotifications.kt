@@ -11,6 +11,8 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -59,7 +61,9 @@ data class BatchQueueAlertState(val run: BatchRunState?, val preparedCount: Int 
 data class BundleUpdateState(
     val visible: Boolean,
     val status: BundleUpdateStatus,
-    val progress: PatchBundleRepository.BundleUpdateProgress?
+    val progress: PatchBundleRepository.BundleUpdateProgress?,
+    /** Whether a download is held up by the device being offline. */
+    val waitingForNetwork: Boolean = false
 )
 
 /** Aggregate of all notification-strip inputs, grouped by alert. */
@@ -145,6 +149,7 @@ fun NotificationsOverlay(
                 visible = notifications.bundleUpdate.visible,
                 status = notifications.bundleUpdate.status,
                 progress = notifications.bundleUpdate.progress,
+                waitingForNetwork = notifications.bundleUpdate.waitingForNetwork,
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -318,6 +323,7 @@ fun BundleUpdateSnackbar(
     visible: Boolean,
     status: BundleUpdateStatus,
     progress: PatchBundleRepository.BundleUpdateProgress?,
+    waitingForNetwork: Boolean = false,
     modifier: Modifier = Modifier
 ) {
     // Swipe only for terminal states, so an update in progress cannot be dismissed. A new status
@@ -328,7 +334,7 @@ fun BundleUpdateSnackbar(
         resetKey = status,
         modifier = modifier
     ) {
-        BundleUpdateCard(status = status, progress = progress)
+        BundleUpdateCard(status = status, progress = progress, waitingForNetwork = waitingForNetwork)
     }
 }
 
@@ -350,7 +356,8 @@ private const val FAILED_NAMES_SHOWN = 3
 @Composable
 private fun BundleUpdateCard(
     status: BundleUpdateStatus,
-    progress: PatchBundleRepository.BundleUpdateProgress?
+    progress: PatchBundleRepository.BundleUpdateProgress?,
+    waitingForNetwork: Boolean
 ) {
     val sourcesByUid = rememberSourcesByUid()
 
@@ -384,7 +391,10 @@ private fun BundleUpdateCard(
     // One line names the source at work and how much of it has arrived, while the badge carries
     // how far along the whole update is: its share, or how many sources are done when several run
     val activeName = progress?.activeNames?.firstOrNull() ?: progress?.currentBundleName
-    val arrived = progress?.takeIf { isDownloading }?.let {
+    // A download held up by the device being offline says so instead of a stalled size
+    val arrived = if (waitingForNetwork) {
+        stringResource(R.string.download_waiting_for_network)
+    } else progress?.takeIf { isDownloading }?.let {
         stringResource(
             R.string.manager_update_progress_size,
             formatMegabytes(it.bytesRead),
@@ -584,10 +594,10 @@ private fun StatusDisc(icon: ImageVector, tone: SemanticTone) {
  */
 @Composable
 private fun ProgressRing(progress: Float?, content: @Composable () -> Unit) {
-    // Eased, since the share arrives in steps as the download reports back
+    // Eased, since the share arrives in steps. A spring keeps pace where a tween restarts slow
     val animated by animateFloatAsState(
         targetValue = progress ?: 0f,
-        animationSpec = tween(Defaults.ANIMATION_DURATION),
+        animationSpec = spring(stiffness = Spring.StiffnessMediumLow, visibilityThreshold = 0.001f),
         label = "statusRingProgress"
     )
 

@@ -5,7 +5,6 @@
 
 package app.morphe.manager.ui.screen.shared
 
-import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,19 +20,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import app.morphe.manager.R
 import app.morphe.manager.util.ChangelogEntry
-import app.morphe.manager.util.GITHUB_HOST
-import app.morphe.manager.util.isGitLabUrl
+import app.morphe.manager.util.SourceUrl
 import app.morphe.manager.util.isPrerelease
 import app.morphe.manager.util.normalizeVersion
-import compose.icons.FontAwesomeIcons
-import compose.icons.fontawesomeicons.Brands
-import compose.icons.fontawesomeicons.brands.Github
-import compose.icons.fontawesomeicons.brands.Gitlab
+import com.composables.icons.materialsymbols.MaterialSymbols
+import com.composables.icons.materialsymbols.rounded.*
 import kotlinx.coroutines.flow.filter
 
 /** How close to the end of the list, in items, older releases start loading. */
@@ -197,32 +191,16 @@ fun ChangelogFooter(
 /** Opens [pageUrl], named after the forge that hosts it, or null when there is no page. */
 @Composable
 private fun releasePageAction(pageUrl: String?): DialogAction? {
-    val uriHandler = LocalUriHandler.current
-    val host = pageUrl?.let(ReleaseHost::of) ?: return null
+    val openUrl = rememberOpenUrl()
+    if (pageUrl == null) return null
+    val host = SourceUrl.parse(pageUrl)?.codeHost
 
     return DialogAction(
-        text = host.label?.let { stringResource(it) } ?: stringResource(R.string.changelog_release_page),
-        onClick = { uriHandler.openUri(pageUrl) },
-        icon = host.icon,
+        text = host?.label ?: stringResource(R.string.changelog_release_page),
+        onClick = { openUrl(pageUrl) },
+        icon = host?.icon ?: MaterialSymbols.Rounded.Open_in_new.autoMirrored,
         emphasis = DialogActionEmphasis.Outlined
     )
-}
-
-/** Forge a release page lives on, named by the button that opens it. */
-private enum class ReleaseHost(@param:StringRes val label: Int?, val icon: ImageVector) {
-    GITHUB(R.string.changelog_host_github, FontAwesomeIcons.Brands.Github),
-    GITLAB(R.string.changelog_host_gitlab, FontAwesomeIcons.Brands.Gitlab),
-
-    /** Any other host, which the button names generically. */
-    OTHER(null, Icons.AutoMirrored.Outlined.OpenInNew);
-
-    companion object {
-        fun of(url: String): ReleaseHost = when {
-            url.contains(GITHUB_HOST, ignoreCase = true) -> GITHUB
-            isGitLabUrl(url) -> GITLAB
-            else -> OTHER
-        }
-    }
 }
 
 /**

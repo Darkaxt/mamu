@@ -13,7 +13,7 @@ import kotlin.test.assertTrue
 class SourceVisibilityTest {
     private val client = io.ktor.client.HttpClient(io.ktor.client.engine.okhttp.OkHttp)
     private val prefs = app.morphe.manager.domain.manager.PreferencesManager(org.robolectric.RuntimeEnvironment.getApplication())
-    private val http = app.morphe.manager.network.service.HttpService(kotlinx.serialization.json.Json, client, okhttp3.OkHttpClient())
+    private val http = app.morphe.manager.network.service.HttpService(kotlinx.serialization.json.Json, client, okhttp3.OkHttpClient(), app.morphe.manager.network.service.AlwaysOnline)
     private val api = app.morphe.manager.network.api.ReleaseAPI(http, prefs)
     private val services = RemoteBundleServices(http, api,
         app.morphe.manager.network.service.AssetDownloader(http, api, prefs), prefs)

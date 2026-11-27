@@ -491,7 +491,7 @@ private fun PatchedApksContent(
             onDismiss = { pendingDelete = null },
             onConfirm = {
                 scope.launch {
-                    val deleted = repository.deleteSavedPatchedApk(app)
+                    val deleted = repository.deleteSavedPatchedApks(listOf(app))
                     context.toast(if (deleted) patchedApksDeletedText else apksDeleteFailedText)
                     pendingDelete = null
                 }

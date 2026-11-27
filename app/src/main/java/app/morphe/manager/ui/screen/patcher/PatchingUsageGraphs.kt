@@ -53,6 +53,7 @@ import app.morphe.manager.ui.screen.shared.WindowHeightSizeClass
 import app.morphe.manager.ui.screen.shared.WindowWidthSizeClass
 import app.morphe.manager.ui.screen.shared.itemSpacing
 import app.morphe.manager.ui.screen.shared.rememberWindowSize
+import app.morphe.manager.util.isSlowPatchingDevice
 
 /** Slots a history graph spans, which fixes the time axis so readings scroll in from the right. */
 private const val HISTORY_SLOTS = 60
@@ -304,11 +305,7 @@ private fun IoUsagePanel(
     // Storage has no limit to plot against, so the busiest sample on screen sets the scale.
     // That peak eventually scrolls out of the history, and rescaling every bar in one frame
     // looks like a burst of activity that never happened, so the scale itself is what moves.
-    val peak by animateFloatAsState(
-        targetValue = (samples.maxOfOrNull { it.totalKbPerSec } ?: 0).toFloat(),
-        animationSpec = tween(600, easing = FastOutSlowInEasing),
-        label = "io_scale"
-    )
+    val peak = easedSample((samples.maxOfOrNull { it.totalKbPerSec } ?: 0).toFloat(), label = "io_scale")
     val fractions = samples.map {
         if (peak > 0f) (it.totalKbPerSec / peak).coerceIn(0f, 1f) else 0f
     }
@@ -478,6 +475,22 @@ private fun UsageHistoryBars(
 }
 
 /**
+ * [value] eased toward from one sample to the next. A slow device steps to it instead, as frames
+ * drawn while patching take CPU time from the patcher.
+ */
+@Composable
+private fun easedSample(value: Float, label: String): Float {
+    if (isSlowPatchingDevice) return value
+
+    val eased by animateFloatAsState(
+        targetValue = value,
+        animationSpec = tween(600, easing = FastOutSlowInEasing),
+        label = label
+    )
+    return eased
+}
+
+/**
  * Current load of every core as its own bar. Cores keep their slot across samples, so one that
  * stays pinned while the others idle is visible as such.
  */
@@ -493,13 +506,7 @@ private fun CoreLoadBars(
     // machine are laid out by index, and which of them the run is riding is what the row shows
     val fractions = loads.mapIndexed { core, load ->
         // Polling is slow enough that stepping straight to each sample reads as noise
-        key(core) {
-            animateFloatAsState(
-                targetValue = (load / 100f).coerceIn(0f, 1f),
-                animationSpec = tween(600, easing = FastOutSlowInEasing),
-                label = "cpu_core_load"
-            ).value
-        }
+        key(core) { easedSample((load / 100f).coerceIn(0f, 1f), label = "cpu_core_load") }
     }
 
     UsageBars(

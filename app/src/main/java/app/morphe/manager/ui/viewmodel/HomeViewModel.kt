@@ -110,6 +110,11 @@ class HomeViewModel(
 
     val availablePatches = patchBundleRepository.bundleInfoFlow.map { it.values.sumOf { bundle -> bundle.patches.size } }
     val bundleUpdateProgress = patchBundleRepository.bundleUpdateProgress
+
+    /** Whether a source download is held up by the device being offline. */
+    val bundleDownloadWaiting: StateFlow<Boolean> = networkInfo
+        .offlineWhile(bundleUpdateProgress.map { it?.phase == PatchBundleRepository.BundleUpdatePhase.Downloading })
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), false)
     private val contentResolver: ContentResolver = app.contentResolver
 
     /** Becomes true once the bundle repository has finished its initial DB load. */
@@ -752,17 +757,7 @@ class HomeViewModel(
         packageName: String,
         installType: InstallType
     ): Boolean = withContext(Dispatchers.IO) {
-        val appliedPatches = installedAppRepository.getAppliedPatches(app.currentPackageName)
-        installedAppRepository.addOrUpdate(
-            currentPackageName = packageName,
-            originalPackageName = app.originalPackageName,
-            isClone = app.isClone,
-            version = app.version,
-            installType = installType,
-            patchSelection = appliedPatches,
-            selectionPayload = app.selectionPayload,
-            patchedAt = app.patchedAt
-        )
+        installedAppRepository.recordReinstall(app, packageName, installType)
         apps.notifyAppStateChanged(packageName)
         if (packageName != app.currentPackageName) apps.notifyAppStateChanged(app.currentPackageName)
         true

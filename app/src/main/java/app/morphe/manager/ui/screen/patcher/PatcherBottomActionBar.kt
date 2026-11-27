@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.outlined.InstallMobile
 import androidx.compose.material.icons.outlined.Save
+import androidx.compose.material.icons.outlined.SportsEsports
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,7 +37,8 @@ import kotlin.time.Duration.Companion.seconds
  * Pass a zero [horizontalPadding] where the bar sits in a column that is inset already, so the
  * two insets do not stack and the buttons keep the edges of the content above them.
  *
- * A non-null [resultButton] leads back to the result screen in place of Cancel.
+ * A non-null [resultButton] leads back to the result screen in place of Cancel, and a non-null
+ * [onGamesClick] adds a way to the mini-games.
  */
 @Composable
 fun PatcherBottomActionBar(
@@ -58,6 +60,7 @@ fun PatcherBottomActionBar(
     onCopyLogsClick: () -> Unit = {},
     onLogsClick: () -> Unit = {},
     onResultClick: () -> Unit = {},
+    onGamesClick: (() -> Unit)? = null,
 
     // State
     isSaving: Boolean = false
@@ -75,13 +78,14 @@ fun PatcherBottomActionBar(
         else -> ""
     }
     val homeLabel = if (showHomeButton) stringResource(R.string.home) else ""
+    val gamesLabel = if (onGamesClick != null) stringResource(R.string.mini_games_short) else ""
     val trailingLabel = when {
         showCopyLogsButton -> stringResource(android.R.string.copy)
         showSaveButton -> stringResource(R.string.save)
         else -> ""
     }
-    val labels = remember(leadingLabel, homeLabel, trailingLabel) {
-        listOf(leadingLabel, homeLabel, trailingLabel).filter { it.isNotEmpty() }
+    val labels = remember(leadingLabel, homeLabel, gamesLabel, trailingLabel) {
+        listOf(leadingLabel, homeLabel, gamesLabel, trailingLabel).filter { it.isNotEmpty() }
     }
 
     BottomActionBar(modifier = modifier, labels = labels, horizontalPadding = horizontalPadding) {
@@ -118,6 +122,16 @@ fun PatcherBottomActionBar(
                 onClick = onHomeClick,
                 icon = Icons.Default.Home,
                 text = homeLabel,
+                showLabel = showLabels
+            )
+        }
+
+        // Center: Mini-games button
+        if (onGamesClick != null) {
+            BottomActionButton(
+                onClick = onGamesClick,
+                icon = Icons.Outlined.SportsEsports,
+                text = gamesLabel,
                 showLabel = showLabels
             )
         }

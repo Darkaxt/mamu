@@ -78,7 +78,7 @@ class ReleaseTimestampTest {
         } }
         server.start()
         try {
-            val http = HttpService(Json, client, okhttp3.OkHttpClient())
+            val http = HttpService(Json, client, okhttp3.OkHttpClient(), app.morphe.manager.network.service.AlwaysOnline)
             for (index in timestamps.indices) {
                 val response = http.request<ReleaseAsset>(retryOn429 = false) {
                     url("http://127.0.0.1:${server.address.port}/manifest/$index")

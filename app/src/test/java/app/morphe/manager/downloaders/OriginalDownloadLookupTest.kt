@@ -37,16 +37,23 @@ class OriginalDownloadLookupTest {
         init {
             server.executor = workers
             server.createContext("/v1") { exchange ->
-                val request = JSONObject(exchange.requestBody.bufferedReader().use { it.readText() })
-                assertEquals("request.get", request.getString("cmd"))
-                val url = request.getString("url")
-                seen.add(url)
-                val (status, html) = response(url)
-                val bytes = JSONObject().put("status", "ok").put("solution", JSONObject()
-                    .put("status", status).put("url", resolvedUrl(url)).put("userAgent", "fixture browser")
-                    .put("contentType", "text/html").put("response", html)).toString().toByteArray()
-                exchange.sendResponseHeaders(200, bytes.size.toLong())
-                exchange.responseBody.use { it.write(bytes) }
+                // HttpServer drops the connection on a handler failure without saying why
+                try {
+                    val request = JSONObject(exchange.requestBody.bufferedReader().use { it.readText() })
+                    assertEquals("request.get", request.getString("cmd"))
+                    val url = request.getString("url")
+                    seen.add(url)
+                    val (status, html) = response(url)
+                    val bytes = JSONObject().put("status", "ok").put("solution", JSONObject()
+                        .put("status", status).put("url", resolvedUrl(url)).put("userAgent", "fixture browser")
+                        .put("contentType", "text/html").put("response", html)).toString().toByteArray()
+                    exchange.sendResponseHeaders(200, bytes.size.toLong())
+                    exchange.responseBody.use { it.write(bytes) }
+                } catch (failure: Throwable) {
+                    System.err.println("Fixture browser failed for ${seen.lastOrNull()}")
+                    failure.printStackTrace()
+                    throw failure
+                }
             }
             server.createContext("/queue/") { exchange ->
                 if (!queueFeedback) { exchange.sendResponseHeaders(404, -1); exchange.close() }
@@ -66,7 +73,7 @@ class OriginalDownloadLookupTest {
         val canonical = "$pure?from=version"
         Fixture(resolvedUrl = { if (it == pure) canonical else it }) { url -> 200 to when {
             url == mirror -> emptyMirror
-            url == StoreSearch.query(target, DownloadSource.APK_PURE) -> javaClass.getResource("/discovery/pure-package.html")!!.readText()
+            url == StoreSearch.query(target, DownloadSource.APK_PURE) -> javaClass.getResource("/discovery/pure-search.html")!!.readText()
             url == pure -> javaClass.getResource("/discovery/pure-version.html")!!.readText()
             else -> error("Unexpected browser request $url")
         } }.use { server ->

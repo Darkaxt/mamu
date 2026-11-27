@@ -26,7 +26,7 @@ class DownloadTargetMetadataTest {
         ReflectionHelpers.setStaticField(Build::class.java, "SUPPORTED_ABIS", arrayOf("arm64-v8a"))
         val client = HttpClient()
         try {
-            val resolver = DownloadUrlResolver(ReleaseAPI(HttpService(Json, client, okhttp3.OkHttpClient()),
+            val resolver = DownloadUrlResolver(ReleaseAPI(HttpService(Json, client, okhttp3.OkHttpClient(), app.morphe.manager.network.service.AlwaysOnline),
                 PreferencesManager(RuntimeEnvironment.getApplication())))
             val factor = FormFactor.entries.first { it != FormFactor.MOBILE }
             val target = BundledAppTarget(AppTarget(version = "3.0"), 7, "Selected source",

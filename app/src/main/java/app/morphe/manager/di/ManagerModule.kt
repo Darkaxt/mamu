@@ -21,6 +21,7 @@ import app.morphe.manager.domain.backup.SettingsExporter
 import app.morphe.manager.domain.batch.BatchPatchCoordinator
 import app.morphe.manager.domain.batch.BatchPlanResolver
 import app.morphe.manager.domain.bundles.AppVersionCatalog
+import app.morphe.manager.domain.installer.BatchUninstaller
 import app.morphe.manager.domain.installer.InstallerManager
 import app.morphe.manager.domain.installer.RootInstaller
 import app.morphe.manager.domain.installer.SessionInstaller
@@ -31,6 +32,7 @@ import app.morphe.manager.patcher.runtime.PatcherProcesses
 import app.morphe.manager.patcher.runtime.jvm.JvmInstallation
 import app.morphe.manager.service.ForegroundHoldService
 import app.morphe.manager.service.ForegroundWork
+import app.morphe.manager.ui.screen.games.MiniGameState
 import app.morphe.manager.ui.screen.shared.ContentTranslation
 import app.morphe.manager.util.AppCoroutineScope
 import app.morphe.manager.util.ContentTranslator
@@ -48,6 +50,7 @@ val managerModule = module {
     singleOf(::RootInstaller)
     singleOf(::SessionInstaller)
     singleOf(::InstallerManager)
+    singleOf(::BatchUninstaller)
     singleOf(::PatchOptionsPreferencesManager)
     singleOf(::AppIconManager)
     singleOf(::UpdateNotifications)
@@ -65,5 +68,6 @@ val managerModule = module {
     singleOf(::AppLinksManager)
     singleOf(::JvmInstallation)
     singleOf(::PatcherProcesses)
+    singleOf(::MiniGameState)
     single { ForegroundWork(ForegroundHoldService.Host(androidContext())) }
 }

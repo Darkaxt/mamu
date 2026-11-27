@@ -128,6 +128,7 @@ fun HomeScreen(
     val showOtherAppsButton by homeViewModel.apps.showOtherAppsButton.collectAsStateWithLifecycle()
     val showSearchButton by homeViewModel.apps.showSearchButton.collectAsStateWithLifecycle()
     val batchRun by homeViewModel.batchRun.collectAsStateWithLifecycle()
+    val bundleDownloadWaiting by homeViewModel.bundleDownloadWaiting.collectAsStateWithLifecycle()
     val savedBatchQueue by homeViewModel.savedBatchQueue.collectAsStateWithLifecycle()
     val showSortButtonPref by homeAppButtonPrefs.showSortButton.collectAsStateWithLifecycle()
     val homeAppFilterModePref by homeAppButtonPrefs.filterMode.collectAsStateWithLifecycle()
@@ -311,7 +312,8 @@ fun HomeScreen(
                     bundleUpdate = BundleUpdateState(
                         visible = homeViewModel.showBundleUpdateSnackbar,
                         status = homeViewModel.snackbarStatus,
-                        progress = bundleUpdateProgress
+                        progress = bundleUpdateProgress,
+                        waitingForNetwork = bundleDownloadWaiting
                     )
                 ),
                 apps = HomeAppListUi(

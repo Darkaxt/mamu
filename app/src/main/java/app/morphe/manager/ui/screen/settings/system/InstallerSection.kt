@@ -55,24 +55,22 @@ fun InstallerSection(
         settingsViewModel.parseInstallerToken(primaryPreference)
     }
 
-    val installTarget = InstallerManager.InstallTarget.PATCHER
-
     // Installer entries with periodic updates
     val primaryEntries = remember(primaryToken) {
-        mutableStateOf(settingsViewModel.getInstallerEntries(installTarget, primaryToken))
+        mutableStateOf(settingsViewModel.getInstallerEntries(primaryToken))
     }
 
     // Periodically update installer list
-    LaunchedEffect(installTarget, primaryToken) {
+    LaunchedEffect(primaryToken) {
         while (isActive) {
-            primaryEntries.value = settingsViewModel.getInstallerEntries(installTarget, primaryToken)
+            primaryEntries.value = settingsViewModel.getInstallerEntries(primaryToken)
             delay(1.5.seconds)
         }
     }
 
     // Get current entry
     val primaryEntry = primaryEntries.value.find { it.token == primaryToken }
-        ?: settingsViewModel.describeInstallerEntry(primaryToken, installTarget)
+        ?: settingsViewModel.describeInstallerEntry(primaryToken)
         ?: primaryEntries.value.firstOrNull()
 
     if (primaryEntry != null) {
@@ -103,9 +101,8 @@ fun InstallerSelectionDialogContainer(
         settingsViewModel.parseInstallerToken(primaryPreference)
     }
 
-    val installTarget = InstallerManager.InstallTarget.PATCHER
     val options = remember(primaryToken) {
-        settingsViewModel.getInstallerEntries(installTarget, primaryToken)
+        settingsViewModel.getInstallerEntries(primaryToken)
     }
 
     val afterPatching by settingsViewModel.prefs.afterPatching.getAsState()

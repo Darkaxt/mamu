@@ -46,6 +46,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
@@ -1061,17 +1062,22 @@ private fun VersionTransition(
     modifier: Modifier = Modifier
 ) {
     val (from, to) = versions
+    val rtl = isRtl()
     // Points the way the language runs, so the move reads forwards in Arabic and Hebrew too
-    val arrow = if (LocalLayoutDirection.current == LayoutDirection.Rtl) "←" else "→"
+    val arrow = if (rtl) "←" else "→"
     val readOut = stringResource(readOutRes, from, to)
 
     Text(
+        // Each version is isolated and the line runs the layout's way, since a line opening with a
+        // Latin version would otherwise be laid out left to right with the versions in LTR order
         text = buildAnnotatedString {
-            withStyle(SpanStyle(color = contentColor.copy(alpha = 0.75f))) { append(from) }
+            withStyle(SpanStyle(color = contentColor.copy(alpha = 0.75f))) { append(from.isolateLtr()) }
             withStyle(SpanStyle(color = contentColor.copy(alpha = 0.5f))) { append("  $arrow  ") }
-            withStyle(SpanStyle(color = contentColor, fontWeight = FontWeight.Medium)) { append(to) }
+            withStyle(SpanStyle(color = contentColor, fontWeight = FontWeight.Medium)) { append(to.isolateLtr()) }
         },
-        style = MaterialTheme.typography.bodySmall,
+        style = MaterialTheme.typography.bodySmall.copy(
+            textDirection = if (rtl) TextDirection.Rtl else TextDirection.Ltr
+        ),
         textAlign = TextAlign.Center,
         modifier = modifier.semantics { contentDescription = readOut }
     )

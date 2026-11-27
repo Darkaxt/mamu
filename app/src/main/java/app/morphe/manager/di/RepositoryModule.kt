@@ -22,7 +22,9 @@ import app.morphe.manager.network.PlayStoreIcons
 import app.morphe.manager.network.fetchPlayStoreListing
 import io.ktor.client.HttpClient
 import org.koin.android.ext.koin.androidContext
+import app.morphe.manager.network.service.ConnectionWatcher
 import app.morphe.manager.util.AppDataResolver
+import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.createdAtStart
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
@@ -32,7 +34,9 @@ val repositoryModule = module {
     singleOf(::Filesystem) {
         createdAtStart()
     }
-    singleOf(::NetworkInfo)
+    singleOf(::NetworkInfo) {
+        bind<ConnectionWatcher>()
+    }
     singleOf(::ManagerUpdateRepository)
     singleOf(::PatchSelectionRepository)
     singleOf(::KnownPatchFailures)

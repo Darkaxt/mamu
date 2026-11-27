@@ -24,6 +24,7 @@ import android.os.Bundle
 import android.os.IBinder
 import android.os.RemoteException
 import app.morphe.manager.util.SHELL_INSTALLER_PACKAGE
+import moe.shizuku.server.IShizukuService
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -63,11 +64,22 @@ class ShizukuInstaller(private val app: Application) {
      * @param installerPackageNameOverride Optional package name to report as the installer.
      * @throws InstallerOperationException if the installation fails or is aborted.
      */
-    @SuppressLint("RequestInstallPackagesPolicy")
     suspend fun install(
         sourceFile: File,
         expectedPackage: String,
         installerPackageNameOverride: String? = null
+    ): InstallerStatus = try {
+        commitSession(sourceFile, expectedPackage, installerPackageNameOverride)
+    } catch (e: InstallerOperationException) {
+        if (!isDexMetadataRejection(e.message)) throw e
+        commitSession(sourceFile, expectedPackage, installerPackageNameOverride)
+    }
+
+    @SuppressLint("RequestInstallPackagesPolicy")
+    private suspend fun commitSession(
+        sourceFile: File,
+        expectedPackage: String,
+        installerPackageNameOverride: String?,
     ): InstallerStatus = withContext(Dispatchers.IO) {
         val packageInstaller = obtainPackageInstaller()
         val packageInstallerWrapper = packageInstaller.asPackageInstaller(installerPackageNameOverride)
@@ -94,6 +106,7 @@ class ShizukuInstaller(private val app: Application) {
                     session.fsync(output)
                 }
             }
+            dexMetadataOf(sourceFile)?.let(session::writeDexMetadata)
 
             val operation = PendingOperation()
             session.commit(operation.intentSender)
@@ -120,6 +133,22 @@ class ShizukuInstaller(private val app: Application) {
 
         packageInstallerWrapper.uninstall(packageName, operation.intentSender)
         operation.result.await().requireSuccess()
+    }
+
+    /**
+     * Runs [command] in a shell of the Shizuku service, as shell or root, and waits for it to
+     * return. The service ends the shell once Morphe dies, so a command meant to outlive it detaches.
+     */
+    suspend fun runShell(command: String): Unit = withContext(Dispatchers.IO) {
+        val binder = Shizuku.getBinder() ?: throw IOException("Shizuku is not running")
+        // Called on the service itself, as the client API keeps it private
+        val process = IShizukuService.Stub.asInterface(binder)
+            .newProcess(arrayOf("sh", "-c", command), null, null)
+        try {
+            process.waitFor()
+        } finally {
+            runCatching { process.destroy() }
+        }
     }
 
     /** Returns this result, or throws [InstallerOperationException] when the operation failed. */

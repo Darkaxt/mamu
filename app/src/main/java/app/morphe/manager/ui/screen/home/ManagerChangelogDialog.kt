@@ -11,7 +11,6 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -29,6 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import app.morphe.manager.BuildConfig
 import app.morphe.manager.R
@@ -282,10 +282,12 @@ fun ManagerChangelogDialog(
                 }
 
                 UpdateDialogContent.Downloading -> CenteredStatus {
+                    val waitingForNetwork by updateViewModel.waitingForNetwork.collectAsStateWithLifecycle()
                     DownloadProgress(
                         downloadedSize = updateViewModel.downloadedSize,
                         totalSize = updateViewModel.totalSize,
                         progress = updateViewModel.downloadProgress,
+                        waitingForNetwork = waitingForNetwork,
                         accentColor = morpheAccent
                     )
                 }
@@ -457,13 +459,15 @@ private fun DownloadProgress(
     downloadedSize: Long,
     totalSize: Long,
     progress: Float,
+    waitingForNetwork: Boolean,
     accentColor: Color?
 ) {
     val hasKnownSize = totalSize > 0L
     val isStreaming = !hasKnownSize && downloadedSize > 0L
+    // A spring keeps pace with every chunk, where a tween restarts slow and falls behind
     val animatedProgress by animateFloatAsState(
         targetValue = progress,
-        animationSpec = tween(Defaults.ANIMATION_DURATION),
+        animationSpec = spring(stiffness = Spring.StiffnessMediumLow, visibilityThreshold = 0.001f),
         label = "downloadProgress"
     )
 
@@ -497,10 +501,13 @@ private fun DownloadProgress(
                     color = dialogTextColor()
                 )
             }
-            // Nothing to size up before the first callback, so the percentage stands alone
-            if (hasKnownSize || isStreaming) {
+            // Nothing to size up before the first callback, so the percentage stands alone. A
+            // download held up by the device being offline says so instead of a stalled size
+            if (waitingForNetwork || hasKnownSize || isStreaming) {
                 Text(
-                    text = if (hasKnownSize) {
+                    text = if (waitingForNetwork) {
+                        stringResource(R.string.download_waiting_for_network)
+                    } else if (hasKnownSize) {
                         stringResource(
                             R.string.manager_update_progress_size,
                             formatMegabytes(downloadedSize),
