@@ -37,7 +37,7 @@ val repositoryModule = module {
     singleOf(::NetworkInfo) {
         bind<ConnectionWatcher>()
     }
-    singleOf(::ManagerUpdateRepository)
+    single { ManagerUpdateRepository(get<ReleaseAPI>()) }
     singleOf(::PatchSelectionRepository)
     singleOf(::KnownPatchFailures)
     singleOf(::SourceMuteRepository)

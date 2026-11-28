@@ -21,7 +21,12 @@ import kotlinx.coroutines.sync.withLock
  * The home banner, the update dialog and the background worker resolve the same asset here,
  * so every surface announces and downloads exactly the release the others resolved.
  */
-class ManagerUpdateRepository(private val releaseAPI: ReleaseAPI) {
+class ManagerUpdateRepository internal constructor(
+    private val checkAppUpdate: suspend () -> AppUpdateCheck,
+    private val now: () -> Long = System::currentTimeMillis
+) {
+    constructor(releaseAPI: ReleaseAPI) : this(releaseAPI::checkAppUpdate)
+
     private val _availableUpdate = MutableStateFlow<ReleaseAsset?>(null)
 
     /** The most recently resolved update, or null while none is known to be available. */
@@ -55,8 +60,13 @@ class ManagerUpdateRepository(private val releaseAPI: ReleaseAPI) {
      */
     suspend fun refresh(forceRefresh: Boolean = false): ReleaseAsset? = awaitFetch(forceRefresh)
 
-    /** Returns the cached update if a check already resolved one, otherwise checks now. */
-    suspend fun getOrRefresh(): ReleaseAsset? = _availableUpdate.value ?: awaitFetch()
+    /**
+     * Resolves the update for a dialog about to offer it. It checks again rather than hand back
+     * an update found earlier, which a release published since then would have superseded: the
+     * dialog would list the new release as latest and still download the old one. A check that
+     * just ran is reused, see [awaitFetch].
+     */
+    suspend fun getOrRefresh(): ReleaseAsset? = awaitFetch()
 
     /**
      * Resolves the update without repeating a check that just ran. Opening the manager asks for it
@@ -67,7 +77,7 @@ class ManagerUpdateRepository(private val releaseAPI: ReleaseAPI) {
     private suspend fun awaitFetch(forceRefresh: Boolean = false): ReleaseAsset? {
         val pending = refreshMutex.withLock {
             inFlight?.let { return@withLock it }
-            if (!forceRefresh && System.currentTimeMillis() - lastResolvedAt < RESULT_REUSE_WINDOW_MILLIS) {
+            if (!forceRefresh && now() - lastResolvedAt < RESULT_REUSE_WINDOW_MILLIS) {
                 return _availableUpdate.value
             }
             scope.async {
@@ -82,11 +92,13 @@ class ManagerUpdateRepository(private val releaseAPI: ReleaseAPI) {
     }
 
     private suspend fun fetch(): ReleaseAsset? {
-        val check = releaseAPI.checkAppUpdate()
-        val update = (check as? AppUpdateCheck.Available)?.asset
+        val check = checkAppUpdate()
+        // A check that could not reach the server says nothing new, so the update already known stays
+        val update = if (check is AppUpdateCheck.Failed) _availableUpdate.value
+            else (check as? AppUpdateCheck.Available)?.asset
         _lastCheck.value = check
         _availableUpdate.value = update
-        lastResolvedAt = System.currentTimeMillis()
+        lastResolvedAt = now()
         return update
     }
 
