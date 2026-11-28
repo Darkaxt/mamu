@@ -85,6 +85,38 @@ internal object ApkMirrorSearch {
             .find(terms)?.value
     }
 
+    private val abiTokens = listOf("arm64-v8a", "armeabi-v7a", "armeabi", "x86_64", "x86", "universal", "noarch")
+
+    /**
+     * The variant this device should get from a release page's table, so nobody has to know what
+     * an ABI or a DPI is. Ranks by the device's own ABI order, then a full APK over a bundle, then
+     * nodpi, then the lowest minimum Android. Variants for another architecture never qualify.
+     * Null when no variant fits or two fit equally well (for example differently signed builds),
+     * leaving the choice to the user.
+     */
+    fun bestVariant(choices: List<RemotePage.Choice>, supportedAbis: List<String>): RemotePage.Choice? {
+        if (supportedAbis.isEmpty()) return null
+        val ranked = choices.mapNotNull { choice ->
+            val label = choice.label.lowercase()
+            val abis = abiTokens.filter { Regex("(?<![a-z0-9])${Regex.escape(it)}(?![a-z0-9_-])").containsMatchIn(label) }
+            val abiRank = when {
+                abis.isEmpty() -> supportedAbis.size + 1
+                abis.any { it in supportedAbis } -> abis.filter { it in supportedAbis }.minOf { supportedAbis.indexOf(it) }
+                "universal" in abis || "noarch" in abis -> supportedAbis.size
+                else -> return@mapNotNull null
+            }
+            val bundle = if (Regex("\\bbundle\\b").containsMatchIn(label)) 1 else 0
+            val dpi = if (Regex("\\bnodpi\\b").containsMatchIn(label)) 0 else 1
+            val minAndroid = Regex("android ([0-9]+)(?:\\.([0-9]+))?(l)?\\+").find(label)?.let {
+                it.groupValues[1].toInt() * 100 + (it.groupValues[2].toIntOrNull() ?: 0) * 10 + if (it.groupValues[3].isNotEmpty()) 5 else 0
+            } ?: Int.MAX_VALUE
+            choice to listOf(abiRank, bundle, dpi, minAndroid)
+        }
+        val comparator = Comparator<List<Int>> { a, b -> a.zip(b).map { (x, y) -> x.compareTo(y) }.firstOrNull { it != 0 } ?: 0 }
+        val best = ranked.minWithOrNull(Comparator { a, b -> comparator.compare(a.second, b.second) }) ?: return null
+        return best.first.takeIf { ranked.count { comparator.compare(it.second, best.second) == 0 } == 1 }
+    }
+
     fun matchesVersion(label: String, requested: String?): Boolean = requested == null ||
         Regex("(?<![A-Za-z0-9._-])${Regex.escape(requested)}(?![A-Za-z0-9._-])").containsMatchIn(label)
 }

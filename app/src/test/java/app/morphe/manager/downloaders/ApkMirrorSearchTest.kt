@@ -111,4 +111,33 @@ class ApkMirrorSearchTest {
         assertFalse(ApkMirrorSearch.matchesRelease("Gboard 18.5.1.993608717.1", "18.5.1.993608717-lite_beta-arm64-v8a"))
         assertFalse(ApkMirrorSearch.matchesRelease("Gboard 18.5.2.993608717", "18.5.1.993608717-lite_beta-arm64-v8a"))
     }
+
+    @Test fun `release page picks the device's full nodpi APK without asking`() {
+        // Row texts of the live YouTube Music 9.40.51 release page, which Mamu used to show as a picker
+        val release = "https://www.apkmirror.com/apk/google-inc/youtube-music/youtube-music-9-40-51-release/"
+        val rows = listOf(
+            "BUNDLE 2 S 94051230 armeabi-v7a Android 10+ 320dpi", "BUNDLE 25 S 94051230 armeabi-v7a Android 8.0+ 480dpi",
+            "APK 94051230 armeabi-v7a Android 8.0+ nodpi", "BUNDLE 30 S 94051240 arm64-v8a Android 12L+ 120-480dpi",
+            "BUNDLE 26 S 94051240 arm64-v8a Android 10+ 480-640dpi", "BUNDLE 26 S 94051240 arm64-v8a Android 8.0+ 480-640dpi",
+            "APK 94051240 arm64-v8a Android 8.0+ nodpi", "BUNDLE 25 S 94051270 x86 Android 12L+ 480dpi",
+            "APK 94051270 x86 Android 8.0+ nodpi", "BUNDLE 25 S 94051280 x86_64 Android 8.0+ 480dpi",
+            "APK 94051280 x86_64 Android 8.0+ nodpi")
+        val html = "<title>YouTube Music 9.40.51 - APKMirror</title>" +
+            "<a class='downloadButton variantsButton' href='#downloads'>Scroll to available downloads</a>" +
+            rows.mapIndexed { i, row -> "<div class='table-row'><a href='youtube-music-9-40-51-${i + 1}-android-apk-download/'>9.40.51</a> $row</div>" }
+                .joinToString("")
+        fun next(abis: List<String>) = RemotePage.parse(release, html, expectedVersion = "9.40.51", supportedAbis = abis).next
+        assertEquals("${release}youtube-music-9-40-51-7-android-apk-download/", next(listOf("arm64-v8a", "armeabi-v7a", "armeabi")))
+        assertEquals("${release}youtube-music-9-40-51-3-android-apk-download/", next(listOf("armeabi-v7a", "armeabi")))
+        assertEquals("${release}youtube-music-9-40-51-9-android-apk-download/", next(listOf("x86")))
+        assertEquals("${release}youtube-music-9-40-51-11-android-apk-download/", next(listOf("x86_64", "x86")))
+        // Only bundles for this device: the most compatible one is still chosen
+        val bundles = rows.take(2).mapIndexed { i, row -> "<div class='table-row'><a href='v-${i + 1}-android-apk-download/'>9.40.51</a> $row</div>" }
+        assertEquals("${release}v-2-android-apk-download/",
+            RemotePage.parse(release, bundles.joinToString(""), expectedVersion = "9.40.51", supportedAbis = listOf("armeabi-v7a")).next)
+        // Nothing for this architecture, or no device ABIs known: the variants stay a choice
+        assertNull(RemotePage.parse(release, bundles.joinToString(""), expectedVersion = "9.40.51", supportedAbis = listOf("arm64-v8a")).next)
+        assertNull(RemotePage.parse(release, html).next)
+        assertEquals(11, RemotePage.parse(release, html).choices.size)
+    }
 }

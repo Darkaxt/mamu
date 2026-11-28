@@ -156,7 +156,10 @@ data class RemotePage(val url: String, val title: String, val next: String?, val
                 val path = URI(it.url).path
                 path.endsWith("-release/") && path.startsWith(basePath) && it.url != url.substringBefore('#')
             }.distinctBy { it.url }
-            return RemotePage(url, title, buttons.singleOrNull()?.url ?: matchedVariants.singleOrNull()?.url,
+            // A release page lists every variant; the device's own one is taken without asking
+            val bestVariant = if (source == DownloadSource.APK_MIRROR && buttons.isEmpty())
+                ApkMirrorSearch.bestVariant(matchedVariants, supportedAbis) else null
+            return RemotePage(url, title, buttons.singleOrNull()?.url ?: matchedVariants.singleOrNull()?.url ?: bestVariant?.url,
                 buttons.ifEmpty { matchedVariants.ifEmpty { releases } }, source)
         }
     }
