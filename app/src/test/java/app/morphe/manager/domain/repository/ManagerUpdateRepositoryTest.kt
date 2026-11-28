@@ -34,7 +34,7 @@ class ManagerUpdateRepositoryTest {
 
     @Test fun `a check that cannot reach the server keeps the update already known`() = runBlocking {
         var answer: AppUpdateCheck = AppUpdateCheck.Available(release("2.8.0.2"))
-        val repository = ManagerUpdateRepository { answer }
+        val repository = ManagerUpdateRepository({ answer })
         repository.refresh(forceRefresh = true)
         answer = AppUpdateCheck.Failed
         assertEquals("2.8.0.2", repository.refresh(forceRefresh = true)?.version)
