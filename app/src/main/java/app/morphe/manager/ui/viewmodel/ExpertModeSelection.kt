@@ -64,6 +64,15 @@ class ExpertModeSelection(
     // so bulk actions offer the same set the selection was built from
     internal var allowIncompatible = false
 
+    /**
+     * Whether the run opened reaching patches declared for other app versions: the version check
+     * is off, or the user went on with an APK no source supports. Only then are those patches
+     * among the recommended ones. Accepting one of them by hand later lets the run take it
+     * ([allowIncompatible]) without turning the rest of them into recommendations.
+     */
+    internal var defaultsReachOtherVersions = false
+        private set
+
     /** Picker behind the copy-from-another-bundle action of the expert-mode dialog. */
     val copy = CopySelectionController()
 
@@ -206,7 +215,7 @@ class ExpertModeSelection(
      */
     fun resetToDefault(bundleUid: Int, patchScope: Set<String>? = null) {
         val bundle = bundles.firstOrNull { it.uid == bundleUid } ?: return
-        val defaults = bundle.patchSequence(allowIncompatible)
+        val defaults = bundle.patchSequence(defaultsReachOtherVersions)
             .filter { it.defaultSelected(currentInstallerType, currentApkArchitecture) }
             .mapTo(mutableSetOf()) { it.name }
         patches = patches.withBundleScope(bundleUid, defaults, patchScope)
@@ -365,6 +374,7 @@ class ExpertModeSelection(
         currentInstallerType = installerType
         currentApkArchitecture = architecture
         allowIncompatible = allowOtherVersions
+        defaultsReachOtherVersions = allowOtherVersions
         failureContext = context
         savedPatches = selected
         patches = selected
@@ -387,6 +397,7 @@ class ExpertModeSelection(
         newPatches = emptyMap()
         universalArmedFor = emptyMap()
         allowIncompatible = false
+        defaultsReachOtherVersions = false
         unreadablePaths = emptyList()
         copy.close()
     }

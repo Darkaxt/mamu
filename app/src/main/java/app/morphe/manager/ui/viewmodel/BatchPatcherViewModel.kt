@@ -93,7 +93,7 @@ class BatchPatchEdit(
     private val apkArchitecture: ApkArchitecture,
     // Whether the queue reaches patches that declare other app versions, so bulk actions offer
     // the same set the plan was resolved from
-    private val allowIncompatible: Boolean,
+    val allowIncompatible: Boolean,
     private val recommendedVersion: String? = null,
     val version: String? = recommendedVersion,
     val versionCode: Long? = null,

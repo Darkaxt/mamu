@@ -283,6 +283,7 @@ fun BatchPatcherScreen(
             selection = ExpertPatchSelection(
                 allPatchesInfo = edit.allPatchesInfo,
                 failureContext = edit.failureContext,
+                defaultsReachOtherVersions = edit.allowIncompatible,
                 options = edit.options,
                 totalSelectedCount = edit.totalSelectedCount,
                 newPatches = edit.newPatches,

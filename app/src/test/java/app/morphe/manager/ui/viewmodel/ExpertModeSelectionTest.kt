@@ -60,4 +60,28 @@ class ExpertModeSelectionTest {
         assertTrue(editor.globalHiddenSources.isEmpty())
         assertEquals(context, editor.failureContext)
     }
+
+    @Test fun `accepting one other-version patch does not make the rest recommended`() = runBlocking {
+        val other = patch("Other version")
+        val source = PatchBundleInfo.Scoped("Source", "release", 1, true,
+            listOf(custom, other), listOf(custom), listOf(other), emptyList())
+        val editor = editor(this)
+        editor.open(app, listOf(source), emptySet(), emptySet(), mapOf(1 to emptySet()), emptyMap(),
+            emptyMap(), InstallerType.STANDARD, ApkArchitecture.UNIVERSAL, false, context)
+        editor.allowUnsupported()
+        editor.resetToDefault(1)
+        assertEquals(setOf("Custom"), editor.patches[1])
+        assertTrue(editor.allowIncompatible)
+    }
+
+    @Test fun `a run opened on other versions keeps them among the recommended`() = runBlocking {
+        val other = patch("Other version")
+        val source = PatchBundleInfo.Scoped("Source", "release", 1, true,
+            listOf(other), emptyList(), listOf(other), emptyList())
+        val editor = editor(this)
+        editor.open(app, listOf(source), emptySet(), emptySet(), mapOf(1 to emptySet()), emptyMap(),
+            emptyMap(), InstallerType.STANDARD, ApkArchitecture.UNIVERSAL, true, context)
+        editor.resetToDefault(1)
+        assertEquals(setOf("Other version"), editor.patches[1])
+    }
 }

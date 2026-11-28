@@ -51,7 +51,9 @@ data class ExpertPatchSelection(
     val lockStateOf: (PatchInfo) -> PatchLockState = { PatchLockState.NONE },
     /** True while "Enable all" still holds the universal patches of the given list back. */
     val holdsUniversalPatches: (bundleUid: Int, patches: List<Pair<PatchInfo, Boolean>>) -> Boolean = { _, _ -> false },
-    val failureContext: PatchFailureContext? = null
+    val failureContext: PatchFailureContext? = null,
+    /** Whether the recommended patches include those declared for other app versions. */
+    val defaultsReachOtherVersions: Boolean = false
 )
 
 /** Callbacks the expert-mode dialog invokes on the underlying patch selection. */
@@ -164,6 +166,11 @@ fun ExpertModeDialog(
         // A prior compatibility acknowledgement must not approve a newly observed failure.
         return if (row.key in known) "$base|known-failure|${knownFailureRetryKey(selection.failureContext, row.key)}" else base
     }
+    val recommendable = remember(allPatchesInfo, selection.defaultsReachOtherVersions) {
+        allPatchesInfo.flatMapTo(mutableSetOf()) { (bundle, _) ->
+            bundle.patchSequence(selection.defaultsReachOtherVersions).map { "${bundle.uid}:${it.name}" }
+        }
+    }
     fun guardUnsupported(candidates: List<PanelPatch>, action: () -> Unit) {
         val unsupported = candidates.filter { it.scope == PatchVersionScope.UNSUPPORTED }
         val missing = unsupported.mapTo(mutableSetOf(), ::warningKey) - acknowledgements - sessionAcknowledgements
@@ -191,7 +198,9 @@ fun ExpertModeDialog(
         val affected = liveRows.filter { it.bundleUid in targets }
         val enabling = when (action) {
             SectionSelectionAction.ALL -> affected.filterNot { it.selected }
-            SectionSelectionAction.DEFAULTS -> affected.filter { it.patch.include }
+            // Only what the selection will actually enable is asked about: patches declared for
+            // other versions are recommended only while the run reaches them
+            SectionSelectionAction.DEFAULTS -> affected.filter { it.patch.include && it.key in recommendable }
             SectionSelectionAction.RESTORE -> affected.filter { it.patch.name in savedPatches[it.bundleUid].orEmpty() }
             SectionSelectionAction.COPY -> affected
             SectionSelectionAction.NONE -> emptyList()

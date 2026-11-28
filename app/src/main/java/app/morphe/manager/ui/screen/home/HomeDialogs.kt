@@ -446,6 +446,7 @@ fun HomeDialogs(
                 selection = ExpertPatchSelection(
                     allPatchesInfo = homeViewModel.patchFlow.selection.allPatchesInfo,
                     failureContext = homeViewModel.patchFlow.selection.failureContext,
+                    defaultsReachOtherVersions = homeViewModel.patchFlow.selection.defaultsReachOtherVersions,
                     options = homeViewModel.patchFlow.selection.options,
                     totalSelectedCount = homeViewModel.patchFlow.selection.totalSelectedCount,
                     newPatches = homeViewModel.patchFlow.selection.newPatches,
