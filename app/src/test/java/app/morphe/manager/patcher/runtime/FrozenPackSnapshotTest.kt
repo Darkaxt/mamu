@@ -75,7 +75,7 @@ class FrozenPackSnapshotTest {
         }
     }
 
-    @Test fun missing_disabled_blocked_or_unknown_patch_sources_are_not_admitted() = runBlocking<Unit> {
+    @Test fun missing_disabled_or_blocked_sources_are_not_admitted_and_unknown_patches_are_left_to_the_patcher() = runBlocking<Unit> {
         val directory=temp.newFolder();jar(directory.resolve("patches.jar"),"same")
         val enabled=source(directory);val disabled=source(directory,enabled=false)
         val cases=listOf(BundleState.Ready() to emptySet(),snapshot(disabled,"same") to emptySet(),
@@ -87,11 +87,14 @@ class FrozenPackSnapshotTest {
                 freezePacks(state,blocked,root,packageName,mapOf(0 to setOf("Exact patch")),emptyMap(),mapOf(0 to "same"))
             } } finally { discardRuntimeAttempt(root) }
         }
+        // A selected patch the source lacks no longer refuses the run here: the patcher omits it
+        // through the failed-patch retry and patches the rest
         val root=temp.newFolder()
-        try { assertFailsWith<IllegalArgumentException> {
-            freezePacks(snapshot(enabled,"same"),emptySet(),root,packageName,
+        try {
+            val packs=freezePacks(snapshot(enabled,"same"),emptySet(),root,packageName,
                 mapOf(0 to setOf("Unknown patch")),emptyMap(),mapOf(0 to "same"))
-        } } finally { discardRuntimeAttempt(root) }
+            assertEquals(setOf("Unknown patch"),packs.single().request.patches)
+        } finally { discardRuntimeAttempt(root) }
     }
 
     @Test fun duplicate_uids_have_independent_copies_and_options_with_deterministic_ties() = runBlocking {
