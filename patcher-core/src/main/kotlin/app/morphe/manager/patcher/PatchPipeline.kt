@@ -52,11 +52,13 @@ class PatchPipeline(
     }
 
     private suspend fun selectedPatches(): List<Patch> {
+        val missing = linkedSetOf<app.morphe.manager.patcher.patch.PatchKey>()
         val selected = request.bundles.sortedWith(compareByDescending<PatchRequest.Bundle> {
             it.publishedAt ?: Long.MIN_VALUE
         }.thenBy { it.uid }).flatMap { bundle ->
             val patches = loadPatches(bundle).keyedFor(request.packageName)
-            require(patches.keys.containsAll(bundle.patches)) { "Source patch identities changed; reopen the selection" }
+            bundle.patches.filterNot { it in patches.keys }
+                .mapTo(missing) { app.morphe.manager.patcher.patch.PatchKey(bundle.uid, it) }
             patches.applyPatchOptions(
                 bundle.options.mapValues { (_, options) -> options.mapValues { (_, value) -> optionValueFromJson(value) } },
                 logger
@@ -65,6 +67,15 @@ class PatchPipeline(
                 require(!identities.containsKey(patch)) { "Patch object shared by independent source identities" }
                 identities[patch] = bundle.uid to key
             }.values
+        }
+        if (missing.isNotEmpty()) {
+            // The selection names a patch the source's code does not load here. Rather than
+            // refusing the whole run, it is omitted like a failed patch, and the retry patches the rest
+            val failure = MissingSelectedPatchesException(missing)
+            logger.warn(failure.message!!)
+            listener.patchesRejected(app.morphe.manager.patcher.patch.PatchRejection(missing,
+                "Not in the patch source's code on this device", missing.first().key, failure.stackTraceToString()))
+            throw failure
         }
         listener.stepCompleted() // Loading patches
         return selected
@@ -162,3 +173,8 @@ class PatchPipeline(
         }
     }
 }
+
+/** Selected patches the loaded source code does not contain, by source and key. */
+class MissingSelectedPatchesException(val missing: Set<app.morphe.manager.patcher.patch.PatchKey>) : IllegalStateException(
+    "Selected patches not found in their source's code, omitting them: " +
+        missing.joinToString { "${it.sourceUid}:${it.key}" })

@@ -43,7 +43,8 @@ internal suspend fun freezePacks(snapshot: PatchBundleRepository.BundleState.Rea
             "Patch source $uid changed before patching (selected ${metadata.version ?: "unknown"}, copied ${actual?.version ?: "unknown"}); reopen selection"
         }
         val scoped=metadata.forPackage(packageName,null)
-        require(scoped.patches.map { it.name }.containsAll(names)) { "Source patch identities changed; reopen selection" }
+        // A selected patch the source no longer lists is not a reason to refuse the run: the patcher
+        // omits whatever its code does not load, and the retry patches the rest
         val published=if(source is RemotePatchBundle) source.installedPublicationTime else null
         FrozenPack(PatchRequest.Bundle(uid,file.path,names,options[uid].orEmpty().filterKeys { it in names }.mapValues { (_,values) ->
             values.mapValues { (_,value) -> optionValueToJson(value) }
