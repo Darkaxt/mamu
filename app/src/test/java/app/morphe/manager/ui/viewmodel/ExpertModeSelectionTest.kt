@@ -12,14 +12,16 @@ class ExpertModeSelectionTest {
     private fun patch(name: String, default: Boolean = true) = PatchInfo(name, null, default, null, null)
     private val custom = patch("Custom")
     private val universal = patch("Universal", false)
-    private val sources = listOf(1, 2).map { uid -> PatchBundleInfo.Scoped("Source $uid", "release", uid, true,
-        listOf(custom, universal), listOf(custom), emptyList(), listOf(universal)) }
+    // Each source has its own patch: a patch name selected in two sources is kept in one only
+    private val own = patch("Own")
+    private val sources = listOf(1 to custom, 2 to own).map { (uid, mine) -> PatchBundleInfo.Scoped("Source $uid", "release", uid, true,
+        listOf(mine, universal), listOf(mine), emptyList(), listOf(universal)) }
     private val context = PatchFailureContext("exact-apk", mapOf(1 to "release", 2 to "release"))
     private val app = SelectedApp.Installed("app", "2", 20)
     private fun editor(scope: CoroutineScope, records: List<KnownPatchFailure> = emptyList()) =
         ExpertModeSelection(scope, { _, _, _, _ -> }, MutableStateFlow(records))
     private fun open(editor: ExpertModeSelection) = editor.open(app, sources, emptySet(), emptySet(),
-        mapOf(1 to setOf("Custom", "Universal"), 2 to setOf("Custom")),
+        mapOf(1 to setOf("Custom", "Universal"), 2 to setOf("Own")),
         mapOf(1 to mapOf("Custom" to mapOf("option" to "kept"))), emptyMap(),
         InstallerType.STANDARD, ApkArchitecture.UNIVERSAL, false, context)
 
@@ -27,7 +29,7 @@ class ExpertModeSelectionTest {
         val editor = editor(this); open(editor)
         editor.setSourceHidden(1, false, true)
         editor.awaitVisibilityWrites()
-        assertEquals(mapOf(2 to setOf("Custom")), editor.runSelection)
+        assertEquals(mapOf(2 to setOf("Own")), editor.runSelection)
         assertEquals(1, editor.totalSelectedCount)
         assertEquals(setOf("Custom", "Universal"), editor.patches[1])
         assertEquals("kept", editor.options[1]?.get("Custom")?.get("option"))
@@ -39,13 +41,26 @@ class ExpertModeSelectionTest {
         val editor = editor(this); open(editor)
         editor.resetToDefault(1, setOf("Universal"))
         assertEquals(setOf("Custom"), editor.patches[1])
-        assertEquals(setOf("Custom"), editor.patches[2])
+        assertEquals(setOf("Own"), editor.patches[2])
         editor.restoreSaved(1, setOf("Universal"))
         assertEquals(setOf("Custom", "Universal"), editor.patches[1])
         assertEquals("kept", editor.options[1]?.get("Custom")?.get("option"))
         editor.toggle(1, "Custom")
         assertFalse("Custom" in editor.patches[1].orEmpty())
-        assertTrue("Custom" in editor.patches[2].orEmpty())
+        assertTrue("Own" in editor.patches[2].orEmpty())
+    }
+
+    @Test fun `a patch copied into two sources is selected in one and picking the other copy moves it`() = runBlocking {
+        val copies = listOf(1, 2).map { uid -> PatchBundleInfo.Scoped("Source $uid", "release", uid, true,
+            listOf(custom), listOf(custom), emptyList(), emptyList()) }
+        val editor = editor(this)
+        editor.open(app, copies, emptySet(), emptySet(), mapOf(1 to setOf("Custom"), 2 to setOf("Custom")),
+            emptyMap(), emptyMap(), InstallerType.STANDARD, ApkArchitecture.UNIVERSAL, false, context)
+        assertEquals(mapOf(1 to setOf("Custom")), editor.runSelection)
+        editor.toggle(2, "Custom")
+        assertEquals(mapOf(2 to setOf("Custom")), editor.runSelection)
+        editor.resetToDefault(1)
+        assertEquals(1, editor.totalSelectedCount)
     }
 
     @Test fun `clearing and reopening resets editor permissions and warning context`() = runBlocking {
