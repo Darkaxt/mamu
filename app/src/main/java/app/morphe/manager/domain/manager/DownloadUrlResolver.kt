@@ -39,35 +39,52 @@ class DownloadUrlResolver(private val releaseAPI: ReleaseAPI) {
      */
     suspend fun resolve(packageName: String, version: String?, patchSources: PatchSourceHeaders? = null,
                         target: BundledAppTarget? = null): String {
-        val url = follow(packageName, version, patchSources, target)
+        val url = follow(packageName, version, target) { releaseAPI.resolveRedirect(it, patchSources) }
         return ApkMirrorSearch.translate(url, packageName, version)
     }
 
-    private suspend fun follow(
+    /**
+     * Follows the API answer for [target]'s exact build. The API only knows some build codes: for
+     * an unknown one it falls back to a web search, which on APKMirror lists every variant sharing
+     * that code (often only split bundles). The version and ABI alone can still lead to a full
+     * APK, so that query is asked before giving up on the API.
+     */
+    internal suspend fun follow(
         packageName: String,
         version: String?,
-        patchSources: PatchSourceHeaders?,
-        target: BundledAppTarget?
+        target: BundledAppTarget?,
+        redirect: suspend (String) -> String?
     ): String {
-        val searchUrl = apiSearchUrl(packageName, version, target)
+        val exact = apiSearchUrl(packageName, version, target)
+        val plain = apiSearchUrl(packageName, version, target, includeBuildCode = false)
+        val resolved = followApi(exact, redirect)
+            ?: plain.takeIf { it != exact }?.let {
+                Log.i(LOG_TAG, "The API does not know this build, asking for the version: $it")
+                followApi(it, redirect)
+            }
+        return resolved?.let { finalUrl(it, packageName, version) } ?: webSearchUrl(packageName, version)
+    }
+
+    /** Where the API leads, or null when it only offers a web search or no answer at all. */
+    private suspend fun followApi(searchUrl: String, redirect: suspend (String) -> String?): String? {
         Log.d(LOG_TAG, "Using search url: $searchUrl")
 
-        var resolved = releaseAPI.resolveRedirect(searchUrl, patchSources) ?: run {
+        var resolved = redirect(searchUrl) ?: run {
             Log.w(LOG_TAG, "No redirect location for: $searchUrl")
-            return webSearchUrl(packageName, version)
+            return null
         }
 
         repeat(MAX_REDIRECTS) {
             // Recognize the API's fallback before issuing any request to Google.
-            if (isGoogleSearch(resolved)) return webSearchUrl(packageName, version)
+            if (isGoogleSearch(resolved)) return null
             // A URL that redirects nowhere is the end of the chain
-            val next = releaseAPI.resolveRedirect(resolved, patchSources) ?: return finalUrl(resolved, packageName, version)
+            val next = redirect(resolved) ?: return resolved
             Log.i(LOG_TAG, "Following redirect to: $next")
             resolved = next
         }
 
         Log.w(LOG_TAG, "Gave up after $MAX_REDIRECTS redirects")
-        return webSearchUrl(packageName, version)
+        return null
     }
 
     /**
@@ -76,12 +93,14 @@ class DownloadUrlResolver(private val releaseAPI: ReleaseAPI) {
      * @param target The source version [version] comes from. Its build code for the ABI of this
      *   device and its form factor, other than a phone, are added to the query, so the API answers
      *   with that build. Ignored when it is for another version.
+     * @param includeBuildCode False leaves the build code out, keeping the form factor.
      */
-    fun apiSearchUrl(packageName: String, version: String?, target: BundledAppTarget? = null): String {
+    fun apiSearchUrl(packageName: String, version: String?, target: BundledAppTarget? = null,
+                     includeBuildCode: Boolean = true): String {
         val abi = Build.SUPPORTED_ABIS.first()
         val parts = mutableListOf(packageName, version ?: "any", abi)
         if (target != null && version != null && target.target.version == version) {
-            supportedAbi(abi)?.let { target.abiBuildCodes?.get(it) }?.let { parts += it.toString() }
+            if (includeBuildCode) supportedAbi(abi)?.let { target.abiBuildCodes?.get(it) }?.let { parts += it.toString() }
             target.formFactor?.takeIf { it != FormFactor.MOBILE }?.let { parts += it.name.lowercase() }
         }
         val query = parts.joinToString("~").encodeURLPath()
