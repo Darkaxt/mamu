@@ -100,6 +100,14 @@ class Runtime(
             val original=root.resolve("original.${File(inputFile).extension}")
             copyFrozenInput(File(inputFile),original)
             val packs=freezePacks(patchBundlesRepo,root,packageName,selectedPatches,options,expectedVersions)
+            // The patcher JVM reads class files, so a source shipping only dex loads no patch at all
+            // there, although the app lists its patches from that dex. ART loads it like the app did
+            if(activeVm==PatcherVm.JVM) packs.firstOrNull { pack ->
+                selectedPatches[pack.request.uid].orEmpty().isNotEmpty() && !hasClassFiles(File(pack.request.patchesFile))
+            }?.let { pack ->
+                logger.warn("${pack.name} ${pack.version.orEmpty()} only has Android (dex) code, which the patcher JVM cannot load; patching on ART instead")
+                activeVm=PatcherVm.ART; onArtFallback()
+            }
             val device=currentDeviceConfig()
             var attempts: app.morphe.manager.patcher.patch.PatchRetryResult?=null
             val elapsed=measureTime {

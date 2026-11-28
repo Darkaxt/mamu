@@ -42,6 +42,25 @@ class FrozenPackSnapshotTest {
         persistentMapOf(source.uid to source),persistentMapOf(source.uid to info(source.uid,version)))
     private fun sha(file:File)=MessageDigest.getInstance("SHA-256").digest(file.readBytes()).joinToString("") { "%02x".format(it) }
 
+    @Test fun a_dex_only_source_is_told_apart_from_one_the_patcher_jvm_can_load() {
+        // A source like OpenNova ships only classes.dex, of which the patcher JVM loads nothing
+        val dexOnly=jar(temp.newFile("dex-only.mpp"),"1")
+        val withClasses=temp.newFile("classes.mpp").apply {
+            JarOutputStream(outputStream()).use { output ->
+                output.putNextEntry(JarEntry("classes.dex"));output.write(byteArrayOf(1));output.closeEntry()
+                output.putNextEntry(JarEntry("app/morphe/Patch.class"));output.write(byteArrayOf(1));output.closeEntry()
+            }
+        }
+        val versionedOnly=temp.newFile("versioned.mpp").apply {
+            JarOutputStream(outputStream()).use { output ->
+                output.putNextEntry(JarEntry("META-INF/versions/21/app/morphe/Patch.class"));output.write(byteArrayOf(1));output.closeEntry()
+            }
+        }
+        assertFalse(hasClassFiles(dexOnly))
+        assertTrue(hasClassFiles(withClasses))
+        assertFalse(hasClassFiles(versionedOnly))
+    }
+
     @Test fun replaced_file_does_not_invalidate_fresh_metadata_because_a_source_manifest_is_cached() = runBlocking {
         val directory=temp.newFolder();val file=jar(directory.resolve("patches.jar"),"old")
         val source=source(directory);assertEquals("old",source.version)

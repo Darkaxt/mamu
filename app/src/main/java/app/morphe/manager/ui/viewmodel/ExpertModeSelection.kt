@@ -138,6 +138,7 @@ class ExpertModeSelection(
         if (patch != null && lockState(patch).blocksToggle(selected)) return
 
         patches = patches.togglePatch(bundleUid, patchName)
+            .oneSourcePerPatch(keepFrom = bundleUid.takeIf { !selected })
             .applyAvailability()
     }
 
@@ -159,6 +160,7 @@ class ExpertModeSelection(
         )
 
         this.patches = this.patches.withBundle(bundleUid, updated)
+            .oneSourcePerPatch(keepFrom = bundleUid)
             .applyAvailability()
         // Armed against what the availability rules left behind, so the next tap sees the
         // selection it is compared to
@@ -219,6 +221,7 @@ class ExpertModeSelection(
             .filter { it.defaultSelected(currentInstallerType, currentApkArchitecture) }
             .mapTo(mutableSetOf()) { it.name }
         patches = patches.withBundleScope(bundleUid, defaults, patchScope)
+            .oneSourcePerPatch()
             .applyAvailability()
     }
 
@@ -229,6 +232,7 @@ class ExpertModeSelection(
     fun restoreSaved(bundleUid: Int, patchScope: Set<String>? = null) {
         val savedForBundle = savedPatches[bundleUid] ?: return
         patches = patches.withBundleScope(bundleUid, savedForBundle, patchScope)
+            .oneSourcePerPatch(keepFrom = bundleUid)
             .applyAvailability()
     }
 
@@ -310,6 +314,7 @@ class ExpertModeSelection(
 
             // The copy comes from a run that may have targeted another installer
             patches = patches.withBundleScope(targetBundleUid, copied.patches, patchScope)
+                .oneSourcePerPatch(keepFrom = targetBundleUid)
                 .applyAvailability()
             options = options.mergeBundleOptions(targetBundleUid, copied.options)
 
@@ -335,6 +340,9 @@ class ExpertModeSelection(
                 bundles.associate { it.uid to it.patches.associateBy { patch -> patch.name } }
             ).preserveKnownFailureChoices(this, knownFailures(failureContext, failureRecords.value).keys) + heldBack
     }
+
+    private fun PatchSelection.oneSourcePerPatch(keepFrom: Int? = null) =
+        oneSourcePerPatch(bundles, app?.packageName.orEmpty(), app?.version, keepFrom)
 
     private fun targetBundlePatchNames(bundleUid: Int): Set<String> =
         bundles.firstOrNull { it.uid == bundleUid }
@@ -381,6 +389,7 @@ class ExpertModeSelection(
         options = initialOptions
         newPatches = added
         applyMutes()
+        patches = patches.oneSourcePerPatch().applyAvailability()
     }
 
     fun clear() {

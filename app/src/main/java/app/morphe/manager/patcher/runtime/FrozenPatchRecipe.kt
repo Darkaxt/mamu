@@ -92,3 +92,10 @@ internal fun discardRuntimeAttempt(directory: File) {
     Files.walk(root).use { paths -> paths.forEach { if(!Files.isSymbolicLink(it)) it.toFile().setWritable(true) } }
     Files.walk(root).use { paths -> paths.sorted(Comparator.reverseOrder()).forEach { Files.delete(it) } }
 }
+
+/** Whether [file] holds class files the patcher JVM can load, rather than only dex. */
+internal fun hasClassFiles(file: File): Boolean = runCatching {
+    java.util.zip.ZipFile(file).use { zip ->
+        zip.entries().asSequence().any { it.name.endsWith(".class") && !it.name.startsWith("META-INF/versions/") }
+    }
+}.getOrDefault(true)

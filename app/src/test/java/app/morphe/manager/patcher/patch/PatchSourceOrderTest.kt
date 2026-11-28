@@ -86,4 +86,21 @@ class PatchSourceOrderTest {
             source(2, custom("b"), custom("c", "1")), source(3, universal("u")))
             .sortedWith(patchSourceDisplayOrder(app, null)).map { it.uid })
     }
+
+    @Test fun `a patch copied into several sources is selected in one of them only`() {
+        // The tablet case: a launcher source also carried copies of the music patches
+        val full = source(1, custom("Hide ads"), custom("Theme"), custom("Lyrics"))
+        val copies = source(2, custom("Hide ads"), custom("Theme"))
+        val own = source(3, custom("Unrelated"))
+        val sources = listOf(copies, own, full)
+        val selection = mapOf(2 to setOf("Hide ads", "Theme"), 1 to setOf("Hide ads", "Theme", "Lyrics"),
+            3 to setOf("Unrelated"), 9 to setOf("Hide ads"))
+
+        // The source ranked first for the app keeps its copies; one not shown is left alone
+        assertEquals(mapOf(1 to setOf("Hide ads", "Theme", "Lyrics"), 3 to setOf("Unrelated"), 9 to setOf("Hide ads")),
+            selection.oneSourcePerPatch(sources, app, "2"))
+        // Picking the other copy by hand moves the patch there
+        assertEquals(mapOf(2 to setOf("Hide ads", "Theme"), 1 to setOf("Lyrics"), 3 to setOf("Unrelated"), 9 to setOf("Hide ads")),
+            selection.oneSourcePerPatch(sources, app, "2", keepFrom = 2))
+    }
 }

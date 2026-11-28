@@ -34,6 +34,7 @@ import app.morphe.manager.patcher.patch.PatchBundleInfo.Extensions.toPatchSelect
 import app.morphe.manager.patcher.patch.PatchInfo
 import app.morphe.manager.patcher.patch.VersionSupport
 import app.morphe.manager.patcher.patch.installerTypeFor
+import app.morphe.manager.patcher.patch.oneSourcePerPatch
 import app.morphe.manager.patcher.split.SplitApkInspector
 import app.morphe.manager.ui.model.declaresPackageName
 import app.morphe.manager.util.AppDataResolver
@@ -412,7 +413,7 @@ class BatchPlanResolver(
             allowIncompatible = allowIncompatible,
             useMount = useMount,
             apkArchitecture = source.apkArchitecture()
-        )
+        ).let { it.copy(patches = it.patches.oneSourcePerPatch(contributing, packageName, source.version)) }
 
         if (selection.patches.values.sumOf { it.size } == 0) return blocked(contributing, nothingSelected = true)
 
